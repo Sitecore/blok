@@ -3,10 +3,7 @@ import { ChartAreaInteractive } from "@/registry/new-york/blocks/dashboard-01/co
 import { DataTable } from "@/registry/new-york/blocks/dashboard-01/components/data-table"
 import { SectionCards } from "@/registry/new-york/blocks/dashboard-01/components/section-cards"
 import { SiteHeader } from "@/registry/new-york/blocks/dashboard-01/components/site-header"
-import {
-  SidebarInset,
-  SidebarProvider,
-} from "@/registry/new-york/ui/sidebar"
+import { SidebarInset, SidebarProvider } from "@/registry/new-york/ui/sidebar"
 
 import data from "./data.json"
 

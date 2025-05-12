@@ -1,9 +1,6 @@
 import { AppSidebar } from "@/registry/new-york/blocks/sidebar-16/components/app-sidebar"
 import { SiteHeader } from "@/registry/new-york/blocks/sidebar-16/components/site-header"
-import {
-  SidebarInset,
-  SidebarProvider,
-} from "@/registry/new-york/ui/sidebar"
+import { SidebarInset, SidebarProvider } from "@/registry/new-york/ui/sidebar"
 
 export const iframeHeight = "800px"
 
