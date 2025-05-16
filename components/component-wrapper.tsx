@@ -1,6 +1,12 @@
 "use client"
 
 import * as React from "react"
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@radix-ui/react-accordion"
 
 import { cn } from "@/registry/new-york/lib/utils"
 
@@ -12,20 +18,32 @@ export function ComponentWrapper({
 }: React.ComponentPropsWithoutRef<"div"> & { name: string }) {
   return (
     <ComponentErrorBoundary name={name}>
-      <div
-        id={name}
-        data-name={name.toLowerCase()}
-        className={cn(
-          "flex w-full scroll-mt-16 flex-col rounded-lg border",
-          className
-        )}
-        {...props}
-      >
-        <div className="border-b px-4 py-3">
-          <div className="text-sm font-medium">{getComponentName(name)}</div>
+      <Accordion type="single" collapsible defaultValue={name}>
+        <div
+          id={name}
+          data-name={name.toLowerCase()}
+          className={cn(
+            "flex w-full scroll-mt-16 flex-col rounded-lg border",
+            className
+          )}
+          {...props}
+        >
+          <AccordionItem key={name} value={name}>
+            <AccordionTrigger className="flex w-full items-center justify-between py-2">
+              <div className="border-b px-4 py-3">
+                <div className="text-sm font-medium">
+                  {getComponentName(name)}
+                </div>
+              </div>
+            </AccordionTrigger>
+            <AccordionContent className="py-2 text-sm">
+              <div className="flex flex-1 items-center gap-2 p-4">
+                {children}
+              </div>
+            </AccordionContent>
+          </AccordionItem>
         </div>
-        <div className="flex flex-1 items-center gap-2 p-4">{children}</div>
-      </div>
+      </Accordion>
     </ComponentErrorBoundary>
   )
 }
