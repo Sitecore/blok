@@ -19,7 +19,7 @@ export default function Page() {
     <header className="border-b bg-white">
       <div className="flex h-16 items-center px-4">
         <div className="flex items-center gap-4">
-          <Button variant="ghost" size="lg">
+          <Button variant="ghost" size="icon">
             <Icon path={mdiDotsGrid} size={1} />
           </Button>
           <div className="flex items-center gap-1">
@@ -70,7 +70,7 @@ export default function Page() {
             <NavigationMenuItem>
               <Link href="#" legacyBehavior passHref>
                 <NavigationMenuLink
-                  className={`${navigationMenuTriggerStyle()} bg-primary-background text-primary`}
+                  className={`${navigationMenuTriggerStyle()} active`}
                 >
                   Content
                 </NavigationMenuLink>
@@ -97,7 +97,7 @@ export default function Page() {
 
         <div className="ml-auto flex items-center space-x-4">
           <Button variant="ghost" size="icon">
-            <Icon path={mdiHelpCircleOutline} size={0.6} />
+            <Icon path={mdiHelpCircleOutline} size={1} />
           </Button>
           <Avatar className="h-8 w-8">
             <AvatarFallback>SC</AvatarFallback>
