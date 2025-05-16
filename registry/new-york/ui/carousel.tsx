@@ -1,10 +1,11 @@
 "use client"
 
 import * as React from "react"
+import { mdiArrowLeft, mdiArrowRight } from "@mdi/js"
+import Icon from "@mdi/react"
 import useEmblaCarousel, {
   type UseEmblaCarouselType,
 } from "embla-carousel-react"
-import { ArrowLeft, ArrowRight } from "lucide-react"
 
 import { cn } from "@/lib/utils"
 import { Button } from "@/registry/new-york/ui/button"
@@ -195,7 +196,7 @@ function CarouselPrevious({
       onClick={scrollPrev}
       {...props}
     >
-      <ArrowLeft />
+      <Icon path={mdiArrowLeft} size={0.9} />
       <span className="sr-only">Previous slide</span>
     </Button>
   )
@@ -225,7 +226,7 @@ function CarouselNext({
       onClick={scrollNext}
       {...props}
     >
-      <ArrowRight />
+      <Icon path={mdiArrowRight} size={0.9} />
       <span className="sr-only">Next slide</span>
     </Button>
   )

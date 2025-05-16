@@ -17,6 +17,7 @@
   --popover-foreground: var(--color-blackAlpha-900); /* chakra-popover-text: blackAlpha.900 */
   --primary: var(--color-primary-600); /* primary-fg: primary.600 */
   --primary-foreground: var(--color-white); /* chakra-inverse-text: white */
+  --primary-background: var(--color-primary-100);
   --secondary: var(--color-gray-50);
   --secondary-foreground: var(--color-blackAlpha-900);
   --muted: var(--color-gray-50); /* chakra-subtle-bg: gray.50 */
@@ -52,6 +53,7 @@
   --popover-foreground: var(--color-white); /* chakra-popover-text: white */
   --primary: var(--color-primary-200); /* primary-fg: primary.200 */
   --primary-foreground: var(--color-blackAlpha-900); /* chakra-inverse-text: blackAlpha.900 */
+  --primary-background: var(--color-primary-100);
   --secondary: var(--color-gray-900); /* chakra-subtle-bg: gray.900 */
   --secondary-foreground: var(--color-white); /* chakra-subtle-text: white */
   --muted: var(--color-gray-900); /* chakra-subtle-bg: gray.900 */
@@ -92,6 +94,7 @@
   --color-popover-foreground: var(--popover-foreground);
   --color-primary: var(--primary);
   --color-primary-foreground: var(--primary-foreground);
+  --color-primary-background: var(--primary-background);
   --color-secondary: var(--secondary);
   --color-secondary-foreground: var(--secondary-foreground);
   --color-muted: var(--muted);

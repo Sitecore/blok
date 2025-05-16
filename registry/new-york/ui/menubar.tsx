@@ -1,8 +1,9 @@
 "use client"
 
 import * as React from "react"
+import { mdiCheck, mdiChevronRight, mdiCircle } from "@mdi/js"
+import Icon from "@mdi/react"
 import * as MenubarPrimitive from "@radix-ui/react-menubar"
-import { CheckIcon, ChevronRightIcon, CircleIcon } from "lucide-react"
 
 import { cn } from "@/lib/utils"
 
@@ -129,7 +130,7 @@ function MenubarCheckboxItem({
     >
       <span className="pointer-events-none absolute left-2 flex size-3.5 items-center justify-center">
         <MenubarPrimitive.ItemIndicator>
-          <CheckIcon className="size-4" />
+          <Icon path={mdiCheck} size={0.9} />
         </MenubarPrimitive.ItemIndicator>
       </span>
       {children}
@@ -153,7 +154,7 @@ function MenubarRadioItem({
     >
       <span className="pointer-events-none absolute left-2 flex size-3.5 items-center justify-center">
         <MenubarPrimitive.ItemIndicator>
-          <CircleIcon className="size-2 fill-current" />
+          <Icon path={mdiCircle} size={0.5} />
         </MenubarPrimitive.ItemIndicator>
       </span>
       {children}
@@ -235,7 +236,7 @@ function MenubarSubTrigger({
       {...props}
     >
       {children}
-      <ChevronRightIcon className="ml-auto h-4 w-4" />
+      <Icon path={mdiChevronRight} size={0.9} className="ml-auto" />
     </MenubarPrimitive.SubTrigger>
   )
 }
