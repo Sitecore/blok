@@ -34,7 +34,6 @@ const ColorsDemo = ({ cssContent }: Props) => {
 
   return (
     <div style={{ width: "100%", overflowX: "auto" }}>
-      <h2>Color Variables</h2>
       <table
         style={{ width: "100%", borderCollapse: "collapse", marginTop: "1rem" }}
       >
