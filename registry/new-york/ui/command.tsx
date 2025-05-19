@@ -1,8 +1,9 @@
 "use client"
 
 import * as React from "react"
+import { mdiMagnify } from "@mdi/js"
+import Icon from "@mdi/react"
 import { Command as CommandPrimitive } from "cmdk"
-import { SearchIcon } from "lucide-react"
 
 import { cn } from "@/lib/utils"
 import {
@@ -62,7 +63,7 @@ function CommandInput({
       data-slot="command-input-wrapper"
       className="flex h-9 items-center gap-2 border-b px-3"
     >
-      <SearchIcon className="size-4 shrink-0 opacity-50" />
+      <Icon path={mdiMagnify} size={0.9} className="mr-2 shrink-0 opacity-50" />
       <CommandPrimitive.Input
         data-slot="command-input"
         className={cn(

@@ -1,9 +1,10 @@
 "use client"
 
 import * as React from "react"
+import { mdiMenu } from "@mdi/js"
+import Icon from "@mdi/react"
 import { Slot } from "@radix-ui/react-slot"
 import { VariantProps, cva } from "class-variance-authority"
-import { PanelLeftIcon } from "lucide-react"
 
 import { useIsMobile } from "@/registry/new-york/hooks/use-mobile"
 import { cn } from "@/registry/new-york/lib/utils"
@@ -273,7 +274,7 @@ function SidebarTrigger({
       }}
       {...props}
     >
-      <PanelLeftIcon />
+      <Icon path={mdiMenu} size={0.9} />
       <span className="sr-only">Toggle Sidebar</span>
     </Button>
   )
