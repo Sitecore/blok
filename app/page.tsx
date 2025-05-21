@@ -1,6 +1,3 @@
-import fs from "fs"
-import path from "path"
-
 import { AccordionDemo } from "@/components/accordion-demo"
 import { AlertDemo } from "@/components/alert-demo"
 import { AlertDialogDemo } from "@/components/alert-dialog-demo"
@@ -15,7 +12,6 @@ import { CarouselDemo } from "@/components/carousel-demo"
 import { ChartDemo } from "@/components/chart-demo"
 import { CheckboxDemo } from "@/components/checkbox-demo"
 import { CollapsibleDemo } from "@/components/collapsible-demo"
-import ColorsDemo from "@/components/colors-demo"
 import { ComboboxDemo } from "@/components/combobox-demo"
 import { CommandDemo } from "@/components/command-demo"
 import { ComponentWrapper } from "@/components/component-wrapper"
@@ -50,9 +46,6 @@ import { TextareaDemo } from "@/components/textarea-demo"
 import { ToggleDemo } from "@/components/toggle-demo"
 import { ToggleGroupDemo } from "@/components/toggle-group-demo"
 import { TooltipDemo } from "@/components/tooltip-demo"
-
-const cssPath = path.join(process.cwd(), "app", "colors.css")
-const cssContent = fs.readFileSync(cssPath, "utf-8")
 
 export default function SinkPage() {
   return (
@@ -197,9 +190,6 @@ export default function SinkPage() {
       </ComponentWrapper>
       <ComponentWrapper name="tooltip">
         <TooltipDemo />
-      </ComponentWrapper>
-      <ComponentWrapper name="colors">
-        <ColorsDemo cssContent={cssContent} />
       </ComponentWrapper>
     </div>
   )
