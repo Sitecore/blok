@@ -1,33 +1,49 @@
 @import "tailwindcss";
-
 @import "tw-animate-css";
 
 @custom-variant dark (&:is(.dark *));
 
 @import "./colors.css";
+@import "./typography.css";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 :root {
   --radius: 0.625rem;
   /* Chakra semantic token mappings (light mode) */
   --background: var(--color-white); /* chakra-body-bg: white */
-  --foreground: var(--color-blackAlpha-900); /* chakra-body-text: blackAlpha.900 */
+  --foreground: var(
+    --color-blackAlpha-900
+  ); /* chakra-body-text: blackAlpha.900 */
   --card: var(--color-white); /* chakra-card-bg: white */
-  --card-foreground: var(--color-blackAlpha-900); /* chakra-card-text: blackAlpha.900 */
+  --card-foreground: var(
+    --color-blackAlpha-900
+  ); /* chakra-card-text: blackAlpha.900 */
   --popover: var(--color-white); /* chakra-popover-bg: white */
-  --popover-foreground: var(--color-blackAlpha-900); /* chakra-popover-text: blackAlpha.900 */
+  --popover-foreground: var(
+    --color-blackAlpha-900
+  ); /* chakra-popover-text: blackAlpha.900 */
   --primary: var(--color-primary-600); /* primary-fg: primary.600 */
   --primary-foreground: var(--color-white); /* chakra-inverse-text: white */
   --primary-background: var(--color-primary-100);
   --secondary: var(--color-gray-50);
   --secondary-foreground: var(--color-blackAlpha-900);
   --muted: var(--color-gray-50); /* chakra-subtle-bg: gray.50 */
-  --muted-foreground: var(--color-blackAlpha-500); /* chakra-subtle-text: blackAlpha.500 */
+  --muted-foreground: var(
+    --color-blackAlpha-500
+  ); /* chakra-subtle-text: blackAlpha.500 */
   --accent: var(--color-gray-50);
   --accent-foreground: var(--color-blackAlpha-900);
   --destructive: var(--color-danger-500); /* danger-fg: danger.600 */
-  --border: var(--color-blackAlpha-200); /* chakra-border-color: blackAlpha.200 */
-  --input: var(--color-blackAlpha-400); /* chakra-placeholder-color: blackAlpha.400 */
-  --ring: #6987F9;
+  --border: var(
+    --color-blackAlpha-200
+  ); /* chakra-border-color: blackAlpha.200 */
+  --input: var(
+    --color-blackAlpha-400
+  ); /* chakra-placeholder-color: blackAlpha.400 */
+  --ring: #6987f9;
   --chart-1: oklch(0.646 0.222 41.116);
   --chart-2: oklch(0.6 0.118 184.704);
   --chart-3: oklch(0.398 0.07 227.392);
@@ -52,18 +68,26 @@
   --popover: var(--color-gray-800); /* chakra-popover-bg: gray.800 */
   --popover-foreground: var(--color-white); /* chakra-popover-text: white */
   --primary: var(--color-primary-200); /* primary-fg: primary.200 */
-  --primary-foreground: var(--color-blackAlpha-900); /* chakra-inverse-text: blackAlpha.900 */
+  --primary-foreground: var(
+    --color-blackAlpha-900
+  ); /* chakra-inverse-text: blackAlpha.900 */
   --primary-background: var(--color-primary-100);
   --secondary: var(--color-gray-900); /* chakra-subtle-bg: gray.900 */
   --secondary-foreground: var(--color-white); /* chakra-subtle-text: white */
   --muted: var(--color-gray-900); /* chakra-subtle-bg: gray.900 */
-  --muted-foreground: var(--color-whitealpha-600); /* chakra-subtle-text: whiteAlpha.600 */
+  --muted-foreground: var(
+    --color-whitealpha-600
+  ); /* chakra-subtle-text: whiteAlpha.600 */
   --accent: var(--color-gray-900);
   --accent-foreground: var(--color-white); /* chakra-inverse-text: white */
   --destructive: var(--color-danger-200); /* danger-fg: danger.200 */
-  --border: var(--color-whitealpha-200); /* chakra-border-color: whiteAlpha.200 */
-  --input: var(--color-whitealpha-500); /* chakra-placeholder-color: whiteAlpha.500 */
-  --ring: #6987F9;
+  --border: var(
+    --color-whitealpha-200
+  ); /* chakra-border-color: whiteAlpha.200 */
+  --input: var(
+    --color-whitealpha-500
+  ); /* chakra-placeholder-color: whiteAlpha.500 */
+  --ring: #6987f9;
   --input: oklch(1 0 0 / 15%);
   --ring: oklch(0.556 0 0);
   --chart-1: oklch(0.488 0.243 264.376);
@@ -126,5 +150,58 @@
   }
   body {
     @apply bg-background text-foreground;
+  }
+}
+
+/* override and extend typography with custom variants */
+
+@layer utilities {
+  .text-3xs {
+    font-size: var(--text-3xs); /* 10px */
+  }
+  .text-2xs {
+    font-size: var(--text-2xs); /* 11px */
+  }
+  .text-xs {
+    font-size: var(--text-xs); /* 12px */
+  }
+  .text-sm {
+    font-size: var(--text-sm); /* 13px */
+  }
+  .text-base {
+    font-size: var(--text-base); /* 14px */
+  }
+  .text-md {
+    font-size: var(--text-md); /* 14px */
+  }
+  .text-lg {
+    font-size: var(--text-lg); /* 16px */
+  }
+  .text-xl {
+    font-size: var(--text-xl); /* 18px */
+  }
+  .text-2xl {
+    font-size: var(--text-2xl); /* 20px */
+  }
+  .text-3xl {
+    font-size: var(--text-3xl); /* 24px */
+  }
+  .text-4xl {
+    font-size: var(--text-4xl); /* 30px */
+  }
+  .text-5xl {
+    font-size: var(--text-5xl); /* 36px */
+  }
+  .text-6xl {
+    font-size: var(--text-6xl); /* 48px */
+  }
+  .text-7xl {
+    font-size: var(--text-7xl); /* 60px */
+  }
+  .text-8xl {
+    font-size: var(--text-8xl); /* 72px */
+  }
+  .text-9xl {
+    font-size: var(--text-9xl); /* 96px */
   }
 }
