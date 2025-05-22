@@ -3,12 +3,13 @@
 
 @custom-variant dark (&:is(.dark *));
 
-@import "./colors.css";
-@import "./typography.css";
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@import "./colors.css";
+@import "./typography.css";
+@import "./breakpoints.css";
 
 :root {
   --radius: 0.625rem;

@@ -1,6 +1,7 @@
 import fs from "fs"
 import path from "path"
 
+import BreakpointsDemo from "@/components/breakpoints-demo"
 import ColorsDemo from "@/components/colors-demo"
 import { ComponentWrapper } from "@/components/component-wrapper"
 import TypographyDemo from "@/components/typography-demo"
@@ -11,9 +12,15 @@ const colorsContent = fs.readFileSync(cssPath, "utf-8")
 cssPath = path.join(process.cwd(), "app", "typography.css")
 const typographyContent = fs.readFileSync(cssPath, "utf-8")
 
+cssPath = path.join(process.cwd(), "app", "breakpoints.css")
+const breakpointsContent = fs.readFileSync(cssPath, "utf-8")
+
 export default function BlocksPage() {
   return (
     <div className="@container grid flex-1 gap-4 p-4">
+      <ComponentWrapper name="breakpoints">
+        <BreakpointsDemo content={breakpointsContent} />
+      </ComponentWrapper>
       <ComponentWrapper name="colors">
         <ColorsDemo content={colorsContent} />
       </ComponentWrapper>

@@ -1,0 +1,26 @@
+/* https://tailwindcss.com/docs/responsive-design#customizing-your-theme */
+@theme {
+  /* resetting everything */
+  /* --breakpoint-*: initial; */
+
+  /* You can define custom breakpoint names, e.g.: */
+  /* 0px */
+  --breakpoint-base: 0rem;
+
+  /* Override default ones with custom breakpoints here in rem */
+  /* 480px Phone */
+  --breakpoint-sm: 30rem;
+  /* 768px Tablet (portrait) */
+  --breakpoint-md: 48rem;
+  /* 992px Tablet (landscape) */
+  --breakpoint-lg: 62rem;
+  /* 1280px Desktop */
+  --breakpoint-xl: 80rem;
+  /* 1536px Desktop (large) */
+  --breakpoint-2xl: 96rem;
+
+  /* To remove default breakpoints, set them to `initial` */
+  /* --breakpoint-sm: initial; */
+  /* --breakpoint-md: initial; */
+  /* etc. */
+}
