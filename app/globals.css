@@ -15,7 +15,7 @@
   --card-foreground: var(--color-blackAlpha-900); /* chakra-card-text: blackAlpha.900 */
   --popover: var(--color-white); /* chakra-popover-bg: white */
   --popover-foreground: var(--color-blackAlpha-900); /* chakra-popover-text: blackAlpha.900 */
-  --primary: var(--color-primary-600); /* primary-fg: primary.600 */
+  --primary: var(--color-primary-500); /* primary-fg: primary.600 */
   --primary-foreground: var(--color-white); /* chakra-inverse-text: white */
   --primary-background: var(--color-primary-100);
   --secondary: var(--color-gray-50);
