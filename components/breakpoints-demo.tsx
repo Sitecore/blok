@@ -121,7 +121,6 @@ const BreakpointsDemo = ({ content }: Props) => {
               <th style={{ padding: "0.8rem", textAlign: "left" }}>
                 Device
               </th>{" "}
-              {/* New column header */}
               <th style={{ padding: "0.8rem", textAlign: "center" }}>
                 Value (rem)
               </th>

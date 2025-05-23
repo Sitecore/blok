@@ -9,6 +9,7 @@
 
 @import "./colors.css";
 @import "./typography.css";
+@import "./borderRadius.css";
 @import "./breakpoints.css";
 
 :root {
