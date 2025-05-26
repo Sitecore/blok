@@ -8,15 +8,15 @@ export function SwitchDemo() {
         <Switch id="switch-demo-airplane-mode" />
         <Label htmlFor="switch-demo-airplane-mode">Airplane Mode</Label>
       </div>
-      <div className="flex items-center gap-2">
+      {/* <div className="flex items-center gap-2">
         <Switch
-          id="switch-demo-bluetooth"
+          id="switch-demo-bluetooth"S
           className="data-[state=checked]:bg-blue-500 dark:data-[state=checked]:bg-blue-600"
           defaultChecked
         />
         <Label htmlFor="switch-demo-bluetooth">Bluetooth</Label>
-      </div>
-      <Label className="flex items-center gap-6 rounded-lg border p-4 has-[[data-state=checked]]:border-blue-600">
+      </div> */}
+      <Label className="flex items-center gap-6 rounded-lg border p-4 has-[[data-state=checked]]:border-info-600">
         <div className="flex flex-col gap-1">
           <div className="font-medium">Share across devices</div>
           <div className="text-muted-foreground text-sm font-normal">
@@ -26,7 +26,7 @@ export function SwitchDemo() {
         </div>
         <Switch
           id="switch-demo-focus-mode"
-          className="data-[state=checked]:bg-blue-500 dark:data-[state=checked]:bg-blue-600"
+          className="data-[state=checked]:bg-primary-500 dark:data-[state=checked]:bg-primary-600"
         />
       </Label>
     </div>
