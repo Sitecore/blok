@@ -118,9 +118,7 @@ const BreakpointsDemo = ({ content }: Props) => {
           <thead>
             <tr style={{ borderBottom: "2px solid #ccc" }}>
               <th style={{ padding: "0.8rem", textAlign: "left" }}>Token</th>
-              <th style={{ padding: "0.8rem", textAlign: "left" }}>
-                Device
-              </th>{" "}
+              <th style={{ padding: "0.8rem", textAlign: "left" }}>Device</th>
               <th style={{ padding: "0.8rem", textAlign: "center" }}>
                 Value (rem)
               </th>
@@ -146,7 +144,7 @@ const BreakpointsDemo = ({ content }: Props) => {
                     style={{ padding: "0.8rem" }}
                     // className={isActiveRow ? "font-bold" : "font-normal"}
                   >
-                    {deviceMap[key] || "N/A"}{" "}
+                    {deviceMap[key] || "N/A"}
                     {/* Display device name, or 'N/A' if not mapped */}
                   </td>
                   <td style={{ padding: "0.8rem" }}>
