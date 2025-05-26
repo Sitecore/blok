@@ -3,10 +3,6 @@
 
 @custom-variant dark (&:is(.dark *));
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
 @import "./colors.css";
 @import "./typography.css";
 @import "./breakpoints.css";
@@ -151,58 +147,5 @@
   }
   body {
     @apply bg-background text-foreground;
-  }
-}
-
-/* override and extend typography with custom variants */
-
-@layer utilities {
-  .text-3xs {
-    font-size: var(--text-3xs); /* 10px */
-  }
-  .text-2xs {
-    font-size: var(--text-2xs); /* 11px */
-  }
-  .text-xs {
-    font-size: var(--text-xs); /* 12px */
-  }
-  .text-sm {
-    font-size: var(--text-sm); /* 13px */
-  }
-  .text-base {
-    font-size: var(--text-base); /* 14px */
-  }
-  .text-md {
-    font-size: var(--text-md); /* 14px */
-  }
-  .text-lg {
-    font-size: var(--text-lg); /* 16px */
-  }
-  .text-xl {
-    font-size: var(--text-xl); /* 18px */
-  }
-  .text-2xl {
-    font-size: var(--text-2xl); /* 20px */
-  }
-  .text-3xl {
-    font-size: var(--text-3xl); /* 24px */
-  }
-  .text-4xl {
-    font-size: var(--text-4xl); /* 30px */
-  }
-  .text-5xl {
-    font-size: var(--text-5xl); /* 36px */
-  }
-  .text-6xl {
-    font-size: var(--text-6xl); /* 48px */
-  }
-  .text-7xl {
-    font-size: var(--text-7xl); /* 60px */
-  }
-  .text-8xl {
-    font-size: var(--text-8xl); /* 72px */
-  }
-  .text-9xl {
-    font-size: var(--text-9xl); /* 96px */
   }
 }
