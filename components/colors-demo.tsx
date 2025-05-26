@@ -1,36 +1,11 @@
+import { convertCssVariablesToObject } from "@/app/foundation/utils"
+
 type Props = {
-  cssContent: string
+  content: string
 }
 
-function convertCssVariablesToObject(
-  cssString: string
-): Record<string, string> {
-  const lines = cssString.split("\n").map((line) => line.trim())
-  const colorObject: Record<string, string> = {}
-
-  for (const line of lines) {
-    if (line.startsWith("--color-")) {
-      const parts = line.split(":")
-      if (parts.length === 2) {
-        const key = parts[0].trim().substring("--color-".length)
-        const value = parts[1].trim().replace(";", "")
-        colorObject[key] = value
-      }
-    } else if (line.startsWith("--") && !line.startsWith("/*")) {
-      const parts = line.split(":")
-      if (parts.length === 2) {
-        const key = parts[0].trim().substring(2)
-        const value = parts[1].trim().replace(";", "")
-        colorObject[key] = value
-      }
-    }
-  }
-
-  return colorObject
-}
-
-const ColorsDemo = ({ cssContent }: Props) => {
-  const colors = convertCssVariablesToObject(cssContent)
+const ColorsDemo = ({ content }: Props) => {
+  const colors = convertCssVariablesToObject(content, "--color-")
 
   return (
     <div style={{ width: "100%", overflowX: "auto" }}>

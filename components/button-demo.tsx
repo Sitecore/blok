@@ -11,6 +11,10 @@ export function ButtonDemo() {
         <Button variant="ghost">Ghost</Button>
         <Button variant="destructive">Destructive</Button>
         <Button variant="success">Success</Button>
+        {/* <Button variant="secondary">Secondary</Button> */}
+        <Button variant="success">Success</Button>
+        <Button variant="info">Info</Button>
+        <Button variant="warning">Warning</Button>
         <Button variant="link">Link</Button>
         <Button variant="outline">
           <SendIcon /> Send
@@ -37,6 +41,15 @@ export function ButtonDemo() {
         <Button variant="success" size="sm">
           Success
         </Button>
+        <Button variant="success" size="sm">
+          Success
+        </Button>
+        <Button variant="info" size="sm">
+          Info
+        </Button>
+        <Button variant="warning" size="sm">
+          Warning
+        </Button>
         <Button variant="link" size="sm">
           Link
         </Button>
@@ -62,8 +75,17 @@ export function ButtonDemo() {
         <Button variant="destructive" size="lg">
           Destructive
         </Button>
-         <Button variant="success" size="lg">
+        <Button variant="success" size="lg">
           Success
+        </Button>
+        <Button variant="success" size="lg">
+          Success
+        </Button>
+        <Button variant="info" size="lg">
+          Info
+        </Button>
+        <Button variant="warning" size="lg">
+          Warning
         </Button>
         <Button variant="link" size="lg">
           Link

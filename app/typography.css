@@ -1,0 +1,72 @@
+/* https://tailwindcss.com/docs/font-size#customizing-your-theme */
+@theme {
+  --text-3xs: 0.625rem;
+  --text-2xs: 0.6875rem;
+  --text-xs: 0.75rem;
+  --text-sm: 0.8125rem;
+  --text-base: 0.875rem;
+  --text-md: 0.875rem;
+  --text-lg: 1rem;
+  --text-xl: 1.125rem;
+  --text-2xl: 1.25rem;
+  --text-3xl: 1.5rem;
+  --text-4xl: 1.875rem;
+  --text-5xl: 2.25rem;
+  --text-6xl: 3rem;
+  --text-7xl: 3.75rem;
+  --text-8xl: 4.5rem;
+  --text-9xl: 6rem;
+}
+
+/* override and extend typography with custom variants */
+
+@layer utilities {
+  .text-3xs {
+    font-size: var(--text-3xs); /* 10px */
+  }
+  .text-2xs {
+    font-size: var(--text-2xs); /* 11px */
+  }
+  .text-xs {
+    font-size: var(--text-xs); /* 12px */
+  }
+  .text-sm {
+    font-size: var(--text-sm); /* 13px */
+  }
+  .text-base {
+    font-size: var(--text-base); /* 14px */
+  }
+  .text-md {
+    font-size: var(--text-md); /* 14px */
+  }
+  .text-lg {
+    font-size: var(--text-lg); /* 16px */
+  }
+  .text-xl {
+    font-size: var(--text-xl); /* 18px */
+  }
+  .text-2xl {
+    font-size: var(--text-2xl); /* 20px */
+  }
+  .text-3xl {
+    font-size: var(--text-3xl); /* 24px */
+  }
+  .text-4xl {
+    font-size: var(--text-4xl); /* 30px */
+  }
+  .text-5xl {
+    font-size: var(--text-5xl); /* 36px */
+  }
+  .text-6xl {
+    font-size: var(--text-6xl); /* 48px */
+  }
+  .text-7xl {
+    font-size: var(--text-7xl); /* 60px */
+  }
+  .text-8xl {
+    font-size: var(--text-8xl); /* 72px */
+  }
+  .text-9xl {
+    font-size: var(--text-9xl); /* 96px */
+  }
+}

@@ -26,6 +26,11 @@ export function NavHeader() {
             <Link href="/blocks">Blocks</Link>
           </NavigationMenuLink>
         </NavigationMenuItem>
+        <NavigationMenuItem>
+          <NavigationMenuLink asChild data-active={pathname === "/foundation"}>
+            <Link href="/foundation">Foundation</Link>
+          </NavigationMenuLink>
+        </NavigationMenuItem>
       </NavigationMenuList>
     </NavigationMenu>
   )
