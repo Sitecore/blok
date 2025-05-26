@@ -1,0 +1,51 @@
+/* https://tailwindcss.com/docs/border-rounded#customizing-your-theme */
+@theme {
+  /* resetting everything */
+  /* --rounded-*: initial; */
+
+  /* You can define custom breakpoint names, e.g.: */
+  --rounded-none: 0;
+  --rounded-sm: 0.125rem;
+  --rounded-base: 0.25rem;
+  --rounded-md: 0.375rem;
+  --rounded-lg: 0.5rem;
+  --rounded-xl: 0.75rem;
+  --rounded-2xl: 1rem;
+  --rounded-3xl: 1.5rem;
+  --rounded-full: 624.938rem;
+
+  /* To remove default breakpoints, set them to `initial` */
+  /* --rounded-sm: initial; */
+  /* --rounded-md: initial; */
+  /* etc. */
+}
+
+@layer utilities {
+  .rounded-none {
+    border-radius: var(--rounded-none);
+  }
+  .rounded-sm {
+    border-radius: var(--rounded-sm);
+  }
+  .rounded-base {
+    border-radius: var(--rounded-base);
+  }
+  .rounded-md {
+    border-radius: var(--rounded-md);
+  }
+  .rounded-lg {
+    border-radius: var(--rounded-lg);
+  }
+  .rounded-xl {
+    border-radius: var(--rounded-xl);
+  }
+  .rounded-2xl {
+    border-radius: var(--rounded-2xl);
+  }
+  .rounded-3xl {
+    border-radius: var(--rounded-3xl);
+  }
+  .rounded-full {
+    border-radius: var(--rounded-full);
+  }
+}
