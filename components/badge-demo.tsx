@@ -16,10 +16,6 @@ export function BadgeDemo() {
         <Badge variant="cyan">Cyan</Badge>
         <Badge variant="blue">Blue</Badge>
         <Badge variant="pink">Pink</Badge>
-        <Badge>Default</Badge>
-        <Badge variant="outline">Outline</Badge>
-        <Badge variant="destructive">Destructive</Badge>
-        <Badge variant="info">Info</Badge>
       </div>
       <div className="flex w-full flex-wrap gap-2">
         <Badge asChild>
@@ -68,26 +64,6 @@ export function BadgeDemo() {
           </a>
         </Badge>
         <Badge asChild variant="pink">
-          <a href="#">
-            Link <ArrowRightIcon />
-          </a>
-        </Badge>
-        <Badge asChild variant="destructive">
-          <a href="#">
-            Link <ArrowRightIcon />
-          </a>
-        </Badge>
-        <Badge asChild variant="warning">
-          <a href="#">
-            Link <ArrowRightIcon />
-          </a>
-        </Badge>
-        <Badge asChild variant="success">
-          <a href="#">
-            Link <ArrowRightIcon />
-          </a>
-        </Badge>
-        <Badge asChild variant="info">
           <a href="#">
             Link <ArrowRightIcon />
           </a>
