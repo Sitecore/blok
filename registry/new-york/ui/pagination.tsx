@@ -52,9 +52,11 @@ function PaginationLink({
       data-active={isActive}
       className={cn(
         buttonVariants({
-          variant: isActive ? "outline" : "ghost",
+          variant: "ghost",
           size,
         }),
+        "text-neutral-fg disabled:text-neutral-fg/40",
+        isActive && "bg-primary-bg text-primary-fg hover:bg-primary-bg hover:text-primary-fg",
         className
       )}
       {...props}
@@ -74,7 +76,7 @@ function PaginationPrevious({
       {...props}
     >
       <Icon path={mdiChevronLeft} size={1} />
-      <span className="hidden sm:block">Previous</span>
+      {/* <span className="hidden sm:block">Previous</span> */}
     </PaginationLink>
   )
 }
