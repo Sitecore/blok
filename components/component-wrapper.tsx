@@ -29,8 +29,8 @@ export function ComponentWrapper({
           {...props}
         >
           <AccordionItem key={name} value={name}>
-            <AccordionTrigger className="flex w-full items-center justify-between py-2">
-              <div className="border-b px-4 py-3">
+            <AccordionTrigger className="flex w-full cursor-pointer items-center justify-between border-b py-2">
+              <div className="px-4 py-3">
                 <div className="text-sm font-medium">
                   {getComponentName(name)}
                 </div>

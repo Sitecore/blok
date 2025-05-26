@@ -4,6 +4,7 @@ import * as React from "react"
 import { toast } from "sonner"
 
 import { Button } from "@/registry/new-york/ui/button"
+import { Toaster } from "@/registry/new-york/ui/sonner"
 
 const promiseCode = "`${data.name} toast has been added`"
 
@@ -64,6 +65,16 @@ const allTypes = [
       }),
   },
   {
+    name: "Close Button",
+    snippet: `toast('Event has been created', {
+  closeButton: true,
+})`,
+    action: () =>
+      toast("Event has been created", {
+        closeButton: true,
+      }),
+  },
+  {
     name: "Promise",
     snippet: `const promise = () => new Promise((resolve) => setTimeout(() => resolve({ name: 'Sonner' }), 2000));
 
@@ -96,37 +107,40 @@ toast.promise(promise, {
 export function SonnerDemo() {
   const [activeType, setActiveType] = React.useState(allTypes[0])
   return (
-    <div className="flex flex-wrap gap-4">
-      <Button onClick={() => toast("My first toast")} variant="outline">
-        Give me a toast
-      </Button>
-      <Button
-        variant="outline"
-        onClick={() =>
-          toast("Event has been created", {
-            description: "Sunday, December 03, 2023 at 9:00 AM",
-            action: {
-              label: "Undo",
-              onClick: () => console.log("Undo"),
-            },
-          })
-        }
-      >
-        Show Toast
-      </Button>
-      {allTypes.map((type) => (
-        <Button
-          variant="ghost"
-          data-active={activeType.name === type.name}
-          onClick={() => {
-            type.action()
-            setActiveType(type)
-          }}
-          key={type.name}
-        >
-          {type.name}
+    <>
+      <div className="flex flex-wrap gap-4">
+        <Button onClick={() => toast("My first toast")} variant="outline">
+          Give me a toast
         </Button>
-      ))}
-    </div>
+        <Button
+          variant="outline"
+          onClick={() =>
+            toast("Event has been created", {
+              description: "Sunday, December 03, 2023 at 9:00 AM",
+              action: {
+                label: "Undo",
+                onClick: () => console.log("Undo"),
+              },
+            })
+          }
+        >
+          Show Toast
+        </Button>
+        {allTypes.map((type) => (
+          <Button
+            variant="ghost"
+            data-active={activeType.name === type.name}
+            onClick={() => {
+              type.action()
+              setActiveType(type)
+            }}
+            key={type.name}
+          >
+            {type.name}
+          </Button>
+        ))}
+      </div>
+      <Toaster />
+    </>
   )
 }
