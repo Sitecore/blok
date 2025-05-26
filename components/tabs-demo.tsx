@@ -1,4 +1,4 @@
-import { AppWindowIcon, CodeIcon } from "lucide-react"
+import { AppWindowIcon, CodeIcon, HomeIcon, SettingsIcon } from "lucide-react"
 
 import { Button } from "@/registry/new-york/ui/button"
 import {
@@ -76,6 +76,22 @@ function TabsDemo() {
               </CardFooter>
             </Card>
           </TabsContent>
+        </Tabs>
+      </div>
+
+      <div className="space-y-4">
+        <h3 className="text-lg font-medium">Line Variant with Icons</h3>
+        <Tabs defaultValue="home">
+          <TabsList>
+            <TabsTrigger value="home">
+              <HomeIcon />
+              Home
+            </TabsTrigger>
+            <TabsTrigger value="settings">
+              <SettingsIcon />
+              Settings
+            </TabsTrigger>
+          </TabsList>
         </Tabs>
       </div>
 

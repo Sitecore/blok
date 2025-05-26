@@ -11,8 +11,8 @@ const tabsListVariants = cva(
   {
     variants: {
       variant: {
-        line: "gap-6",
-        "soft-rounded": "rounded-lg p-[3px] bg-muted",
+        line: "",
+        "soft-rounded": "",
       },
     },
     defaultVariants: {
@@ -22,12 +22,12 @@ const tabsListVariants = cva(
 )
 
 const tabsTriggerVariants = cva(
-  "inline-flex h-[calc(100%-1px)] items-center justify-center gap-1.5 px-2 py-1 text-sm font-medium whitespace-nowrap transition-all disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
+  "inline-flex h-9 items-center justify-center gap-1.5 text-md font-medium whitespace-nowrap transition-all disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
   {
     variants: {
       variant: {
-        line: "text-neutral-fg data-[state=active]:text-primary-fg border-b-2 border-transparent data-[state=active]:border-primary-fg hover:text-primary-fg/80",
-        "soft-rounded": "text-neutral-fg data-[state=active]:text-primary-fg data-[state=active]:bg-primary hover:text-primary-fg/80",
+        line: "text-neutral-fg data-[state=active]:text-primary-fg border-b-2 border-border-color data-[state=active]:border-primary-fg hover:cursor-pointer px-4",
+        "soft-rounded": "text-neutral-fg data-[state=active]:text-primary-fg data-[state=active]:bg-primary-bg hover:cursor-pointer px-4 rounded-[9999px]",
       },
     },
     defaultVariants: {
