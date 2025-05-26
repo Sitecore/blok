@@ -6,33 +6,13 @@ export function BadgeDemo() {
   return (
     <div className="flex flex-col items-center gap-2">
       <div className="flex w-full flex-wrap gap-2">
-        <Badge>Badge</Badge>
-        <Badge variant="secondary">Secondary</Badge>
-        <Badge variant="destructive">Destructive</Badge>
+        <Badge>Default</Badge>
+        <Badge variant="primary">Primary</Badge>
         <Badge variant="outline">Outline</Badge>
-        <Badge variant="outline">
-          <CheckIcon />
-          Badge
-        </Badge>
-        <Badge variant="destructive">
-          <AlertCircleIcon />
-          Alert
-        </Badge>
-        <Badge className="h-5 min-w-5 rounded-full px-1 font-mono tabular-nums">
-          8
-        </Badge>
-        <Badge
-          className="h-5 min-w-5 rounded-full px-1 font-mono tabular-nums"
-          variant="destructive"
-        >
-          99
-        </Badge>
-        <Badge
-          className="h-5 min-w-5 rounded-full px-1 font-mono tabular-nums"
-          variant="outline"
-        >
-          20+
-        </Badge>
+        <Badge variant="destructive">Destructive</Badge>
+        <Badge variant="warning">Warning</Badge>
+        <Badge variant="success">Success</Badge>
+        <Badge variant="info">Info</Badge>
       </div>
       <div className="flex w-full flex-wrap gap-2">
         <Badge asChild>
@@ -40,7 +20,12 @@ export function BadgeDemo() {
             Link <ArrowRightIcon />
           </a>
         </Badge>
-        <Badge asChild variant="secondary">
+        <Badge asChild variant="primary">
+          <a href="#">
+            Link <ArrowRightIcon />
+          </a>
+        </Badge>
+        <Badge asChild variant="outline">
           <a href="#">
             Link <ArrowRightIcon />
           </a>
@@ -50,7 +35,17 @@ export function BadgeDemo() {
             Link <ArrowRightIcon />
           </a>
         </Badge>
-        <Badge asChild variant="outline">
+        <Badge asChild variant="warning">
+          <a href="#">
+            Link <ArrowRightIcon />
+          </a>
+        </Badge>
+        <Badge asChild variant="success">
+          <a href="#">
+            Link <ArrowRightIcon />
+          </a>
+        </Badge>
+        <Badge asChild variant="info">
           <a href="#">
             Link <ArrowRightIcon />
           </a>
