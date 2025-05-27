@@ -11,13 +11,13 @@ const ToggleGroupContext = React.createContext<
   VariantProps<typeof toggleVariants>
 >({
   size: "default",
-  variant: "default",
+  variant: "square",
 })
 
 function ToggleGroup({
   className,
-  variant,
-  size,
+  variant = "square", // Default to square if not provided
+  size = "default", // Default to default size if not provided
   children,
   ...props
 }: React.ComponentProps<typeof ToggleGroupPrimitive.Root> &
@@ -28,7 +28,8 @@ function ToggleGroup({
       data-variant={variant}
       data-size={size}
       className={cn(
-        "group/toggle-group flex w-fit items-center rounded-md data-[variant=outline]:shadow-xs",
+        `group/toggle-group flex w-fit items-center`,
+        variant === "rounded" ? "rounded-full" : "rounded-md", // Apply variant-specific styles
         className
       )}
       {...props}
@@ -60,7 +61,7 @@ function ToggleGroupItem({
           variant: context.variant || variant,
           size: context.size || size,
         }),
-        "min-w-0 flex-1 shrink-0 rounded-none shadow-none first:rounded-l-md last:rounded-r-md focus:z-10 focus-visible:z-10 data-[variant=outline]:border-l-0 data-[variant=outline]:first:border-l",
+        "min-w-0 flex-1 shrink-0 shadow-none focus:z-10 focus-visible:z-10",
         className
       )}
       {...props}
