@@ -1,11 +1,11 @@
 import {
-  AlertCircleIcon,
-  BookmarkCheckIcon,
   CheckCircle2Icon,
   GiftIcon,
   PopcornIcon,
   ShieldAlertIcon,
 } from "lucide-react"
+import { mdiAlertCircle, mdiCheckCircle, mdiInformation } from "@mdi/js";
+import Icon from "@mdi/react";
 
 import {
   Alert,
@@ -19,7 +19,6 @@ export function AlertDemo() {
     <div className="grid max-w-xl items-start gap-4">
     
       <Alert variant="primary">
-        <BookmarkCheckIcon>Heads up!</BookmarkCheckIcon>
         <AlertDescription>
           This is a default (primary) alert. No title, only description.
         </AlertDescription>
@@ -84,35 +83,30 @@ export function AlertDemo() {
       </Alert> */}
      
       <Alert variant="primary">
-        <CheckCircle2Icon />
         <AlertTitle>Primary Alert</AlertTitle>
         <AlertDescription>
           This is a primary alert with a title and description.
         </AlertDescription>
       </Alert>
       <Alert variant="danger">
-        <AlertCircleIcon />
         <AlertTitle>Danger Alert</AlertTitle>
         <AlertDescription>
           This is a danger alert with a title and description.
         </AlertDescription>
       </Alert>
       <Alert variant="warning">
-        <ShieldAlertIcon />
         <AlertTitle>Warning Alert</AlertTitle>
         <AlertDescription>
           This is a warning alert with a title and description.
         </AlertDescription>
       </Alert>
       <Alert variant="success">
-        <CheckCircle2Icon />
         <AlertTitle>Success Alert</AlertTitle>
         <AlertDescription>
           This is a success alert with a title and description.
         </AlertDescription>
       </Alert>
        <Alert variant="primary">
-        <CheckCircle2Icon />
         <AlertTitle>Closable Alert</AlertTitle>
         <AlertDescription>
           This is a primary alert with a title and description and even a close button.
@@ -125,8 +119,7 @@ export function AlertDemo() {
           Click
         </Button>
       </Alert>
-      <Alert  variant="primary">
-        <AlertCircleIcon />
+      <Alert variant="primary">
         <AlertTitle>
           This is an extremely long alert title that spans multiple lines to
           demonstrate how the component handles very lengthy headings while
