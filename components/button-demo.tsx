@@ -74,7 +74,6 @@ export function ButtonDemo() {
         <Button variant="ghost" size="sm">
           Ghost
         </Button>
-
         <Button variant="link" size="sm">
           Link
         </Button>

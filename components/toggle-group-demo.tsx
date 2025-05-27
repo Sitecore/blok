@@ -7,69 +7,108 @@ import {
 
 export function ToggleGroupDemo() {
   return (
-    <div className="flex flex-wrap items-start gap-4">
-      <ToggleGroup type="multiple">
-        <ToggleGroupItem value="bold" aria-label="Toggle bold">
-          <BoldIcon />
-        </ToggleGroupItem>
-        <ToggleGroupItem value="italic" aria-label="Toggle italic">
-          <ItalicIcon />
-        </ToggleGroupItem>
-        <ToggleGroupItem
-          value="strikethrough"
-          aria-label="Toggle strikethrough"
+    <div>
+      <div className="flex flex-wrap items-start gap-4">
+        <ToggleGroup
+          type="multiple"
+          variant="square"
+          className="p-0.5 gap-0.5 border border-border-color bg-transparent"
         >
-          <UnderlineIcon />
-        </ToggleGroupItem>
-      </ToggleGroup>
-      <ToggleGroup
-        variant="outline"
-        type="single"
-        defaultValue="all"
-        className="*:data-[slot=toggle-group-item]:w-20"
-      >
-        <ToggleGroupItem value="all" aria-label="Toggle all">
-          All
-        </ToggleGroupItem>
-        <ToggleGroupItem value="missed" aria-label="Toggle missed">
-          Missed
-        </ToggleGroupItem>
-      </ToggleGroup>
+          <ToggleGroupItem
+            value="bold"
+            aria-label="Toggle bold"
+            className="w-10"
+          >
+            <BoldIcon />
+          </ToggleGroupItem>
+          <ToggleGroupItem
+            value="italic"
+            aria-label="Toggle italic"
+            className="w-10"
+          >
+            <ItalicIcon />
+          </ToggleGroupItem>
+          <ToggleGroupItem
+            value="strikethrough"
+            aria-label="Toggle strikethrough"
+            className="w-10"
+          >
+            <UnderlineIcon />
+          </ToggleGroupItem>
+        </ToggleGroup>
+        <ToggleGroup
+          variant="square"
+          type="single"
+          defaultValue="all"
+          className="p-0.5 gap-0.5 border border-border-color bg-transparent"
+        >
+          <ToggleGroupItem
+            value="all"
+            aria-label="Toggle all"
+            className="w-20"
+          >
+            All
+          </ToggleGroupItem>
+          <ToggleGroupItem
+            value="missed"
+            aria-label="Toggle missed"
+            className="w-20"
+          >
+            Missed
+          </ToggleGroupItem>
+        </ToggleGroup>
+      </div>
 
-      <ToggleGroup
-        variant="outline"
-        type="single"
-        size="sm"
-        defaultValue="last-24-hours"
-        className="*:data-[slot=toggle-group-item]:px-3"
-      >
-        <ToggleGroupItem
-          value="last-24-hours"
-          aria-label="Toggle last 24 hours"
+      <div className="mt-6 flex flex-wrap items-start gap-4">
+        <ToggleGroup
+          type="multiple"
+          variant="rounded"
+          className="p-0.5 gap-0.5 border border-border-color bg-transparent"
         >
-          Last 24 hours
-        </ToggleGroupItem>
-        <ToggleGroupItem value="last-7-days" aria-label="Toggle last 7 days">
-          Last 7 days
-        </ToggleGroupItem>
-      </ToggleGroup>
-
-      <ToggleGroup
-        type="single"
-        size="sm"
-        defaultValue="last-24-hours"
-        className="*:data-[slot=toggle-group-item]:px-3"
-      >
-        <ToggleGroupItem
-          value="last-24-hours"
-          aria-label="Toggle last 24 hours"
+          <ToggleGroupItem
+            value="bold"
+            aria-label="Toggle bold"
+            className="w-10"
+          >
+            <BoldIcon />
+          </ToggleGroupItem>
+          <ToggleGroupItem
+            value="italic"
+            aria-label="Toggle italic"
+            className="w-10"
+          >
+            <ItalicIcon />
+          </ToggleGroupItem>
+          <ToggleGroupItem
+            value="strikethrough"
+            aria-label="Toggle strikethrough"
+            className="w-10"
+          >
+            <UnderlineIcon />
+          </ToggleGroupItem>
+        </ToggleGroup>
+        <ToggleGroup
+          variant="rounded"
+          type="single"
+          defaultValue="all"
+          className="p-0.5 gap-0.5 border border-border-color bg-transparent"
         >
-          Last 24 hours
-        </ToggleGroupItem>
-        <ToggleGroupItem value="last-7-days" aria-label="Toggle last 7 days">
-          Last 7 days
-        </ToggleGroupItem>
-      </ToggleGroup>
+          <ToggleGroupItem
+            value="all"
+            aria-label="Toggle all"
+            className="w-20"
+          >
+            All
+          </ToggleGroupItem>
+          <ToggleGroupItem
+            value="missed"
+            aria-label="Toggle missed"
+            className="w-20"
+          >
+            Missed
+          </ToggleGroupItem>
+        </ToggleGroup>
+      </div>
     </div>
   )
 }
