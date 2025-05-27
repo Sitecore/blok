@@ -6,12 +6,55 @@ export function ButtonDemo() {
   return (
     <div className="flex flex-col gap-6">
       <div className="flex flex-wrap items-center gap-2 md:flex-row">
-        <Button>Button</Button>
-        <Button variant="outline">Outline</Button>
-        <Button variant="ghost">Ghost</Button>
-        <Button variant="destructive">Destructive</Button>
-        <Button variant="success">Success</Button>
-        <Button variant="link">Link</Button>
+        <div>
+          <Button>Default</Button>
+          <Button colorScheme="success">Default</Button>
+          <Button colorScheme="danger">Default</Button>
+          <Button colorScheme="neutral">Default</Button>
+          <Button colorScheme="ai">Default</Button>
+        </div>
+
+        <div>
+          <Button variant="outline">Outline</Button>
+          <Button colorScheme="success" variant="outline">
+            Outline
+          </Button>
+          <Button colorScheme="danger" variant="outline">
+            Outline
+          </Button>
+          <Button colorScheme="neutral" variant="outline">
+            Outline
+          </Button>
+        </div>
+
+        <div>
+          <Button variant="ghost">Ghost</Button>
+          <Button colorScheme="success" variant="ghost">
+            Ghost
+          </Button>
+          <Button colorScheme="danger" variant="ghost">
+            Ghost
+          </Button>
+          <Button colorScheme="neutral" variant="ghost">
+            Ghost
+          </Button>
+        </div>
+
+        <div>
+          <Button variant="link">Link</Button>
+          <Button colorScheme="success" variant="link">
+            Link
+          </Button>
+          <Button colorScheme="danger" variant="link">
+            Link
+          </Button>
+          <Button colorScheme="neutral" variant="link">
+            Link
+          </Button>
+        </div>
+      </div>
+
+      <div className="flex flex-wrap items-center gap-2 md:flex-row">
         <Button variant="outline">
           <SendIcon /> Send
         </Button>
@@ -31,12 +74,7 @@ export function ButtonDemo() {
         <Button variant="ghost" size="sm">
           Ghost
         </Button>
-        <Button variant="destructive" size="sm">
-          Destructive
-        </Button>
-        <Button variant="success" size="sm">
-          Success
-        </Button>
+
         <Button variant="link" size="sm">
           Link
         </Button>
@@ -58,12 +96,6 @@ export function ButtonDemo() {
         </Button>
         <Button variant="ghost" size="lg">
           Ghost
-        </Button>
-        <Button variant="destructive" size="lg">
-          Destructive
-        </Button>
-         <Button variant="success" size="lg">
-          Success
         </Button>
         <Button variant="link" size="lg">
           Link

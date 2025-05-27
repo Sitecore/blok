@@ -235,3 +235,108 @@
   --color-neutral-800: var(--color-blackAlpha-800);
   --color-neutral-900: var(--color-blackAlpha-900);
 }
+
+@layer utilities {
+  .ai {
+    background-image: linear-gradient(
+      to top right,
+      var(--color-purple-500),
+      var(--color-red-500)
+    );
+  }
+  .ai-50 {
+    background-image: linear-gradient(
+      to top right,
+      var(--color-purple-50),
+      var(--color-red-50)
+    );
+  }
+  .ai-100 {
+    background-image: linear-gradient(
+      to top right,
+      var(--color-purple-100),
+      var(--color-red-100)
+    );
+  }
+  .ai-200 {
+    background-image: linear-gradient(
+      to top right,
+      var(--color-purple-200),
+      var(--color-red-200)
+    );
+  }
+  .ai-300 {
+    background-image: linear-gradient(
+      to top right,
+      var(--color-purple-300),
+      var(--color-red-300)
+    );
+  }
+  .ai-400 {
+    background-image: linear-gradient(
+      to top right,
+      var(--color-purple-400),
+      var(--color-red-400)
+    );
+  }
+  .ai-500 {
+    background-image: linear-gradient(
+      to top right,
+      var(--color-purple-500),
+      var(--color-red-500)
+    );
+  }
+  .ai-600 {
+    background-image: linear-gradient(
+      to top right,
+      var(--color-purple-600),
+      var(--color-red-600)
+    );
+  }
+  .hover\:ai-600:hover {
+    background-image: linear-gradient(
+      to top right,
+      var(--color-purple-600),
+      var(--color-red-600)
+    );
+  }
+  .text-ai-600 {
+    background-image: linear-gradient(
+      to top right,
+      var(--color-purple-600),
+      var(--color-red-600)
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    color: transparent;
+  }
+  .ai-700 {
+    background-image: linear-gradient(
+      to top right,
+      var(--color-purple-700),
+      var(--color-red-700)
+    );
+  }
+  .active\:ai-700:active {
+    background-image: linear-gradient(
+      to top right,
+      var(--color-purple-700),
+      var(--color-red-700)
+    );
+  }
+  .ai-800 {
+    background-image: linear-gradient(
+      to top right,
+      var(--color-purple-800),
+      var(--color-red-800)
+    );
+  }
+  .ai-900 {
+    background-image: linear-gradient(
+      to top right,
+      var(--color-purple-900),
+      var(--color-red-900)
+    );
+  }
+}
