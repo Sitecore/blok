@@ -1,11 +1,11 @@
 import {
-  AlertCircleIcon,
-  BookmarkCheckIcon,
   CheckCircle2Icon,
   GiftIcon,
   PopcornIcon,
   ShieldAlertIcon,
 } from "lucide-react"
+import { mdiAlertCircle, mdiCheckCircle, mdiInformation } from "@mdi/js";
+import Icon from "@mdi/react";
 
 import {
   Alert,
@@ -17,20 +17,13 @@ import { Button } from "@/registry/new-york/ui/button"
 export function AlertDemo() {
   return (
     <div className="grid max-w-xl items-start gap-4">
-      <Alert>
-        <CheckCircle2Icon />
-        <AlertTitle>Success! Your changes have been saved</AlertTitle>
+    
+      <Alert variant="primary">
         <AlertDescription>
-          This is an alert with icon, title and description.
+          This is a default (primary) alert. No title, only description.
         </AlertDescription>
       </Alert>
-      <Alert>
-        <BookmarkCheckIcon>Heads up!</BookmarkCheckIcon>
-        <AlertDescription>
-          This one has an icon and a description only. No title.
-        </AlertDescription>
-      </Alert>
-      <Alert>
+      {/* <Alert>
         <AlertDescription>
           This one has a description only. No title. No icon.
         </AlertDescription>
@@ -54,9 +47,79 @@ export function AlertDemo() {
           component handles extended text content and potentially wraps across
           multiple lines
         </AlertDescription>
-      </Alert>
-      <Alert>
+      </Alert> */}
+      
+      {/*<Alert variant="danger">
         <AlertCircleIcon />
+        <AlertTitle>Something went wrong!</AlertTitle>
+        <AlertDescription>
+          Your session has expired. Please log in again.
+        </AlertDescription>
+      </Alert>
+      <Alert variant="danger">
+        <AlertCircleIcon />
+        <AlertTitle>Unable to process your payment.</AlertTitle>
+        <AlertDescription>
+          <p>Please verify your billing information and try again.</p>
+          <ul className="list-inside list-disc text-sm">
+            <li>Check your card details</li>
+            <li>Ensure sufficient funds</li>
+            <li>Verify billing address</li>
+          </ul>
+        </AlertDescription>
+      </Alert> */}
+      {/* <Alert>
+        <CheckCircle2Icon />
+        <AlertTitle className="max-w-[calc(100%-4rem)] overflow-ellipsis">
+          The selected emails have been marked as spam.
+        </AlertTitle>
+        <Button
+          size="sm"
+          variant="outline"
+          className="absolute top-2.5 right-3 h-6 shadow-none"
+        >
+          Undo
+        </Button>
+      </Alert> */}
+     
+      <Alert variant="primary">
+        <AlertTitle>Primary Alert</AlertTitle>
+        <AlertDescription>
+          This is a primary alert with a title and description.
+        </AlertDescription>
+      </Alert>
+      <Alert variant="danger">
+        <AlertTitle>Danger Alert</AlertTitle>
+        <AlertDescription>
+          This is a danger alert with a title and description.
+        </AlertDescription>
+      </Alert>
+      <Alert variant="warning">
+        <AlertTitle>Warning Alert</AlertTitle>
+        <AlertDescription>
+          This is a warning alert with a title and description.
+        </AlertDescription>
+      </Alert>
+      <Alert variant="success">
+        <AlertTitle>Success Alert</AlertTitle>
+        <AlertDescription>
+          This is a success alert with a title and description.
+        </AlertDescription>
+      </Alert>
+       <Alert variant="primary">
+        <AlertTitle>Closable Alert</AlertTitle>
+        <AlertDescription>
+          This is a primary alert with a title and description and even a close button.
+        </AlertDescription>
+         <Button
+          size="sm"
+          variant="link"
+          className="absolute top-2.5 right-3 h-6 shadow-none"
+        >
+          Click
+        </Button>
+      </Alert>
+      <Alert variant="primary">
         <AlertTitle>
           This is an extremely long alert title that spans multiple lines to
           demonstrate how the component handles very lengthy headings while
@@ -70,46 +133,7 @@ export function AlertDemo() {
           the user experience remains consistent regardless of the content
           length.
         </AlertDescription>
-      </Alert>
-      <Alert variant="destructive">
-        <AlertCircleIcon />
-        <AlertTitle>Something went wrong!</AlertTitle>
-        <AlertDescription>
-          Your session has expired. Please log in again.
-        </AlertDescription>
-      </Alert>
-      <Alert variant="destructive">
-        <AlertCircleIcon />
-        <AlertTitle>Unable to process your payment.</AlertTitle>
-        <AlertDescription>
-          <p>Please verify your billing information and try again.</p>
-          <ul className="list-inside list-disc text-sm">
-            <li>Check your card details</li>
-            <li>Ensure sufficient funds</li>
-            <li>Verify billing address</li>
-          </ul>
-        </AlertDescription>
-      </Alert>
-      <Alert>
-        <CheckCircle2Icon />
-        <AlertTitle className="max-w-[calc(100%-4rem)] overflow-ellipsis">
-          The selected emails have been marked as spam.
-        </AlertTitle>
-        <Button
-          size="sm"
-          variant="outline"
-          className="absolute top-2.5 right-3 h-6 shadow-none"
-        >
-          Undo
-        </Button>
-      </Alert>
-      <Alert className="border-amber-50 bg-amber-50 text-amber-900 dark:border-amber-950 dark:bg-amber-950 dark:text-amber-100">
-        <CheckCircle2Icon />
-        <AlertTitle>Plot Twist: This Alert is Actually Amber!</AlertTitle>
-        <AlertDescription>
-          This one has custom colors for light and dark mode.
-        </AlertDescription>
-      </Alert>
+       </Alert>
     </div>
   )
 }

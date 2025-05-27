@@ -22,9 +22,9 @@ function Checkbox({
     >
       <CheckboxPrimitive.Indicator
         data-slot="checkbox-indicator"
-        className="flex items-center justify-center text-current transition-none"
+        className="flex items-center justify-center text-current transition-none h-full"
       >
-        <Icon path={mdiCheck} size={0.9} />
+        <Icon path={mdiCheck} size={0.7} className="-mt-px" />
       </CheckboxPrimitive.Indicator>
     </CheckboxPrimitive.Root>
   )

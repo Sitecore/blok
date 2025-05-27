@@ -5,30 +5,29 @@ import { cva, type VariantProps } from "class-variance-authority"
 import { cn } from "@/lib/utils"
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-4xl text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive cursor-pointer",
+  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-4xl text-md font-semibold transition-all disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive cursor-pointer",
   {
     variants: {
       variant: {
         default:
-          "bg-primary text-primary-foreground shadow-xs hover:bg-primary/90",
+          "bg-primary text-primary-foreground hover:bg-primary-600",
         destructive:
-          "bg-destructive text-white shadow-xs hover:bg-destructive/90 focus-visible:ring-destructive/20 dark:focus-visible:ring-destructive/40 dark:bg-destructive/60",
+          "bg-destructive text-white hover:bg-danger-600 focus-visible:ring-destructive/20 dark:focus-visible:ring-destructive/40 dark:bg-destructive/60",
+        success:
+          "bg-success text-white hover:bg-success-600 focus-visible:ring-success/20 dark:focus-visible:ring-success/40 dark:bg-success/60",
         outline:
-          "border bg-background shadow-xs hover:bg-accent hover:text-accent-foreground dark:bg-input/30 dark:border-input dark:hover:bg-input/50",
-        secondary:
-          "bg-secondary text-secondary-foreground shadow-xs hover:bg-secondary/80",
+          "border bg-backgrounds hover:bg-neutral-100 hover:text-accent-foreground dark:bg-input/30 dark:border-input dark:hover:bg-input/50",
+        // secondary:
+        //   "bg-secondary text-secondary-foreground hover:bg-secondary/80",
         ghost:
-          "hover:bg-accent hover:text-accent-foreground dark:hover:bg-accent/50",
-        success: "bg-green-100 text-green-800 shadow-xs hover:bg-green-200",
-        info: "bg-blue-100 text-blue-800 shadow-xs hover:bg-blue-200",
-        warning: "bg-yellow-100 text-yellow-800 shadow-xs hover:bg-yellow-200",
+          "hover:bg-neutral-100 hover:text-accent-foreground dark:hover:bg-accent/50",
         link: "text-primary underline-offset-4 hover:underline",
       },
       size: {
         default: "h-10 min-w-10 px-4 py-2 has-[>svg]:px-4",
         sm: "h-8 min-w-8 gap-1.5 px-3 has-[>svg]:px-2.5",
         lg: "h-12 min-w-12 px-6 has-[>svg]:px-4",
-        xs: "h-6 min-w-6 px-2 has-[>svg]:px-2",
+        xs: "h-6 min-w-6 px-2 has-[>svg]:px-2 text-sm",
         icon: "size-9",
       },
     },

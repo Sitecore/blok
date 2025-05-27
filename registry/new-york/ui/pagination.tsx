@@ -52,9 +52,11 @@ function PaginationLink({
       data-active={isActive}
       className={cn(
         buttonVariants({
-          variant: isActive ? "outline" : "ghost",
+          variant: "ghost",
           size,
         }),
+        "text-neutral-fg disabled:text-neutral-fg/40",
+        isActive && "bg-primary-bg text-primary-fg hover:bg-primary-bg hover:text-primary-fg",
         className
       )}
       {...props}
@@ -74,7 +76,6 @@ function PaginationPrevious({
       {...props}
     >
       <Icon path={mdiChevronLeft} size={1} />
-      <span className="hidden sm:block">Previous</span>
     </PaginationLink>
   )
 }
@@ -90,7 +91,6 @@ function PaginationNext({
       className={cn("gap-1 px-2.5 sm:pr-2.5", className)}
       {...props}
     >
-      <span className="hidden sm:block">Next</span>
       <Icon path={mdiChevronRight} size={1} />
     </PaginationLink>
   )
@@ -104,7 +104,7 @@ function PaginationEllipsis({
     <span
       aria-hidden
       data-slot="pagination-ellipsis"
-      className={cn("flex size-9 items-center justify-center", className)}
+      className={cn("flex size-9 items-center justify-center text-neutral-fg", className)}
       {...props}
     >
       <Icon path={mdiDotsHorizontal} size={1} />

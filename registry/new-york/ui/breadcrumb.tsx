@@ -1,5 +1,5 @@
 import * as React from "react"
-import { mdiChevronRight, mdiDotsHorizontal } from "@mdi/js"
+import { mdiDotsHorizontal, mdiSlashForward } from "@mdi/js"
 import Icon from "@mdi/react"
 import { Slot } from "@radix-ui/react-slot"
 
@@ -76,7 +76,7 @@ function BreadcrumbSeparator({
       className={cn("[&>svg]:size-3.5", className)}
       {...props}
     >
-      {children ?? <Icon path={mdiChevronRight} size={0.9} />}
+      {children ?? <Icon path={mdiSlashForward} size={0.9} />}
     </li>
   )
 }
