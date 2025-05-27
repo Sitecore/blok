@@ -9,16 +9,9 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        default:
-          "bg-primary text-primary-foreground hover:bg-primary-600",
-        destructive:
-          "bg-destructive text-white hover:bg-danger-600 focus-visible:ring-destructive/20 dark:focus-visible:ring-destructive/40 dark:bg-destructive/60",
-        success:
-          "bg-success text-white hover:bg-success-600 focus-visible:ring-success/20 dark:focus-visible:ring-success/40 dark:bg-success/60",
+        default: "bg-primary text-primary-foreground hover:bg-primary-600",
         outline:
           "border bg-backgrounds hover:bg-neutral-100 hover:text-accent-foreground dark:bg-input/30 dark:border-input dark:hover:bg-input/50",
-        // secondary:
-        //   "bg-secondary text-secondary-foreground hover:bg-secondary/80",
         ghost:
           "hover:bg-neutral-100 hover:text-accent-foreground dark:hover:bg-accent/50",
         link: "text-primary underline-offset-4 hover:underline",
@@ -30,10 +23,116 @@ const buttonVariants = cva(
         xs: "h-6 min-w-6 px-2 has-[>svg]:px-2 text-sm",
         icon: "size-9",
       },
+      colorScheme: {
+        primary: "",
+        ai: "bg-[length:250%_100%] !bg-transparent",
+        danger: "",
+        success: "",
+        neutral: "",
+      },
     },
+    compoundVariants: [
+      {
+        variant: "default",
+        colorScheme: "primary",
+        class:
+          "bg-primary text-white hover:bg-primary-600 active:bg-primary-700",
+      },
+      {
+        variant: "default",
+        colorScheme: "success",
+        class:
+          "bg-success text-white hover:bg-success-600 active:bg-success-700",
+      },
+      {
+        variant: "default",
+        colorScheme: "danger",
+        class: "bg-danger text-white hover:bg-danger-600 active:bg-danger-700",
+      },
+      {
+        variant: "default",
+        colorScheme: "neutral",
+        class:
+          "bg-neutral text-white hover:bg-neutral-600 active:bg-neutral-700",
+      },
+      {
+        variant: "default",
+        colorScheme: "ai",
+        class: "ai-500 text-white hover:ai-600 active:ai-700",
+      },
+      {
+        variant: "outline",
+        colorScheme: "primary",
+        class:
+          "border text-primary-600 hover:bg-primary-100 hover:text-primary-600 active:bg-primary-200",
+      },
+      {
+        variant: "outline",
+        colorScheme: "success",
+        class:
+          "border text-success-600 hover:bg-success-100 hover:text-success-600 active:bg-success-200",
+      },
+      {
+        variant: "outline",
+        colorScheme: "danger",
+        class:
+          "border text-danger-600 hover:bg-danger-100 hover:text-danger-600 active:bg-danger-200",
+      },
+      {
+        variant: "outline",
+        colorScheme: "neutral",
+        class:
+          "border text-neutral-600 hover:bg-neutral-100 hover:text-neutral-600 active:bg-neutral-200",
+      },
+      {
+        variant: "ghost",
+        colorScheme: "primary",
+        class:
+          "text-primary-600 hover:bg-primary-100 hover:text-primary-600 active:bg-primary-200",
+      },
+      {
+        variant: "ghost",
+        colorScheme: "success",
+        class:
+          "text-success-600 hover:bg-success-100 hover:text-success-600 active:bg-success-200",
+      },
+      {
+        variant: "ghost",
+        colorScheme: "danger",
+        class:
+          "text-danger-600 hover:bg-danger-100 hover:text-danger-600 active:bg-danger-200",
+      },
+      {
+        variant: "ghost",
+        colorScheme: "neutral",
+        class:
+          "text-neutral-600 hover:bg-neutral-100 hover:text-neutral-600 active:bg-neutral-200",
+      },
+      {
+        variant: "link",
+        colorScheme: "primary",
+        class: "text-primary active:text-primary-700",
+      },
+      {
+        variant: "link",
+        colorScheme: "success",
+        class: "text-success active:text-success-700",
+      },
+      {
+        variant: "link",
+        colorScheme: "danger",
+        class: "text-danger active:text-danger-700",
+      },
+      {
+        variant: "link",
+        colorScheme: "neutral",
+        class: "text-neutral active:text-neutral-700",
+      },
+    ],
     defaultVariants: {
       variant: "default",
       size: "default",
+      colorScheme: "primary",
     },
   }
 )
@@ -42,6 +141,7 @@ function Button({
   className,
   variant,
   size,
+  colorScheme,
   asChild = false,
   ...props
 }: React.ComponentProps<"button"> &
@@ -53,7 +153,7 @@ function Button({
   return (
     <Comp
       data-slot="button"
-      className={cn(buttonVariants({ variant, size, className }))}
+      className={cn(buttonVariants({ variant, size, colorScheme, className }))}
       {...props}
     />
   )
