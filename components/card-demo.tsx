@@ -33,10 +33,6 @@ export function CardDemo() {
               "base",
               "md",
               "lg",
-              "xl",
-              "outline",
-              "inner",
-              "darkLg",
             ] as const
           ).map((elevation) => (
             <Card
@@ -48,11 +44,7 @@ export function CardDemo() {
                 | "sm"
                 | "base"
                 | "md"
-                | "lg"
-                | "xl"
-                | "outline"
-                | "inner"
-                | "darkLg"}
+                | "lg"}
               className="w-64"
             >
               <CardHeader>
