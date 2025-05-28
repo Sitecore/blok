@@ -11,7 +11,7 @@ export function PopoverDemo() {
   return (
     <Popover>
       <PopoverTrigger asChild>
-        <Button variant="outline">Open popover</Button>
+        <Button variant="outline" colorScheme="neutral">Open popover</Button>
       </PopoverTrigger>
       <PopoverContent className="w-80" align="start">
         <div className="grid gap-4">

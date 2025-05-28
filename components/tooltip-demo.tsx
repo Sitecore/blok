@@ -12,7 +12,7 @@ export function TooltipDemo() {
     <div className="flex flex-wrap items-start gap-4">
       <Tooltip>
         <TooltipTrigger asChild>
-          <Button variant="outline">Hover</Button>
+          <Button variant="outline" colorScheme="neutral">Hover</Button>
         </TooltipTrigger>
         <TooltipContent>
           <p>Add to library</p>
@@ -22,7 +22,7 @@ export function TooltipDemo() {
         {["top", "right", "bottom", "left"].map((side) => (
           <Tooltip key={side}>
             <TooltipTrigger asChild>
-              <Button variant="outline" className="capitalize">
+              <Button variant="outline" colorScheme="neutral" className="capitalize">
                 {side}
               </Button>
             </TooltipTrigger>
@@ -34,7 +34,7 @@ export function TooltipDemo() {
       </div>
       <Tooltip>
         <TooltipTrigger asChild>
-          <Button variant="ghost" size="icon">
+          <Button variant="outline" colorScheme="neutral" size="icon">
             <InfoIcon />
             <span className="sr-only">Info</span>
           </Button>

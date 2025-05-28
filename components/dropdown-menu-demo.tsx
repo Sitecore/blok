@@ -58,7 +58,7 @@ function DropdownMenuSimple() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="outline">Open</Button>
+        <Button variant="outline" colorScheme="neutral">Open</Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="start" className="w-56">
         <DropdownMenuLabel>My Account</DropdownMenuLabel>
@@ -121,7 +121,7 @@ function DropdownMenuCheckboxes() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="outline">Checkboxes</Button>
+        <Button variant="outline" colorScheme="neutral">Checkboxes</Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="start" className="w-56">
         <DropdownMenuGroup>
@@ -176,7 +176,7 @@ function DropdownMenuRadioGroupDemo() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="outline">Radio Group</Button>
+        <Button variant="outline" colorScheme="neutral">Radio Group</Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="start" className="w-56">
         <DropdownMenuLabel inset>Panel Position</DropdownMenuLabel>
@@ -200,6 +200,7 @@ function DropdownMenuWithAvatar() {
       <DropdownMenuTrigger asChild>
         <Button
           variant="outline"
+           colorScheme="neutral"
           className="h-12 justify-start px-2 md:max-w-[200px]"
         >
           <Avatar>
@@ -271,6 +272,7 @@ function DropdownMenuAvatarOnly() {
       <DropdownMenuTrigger asChild>
         <Button
           variant="outline"
+           colorScheme="neutral"
           className="size-8 rounded-full border-none p-0"
         >
           <Avatar>
@@ -333,7 +335,7 @@ function DropdownMenuIconColor() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="ghost" size="icon">
+        <Button variant="ghost"  colorScheme="neutral" size="icon">
           <MoreHorizontalIcon />
           <span className="sr-only">Toggle menu</span>
         </Button>

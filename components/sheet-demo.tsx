@@ -19,7 +19,7 @@ export function SheetDemo() {
     <div className="flex flex-col gap-6 md:flex-row">
       <Sheet>
         <SheetTrigger asChild>
-          <Button variant="outline">Open</Button>
+          <Button variant="outline" colorScheme="neutral">Open</Button>
         </SheetTrigger>
         <SheetContent>
           <SheetHeader>
@@ -42,7 +42,7 @@ export function SheetDemo() {
           <SheetFooter>
             <Button type="submit">Save changes</Button>
             <SheetClose asChild>
-              <Button variant="outline">Close</Button>
+              <Button variant="outline" colorScheme="neutral">Close</Button>
             </SheetClose>
           </SheetFooter>
         </SheetContent>
@@ -51,7 +51,7 @@ export function SheetDemo() {
         {SHEET_SIDES.map((side) => (
           <Sheet key={side}>
             <SheetTrigger asChild>
-              <Button variant="outline" className="capitalize">
+              <Button variant="outline" colorScheme="neutral" className="capitalize">
                 {side}
               </Button>
             </SheetTrigger>

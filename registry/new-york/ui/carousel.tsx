@@ -175,6 +175,7 @@ function CarouselItem({ className, ...props }: React.ComponentProps<"div">) {
 function CarouselPrevious({
   className,
   variant = "outline",
+  colorScheme,
   size = "icon",
   ...props
 }: React.ComponentProps<typeof Button>) {
@@ -184,6 +185,7 @@ function CarouselPrevious({
     <Button
       data-slot="carousel-previous"
       variant={variant}
+      colorScheme={colorScheme} // Allow dynamic colorScheme
       size={size}
       className={cn(
         "absolute size-8 rounded-full",
@@ -205,6 +207,7 @@ function CarouselPrevious({
 function CarouselNext({
   className,
   variant = "outline",
+  colorScheme,
   size = "icon",
   ...props
 }: React.ComponentProps<typeof Button>) {
@@ -214,6 +217,7 @@ function CarouselNext({
     <Button
       data-slot="carousel-next"
       variant={variant}
+      colorScheme={colorScheme} // Allow dynamic colorScheme
       size={size}
       className={cn(
         "absolute size-8 rounded-full",

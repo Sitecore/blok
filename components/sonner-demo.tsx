@@ -109,11 +109,12 @@ export function SonnerDemo() {
   return (
     <>
       <div className="flex flex-wrap gap-4">
-        <Button onClick={() => toast("My first toast")} variant="outline">
+        <Button onClick={() => toast("My first toast")} variant="outline" colorScheme="neutral">
           Give me a toast
         </Button>
         <Button
           variant="outline"
+          colorScheme="neutral"
           onClick={() =>
             toast("Event has been created", {
               description: "Sunday, December 03, 2023 at 9:00 AM",
@@ -128,7 +129,8 @@ export function SonnerDemo() {
         </Button>
         {allTypes.map((type) => (
           <Button
-            variant="ghost"
+            variant="outline"
+            colorScheme="neutral"
             data-active={activeType.name === type.name}
             onClick={() => {
               type.action()

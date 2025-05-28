@@ -78,7 +78,7 @@ function DrawerBottom() {
   return (
     <Drawer>
       <DrawerTrigger asChild>
-        <Button variant="outline">Open Drawer</Button>
+        <Button variant="outline" colorScheme="neutral">Open Drawer</Button>
       </DrawerTrigger>
       <DrawerContent>
         <div className="mx-auto w-full max-w-sm">
@@ -90,6 +90,7 @@ function DrawerBottom() {
             <div className="flex items-center justify-center space-x-2">
               <Button
                 variant="outline"
+                colorScheme="neutral"
                 size="icon"
                 className="h-8 w-8 shrink-0 rounded-full"
                 onClick={() => onClick(-10)}
@@ -109,6 +110,7 @@ function DrawerBottom() {
               <Button
                 variant="outline"
                 size="icon"
+                colorScheme="neutral"
                 className="h-8 w-8 shrink-0 rounded-full"
                 onClick={() => onClick(10)}
                 disabled={goal >= 400}
@@ -136,7 +138,7 @@ function DrawerBottom() {
           <DrawerFooter>
             <Button>Submit</Button>
             <DrawerClose asChild>
-              <Button variant="outline">Cancel</Button>
+              <Button variant="outline" colorScheme="neutral">Cancel</Button>
             </DrawerClose>
           </DrawerFooter>
         </div>
@@ -149,7 +151,7 @@ function DrawerScrollableContent() {
   return (
     <Drawer direction="right">
       <DrawerTrigger asChild>
-        <Button variant="outline">Scrollable Content</Button>
+        <Button variant="outline"  colorScheme="neutral">Scrollable Content</Button>
       </DrawerTrigger>
       <DrawerContent>
         <DrawerHeader>
@@ -173,7 +175,7 @@ function DrawerScrollableContent() {
         <DrawerFooter>
           <Button>Submit</Button>
           <DrawerClose asChild>
-            <Button variant="outline">Cancel</Button>
+            <Button variant="outline" colorScheme="neutral">Cancel</Button>
           </DrawerClose>
         </DrawerFooter>
       </DrawerContent>
@@ -189,7 +191,7 @@ function DrawerDirections() {
       {directions.map((direction) => (
         <Drawer key={direction} direction={direction}>
           <DrawerTrigger asChild>
-            <Button variant="outline" className="capitalize">
+            <Button variant="outline"  colorScheme="neutral" className="capitalize">
               {direction}
             </Button>
           </DrawerTrigger>
@@ -217,7 +219,7 @@ function DrawerDirections() {
             <DrawerFooter>
               <Button>Submit</Button>
               <DrawerClose asChild>
-                <Button variant="outline">Cancel</Button>
+                <Button variant="outline" colorScheme="neutral">Cancel</Button>
               </DrawerClose>
             </DrawerFooter>
           </DrawerContent>

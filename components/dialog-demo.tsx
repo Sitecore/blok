@@ -27,7 +27,7 @@ function DialogWithForm() {
     <Dialog>
       <form>
         <DialogTrigger asChild>
-          <Button variant="outline">Edit Profile</Button>
+          <Button variant="outline" colorScheme="neutral">Edit Profile</Button>
         </DialogTrigger>
         <DialogContent className="sm:max-w-[425px]">
           <DialogHeader>
@@ -49,7 +49,7 @@ function DialogWithForm() {
           </div>
           <DialogFooter>
             <DialogClose asChild>
-              <Button variant="outline">Cancel</Button>
+              <Button variant="ghost" colorScheme="neutral">Cancel</Button>
             </DialogClose>
             <Button type="submit">Save changes</Button>
           </DialogFooter>
@@ -63,7 +63,7 @@ function DialogScrollableContent() {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button variant="outline">Scrollable Content</Button>
+        <Button variant="outline" colorScheme="neutral">Scrollable Content</Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
@@ -95,7 +95,7 @@ function DialogWithStickyFooter() {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button variant="outline">Sticky Footer</Button>
+        <Button variant="outline" colorScheme="neutral">Sticky Footer</Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-lg">
         <DialogHeader>
@@ -120,7 +120,7 @@ function DialogWithStickyFooter() {
         </div>
         <DialogFooter>
           <DialogClose asChild>
-            <Button variant="outline">Close</Button>
+            <Button variant="outline" colorScheme="neutral">Close</Button>
           </DialogClose>
         </DialogFooter>
       </DialogContent>

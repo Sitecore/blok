@@ -53,6 +53,7 @@ function PaginationLink({
       className={cn(
         buttonVariants({
           variant: "ghost",
+          colorScheme: "neutral",
           size,
         }),
         "text-neutral-fg disabled:text-neutral-fg/40",
@@ -71,7 +72,7 @@ function PaginationPrevious({
   return (
     <PaginationLink
       aria-label="Go to previous page"
-      size="default"
+      size="icon"
       className={cn("gap-1 px-2.5 sm:pl-2.5", className)}
       {...props}
     >
@@ -87,7 +88,7 @@ function PaginationNext({
   return (
     <PaginationLink
       aria-label="Go to next page"
-      size="default"
+      size="icon"
       className={cn("gap-1 px-2.5 sm:pr-2.5", className)}
       {...props}
     >

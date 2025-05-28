@@ -31,6 +31,7 @@ function DatePickerSimple() {
       <PopoverTrigger asChild>
         <Button
           variant={"outline"}
+          colorScheme={"neutral"}
           className={cn(
             "min-w-[200px] justify-start px-2 font-normal",
             !date && "text-muted-foreground"
@@ -64,6 +65,7 @@ function DatePickerWithRange() {
         <Button
           id="date"
           variant={"outline"}
+          colorScheme={"neutral"}
           className={cn(
             "w-fit justify-start px-2 font-normal",
             !date && "text-muted-foreground"

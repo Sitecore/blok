@@ -12,6 +12,8 @@ function Input({ className, type, ...props }: React.ComponentProps<"input">) {
         "focus-visible:border-primary",
         // "focus-visible:ring-ring/50 focus-visible:ring-[3px]",
         "aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive",
+        "border-1 border-input focus:border-primary focus:border-2 rounded-md text-md font-regular placeholder-blackAlpha-400",
+
         className
       )}
       {...props}

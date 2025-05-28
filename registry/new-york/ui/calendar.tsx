@@ -42,7 +42,7 @@ function Calendar({
             : "[&:has([aria-selected])]:rounded-md"
         ),
         day: cn(
-          buttonVariants({ variant: "ghost" }),
+          buttonVariants({ variant: "ghost", colorScheme: "neutral" }),
           "size-8 p-0 font-normal aria-selected:opacity-100"
         ),
         day_range_start:
@@ -65,7 +65,7 @@ function Calendar({
           <Icon
             path={mdiChevronLeft}
             size={0.9}
-            className={cn("size-4", className)}
+            className={cn("size-4 text-neutral", className)}
             {...props}
           />
         ),
@@ -73,7 +73,7 @@ function Calendar({
           <Icon
             path={mdiChevronRight}
             size={0.9}
-            className={cn("size-4", className)}
+            className={cn("size-4 text-neutral", className)}
             {...props}
           />
         ),

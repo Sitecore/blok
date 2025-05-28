@@ -26,8 +26,8 @@ export function CarouselDemo() {
             </CarouselItem>
           ))}
         </CarouselContent>
-        <CarouselPrevious />
-        <CarouselNext />
+        <CarouselPrevious colorScheme="neutral" />
+        <CarouselNext colorScheme="neutral" />
       </Carousel>
       <Carousel
         className="max-w-sm *:data-[slot=carousel-next]:hidden *:data-[slot=carousel-previous]:hidden *:data-[slot=carousel-next]:md:inline-flex *:data-[slot=carousel-previous]:md:inline-flex"
@@ -48,8 +48,8 @@ export function CarouselDemo() {
             </CarouselItem>
           ))}
         </CarouselContent>
-        <CarouselPrevious />
-        <CarouselNext />
+        <CarouselPrevious colorScheme="neutral" />
+        <CarouselNext colorScheme="neutral" />
       </Carousel>
       <Carousel className="max-w-sm *:data-[slot=carousel-next]:hidden *:data-[slot=carousel-previous]:hidden *:data-[slot=carousel-next]:md:inline-flex *:data-[slot=carousel-previous]:md:inline-flex">
         <CarouselContent className="-ml-1">
@@ -65,8 +65,8 @@ export function CarouselDemo() {
             </CarouselItem>
           ))}
         </CarouselContent>
-        <CarouselPrevious />
-        <CarouselNext />
+        <CarouselPrevious colorScheme="neutral" />
+        <CarouselNext colorScheme="neutral" />
       </Carousel>
     </div>
   )

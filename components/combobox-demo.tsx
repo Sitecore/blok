@@ -133,6 +133,7 @@ function FrameworkCombobox({ frameworks }: { frameworks: Framework[] }) {
       <PopoverTrigger asChild>
         <Button
           variant="outline"
+          colorScheme="neutral"
           role="combobox"
           aria-expanded={open}
           className="w-full justify-between md:max-w-[200px]"
@@ -195,6 +196,7 @@ function UserCombobox({
       <PopoverTrigger asChild>
         <Button
           variant="outline"
+          colorScheme="neutral"
           role="combobox"
           aria-expanded={open}
           className="w-full justify-between px-2 md:max-w-[200px]"
@@ -288,6 +290,7 @@ function TimezoneCombobox({
       <PopoverTrigger asChild>
         <Button
           variant="outline"
+          colorScheme="neutral"
           className="h-12 w-full justify-between px-2.5 md:max-w-[200px]"
         >
           {selectedTimezone ? (
@@ -355,6 +358,7 @@ function ComboboxWithCheckbox({ frameworks }: { frameworks: Framework[] }) {
       <PopoverTrigger asChild>
         <Button
           variant="outline"
+          colorScheme="neutral"
           role="combobox"
           aria-expanded={open}
           className="w-fit min-w-[280px] justify-between"
