@@ -1,6 +1,8 @@
 "use client"
 
 import * as React from "react"
+import { mdiAlertCircle } from "@mdi/js"
+import Icon from "@mdi/react"
 import * as LabelPrimitive from "@radix-ui/react-label"
 import { Slot } from "@radix-ui/react-slot"
 import {
@@ -147,9 +149,10 @@ function FormMessage({ className, ...props }: React.ComponentProps<"p">) {
     <p
       data-slot="form-message"
       id={formMessageId}
-      className={cn("text-destructive text-sm", className)}
+      className={cn("text-destructive flex items-center text-sm", className)}
       {...props}
     >
+      <Icon path={mdiAlertCircle} className="mr-1 inline-block" size={0.8} />
       {body}
     </p>
   )
