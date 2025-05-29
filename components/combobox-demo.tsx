@@ -136,7 +136,9 @@ function FrameworkCombobox({ frameworks }: { frameworks: Framework[] }) {
           colorScheme="neutral"
           role="combobox"
           aria-expanded={open}
-          className="w-full justify-between md:max-w-[200px]"
+          className={cn(
+            "w-full justify-between md:max-w-[200px] rounded-md" ,open && "ring-primary ring-[2px]"
+          )}
         >
           {value
             ? frameworks.find((framework) => framework.value === value)?.label
@@ -199,7 +201,10 @@ function UserCombobox({
           colorScheme="neutral"
           role="combobox"
           aria-expanded={open}
-          className="w-full justify-between px-2 md:max-w-[200px]"
+          className={cn(
+            "w-full justify-between px-2 md:max-w-[200px] rounded-md",
+            open && "ring-primary ring-[2px]"
+          )}
         >
           {selectedUser ? (
             <div className="flex items-center gap-2">
@@ -291,7 +296,10 @@ function TimezoneCombobox({
         <Button
           variant="outline"
           colorScheme="neutral"
-          className="h-12 w-full justify-between px-2.5 md:max-w-[200px]"
+          className={cn(
+            "h-12 w-full justify-between px-2.5 md:max-w-[200px] rounded-md",
+            open && "ring-primary ring-[2px]"
+          )}
         >
           {selectedTimezone ? (
             <div className="flex flex-col items-start gap-0.5">
@@ -349,9 +357,7 @@ function TimezoneCombobox({
 
 function ComboboxWithCheckbox({ frameworks }: { frameworks: Framework[] }) {
   const [open, setOpen] = React.useState(false)
-  const [selectedFrameworks, setSelectedFrameworks] = React.useState<
-    Framework[]
-  >([])
+  const [selectedFrameworks, setSelectedFrameworks] = React.useState<Framework[]>([])
 
   return (
     <Popover open={open} onOpenChange={setOpen}>
@@ -361,7 +367,9 @@ function ComboboxWithCheckbox({ frameworks }: { frameworks: Framework[] }) {
           colorScheme="neutral"
           role="combobox"
           aria-expanded={open}
-          className="w-fit min-w-[280px] justify-between"
+          className={cn(
+            "w-fit min-w-[280px] justify-between rounded-md", open && "ring-primary ring-[2px]"
+          )}
         >
           {selectedFrameworks.length > 0
             ? selectedFrameworks.map((framework) => framework.label).join(", ")
