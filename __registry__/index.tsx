@@ -11,8 +11,65 @@ export const Index: Record<string, any> = {
     description: "",
     type: "registry:style",
     registryDependencies: ["utils"],
-    files: [],
-    component: null,
+    files: [{
+      path: "registry/styles/colors.css",
+      type: "registry:file",
+      target: "app/colors.css"
+    },{
+      path: "registry/styles/typography.css",
+      type: "registry:file",
+      target: "app/typography.css"
+    },{
+      path: "registry/styles/borderRadius.css",
+      type: "registry:file",
+      target: "app/borderRadius.css"
+    },{
+      path: "registry/styles/breakpoints.css",
+      type: "registry:file",
+      target: "app/breakpoints.css"
+    },{
+      path: "registry/styles/shadows.css",
+      type: "registry:file",
+      target: "app/shadows.css"
+    }],
+    component: React.lazy(async () => {
+      const mod = await import("@/registry/new-york/styles/colors.css")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
+    }),
+    meta: undefined,
+  },
+  "styles": {
+    name: "styles",
+    description: "Base styles including colors, typography, border radius, breakpoints, and shadows",
+    type: "registry:style",
+    registryDependencies: undefined,
+    files: [{
+      path: "registry/styles/colors.css",
+      type: "registry:file",
+      target: "app/colors.css"
+    },{
+      path: "registry/styles/typography.css",
+      type: "registry:file",
+      target: "app/typography.css"
+    },{
+      path: "registry/styles/borderRadius.css",
+      type: "registry:file",
+      target: "app/borderRadius.css"
+    },{
+      path: "registry/styles/breakpoints.css",
+      type: "registry:file",
+      target: "app/breakpoints.css"
+    },{
+      path: "registry/styles/shadows.css",
+      type: "registry:file",
+      target: "app/shadows.css"
+    }],
+    component: React.lazy(async () => {
+      const mod = await import("@/registry/new-york/styles/colors.css")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
+    }),
     meta: undefined,
   },
   "accordion": {

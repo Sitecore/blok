@@ -27,7 +27,66 @@ const registry = {
         ],
         registryDependencies: ["utils"],
         cssVars: {},
-        files: [],
+        files: [
+          {
+            path: "styles/colors.css",
+            type: "registry:file",
+            target: "app/colors.css",
+          },
+          {
+            path: "styles/typography.css",
+            type: "registry:file",
+            target: "app/typography.css",
+          },
+          {
+            path: "styles/borderRadius.css",
+            type: "registry:file",
+            target: "app/borderRadius.css",
+          },
+          {
+            path: "styles/breakpoints.css",
+            type: "registry:file",
+            target: "app/breakpoints.css",
+          },
+          {
+            path: "styles/shadows.css",
+            type: "registry:file",
+            target: "app/shadows.css",
+          },
+        ],
+      },
+      {
+        name: "styles",
+        type: "registry:style",
+        description:
+          "Base styles including colors, typography, border radius, breakpoints, and shadows",
+        files: [
+          {
+            path: "styles/colors.css",
+            type: "registry:file",
+            target: "app/colors.css",
+          },
+          {
+            path: "styles/typography.css",
+            type: "registry:file",
+            target: "app/typography.css",
+          },
+          {
+            path: "styles/borderRadius.css",
+            type: "registry:file",
+            target: "app/borderRadius.css",
+          },
+          {
+            path: "styles/breakpoints.css",
+            type: "registry:file",
+            target: "app/breakpoints.css",
+          },
+          {
+            path: "styles/shadows.css",
+            type: "registry:file",
+            target: "app/shadows.css",
+          },
+        ],
       },
       ...ui,
       ...blocks,
@@ -82,6 +141,36 @@ const registry = {
       })
   ),
 } satisfies Registry
+
+async function copyStyleFiles() {
+  const stylesDir = path.join(process.cwd(), "registry/new-york/styles")
+  const appDir = path.join(process.cwd(), "app")
+
+  // Ensure styles directory exists
+  await fs.mkdir(stylesDir, { recursive: true })
+
+  // Copy style files from app/ to registry/new-york/styles/
+  const styleFiles = [
+    "colors.css",
+    "typography.css",
+    "borderRadius.css",
+    "breakpoints.css",
+    "shadows.css",
+  ]
+
+  for (const file of styleFiles) {
+    const sourcePath = path.join(appDir, file)
+    const destPath = path.join(stylesDir, file)
+
+    try {
+      await fs.copyFile(sourcePath, destPath)
+    } catch (error) {
+      console.warn(
+        `Warning: Could not copy ${file} from app/ to registry/new-york/styles/`
+      )
+    }
+  }
+}
 
 async function buildRegistryIndex() {
   let index = `/* eslint-disable @typescript-eslint/ban-ts-comment */
@@ -186,6 +275,9 @@ async function buildRegistry() {
 }
 
 try {
+  console.log("📋 Copying style files from app/ to registry...")
+  await copyStyleFiles()
+
   console.log("🗂️ Building registry/__index__.tsx...")
   await buildRegistryIndex()
 

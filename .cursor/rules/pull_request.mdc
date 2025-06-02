@@ -1,0 +1,55 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+# Pull Request Guidelines
+ 
+When creating a pull request, ensure it follows our standardized format as defined in @pull_request_template.md.
+ 
+## Required Sections
+ 
+### 1. What
+Provide a clear and concise explanation of what changes are being introduced. This should give reviewers an immediate understanding of the scope of your changes.
+ 
+To accurately identify all changes in your PR:
+```bash
+# Always use this command to see differences between your branch and develop
+git fetch origin && git diff origin/main...HEAD | cat
+```
+This command:
+- Fetches the latest changes from origin
+- Shows differences between origin/develop and your current branch
+- Uses `| cat` to display output directly without a pager
+- The three dots (...) show changes that are in your branch but not in develop
+ 
+### 2. Why
+Explain the value and motivation behind these changes. This helps reviewers understand the business or technical context of your work.
+ 
+### 3. How
+Detail the technical implementation approach you took. Include:
+- Key architectural decisions
+- Any notable refactoring
+- New dependencies introduced
+- Potential impact areas
+ 
+### 4. Jira Ticket
+Always include a link to the corresponding Jira ticket for tracking purposes.
+ 
+## Best Practices
+ 
+1. Keep changes focused and atomic
+2. Write clear commit messages
+3. Update documentation when necessary
+4. Add tests for new functionality
+5. Ensure all existing tests pass
+6. Address code review feedback promptly
+ 
+## Review Process
+ 
+Reviewers should check:
+- Code quality and style consistency
+- Test coverage
+- Documentation updates
+- Performance implications
+- Security considerations

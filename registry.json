@@ -13,8 +13,66 @@
       "registryDependencies": [
         "utils"
       ],
-      "files": [],
+      "files": [
+        {
+          "path": "registry/new-york/styles/colors.css",
+          "type": "registry:file",
+          "target": "app/colors.css"
+        },
+        {
+          "path": "registry/new-york/styles/typography.css",
+          "type": "registry:file",
+          "target": "app/typography.css"
+        },
+        {
+          "path": "registry/new-york/styles/borderRadius.css",
+          "type": "registry:file",
+          "target": "app/borderRadius.css"
+        },
+        {
+          "path": "registry/new-york/styles/breakpoints.css",
+          "type": "registry:file",
+          "target": "app/breakpoints.css"
+        },
+        {
+          "path": "registry/new-york/styles/shadows.css",
+          "type": "registry:file",
+          "target": "app/shadows.css"
+        }
+      ],
       "cssVars": {}
+    },
+    {
+      "name": "styles",
+      "type": "registry:style",
+      "description": "Base styles including colors, typography, border radius, breakpoints, and shadows",
+      "files": [
+        {
+          "path": "registry/new-york/styles/colors.css",
+          "type": "registry:file",
+          "target": "app/colors.css"
+        },
+        {
+          "path": "registry/new-york/styles/typography.css",
+          "type": "registry:file",
+          "target": "app/typography.css"
+        },
+        {
+          "path": "registry/new-york/styles/borderRadius.css",
+          "type": "registry:file",
+          "target": "app/borderRadius.css"
+        },
+        {
+          "path": "registry/new-york/styles/breakpoints.css",
+          "type": "registry:file",
+          "target": "app/breakpoints.css"
+        },
+        {
+          "path": "registry/new-york/styles/shadows.css",
+          "type": "registry:file",
+          "target": "app/shadows.css"
+        }
+      ]
     },
     {
       "name": "accordion",
