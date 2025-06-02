@@ -5,10 +5,10 @@ import { rimraf } from "rimraf"
 import { registryItemSchema, type Registry } from "shadcn/registry"
 import { z } from "zod"
 
-import { blocks } from "@/registry/registry-blocks"
-import { charts } from "@/registry/registry-charts"
-import { lib } from "@/registry/registry-lib"
-import { ui } from "@/registry/registry-ui"
+import { blocks } from "../registry/registry-blocks"
+import { charts } from "../registry/registry-charts"
+import { lib } from "../registry/registry-lib"
+import { ui } from "../registry/registry-ui"
 
 const DEPRECATED_ITEMS = ["toast"]
 
@@ -211,7 +211,10 @@ export const Index: Record<string, any> = {`
     }`
     })}],
     component: ${
-      componentPath
+      componentPath &&
+      (item.type === "registry:ui" ||
+        item.type === "registry:component" ||
+        item.type === "registry:block")
         ? `React.lazy(async () => {
       const mod = await import("${componentPath}")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name

@@ -1,15 +1,8 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
-  "name": "index",
+  "name": "styles",
   "type": "registry:style",
-  "dependencies": [
-    "tw-animate-css",
-    "class-variance-authority",
-    "lucide-react"
-  ],
-  "registryDependencies": [
-    "utils"
-  ],
+  "description": "Base styles including colors, typography, border radius, breakpoints, and shadows",
   "files": [
     {
       "path": "registry/new-york/styles/colors.css",
@@ -41,6 +34,5 @@
       "type": "registry:file",
       "target": "app/shadows.css"
     }
-  ],
-  "cssVars": {}
+  ]
 }

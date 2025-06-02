@@ -65,7 +65,7 @@ function Calendar({
           <Icon
             path={mdiChevronLeft}
             size={0.9}
-            className={cn("size-4 text-neutral", className)}
+            className={cn("text-neutral size-4", className)}
             {...props}
           />
         ),
@@ -73,7 +73,7 @@ function Calendar({
           <Icon
             path={mdiChevronRight}
             size={0.9}
-            className={cn("size-4 text-neutral", className)}
+            className={cn("text-neutral size-4", className)}
             {...props}
           />
         ),

@@ -27,7 +27,8 @@ const tabsTriggerVariants = cva(
     variants: {
       variant: {
         line: "text-neutral-fg data-[state=active]:text-primary-fg border-b-2 border-border-color data-[state=active]:border-primary-fg hover:cursor-pointer px-4",
-        "soft-rounded": "text-neutral-fg data-[state=active]:text-primary-fg data-[state=active]:bg-primary-bg hover:cursor-pointer px-4 rounded-[9999px]",
+        "soft-rounded":
+          "text-neutral-fg data-[state=active]:text-primary-fg data-[state=active]:bg-primary-bg hover:cursor-pointer px-4 rounded-[9999px]",
       },
     },
     defaultVariants: {

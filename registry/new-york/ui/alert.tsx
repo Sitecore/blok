@@ -1,7 +1,7 @@
 import * as React from "react"
-import { cva, type VariantProps } from "class-variance-authority"
 import { mdiAlertCircle, mdiCheckCircle, mdiInformation } from "@mdi/js"
 import Icon from "@mdi/react"
+import { cva, type VariantProps } from "class-variance-authority"
 
 import { cn } from "@/lib/utils"
 
@@ -72,7 +72,7 @@ function AlertDescription({
     <div
       data-slot="alert-description"
       className={cn(
-        "col-start-2 grid justify-items-start gap-1 text-md [&_p]:leading-relaxed",
+        "text-md col-start-2 grid justify-items-start gap-1 [&_p]:leading-relaxed",
         className
       )}
       {...props}

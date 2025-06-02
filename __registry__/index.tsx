@@ -32,11 +32,7 @@ export const Index: Record<string, any> = {
       type: "registry:file",
       target: "app/shadows.css"
     }],
-    component: React.lazy(async () => {
-      const mod = await import("@/registry/new-york/styles/colors.css")
-      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
-      return { default: mod.default || mod[exportName] }
-    }),
+    component: null,
     meta: undefined,
   },
   "styles": {
@@ -65,11 +61,7 @@ export const Index: Record<string, any> = {
       type: "registry:file",
       target: "app/shadows.css"
     }],
-    component: React.lazy(async () => {
-      const mod = await import("@/registry/new-york/styles/colors.css")
-      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
-      return { default: mod.default || mod[exportName] }
-    }),
+    component: null,
     meta: undefined,
   },
   "accordion": {
@@ -2712,11 +2704,7 @@ export const Index: Record<string, any> = {
       type: "registry:lib",
       target: ""
     }],
-    component: React.lazy(async () => {
-      const mod = await import("@/registry/new-york/lib/utils.ts")
-      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
-      return { default: mod.default || mod[exportName] }
-    }),
+    component: null,
     meta: undefined,
   },
   "use-mobile": {
@@ -2729,11 +2717,7 @@ export const Index: Record<string, any> = {
       type: "registry:hook",
       target: ""
     }],
-    component: React.lazy(async () => {
-      const mod = await import("@/registry/new-york/hooks/use-mobile.ts")
-      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
-      return { default: mod.default || mod[exportName] }
-    }),
+    component: null,
     meta: undefined,
   },
   "products-01": {

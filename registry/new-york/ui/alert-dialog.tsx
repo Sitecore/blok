@@ -84,7 +84,7 @@ function AlertDialogFooter({
     <div
       data-slot="alert-dialog-footer"
       className={cn(
-        "flex flex-col-reverse gap-2 sm:flex-row sm:justify-end pt-5",
+        "flex flex-col-reverse gap-2 pt-5 sm:flex-row sm:justify-end",
         className
       )}
       {...props}
@@ -99,7 +99,7 @@ function AlertDialogTitle({
   return (
     <AlertDialogPrimitive.Title
       data-slot="alert-dialog-title"
-      className={cn("text-lg font-semibold pb-5", className)}
+      className={cn("pb-5 text-lg font-semibold", className)}
       {...props}
     />
   )
@@ -124,7 +124,10 @@ function AlertDialogAction({
 }: React.ComponentProps<typeof AlertDialogPrimitive.Action>) {
   return (
     <AlertDialogPrimitive.Action
-      className={cn(buttonVariants({ variant: "default", colorScheme: "danger" }), className)}
+      className={cn(
+        buttonVariants({ variant: "default", colorScheme: "danger" }),
+        className
+      )}
       {...props}
     />
   )
@@ -136,7 +139,10 @@ function AlertDialogCancel({
 }: React.ComponentProps<typeof AlertDialogPrimitive.Cancel>) {
   return (
     <AlertDialogPrimitive.Cancel
-      className={cn(buttonVariants({ variant: "ghost", colorScheme: "neutral" }), className)}
+      className={cn(
+        buttonVariants({ variant: "ghost", colorScheme: "neutral" }),
+        className
+      )}
       {...props}
     />
   )

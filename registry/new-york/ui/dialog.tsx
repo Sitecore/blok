@@ -4,9 +4,9 @@ import * as React from "react"
 import { mdiClose } from "@mdi/js"
 import Icon from "@mdi/react"
 import * as DialogPrimitive from "@radix-ui/react-dialog"
-import { buttonVariants } from "@/registry/new-york/ui/button"
 
 import { cn } from "@/lib/utils"
+import { buttonVariants } from "@/registry/new-york/ui/button"
 
 function Dialog({
   ...props
@@ -65,10 +65,14 @@ function DialogContent({
         {...props}
       >
         {children}
-       
+
         <DialogPrimitive.Close
           className={cn(
-            buttonVariants({ variant: "ghost", colorScheme: "neutral", size: "icon" }),
+            buttonVariants({
+              variant: "ghost",
+              colorScheme: "neutral",
+              size: "icon",
+            }),
             "absolute top-2.5 right-4 opacity-70 transition-opacity hover:opacity-100"
           )}
         >
@@ -95,7 +99,7 @@ function DialogFooter({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="dialog-footer"
       className={cn(
-        "flex flex-col-reverse gap-2 sm:flex-row sm:justify-end pt-5",
+        "flex flex-col-reverse gap-2 pt-5 sm:flex-row sm:justify-end",
         className
       )}
       {...props}
@@ -110,7 +114,7 @@ function DialogTitle({
   return (
     <DialogPrimitive.Title
       data-slot="dialog-title"
-      className={cn("text-lg leading-none font-semibold pb-5", className)}
+      className={cn("pb-5 text-lg leading-none font-semibold", className)}
       {...props}
     />
   )
