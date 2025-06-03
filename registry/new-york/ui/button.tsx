@@ -137,10 +137,12 @@ function Button({
   }) {
   const Comp = asChild ? Slot : 'button';
 
+  const resolvedColorScheme = size === 'icon' && !colorScheme ? 'neutral' : colorScheme;
+
   return (
     <Comp
       data-slot='button'
-      className={cn(buttonVariants({ variant, size, colorScheme, className }))}
+      className={cn(buttonVariants({ variant, size, colorScheme: resolvedColorScheme, className }))}
       {...props}
     />
   );
