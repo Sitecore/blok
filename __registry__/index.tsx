@@ -12,6 +12,10 @@ export const Index: Record<string, any> = {
     type: "registry:style",
     registryDependencies: ["utils"],
     files: [{
+      path: "registry/styles/globals.css",
+      type: "registry:file",
+      target: "app/globals.css"
+    },{
       path: "registry/styles/colors.css",
       type: "registry:file",
       target: "app/colors.css"
@@ -41,6 +45,10 @@ export const Index: Record<string, any> = {
     type: "registry:style",
     registryDependencies: undefined,
     files: [{
+      path: "registry/styles/globals.css",
+      type: "registry:file",
+      target: "app/globals.css"
+    },{
       path: "registry/styles/colors.css",
       type: "registry:file",
       target: "app/colors.css"

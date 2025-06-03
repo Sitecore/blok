@@ -29,6 +29,11 @@ const registry = {
         cssVars: {},
         files: [
           {
+            path: "styles/globals.css",
+            type: "registry:file",
+            target: "app/globals.css",
+          },
+          {
             path: "styles/colors.css",
             type: "registry:file",
             target: "app/colors.css",
@@ -61,6 +66,11 @@ const registry = {
         description:
           "Base styles including colors, typography, border radius, breakpoints, and shadows",
         files: [
+          {
+            path: "styles/globals.css",
+            type: "registry:file",
+            target: "app/globals.css",
+          },
           {
             path: "styles/colors.css",
             type: "registry:file",
@@ -151,6 +161,7 @@ async function copyStyleFiles() {
 
   // Copy style files from app/ to registry/new-york/styles/
   const styleFiles = [
+    "globals.css",
     "colors.css",
     "typography.css",
     "borderRadius.css",

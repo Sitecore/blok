@@ -15,6 +15,11 @@
       ],
       "files": [
         {
+          "path": "registry/new-york/styles/globals.css",
+          "type": "registry:file",
+          "target": "app/globals.css"
+        },
+        {
           "path": "registry/new-york/styles/colors.css",
           "type": "registry:file",
           "target": "app/colors.css"
@@ -47,6 +52,11 @@
       "type": "registry:style",
       "description": "Base styles including colors, typography, border radius, breakpoints, and shadows",
       "files": [
+        {
+          "path": "registry/new-york/styles/globals.css",
+          "type": "registry:file",
+          "target": "app/globals.css"
+        },
         {
           "path": "registry/new-york/styles/colors.css",
           "type": "registry:file",
