@@ -7,6 +7,7 @@ import { DayPicker } from "react-day-picker"
 
 import { cn } from "@/lib/utils"
 import { buttonVariants } from "@/registry/new-york/ui/button"
+import { dir } from "node:console"
 
 function Calendar({
   className,
@@ -25,8 +26,8 @@ function Calendar({
         caption_label: "text-sm font-medium",
         nav: "flex items-center gap-1",
         nav_button: cn(
-          buttonVariants({ variant: "outline" }),
-          "size-7 bg-transparent p-0 opacity-50 hover:opacity-100"
+          buttonVariants({ variant: "ghost", colorScheme: "neutral", size: "icon" }),
+          "size-icon bg-transparent p-0 opacity-50 hover:opacity-100"
         ),
         nav_button_previous: "absolute left-1",
         nav_button_next: "absolute right-1",
@@ -43,20 +44,20 @@ function Calendar({
         ),
         day: cn(
           buttonVariants({ variant: "ghost", colorScheme: "neutral" }),
-          "size-8 p-0 font-normal aria-selected:opacity-100"
+          "hover:rounded-md size-8 p-0 font-normal aria-selected:opacity-100 border border-transparent hover:border-primary text-body-text hover:bg-white"
         ),
         day_range_start:
-          "day-range-start aria-selected:bg-primary aria-selected:text-primary-foreground",
+          "day-range-start aria-selected:bg-primary-500 aria-selected:text-primary-foreground rounded-l-md rounded-r-none",
         day_range_end:
-          "day-range-end aria-selected:bg-primary aria-selected:text-primary-foreground",
+          "day-range-end aria-selected:bg-primary-500 aria-selected:text-primary-foreground rounded-r-md rounded-l-none",
         day_selected:
-          "bg-primary text-primary-foreground hover:bg-primary hover:text-primary-foreground focus:bg-primary focus:text-primary-foreground",
-        day_today: "bg-accent text-accent-foreground",
+          "bg-primary-500 text-primary-foreground hover:bg-primary-500 hover:text-primary-foreground focus:bg-primary-500 focus:text-primary-foreground",
+        day_today: "bg-accent text-accent-foreground text-primary rounded-md",
         day_outside:
           "day-outside text-muted-foreground aria-selected:text-muted-foreground",
-        day_disabled: "text-muted-foreground opacity-50",
+        day_disabled: "text-muted-foreground opacity-50 rounded-md",
         day_range_middle:
-          "aria-selected:bg-accent aria-selected:text-accent-foreground",
+          "aria-selected:bg-primary-bg aria-selected:text-body-text rounded-none",
         day_hidden: "invisible",
         ...classNames,
       }}

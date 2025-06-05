@@ -2,7 +2,8 @@
 
 import * as React from "react"
 import { addDays, format } from "date-fns"
-import { CalendarIcon } from "lucide-react"
+import { mdiCalendarBlankOutline } from "@mdi/js"
+import Icon from "@mdi/react"
 import { DateRange } from "react-day-picker"
 
 import { cn } from "@/lib/utils"
@@ -33,11 +34,11 @@ function DatePickerSimple() {
           variant={"outline"}
           colorScheme={"neutral"}
           className={cn(
-            "min-w-[200px] justify-start px-2 font-normal",
+            "border-input border-1 data-[state=open]:border-1 data-[state=open]:border-primary rounded-md text-md data-[placeholder]:text-muted-foreground [&_svg:not([class*='text-'])]:text-muted-foreground focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive dark:bg-input/30 dark:hover:bg-input/50 flex w-fit items-center justify-between gap-2 bg-white px-3 py-2 whitespace-nowrap shadow-xs transition-[color,box-shadow] outline-none focus-visible:ring-[2px] disabled:cursor-not-allowed disabled:opacity-50 h-10",
             !date && "text-muted-foreground"
           )}
         >
-          <CalendarIcon className="text-muted-foreground" />
+          <Icon path={mdiCalendarBlankOutline} size={0.9} className="text-muted-foreground" />
           {date ? format(date, "PPP") : <span>Pick a date</span>}
         </Button>
       </PopoverTrigger>
@@ -67,11 +68,11 @@ function DatePickerWithRange() {
           variant={"outline"}
           colorScheme={"neutral"}
           className={cn(
-            "w-fit justify-start px-2 font-normal",
+            "border-input border-1 data-[state=open]:border-1 data-[state=open]:border-primary rounded-md text-md data-[placeholder]:text-muted-foreground [&_svg:not([class*='text-'])]:text-muted-foreground focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive dark:bg-input/30 dark:hover:bg-input/50 flex w-fit items-center justify-between gap-2 bg-white px-3 py-2 whitespace-nowrap shadow-xs transition-[color,box-shadow] outline-none focus-visible:ring-[2px] disabled:cursor-not-allowed disabled:opacity-50 h-10",
             !date && "text-muted-foreground"
           )}
         >
-          <CalendarIcon className="text-muted-foreground" />
+          <Icon path={mdiCalendarBlankOutline} size={0.9} className="text-muted-foreground" />
           {date?.from ? (
             date.to ? (
               <>

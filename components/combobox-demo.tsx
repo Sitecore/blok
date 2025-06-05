@@ -7,6 +7,8 @@ import {
   ChevronsUpDown,
   PlusCircleIcon,
 } from "lucide-react"
+import { mdiMagnify, mdiPlus } from "@mdi/js"
+import Icon from "@mdi/react"
 
 import { cn } from "@/lib/utils"
 import {
@@ -225,7 +227,7 @@ function UserCombobox({
       <PopoverContent className="w-(--radix-popover-trigger-width) p-0">
         <Command>
           <CommandInput placeholder="Search user..." />
-          <CommandList>
+          <CommandList className="max-h-[300px] pb-12 relative">
             <CommandEmpty>No user found.</CommandEmpty>
             <CommandGroup>
               {users.map((user) => (
@@ -253,14 +255,13 @@ function UserCombobox({
                 </CommandItem>
               ))}
             </CommandGroup>
-            <CommandSeparator />
-            <CommandGroup>
-              <CommandItem>
-                <PlusCircleIcon />
-                Create user
-              </CommandItem>
-            </CommandGroup>
           </CommandList>
+          <div className="absolute bottom-0 left-0 right-0 border-x border-b bg-background p-2 rounded-b-md z-10">
+            <Button variant="default" size="sm">
+              <Icon path={mdiPlus} size={0.9} className="" />
+              Create user
+            </Button>
+          </div>
         </Command>
       </PopoverContent>
     </Popover>
@@ -317,38 +318,40 @@ function TimezoneCombobox({
       <PopoverContent className="p-0" align="start">
         <Command>
           <CommandInput placeholder="Search timezone..." />
-          <CommandList className="scroll-pb-12">
+          <CommandList className="max-h-[300px] pb-12 relative">
             <CommandEmpty>No timezone found.</CommandEmpty>
-            {timezones.map((region) => (
-              <CommandGroup key={region.label} heading={region.label}>
-                {region.timezones.map((timezone) => (
-                  <CommandItem
-                    key={timezone.value}
-                    value={timezone.value}
-                    onSelect={(currentValue) => {
-                      setValue(
-                        currentValue as Timezone["timezones"][number]["value"]
-                      )
-                      setOpen(false)
-                    }}
-                  >
-                    {timezone.label}
-                    <CheckIcon
-                      className="ml-auto opacity-0 data-[selected=true]:opacity-100"
-                      data-selected={value === timezone.value}
-                    />
-                  </CommandItem>
-                ))}
-              </CommandGroup>
+            {timezones.map((region, index) => (
+              <React.Fragment key={region.label}>
+                {index > 0 && <CommandSeparator />}
+                <CommandGroup heading={region.label} className="[&_[cmdk-group-heading]]:text-muted-foreground [&_[cmdk-group-heading]]:font-semibold [&_[cmdk-group-heading]]:uppercase">
+                  {region.timezones.map((timezone) => (
+                    <CommandItem
+                      key={timezone.value}
+                      value={timezone.value}
+                      onSelect={(currentValue) => {
+                        setValue(
+                          currentValue as Timezone["timezones"][number]["value"]
+                        )
+                        setOpen(false)
+                      }}
+                    >
+                      {timezone.label}
+                      <CheckIcon
+                        className="ml-auto opacity-0 data-[selected=true]:opacity-100"
+                        data-selected={value === timezone.value}
+                      />
+                    </CommandItem>
+                  ))}
+                </CommandGroup>
+              </React.Fragment>
             ))}
-            <CommandSeparator className="sticky bottom-10" />
-            <CommandGroup className="bg-popover sticky bottom-0">
-              <CommandItem>
-                <PlusCircleIcon />
-                Create timezone
-              </CommandItem>
-            </CommandGroup>
           </CommandList>
+          <div className="absolute bottom-0 left-0 right-0 border-x border-b bg-background p-2 rounded-b-md z-10">
+            <Button variant="default" size="sm">
+              <Icon path={mdiPlus} size={0.9} className="" />
+              Create timezone
+            </Button>
+          </div>
         </Command>
       </PopoverContent>
     </Popover>

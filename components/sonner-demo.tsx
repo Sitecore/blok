@@ -1,28 +1,36 @@
 "use client"
 
 import * as React from "react"
-import { toast } from "sonner"
+import { toast, type ExternalToast } from "sonner"
 
 import { Button } from "@/registry/new-york/ui/button"
 import { Toaster } from "@/registry/new-york/ui/sonner"
+
+type CustomToast = ExternalToast & {
+  colorScheme?: "info" | "success" | "warning" | "danger"
+}
 
 const promiseCode = "`${data.name} toast has been added`"
 
 const allTypes = [
   {
     name: "Default",
-    snippet: `toast('Event has been created')`,
-    action: () => toast("Event has been created"),
+    snippet: `toast('Event has been created', {
+  colorScheme: 'info'
+})`,
+    action: () => toast("Event has been created", { colorScheme: "info" } as CustomToast),
   },
   {
     name: "Description",
     snippet: `toast.message('Event has been created', {
   description: 'Monday, January 3rd at 6:00pm',
+  colorScheme: 'info'
 })`,
     action: () =>
       toast("Event has been created", {
         description: "Monday, January 3rd at 6:00pm",
-      }),
+        colorScheme: "info",
+      } as CustomToast),
   },
   {
     name: "Success",
@@ -40,7 +48,7 @@ const allTypes = [
     action: () => toast.warning("Event start time cannot be earlier than 8am"),
   },
   {
-    name: "Error",
+    name: "Danger",
     snippet: `toast.error('Event has not been created')`,
     action: () => toast.error("Event has not been created"),
   },
@@ -48,31 +56,29 @@ const allTypes = [
     name: "Action",
     action: () =>
       toast.message("Event has been created", {
+        colorScheme: "info",
         action: {
           label: "Undo",
           onClick: () => console.log("Undo"),
+          component: () => (
+            <Button size="xs" colorScheme="primary" variant="default">
+              Undo
+            </Button>
+          ),
         },
-      }),
-  },
-  {
-    name: "Cancel",
-    action: () =>
-      toast.message("Event has been created", {
-        cancel: {
-          label: "Cancel",
-          onClick: () => console.log("Cancel"),
-        },
-      }),
+      } as CustomToast),
   },
   {
     name: "Close Button",
     snippet: `toast('Event has been created', {
   closeButton: true,
+  colorScheme: 'info'
 })`,
     action: () =>
       toast("Event has been created", {
         closeButton: true,
-      }),
+        colorScheme: "info",
+      } as CustomToast),
   },
   {
     name: "Promise",
@@ -84,6 +90,7 @@ toast.promise(promise, {
     return ${promiseCode};
   },
   error: 'Error',
+  colorScheme: 'success'
 });`,
     action: () =>
       toast.promise<{ name: string }>(
@@ -95,11 +102,12 @@ toast.promise(promise, {
           }),
         {
           loading: "Loading...",
-          success: (data) => {
+          success: (data: { name: string }) => {
             return `${data.name} toast has been added`
           },
           error: "Error",
-        }
+          colorScheme: "success",
+        } as CustomToast
       ),
   },
 ]
@@ -109,24 +117,25 @@ export function SonnerDemo() {
   return (
     <>
       <div className="flex flex-wrap gap-4">
-        <Button onClick={() => toast("My first toast")} variant="outline" colorScheme="neutral">
+        {/* <Button onClick={() => toast("My first toast", { colorScheme: "info" } as CustomToast)} variant="outline" colorScheme="neutral">
           Give me a toast
-        </Button>
-        <Button
+        </Button> */}
+        {/* <Button
           variant="outline"
           colorScheme="neutral"
           onClick={() =>
             toast("Event has been created", {
               description: "Sunday, December 03, 2023 at 9:00 AM",
+              colorScheme: "info",
               action: {
                 label: "Undo",
                 onClick: () => console.log("Undo"),
               },
-            })
+            } as CustomToast)
           }
         >
           Show Toast
-        </Button>
+        </Button> */}
         {allTypes.map((type) => (
           <Button
             variant="outline"

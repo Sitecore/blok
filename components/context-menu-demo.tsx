@@ -1,4 +1,5 @@
-import { Code2Icon, PlusIcon, TrashIcon } from "lucide-react"
+import { mdiCodeBraces, mdiPlus, mdiDelete, mdiChevronRight } from "@mdi/js"
+import Icon from "@mdi/react"
 
 import {
   ContextMenu,
@@ -43,18 +44,18 @@ export function ContextMenuDemo() {
               <ContextMenuShortcut>⇧⌘S</ContextMenuShortcut>
             </ContextMenuItem>
             <ContextMenuItem>
-              <PlusIcon />
+              <Icon path={mdiPlus} size={0.8} />
               Create Shortcut...
             </ContextMenuItem>
             <ContextMenuItem inset>Name Window...</ContextMenuItem>
             <ContextMenuSeparator />
             <ContextMenuItem>
-              <Code2Icon />
+              <Icon path={mdiCodeBraces} size={0.8} />
               Developer Tools
             </ContextMenuItem>
             <ContextMenuSeparator />
             <ContextMenuItem variant="destructive">
-              <TrashIcon />
+              <Icon path={mdiDelete} size={0.8} />
               Delete
             </ContextMenuItem>
           </ContextMenuSubContent>

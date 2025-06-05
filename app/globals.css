@@ -47,11 +47,11 @@
     --color-blackAlpha-400
   ); /* chakra-placeholder-color: blackAlpha.400 */
   --ring: #6987f9;
-  --chart-1: var(--color-purple-500);  /* 6e3fff */
-  --chart-2: var(--color-orange-300);    /* 4a65e8 */
-  --chart-3: var(--color-cyan-500);    /* 0873c8 */
-  --chart-4: var(--color-red-400);    /* 007c85 */
-  --chart-5: var(--color-green-500);   /* 007f66 */
+  --chart-1: #4E41CC;
+  --chart-2: #0FB5AE; 
+  --chart-3: #F08910;   
+  --chart-4: #33C5E8;  
+  --chart-5: #E055E2;   
   --sidebar: oklch(0.985 0 0);
   --sidebar-foreground: oklch(0.145 0 0);
   --sidebar-primary: oklch(0.205 0 0);

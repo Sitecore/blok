@@ -1,21 +1,8 @@
 "use client"
 
 import * as React from "react"
-import {
-  BadgeCheckIcon,
-  BellIcon,
-  ChevronsUpDownIcon,
-  CreditCardIcon,
-  LogOut,
-  LogOutIcon,
-  MoreHorizontalIcon,
-  PencilIcon,
-  Settings2Icon,
-  ShareIcon,
-  SparklesIcon,
-  TrashIcon,
-  UserIcon,
-} from "lucide-react"
+import { mdiAccount, mdiBell, mdiChevronDown, mdiCreditCard, mdiLogout, mdiDotsHorizontal, mdiPencil, mdiCog, mdiShare, mdiStar, mdiDelete, mdiCheck } from "@mdi/js"
+import Icon from "@mdi/react"
 
 import {
   Avatar,
@@ -127,13 +114,13 @@ function DropdownMenuCheckboxes() {
         <DropdownMenuGroup>
           <DropdownMenuLabel>Account</DropdownMenuLabel>
           <DropdownMenuItem>
-            <UserIcon /> Profile
+            <Icon path={mdiAccount} size={0.8} /> Profile
           </DropdownMenuItem>
           <DropdownMenuItem>
-            <CreditCardIcon /> Billing
+            <Icon path={mdiCreditCard} size={0.8} /> Billing
           </DropdownMenuItem>
           <DropdownMenuItem>
-            <Settings2Icon /> Settings
+            <Icon path={mdiCog} size={0.8} /> Settings
           </DropdownMenuItem>
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
@@ -162,7 +149,7 @@ function DropdownMenuCheckboxes() {
         <DropdownMenuSeparator />
         <DropdownMenuGroup>
           <DropdownMenuItem>
-            <LogOutIcon /> Sign Out
+            <Icon path={mdiLogout} size={0.8} /> Sign Out
           </DropdownMenuItem>
         </DropdownMenuGroup>
       </DropdownMenuContent>
@@ -200,7 +187,7 @@ function DropdownMenuWithAvatar() {
       <DropdownMenuTrigger asChild>
         <Button
           variant="outline"
-           colorScheme="neutral"
+          colorScheme="neutral"
           className="h-12 justify-start px-2 md:max-w-[200px]"
         >
           <Avatar>
@@ -213,7 +200,7 @@ function DropdownMenuWithAvatar() {
               shadcn@example.com
             </span>
           </div>
-          <ChevronsUpDownIcon className="text-muted-foreground ml-auto" />
+          <Icon path={mdiChevronDown} size={0.8} className="text-muted-foreground ml-auto" />
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent
@@ -237,28 +224,28 @@ function DropdownMenuWithAvatar() {
         <DropdownMenuSeparator />
         <DropdownMenuGroup>
           <DropdownMenuItem>
-            <SparklesIcon />
+            <Icon path={mdiStar} size={0.8} />
             Upgrade to Pro
           </DropdownMenuItem>
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
         <DropdownMenuGroup>
           <DropdownMenuItem>
-            <BadgeCheckIcon />
+            <Icon path={mdiCheck} size={0.8} />
             Account
           </DropdownMenuItem>
           <DropdownMenuItem>
-            <CreditCardIcon />
+            <Icon path={mdiCreditCard} size={0.8} />
             Billing
           </DropdownMenuItem>
           <DropdownMenuItem>
-            <BellIcon />
+            <Icon path={mdiBell} size={0.8} />
             Notifications
           </DropdownMenuItem>
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
         <DropdownMenuItem>
-          <LogOut />
+          <Icon path={mdiLogout} size={0.8} />
           Sign Out
         </DropdownMenuItem>
       </DropdownMenuContent>
@@ -302,28 +289,28 @@ function DropdownMenuAvatarOnly() {
         <DropdownMenuSeparator />
         <DropdownMenuGroup>
           <DropdownMenuItem>
-            <SparklesIcon />
+            <Icon path={mdiStar} size={0.8} />
             Upgrade to Pro
           </DropdownMenuItem>
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
         <DropdownMenuGroup>
           <DropdownMenuItem>
-            <BadgeCheckIcon />
+            <Icon path={mdiCheck} size={0.8} />
             Account
           </DropdownMenuItem>
           <DropdownMenuItem>
-            <CreditCardIcon />
+            <Icon path={mdiCreditCard} size={0.8} />
             Billing
           </DropdownMenuItem>
           <DropdownMenuItem>
-            <BellIcon />
+            <Icon path={mdiBell} size={0.8} />
             Notifications
           </DropdownMenuItem>
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
         <DropdownMenuItem>
-          <LogOut />
+          <Icon path={mdiLogout} size={0.8} />
           Sign Out
         </DropdownMenuItem>
       </DropdownMenuContent>
@@ -335,24 +322,24 @@ function DropdownMenuIconColor() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="ghost"  colorScheme="neutral" size="icon">
-          <MoreHorizontalIcon />
+        <Button variant="ghost" colorScheme="neutral" size="icon">
+          <Icon path={mdiDotsHorizontal} size={0.8} />
           <span className="sr-only">Toggle menu</span>
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="start">
         <DropdownMenuGroup className="*:data-[slot=dropdown-menu-item]:[&>svg]:text-muted-foreground">
           <DropdownMenuItem>
-            <PencilIcon />
+            <Icon path={mdiPencil} size={0.8} />
             Edit
           </DropdownMenuItem>
           <DropdownMenuItem>
-            <ShareIcon />
+            <Icon path={mdiShare} size={0.8} />
             Share
           </DropdownMenuItem>
           <DropdownMenuSeparator />
           <DropdownMenuItem variant="destructive">
-            <TrashIcon />
+            <Icon path={mdiDelete} size={0.8} />
             Delete
           </DropdownMenuItem>
         </DropdownMenuGroup>

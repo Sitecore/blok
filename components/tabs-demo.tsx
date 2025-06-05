@@ -1,4 +1,5 @@
-import { AppWindowIcon, CodeIcon, HomeIcon, SettingsIcon } from "lucide-react"
+import { mdiHome, mdiCog, mdiWindowMaximize, mdiCodeBraces } from "@mdi/js"
+import Icon from "@mdi/react"
 
 import { Button } from "@/registry/new-york/ui/button"
 import {
@@ -84,11 +85,11 @@ function TabsDemo() {
         <Tabs defaultValue="home">
           <TabsList>
             <TabsTrigger value="home">
-              <HomeIcon />
+              <Icon path={mdiHome} size={0.8} />
               Home
             </TabsTrigger>
             <TabsTrigger value="settings">
-              <SettingsIcon />
+              <Icon path={mdiCog} size={0.8} />
               Settings
             </TabsTrigger>
           </TabsList>
@@ -110,11 +111,11 @@ function TabsDemo() {
         <Tabs defaultValue="preview">
           <TabsList variant="soft-rounded">
             <TabsTrigger value="preview" variant="soft-rounded">
-              <AppWindowIcon />
+              <Icon path={mdiWindowMaximize} size={0.8} />
               Preview
             </TabsTrigger>
             <TabsTrigger value="code" variant="soft-rounded">
-              <CodeIcon />
+              <Icon path={mdiCodeBraces} size={0.8} />
               Code
             </TabsTrigger>
           </TabsList>

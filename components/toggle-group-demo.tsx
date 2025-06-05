@@ -1,4 +1,5 @@
-import { BoldIcon, ItalicIcon, UnderlineIcon } from "lucide-react"
+import { mdiFormatBold, mdiFormatItalic, mdiFormatUnderline } from "@mdi/js"
+import Icon from "@mdi/react"
 
 import {
   ToggleGroup,
@@ -19,21 +20,21 @@ export function ToggleGroupDemo() {
             aria-label="Toggle bold"
             className="w-10"
           >
-            <BoldIcon />
+            <Icon path={mdiFormatBold} size={0.8} />
           </ToggleGroupItem>
           <ToggleGroupItem
             value="italic"
             aria-label="Toggle italic"
             className="w-10"
           >
-            <ItalicIcon />
+            <Icon path={mdiFormatItalic} size={0.8} />
           </ToggleGroupItem>
           <ToggleGroupItem
             value="strikethrough"
             aria-label="Toggle strikethrough"
             className="w-10"
           >
-            <UnderlineIcon />
+            <Icon path={mdiFormatUnderline} size={0.8} />
           </ToggleGroupItem>
         </ToggleGroup>
         <ToggleGroup
@@ -70,21 +71,21 @@ export function ToggleGroupDemo() {
             aria-label="Toggle bold"
             className="w-10"
           >
-            <BoldIcon />
+            <Icon path={mdiFormatBold} size={0.8} />
           </ToggleGroupItem>
           <ToggleGroupItem
             value="italic"
             aria-label="Toggle italic"
             className="w-10"
           >
-            <ItalicIcon />
+            <Icon path={mdiFormatItalic} size={0.8} />
           </ToggleGroupItem>
           <ToggleGroupItem
             value="strikethrough"
             aria-label="Toggle strikethrough"
             className="w-10"
           >
-            <UnderlineIcon />
+            <Icon path={mdiFormatUnderline} size={0.8} />
           </ToggleGroupItem>
         </ToggleGroup>
         <ToggleGroup

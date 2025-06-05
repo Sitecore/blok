@@ -1,6 +1,6 @@
 "use client"
 
-import { mdiAlertCircle, mdiCheckCircle, mdiInformation } from "@mdi/js"
+import { mdiAlertCircle, mdiCheckCircle, mdiClose, mdiInformation } from "@mdi/js"
 import Icon from "@mdi/react"
 import { useTheme } from "next-themes"
 import { Toaster as Sonner, ToasterProps } from "sonner"
@@ -18,10 +18,10 @@ const Toaster = ({ ...props }: ToasterProps) => {
         classNames: {
           toast: "!border-none",
           success: "!bg-success-100",
-          error: "!bg-danger-100",
+          error: "!bg-red-100",
           info: "!bg-info-100",
           warning: "!bg-warning-100",
-          default: "!bg-background",
+          default: "!bg-info-100",
           title: "text-sm !text-black !font-normal",
           description: "text-sm !text-black",
           closeButton:
@@ -48,6 +48,11 @@ const Toaster = ({ ...props }: ToasterProps) => {
         warning: (
           <div className="text-warning">
             <Icon path={mdiAlertCircle} size={0.9} />
+          </div>
+        ),
+        close: (
+          <div className="text-neutral-fg">
+            <Icon path={mdiClose} size={0.7} />
           </div>
         ),
       }}

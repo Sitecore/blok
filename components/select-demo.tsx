@@ -1,10 +1,6 @@
 import * as React from "react"
-import {
-  ChartBarIcon,
-  ChartLineIcon,
-  ChartPieIcon,
-  CircleDashed,
-} from "lucide-react"
+import { mdiChartBar, mdiChartLine, mdiChartPie, mdiCircleOutline } from "@mdi/js"
+import Icon from "@mdi/react"
 
 import {
   Select,
@@ -67,25 +63,28 @@ export function SelectDemo() {
           <SelectValue
             placeholder={
               <>
-                <CircleDashed className="text-muted-foreground" />
+                <Icon path={mdiCircleOutline} size={0.9} className="text-neutral-foreground" />
                 With Icon
               </>
             }
           />
         </SelectTrigger>
         <SelectContent>
-          <SelectItem value="line">
-            <ChartLineIcon />
-            Line
-          </SelectItem>
-          <SelectItem value="bar">
-            <ChartBarIcon />
-            Bar
-          </SelectItem>
-          <SelectItem value="pie">
-            <ChartPieIcon />
-            Pie
-          </SelectItem>
+          <SelectGroup>
+            <SelectLabel>Chart Types</SelectLabel>
+            <SelectItem value="line">
+              <Icon path={mdiChartLine} size={0.8} />
+              Line
+            </SelectItem>
+            <SelectItem value="bar">
+              <Icon path={mdiChartBar} size={0.8} />
+              Bar
+            </SelectItem>
+            <SelectItem value="pie">
+              <Icon path={mdiChartPie} size={0.8} />
+              Pie
+            </SelectItem>
+          </SelectGroup>
         </SelectContent>
       </Select>
     </div>
