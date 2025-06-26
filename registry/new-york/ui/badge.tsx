@@ -5,12 +5,17 @@ import { cva, type VariantProps } from "class-variance-authority"
 import { cn } from "@/lib/utils"
 
 const badgeVariants = cva(
-  "inline-flex items-center justify-center rounded px-2 text-xs w-fit whitespace-nowrap shrink-0 [&>svg]:size-3 gap-1 [&>svg]:pointer-events-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive transition-[color,box-shadow] overflow-hidden",
+  "inline-flex items-center px-2 justify-center rounded w-fit whitespace-nowrap shrink-0 [&>svg]:size-3 gap-1 [&>svg]:pointer-events-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive transition-[color,box-shadow] overflow-hidden",
   {
     variants: {
       variant: {
-        default: "font-medium",
+        default: "font-normal",
         bold: "uppercase font-bold",
+      },
+      size: {
+        sm: "text-sm h-4",
+        md: "text-md h-5",
+        lg: "text-md h-6",
       },
       colorScheme: {
         neutral: "bg-neutral-100 text-neutral-800",
@@ -26,8 +31,9 @@ const badgeVariants = cva(
       },
     },
     defaultVariants: {
-      variant: "default",
       colorScheme: "neutral",
+      size: "md",
+      variant: "default",
     },
   }
 )
@@ -36,6 +42,7 @@ function Badge({
   className,
   variant,
   colorScheme,
+  size = "md",
   asChild = false,
   ...props
 }: React.ComponentProps<"span"> &
@@ -45,7 +52,7 @@ function Badge({
   return (
     <Comp
       data-slot="badge"
-      className={cn(badgeVariants({ variant, colorScheme }), className)}
+      className={cn(badgeVariants({ variant, colorScheme, size }), className)}
       {...props}
     />
   )
