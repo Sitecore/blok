@@ -97,12 +97,12 @@ export function ButtonDemo() {
           <Button variant="ghost" colorScheme="primary">Ghost primary</Button>
           <Button variant="ghost" colorScheme="success">Ghost success</Button>
           <Button variant="ghost" colorScheme="danger">Ghost danger</Button>
-          <Button disabled variant="outline">
+          <Button disabled variant="ghost">
             <Loader2Icon className="animate-spin" />
-            Outline
+            Ghost
           </Button>
-          <Button variant="outline">
-            Outline
+          <Button variant="ghost">
+            Ghost
             <Icon path={mdiOpenInNew} />
           </Button>
         </div>
