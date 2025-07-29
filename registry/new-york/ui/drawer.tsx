@@ -32,17 +32,7 @@ function DrawerClose({
 function DrawerOverlay({
   className,
   ...props
-}: React.ComponentProps<typeof DrawerPrimitive.Overlay> & {
-  /**
-   * Used internally by DrawerContent to conditionally render the overlay.
-   * @internal
-   */
-  _siblingMode?: boolean
-}) {
-  if (props._siblingMode) {
-    return null
-  }
-
+}: React.ComponentProps<typeof DrawerPrimitive.Overlay>) {
   return (
     <DrawerPrimitive.Overlay
       data-slot="drawer-overlay"
@@ -94,7 +84,7 @@ function DrawerContent({
 
   return (
     <DrawerPortal data-slot="drawer-portal">
-      <DrawerOverlay _siblingMode={siblingMode} />
+      <DrawerOverlay />
       {content}
     </DrawerPortal>
   )
