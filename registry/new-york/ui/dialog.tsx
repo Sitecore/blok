@@ -67,40 +67,31 @@ function DialogContent({
     full: "w-screen h-screen max-w-none max-h-none rounded-none p-0",
   }
 
-  let hasCustomCloseButton = false
-  React.Children.forEach(children, (child: React.ReactNode) => {
-    if (
-      React.isValidElement(child) &&
-      (child.type === DialogClose || child.type === DialogPrimitive.Close)
-    ) {
-      hasCustomCloseButton = true
-    }
-  })
+  function hasCloseButton(node: React.ReactNode): boolean {
+    let found = false
 
-  if (!hasCustomCloseButton) {
-    React.Children.forEach(children, (child: React.ReactNode) => {
+    React.Children.forEach(node, (child) => {
+      if (found) return
+
       if (
         React.isValidElement(child) &&
+        (child.type === DialogClose || child.type === DialogPrimitive.Close)
+      ) {
+        found = true
+      } else if (
+        React.isValidElement(child) &&
+        child.props &&
         typeof child.props === "object" &&
-        child.props !== null &&
         "children" in child.props
       ) {
-        const childProps = child.props as { children?: React.ReactNode }
-        React.Children.forEach(
-          childProps.children,
-          (innerChild: React.ReactNode) => {
-            if (
-              React.isValidElement(innerChild) &&
-              (innerChild.type === DialogClose ||
-                innerChild.type === DialogPrimitive.Close)
-            ) {
-              hasCustomCloseButton = true
-            }
-          }
-        )
+        found = hasCloseButton(child.props.children as React.ReactNode)
       }
     })
+
+    return found
   }
+
+  const hasCustomCloseButton = hasCloseButton(children)
 
   return (
     <DialogPortal data-slot="dialog-portal">
