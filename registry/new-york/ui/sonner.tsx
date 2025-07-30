@@ -10,7 +10,9 @@ import Icon from "@mdi/react"
 import { useTheme } from "next-themes"
 import { Toaster as Sonner, ToasterProps } from "sonner"
 
-const Toaster = ({ ...props }: ToasterProps) => {
+import { Button } from "./button"
+
+const Toaster = ({ className = "bg-info-100", ...props }: ToasterProps) => {
   const { theme = "system" } = useTheme()
 
   return (
@@ -20,17 +22,22 @@ const Toaster = ({ ...props }: ToasterProps) => {
       position="bottom-left"
       expand={true}
       toastOptions={{
+        unstyled: true,
+        className: "rounded-md p-4 flex items-center gap-2",
         classNames: {
-          toast: "!border-none !bg-inherit",
-          success: "!bg-success-100",
-          error: "!bg-red-100",
-          info: "!bg-info-100",
-          warning: "!bg-warning-100",
-          default: "!bg-info-100",
-          title: "text-sm !text-black !font-normal",
+          toast: "border-none",
+          success: "bg-success-100",
+          error: "bg-red-100",
+          info: "bg-info-100",
+          warning: "bg-warning-100",
+          default: "bg-info-100",
+          title: "text-sm text-black font-normal",
           description: "text-sm !text-black",
           closeButton:
-            "!absolute !top-3 !right-0 !left-auto !bg-transparent !border-none !text-black scale-120",
+            "!bg-transparent border-none order-1 cursor-pointer relative -top-2 -right-2",
+          loading: "text-primary-500",
+          actionButton:
+            "text-sm text-primary-500 cursor-pointer hover:underline",
         },
       }}
       {...props}
@@ -56,7 +63,7 @@ const Toaster = ({ ...props }: ToasterProps) => {
           </div>
         ),
         close: (
-          <div className="text-neutral-fg">
+          <div className="text-neutral-fg rounded-full p-1 hover:bg-neutral-200 dark:hover:bg-neutral-700">
             <Icon path={mdiClose} size={0.7} />
           </div>
         ),

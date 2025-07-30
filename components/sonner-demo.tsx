@@ -18,7 +18,10 @@ const allTypes = [
     snippet: `toast('Event has been created', {
   colorScheme: 'info'
 })`,
-    action: () => toast("Event has been created", { colorScheme: "info" } as CustomToast),
+    action: () =>
+      toast("Event has been created", {
+        colorScheme: "info",
+      } as CustomToast),
   },
   {
     name: "Description",
@@ -58,13 +61,11 @@ const allTypes = [
       toast.message("Event has been created", {
         colorScheme: "info",
         action: {
-          label: "Undo",
+          label: "Undo 115",
+          props: {
+            className: "red",
+          },
           onClick: () => console.log("Undo"),
-          component: () => (
-            <Button size="xs" colorScheme="primary" variant="default">
-              Undo
-            </Button>
-          ),
         },
       } as CustomToast),
   },
@@ -83,15 +84,14 @@ const allTypes = [
   {
     name: "Promise",
     snippet: `const promise = () => new Promise((resolve) => setTimeout(() => resolve({ name: 'Sonner' }), 2000));
-
-toast.promise(promise, {
-  loading: 'Loading...',
-  success: (data) => {
-    return ${promiseCode};
-  },
-  error: 'Error',
-  colorScheme: 'success'
-});`,
+    toast.promise(promise, {
+      loading: 'Loading...',
+      success: (data) => {
+        return ${promiseCode};
+      },
+      error: 'Error',
+      colorScheme: 'success'
+    });`,
     action: () =>
       toast.promise<{ name: string }>(
         () =>
@@ -109,6 +109,11 @@ toast.promise(promise, {
           colorScheme: "success",
         } as CustomToast
       ),
+  },
+  {
+    name: "Loading",
+    snippet: `toast.loading('Loading...')`,
+    action: () => toast.loading("Loading..."),
   },
 ]
 
