@@ -35,7 +35,7 @@ const Toaster = ({ className = "bg-info-100", ...props }: ToasterProps) => {
           title: "text-sm text-black font-normal",
           description: "text-sm !text-black",
           closeButton:
-            "!bg-transparent border-none order-1 cursor-pointer relative ml-auto -top-1 -right-1",
+            "!bg-transparent border-none order-1 cursor-pointer relative ml-auto",
           loading: "text-primary-500",
           actionButton:
             "text-sm text-primary-500 cursor-pointer hover:underline",
