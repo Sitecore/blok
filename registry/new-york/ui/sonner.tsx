@@ -43,11 +43,7 @@ const Toaster = ({ className = "bg-info-100", ...props }: ToasterProps) => {
       }}
       {...props}
       icons={{
-        loading: (
-          <div className="text-primary">
-            <Loader size="sm" />
-          </div>
-        ),
+        loading: <Loader size="sm" />,
         success: (
           <div className="text-success">
             <Icon path={mdiCheckCircle} size={0.9} />
