@@ -10,7 +10,7 @@ import Icon from "@mdi/react"
 import { useTheme } from "next-themes"
 import { Toaster as Sonner, ToasterProps } from "sonner"
 
-import { Button } from "./button"
+import { Loader } from "./loader"
 
 const Toaster = ({ className = "bg-info-100", ...props }: ToasterProps) => {
   const { theme = "system" } = useTheme()
@@ -23,7 +23,8 @@ const Toaster = ({ className = "bg-info-100", ...props }: ToasterProps) => {
       expand={true}
       toastOptions={{
         unstyled: true,
-        className: "rounded-md p-4 flex items-center gap-2",
+        className:
+          "rounded-md p-4 flex items-center gap-2 !w-[clamp(300px,400px,560px)]",
         classNames: {
           toast: "border-none",
           success: "bg-success-100",
@@ -34,7 +35,7 @@ const Toaster = ({ className = "bg-info-100", ...props }: ToasterProps) => {
           title: "text-sm text-black font-normal",
           description: "text-sm !text-black",
           closeButton:
-            "!bg-transparent border-none order-1 cursor-pointer relative -top-2 -right-2",
+            "!bg-transparent border-none order-1 cursor-pointer relative ml-auto -top-1 -right-1",
           loading: "text-primary-500",
           actionButton:
             "text-sm text-primary-500 cursor-pointer hover:underline",
@@ -42,6 +43,11 @@ const Toaster = ({ className = "bg-info-100", ...props }: ToasterProps) => {
       }}
       {...props}
       icons={{
+        loading: (
+          <div className="text-primary">
+            <Loader size="sm" />
+          </div>
+        ),
         success: (
           <div className="text-success">
             <Icon path={mdiCheckCircle} size={0.9} />
