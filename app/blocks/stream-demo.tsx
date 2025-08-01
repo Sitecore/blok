@@ -5,8 +5,6 @@ import { BrandkitPicker } from "@/registry/new-york/blocks/brandkit-picker/compo
 import { BrandkitList } from "@/registry/new-york/blocks/brandkit-list/components/brandkit-list"
 import { BrandkitItem } from "@/registry/new-york/blocks/brandkit-item/components/brandkit-item"
 import { Spinner } from "@/registry/new-york/blocks/spinner/components/spinner"
-import { Icon } from "@/registry/new-york/blocks/icon/components/icon"
-import { mdiChevronDown, mdiHome, mdiAccount, mdiCog } from '@mdi/js'
 
 // Mock data for demo
 const mockBrandkits = [
@@ -172,43 +170,7 @@ export function StreamBlocks() {
           </CardContent>
         </Card>
 
-        {/* Icon */}
-        <Card>
-          <CardHeader>
-            <CardTitle>Icon</CardTitle>
-            <p className="text-sm text-muted-foreground">
-              Icon component with Material Design Icons support
-            </p>
-          </CardHeader>
-          <CardContent>
-            <div className="space-y-4">
-              <div className="flex items-center gap-4">
-                <Icon path={mdiHome} size="xs" />
-                <span>Home (xs)</span>
-              </div>
-              <div className="flex items-center gap-4">
-                <Icon path={mdiAccount} size="sm" />
-                <span>Account (sm)</span>
-              </div>
-              <div className="flex items-center gap-4">
-                <Icon path={mdiCog} size="md" />
-                <span>Settings (md)</span>
-              </div>
-              <div className="flex items-center gap-4">
-                <Icon path={mdiChevronDown} size="lg" />
-                <span>Chevron Down (lg)</span>
-              </div>
-              <div className="flex items-center gap-4">
-                <Icon path={mdiHome} size="xl" />
-                <span>Home (xl)</span>
-              </div>
-              <div className="flex items-center gap-4">
-                <Icon path={mdiHome} aiGradient="500" />
-                <span>Home with AI Gradient</span>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
+
       </div>
 
       {/* Hooks */}
@@ -261,7 +223,6 @@ export function StreamBlocks() {
                   npx shadcn@latest add brandkit-list<br/>
                   npx shadcn@latest add brandkit-item<br/>
                   npx shadcn@latest add spinner<br/>
-                  npx shadcn@latest add icon<br/>
                   npx shadcn@latest add use-brandkits<br/>
                   npx shadcn@latest add use-brandkit-by-id
                 </code>
