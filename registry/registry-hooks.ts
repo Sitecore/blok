@@ -18,8 +18,13 @@ export const hooks: Registry["items"] = [
     dependencies: ["@sitecore/stream-ui-core"],
     files: [
       {
-        path: "hooks/use-brandkits.ts",
+        path: "stream/hooks/use-brandkits.ts",
         type: "registry:hook",
+      },
+      {
+        path: "stream/hooks/use-brandkits/page.tsx",
+        type: "registry:page",
+        target: "app/hooks/use-brandkits/page.tsx",
       },
     ],
     categories: ["stream", "hooks", "brandkit"],
@@ -30,8 +35,13 @@ export const hooks: Registry["items"] = [
     dependencies: ["@sitecore/stream-ui-core"],
     files: [
       {
-        path: "hooks/use-brandkit-by-id.ts",
+        path: "stream/hooks/use-brandkit-by-id.ts",
         type: "registry:hook",
+      },
+      {
+        path: "stream/hooks/use-brandkit-by-id/page.tsx",
+        type: "registry:page",
+        target: "app/hooks/use-brandkit-by-id/page.tsx",
       },
     ],
     categories: ["stream", "hooks", "brandkit"],

@@ -702,4 +702,32 @@ export const blocks: Registry["items"] = [
     ],
     categories: ["authentication", "login"],
   },
+  {
+    name: "stream-brandkit-picker",
+    type: "registry:block",
+    description:
+      "Stream team's comprehensive brandkit picker with all brandkit components",
+    dependencies: ["@sitecore/stream-ui-core", "@mdi/js"],
+    registryDependencies: ["button", "popover", "input", "separator", "avatar"],
+    files: [
+      {
+        path: "stream/blocks/stream-brandkit-picker/components/stream-brandkit-picker.tsx",
+        type: "registry:component",
+      },
+      {
+        path: "stream/blocks/stream-brandkit-picker/components/stream-brandkit-list.tsx",
+        type: "registry:component",
+      },
+      {
+        path: "stream/blocks/stream-brandkit-picker/components/stream-brandkit-item.tsx",
+        type: "registry:component",
+      },
+      {
+        path: "stream/blocks/stream-brandkit-picker/page.tsx",
+        type: "registry:page",
+        target: "app/blocks/stream-brandkit-picker/page.tsx",
+      },
+    ],
+    categories: ["stream", "ui", "brandkit", "picker"],
+  },
 ]

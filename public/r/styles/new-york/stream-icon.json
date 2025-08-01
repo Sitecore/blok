@@ -1,0 +1,21 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "stream-icon",
+  "type": "registry:ui",
+  "description": "Stream team's icon component with CVA variants and gradient support",
+  "dependencies": [
+    "class-variance-authority"
+  ],
+  "files": [
+    {
+      "path": "registry/new-york/stream/ui/stream-icon.tsx",
+      "content": "import React from \"react\"\nimport { cva, type VariantProps } from \"class-variance-authority\"\n\nexport interface StreamIconProps\n  extends React.SVGAttributes<SVGSVGElement>,\n    VariantProps<typeof iconVariants> {\n  path: string\n  aiGradient?:\n    | \"50\"\n    | \"100\"\n    | \"200\"\n    | \"300\"\n    | \"400\"\n    | \"500\"\n    | \"600\"\n    | \"700\"\n    | \"800\"\n    | \"900\"\n}\n\nconst iconVariants = cva(\"inline-block align-middle flex-shrink-0 leading-4\", {\n  variants: {\n    size: {\n      default: \"w-icon h-icon\",\n      \"3xs\": \"w-icon-3xs h-icon-3xs\",\n      \"2xs\": \"w-icon-2xs h-icon-2xs\",\n      xs: \"w-icon-xs h-icon-xs\",\n      sm: \"w-icon-sm h-icon-sm\",\n      md: \"w-icon-md h-icon-md\",\n      lg: \"w-icon-lg h-icon-lg\",\n      xl: \"w-icon-xl h-icon-xl\",\n      \"2xl\": \"w-icon-2xl h-icon-2xl\",\n      \"3xl\": \"w-icon-3xl h-icon-3xl\",\n      \"4xl\": \"w-icon-4xl h-icon-4xl\",\n      \"5xl\": \"w-icon-5xl h-icon-5xl\",\n      \"6xl\": \"w-icon-6xl h-icon-6xl\",\n      \"7xl\": \"w-icon-7xl h-icon-7xl\",\n      \"8xl\": \"w-icon-8xl h-icon-7xl\",\n    },\n  },\n  defaultVariants: {\n    size: \"default\",\n  },\n})\n\nexport function StreamIcon({\n  path,\n  size,\n  className,\n  aiGradient,\n  ...rest\n}: StreamIconProps) {\n  return (\n    <svg\n      fill=\"currentColor\"\n      viewBox=\"0 0 24 24\"\n      {...rest}\n      className={iconVariants({ size, className })}\n    >\n      {aiGradient && (\n        <defs>\n          <linearGradient id=\"ai-gradient\" y1=\"100%\" y2=\"0\">\n            <stop stopColor={`var(--purple-${aiGradient})`} offset=\"0%\" />\n            <stop stopColor={`var(--red-${aiGradient})`} offset=\"100%\" />\n          </linearGradient>\n        </defs>\n      )}\n      <path fill={aiGradient ? \"url(#ai-gradient)\" : \"currentColor\"} d={path} />\n    </svg>\n  )\n}\n",
+      "type": "registry:ui"
+    }
+  ],
+  "categories": [
+    "stream",
+    "ui",
+    "icon"
+  ]
+}
