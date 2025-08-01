@@ -4,7 +4,7 @@ import * as React from "react"
 import { mdiMenu } from "@mdi/js"
 import Icon from "@mdi/react"
 import { Slot } from "@radix-ui/react-slot"
-import { VariantProps, cva } from "class-variance-authority"
+import { cva, VariantProps } from "class-variance-authority"
 
 import { cn } from "@/registry/new-york/lib/utils"
 import { Button } from "@/registry/new-york/ui/button"

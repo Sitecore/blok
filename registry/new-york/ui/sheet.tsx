@@ -76,7 +76,11 @@ function SheetContent({
         {children}
         <SheetPrimitive.Close
           className={cn(
-            buttonVariants({ variant: "ghost", colorScheme: "neutral", size: "icon" }),
+            buttonVariants({
+              variant: "ghost",
+              colorScheme: "neutral",
+              size: "icon",
+            }),
             "absolute top-2.5 right-4 opacity-70 transition-opacity hover:opacity-100"
           )}
         >

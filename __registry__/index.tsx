@@ -1455,6 +1455,111 @@ export const Index: Record<string, any> = {
     }),
     meta: undefined,
   },
+  "brandkit-picker": {
+    name: "brandkit-picker",
+    description: "A dropdown picker for selecting brandkits with search functionality.",
+    type: "registry:block",
+    registryDependencies: ["button","card","popover","avatar","input","separator"],
+    files: [{
+      path: "registry/blocks/brandkit-picker/page.tsx",
+      type: "registry:page",
+      target: "app/blocks/brandkit-picker/page.tsx"
+    },{
+      path: "registry/blocks/brandkit-picker/components/brandkit-picker.tsx",
+      type: "registry:component",
+      target: ""
+    }],
+    component: React.lazy(async () => {
+      const mod = await import("@/registry/new-york/blocks/brandkit-picker/page.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
+    }),
+    meta: undefined,
+  },
+  "brandkit-list": {
+    name: "brandkit-list",
+    description: "A searchable list of brandkits with recent selection.",
+    type: "registry:block",
+    registryDependencies: ["input","separator","card"],
+    files: [{
+      path: "registry/blocks/brandkit-list/page.tsx",
+      type: "registry:page",
+      target: "app/blocks/brandkit-list/page.tsx"
+    },{
+      path: "registry/blocks/brandkit-list/components/brandkit-list.tsx",
+      type: "registry:component",
+      target: ""
+    }],
+    component: React.lazy(async () => {
+      const mod = await import("@/registry/new-york/blocks/brandkit-list/page.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
+    }),
+    meta: undefined,
+  },
+  "brandkit-item": {
+    name: "brandkit-item",
+    description: "A single brandkit item component with avatar and selection.",
+    type: "registry:block",
+    registryDependencies: ["button","avatar"],
+    files: [{
+      path: "registry/blocks/brandkit-item/page.tsx",
+      type: "registry:page",
+      target: "app/blocks/brandkit-item/page.tsx"
+    },{
+      path: "registry/blocks/brandkit-item/components/brandkit-item.tsx",
+      type: "registry:component",
+      target: ""
+    }],
+    component: React.lazy(async () => {
+      const mod = await import("@/registry/new-york/blocks/brandkit-item/page.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
+    }),
+    meta: undefined,
+  },
+  "spinner": {
+    name: "spinner",
+    description: "A loading spinner component with different sizes.",
+    type: "registry:block",
+    registryDependencies: undefined,
+    files: [{
+      path: "registry/blocks/spinner/page.tsx",
+      type: "registry:page",
+      target: "app/blocks/spinner/page.tsx"
+    },{
+      path: "registry/blocks/spinner/components/spinner.tsx",
+      type: "registry:component",
+      target: ""
+    }],
+    component: React.lazy(async () => {
+      const mod = await import("@/registry/new-york/blocks/spinner/page.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
+    }),
+    meta: undefined,
+  },
+  "icon": {
+    name: "icon",
+    description: "Icon component with Material Design Icons support.",
+    type: "registry:block",
+    registryDependencies: undefined,
+    files: [{
+      path: "registry/blocks/icon/page.tsx",
+      type: "registry:page",
+      target: "app/blocks/icon/page.tsx"
+    },{
+      path: "registry/blocks/icon/components/icon.tsx",
+      type: "registry:component",
+      target: ""
+    }],
+    component: React.lazy(async () => {
+      const mod = await import("@/registry/new-york/blocks/icon/page.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
+    }),
+    meta: undefined,
+  },
   "chart-area-axes": {
     name: "chart-area-axes",
     description: "",

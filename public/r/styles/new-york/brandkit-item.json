@@ -1,0 +1,30 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "brandkit-item",
+  "type": "registry:block",
+  "description": "A single brandkit item component with avatar and selection.",
+  "dependencies": [
+    "@sitecore/stream-ui-core"
+  ],
+  "registryDependencies": [
+    "button",
+    "avatar"
+  ],
+  "files": [
+    {
+      "path": "registry/new-york/blocks/brandkit-item/page.tsx",
+      "content": "import { createBrandkit } from \"@sitecore/stream-ui-core\"\n\nimport {\n  Card,\n  CardContent,\n  CardHeader,\n  CardTitle,\n} from \"@/registry/new-york/ui/card\"\n\nimport { BrandkitItem } from \"./components/brandkit-item\"\n\n// Mock data for demo\nconst mockBrandkit = createBrandkit({\n  id: \"1\",\n  organizationId: \"org-123\",\n  name: \"Sitecore Brand\",\n  logo: \"https://example.com/sitecore-logo.png\",\n  status: \"published\",\n  description: \"Sitecore brand assets\",\n  brandName: \"Sitecore\",\n  companyName: \"Sitecore\",\n  industry: \"Technology\",\n})\n\nexport default function BrandkitItemPage() {\n  return (\n    <div className=\"container mx-auto p-6\">\n      <Card>\n        <CardHeader>\n          <CardTitle>Brandkit Item</CardTitle>\n        </CardHeader>\n        <CardContent>\n          <div className=\"space-y-4\">\n            <BrandkitItem\n              brandkit={mockBrandkit}\n              onSelect={(brandkit) => console.log(\"Selected:\", brandkit)}\n            />\n            <BrandkitItem\n              brandkit={mockBrandkit}\n              variant=\"outline\"\n              onSelect={(brandkit) => console.log(\"Selected:\", brandkit)}\n            />\n            <BrandkitItem\n              brandkit={mockBrandkit}\n              variant=\"ghost\"\n              onSelect={(brandkit) => console.log(\"Selected:\", brandkit)}\n            />\n          </div>\n        </CardContent>\n      </Card>\n    </div>\n  )\n}\n",
+      "type": "registry:page",
+      "target": "app/blocks/brandkit-item/page.tsx"
+    },
+    {
+      "path": "registry/new-york/blocks/brandkit-item/components/brandkit-item.tsx",
+      "content": "\"use client\"\n\nimport React from \"react\"\nimport { Brandkit } from \"@sitecore/stream-ui-core\"\n\nimport { cn, getDocumentProxyUrl } from \"@/registry/new-york/lib/utils\"\nimport {\n  Avatar,\n  AvatarFallback,\n  AvatarImage,\n} from \"@/registry/new-york/ui/avatar\"\nimport { Button } from \"@/registry/new-york/ui/button\"\n\nexport interface BrandkitItemProps {\n  brandkit: Brandkit\n  onSelect?: (brandkit: Brandkit) => void\n  testId?: string\n  variant?: \"link\" | \"default\" | \"ghost\" | \"outline\" | null | undefined\n  className?: string\n  showAvatar?: boolean\n  children?: React.ReactNode\n}\n\nexport function BrandkitItem({\n  brandkit,\n  onSelect,\n  testId,\n  className,\n  variant = \"ghost\",\n  showAvatar = true,\n  children,\n}: BrandkitItemProps): React.ReactNode {\n  /* Events */\n  const handleBrandkitOnSelect = (brandkit: Brandkit): void => {\n    onSelect?.(brandkit)\n  }\n\n  return (\n    <Button\n      data-testid={testId}\n      variant={variant}\n      className={cn(\n        \"flex items-center justify-start rounded-md px-1 py-4\",\n        className\n      )}\n      onClick={() => handleBrandkitOnSelect(brandkit)}\n      title={brandkit.name}\n    >\n      {showAvatar && (\n        <Avatar className=\"h-9 w-9 border-2\">\n          <AvatarImage\n            className=\"object-contain\"\n            src={getDocumentProxyUrl(brandkit?.logo)}\n            alt={brandkit?.name}\n          />\n          <AvatarFallback className=\"flex h-full w-full items-center justify-center font-bold text-gray-500\">\n            {brandkit?.name.charAt(0).toUpperCase()}\n          </AvatarFallback>\n        </Avatar>\n      )}\n      <span className=\"overflow-hidden overflow-ellipsis whitespace-nowrap\">\n        {brandkit?.name}\n      </span>\n      {children}\n    </Button>\n  )\n}\n",
+      "type": "registry:component"
+    }
+  ],
+  "categories": [
+    "stream",
+    "brandkit"
+  ]
+}

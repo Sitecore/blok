@@ -1,0 +1,34 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "brandkit-picker",
+  "type": "registry:block",
+  "description": "A dropdown picker for selecting brandkits with search functionality.",
+  "dependencies": [
+    "@sitecore/stream-ui-core"
+  ],
+  "registryDependencies": [
+    "button",
+    "card",
+    "popover",
+    "avatar",
+    "input",
+    "separator"
+  ],
+  "files": [
+    {
+      "path": "registry/new-york/blocks/brandkit-picker/page.tsx",
+      "content": "import { createBrandkit } from \"@sitecore/stream-ui-core\"\n\nimport {\n  Card,\n  CardContent,\n  CardHeader,\n  CardTitle,\n} from \"@/registry/new-york/ui/card\"\n\nimport { BrandkitPicker } from \"./components/brandkit-picker\"\n\n// Mock data for demo\nconst mockBrandkits = [\n  createBrandkit({\n    id: \"1\",\n    organizationId: \"org-123\",\n    name: \"Sitecore Brand\",\n    logo: \"https://example.com/sitecore-logo.png\",\n    status: \"published\",\n    brandName: \"Sitecore\",\n    companyName: \"Sitecore\",\n    industry: \"Technology\",\n  }),\n  createBrandkit({\n    id: \"2\",\n    organizationId: \"org-123\",\n    name: \"ContentHub Brand\",\n    logo: \"https://example.com/contenthub-logo.png\",\n    status: \"published\",\n    brandName: \"ContentHub\",\n    companyName: \"Sitecore\",\n    industry: \"Technology\",\n  }),\n]\n\nexport default function BrandkitPickerPage() {\n  return (\n    <div className=\"container mx-auto p-6\">\n      <Card>\n        <CardHeader>\n          <CardTitle>Brandkit Picker</CardTitle>\n        </CardHeader>\n        <CardContent>\n          <BrandkitPicker\n            brandkits={mockBrandkits}\n            onSelect={(brandkit) => console.log(\"Selected:\", brandkit)}\n            loading={false}\n            placeholder=\"Search brandkits...\"\n          />\n        </CardContent>\n      </Card>\n    </div>\n  )\n}\n",
+      "type": "registry:page",
+      "target": "app/blocks/brandkit-picker/page.tsx"
+    },
+    {
+      "path": "registry/new-york/blocks/brandkit-picker/components/brandkit-picker.tsx",
+      "content": "\"use client\"\n\nimport React, { useEffect, useState } from \"react\"\nimport { mdiChevronDown } from \"@mdi/js\"\nimport { type Brandkit } from \"@sitecore/stream-ui-core\"\n\nimport { BrandkitItem } from \"@/registry/new-york/blocks/brandkit-item/components/brandkit-item\"\nimport {\n  BrandkitList,\n  BrandkitListProps,\n} from \"@/registry/new-york/blocks/brandkit-list/components/brandkit-list\"\nimport { Icon } from \"@/registry/new-york/blocks/icon/components/icon\"\nimport { cn } from \"@/registry/new-york/lib/utils\"\nimport { Button } from \"@/registry/new-york/ui/button\"\nimport {\n  Popover,\n  PopoverContent,\n  PopoverTrigger,\n} from \"@/registry/new-york/ui/popover\"\n\nexport interface BrandkitPickerProps extends BrandkitListProps {\n  disabled?: boolean\n  className?: string\n  testId?: string\n}\n\nexport function BrandkitPicker({\n  brandkits,\n  recentBrandkit,\n  onSelect,\n  onSearch,\n  disabled,\n  loading,\n  placeholder = \"Search\",\n  className,\n  emptyStateMessage,\n  testId,\n}: BrandkitPickerProps): React.ReactNode {\n  /* Hooks */\n  const [isOpen, setIsOpen] = useState(false)\n\n  const [selectedBrandkit, setSelectedBrandkit] = useState<Brandkit | null>()\n\n  /* Events */\n  const handleBrandkitOnSelect = (brandkit: Brandkit): void => {\n    setSelectedBrandkit(brandkit)\n    onSelect?.(brandkit)\n    setIsOpen(false)\n  }\n\n  useEffect(() => {\n    if (recentBrandkit) setSelectedBrandkit(recentBrandkit)\n  }, [recentBrandkit])\n\n  return (\n    <Popover\n      open={isOpen}\n      onOpenChange={(open: boolean | ((prevState: boolean) => boolean)) =>\n        setIsOpen(open)\n      }\n      data-testid={testId}\n    >\n      <PopoverTrigger asChild disabled={disabled}>\n        <div title={selectedBrandkit?.name || \"Select a brandkit\"}>\n          {selectedBrandkit?.id ? (\n            <BrandkitItem\n              variant=\"outline\"\n              brandkit={selectedBrandkit}\n              className=\"max-w-[240px] rounded-full\"\n              onSelect={handleBrandkitOnSelect}\n              testId=\"brandkit-picker\"\n            />\n          ) : (\n            <Button\n              variant=\"outline\"\n              colorScheme=\"neutral\"\n              className=\"text-md truncate rounded-full text-left font-normal\"\n            >\n              {loading\n                ? \"Loading brandkit...\"\n                : selectedBrandkit?.name || \"Select a brandkit\"}\n              <Icon path={mdiChevronDown} className=\"neutral transition\" />\n            </Button>\n          )}\n        </div>\n      </PopoverTrigger>\n      <PopoverContent\n        className={cn(className)}\n        align=\"start\"\n        side=\"bottom\"\n        sideOffset={2}\n        alignOffset={0}\n        avoidCollisions={false}\n      >\n        <BrandkitList\n          brandkits={brandkits}\n          placeholder={placeholder}\n          recentBrandkit={recentBrandkit}\n          onSelect={handleBrandkitOnSelect}\n          onSearch={onSearch}\n          loading={loading}\n          emptyStateMessage={emptyStateMessage}\n        />\n      </PopoverContent>\n    </Popover>\n  )\n}\n",
+      "type": "registry:component"
+    }
+  ],
+  "categories": [
+    "stream",
+    "brandkit"
+  ]
+}
