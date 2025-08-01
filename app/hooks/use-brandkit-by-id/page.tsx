@@ -43,49 +43,82 @@ export default function UseBrandkitByIdPage() {
           </Button>
         </Link>
       </div>
-      <Card>
+
+      {/* Quick Start */}
+      <Card className="mb-6">
         <CardHeader>
-          <CardTitle>useBrandkitById Hook</CardTitle>
+          <CardTitle>Quick Start</CardTitle>
+        </CardHeader>
+        <CardContent className="space-y-6">
+          {/* Installation */}
+          <div>
+            <h3 className="mb-3 text-lg font-semibold">Installation</h3>
+            <div className="bg-muted rounded-lg p-4">
+              <code className="text-sm">
+                npx shadcn@latest add use-brandkit-by-id
+              </code>
+            </div>
+          </div>
+
+          {/* Import */}
+          <div>
+            <h3 className="mb-3 text-lg font-semibold">Import</h3>
+            <div className="bg-muted rounded-lg p-4">
+              <code className="text-sm">
+                {"import { useBrandkitById } from '@sitecore/stream-ui-blok';"}
+              </code>
+            </div>
+          </div>
+
+          {/* Basic Usage */}
+          <div>
+            <h3 className="mb-3 text-lg font-semibold">Basic Usage</h3>
+            <div className="bg-muted rounded-lg p-4">
+              <code className="text-sm">
+                {
+                  "const { brandkit, isLoading, error } = useBrandkitById('brandkit-123', { organizationId: 'org-456' });"
+                }
+              </code>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+
+      {/* Hook Overview */}
+      <Card className="mb-6">
+        <CardHeader>
+          <CardTitle>Hook Overview</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <p className="text-muted-foreground">
+            The useBrandkitById hook provides a way to fetch and manage a single
+            brandkit by ID with detailed information, computed properties, and
+            utility functions.
+          </p>
+        </CardContent>
+      </Card>
+
+      {/* Usage Examples */}
+      <Card className="mb-6">
+        <CardHeader>
+          <CardTitle>Usage Examples</CardTitle>
         </CardHeader>
         <CardContent>
           <div className="space-y-4">
             <div>
-              <h3 className="mb-2 text-lg font-semibold">Hook Overview</h3>
-              <p className="text-muted-foreground">
-                The useBrandkitById hook fetches a single brandkit by ID with
-                enhanced utilities and computed properties for detailed brandkit
-                management.
-              </p>
-            </div>
-
-            <div>
-              <h3 className="mb-2 text-lg font-semibold">Mock Brandkit Data</h3>
-              <div className="bg-muted rounded border p-4">
-                <div className="font-medium">{mockBrandkit.name}</div>
-                <div className="text-muted-foreground space-y-1 text-sm">
-                  <div>ID: {mockBrandkit.id}</div>
-                  <div>Status: {mockBrandkit.status}</div>
-                  <div>Industry: {mockBrandkit.industry}</div>
-                  <div>Company: {mockBrandkit.companyName}</div>
-                  <div>
-                    Tags:{" "}
-                    {mockBrandkit.tags
-                      .map((tag) => `${tag.category}:${tag.values.join(", ")}`)
-                      .join(", ")}
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div>
-              <h3 className="mb-2 text-lg font-semibold">Usage Example</h3>
+              <h3 className="mb-2 text-lg font-semibold">Basic Usage</h3>
               <pre className="bg-muted overflow-x-auto rounded p-4 text-sm">
                 {`// Basic usage
 const { brandkit, isLoading, error } = useBrandkitById('brandkit-123', {
   organizationId: 'org-456'
-});
+});`}
+              </pre>
+            </div>
 
-// Enhanced usage with computed properties
+            <div>
+              <h3 className="mb-2 text-lg font-semibold">Enhanced Usage</h3>
+              <pre className="bg-muted overflow-x-auto rounded p-4 text-sm">
+                {`// Enhanced usage with computed properties
 const {
   brandkit,
   displayName,
@@ -111,47 +144,101 @@ if (hasLogo) {
 }`}
               </pre>
             </div>
+          </div>
+        </CardContent>
+      </Card>
 
-            <div>
-              <h3 className="mb-2 text-lg font-semibold">Features</h3>
-              <ul className="list-inside list-disc space-y-1 text-sm">
-                <li>Fetch single brandkit by ID with detailed information</li>
-                <li>
-                  Computed properties: displayName, hasLogo, isDraft,
-                  isPublished, etc.
-                </li>
-                <li>Utility functions for tag management and metadata</li>
-                <li>Status checking and permission utilities</li>
-                <li>Error handling and loading states</li>
-                <li>Type-safe with TypeScript</li>
-                <li>Automatic refetch capabilities</li>
-              </ul>
+      {/* Features */}
+      <Card className="mb-6">
+        <CardHeader>
+          <CardTitle>Features</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <ul className="list-inside list-disc space-y-1 text-sm">
+            <li>Fetch single brandkit by ID with detailed information</li>
+            <li>
+              Computed properties: displayName, hasLogo, isDraft, isPublished,
+              etc.
+            </li>
+            <li>Utility functions for tag management and metadata</li>
+            <li>Status checking and permission utilities</li>
+            <li>Error handling and loading states</li>
+            <li>Type-safe with TypeScript</li>
+            <li>Automatic refetch capabilities</li>
+          </ul>
+        </CardContent>
+      </Card>
+
+      {/* Computed Properties */}
+      <Card className="mb-6">
+        <CardHeader>
+          <CardTitle>Computed Properties</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="grid grid-cols-2 gap-2 text-sm">
+            <div className="rounded border p-2">
+              <strong>displayName:</strong> Formatted display name
             </div>
+            <div className="rounded border p-2">
+              <strong>hasLogo:</strong> Boolean indicating if logo exists
+            </div>
+            <div className="rounded border p-2">
+              <strong>isDraft:</strong> Boolean for draft status
+            </div>
+            <div className="rounded border p-2">
+              <strong>isPublished:</strong> Boolean for published status
+            </div>
+            <div className="rounded border p-2">
+              <strong>isLocked:</strong> Boolean for locked status
+            </div>
+            <div className="rounded border p-2">
+              <strong>tagCategories:</strong> Array of available tag categories
+            </div>
+          </div>
+        </CardContent>
+      </Card>
 
-            <div>
-              <h3 className="mb-2 text-lg font-semibold">
-                Computed Properties
-              </h3>
-              <div className="grid grid-cols-2 gap-2 text-sm">
-                <div className="rounded border p-2">
-                  <strong>displayName:</strong> Formatted display name
-                </div>
-                <div className="rounded border p-2">
-                  <strong>hasLogo:</strong> Boolean indicating if logo exists
-                </div>
-                <div className="rounded border p-2">
-                  <strong>isDraft:</strong> Boolean for draft status
-                </div>
-                <div className="rounded border p-2">
-                  <strong>isPublished:</strong> Boolean for published status
-                </div>
-                <div className="rounded border p-2">
-                  <strong>isLocked:</strong> Boolean for locked status
-                </div>
-                <div className="rounded border p-2">
-                  <strong>tagCategories:</strong> Array of available tag
-                  categories
-                </div>
+      {/* Dependencies */}
+      <Card className="mb-6">
+        <CardHeader>
+          <CardTitle>Dependencies</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <p className="text-muted-foreground mb-2">
+            This hook requires the following dependencies:
+          </p>
+          <ul className="space-y-1 text-sm">
+            <li className="flex items-center gap-2">
+              <span className="text-blue-600">•</span>
+              <code className="bg-muted rounded px-2 py-1">
+                @sitecore/stream-ui-core
+              </code>
+              <span className="text-muted-foreground">
+                - for Brandkit types and API services
+              </span>
+            </li>
+          </ul>
+        </CardContent>
+      </Card>
+
+      {/* Mock Data Reference */}
+      <Card>
+        <CardHeader>
+          <CardTitle>Mock Data Reference</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="rounded border p-3">
+            <div className="font-medium">{mockBrandkit.name}</div>
+            <div className="text-muted-foreground space-y-1 text-sm">
+              <div>ID: {mockBrandkit.id}</div>
+              <div>Status: {mockBrandkit.status}</div>
+              <div>Industry: {mockBrandkit.industry}</div>
+              <div>Company: {mockBrandkit.companyName}</div>
+              <div>
+                Tags:{" "}
+                {mockBrandkit.tags
+                  .map((tag) => `${tag.category}:${tag.values.join(", ")}`)
+                  .join(", ")}
               </div>
             </div>
           </div>

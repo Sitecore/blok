@@ -10,46 +10,134 @@ import {
 
 export function StreamHooks() {
   return (
-    <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-      <Card>
-        <CardHeader>
-          <CardTitle>use-brandkits</CardTitle>
-          <CardDescription>
-            Hook for fetching and managing brandkit lists
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
-          <p className="text-muted-foreground mb-4 text-sm">
-            Provides functionality to fetch, search, and manage brandkit
-            collections with loading states and error handling.
-          </p>
-          <Link
-            href="/hooks/use-brandkits"
-            className="text-sm text-blue-600 underline hover:text-blue-800"
-          >
-            View Demo →
-          </Link>
-        </CardContent>
-      </Card>
+    <div className="space-y-8">
+      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+        <Card>
+          <CardHeader>
+            <CardTitle className="flex items-center justify-between">
+              use-brandkits
+              <Link
+                href="/hooks/use-brandkits"
+                className="text-sm font-normal text-blue-600 hover:text-blue-800"
+              >
+                View Demo →
+              </Link>
+            </CardTitle>
+            <CardDescription>
+              Hook for fetching and managing brandkit lists
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <p className="text-muted-foreground mb-4 text-sm">
+              Provides functionality to fetch, search, and manage brandkit
+              collections with loading states and error handling.
+            </p>
+            <Link
+              href="/hooks/use-brandkits"
+              className="inline-flex items-center text-sm font-medium text-blue-600 hover:text-blue-800"
+            >
+              View Demo →
+            </Link>
+          </CardContent>
+        </Card>
 
+        <Card>
+          <CardHeader>
+            <CardTitle className="flex items-center justify-between">
+              use-brandkit-by-id
+              <Link
+                href="/hooks/use-brandkit-by-id"
+                className="text-sm font-normal text-blue-600 hover:text-blue-800"
+              >
+                View Demo →
+              </Link>
+            </CardTitle>
+            <CardDescription>
+              Hook for fetching a single brandkit by ID
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <p className="text-muted-foreground mb-4 text-sm">
+              Retrieves a specific brandkit by its unique identifier with
+              caching and error handling.
+            </p>
+            <Link
+              href="/hooks/use-brandkit-by-id"
+              className="inline-flex items-center text-sm font-medium text-blue-600 hover:text-blue-800"
+            >
+              View Demo →
+            </Link>
+          </CardContent>
+        </Card>
+      </div>
+
+      {/* Usage Information Section */}
       <Card>
         <CardHeader>
-          <CardTitle>use-brandkit-by-id</CardTitle>
-          <CardDescription>
-            Hook for fetching a single brandkit by ID
-          </CardDescription>
+          <CardTitle>Usage Information</CardTitle>
         </CardHeader>
-        <CardContent>
-          <p className="text-muted-foreground mb-4 text-sm">
-            Retrieves a specific brandkit by its unique identifier with caching
-            and error handling.
-          </p>
-          <Link
-            href="/hooks/use-brandkit-by-id"
-            className="text-sm text-blue-600 underline hover:text-blue-800"
-          >
-            View Demo →
-          </Link>
+        <CardContent className="space-y-6">
+          {/* Installation */}
+          <div>
+            <h3 className="mb-3 text-lg font-semibold">Installation</h3>
+            <p className="text-muted-foreground mb-4 text-sm">
+              Install these hooks using the shadcn/ui CLI:
+            </p>
+            <div className="bg-muted space-y-2 rounded-lg p-4">
+              <code className="block text-sm">
+                npx shadcn@latest add use-brandkits
+              </code>
+              <code className="block text-sm">
+                npx shadcn@latest add use-brandkit-by-id
+              </code>
+            </div>
+          </div>
+
+          {/* Dependencies */}
+          <div>
+            <h3 className="mb-3 text-lg font-semibold">Dependencies</h3>
+            <p className="text-muted-foreground mb-2 text-sm">
+              These hooks require the following dependencies:
+            </p>
+            <ul className="space-y-1 text-sm">
+              <li className="flex items-center gap-2">
+                <span className="text-blue-600">•</span>
+                <code className="bg-muted rounded px-2 py-1">
+                  @sitecore/stream-ui-core
+                </code>
+                <span className="text-muted-foreground">
+                  - for Brandkit types and API services
+                </span>
+              </li>
+            </ul>
+          </div>
+
+          {/* Features */}
+          <div>
+            <h3 className="mb-3 text-lg font-semibold">Features</h3>
+            <ul className="space-y-2 text-sm">
+              <li className="flex items-start gap-2">
+                <span className="mt-1 text-green-600">✓</span>
+                <span>Automatic loading states and error handling</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="mt-1 text-green-600">✓</span>
+                <span>Computed properties for filtered data</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="mt-1 text-green-600">✓</span>
+                <span>Utility functions for data manipulation</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="mt-1 text-green-600">✓</span>
+                <span>TypeScript support with full type safety</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="mt-1 text-green-600">✓</span>
+                <span>Automatic refetch capabilities</span>
+              </li>
+            </ul>
+          </div>
         </CardContent>
       </Card>
     </div>
