@@ -2,10 +2,10 @@
 
 import { createBrandkit } from "@sitecore/stream-ui-core"
 
-import { BrandkitItem } from "@/registry/new-york/blocks/brandkit-item/components/brandkit-item"
-import { BrandkitList } from "@/registry/new-york/blocks/brandkit-list/components/brandkit-list"
-import { BrandkitPicker } from "@/registry/new-york/blocks/brandkit-picker/components/brandkit-picker"
-import { Spinner } from "@/registry/new-york/blocks/spinner/components/spinner"
+import { StreamBrandkitItem } from "@/registry/new-york/stream/blocks/stream-brandkit-picker/components/stream-brandkit-item"
+import { StreamBrandkitList } from "@/registry/new-york/stream/blocks/stream-brandkit-picker/components/stream-brandkit-list"
+import { StreamBrandkitPicker } from "@/registry/new-york/stream/blocks/stream-brandkit-picker/components/stream-brandkit-picker"
+import { StreamSpinner } from "@/registry/new-york/stream/ui/stream-spinner"
 import {
   Card,
   CardContent,
@@ -72,7 +72,7 @@ export function StreamBlocks() {
             </p>
           </CardHeader>
           <CardContent>
-            <BrandkitPicker
+            <StreamBrandkitPicker
               brandkits={mockBrandkits}
               recentBrandkit={mockRecentBrandkit}
               onSelect={(brandkit) => console.log("Selected:", brandkit)}
@@ -91,7 +91,7 @@ export function StreamBlocks() {
             </p>
           </CardHeader>
           <CardContent>
-            <BrandkitList
+            <StreamBrandkitList
               brandkits={mockBrandkits}
               recentBrandkit={mockRecentBrandkit}
               onSelect={(brandkit) => console.log("Selected:", brandkit)}
@@ -114,14 +114,14 @@ export function StreamBlocks() {
           <div className="grid gap-4 md:grid-cols-3">
             <div className="space-y-2">
               <h4 className="text-sm font-medium">Default (Ghost)</h4>
-              <BrandkitItem
+              <StreamBrandkitItem
                 brandkit={mockRecentBrandkit}
                 onSelect={(brandkit) => console.log("Selected:", brandkit)}
               />
             </div>
             <div className="space-y-2">
               <h4 className="text-sm font-medium">Outline</h4>
-              <BrandkitItem
+              <StreamBrandkitItem
                 brandkit={mockRecentBrandkit}
                 variant="outline"
                 onSelect={(brandkit) => console.log("Selected:", brandkit)}
@@ -129,7 +129,7 @@ export function StreamBlocks() {
             </div>
             <div className="space-y-2">
               <h4 className="text-sm font-medium">Without Avatar</h4>
-              <BrandkitItem
+              <StreamBrandkitItem
                 brandkit={mockRecentBrandkit}
                 showAvatar={false}
                 onSelect={(brandkit) => console.log("Selected:", brandkit)}
@@ -152,27 +152,27 @@ export function StreamBlocks() {
           <CardContent>
             <div className="space-y-4">
               <div className="flex items-center gap-4">
-                <Spinner size="xs" />
+                <StreamSpinner size="xs" />
                 <span>Extra Small</span>
               </div>
               <div className="flex items-center gap-4">
-                <Spinner size="sm" />
+                <StreamSpinner size="sm" />
                 <span>Small</span>
               </div>
               <div className="flex items-center gap-4">
-                <Spinner size="md" />
+                <StreamSpinner size="md" />
                 <span>Medium</span>
               </div>
               <div className="flex items-center gap-4">
-                <Spinner size="lg" />
+                <StreamSpinner size="lg" />
                 <span>Large</span>
               </div>
               <div className="flex items-center gap-4">
-                <Spinner size="xl" />
+                <StreamSpinner size="xl" />
                 <span>Extra Large</span>
               </div>
               <div className="flex items-center gap-4">
-                <Spinner size="md" message="Loading..." />
+                <StreamSpinner size="md" message="Loading..." />
               </div>
             </div>
           </CardContent>
