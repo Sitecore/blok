@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useMemo, useState } from "react"
 import {
-  Brandkit,
+  type Brandkit,
   brandkitListFromApiResponse,
   brands,
   getBrandkitDisplayName,
@@ -12,7 +12,7 @@ import {
   // Domain model utilities
   isDraftBrandkit,
   isPublishedBrandkit,
-  ListBrandKitsModelResponse,
+  type ListBrandKitsModelResponse,
   // Domain types
   type BrandkitStatus,
   // HeyAPI generated types

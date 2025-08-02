@@ -81,7 +81,6 @@ export function StreamBrandkitPicker({
           ) : (
             <Button
               variant="outline"
-              colorScheme="neutral"
               className="text-md truncate rounded-full text-left font-normal"
             >
               {loading

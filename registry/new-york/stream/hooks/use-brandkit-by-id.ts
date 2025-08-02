@@ -1,11 +1,11 @@
 import { useCallback, useEffect, useMemo, useState } from "react"
 import {
-  Brandkit,
+  type Brandkit,
   brandkitFromApiResponse,
   brandkitToPlainObject,
   brands,
   getBrandkitDisplayName,
-  GetBrandKitModelResponse,
+  type GetBrandKitModelResponse,
   getBrandkitTagsByCategory,
   hasBrandkitLogo,
   // HTTP error types

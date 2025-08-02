@@ -1,7 +1,7 @@
 "use client"
 
 import React from "react"
-import { Brandkit } from "@sitecore/stream-ui-core"
+import { type Brandkit } from "@sitecore/stream-ui-core"
 
 import { cn, getDocumentProxyUrl } from "@/registry/new-york/lib/utils"
 import {
