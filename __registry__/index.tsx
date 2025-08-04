@@ -797,6 +797,40 @@ export const Index: Record<string, any> = {
     }),
     meta: undefined,
   },
+  "stream-spinner": {
+    name: "stream-spinner",
+    description: "Stream team's loading spinner with multiple sizes and overlay options",
+    type: "registry:ui",
+    registryDependencies: undefined,
+    files: [{
+      path: "registry/stream/ui/stream-spinner.tsx",
+      type: "registry:ui",
+      target: ""
+    }],
+    component: React.lazy(async () => {
+      const mod = await import("@/registry/new-york/stream/ui/stream-spinner.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
+    }),
+    meta: undefined,
+  },
+  "stream-icon": {
+    name: "stream-icon",
+    description: "Stream team's icon component with CVA variants and gradient support",
+    type: "registry:ui",
+    registryDependencies: undefined,
+    files: [{
+      path: "registry/stream/ui/stream-icon.tsx",
+      type: "registry:ui",
+      target: ""
+    }],
+    component: React.lazy(async () => {
+      const mod = await import("@/registry/new-york/stream/ui/stream-icon.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
+    }),
+    meta: undefined,
+  },
   "dashboard-01": {
     name: "dashboard-01",
     description: "A dashboard with sidebar, charts and data table.",
@@ -1450,6 +1484,35 @@ export const Index: Record<string, any> = {
     }],
     component: React.lazy(async () => {
       const mod = await import("@/registry/new-york/blocks/login-05/page.tsx")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
+    }),
+    meta: undefined,
+  },
+  "stream-brandkit-picker": {
+    name: "stream-brandkit-picker",
+    description: "Stream team's comprehensive brandkit picker with all brandkit components",
+    type: "registry:block",
+    registryDependencies: ["button","popover","input","separator","avatar"],
+    files: [{
+      path: "registry/stream/blocks/stream-brandkit-picker/components/stream-brandkit-picker.tsx",
+      type: "registry:component",
+      target: ""
+    },{
+      path: "registry/stream/blocks/stream-brandkit-picker/components/stream-brandkit-list.tsx",
+      type: "registry:component",
+      target: ""
+    },{
+      path: "registry/stream/blocks/stream-brandkit-picker/components/stream-brandkit-item.tsx",
+      type: "registry:component",
+      target: ""
+    },{
+      path: "registry/stream/blocks/stream-brandkit-picker/page.tsx",
+      type: "registry:page",
+      target: "app/blocks/stream-brandkit-picker/page.tsx"
+    }],
+    component: React.lazy(async () => {
+      const mod = await import("@/registry/new-york/stream/blocks/stream-brandkit-picker/components/stream-brandkit-picker.tsx")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),
@@ -2645,23 +2708,6 @@ export const Index: Record<string, any> = {
     }),
     meta: undefined,
   },
-  "utils": {
-    name: "utils",
-    description: "",
-    type: "registry:lib",
-    registryDependencies: undefined,
-    files: [{
-      path: "registry/lib/utils.ts",
-      type: "registry:lib",
-      target: ""
-    }],
-    component: React.lazy(async () => {
-      const mod = await import("@/registry/new-york/lib/utils.ts")
-      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
-      return { default: mod.default || mod[exportName] }
-    }),
-    meta: undefined,
-  },
   "use-mobile": {
     name: "use-mobile",
     description: "",
@@ -2674,6 +2720,65 @@ export const Index: Record<string, any> = {
     }],
     component: React.lazy(async () => {
       const mod = await import("@/registry/new-york/hooks/use-mobile.ts")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
+    }),
+    meta: undefined,
+  },
+  "use-brandkits": {
+    name: "use-brandkits",
+    description: "",
+    type: "registry:hook",
+    registryDependencies: undefined,
+    files: [{
+      path: "registry/stream/hooks/use-brandkits.ts",
+      type: "registry:hook",
+      target: ""
+    },{
+      path: "registry/stream/hooks/use-brandkits/page.tsx",
+      type: "registry:page",
+      target: "app/hooks/use-brandkits/page.tsx"
+    }],
+    component: React.lazy(async () => {
+      const mod = await import("@/registry/new-york/stream/hooks/use-brandkits.ts")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
+    }),
+    meta: undefined,
+  },
+  "use-brandkit-by-id": {
+    name: "use-brandkit-by-id",
+    description: "",
+    type: "registry:hook",
+    registryDependencies: undefined,
+    files: [{
+      path: "registry/stream/hooks/use-brandkit-by-id.ts",
+      type: "registry:hook",
+      target: ""
+    },{
+      path: "registry/stream/hooks/use-brandkit-by-id/page.tsx",
+      type: "registry:page",
+      target: "app/hooks/use-brandkit-by-id/page.tsx"
+    }],
+    component: React.lazy(async () => {
+      const mod = await import("@/registry/new-york/stream/hooks/use-brandkit-by-id.ts")
+      const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
+      return { default: mod.default || mod[exportName] }
+    }),
+    meta: undefined,
+  },
+  "utils": {
+    name: "utils",
+    description: "",
+    type: "registry:lib",
+    registryDependencies: undefined,
+    files: [{
+      path: "registry/lib/utils.ts",
+      type: "registry:lib",
+      target: ""
+    }],
+    component: React.lazy(async () => {
+      const mod = await import("@/registry/new-york/lib/utils.ts")
       const exportName = Object.keys(mod).find(key => typeof mod[key] === 'function' || typeof mod[key] === 'object') || item.name
       return { default: mod.default || mod[exportName] }
     }),

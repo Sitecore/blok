@@ -7,6 +7,7 @@ import { z } from "zod"
 
 import { blocks } from "@/registry/registry-blocks"
 import { charts } from "@/registry/registry-charts"
+import { hooks } from "@/registry/registry-hooks"
 import { lib } from "@/registry/registry-lib"
 import { ui } from "@/registry/registry-ui"
 
@@ -32,17 +33,8 @@ const registry = {
       ...ui,
       ...blocks,
       ...charts,
+      ...hooks,
       ...lib,
-      {
-        name: "use-mobile",
-        type: "registry:hook",
-        files: [
-          {
-            path: "hooks/use-mobile.ts",
-            type: "registry:hook",
-          },
-        ],
-      },
       {
         name: "products-01",
         description: "A table of products",

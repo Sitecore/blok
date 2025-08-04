@@ -610,4 +610,32 @@ export const ui: Registry["items"] = [
       },
     ],
   },
+  {
+    name: "stream-spinner",
+    type: "registry:ui",
+    description:
+      "Stream team's loading spinner with multiple sizes and overlay options",
+    dependencies: [],
+    files: [
+      {
+        path: "stream/ui/stream-spinner.tsx",
+        type: "registry:ui",
+      },
+    ],
+    categories: ["stream", "ui", "loading", "spinner"],
+  },
+  {
+    name: "stream-icon",
+    type: "registry:ui",
+    description:
+      "Stream team's icon component with CVA variants and gradient support",
+    dependencies: ["class-variance-authority"],
+    files: [
+      {
+        path: "stream/ui/stream-icon.tsx",
+        type: "registry:ui",
+      },
+    ],
+    categories: ["stream", "ui", "icon"],
+  },
 ]

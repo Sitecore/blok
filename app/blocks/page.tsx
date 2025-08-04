@@ -9,6 +9,7 @@ import { TopBarBlocks } from "./topbar"
 import { FilterDemo } from "@/components/filter-demo"
 import { SidebarBlocks } from "./sidebar-demo"
 import { CircularProgressDemo } from "./circular-progress-demo"
+import { StreamBlocks } from "./stream-demo"
 
 export default function BlocksPage() {
   return (
@@ -26,6 +27,7 @@ export default function BlocksPage() {
             <TabsTrigger value="filter">Filter</TabsTrigger>
             <TabsTrigger value="sidebar">Sidebar</TabsTrigger>
             <TabsTrigger value="circularProgress">Circular Progress</TabsTrigger>
+            <TabsTrigger value="stream">Stream</TabsTrigger>
           </TabsList>
           <TabsContent value="topBar" className="mt-4">
             <TopBarBlocks />
@@ -38,6 +40,9 @@ export default function BlocksPage() {
           </TabsContent>
           <TabsContent value="circularProgress" className="mt-4">
             <CircularProgressDemo />
+          </TabsContent>
+          <TabsContent value="stream" className="mt-4">
+            <StreamBlocks />
           </TabsContent>
         </Tabs>
       </div>

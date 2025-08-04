@@ -710,6 +710,43 @@
       ]
     },
     {
+      "name": "stream-spinner",
+      "type": "registry:ui",
+      "description": "Stream team's loading spinner with multiple sizes and overlay options",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "registry/new-york/stream/ui/stream-spinner.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "categories": [
+        "stream",
+        "ui",
+        "loading",
+        "spinner"
+      ]
+    },
+    {
+      "name": "stream-icon",
+      "type": "registry:ui",
+      "description": "Stream team's icon component with CVA variants and gradient support",
+      "dependencies": [
+        "class-variance-authority"
+      ],
+      "files": [
+        {
+          "path": "registry/new-york/stream/ui/stream-icon.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "categories": [
+        "stream",
+        "ui",
+        "icon"
+      ]
+    },
+    {
       "name": "dashboard-01",
       "type": "registry:block",
       "description": "A dashboard with sidebar, charts and data table.",
@@ -1519,6 +1556,47 @@
       "categories": [
         "authentication",
         "login"
+      ]
+    },
+    {
+      "name": "stream-brandkit-picker",
+      "type": "registry:block",
+      "description": "Stream team's comprehensive brandkit picker with all brandkit components",
+      "dependencies": [
+        "@sitecore/stream-ui-core",
+        "@mdi/js"
+      ],
+      "registryDependencies": [
+        "button",
+        "popover",
+        "input",
+        "separator",
+        "avatar"
+      ],
+      "files": [
+        {
+          "path": "registry/new-york/stream/blocks/stream-brandkit-picker/components/stream-brandkit-picker.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/new-york/stream/blocks/stream-brandkit-picker/components/stream-brandkit-list.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/new-york/stream/blocks/stream-brandkit-picker/components/stream-brandkit-item.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/new-york/stream/blocks/stream-brandkit-picker/page.tsx",
+          "type": "registry:page",
+          "target": "app/blocks/stream-brandkit-picker/page.tsx"
+        }
+      ],
+      "categories": [
+        "stream",
+        "ui",
+        "brandkit",
+        "picker"
       ]
     },
     {
@@ -2783,6 +2861,62 @@
       ]
     },
     {
+      "name": "use-mobile",
+      "type": "registry:hook",
+      "files": [
+        {
+          "path": "registry/new-york/hooks/use-mobile.ts",
+          "type": "registry:hook"
+        }
+      ]
+    },
+    {
+      "name": "use-brandkits",
+      "type": "registry:hook",
+      "dependencies": [
+        "@sitecore/stream-ui-core"
+      ],
+      "files": [
+        {
+          "path": "registry/new-york/stream/hooks/use-brandkits.ts",
+          "type": "registry:hook"
+        },
+        {
+          "path": "registry/new-york/stream/hooks/use-brandkits/page.tsx",
+          "type": "registry:page",
+          "target": "app/hooks/use-brandkits/page.tsx"
+        }
+      ],
+      "categories": [
+        "stream",
+        "hooks",
+        "brandkit"
+      ]
+    },
+    {
+      "name": "use-brandkit-by-id",
+      "type": "registry:hook",
+      "dependencies": [
+        "@sitecore/stream-ui-core"
+      ],
+      "files": [
+        {
+          "path": "registry/new-york/stream/hooks/use-brandkit-by-id.ts",
+          "type": "registry:hook"
+        },
+        {
+          "path": "registry/new-york/stream/hooks/use-brandkit-by-id/page.tsx",
+          "type": "registry:page",
+          "target": "app/hooks/use-brandkit-by-id/page.tsx"
+        }
+      ],
+      "categories": [
+        "stream",
+        "hooks",
+        "brandkit"
+      ]
+    },
+    {
       "name": "utils",
       "type": "registry:lib",
       "dependencies": [
@@ -2793,16 +2927,6 @@
         {
           "path": "registry/new-york/lib/utils.ts",
           "type": "registry:lib"
-        }
-      ]
-    },
-    {
-      "name": "use-mobile",
-      "type": "registry:hook",
-      "files": [
-        {
-          "path": "registry/new-york/hooks/use-mobile.ts",
-          "type": "registry:hook"
         }
       ]
     },

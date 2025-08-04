@@ -1,6 +1,11 @@
 "use client"
 
-import { mdiAlertCircle, mdiCheckCircle, mdiClose, mdiInformation } from "@mdi/js"
+import {
+  mdiAlertCircle,
+  mdiCheckCircle,
+  mdiClose,
+  mdiInformation,
+} from "@mdi/js"
 import Icon from "@mdi/react"
 import { useTheme } from "next-themes"
 import { Toaster as Sonner, ToasterProps } from "sonner"

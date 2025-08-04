@@ -59,24 +59,21 @@ function CommandInput({
   ...props
 }: React.ComponentProps<typeof CommandPrimitive.Input>) {
   return (
-    <div
-      data-slot="command-input-wrapper"
-      className="relative px-3 my-2"
-    >
+    <div data-slot="command-input-wrapper" className="relative my-2 px-3">
       <CommandPrimitive.Input
         data-slot="command-input"
         className={cn(
-          "file:text-foreground placeholder:text-muted-foreground selection:bg-primary selection:text-primary-foreground dark:bg-input/30 border flex h-10 w-full min-w-0 rounded-sm border bg-white pl-9 pr-3 py-1 text-base transition-[color,box-shadow] outline-none file:inline-flex file:h-7 file:border-0 file:bg-transparent file:text-sm file:font-medium disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 md:text-sm",
+          "file:text-foreground placeholder:text-muted-foreground selection:bg-primary selection:text-primary-foreground dark:bg-input/30 flex h-10 w-full min-w-0 rounded-sm border bg-white py-1 pr-3 pl-9 text-base transition-[color,box-shadow] outline-none file:inline-flex file:h-7 file:border-0 file:bg-transparent file:text-sm file:font-medium disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 md:text-sm",
           "aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive",
-          "border-1 border focus:border rounded-md text-md font-regular placeholder-blackAlpha-400",
+          "text-md font-regular placeholder-blackAlpha-400 rounded-md border border-1 focus:border",
           className
         )}
         {...props}
       />
-      <Icon 
-        path={mdiMagnify} 
-        size={0.9} 
-        className="absolute left-6 top-1/2 -translate-y-1/2 shrink-0 opacity-50" 
+      <Icon
+        path={mdiMagnify}
+        size={0.9}
+        className="absolute top-1/2 left-6 shrink-0 -translate-y-1/2 opacity-50"
       />
     </div>
   )
@@ -147,7 +144,7 @@ function CommandItem({
     <CommandPrimitive.Item
       data-slot="command-item"
       className={cn(
-        "data-[selected=true]:bg-neutral-100 data-[selected=true]:text-foreground [&_svg:not([class*='text-'])]:text-muted-foreground relative flex cursor-default items-center gap-2 rounded-sm px-2 py-1.5 text-sm outline-hidden select-none data-[disabled=true]:pointer-events-none data-[disabled=true]:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
+        "data-[selected=true]:text-foreground [&_svg:not([class*='text-'])]:text-muted-foreground relative flex cursor-default items-center gap-2 rounded-sm px-2 py-1.5 text-sm outline-hidden select-none data-[disabled=true]:pointer-events-none data-[disabled=true]:opacity-50 data-[selected=true]:bg-neutral-100 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
         className
       )}
       {...props}

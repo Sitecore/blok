@@ -1,5 +1,6 @@
 "use client"
 
+import { dir } from "node:console"
 import * as React from "react"
 import { mdiChevronLeft, mdiChevronRight } from "@mdi/js"
 import Icon from "@mdi/react"
@@ -7,7 +8,6 @@ import { DayPicker } from "react-day-picker"
 
 import { cn } from "@/lib/utils"
 import { buttonVariants } from "@/registry/new-york/ui/button"
-import { dir } from "node:console"
 
 function Calendar({
   className,
@@ -26,7 +26,11 @@ function Calendar({
         caption_label: "text-sm font-medium",
         nav: "flex items-center gap-1",
         nav_button: cn(
-          buttonVariants({ variant: "ghost", colorScheme: "neutral", size: "icon" }),
+          buttonVariants({
+            variant: "ghost",
+            colorScheme: "neutral",
+            size: "icon",
+          }),
           "size-icon bg-transparent p-0 opacity-50 hover:opacity-100"
         ),
         nav_button_previous: "absolute left-1",
@@ -66,7 +70,7 @@ function Calendar({
           <Icon
             path={mdiChevronLeft}
             size={0.9}
-            className={cn("size-4 text-neutral", className)}
+            className={cn("text-neutral size-4", className)}
             {...props}
           />
         ),
@@ -74,7 +78,7 @@ function Calendar({
           <Icon
             path={mdiChevronRight}
             size={0.9}
-            className={cn("size-4 text-neutral", className)}
+            className={cn("text-neutral size-4", className)}
             {...props}
           />
         ),

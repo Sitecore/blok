@@ -57,7 +57,8 @@ function PaginationLink({
           size,
         }),
         "text-neutral-fg disabled:text-neutral-fg/40",
-        isActive && "bg-primary-bg text-primary-fg hover:bg-primary-bg hover:text-primary-fg",
+        isActive &&
+          "bg-primary-bg text-primary-fg hover:bg-primary-bg hover:text-primary-fg",
         className
       )}
       {...props}
@@ -105,7 +106,10 @@ function PaginationEllipsis({
     <span
       aria-hidden
       data-slot="pagination-ellipsis"
-      className={cn("flex size-9 items-center justify-center text-neutral-fg", className)}
+      className={cn(
+        "text-neutral-fg flex size-9 items-center justify-center",
+        className
+      )}
       {...props}
     >
       <Icon path={mdiDotsHorizontal} size={1} />

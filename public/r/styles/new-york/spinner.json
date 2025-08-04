@@ -1,0 +1,23 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "spinner",
+  "type": "registry:block",
+  "description": "A loading spinner component with different sizes.",
+  "files": [
+    {
+      "path": "registry/new-york/blocks/spinner/page.tsx",
+      "content": "import {\n  Card,\n  CardContent,\n  CardHeader,\n  CardTitle,\n} from \"@/registry/new-york/ui/card\"\n\nimport { Spinner } from \"./components/spinner\"\n\nexport default function SpinnerPage() {\n  return (\n    <div className=\"container mx-auto p-6\">\n      <Card>\n        <CardHeader>\n          <CardTitle>Spinner</CardTitle>\n        </CardHeader>\n        <CardContent>\n          <div className=\"space-y-4\">\n            <div className=\"flex items-center gap-4\">\n              <Spinner size=\"xs\" />\n              <span>Extra Small</span>\n            </div>\n            <div className=\"flex items-center gap-4\">\n              <Spinner size=\"sm\" />\n              <span>Small</span>\n            </div>\n            <div className=\"flex items-center gap-4\">\n              <Spinner size=\"md\" />\n              <span>Medium</span>\n            </div>\n            <div className=\"flex items-center gap-4\">\n              <Spinner size=\"lg\" />\n              <span>Large</span>\n            </div>\n            <div className=\"flex items-center gap-4\">\n              <Spinner size=\"xl\" />\n              <span>Extra Large</span>\n            </div>\n            <div className=\"flex items-center gap-4\">\n              <Spinner size=\"md\" message=\"Loading...\" />\n            </div>\n          </div>\n        </CardContent>\n      </Card>\n    </div>\n  )\n}\n",
+      "type": "registry:page",
+      "target": "app/blocks/spinner/page.tsx"
+    },
+    {
+      "path": "registry/new-york/blocks/spinner/components/spinner.tsx",
+      "content": "import React from \"react\"\n\nimport { cn } from \"@/registry/new-york/lib/utils\"\n\ninterface SpinnerProps extends React.HTMLAttributes<HTMLDivElement> {\n  size?: \"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\"\n  message?: string\n  withOverlay?: boolean\n  fullscreen?: boolean\n}\n\nconst sizeClasses = {\n  xs: \"w-3 h-3\",\n  sm: \"w-4 h-4\",\n  md: \"w-6 h-6\",\n  lg: \"w-8 h-8\",\n  xl: \"w-12 h-12\",\n}\n\nfunction Spinner({\n  size = \"md\",\n  className,\n  message,\n  withOverlay = false,\n  fullscreen = false,\n  ...props\n}: SpinnerProps) {\n  const spinnerClasses = cn(\n    \"inline-block rounded-full animate-spin border-4\",\n    \"border-t-purple-600 border-r-purple-600 border-b-gray-200 border-l-gray-200\",\n    sizeClasses[size],\n    className\n  )\n\n  const SpinnerElement = (\n    <div className=\"text-center\">\n      <div className={spinnerClasses} data-testid=\"spinner\" {...props} />\n      {message && <p className=\"mt-6 text-sm text-gray-600\">{message}</p>}\n    </div>\n  )\n\n  if (fullscreen) {\n    return (\n      <div className=\"fixed inset-0 z-50 flex items-center justify-center bg-white/90\">\n        {SpinnerElement}\n      </div>\n    )\n  }\n\n  if (withOverlay) {\n    return (\n      <div className=\"flex h-full w-full items-center justify-center bg-white/90\">\n        {SpinnerElement}\n      </div>\n    )\n  }\n\n  return SpinnerElement\n}\n\nexport { Spinner, type SpinnerProps }\n",
+      "type": "registry:component"
+    }
+  ],
+  "categories": [
+    "stream",
+    "ui"
+  ]
+}
