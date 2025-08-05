@@ -2,6 +2,7 @@
 
 import { createBrandkit } from "@sitecore/stream-ui-core"
 
+import { ChatHistoryDemo } from "@/components/chat-history-demo"
 import { StreamBrandkitItem } from "@/registry/new-york/stream/blocks/stream-brandkit-picker/components/stream-brandkit-item"
 import { StreamBrandkitList } from "@/registry/new-york/stream/blocks/stream-brandkit-picker/components/stream-brandkit-list"
 import { StreamBrandkitPicker } from "@/registry/new-york/stream/blocks/stream-brandkit-picker/components/stream-brandkit-picker"
@@ -9,6 +10,7 @@ import { StreamSpinner } from "@/registry/new-york/stream/ui/stream-spinner"
 import {
   Card,
   CardContent,
+  CardDescription,
   CardHeader,
   CardTitle,
 } from "@/registry/new-york/ui/card"
@@ -178,6 +180,17 @@ export function StreamBlocks() {
           </CardContent>
         </Card>
       </div>
+
+      {/* ChatHistory Component */}
+      <Card>
+        <CardHeader>
+          <CardTitle>Chat History</CardTitle>
+          <CardDescription>Chat History Component Demo</CardDescription>
+        </CardHeader>
+        <CardContent>
+          <ChatHistoryDemo />
+        </CardContent>
+      </Card>
 
       {/* Hooks */}
       <Card>

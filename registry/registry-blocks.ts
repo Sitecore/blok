@@ -730,4 +730,12 @@ export const blocks: Registry["items"] = [
     ],
     categories: ["stream", "ui", "brandkit", "picker"],
   },
+  {
+    name: "stream-chat-history",
+    type: "registry:block",
+    description: "Stream chat history component",
+    dependencies: [],
+    registryDependencies: [],
+    files: [],
+  },
 ]
