@@ -31,11 +31,6 @@ export function NavHeader() {
             <Link href="/foundation">Foundation</Link>
           </NavigationMenuLink>
         </NavigationMenuItem>
-        <NavigationMenuItem>
-          <NavigationMenuLink asChild data-active={pathname === "/hooks"}>
-            <Link href="/hooks">Hooks</Link>
-          </NavigationMenuLink>
-        </NavigationMenuItem>
       </NavigationMenuList>
     </NavigationMenu>
   )
