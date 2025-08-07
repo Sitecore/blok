@@ -1,5 +1,6 @@
 import registry from '@/registry.json';
 
+// Registry items for UI components
 export const uiItems = registry.items
     .filter((item) => item.type === "registry:ui")
     .map((item) => ({
@@ -7,6 +8,7 @@ export const uiItems = registry.items
         href: `/components/${item.name}`,
     }));
 
+// Registry items for blocks
 export const blockItems = registry.items
     .filter((item) => item.type === "registry:block")
     .map((item) => ({
