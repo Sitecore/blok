@@ -14,7 +14,7 @@ export default function AppSidebar() {
 
     return (
         <Sidebar className="w-[200px] bg-[#f7f7f7] py-6 px-2">
-            <SidebarContent className="flex-1 overflow-y-auto [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+            <SidebarContent className="flex-1 overflow-y-auto scrollbar-hidden">
                 <SidebarMenu className="space-y-2">
                     {items.map((item) => {
                         const isActive = pathname === item.href;
