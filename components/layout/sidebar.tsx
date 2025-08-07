@@ -1,24 +1,19 @@
 'use client'
 
+import { blockItems, uiItems } from "@/lib/registry-items";
 import { cn } from "@/registry/new-york/lib/utils";
 import { Sidebar, SidebarContent, SidebarMenu, SidebarMenuButton, SidebarMenuItem } from "@/registry/new-york/ui/sidebar";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-
-const items = [
-  { label: "Item 1", href: "/i1" },
-  { label: "Item 2", href: "/i2" },
-  { label: "Item 3", href: "/i3" },
-];
 
 export default function AppSidebar() {
     const pathname = usePathname();
 
     return (
         <Sidebar className="w-[200px] bg-[#f7f7f7] py-6 px-2">
-            <SidebarContent className="flex-1 overflow-y-auto">
+            <SidebarContent className="flex-1 overflow-y-auto [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
                 <SidebarMenu className="space-y-2">
-                    {items.map((item) => {
+                    {uiItems.map((item) => {
                         const isActive = pathname === item.href;
 
                         return (
