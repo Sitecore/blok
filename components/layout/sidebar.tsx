@@ -9,11 +9,14 @@ import { usePathname } from "next/navigation";
 export default function AppSidebar() {
     const pathname = usePathname();
 
+    // Dynamically generate the sidebar items based on the registry
+    const items = pathname.startsWith('/blocks') ? blockItems : uiItems;
+
     return (
         <Sidebar className="w-[200px] bg-[#f7f7f7] py-6 px-2">
             <SidebarContent className="flex-1 overflow-y-auto [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
                 <SidebarMenu className="space-y-2">
-                    {uiItems.map((item) => {
+                    {items.map((item) => {
                         const isActive = pathname === item.href;
 
                         return (
