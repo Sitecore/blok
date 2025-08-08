@@ -1,6 +1,7 @@
 'use client'
 
 import CommandSnippet from '@/components/ui/commandSnippet';
+import ComponentSandbox from '@/components/ui/componentSandbox';
 
 const commands = [
     {
@@ -32,6 +33,8 @@ const ComponentsPage = () => {
                 <h2 className='text-3xl text-foreground font-semibold'>Installation</h2>
 
                 <CommandSnippet commands={commands} />
+
+                <ComponentSandbox/>
             </div>
 
         </div>
