@@ -38,7 +38,7 @@ export const SandboxProvider = ({
   <div className={cn('size-full', className)}>
     <SandpackProvider className="!size-full !max-h-none" {...props} />
   </div>
-);
+)
 
 export type SandboxLayoutProps = SandpackLayoutProps;
 
@@ -228,7 +228,7 @@ export const SandboxPreview = ({
   ...props
 }: SandboxPreviewProps): ReactNode => (
   <SandpackPreview
-    className={cn('h-full', className)}
+    className={cn('', className)}
     showOpenInCodeSandbox={showOpenInCodeSandbox}
     {...props}
   />

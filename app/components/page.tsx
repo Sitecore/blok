@@ -1,7 +1,13 @@
 'use client'
 
 import CommandSnippet from '@/components/ui/commandSnippet';
-import ComponentSandbox from '@/components/ui/componentSandbox';
+import SandboxDemo from '@/components/ui/shadcn-io/sandboxDemo/sandboxDemo';
+
+import dynamic from 'next/dynamic';
+
+const ComponentSandbox = dynamic(() => import('@/components/ui/shadcn-io/componentSandbox'), {
+  ssr: false,
+});
 
 const commands = [
     {
@@ -34,7 +40,9 @@ const ComponentsPage = () => {
 
                 <CommandSnippet commands={commands} />
 
-                <ComponentSandbox/>
+                <div><ComponentSandbox /></div>
+                <SandboxDemo/>
+
             </div>
 
         </div>
