@@ -23,7 +23,7 @@ export default function page() {
     {
       language: "cmd",
       filename: "cmd",
-      code: `<Hello world>`,
+      code: `import {component} from “@components/ui/{componentName}`,
     },
   ]
 
@@ -40,7 +40,7 @@ export default function page() {
     },
   ]
   return (
-    <div>
+    <div className="overflow-y-auto">
       <div>
         <HeroSection
           title="Build better products faster"
