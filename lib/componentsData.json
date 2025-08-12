@@ -1,0 +1,242 @@
+{
+  "alert": {
+    "name": "alert",
+    "type": "registry:ui",
+    "description": "Displays a alert or a component that looks like a alert",
+    "sampleCode": "<Alert size=\"lg\">\n  <Icon path={mdiInformationOutline} />\n  Solid lg\n</Alert>",
+    "imageSrc": "/Blok-site-Illustration.png",
+    "installation": [
+      {
+        "label": "npm",
+        "code": "npx next-forge@latest init"
+      },
+      {
+        "label": "yarn",
+        "code": "yarn next-forge@latest init"
+      },
+      {
+        "label": "pnpm",
+        "code": "pnpm next-forge@latest init"
+      },
+      {
+        "label": "bun",
+        "code": "bunx next-forge@latest init"
+      }
+    ],
+    "usage": {
+      "import": "import { Button } from '@com'",
+      "use": "<Button>this is button</Button>"
+    },
+    "examples": [
+      {
+        "type": "primary",
+        "code": "<Alert variant=\"primary\">Primary Alert</Alert>"
+      },
+      {
+        "type": "new",
+        "code": "hello"
+      }
+    ],
+    "dependencies": [
+      "@radix-ui/react-slot"
+    ],
+    "files": [
+      {
+        "path": "registry/new-york/ui/alert.tsx",
+        "type": "registry:ui"
+      }
+    ]
+  },
+  "button": {
+    "name": "button",
+    "type": "registry:ui",
+    "description": "Displays a button or a component that looks like a button",
+    "sampleCode": "<Button size=\"lg\">\n  <Icon path={mdiInformationOutline} />\n  Solid lg\n</Button>",
+    "imageSrc": "/Blok-site-Illustration.png",
+    "installation": [
+      {
+        "label": "npm",
+        "code": "npx next-forge@latest init"
+      },
+      {
+        "label": "yarn",
+        "code": "yarn next-forge@latest init"
+      },
+      {
+        "label": "pnpm",
+        "code": "pnpm next-forge@latest init"
+      },
+      {
+        "label": "bun",
+        "code": "bunx next-forge@latest init"
+      }
+    ],
+    "usage": {
+      "import": "import { Button } from '@com'",
+      "use": "<Button>this is button</Button>"
+    },
+    "examples": [
+      {
+        "type": "primary",
+        "code": "<Button variant=\"primary\">Primary Button</Button>"
+      },
+      {
+        "type": "new",
+        "code": "hello"
+      }
+    ],
+    "dependencies": [
+      "@radix-ui/react-slot"
+    ],
+    "files": [
+      {
+        "path": "registry/new-york/ui/button.tsx",
+        "type": "registry:ui"
+      }
+    ]
+  },
+  "chart": {
+    "name": "chart",
+    "type": "registry:ui",
+    "description": "Displays a chart or a component that looks like a chart",
+    "sampleCode": "<chart size=\"lg\">\n  <Icon path={mdiInformationOutline} />\n  Solid lg\n</chart>",
+    "imageSrc": "/Blok-site-Illustration.png",
+    "installation": [
+      {
+        "label": "npm",
+        "code": "npx next-forge@latest init"
+      },
+      {
+        "label": "yarn",
+        "code": "yarn next-forge@latest init"
+      },
+      {
+        "label": "pnpm",
+        "code": "pnpm next-forge@latest init"
+      },
+      {
+        "label": "bun",
+        "code": "bunx next-forge@latest init"
+      }
+    ],
+    "usage": {
+      "import": "import { Button } from '@com'",
+      "use": "<Button>this is button</Button>"
+    },
+    "examples": [
+      {
+        "type": "primary",
+        "code": "<chart variant=\"primary\">Primary chart</chart>"
+      },
+      {
+        "type": "new",
+        "code": "hello"
+      }
+    ],
+    "dependencies": [
+      "@radix-ui/react-slot"
+    ],
+    "files": [
+      {
+        "path": "registry/new-york/ui/chart.tsx",
+        "type": "registry:ui"
+      }
+    ]
+  },
+  "component-two": {
+    "name": "component-two",
+    "type": "registry:ui",
+    "description": "Displays a component two or a component that looks like a component two",
+    "sampleCode": "<Component Two size=\"lg\">\n  <Icon path={mdiInformationOutline} />\n  Solid lg\n</Component Two>",
+    "imageSrc": "/Blok-site-Illustration.png",
+    "installation": [
+      {
+        "label": "npm",
+        "code": "npx next-forge@latest init"
+      },
+      {
+        "label": "yarn",
+        "code": "yarn next-forge@latest init"
+      },
+      {
+        "label": "pnpm",
+        "code": "pnpm next-forge@latest init"
+      },
+      {
+        "label": "bun",
+        "code": "bunx next-forge@latest init"
+      }
+    ],
+    "usage": {
+      "import": "import { Button } from '@com'",
+      "use": "<Button>this is button</Button>"
+    },
+    "examples": [
+      {
+        "type": "primary",
+        "code": "<Component Two variant=\"primary\">Primary Component Two</Component Two>"
+      },
+      {
+        "type": "new",
+        "code": "hello"
+      }
+    ],
+    "dependencies": [
+      "@radix-ui/react-slot"
+    ],
+    "files": [
+      {
+        "path": "registry/new-york/ui/component-two.tsx",
+        "type": "registry:ui"
+      }
+    ]
+  },
+  "component-one": {
+    "name": "component-one",
+    "type": "registry:ui",
+    "description": "Displays a component one or a component that looks like a component one",
+    "sampleCode": "<Component One size=\"lg\">\n  <Icon path={mdiInformationOutline} />\n  Solid lg\n</Component One>",
+    "imageSrc": "/Blok-site-Illustration.png",
+    "installation": [
+      {
+        "label": "npm",
+        "code": "npx next-forge@latest init"
+      },
+      {
+        "label": "yarn",
+        "code": "yarn next-forge@latest init"
+      },
+      {
+        "label": "pnpm",
+        "code": "pnpm next-forge@latest init"
+      },
+      {
+        "label": "bun",
+        "code": "bunx next-forge@latest init"
+      }
+    ],
+    "usage": {
+      "import": "import { Button } from '@com'",
+      "use": "<Button>this is button</Button>"
+    },
+    "examples": [
+      {
+        "type": "primary",
+        "code": "<Component One variant=\"primary\">Primary Component One</Component One>"
+      },
+      {
+        "type": "new",
+        "code": "hello"
+      }
+    ],
+    "dependencies": [
+      "@radix-ui/react-slot"
+    ],
+    "files": [
+      {
+        "path": "registry/new-york/ui/component-one.tsx",
+        "type": "registry:ui"
+      }
+    ]
+  }
+}
