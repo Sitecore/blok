@@ -33,6 +33,10 @@
         "code": "<Alert variant=\"primary\">Primary Alert</Alert>"
       },
       {
+        "type": "danger",
+        "code": "<Alert variant=\"primary\">Primary Alert</Alert>"
+      },
+      {
         "type": "new",
         "code": "hello"
       }
@@ -77,12 +81,16 @@
     },
     "examples": [
       {
-        "type": "primary",
+        "type": "default",
         "code": "<Button variant=\"primary\">Primary Button</Button>"
       },
+       {
+        "type": "outline",
+        "code": "<Button variant=\"outline\">Outline Button</Button>"
+      },
       {
-        "type": "new",
-        "code": "hello"
+        "type": "ghost",
+        "code": "<Button variant=\"ghost\">Ghost Button</Button>"
       }
     ],
     "dependencies": [
