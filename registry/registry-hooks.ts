@@ -46,4 +46,38 @@ export const hooks: Registry["items"] = [
     ],
     categories: ["stream", "hooks", "brandkit"],
   },
+  {
+    name: "use-get-chats",
+    type: "registry:hook",
+    dependencies: ["@sitecore/stream-ui-core"],
+    files: [
+      {
+        path: "stream/hooks/use-get-chats.ts",
+        type: "registry:hook",
+      },
+      {
+        path: "stream/blocks/chat/page.tsx",
+        type: "registry:page",
+        target: "app/blocks/chat/page.tsx",
+      },
+    ],
+    categories: ["stream", "hooks", "chats"],
+  },
+  {
+    name: "use-get-chat-messages",
+    type: "registry:hook",
+    dependencies: ["@sitecore/stream-ui-core"],
+    files: [
+      {
+        path: "stream/hooks/use-get-chat-messages.ts",
+        type: "registry:hook",
+      },
+      {
+        path: "stream/blocks/chat/page.tsx",
+        type: "registry:page",
+        target: "app/blocks/chat/page.tsx",
+      },
+    ],
+    categories: ["stream", "hooks", "messages"],
+  },
 ]

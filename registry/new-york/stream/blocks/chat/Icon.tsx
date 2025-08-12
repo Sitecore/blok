@@ -1,7 +1,7 @@
 import React from "react"
-import { cva, type VariantProps } from "class-variance-authority"
+import { cva, VariantProps } from "class-variance-authority"
 
-export interface StreamIconProps
+export interface IconProps
   extends React.SVGAttributes<SVGSVGElement>,
     VariantProps<typeof iconVariants> {
   path: string
@@ -21,21 +21,21 @@ export interface StreamIconProps
 const iconVariants = cva("inline-block align-middle flex-shrink-0 leading-4", {
   variants: {
     size: {
-      default: "stream-w-icon stream-h-icon",
-      "3xs": "stream-w-icon-3xs stream-h-icon-3xs",
-      "2xs": "stream-w-icon-2xs stream-h-icon-2xs",
-      xs: "stream-w-icon-xs stream-h-icon-xs",
-      sm: "stream-w-icon-sm stream-h-icon-sm",
-      md: "stream-w-icon-md stream-h-icon-md",
-      lg: "stream-w-icon-lg stream-h-icon-lg",
-      xl: "stream-w-icon-xl stream-h-icon-xl",
-      "2xl": "stream-w-icon-2xl stream-h-icon-2xl",
-      "3xl": "stream-w-icon-3xl stream-h-icon-3xl",
-      "4xl": "stream-w-icon-4xl stream-h-icon-4xl",
-      "5xl": "stream-w-icon-5xl stream-h-icon-5xl",
-      "6xl": "stream-w-icon-6xl stream-h-icon-6xl",
-      "7xl": "stream-w-icon-7xl stream-h-icon-7xl",
-      "8xl": "stream-w-icon-8xl stream-h-icon-7xl",
+      default: "w-1 h-1",
+      "3xs": "w-icon-3xs h-icon-3xs",
+      "2xs": "w-icon-2xs h-icon-2xs",
+      xs: "w-icon-xs h-icon-xs",
+      sm: "w-icon-sm h-icon-sm",
+      md: "w-icon-md h-icon-md",
+      lg: "w-icon-lg h-icon-lg",
+      xl: "w-icon-xl h-icon-xl",
+      "2xl": "w-icon-2xl h-icon-2xl",
+      "3xl": "w-icon-3xl h-icon-3xl",
+      "4xl": "w-icon-4xl h-icon-4xl",
+      "5xl": "w-icon-5xl h-icon-5xl",
+      "6xl": "w-icon-6xl h-icon-6xl",
+      "7xl": "w-icon-7xl h-icon-7xl",
+      "8xl": "w-icon-8xl h-icon-7xl",
     },
   },
   defaultVariants: {
@@ -43,13 +43,13 @@ const iconVariants = cva("inline-block align-middle flex-shrink-0 leading-4", {
   },
 })
 
-export function StreamIcon({
+export function Icon({
   path,
   size,
   className,
   aiGradient,
   ...rest
-}: StreamIconProps) {
+}: IconProps): React.ReactNode {
   return (
     <svg
       fill="currentColor"

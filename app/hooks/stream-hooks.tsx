@@ -69,6 +69,35 @@ export function StreamHooks() {
             </Link>
           </CardContent>
         </Card>
+
+        <Card>
+          <CardHeader>
+            <CardTitle className="flex items-center justify-between">
+              use-contenthub-brandkits
+              <Link
+                href="/hooks/use-contenthub-brandkits"
+                className="text-sm font-normal text-blue-600 hover:text-blue-800"
+              >
+                View Demo →
+              </Link>
+            </CardTitle>
+            <CardDescription>
+              Hook for fetching brandkits from ContentHub API
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <p className="text-muted-foreground mb-4 text-sm">
+              Retrieves brandkits from ContentHub for a specific brand ID with
+              client-side filtering and the same interface as useBrandkits.
+            </p>
+            <Link
+              href="/hooks/use-contenthub-brandkits"
+              className="inline-flex items-center text-sm font-medium text-blue-600 hover:text-blue-800"
+            >
+              View Demo →
+            </Link>
+          </CardContent>
+        </Card>
       </div>
 
       {/* Usage Information Section */}
@@ -90,6 +119,9 @@ export function StreamHooks() {
               <code className="block text-sm">
                 npx shadcn@latest add use-brandkit-by-id
               </code>
+              <code className="block text-sm">
+                npx shadcn@latest add use-contenthub-brandkits
+              </code>
             </div>
           </div>
 
@@ -110,6 +142,87 @@ export function StreamHooks() {
                 </span>
               </li>
             </ul>
+          </div>
+
+          {/* Client Setup */}
+          <div>
+            <h3 className="mb-3 text-lg font-semibold">Client Setup (Optional)</h3>
+            <p className="text-muted-foreground mb-4 text-sm">
+              Hooks use pre-configured clients, but you can customize the setup if needed:
+            </p>
+            <div className="bg-muted rounded-lg p-4 mb-4">
+              <code className="text-sm block whitespace-pre-wrap">
+{`import { brandsClient, createStreamFetch } from '@sitecore/stream-ui-core';
+
+// Minimal setup (optional - hooks handle this automatically)
+const client = brandsClient.setConfig({
+  baseUrl: 'https://ai-brands-api-euw-dev.sitecore-staging.cloud',
+  fetch: createStreamFetch({
+    tokenProvider: async () => process.env.NEXT_PUBLIC_AUTH_TOKEN
+  })
+});`}
+              </code>
+            </div>
+            <p className="text-muted-foreground text-sm mb-4">
+              For complete configuration options, authentication setup, and production deployment, see the{" "}
+              <a 
+                href="https://github.com/Sitecore-PD/sitecore.ai.stream/wiki/API-GUIDE" 
+                className="text-blue-600 hover:text-blue-800 underline"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                official API Guide
+              </a>.
+            </p>
+          </div>
+
+          {/* Usage Examples */}
+          <div>
+            <h3 className="mb-3 text-lg font-semibold">Usage Examples</h3>
+            <p className="text-muted-foreground mb-4 text-sm">
+              Simple hook usage with automatic client configuration:
+            </p>
+            
+            <div className="space-y-4">
+              <div>
+                <h4 className="text-sm font-medium mb-2">Standard Stream API</h4>
+                <div className="bg-muted rounded-lg p-4">
+                  <code className="text-sm block whitespace-pre-wrap">
+{`import { useBrandkits } from '@/registry/new-york/stream/hooks/use-brandkits';
+
+// Requires organizationId (string)
+const { brandkits, isLoading, error, utils } = useBrandkits({
+  organizationId: 'org-123',
+  pageSize: 10,
+  search: 'nike'
+});
+
+// Use computed values and utilities
+const draftBrandkits = brandkits.filter(utils.isDraft);
+const summary = utils.summary();`}
+                  </code>
+                </div>
+              </div>
+
+              <div>
+                <h4 className="text-sm font-medium mb-2">ContentHub API</h4>
+                <div className="bg-muted rounded-lg p-4">
+                  <code className="text-sm block whitespace-pre-wrap">
+{`import { useContentHubBrandkits } from '@/registry/new-york/stream/hooks/use-contenthub-brandkits';
+
+// Requires brandId (number)
+const { brandkits, isLoading, error, utils } = useContentHubBrandkits({
+  brandId: 123,
+  search: 'nike'
+});
+
+// Same interface as useBrandkits
+const publishedBrandkits = utils.filterByStatus('published');
+const brandkitByName = utils.findByName('Nike Air');`}
+                  </code>
+                </div>
+              </div>
+            </div>
           </div>
 
           {/* Features */}

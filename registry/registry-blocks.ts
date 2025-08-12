@@ -749,4 +749,36 @@ export const blocks: Registry["items"] = [
     ],
     categories: ["stream", "ui", "chat", "history"],
   },
+  {
+    name: "stream-messages",
+    type: "registry:block",
+    description: "Stream team's chat messages for rendering in a chat window",
+    dependencies: ["@sitecore/stream-ui-core", "@mdi/js"],
+    registryDependencies: [
+      "button",
+      "popover",
+      "input",
+      "separator",
+      "avatar",
+      "tooltip",
+      "popover",
+      "card",
+      "select",
+      "stream-icon",
+      "stream-spinner",
+      "dialog",
+    ],
+    files: [
+      {
+        path: "stream/blocks/chat/stream-messages.tsx",
+        type: "registry:component",
+      },
+      {
+        path: "stream/blocks/chat/page.tsx",
+        type: "registry:page",
+        target: "app/blocks/chat/page.tsx",
+      },
+    ],
+    categories: ["stream", "ui", "chat", "messages"],
+  },
 ]

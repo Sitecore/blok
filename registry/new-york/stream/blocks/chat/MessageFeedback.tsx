@@ -1,0 +1,212 @@
+import React, { useMemo, useState } from "react"
+import { ToolInvocationUIPart } from "@ai-sdk/ui-utils"
+import { mdiThumbDownOutline, mdiThumbUpOutline } from "@mdi/js"
+import {
+  chat,
+  ContentModelRead,
+  FeedbackModel,
+  HTTPError,
+  ListUserChatMessagesModelResponseV2,
+  Message,
+  UpdateUserChatMessageModelResponseV2,
+} from "@sitecore/stream-ui-core"
+import { useAtomValue } from "jotai"
+import { isEmpty } from "lodash"
+import { toast } from "sonner"
+
+import { cn } from "@/lib/utils"
+import { StreamIcon } from "@/registry/new-york/stream/ui/stream-icon"
+import { Button } from "@/registry/new-york/ui/button"
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@/registry/new-york/ui/tooltip"
+
+import { ActionModal } from "./ActionModal"
+import { SourceItem } from "./SourceItem"
+import {
+  chatIdAtom,
+  extractSourcesFromDataAtom,
+  orgIdAtom,
+  userIdAtom,
+} from "./store/atoms"
+import { ExtractSourceProps } from "./types"
+import {
+  createSources,
+  extractSourcesFromBrainstorming,
+  extractSourcesFromParts,
+} from "./utils"
+
+export interface MessageFeedbackProps {
+  message: Message &
+    Pick<ListUserChatMessagesModelResponseV2, "feedback"> & {
+      content?: string | Array<ContentModelRead>
+    }
+  messageId: string
+}
+
+const feedbackConfig = [
+  { type: "good", activeColor: "text-green-300", icon: mdiThumbUpOutline },
+  { type: "bad", activeColor: "text-red-300", icon: mdiThumbDownOutline },
+]
+
+export function MessageFeedback({
+  messageId,
+  message,
+}: MessageFeedbackProps): React.ReactNode {
+  const [rollbackFeedback, setRollbackFeedback] =
+    useState<FeedbackModel | null>(message?.feedback ?? null)
+  const [feedback, setFeedback] = useState<FeedbackModel | null>(
+    message?.feedback ?? null
+  )
+
+  /* Atoms */
+  const extractSourcesFromData = useAtomValue(extractSourcesFromDataAtom)
+  const userId = useAtomValue(userIdAtom)
+  const orgId = useAtomValue(orgIdAtom)
+  const chatId = useAtomValue(chatIdAtom)
+
+  /* Computed */
+  const parts = message?.parts as ToolInvocationUIPart[]
+  const allSources = useMemo(
+    () =>
+      createSources(
+        extractSourcesFromData?.[messageId] ?? {},
+        extractSourcesFromBrainstorming(parts),
+        extractSourcesFromParts(parts)
+      ),
+    [extractSourcesFromData, messageId, parts]
+  )
+  const allSourcesTotalAmount = useMemo(
+    () =>
+      allSources?.reduce(
+        (acc: number, cur: ExtractSourceProps) => acc + cur[1].length,
+        0
+      ),
+    [allSources]
+  )
+
+  const onFeedbackClick = async (
+    type: FeedbackModel["type"]
+  ): Promise<void> => {
+    const hasFeedback = feedback?.type === type
+    let updatedMessage: UpdateUserChatMessageModelResponseV2 | undefined
+
+    setFeedback((prev) => (hasFeedback ? null : { ...prev, type }))
+
+    try {
+      const { data } =
+        await chat.getUserChatMessageV2ApiChatsV2OrganizationsOrganizationIdUsersUserIdChatsChatIdMessagesMessageIdGet(
+          {
+            path: {
+              messageId,
+              userId,
+              chatId,
+              organizationId: orgId,
+            },
+          }
+        )
+
+      const { data: patchData } =
+        await chat.updateUserChatMessageV2ApiChatsV2OrganizationsOrganizationIdUsersUserIdChatsChatIdMessagesMessageIdPatch(
+          {
+            body: {
+              content: data?.content ?? null,
+              feedback: hasFeedback ? null : { type },
+            },
+            path: {
+              messageId,
+              userId,
+              chatId,
+              organizationId: orgId,
+            },
+          }
+        )
+
+      updatedMessage = patchData
+      setRollbackFeedback(updatedMessage?.feedback ?? null)
+      setFeedback(updatedMessage?.feedback ?? null)
+    } catch (error) {
+      setFeedback(rollbackFeedback)
+
+      const { response } = error as HTTPError
+      toast.error(response.statusText)
+    }
+
+    /*await getChatMessage(
+      { params: { userId, chatId: chatId as string, messageId } },
+      {
+        onSuccess: data => {
+          const { content } = data;
+
+          patchChatMessageMutate(
+            {
+              chatId,
+              messageId,
+              message: { content, feedback: hasFeedback ? null : { type } },
+            },
+            {
+              onSuccess: data => {
+                updatedMessage = data;
+                setRollbackFeedback(updatedMessage?.feedback ?? null);
+                setFeedback(updatedMessage?.feedback ?? null);
+              },
+              onError: () => {
+                setFeedback(rollbackFeedback);
+              },
+            }
+          );
+        },
+        onError: message => {
+          toast.error(message);
+        },
+      }
+    );*/
+  }
+
+  return (
+    <div className="flex gap-1">
+      {feedbackConfig.map((btn, index) => (
+        <Tooltip key={`${btn.type}_${index}`}>
+          <TooltipTrigger asChild>
+            <Button
+              data-testid={`feedback_button_${btn.type}`}
+              variant="ghost"
+              colorScheme="neutral"
+              className={cn(
+                feedback?.type === btn.type ? btn.activeColor : "gray"
+              )}
+              size="icon"
+              disabled={!message?.id}
+              onClick={() => onFeedbackClick(btn.type as FeedbackModel["type"])}
+            >
+              <StreamIcon path={btn.icon} />
+            </Button>
+          </TooltipTrigger>
+          <TooltipContent className="text-inverse-text max-w-[200px] bg-gray-700 text-sm shadow-md">
+            Tell us whether you got a quality result. This will be logged for
+            review to help us improve our AI
+          </TooltipContent>
+        </Tooltip>
+      ))}
+      {/* TODO might re-visit */}
+      {/*<Button variant="ghost" colorScheme="gray" size="icon" disabled>
+        <Icon path={mdiRestart} />
+      </Button>*/}
+      {!isEmpty(allSources) && (
+        <ActionModal
+          ctaTitle="Sources"
+          modalTitle={`Sources (${allSourcesTotalAmount})`}
+        >
+          {allSources?.map((sources, index: number) => (
+            <SourceItem
+              key={`sources_item_${index}_${message.id}`}
+              sources={sources}
+            />
+          ))}
+        </ActionModal>
+      )}
+    </div>
+  )
+}
