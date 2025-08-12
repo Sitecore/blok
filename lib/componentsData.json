@@ -10,19 +10,23 @@
         "label": "npm",
         "code": "npx next-forge@latest init"
       },
-       {
+      {
         "label": "yarn",
         "code": "yarn next-forge@latest init"
       },
-       {
+      {
         "label": "pnpm",
         "code": "pnpm next-forge@latest init"
       },
-       {
+      {
         "label": "bun",
         "code": "bunx next-forge@latest init"
       }
     ],
+    "usage": {
+      "import": "import { Button } from '@com'",
+      "use": "<Button>this is button</Button>"
+    },
     "examples": [
       {
         "type": "primary",
@@ -49,24 +53,28 @@
     "description": "Displays a button or a component that looks like a button",
     "sampleCode": "<Button size=\"lg\">\n  <Icon path={mdiInformationOutline} />\n  Solid lg\n</Button>",
     "imageSrc": "/Blok-site-Illustration.png",
-   "installation": [
+    "installation": [
       {
         "label": "npm",
         "code": "npx next-forge@latest init"
       },
-       {
+      {
         "label": "yarn",
         "code": "yarn next-forge@latest init"
       },
-       {
+      {
         "label": "pnpm",
         "code": "pnpm next-forge@latest init"
       },
-       {
+      {
         "label": "bun",
         "code": "bunx next-forge@latest init"
       }
     ],
+    "usage": {
+      "import": "import { Button } from '@com'",
+      "use": "<Button>this is button</Button>"
+    },
     "examples": [
       {
         "type": "primary",
@@ -98,19 +106,23 @@
         "label": "npm",
         "code": "npx next-forge@latest init"
       },
-       {
+      {
         "label": "yarn",
         "code": "yarn next-forge@latest init"
       },
-       {
+      {
         "label": "pnpm",
         "code": "pnpm next-forge@latest init"
       },
-       {
+      {
         "label": "bun",
         "code": "bunx next-forge@latest init"
       }
     ],
+    "usage": {
+      "import": "import { Button } from '@com'",
+      "use": "<Button>this is button</Button>"
+    },
     "examples": [
       {
         "type": "primary",
@@ -142,19 +154,23 @@
         "label": "npm",
         "code": "npx next-forge@latest init"
       },
-       {
+      {
         "label": "yarn",
         "code": "yarn next-forge@latest init"
       },
-       {
+      {
         "label": "pnpm",
         "code": "pnpm next-forge@latest init"
       },
-       {
+      {
         "label": "bun",
         "code": "bunx next-forge@latest init"
       }
     ],
+    "usage": {
+      "import": "import { Button } from '@com'",
+      "use": "<Button>this is button</Button>"
+    },
     "examples": [
       {
         "type": "primary",
@@ -181,24 +197,28 @@
     "description": "Displays a component one or a component that looks like a component one",
     "sampleCode": "<Component One size=\"lg\">\n  <Icon path={mdiInformationOutline} />\n  Solid lg\n</Component One>",
     "imageSrc": "/Blok-site-Illustration.png",
-   "installation": [
+    "installation": [
       {
         "label": "npm",
         "code": "npx next-forge@latest init"
       },
-       {
+      {
         "label": "yarn",
         "code": "yarn next-forge@latest init"
       },
-       {
+      {
         "label": "pnpm",
         "code": "pnpm next-forge@latest init"
       },
-       {
+      {
         "label": "bun",
         "code": "bunx next-forge@latest init"
       }
     ],
+    "usage": {
+      "import": "import { Button } from '@com'",
+      "use": "<Button>this is button</Button>"
+    },
     "examples": [
       {
         "type": "primary",
