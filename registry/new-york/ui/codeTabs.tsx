@@ -73,7 +73,7 @@ export const SnippetCopyButton = ({
   const icon = isCopied ? <CheckIcon size={14} /> : <Clipboard size={14} />;
   return (
     <Button
-      className="text-muted-foreground"
+      className="text-muted-foreground pr-4 pb-4"
       onClick={copyToClipboard}
       size="icon"
       variant="ghost"
