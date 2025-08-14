@@ -1,4 +1,5 @@
 import type { NextConfig } from "next"
+import createMDX from '@next/mdx';
 
 const nextConfig: NextConfig = {
   outputFileTracingIncludes: {
@@ -16,6 +17,13 @@ const nextConfig: NextConfig = {
       },
     ],
   },
+
+  pageExtensions: ['js', 'jsx', 'ts', 'tsx', 'md', 'mdx'],
+
 }
 
-export default nextConfig
+const withMDX = createMDX({
+  // You can add remark/rehype plugins here if needed
+});
+
+export default withMDX(nextConfig);
