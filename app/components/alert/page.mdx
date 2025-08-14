@@ -1,18 +1,71 @@
-import { AlertDemo } from "@/components/alert-demo"
 
- # Welcome to my MDX page!
- 
-This is some **bold** and _italics_ text.
- 
-This is a list in markdown:
- 
-- One
-- Two
-- Three
- 
-Checkout my React component:
+import { CommonTemplate } from "@/components/layout/commonTemplate";
+import { AlertDemo } from "./alert-component";
 
 
-<AlertDemo  />
+export const pageTitle ="Alert Demo"
 
- 
+export const pageDescription = "Displays an Alert or a component that looks like a Alert"
+
+export const variants = [
+{
+    title: "Primary",
+    description: "Indicates the primary action or information.",
+    type: "primary"
+  },
+  {
+    title: "Success",
+    description: "Indicates a successful or positive action.",
+    type: "success"
+  },
+  {
+    title: "Warning",
+    description: "Indicates a warning that might need attention.",
+    type: "warning"
+  },
+
+  {
+    title: "Default",
+    description: "Indicates a neutral alert or default message.",
+    type: "default"
+  },
+  {
+    title: "Danger",
+    description: "Indicates a dangerous or potentially negative action.",
+    type: "danger"
+  }
+];
+
+export const alertConfig = {
+  config: {
+    alerText:"Primary",
+    alertDescription:"This is a description",
+    primaryVariant: "primary",
+    showIcon: true,
+    variants
+  }
+};
+
+export const installationCodeList = [
+  { label: "npm", code: "npx next-forge@latest init" },
+  { label: "yarn", code: "yarn next-forge@latest init" },
+  { label: "pnpm", code: "pnpm next-forge@latest init" },
+  { label: "bun", code: "bunx next-forge@latest init" }
+];
+
+export const usageCodeList = [
+   { code: "import {component} from \"@components/ui/{componentName}\"" }, 
+   { code: "<Button variant='default' colorScheme='default' size='default'>Click me</Button>" }
+];
+
+
+<CommonTemplate 
+    pageTitle={pageTitle} 
+    pageDescription={pageDescription}
+    installationCommands= {installationCodeList}   
+    usageCommands={usageCodeList}
+    config={alertConfig.config}
+>
+  <AlertDemo />
+
+</CommonTemplate>
