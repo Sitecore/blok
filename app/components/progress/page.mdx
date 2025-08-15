@@ -1,0 +1,61 @@
+
+import { CommonTemplate } from "@/components/layout/commonTemplate";
+import {ProgressDemo} from "./progress-component";
+
+
+export const pageTitle ="Progress Demo"
+
+export const pageDescription = "Displays an Progress or component looks like a progress"
+
+export const variants = [
+  {
+    title: "Primary",         
+    description: "Indicates the primary action or information.",
+    type: "primary"
+  },
+  {
+    title: "AI",
+    description: "Indicates a successful or positive action.",
+    type: "ai"
+  },
+  {
+    title: "Indeterminate",
+    description: "Indicates a warning that might need attention.",
+    type: "indeterminate"
+  },
+];
+
+
+export const progressConfig={
+  config: {
+    alerText:"Primary",
+    alertDescription:"This is a description",
+    primaryVariant: "primary",
+    showIcon: true,
+    variants
+  }
+};
+
+export const installationCodeList = [
+  { label: "npm", code: "npx next-forge@latest init" },
+  { label: "yarn", code: "yarn next-forge@latest init" },
+  { label: "pnpm", code: "pnpm next-forge@latest init" },
+  { label: "bun", code: "bunx next-forge@latest init" }
+];
+
+export const usageCodeList = [
+   { code: "import {component} from \"@components/ui/{componentName}\"" }, 
+   { code: "<Button variant='default' colorScheme='default' size='default'>Click me</Button>" }
+];
+
+
+<CommonTemplate 
+    pageTitle={pageTitle} 
+    pageDescription={pageDescription}
+    installationCommands= {installationCodeList}   
+    usageCommands={usageCodeList}
+    config={progressConfig.config}
+>
+  <ProgressDemo/>
+
+</CommonTemplate>
