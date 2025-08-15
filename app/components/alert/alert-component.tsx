@@ -1,13 +1,13 @@
 import React, { FC } from "react";
 
-type VariantObject = {
+type DemoObject = {
   title: string;
   description: string;
   type: "success" | "warning" | "primary" | "default" | "danger";
 };
 
 type AlertDemoProps = {
-  selectedVariant: VariantObject;
+  selectedDemo?: DemoObject;
   alerText: string;
   alertDescription: string;
 };
@@ -25,15 +25,16 @@ import {
   AlertTitle,
 } from "@/registry/new-york/ui/alert"
 
-export const AlertDemo: FC<AlertDemoProps> = ({ selectedVariant }) => {
+export const AlertDemo: FC<AlertDemoProps> = ({ selectedDemo, alerText }) => {
 
   return (
     <>
-      <div className=" ">
+      <div>
         <Tabs defaultValue="preview">
           <div className="flex justify-between">
             <div>
-               <h2 className="text-xl md:text-2xl font-semibold mb-2">{selectedVariant.title}</h2>
+              <h2 className="text-xl md:text-2xl font-semibold mb-2">{selectedDemo?.title}</h2>
+              {/* <h2 className="text-xl md:text-2xl font-semibold mb-2">{alerText}</h2> */}
               <TabsList className="mb-4">
                 <TabsTrigger value="preview">Preview</TabsTrigger>
                 <TabsTrigger value="code">Code</TabsTrigger>
@@ -46,10 +47,10 @@ export const AlertDemo: FC<AlertDemoProps> = ({ selectedVariant }) => {
             className="flex justify-center bg-white p-25"
           >
             <div className="">
-              <Alert variant={selectedVariant.type}>
-                <AlertTitle>{selectedVariant.title}</AlertTitle>
+              <Alert variant={selectedDemo?.type}>
+                <AlertTitle>{selectedDemo?.title}</AlertTitle>
                 <AlertDescription>
-                  {selectedVariant.description}
+                  {selectedDemo?.description}
                 </AlertDescription>
               </Alert>
 
