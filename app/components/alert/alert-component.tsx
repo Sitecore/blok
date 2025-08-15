@@ -7,7 +7,7 @@ type DemoObject = {
 };
 
 type AlertDemoProps = {
-  selectedDemo: DemoObject;
+  selectedDemo?: DemoObject;
   alerText: string;
   alertDescription: string;
 };
@@ -33,7 +33,7 @@ export const AlertDemo: FC<AlertDemoProps> = ({ selectedDemo, alerText }) => {
         <Tabs defaultValue="preview">
           <div className="flex justify-between">
             <div>
-              <h2 className="text-xl md:text-2xl font-semibold mb-2">{selectedDemo.title}</h2>
+              <h2 className="text-xl md:text-2xl font-semibold mb-2">{selectedDemo?.title}</h2>
               {/* <h2 className="text-xl md:text-2xl font-semibold mb-2">{alerText}</h2> */}
               <TabsList className="mb-4">
                 <TabsTrigger value="preview">Preview</TabsTrigger>
@@ -47,10 +47,10 @@ export const AlertDemo: FC<AlertDemoProps> = ({ selectedDemo, alerText }) => {
             className="flex justify-center bg-white p-25"
           >
             <div className="">
-              <Alert variant={selectedDemo.type}>
-                <AlertTitle>{selectedDemo.title}</AlertTitle>
+              <Alert variant={selectedDemo?.type}>
+                <AlertTitle>{selectedDemo?.title}</AlertTitle>
                 <AlertDescription>
-                  {selectedDemo.description}
+                  {selectedDemo?.description}
                 </AlertDescription>
               </Alert>
 

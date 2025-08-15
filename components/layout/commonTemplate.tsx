@@ -57,19 +57,20 @@ export const CommonTemplate = <T extends object>({
 
         ))}
       </div>
-      <div className="space-y-8">
-        <h2 className="text-2xl md:text-3xl font-semibold">Examples</h2>
 
-        {config.demos?.map((demo) => (
-          <div className="space-y-7">
-            <React.Fragment key={demo.type}>
-              {React.cloneElement(children, { ...config, selectedDemo: demo })}
-            </React.Fragment>
-          </div>
-        ))}
+      {Array.isArray(config.demos) && config.demos.length > 0 && (
+        <div className="space-y-8">
+          <h2 className="text-2xl md:text-3xl font-semibold">Examples</h2>
 
-      </div>
-
+          {config.demos?.map((demo) => (
+            <div className="space-y-7">
+              <React.Fragment key={demo.type}>
+                {React.cloneElement(children, { ...config, selectedDemo: demo })}
+              </React.Fragment>
+            </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 };
