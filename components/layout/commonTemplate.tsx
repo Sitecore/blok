@@ -7,7 +7,7 @@ type CommonTemplateProps<T extends object = {}> = {
   pageDescription: string;
   installationCommands: Array<{ label: string; code: string }>;
   usageCommands: Array<{ code: string }>;
-  config: T & { variants?: any[] };
+  config: T & { demos?: any[], mainDemo?: any; };
   children: ReactElement<any>;
 };
 
@@ -20,7 +20,7 @@ export const CommonTemplate = <T extends object>({
   children
 }: CommonTemplateProps<T>) => {
   return (
-    <div className="p-10 pb-20 bg-secondary space-y-10">
+    <div className="p-10 pb-20 bg-secondary space-y-10 min-h-screen">
 
       <div className="flex flex-col space-y-5">
         <h1 className="text-3xl md:text-4xl font-semibold">{pageTitle}</h1>
@@ -30,7 +30,7 @@ export const CommonTemplate = <T extends object>({
       <div>
         {React.cloneElement(children, {
           ...config,
-          selectedVariant: config.variants?.[0]
+          selectedDemo: config.mainDemo
         })}
       </div>
 
@@ -59,18 +59,16 @@ export const CommonTemplate = <T extends object>({
       </div>
       <div className="space-y-8">
         <h2 className="text-2xl md:text-3xl font-semibold">Examples</h2>
-      
-          {config.variants?.map((variant) => (
-            <div  className="space-y-7">
-              <React.Fragment key={variant.type}>
-                {React.cloneElement(children, { ...config, selectedVariant: variant })}
-              </React.Fragment>
-            </div>
-          ))}
 
-  
+        {config.demos?.map((demo) => (
+          <div className="space-y-7">
+            <React.Fragment key={demo.type}>
+              {React.cloneElement(children, { ...config, selectedDemo: demo })}
+            </React.Fragment>
+          </div>
+        ))}
+
       </div>
-
 
     </div>
   );
