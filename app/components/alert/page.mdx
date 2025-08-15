@@ -7,32 +7,67 @@ export const pageTitle ="Alert Demo"
 
 export const pageDescription = "Displays an Alert or a component that looks like a Alert"
 
-export const variants = [
+
+export const mainDemo = {
+    title: "Primary",
+    description: "Indicates the primary action or information.",
+    type: "primary",
+    dropdownOption1: [
+      { label: "Option 1", value: "success-1" },
+      { label: "Option 2", value: "success-2" }
+    ],
+    dropdownOption2: [
+      { label: "Option 1", value: "success-1" },
+      { label: "Option 2", value: "success-2" }
+    ]
+}
+
+export const demos = [
 {
     title: "Primary",
     description: "Indicates the primary action or information.",
-    type: "primary"
+    type: "primary",
+    dropdownOptions: [
+      { label: "Option 1", value: "success-1" },
+      { label: "Option 2", value: "success-2" }
+    ]
   },
   {
     title: "Success",
     description: "Indicates a successful or positive action.",
-    type: "success"
+    type: "success",
+     dropdownOptions: [
+      { label: "Option 1", value: "success-1" },
+      { label: "Option 2", value: "success-2" }
+    ]
   },
   {
     title: "Warning",
     description: "Indicates a warning that might need attention.",
-    type: "warning"
+    type: "warning",
+     dropdownOptions: [
+      { label: "Option 1", value: "success-1" },
+      { label: "Option 2", value: "success-2" }
+    ]
   },
 
   {
     title: "Default",
     description: "Indicates a neutral alert or default message.",
-    type: "default"
+    type: "default",
+     dropdownOptions: [
+      { label: "Option 1", value: "success-1" },
+      { label: "Option 2", value: "success-2" }
+    ]
   },
   {
     title: "Danger",
     description: "Indicates a dangerous or potentially negative action.",
-    type: "danger"
+    type: "danger",
+     dropdownOptions: [
+      { label: "Option 1", value: "success-1" },
+      { label: "Option 2", value: "success-2" }
+    ]
   }
 ];
 
@@ -42,7 +77,8 @@ export const alertConfig = {
     alertDescription:"This is a description",
     primaryVariant: "primary",
     showIcon: true,
-    variants
+    demos,
+    mainDemo
   }
 };
 
