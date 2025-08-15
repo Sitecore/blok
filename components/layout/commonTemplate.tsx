@@ -20,7 +20,7 @@ export const CommonTemplate = <T extends object>({
   children
 }: CommonTemplateProps<T>) => {
   return (
-    <div className="p-10 pb-20 bg-secondary space-y-10">
+    <div className="p-10 pb-20 bg-secondary space-y-10 min-h-screen">
 
       <div className="flex flex-col space-y-5">
         <h1 className="text-3xl md:text-4xl font-semibold">{pageTitle}</h1>
