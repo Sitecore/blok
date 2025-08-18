@@ -1,63 +1,58 @@
 import React, { FC } from "react";
 
+interface CodeItem {
+  language: string
+  filename: string
+  code: string
+}
 type DemoObject = {
   title: string;
-  description: string;
-  type: "primary";
+  showTitle?: boolean
+  codeContent: CodeItem[]
 };
 
 type ProgressDemoProps = {
-  selectedVariant?: DemoObject;
+  selectedDemo: DemoObject;
 };
 
-import {
-  Tabs,
-  TabsContent,
-  TabsList,
-  TabsTrigger,
-} from "@/registry/new-york/ui/tabs"
-
 import { Progress } from "@/registry/new-york/ui/progress";
+import CustomCodeBlock from "@/components/code-block";
 
-export const ProgressDemo: FC<ProgressDemoProps> = ({ selectedVariant }) => {
+const generateProgressCode = () => `import { Progress } from "@/components/ui/progress"
 
+export function ProgressDemo() {
+  return <Progress value={80} /> 
+}`
+
+export const ProgressDemo: FC<ProgressDemoProps> = ({ selectedDemo }) => {
+  const sampleCode = [
+    {
+      language: "jsx",
+      filename: "MyComponent.jsx",
+      code: generateProgressCode(),
+    },
+  ]
   return (
     <>
-      <div className=" ">
-        <Tabs defaultValue="preview">
-          <div className="flex justify-between">
-            <div>
-               <h2 className="text-xl md:text-2xl font-semibold mb-2">{selectedVariant?.title}</h2>
-              <TabsList className="mb-4">
-                <TabsTrigger value="preview">Preview</TabsTrigger>
-                <TabsTrigger value="code">Code</TabsTrigger>
-              </TabsList>
-            </div>
-          </div>
+      <div>
+        {selectedDemo.showTitle !== false && (
+          <h2 className="mb-2 text-xl font-semibold md:text-2xl">
+            {selectedDemo.title}
+          </h2>
+        )}
 
-          <TabsContent
-            value="preview"
-            className="flex justify-center bg-white p-25"
-          >
-            <div className="w-full">
-              {/* <Alert variant={selectedVariant.type}>
-                <AlertTitle>{selectedVariant.title}</AlertTitle>
-                <AlertDescription>
-                  {selectedVariant.description}
-                </AlertDescription>
-              </Alert> */}
-
-              <Progress value={80} />
-
-            </div>
-          </TabsContent>
-
-          <TabsContent value="code" className="flex justify-center bg-white p-25">
-            test
-          </TabsContent>
-        </Tabs>
+        <div className="flex items-center justify-center rounded-t-md bg-white p-25">
+          <Progress value={80} />
+        </div>
+        <CustomCodeBlock
+          code={sampleCode}
+          defaultValue="jsx"
+          lineNumbers
+          containerClassNames="!rounded-t-none"
+          bodyClassNames="bg-gray-100"
+        />
       </div>
-      
+
     </>
   );
 };
