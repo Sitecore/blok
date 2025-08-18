@@ -3,84 +3,62 @@ import { CommonTemplate } from "@/components/layout/commonTemplate";
 import { AlertDemo } from "./alert-component";
 
 
-export const pageTitle ="Alert Demo"
+export const pageTitle ="Alert"
 
 export const pageDescription = "Displays an Alert or a component that looks like a Alert"
 
 
 export const mainDemo = {
-    title: "Primary",
-    description: "Indicates the primary action or information.",
-    type: "primary",
-    dropdownOption1: [
-      { label: "Option 1", value: "success-1" },
-      { label: "Option 2", value: "success-2" }
+  title: "Primary",
+  description: "Indicates the primary action or information.",
+  type: "primary",
+  options: {
+      variantList: [
+      { label: "Primary", value: "primary", alertTitle: "Primary Alert", alertDescription:"This is a primary alert with a title and description." },
+      { label: "Success", value: "success", alertTitle: "Success Alert", alertDescription:"This is a success alert with a title and description."  },
+      { label: "Danger", value: "danger", alertTitle: "Danger Alert", alertDescription:"This is a danger alert with a title and description."  },
+      { label: "Warning", value: "warning", alertTitle: "Warning Alert", alertDescription:"This is a warning alert with a title and description."  },
+      { label: "Default", value: "default", alertTitle: "Default Alert", alertDescription:"This is a default alert with a title and description"  }
     ],
-    dropdownOption2: [
-      { label: "Option 1", value: "success-1" },
-      { label: "Option 2", value: "success-2" }
+    colorList:  [
+      {label: "Primary", value: "primary"},
+      {label:"Secondary", value: "secondary"},
+      { label: "Blue", value: "blue" },
+      { label: "Green", value: "green" },
     ]
+  }    
 }
 
 export const demos = [
-{
-    title: "Primary",
+  {
+    title: "Variant",
     description: "Indicates the primary action or information.",
-    type: "primary",
-    dropdownOptions: [
-      { label: "Option 1", value: "success-1" },
-      { label: "Option 2", value: "success-2" }
-    ]
+    type: "variant",
+    options: {
+      variantList: [
+      { label: "Primary", value: "primary", alertTitle: "Primary Alert", alertDescription:"This is a primary alert with a title and description." },
+      { label: "Success", value: "success", alertTitle: "Success Alert", alertDescription:"This is a success alert with a title and description."  },
+      { label: "Danger", value: "danger", alertTitle: "Danger Alert", alertDescription:"This is a danger alert with a title and description."  },
+      { label: "Warning", value: "warning", alertTitle: "Warning Alert", alertDescription:"This is a warning alert with a title and description."  },
+      { label: "Default", value: "default", alertTitle: "Default Alert", alertDescription:"This is a default alert with a title and description"  }
+    ],
+    }    
   },
   {
-    title: "Success",
+    title: "Background Color",
     description: "Indicates a successful or positive action.",
-    type: "success",
-     dropdownOptions: [
-      { label: "Option 1", value: "success-1" },
-      { label: "Option 2", value: "success-2" }
-    ]
-  },
-  {
-    title: "Warning",
-    description: "Indicates a warning that might need attention.",
-    type: "warning",
-     dropdownOptions: [
-      { label: "Option 1", value: "success-1" },
-      { label: "Option 2", value: "success-2" }
-    ]
-  },
-
-  {
-    title: "Default",
-    description: "Indicates a neutral alert or default message.",
-    type: "default",
-     dropdownOptions: [
-      { label: "Option 1", value: "success-1" },
-      { label: "Option 2", value: "success-2" }
-    ]
-  },
-  {
-    title: "Danger",
-    description: "Indicates a dangerous or potentially negative action.",
-    type: "danger",
-     dropdownOptions: [
-      { label: "Option 1", value: "success-1" },
-      { label: "Option 2", value: "success-2" }
-    ]
+    type: "Bg-color",
+    options: {
+      colorList:  [
+        {label: "Primary", value: "primary"},
+        {label:"Secondary", value: "secondary"},
+        { label: "Blue", value: "blue" },
+        { label: "Green", value: "green" },
+      ]
+    }
   }
 ];
 
-export const alertConfig = {
-  config: {
-    alerText:"Primary",
-    alertDescription:"This is a description",
-    primaryVariant: "primary",
-    showIcon: true,
-    demos,
-    mainDemo
-  }
-};
 
 export const installationCodeList = [
   { label: "npm", code: "npx next-forge@latest init" },
@@ -94,6 +72,18 @@ export const usageCodeList = [
    { code: "<Button variant='default' colorScheme='default' size='default'>Click me</Button>" }
 ];
 
+
+
+export const alertConfig = {
+  config: {
+    alerText:"Primary",
+    alertDescription:"This is a description",
+    primaryVariant: "primary",
+    showIcon: true,
+    demos,
+    mainDemo
+  }
+};
 
 <CommonTemplate 
     pageTitle={pageTitle} 
