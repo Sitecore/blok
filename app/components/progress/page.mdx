@@ -1,24 +1,19 @@
 
 import { CommonTemplate } from "@/components/layout/commonTemplate";
 import {ProgressDemo} from "./progress-component";
-
-
 export const pageTitle ="Progress"
 
 export const pageDescription = "Displays a progress or a component that looks like a progress."
 
-export const variants = [
-  {
-    title: "Primary",         
-    description: "Indicates the primary action or information.",
-    type: "primary"
-  }
-];
-
+export const mainDemo = {
+  title: "Main",
+  showTitle:false,
+}
 
 export const progressConfig={
   config: {
     alerText:"Primary",
+    mainDemo,
   }
 };
 
@@ -30,7 +25,7 @@ export const installationCodeList = [
 ];
 
 export const usageCodeList = [
-   { code: "import {component} from \"@components/ui/{componentName}\"" }, 
+   { code: `import { Progress } from "@/components/ui/progress` }, 
    { code: "<Progress value={80} />" }
 ];
 

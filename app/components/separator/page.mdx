@@ -2,24 +2,18 @@
 import { CommonTemplate } from "@/components/layout/commonTemplate";
 import { SeparatorDemo } from "./separator-component";
 
-
 export const pageTitle ="Separator"
 
 export const pageDescription = "Displays an Separator or a component that looks like a Separator"
 
-
 export const mainDemo = {
     title: "Primary",
-    description: "Indicates the primary action or information.",
-    type: "primary",
+    showTitle:false
 }
 
 export const separatorConfig = {
   config: {
     alerText:"Primary",
-    alertDescription:"This is a description",
-    primaryVariant: "primary",
-    showIcon: true,
     mainDemo
   }
 };
@@ -32,8 +26,8 @@ export const installationCodeList = [
 ];
 
 export const usageCodeList = [
-   { code: "import {component} from \"@components/ui/{componentName}\"" }, 
-   { code: "<Button variant='default' colorScheme='default' size='default'>Click me</Button>" }
+   { code: `import { Separator } from "@/components/ui/separator` }, 
+   { code: `<Separator />` }
 ];
 
 

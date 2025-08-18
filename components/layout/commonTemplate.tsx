@@ -20,56 +20,72 @@ export const CommonTemplate = <T extends object>({
   children
 }: CommonTemplateProps<T>) => {
   return (
-    <div className="p-10 pb-20 bg-secondary space-y-10 min-h-screen">
+    <div className="flex flex-row">
+      <div className="p-10 pb-20 bg-secondary space-y-10 min-h-screen w-full">
 
-      <div className="flex flex-col space-y-5">
-        <h1 className="text-3xl md:text-4xl font-semibold">{pageTitle}</h1>
-        <p>{pageDescription}</p>
-      </div>
+        <div className="flex flex-col space-y-5">
+          <h1 className="text-3xl md:text-4xl font-semibold">{pageTitle}</h1>
+          <p>{pageDescription}</p>
+        </div>
 
-      <div>
-        {React.cloneElement(children, {
-          ...config,
-          selectedDemo: config.mainDemo
-        })}
-      </div>
+        <div>
+          {React.cloneElement(children, {
+            ...config,
+            selectedDemo: config.mainDemo
+          })}
+        </div>
 
-      <div className="space-y-4">
-        <h2 className="text-2xl md:text-3xl font-semibold">Installaton</h2>
-        <CommandSnippet commands={installationCommands} />
-      </div>
-
-      <div className="space-y-4">
-        <h2 className="text-2xl md:text-3xl font-semibold">Usage</h2>
-        {usageCommands.map((item, idx) => (
-          <div key={idx}>
-            <CustomCodeBlock
-              code={[
-                {
-                  language: "jsx",
-                  filename: "MyComponent.jsx",
-                  code: item.code,
-                },
-              ]}
-              defaultValue="jsx"
-            />
-          </div>
-
-        ))}
-      </div>
-
-      {Array.isArray(config.demos) && config.demos.length > 0 && (
         <div className="space-y-4">
-          <h2 className="text-2xl md:text-3xl font-semibold">Examples</h2>
-          <p>The following is examples of our {pageTitle} class </p>
+          <h2 className="text-2xl md:text-3xl font-semibold" id="installation">Installaton</h2>
+          <CommandSnippet commands={installationCommands} />
+        </div>
 
-          {config.demos?.map((demo) => (
+        <div className="space-y-4">
+          <h2 className="text-2xl md:text-3xl font-semibold" id="usage">Usage</h2>
+          {usageCommands.map((item, idx) => (
+            <div key={idx}>
+              <CustomCodeBlock
+                code={[
+                  {
+                    language: "jsx",
+                    filename: "MyComponent.jsx",
+                    code: item.code,
+                  },
+                ]}
+                defaultValue="jsx"
+              />
+            </div>
+
+          ))}
+        </div>
+
+        {Array.isArray(config.demos) && config.demos.length > 0 && (
+          <div className="space-y-4">
+            <h2 className="text-2xl md:text-3xl font-semibold" id="examples">Examples</h2>
+            <p>The following is examples of our {pageTitle} class </p>
+
+            {config.demos?.map((demo) => (
               <React.Fragment key={demo.type}>
                 {React.cloneElement(children, { ...config, selectedDemo: demo })}
               </React.Fragment>
-          ))}
+            ))}
+          </div>
+        )}
+      </div>
+
+      {/* Sidebar */}
+
+      <div className="w-[350px] bg-secondary text-sm font-semibold text-foreground p-6">
+        <div className="sticky top-0 max-h-screen overflow-y-auto pt-12">
+          <ul className="space-y-2 text-sm">
+            <li><a href="#installation" className="hover:underline">Installation</a></li>
+            <li><a href="#usage" className="hover:underline">Usage</a></li>
+            {Array.isArray(config.demos) && config.demos.length > 0 && (
+              <li><a href="#examples" className="hover:underline">Examples</a></li>
+            )}
+          </ul>
         </div>
-      )}
+      </div>
     </div>
   );
 };
