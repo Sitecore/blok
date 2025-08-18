@@ -20,7 +20,8 @@ interface CustomCodeBlockProps {
   onCopy?: () => void;
   onError?: () => void;
   copyButtonClassName?: string;
-  bgColor?: string
+  containerClassNames?: string
+  bodyClassNames?: string
   lineNumbers?: boolean;
 }
 
@@ -31,9 +32,10 @@ const CustomCodeBlock = ({
   onError,
   lineNumbers = false,
   copyButtonClassName = 'absolute top-1 right-2',
-  bgColor
+  containerClassNames,
+  bodyClassNames
 }: CustomCodeBlockProps) => (
-  <CodeBlock data={code} defaultValue={code[0]?.language}>
+  <CodeBlock data={code} defaultValue={code[0]?.language}  className={containerClassNames}>
     <div className="relative flex justify-end z-10">
       <CodeBlockCopyButton
         className={copyButtonClassName}
@@ -41,10 +43,10 @@ const CustomCodeBlock = ({
         onError={onError}
       />
     </div>
-    <CodeBlockBody>
+    <CodeBlockBody >
       {(item) => (
         <CodeBlockItem key={item.language} value={item.language} lineNumbers={lineNumbers}>
-          <CodeBlockContent className={bgColor}  language={item.language as BundledLanguage}>
+          <CodeBlockContent language={item.language as BundledLanguage} className={bodyClassNames}>
             {item.code}
           </CodeBlockContent>
         </CodeBlockItem>
