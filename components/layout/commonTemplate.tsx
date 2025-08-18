@@ -7,8 +7,9 @@ type CommonTemplateProps<T extends object = {}> = {
   pageDescription: string;
   installationCommands: Array<{ label: string; code: string }>;
   usageCommands: Array<{ code: string }>;
-  config: T & { demos?: any[], mainDemo?: any; };
+  config: T & { variants?: any[] };
   children: ReactElement<any>;
+  
 };
 
 export const CommonTemplate = <T extends object>({
@@ -20,26 +21,27 @@ export const CommonTemplate = <T extends object>({
   children
 }: CommonTemplateProps<T>) => {
   return (
-    <div className="p-10 pb-20 bg-secondary space-y-10 min-h-screen">
+    <div className="p-10 pb-20 bg-secondary space-y-10">
 
       <div className="flex flex-col space-y-5">
         <h1 className="text-3xl md:text-4xl font-semibold">{pageTitle}</h1>
-        <p>{pageDescription}</p>
+        <p className="text-muted-foreground w-full md:w-140">{pageDescription}</p>
       </div>
 
       <div>
         {React.cloneElement(children, {
           ...config,
-          selectedDemo: config.mainDemo
+          selectedVariant: config.variants?.[0],
+          isPlayground: true
         })}
       </div>
 
-      <div className="space-y-4">
+      <div className="space-y-8">
         <h2 className="text-2xl md:text-3xl font-semibold">Installaton</h2>
         <CommandSnippet commands={installationCommands} />
       </div>
 
-      <div className="space-y-4">
+      <div className="space-y-8">
         <h2 className="text-2xl md:text-3xl font-semibold">Usage</h2>
         {usageCommands.map((item, idx) => (
           <div key={idx}>
@@ -57,19 +59,20 @@ export const CommonTemplate = <T extends object>({
 
         ))}
       </div>
-
-      {Array.isArray(config.demos) && config.demos.length > 0 && (
-        <div className="space-y-4">
-          <h2 className="text-2xl md:text-3xl font-semibold">Examples</h2>
-          <p>The following is examples of our {pageTitle} class </p>
-
-          {config.demos?.map((demo) => (
-              <React.Fragment key={demo.type}>
-                {React.cloneElement(children, { ...config, selectedDemo: demo })}
+      <div className="space-y-8">
+        <h2 className="text-2xl md:text-3xl font-semibold">Examples</h2>
+      
+          {config.variants?.map((variant) => (
+            <div  key={variant.type} className="space-y-7">
+              <React.Fragment key={variant.type}>
+                {React.cloneElement(children, { ...config, selectedVariant: variant, isPlayground: false })}
               </React.Fragment>
+            </div>
           ))}
-        </div>
-      )}
+  
+      </div>
+
+
     </div>
   );
 };
