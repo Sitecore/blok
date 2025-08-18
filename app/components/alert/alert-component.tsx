@@ -1,23 +1,30 @@
-import React, { FC } from "react";
+"use client";
+import React, { FC, useState } from "react";
+// import CommandSnippet from "@/components/ui/commandSnippet";
+import CustomCodeBlock from "@/components/code-block"
+import { RefreshCcw } from "lucide-react";
+
+type AlertVariant = "success" | "warning" | "primary" | "default" | "danger";
+
 
 type DemoObject = {
   title: string;
   description: string;
-  type: "success" | "warning" | "primary" | "default" | "danger";
+  type: AlertVariant;
+  options: Record<string, { label: string; value: string, alertTitle?: string, alertDescription?: string }[]>
 };
 
 type AlertDemoProps = {
   selectedDemo?: DemoObject;
-  alerText: string;
-  alertDescription: string;
 };
 
 import {
-  Tabs,
-  TabsContent,
-  TabsList,
-  TabsTrigger,
-} from "@/registry/new-york/ui/tabs"
+  Select,
+  SelectTrigger,
+  SelectValue,
+  SelectContent,
+  SelectItem,
+} from "@/registry/new-york/ui/select"
 
 import {
   Alert,
@@ -25,103 +32,115 @@ import {
   AlertTitle,
 } from "@/registry/new-york/ui/alert"
 
-export const AlertDemo: FC<AlertDemoProps> = ({ selectedDemo, alerText }) => {
+export const AlertDemo: FC<AlertDemoProps> = ({ selectedDemo }) => {
+
+  const [selectedOptions, setSelectedOptions] = useState<Record<string, {
+    label: string;
+    value: string;
+    alertTitle?: string;
+    alertDescription?: string
+  }>>({});
+
+  const colorMap: Record<string, string> = {
+    primary: "bg-primary-100",
+    secondary: "bg-secondary",
+    blue: "bg-blue-100",
+    green: "bg-green-100",
+  };
+
+  // Build code snippet dynamically
+  const codeSnippet = `
+<Alert 
+  variant="${selectedOptions.variantList?.value || "primary"}"
+  className="${colorMap[selectedOptions.colorList?.value] || ""}">
+  <AlertTitle>
+    ${selectedOptions.variantList?.alertTitle || "Default Title"}
+  </AlertTitle>
+  <AlertDescription>
+    ${selectedOptions.variantList?.alertDescription || "Default description"}
+  </AlertDescription>
+</Alert>
+`.trim();
+
+
+  const installcationCode = [
+    {
+      language: "cmd",
+      filename: "cmd",
+      code: codeSnippet,
+    },
+  ]
+
+  if (!selectedDemo) return <div></div>;
 
   return (
-    <>
-      <div>
-        <Tabs defaultValue="preview">
-          <div className="flex justify-between">
-            <div>
-              <h2 className="text-xl md:text-2xl font-semibold mb-2">{selectedDemo?.title}</h2>
-              {/* <h2 className="text-xl md:text-2xl font-semibold mb-2">{alerText}</h2> */}
-              <TabsList className="mb-4">
-                <TabsTrigger value="preview">Preview</TabsTrigger>
-                <TabsTrigger value="code">Code</TabsTrigger>
-              </TabsList>
+    <div>
+      <div className="flex gap-1 items-end">
+        {Object.entries(selectedDemo.options).map(([key, list]) => (
+          <div key={key} className="p-2 pl-0">
+            <div className="rounded-md">
+              {Object.keys(selectedDemo.options).length === 1 && (
+                <h1 className="text-2xl md:text-3xl font-semibold pb-2">
+                  {selectedDemo.title}
+                </h1>
+              )}
+
+
+              <Select
+                key={selectedOptions[key]?.value ?? "reset"}
+                value={selectedOptions[key]?.value ?? undefined}
+                onValueChange={(value) => {
+                  const selected = list.find(opt => opt.value === value);
+                  if (selected) {
+                    setSelectedOptions(prev => ({ ...prev, [key]: selected }));
+                  }
+                }}
+              >
+
+
+                <SelectTrigger className="bg-secondary border border-gray-200 text-black [&>svg]:text-black">
+                  <SelectValue placeholder={`Select ${key.replace("List", "")}`} className="[&>span]:text-black" />
+                </SelectTrigger>
+                <SelectContent className="bg-secondary">
+                  {list.map(opt => (
+                    <SelectItem key={opt.value} value={opt.value} className="text-black">
+                      {key === "colorList" && colorMap[opt.value] && (
+                        <span className={`w-4 h-4 ${colorMap[opt.value]} rounded-sm border border-gray-300`} />
+                      )}
+                      {opt.label}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
             </div>
           </div>
-
-          <TabsContent
-            value="preview"
-            className="flex justify-center bg-white p-25"
-          >
-            <div className="">
-              <Alert variant={selectedDemo?.type}>
-                <AlertTitle>{selectedDemo?.title}</AlertTitle>
-                <AlertDescription>
-                  {selectedDemo?.description}
-                </AlertDescription>
-              </Alert>
-
-            </div>
-          </TabsContent>
-
-          <TabsContent value="code" className="flex justify-center bg-white p-25">
-            test
-          </TabsContent>
-        </Tabs>
+        ))}
+        <button
+          onClick={() => setSelectedOptions({})}
+          className="w-9 h-9 flex items-center justify-center rounded-md bg-secondary border border-gray-200 text-black [&>svg]:text-black mb-2"
+          title="Reset selections"
+        >
+          <RefreshCcw size={16} className="text-black" />
+        </button>
       </div>
-      {/* <div className="grid max-w-xl items-start gap-4">
-
-        <Alert variant="primary">
-          <AlertDescription>
-            This is a default (primary) alert. No title, only description.
-          </AlertDescription>
-        </Alert>
-        <Alert variant="primary">
-          <AlertTitle>Primary Alert</AlertTitle>
-          <AlertDescription>
-            This is a primary alert with a title and description.
-          </AlertDescription>
-        </Alert>
-        <Alert variant="danger">
-          <AlertTitle>Danger Alert</AlertTitle>
-          <AlertDescription>
-            This is a danger alert with a title and description.
-          </AlertDescription>
-        </Alert>
-        <Alert variant="warning">
-          <AlertTitle>Warning Alert</AlertTitle>
-          <AlertDescription>
-            This is a warning alert with a title and description.
-          </AlertDescription>
-        </Alert>
-        <Alert variant="success">
-          <AlertTitle>Success Alert</AlertTitle>
-          <AlertDescription>
-            This is a success alert with a title and description.
-          </AlertDescription>
-        </Alert>
-        <Alert variant="primary">
-          <AlertTitle>Closable Alert</AlertTitle>
-          <AlertDescription>
-            This is a primary alert with a title and description and even a close button.
-          </AlertDescription>
-          <Button
-            size="sm"
-            variant="link"
-            className="absolute top-2.5 right-3 h-6 shadow-none"
+      <div>
+        <div className="bg-white p-25 flex items-center justify-center rounded-t-md">
+          <Alert
+            className={`${colorMap[selectedOptions.colorList?.value] || ""} [&>svg]:text-${selectedOptions.variantList?.value || "primary"}-500`}
+            variant={(selectedOptions.variantList?.value as AlertVariant) || "primary"}
           >
-            Click
-          </Button>
-        </Alert>
-        <Alert variant="primary">
-          <AlertTitle>
-            This is an extremely long alert title that spans multiple lines to
-            demonstrate how the component handles very lengthy headings while
-            maintaining readability and proper text wrapping behavior
-          </AlertTitle>
-          <AlertDescription>
-            This is an equally long description that contains detailed information
-            about the alert. It shows how the component can accommodate extensive
-            content while preserving proper spacing, alignment, and readability
-            across different screen sizes and viewport widths. This helps ensure
-            the user experience remains consistent regardless of the content
-            length.
-          </AlertDescription>
-        </Alert>
-      </div> */}
-    </>
+            <AlertTitle>
+              {selectedOptions.variantList?.alertTitle || "Default Title"}
+            </AlertTitle>
+            <AlertDescription>
+              {selectedOptions.variantList?.alertDescription || "Default description"}
+            </AlertDescription>
+          </Alert>
+        </div>
+        <CustomCodeBlock bgColor="bg-gray-100" code={installcationCode} defaultValue="code" />
+
+      </div>
+
+    </div >
   );
 };

@@ -24,7 +24,7 @@ export const CommonTemplate = <T extends object>({
 
       <div className="flex flex-col space-y-5">
         <h1 className="text-3xl md:text-4xl font-semibold">{pageTitle}</h1>
-        <p className="text-muted-foreground w-full md:w-140">{pageDescription}</p>
+        <p>{pageDescription}</p>
       </div>
 
       <div>
@@ -34,12 +34,12 @@ export const CommonTemplate = <T extends object>({
         })}
       </div>
 
-      <div className="space-y-8">
+      <div className="space-y-4">
         <h2 className="text-2xl md:text-3xl font-semibold">Installaton</h2>
         <CommandSnippet commands={installationCommands} />
       </div>
 
-      <div className="space-y-8">
+      <div className="space-y-4">
         <h2 className="text-2xl md:text-3xl font-semibold">Usage</h2>
         {usageCommands.map((item, idx) => (
           <div key={idx}>
@@ -59,15 +59,14 @@ export const CommonTemplate = <T extends object>({
       </div>
 
       {Array.isArray(config.demos) && config.demos.length > 0 && (
-        <div className="space-y-8">
+        <div className="space-y-4">
           <h2 className="text-2xl md:text-3xl font-semibold">Examples</h2>
+          <p>The following is examples of our {pageTitle} class </p>
 
           {config.demos?.map((demo) => (
-            <div className="space-y-7">
               <React.Fragment key={demo.type}>
                 {React.cloneElement(children, { ...config, selectedDemo: demo })}
               </React.Fragment>
-            </div>
           ))}
         </div>
       )}
