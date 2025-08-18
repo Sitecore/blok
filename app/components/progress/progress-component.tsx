@@ -1,13 +1,13 @@
 import React, { FC } from "react";
 
-type VariantObject = {
+type DemoObject = {
   title: string;
   description: string;
-  type: "primary" | "ai" | "indeterminate" | "indeterminateAi";
+  type: "primary";
 };
 
 type ProgressDemoProps = {
-  selectedVariant: VariantObject;
+  selectedVariant?: DemoObject;
 };
 
 import {
@@ -18,7 +18,6 @@ import {
 } from "@/registry/new-york/ui/tabs"
 
 import { Progress } from "@/registry/new-york/ui/progress";
-import { Button } from "@/registry/new-york/ui/button";
 
 export const ProgressDemo: FC<ProgressDemoProps> = ({ selectedVariant }) => {
 
@@ -28,7 +27,7 @@ export const ProgressDemo: FC<ProgressDemoProps> = ({ selectedVariant }) => {
         <Tabs defaultValue="preview">
           <div className="flex justify-between">
             <div>
-               <h2 className="text-xl md:text-2xl font-semibold mb-2">{selectedVariant.title}</h2>
+               <h2 className="text-xl md:text-2xl font-semibold mb-2">{selectedVariant?.title}</h2>
               <TabsList className="mb-4">
                 <TabsTrigger value="preview">Preview</TabsTrigger>
                 <TabsTrigger value="code">Code</TabsTrigger>
@@ -48,7 +47,6 @@ export const ProgressDemo: FC<ProgressDemoProps> = ({ selectedVariant }) => {
                 </AlertDescription>
               </Alert> */}
 
-              <Progress  />
               <Progress value={80} />
 
             </div>
