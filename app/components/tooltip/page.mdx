@@ -1,12 +1,5 @@
 import { CommonTemplate } from "@/components/layout/commonTemplate"
 
-import {
-  BottomTooltip,
-  HoverTooltip,
-  LeftTooltip,
-  RigthTooltip,
-  TopTooltip,
-} from "./tooltip-code-blocks"
 import { TooltipDemo } from "./tooltip-component"
 
 export const pageTitle = "Tooltip"
@@ -16,78 +9,17 @@ export const pageDescription =
 
 export const demos = [
   {
-    title: "Hover",
+    title: "Side",
     type: "top",
     tooltipContent: "Add to library",
-    codeContent: [
-      {
-        language: "jsx",
-        filename: "Tooltip.jsx",
-        code: HoverTooltip,
-      },
-    ],
-  },
-  {
-    title: "Top",
-    type: "top",
-    tooltipContent: "Add to library",
-    codeContent: [
-      {
-        language: "jsx",
-        filename: "Tooltip.jsx",
-        code: TopTooltip,
-      },
-    ],
-  },
-  {
-    title: "Bottom",
-    type: "bottom",
-    tooltipContent: "Add to library",
-    codeContent: [
-      {
-        language: "jsx",
-        filename: "Tooltip.jsx",
-        code: BottomTooltip,
-      },
-    ],
-  },
-  {
-    title: "Left",
-    type: "left",
-    tooltipContent: "Add to library",
-    codeContent: [
-      {
-        language: "jsx",
-        filename: "Tooltip.jsx",
-        code: RigthTooltip,
-      },
-    ],
-  },
-  {
-    title: "Rigth",
-    type: "right",
-    tooltipContent: "Add to library",
-    codeContent: [
-      {
-        language: "jsx",
-        filename: "Tooltip.jsx",
-        code: LeftTooltip,
-      },
-    ],
   },
 ]
 
 export const mainDemo = {
-  title: "Hover",
+  title: "Main",
   type: "top",
   tooltipContent: "Add to library",
-  codeContent: [
-    {
-      language: "jsx",
-      filename: "Tooltip.jsx",
-      code: HoverTooltip,
-    },
-  ],
+  showTitle: false,
 }
 
 export const tooltipConfig = {

@@ -1,0 +1,76 @@
+import { CommonTemplate } from "@/components/layout/commonTemplate"
+
+import { ToggleDemo } from "./toggle-component"
+
+export const pageTitle = "Toggle"
+
+export const pageDescription =
+  "Displays a Toggle or a component that looks like a Toggle"
+
+export const demos = [
+  {
+    title: "Icon",
+    type: "bold",
+    description: "A toggle with a bold icon",
+  },
+  {
+    title: "Variant",
+    type: "italic",
+    description: "A toggle with an italic icon",
+
+},
+]
+
+export const mainDemo = {
+  title: "Main",
+  type: "bold",
+  showTitle:false,
+  description: "A toggle with a bold icon",
+
+}
+
+export const tooltipConfig = {
+  config: {
+    alerText: "Primary",
+    alertDescription: "This is a description",
+    primaryVariant: "primary",
+    showIcon: true,
+    demos,
+    mainDemo,
+  },
+}
+
+export const installationCodeList = [
+  { label: "npm", code: "npx next-forge@latest init" },
+  { label: "yarn", code: "yarn next-forge@latest init" },
+  { label: "pnpm", code: "pnpm next-forge@latest init" },
+  { label: "bun", code: "bunx next-forge@latest init" },
+]
+
+export const usageCodeList = [
+  { code: 'import { Toggle } from "@/components/ui/toggle"' },
+  {
+    code: `
+import { Bold } from "lucide-react"
+import { Toggle } from "@/components/ui/toggle"
+<Toggle aria-label="Toggle bold">
+  <Bold className="h-4 w-4" />
+</Toggle>
+`,
+  },
+]
+
+export default function TogglePage() {
+  return (
+    <CommonTemplate
+      pageTitle={pageTitle}
+      pageDescription={pageDescription}
+      installationCommands={installationCodeList}
+      usageCommands={usageCodeList}
+      config={tooltipConfig.config}
+    >
+      <ToggleDemo selectedDemo={mainDemo} />
+    </CommonTemplate>
+  )
+
+}
