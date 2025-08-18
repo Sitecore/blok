@@ -1,0 +1,132 @@
+import { CommonTemplate } from "@/components/layout/commonTemplate"
+
+import {
+  BottomTooltip,
+  HoverTooltip,
+  LeftTooltip,
+  RigthTooltip,
+  TopTooltip,
+} from "./tooltip-code-blocks"
+import { TooltipDemo } from "./tooltip-component"
+
+export const pageTitle = "Tooltip"
+
+export const pageDescription =
+  "Displays an Tooltip or a component that looks like a Tooltip"
+
+export const demos = [
+  {
+    title: "Hover",
+    type: "top",
+    tooltipContent: "Add to library",
+    codeContent: [
+      {
+        language: "jsx",
+        filename: "Tooltip.jsx",
+        code: HoverTooltip,
+      },
+    ],
+  },
+  {
+    title: "Top",
+    type: "top",
+    tooltipContent: "Add to library",
+    codeContent: [
+      {
+        language: "jsx",
+        filename: "Tooltip.jsx",
+        code: TopTooltip,
+      },
+    ],
+  },
+  {
+    title: "Bottom",
+    type: "bottom",
+    tooltipContent: "Add to library",
+    codeContent: [
+      {
+        language: "jsx",
+        filename: "Tooltip.jsx",
+        code: BottomTooltip,
+      },
+    ],
+  },
+  {
+    title: "Left",
+    type: "left",
+    tooltipContent: "Add to library",
+    codeContent: [
+      {
+        language: "jsx",
+        filename: "Tooltip.jsx",
+        code: RigthTooltip,
+      },
+    ],
+  },
+  {
+    title: "Rigth",
+    type: "right",
+    tooltipContent: "Add to library",
+    codeContent: [
+      {
+        language: "jsx",
+        filename: "Tooltip.jsx",
+        code: LeftTooltip,
+      },
+    ],
+  },
+]
+
+export const mainDemo = {
+  title: "Hover",
+  type: "top",
+  tooltipContent: "Add to library",
+  codeContent: [
+    {
+      language: "jsx",
+      filename: "Tooltip.jsx",
+      code: HoverTooltip,
+    },
+  ],
+}
+
+export const tooltipConfig = {
+  config: {
+    alerText: "Primary",
+    alertDescription: "This is a description",
+    primaryVariant: "primary",
+    showIcon: true,
+    demos,
+    mainDemo,
+  },
+}
+
+export const installationCodeList = [
+  { label: "npm", code: "npx next-forge@latest init" },
+  { label: "yarn", code: "yarn next-forge@latest init" },
+  { label: "pnpm", code: "pnpm next-forge@latest init" },
+  { label: "bun", code: "bunx next-forge@latest init" },
+]
+
+export const usageCodeList = [
+  { code: 'import {component} from "@components/ui/{componentName}"' },
+  {
+    code: `import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@/components/ui/tooltip`,
+  },
+]
+
+<CommonTemplate 
+    pageTitle={pageTitle} 
+    pageDescription={pageDescription}
+    installationCommands= {installationCodeList}   
+    usageCommands={usageCodeList}
+    config={tooltipConfig.config}
+   
+>
+  <TooltipDemo  />
+
+</CommonTemplate>
