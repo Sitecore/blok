@@ -123,7 +123,8 @@ export const TooltipDemo: FC<TooltipDemoProps> = ({ selectedDemo }) => {
           code={sampleCode}
           defaultValue="jsx"
           lineNumbers
-          bgColor="bg-gray-100"
+          containerClassNames="!rounded-t-none"
+          bodyClassNames="bg-gray-100"
         />
       </div>
     </>
