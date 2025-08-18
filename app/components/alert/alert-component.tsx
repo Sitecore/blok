@@ -34,12 +34,16 @@ import {
 
 export const AlertDemo: FC<AlertDemoProps> = ({ selectedDemo }) => {
 
-  const [selectedOptions, setSelectedOptions] = useState<Record<string, {
-    label: string;
-    value: string;
-    alertTitle?: string;
-    alertDescription?: string
-  }>>({});
+  const [selectedOptions, setSelectedOptions] = useState(() => {
+    if (!selectedDemo) return {};
+    const initialSelections: Record<string, { label: string; value: string; alertTitle?: string; alertDescription?: string }> = {};
+    Object.entries(selectedDemo.options).forEach(([key, list]) => {
+      if (list.length > 0) {
+        initialSelections[key] = list[0]; // Set the first item as default
+      }
+    });
+    return initialSelections;
+  });
 
   const colorMap: Record<string, string> = {
     primary: "bg-primary-100",
@@ -124,7 +128,7 @@ export const AlertDemo: FC<AlertDemoProps> = ({ selectedDemo }) => {
         </button>
       </div>
       <div>
-        <div className="bg-white p-25 flex items-center justify-center rounded-t-md">
+        <div className="bg-white p-25 flex items-center justify-center rounded-t-md ">
           <Alert
             className={`${colorMap[selectedOptions.colorList?.value] || ""} [&>svg]:text-${selectedOptions.variantList?.value || "primary"}-500`}
             variant={(selectedOptions.variantList?.value as AlertVariant) || "primary"}
@@ -137,7 +141,12 @@ export const AlertDemo: FC<AlertDemoProps> = ({ selectedDemo }) => {
             </AlertDescription>
           </Alert>
         </div>
-        <CustomCodeBlock bgColor="bg-gray-100" code={installcationCode} defaultValue="code" />
+        <CustomCodeBlock
+          containerClassNames="!rounded-t-none"
+          bodyClassNames="bg-gray-100"
+          code={installcationCode}
+          defaultValue="code"
+        />
 
       </div>
 
