@@ -1,0 +1,52 @@
+
+import { CommonTemplate } from "@/components/layout/commonTemplate";
+import { LabelDemo } from "./label-component";
+
+
+export const pageTitle ="Label"
+
+export const pageDescription = "Renders an accessible label associated with controls."
+
+
+export const mainDemo = {
+    title: "Primary",
+    description: "Indicates the primary action or information.",
+    type: "primary",
+    code: `
+<div className='flex items-center space-x-2'>
+  <Checkbox id='term' />
+  <Label htmlFor='term'>Accept terms and conditions</Label>
+</div>
+    `,
+}
+
+export const demos = [];
+
+export const labelConfig = {
+  config: {
+    mainDemo
+  }
+};
+
+export const installationCodeList = [
+  { label: "npm", code: "npx shadcn@latest add label" },
+  { label: "yarn", code: "yarn shadcn@latest add label" },
+  { label: "pnpm", code: "pnpm dlx shadcn@latest add label" },
+  { label: "bun", code: "bunx --bun shadcn@latest add label" }
+];
+
+export const usageCodeList = [
+   { code: "import { Label } from \"@components/ui/label\"" }, 
+   { code: "<Label htmlFor='email'>Your email address</Label>" }
+];
+
+<CommonTemplate 
+    pageTitle={pageTitle} 
+    pageDescription={pageDescription}
+    installationCommands= {installationCodeList}   
+    usageCommands={usageCodeList}
+    config={labelConfig.config}
+>
+  <LabelDemo />
+
+</CommonTemplate>
