@@ -36,7 +36,9 @@ export default function RootLayout({
               <TopBar />
             </div>
           </header>
-          {children}
+          <main className="flex-1 overflow-y-auto">
+            {children}
+          </main>
         </SidebarProvider>
       </body>
     </html>
