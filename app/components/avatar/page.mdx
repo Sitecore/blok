@@ -1,0 +1,116 @@
+
+import { CommonTemplate } from "@/components/layout/commonTemplate";
+import { AvatarDemo } from "./avatar-component";
+
+export const pageTitle = "Avatar";
+export const pageDescription = "Displays an Avatar or a component that looks like an Avatar";
+
+export const mainDemo = {
+  title: "",
+  description: "A versatile avatar component with multiple variants and customization options",
+  type: "default",
+  options: {
+    variantList: [
+      { label: "Default", value: "default", src: "https://github.com/shadcn.png", alt: "@shadcn", fallback: "CN" },
+      { label: "Fallback Only", value: "fallback-only", fallback: "CN" },
+      { label: "Size", value: "size", src: "https://github.com/shadcn.png", alt: "@shadcn", fallback: "CN" },
+      { label: "Rounded", value: "rounded", src: "https://github.com/evilrabbit.png", alt: "@evilrabbit", fallback: "ER" },
+      { label: "Group", value: "group", fallback: "Group" },
+      { label: "Interactive Group", value: "group-interactive", fallback: "Interactive Group" }
+    ],
+    sizeList: [
+      { label: "Small", value: "size-8", className: "size-8" },
+      { label: "Default", value: "size-10", className: "size-10" },
+      { label: "Large", value: "size-12", className: "size-12" },
+      { label: "Extra Large", value: "size-16", className: "size-16" }
+    ],
+    roundingList: [
+      { label: "None", value: "none", className: "" },
+      { label: "Small", value: "rounded", className: "rounded" },
+      { label: "Medium", value: "rounded-md", className: "rounded-md" },
+      { label: "Large", value: "rounded-lg", className: "rounded-lg" },
+      { label: "Extra Large", value: "rounded-xl", className: "rounded-xl" },
+      { label: "Full", value: "rounded-full", className: "rounded-full" }
+    ]
+  },
+  isMaindemo: true
+};
+
+export const demos = [
+  {
+    title: "Variant",
+    type: "variant",
+    options: {
+      variantList: [
+        { label: "Default", value: "default", src: "https://github.com/shadcn.png", alt: "@shadcn", fallback: "CN" },
+        { label: "Fallback Only", value: "fallback-only", fallback: "CN" },
+        { label: "Size", value: "size", src: "https://github.com/shadcn.png", alt: "@shadcn", fallback: "CN" },
+        { label: "Rounded", value: "rounded", src: "https://github.com/evilrabbit.png", alt: "@evilrabbit", fallback: "ER" },
+        { label: "Group", value: "group", fallback: "Group" },
+        { label: "Interactive Group", value: "group-interactive", fallback: "Interactive Group" }
+      ]
+    },
+    isMaindemo: false
+  },
+  {
+    title: "Size",
+    type: "size",
+    options: {
+      sizeList: [
+        { label: "Small", value: "size-8", className: "size-8" },
+        { label: "Default", value: "size-10", className: "size-10" },
+        { label: "Large", value: "size-12", className: "size-12" },
+        { label: "Extra Large", value: "size-16", className: "size-16" }
+      ]
+    },
+    isMaindemo: false
+  },
+  {
+    title: "Rounding",
+    type: "rounding",
+    options: {
+      roundingList: [
+        { label: "None", value: "none", className: "" },
+        { label: "Small", value: "rounded", className: "rounded" },
+        { label: "Medium", value: "rounded-md", className: "rounded-md" },
+        { label: "Large", value: "rounded-lg", className: "rounded-lg" },
+        { label: "Extra Large", value: "rounded-xl", className: "rounded-xl" },
+        { label: "Full", value: "rounded-full", className: "rounded-full" }
+      ]
+    },
+    isMaindemo: false
+  }
+];
+
+export const installationCodeList = [
+  { label: "npm", code: "npx next-forge@latest init" },
+  { label: "yarn", code: "yarn next-forge@latest init" },
+  { label: "pnpm", code: "pnpm next-forge@latest init" },
+  { label: "bun", code: "bunx next-forge@latest init" }
+];
+
+export const usageCodeList = [
+   { code: "import { Avatar, AvatarFallback, AvatarImage } from \"@registry/new-york/ui/avatar\"" }, 
+   { code: "<Avatar><AvatarImage src=\"https://github.com/shadcn.png\" alt=\"@shadcn\" /><AvatarFallback>CN</AvatarFallback></Avatar>" }
+];
+
+export const avatarConfig = {
+  config: {
+    avatarText: "Default",
+    avatarDescription: "Basic avatar with image and fallback",
+    primaryVariant: "default",
+    showIcon: true,
+    demos,
+    mainDemo
+  }
+};
+
+<CommonTemplate 
+    pageTitle={pageTitle} 
+    pageDescription={pageDescription}
+    installationCommands={installationCodeList}   
+    usageCommands={usageCodeList}
+    config={avatarConfig.config}
+>
+  <AvatarDemo selectedDemo={mainDemo} />
+</CommonTemplate>

@@ -1,0 +1,119 @@
+import { CommonTemplate } from "@/components/layout/commonTemplate";
+import { CardDemo } from "./card-component";
+
+export const pageTitle = "Card";
+export const pageDescription = "A flexible card component for displaying content in organized containers with customizable elevation, style, and padding options.";
+
+export const mainDemo = {
+  title: "",
+  description: "A flexible card component with multiple variants and customization options",
+  type: "elevation",
+  options: {
+    elevationList: [
+      { label: "None", value: "none" },
+      { label: "Extra Small", value: "xs" },
+      { label: "Small", value: "sm" },
+      { label: "Base", value: "base" },
+      { label: "Medium", value: "md" },
+      { label: "Large", value: "lg" }
+    ],
+    styleList: [
+      { label: "Flat", value: "flat" },
+      { label: "Outline", value: "outline" },
+      { label: "Filled", value: "filled" }
+    ],
+    paddingList: [
+      { label: "Small", value: "sm" },
+      { label: "Medium", value: "md" },
+      { label: "Large", value: "lg" }
+    ]
+  },
+  isMaindemo: true
+};
+
+export const demos = [
+  {
+    title: "Elevation",
+    type: "elevation",
+    options: {
+      elevationList: [
+        { label: "None", value: "none" },
+        { label: "Extra Small", value: "xs" },
+        { label: "Small", value: "sm" },
+        { label: "Base", value: "base" },
+        { label: "Medium", value: "md" },
+        { label: "Large", value: "lg" }
+      ]
+    },
+    isMaindemo: false
+  },
+  {
+    title: "Style",
+    type: "style",
+    options: {
+      styleList: [
+        { label: "Flat", value: "flat" },
+        { label: "Outline", value: "outline" },
+        { label: "Filled", value: "filled" }
+      ]
+    },
+    isMaindemo: false
+  },
+  {
+    title: "Padding",
+    type: "padding",
+    options: {
+      paddingList: [
+        { label: "Small", value: "sm" },
+        { label: "Medium", value: "md" },
+        { label: "Large", value: "lg" }
+      ]
+    },
+    isMaindemo: false
+  }
+];
+
+export const installationCommands = [
+  {
+    label: "npm",
+    code: "npm install @radix-ui/react-slot lucide-react"
+  },
+  {
+    label: "yarn",
+    code: "yarn add @radix-ui/react-slot lucide-react"
+  },
+  {
+    label: "pnpm",
+    code: "pnpm add @radix-ui/react-slot lucide-react"
+  }
+];
+
+export const usageCommands = [
+  {
+    code: `import {Card,CardContent,CardDescription,CardFooter,CardHeader,CardTitle} from "@/registry/new-york/ui/card`
+  },
+  {
+    code: `<Card style="outline" elevation="md" padding="lg"></Card>`
+  }
+];
+
+export const cardConfig = {
+  config: {
+    cardText: "Default",
+    cardDescription: "Basic card with default styling",
+    primaryVariant: "elevation",
+    showIcon: false,
+    demos,
+    mainDemo
+  }
+};
+
+<CommonTemplate 
+  pageTitle={pageTitle}
+  pageDescription={pageDescription}
+  installationCommands={installationCommands}
+  usageCommands={usageCommands}
+  config={cardConfig.config}
+>
+  <CardDemo selectedDemo={mainDemo} />
+</CommonTemplate>
