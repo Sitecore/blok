@@ -1,0 +1,54 @@
+import { CommonTemplate } from "@/components/layout/commonTemplate"
+
+import { InputDemo } from "./input-component"
+
+export const pageTitle = "Input"
+
+export const pageDescription =
+  "Displays an Input or a component that looks like a Input"
+
+export const demos = []
+
+export const mainDemo = {
+  title: "Email",
+  type:"email",
+  showTitle: false,
+}
+
+export const inputConfig = {
+  config: {
+    alerText: "Primary",
+    alertDescription: "This is a description",
+    primaryVariant: "primary",
+    showIcon: true,
+    demos,
+    mainDemo,
+  },
+}
+
+export const installationCodeList = [
+  { label: "npm", code: "npx next-forge@latest init" },
+  { label: "yarn", code: "yarn next-forge@latest init" },
+  { label: "pnpm", code: "pnpm next-forge@latest init" },
+  { label: "bun", code: "bunx next-forge@latest init" },
+]
+
+export const usageCodeList = [
+  { code: 'import { Input } from "@/components/ui/input"' },
+  {
+    code: `import { Input } from "@/components/ui/input"
+<Input type="email" placeholder="Email" />`,
+  },
+]
+
+<CommonTemplate 
+    pageTitle={pageTitle} 
+    pageDescription={pageDescription}
+    installationCommands= {installationCodeList}   
+    usageCommands={usageCodeList}
+    config={inputConfig.config}
+   
+>
+  <InputDemo  />
+
+</CommonTemplate>
