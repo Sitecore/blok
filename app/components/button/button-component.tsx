@@ -17,7 +17,6 @@ type DemoObject = {
     buttonText: string;
     variant: "default" | "ghost" | "outline" | "link" | null | undefined;
     size: "default" | "sm" | "lg" | "xs" | "icon" | "icon-lg" | "icon-sm" | "icon-xs" | null | undefined;
-    code?: string | undefined;
     sizeOption?: boolean;
     dropdowns?: DropdownConfig[];
     iconOption?: boolean;
@@ -81,6 +80,40 @@ export const ButtonDemo: FC<ButtonDemoProps> = ({ selectedDemo }) => {
                 ?.options.find((opt) => opt.value === selectedColorKey)?.label
         : selectedDemo?.buttonText || "Click me";
 
+    const codeSnippet = useMemo(() => {
+        const variantProp = currentVariant !== "default" ? ` variant="${currentVariant}"` : "";
+        const sizeProp = currentSize !== "default" ? ` size="${currentSize}"` : "";
+        const classProp = colorClass ? ` className="${colorClass}"` : "";
+        const disabledProp = isDisabled ? ` disabled` : "";
+
+        let buttonContent: string;
+        if (selectedDemo?.id === "iconSizes") {
+            buttonContent = `<Icon path={mdiInformationOutline} size={1} />`;
+        } else if (selectedDemo?.id === "states" && isLoading) {
+            buttonContent = `<Icon path={mdiLoading} size={1} className="animate-spin mr-1" />\n        <p className="text-sm">Loading</p>`;
+        } else if (selectedDemo?.id === "icons") {
+            const left = iconState.leftIcon ? `<Icon path={mdiInformationOutline} size={1} className="mr-2" />\n        ` : "";
+            const right = iconState.rightIcon ? `\n        <Icon path={mdiInformationOutline} size={1} className="ml-2" />` : "";
+            const label = typeof buttonLabel === "string" ? buttonLabel : "Click me";
+            buttonContent = `${left}${label}${right}`;
+        } else {
+            buttonContent = typeof buttonLabel === "string" ? buttonLabel : "Click me";
+        }
+
+        return `import { Button } from "@/components/ui/button"
+
+export function ButtonDemo() {
+  return (
+    <div className="flex flex-wrap items-center gap-2 md:flex-row">
+      <Button${variantProp}${sizeProp}${classProp}${disabledProp}>
+        ${buttonContent}
+      </Button>
+    </div>
+  )
+}
+`;
+    }, [currentVariant, currentSize, colorClass, buttonLabel, isDisabled, isLoading, selectedDemo, iconState]);
+
     return (
         <>
             <p className="text-xl font-semibold mb-4">{selectedDemo?.title}</p>
@@ -143,7 +176,7 @@ export const ButtonDemo: FC<ButtonDemoProps> = ({ selectedDemo }) => {
                         {
                             language: "tsx",
                             filename: "LabelExample.tsx",
-                            code: selectedDemo?.code?.trim() || ``
+                            code: codeSnippet.trim() || ``
                         }
                     ]}
                     defaultValue="tsx"
