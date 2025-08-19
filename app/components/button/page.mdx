@@ -1,0 +1,160 @@
+import { CommonTemplate } from "@/components/layout/commonTemplate";
+import { ButtonDemo } from "./button-component";
+
+export const pageTitle ="Button"
+
+export const pageDescription = "Displays a button or a component that looks like a button."
+
+export const mainDemo = {
+    buttonText: "Click me",
+    variant: "default",
+    size: "default",
+    dropdowns: [
+        {
+            id: 'variant',
+            options: [
+                { label: "Default (Solid)", value: "default" },
+                { label: "Ghost", value: "ghost" },
+                { label: "Outline", value: "outline" },
+                { label: "Link", value: "link" }
+            ]
+        },
+        {
+            id: 'color',
+            options: [
+                { label: "Primary", value: "primary" },
+                { label: "Secondary", value: "secondary" }
+            ]
+        }
+    ],
+    sizeOption: true
+}
+
+export const demos = [
+    {
+        id: "variants",
+        title: "Variant",
+        buttonText: "Click me",
+        variant: "default",
+        size: "default",
+        dropdowns: [
+            {
+                id: 'variant',
+                options: [
+                    { label: "Default (Solid)", value: "default" },
+                    { label: "Ghost", value: "ghost" },
+                    { label: "Outline", value: "outline" },
+                    { label: "Link", value: "link" }
+                ]
+            }
+        ]
+    },
+    {
+        id: "sizes",
+        title: "Size",
+        buttonText: "Click me",
+        variant: "default",
+        size: "default",
+        dropdowns: [
+            {
+                id: 'size',
+                options: [
+                    { label: "Default (md)", value: "default" },
+                    { label: "XS", value: "xs" },
+                    { label: "SM", value: "sm" },
+                    { label: "LG", value: "lg" }
+                ]
+            }
+        ]
+    },
+    {
+        id: "iconSizes",
+        description: "Our buttons have size='icon' which has its own sizing relative to the icon size.",
+        buttonText: "Click me",
+        variant: "default",
+        size: "default",
+        dropdowns: [
+            {
+                id: 'icon',
+                options: [
+                    { label: "Icon-md", value: "icon" },
+                    { label: "Icon-xs", value: "icon-xs" },
+                    { label: "Icon-sm", value: "icon-sm" },
+                    { label: "Icon-lg", value: "icon-lg" }
+                ]
+            }
+        ]
+    },
+    {
+        id: "colors",
+        title: "Color Scheme",
+        buttonText: "Click me",
+        variant: "default",
+        size: "default",
+        dropdowns: [
+            {
+                id: 'color',
+                options: [
+                    { label: "Primary", value: "primary" },
+                    { label: "Secondary", value: "secondary" }
+                ]
+            }
+        ]
+    },
+    {
+        id: "states",
+        title: "States",
+        buttonText: "Click me",
+        variant: "default",
+        size: "default",
+        dropdowns: [
+            {
+                id: 'state',
+                options: [
+                    { label: "Active", value: "default" },
+                    { label: "Loading", value: "loading" },
+                    { label: "Disabled", value: "disabled" }
+                ]
+            }
+        ]
+    },
+    {
+        id: "icons",
+        title: "Icons",
+        buttonText: "Click me",
+        variant: "default",
+        size: "default",
+        iconOption: true
+    }
+];
+
+export const ButtonConfig = {
+  config: {
+    demos,
+    mainDemo
+  }
+};
+
+export const installationCodeList = [
+  { label: "npm", code: "npx next-forge@latest init" },
+  { label: "yarn", code: "yarn next-forge@latest init" },
+  { label: "pnpm", code: "pnpm next-forge@latest init" },
+  { label: "bun", code: "bunx next-forge@latest init" }
+];
+
+export const usageCodeList = [
+   { code: "import Button from \"@components/ui/Button\"" }, 
+   { code: "<Button variant='default' colorScheme='default' size='default'>Click me</Button>" }
+];
+
+
+<CommonTemplate 
+    pageTitle={pageTitle} 
+    pageDescription={pageDescription}
+    installationCommands= {installationCodeList}   
+    usageCommands={usageCodeList}
+    config={ButtonConfig.config}
+>
+  <ButtonDemo />
+
+</CommonTemplate>

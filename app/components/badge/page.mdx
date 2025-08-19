@@ -1,0 +1,125 @@
+import { CommonTemplate } from "@/components/layout/commonTemplate";
+import { BadgeDemo } from "./badge-component";
+
+export const pageTitle = "Badge";
+export const pageDescription = "A versatile badge component for displaying status, labels, and interactive elements with customizable styling options.";
+
+export const mainDemo = {
+  title: "",
+  description: "A versatile badge component with multiple variants and customization options",
+  type: "default",
+  options: {
+    variantList: [
+      { label: "Default", value: "default", badgeText: "Default Badge" },
+      { label: "Bold", value: "bold", badgeText: "Bold Badge" }
+    ],
+    sizeList: [
+      { label: "Small", value: "sm" },
+      { label: "Medium", value: "md" },
+      { label: "Large", value: "lg" }
+    ],
+    colorList: [
+      { label: "Neutral", value: "neutral" },
+      { label: "Primary", value: "primary" },
+      { label: "Danger", value: "danger" },
+      { label: "Success", value: "success" },
+      { label: "Warning", value: "warning" },
+      { label: "Yellow", value: "yellow" },
+      { label: "Teal", value: "teal" },
+      { label: "Cyan", value: "cyan" },
+      { label: "Blue", value: "blue" },
+      { label: "Pink", value: "pink" }
+    ]
+  },
+  isMaindemo: true
+};
+
+export const demos = [
+  {
+    title: "Variant",
+    type: "variant",
+    options: {
+      variantList: [
+        { label: "Default", value: "default", badgeText: "Default Badge" },
+        { label: "Bold", value: "bold", badgeText: "Bold Badge" }
+      ]
+    },
+    isMaindemo: false
+  },
+  {
+    title: "Size",
+    type: "size",
+    options: {
+      sizeList: [
+        { label: "Small", value: "sm" },
+        { label: "Medium", value: "md" },
+        { label: "Large", value: "lg" }
+      ]
+    },
+    isMaindemo: false
+  },
+  {
+    title: "Color Scheme",
+    type: "color",
+    options: {
+      colorList: [
+        { label: "Neutral", value: "neutral" },
+        { label: "Primary", value: "primary" },
+        { label: "Danger", value: "danger" },
+        { label: "Success", value: "success" },
+        { label: "Warning", value: "warning" },
+        { label: "Yellow", value: "yellow" },
+        { label: "Teal", value: "teal" },
+        { label: "Cyan", value: "cyan" },
+        { label: "Blue", value: "blue" },
+        { label: "Pink", value: "pink" }
+      ]
+    },
+    isMaindemo: false
+  }
+];
+
+export const installationCommands = [
+  {
+    label: "npm",
+    code: "npm install @radix-ui/react-slot lucide-react"
+  },
+  {
+    label: "yarn",
+    code: "yarn add @radix-ui/react-slot lucide-react"
+  },
+  {
+    label: "pnpm",
+    code: "pnpm add @radix-ui/react-slot lucide-react"
+  }
+];
+
+export const usageCommands = [
+  {
+    code: `import { Badge } from "@/registry/new-york/ui/badge"`
+  },
+  {
+    code: `<Badge size="lg" colorScheme="success">Large Success Badge</Badge>`
+  }
+];
+
+export const badgeConfig = {
+  config: {
+    badgeText: "Default",
+    badgeDescription: "Basic badge with default styling",
+    primaryVariant: "default",
+    showIcon: false,
+    demos,
+    mainDemo
+  }
+};
+
+<CommonTemplate 
+  pageTitle={pageTitle}
+  pageDescription={pageDescription}
+  installationCommands={installationCommands}
+  usageCommands={usageCommands}
+  config={badgeConfig.config}
+>
+  <BadgeDemo selectedDemo={mainDemo} />
+</CommonTemplate>
