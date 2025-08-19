@@ -1,0 +1,95 @@
+import { CommonTemplate } from "@/components/layout/commonTemplate";
+import { CardDemo } from "./card-component";
+
+export const pageTitle = "Card";
+export const pageDescription = "A flexible card component for displaying content in organized containers with customizable elevation, style, and padding options.";
+
+export const variants = [
+  {
+    title: "Elevation Variants",
+    type: "elevation",
+    config: {
+      showElevationSelector: true,
+      showStyleSelector: false,
+      showPaddingSelector: false
+    }
+  },
+  {
+    title: "Style Variants",
+    type: "style",
+    config: {
+      showElevationSelector: false,
+      showStyleSelector: true,
+      showPaddingSelector: false
+    }
+  },
+  {
+    title: "Padding Variants",
+    type: "padding",
+    config: {
+      showElevationSelector: false,
+      showStyleSelector: false,
+      showPaddingSelector: true
+    }
+  }
+];
+
+export const cardConfig = {
+  config: {
+    variants,
+    dynamicProps: {
+      elevations: [
+        { label: "None", value: "none" },
+        { label: "Extra Small", value: "xs" },
+        { label: "Small", value: "sm" },
+        { label: "Base", value: "base" },
+        { label: "Medium", value: "md" },
+        { label: "Large", value: "lg" }
+      ],
+      styles: [
+        { label: "Flat", value: "flat" },
+        { label: "Outline", value: "outline" },
+        { label: "Filled", value: "filled" }
+      ],
+      paddings: [
+        { label: "Small", value: "sm" },
+        { label: "Medium", value: "md" },
+        { label: "Large", value: "lg" }
+      ]
+    }
+  }
+};
+
+export const installationCommands = [
+  {
+    label: "npm",
+    code: "npm install @radix-ui/react-slot lucide-react"
+  },
+  {
+    label: "yarn",
+    code: "yarn add @radix-ui/react-slot lucide-react"
+  },
+  {
+    label: "pnpm",
+    code: "pnpm add @radix-ui/react-slot lucide-react"
+  }
+];
+
+export const usageCommands = [
+  {
+    code: `import {Card,CardContent,CardDescription,CardFooter,CardHeader,CardTitle} from "@/registry/new-york/ui/card`
+  },
+  {
+    code: `<Card style="outline" elevation="md" padding="lg"></Card>`
+  }
+];
+
+<CommonTemplate 
+  pageTitle={pageTitle}
+  pageDescription={pageDescription}
+  installationCommands={installationCommands}
+  usageCommands={usageCommands}
+  config={cardConfig.config}
+>
+  <CardDemo dynamicProps={cardConfig.config.dynamicProps} />
+</CommonTemplate>
