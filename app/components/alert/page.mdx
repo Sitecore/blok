@@ -9,9 +9,6 @@ export const pageDescription = "Displays an Alert or a component that looks like
 
 
 export const mainDemo = {
-  title: "Primary",
-  description: "Indicates the primary action or information.",
-  type: "primary",
   options: {
       variantList: [
       { label: "Primary", value: "primary", alertTitle: "Primary Alert", alertDescription:"This is a primary alert with a title and description." },
@@ -26,13 +23,13 @@ export const mainDemo = {
       { label: "Blue", value: "blue" },
       { label: "Green", value: "green" },
     ]
-  }    
+  },
+  isMaindemo: true    
 }
 
 export const demos = [
   {
     title: "Variant",
-    description: "Indicates the primary action or information.",
     type: "variant",
     options: {
       variantList: [
@@ -42,11 +39,11 @@ export const demos = [
       { label: "Warning", value: "warning", alertTitle: "Warning Alert", alertDescription:"This is a warning alert with a title and description."  },
       { label: "Default", value: "default", alertTitle: "Default Alert", alertDescription:"This is a default alert with a title and description"  }
     ],
-    }    
+    },
+    isMaindemo: false    
   },
   {
     title: "Background Color",
-    description: "Indicates a successful or positive action.",
     type: "Bg-color",
     options: {
       colorList:  [
@@ -55,7 +52,8 @@ export const demos = [
         { label: "Blue", value: "blue" },
         { label: "Green", value: "green" },
       ]
-    }
+    },
+    isMaindemo:false
   }
 ];
 

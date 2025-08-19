@@ -1,0 +1,42 @@
+
+import { CommonTemplate } from "@/components/layout/commonTemplate";
+import { MenubarDemo } from "./menubar-component";
+
+export const pageTitle ="Menubar"
+
+export const pageDescription = "Displays an Menubar or a component that looks like a Menubar"
+
+
+export const installationCodeList = [
+  { label: "npm", code: "npx next-forge@latest init" },
+  { label: "yarn", code: "yarn next-forge@latest init" },
+  { label: "pnpm", code: "pnpm next-forge@latest init" },
+  { label: "bun", code: "bunx next-forge@latest init" }
+];
+
+export const usageCodeList = [
+   { code: "import {component} from \"@components/ui/{componentName}\"" }, 
+   { code: "<Button variant='default' colorScheme='default' size='default'>Click me</Button>" }
+];
+
+
+
+export const alertConfig = {
+  config: {
+    alerText:"Primary",
+    alertDescription:"This is a description",
+    primaryVariant: "primary",
+    showIcon: true,
+  }
+};
+
+<CommonTemplate 
+    pageTitle={pageTitle} 
+    pageDescription={pageDescription}
+    installationCommands= {installationCodeList}   
+    usageCommands={usageCodeList}
+    config={alertConfig.config}
+>
+  <MenubarDemo />
+
+</CommonTemplate>
