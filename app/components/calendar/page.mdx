@@ -1,11 +1,25 @@
 
 import { CommonTemplate } from "@/components/layout/commonTemplate";
-import { MenubarDemo } from "./menubar-component";
+import { TextareaDemo } from "./calendar-component";
 
-export const pageTitle ="Menubar"
 
-export const pageDescription = "Displays an Menubar or a component that looks like a Menubar"
+export const pageTitle ="Calendar"
 
+export const pageDescription = "Displays an Calendar or a component that looks like a Calendar"
+
+
+export const mainDemo = {
+  type: "variant",
+  options: {
+      variantList: [
+      { label: "Default", value: "default"},
+      { label: "Date Range", value: "dateRange"},
+      { label: "disabled", value: "disabled"},
+      { label: "Months View", value: "monthsView"},
+    ]
+  },
+  isMaindemo: true    
+}
 
 export const installationCodeList = [
   { label: "npm", code: "npx next-forge@latest init" },
@@ -20,12 +34,24 @@ export const usageCodeList = [
 ];
 
 
+
+export const alertConfig = {
+  config: {
+    alerText:"Primary",
+    alertDescription:"This is a description",
+    primaryVariant: "primary",
+    showIcon: true,
+    mainDemo
+  }
+};
+
 <CommonTemplate 
     pageTitle={pageTitle} 
     pageDescription={pageDescription}
     installationCommands= {installationCodeList}   
     usageCommands={usageCodeList}
+    config={alertConfig.config}
 >
-  <MenubarDemo />
+  <CalendarDemo />
 
 </CommonTemplate>
