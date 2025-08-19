@@ -1,25 +1,66 @@
 
 import { CommonTemplate } from "@/components/layout/commonTemplate";
-import { TextareaDemo } from "./calendar-component";
+import { CalendarDemo } from "./calendar-component";
 
 
 export const pageTitle ="Calendar"
 
 export const pageDescription = "Displays an Calendar or a component that looks like a Calendar"
 
+export const variantDropdownList = [
+  { label: "Default", value: "default"},
+  { label: "Date Range", value: "dateRange"},
+];
+
+export const MonthViewDropdownList = [
+  { label: "1 Months", value: "1"},
+  { label: "2 Months", value: "2"},
+  { label: "3 Months", value: "3"},
+];
+
+export const isDisabledList = [
+  { label: "Active", value: "active"},
+  { label: "Disabled", value: "disabled"},
+]
+
 
 export const mainDemo = {
   type: "variant",
   options: {
-      variantList: [
-      { label: "Default", value: "default"},
-      { label: "Date Range", value: "dateRange"},
-      { label: "disabled", value: "disabled"},
-      { label: "Months View", value: "monthsView"},
-    ]
+    variantDropdownList,
+    MonthViewDropdownList,
+    isDisabledList  
   },
   isMaindemo: true    
 }
+
+
+export const demos = [
+  {
+    title: "Variant",
+    type: "variant",
+    options: {
+      variantDropdownList
+    },
+    isMaindemo: false    
+  },
+  {
+    title: "Month View",
+    type: "monthView",
+    options: {
+      MonthViewDropdownList 
+    },
+    isMaindemo:false
+  },
+   {
+    title: "Disabled",
+    type: "disabled",
+    options: {
+      isDisabledList 
+    },
+    isMaindemo:false
+  }
+];
 
 export const installationCodeList = [
   { label: "npm", code: "npx next-forge@latest init" },
@@ -29,8 +70,18 @@ export const installationCodeList = [
 ];
 
 export const usageCodeList = [
-   { code: "import {component} from \"@components/ui/{componentName}\"" }, 
-   { code: "<Button variant='default' colorScheme='default' size='default'>Click me</Button>" }
+   { code: "import {Calendar} from \"@/registry/new-york/ui/calendar\"" }, 
+   { code: `
+const [dateRange, setDateRange] = React.useState<DateRange | undefined>({
+  from: new Date("2025-01-12"),  
+  to: new Date("2025-02-11"), 
+});
+<Calendar
+  mode="single"
+  selected={date}
+  onSelect={setDate}
+  className="rounded-md border shadow-sm"
+/>` }
 ];
 
 
@@ -41,6 +92,7 @@ export const alertConfig = {
     alertDescription:"This is a description",
     primaryVariant: "primary",
     showIcon: true,
+    demos,
     mainDemo
   }
 };

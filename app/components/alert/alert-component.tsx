@@ -63,17 +63,17 @@ import {
 } from "@/registry/new-york/ui/alert"
 
 
-export function aretDemo(){
-<Alert variant="${selectedOptions.variantList?.value || "primary"}" ${selectedOptions.colorList?.color ? `className="${selectedOptions.colorList.color}"` : ""}>
+export function AlertDemo(){
+<Alert variant="${selectedOptions.variantDropdownList?.value || "primary"}" ${selectedOptions.colorDropdownList?.color ? `className="${selectedOptions.colorDropdownList.color}"` : ""}>
     <AlertTitle>
-      ${selectedOptions.variantList?.alertTitle || "Default Title"}
+      ${selectedOptions.variantDropdownList?.alertTitle || "Default Title"}
     </AlertTitle>
     <AlertDescription>
-      ${selectedOptions.variantList?.alertDescription || "Default description"}
+      ${selectedOptions.variantDropdownList?.alertDescription || "Default description"}
     </AlertDescription>
   </Alert>
 }
-`.split("\n").filter(line => line.trim() !== "").join("\n");
+`
 
 
   const installcationCode = [
@@ -108,12 +108,12 @@ export function aretDemo(){
 
 
                 <SelectTrigger className="bg-secondary border border-gray-200 text-black [&>svg]:text-black">
-                  <SelectValue placeholder={`Select ${key.replace("List", "")}`} className="[&>span]:text-black" />
+                  <SelectValue placeholder={`Select ${key.replace("DropdownList", "")}`} className="[&>span]:text-black" />
                 </SelectTrigger>
                 <SelectContent className="bg-secondary">
                   {list.map(opt => (
                     <SelectItem key={opt.value} value={opt.value} className="text-black">
-                      {key === "colorList" && opt.color && (
+                      {key === "colorDropdownList" && opt.color && (
                         <span className={`w-4 h-4 ${opt.color} rounded-sm border border-gray-300`} />
                       )}
                       {opt.label}
@@ -135,14 +135,14 @@ export function aretDemo(){
       <div>
         <div className="bg-white p-25 flex items-center justify-center rounded-t-md ">
           <Alert
-            className={`${selectedOptions.colorList?.color || ""} [&>svg]:text-${selectedOptions.variantList?.value || "primary"}-500`}
-            variant={(selectedOptions.variantList?.value as AlertVariant) || "primary"}
+            className={`${selectedOptions.colorDropdownList?.color || ""} [&>svg]:text-${selectedOptions.variantDropdownList?.value || "primary"}-500`}
+            variant={(selectedOptions.variantDropdownList?.value as AlertVariant) || "primary"}
           >
             <AlertTitle>
-              {selectedOptions.variantList?.alertTitle || "Default Title"}
+              {selectedOptions.variantDropdownList?.alertTitle || "Default Title"}
             </AlertTitle>
             <AlertDescription>
-              {selectedOptions.variantList?.alertDescription || "Default description"}
+              {selectedOptions.variantDropdownList?.alertDescription || "Default description"}
             </AlertDescription>
           </Alert>
         </div>

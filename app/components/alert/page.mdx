@@ -8,7 +8,7 @@ export const pageTitle ="Alert"
 export const pageDescription = "Displays an Alert or a component that looks like a Alert"
 
 
-export const variantList = [
+export const variantDropdownList = [
   { label: "Primary", value: "primary", alertTitle: "Primary Alert", alertDescription:"This is a primary alert with a title and description." },
   { label: "Success", value: "success", alertTitle: "Success Alert", alertDescription:"This is a success alert with a title and description." },
   { label: "Danger", value: "danger", alertTitle: "Danger Alert", alertDescription:"This is a danger alert with a title and description." },
@@ -16,7 +16,7 @@ export const variantList = [
   { label: "Default", value: "default", alertTitle: "Default Alert", alertDescription:"This is a default alert with a title and description" },
 ];
 
-export const colorList = [
+export const colorDropdownList = [
   { label: "Primary", value: "primary", color: "bg-primary-100" },
   { label: "Secondary", value: "secondary", color: "bg-secondary" },
   { label: "Blue", value: "blue", color: "bg-blue-100" },
@@ -31,8 +31,16 @@ export const installationCodeList = [
 ];
 
 export const usageCodeList = [
-   { code: "import {component} from \"@components/ui/{componentName}\"" }, 
-   { code: "<Button variant='default' colorScheme='default' size='default'>Click me</Button>" }
+   { code: "import {Alert, AlertDescription, AlertTitle} from \"@/registry/new-york/ui/alert\"" }, 
+   { code: `<Alert variant="primary">
+  <AlertTitle>
+    Default Title
+  </AlertTitle>
+  <AlertDescription>
+    Default description
+  </AlertDescription>
+</Alert>`
+  }
 ];
 
 
@@ -40,8 +48,8 @@ export const usageCodeList = [
 
 export const mainDemo = {
   options: {
-    variantList,
-    colorList,  
+    variantDropdownList,
+    colorDropdownList,  
   },
   isMaindemo: true    
 }
@@ -51,7 +59,7 @@ export const demos = [
     title: "Variant",
     type: "variant",
     options: {
-      variantList
+      variantDropdownList
     },
     isMaindemo: false    
   },
@@ -59,7 +67,7 @@ export const demos = [
     title: "Background Color",
     type: "Bg-color",
     options: {
-      colorList
+      colorDropdownList
     },
     isMaindemo:false
   }
