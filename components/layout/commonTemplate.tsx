@@ -7,7 +7,7 @@ type CommonTemplateProps<T extends object = {}> = {
   pageDescription: string;
   installationCommands: Array<{ label: string; code: string }>;
   usageCommands: Array<{ code: string }>;
-  config: T & { demos?: any[], mainDemo?: any; };
+  config?: T & { demos?: any[], mainDemo?: any; };
   children: ReactElement<any>;
 };
 
@@ -31,7 +31,7 @@ export const CommonTemplate = <T extends object>({
         <div>
           {React.cloneElement(children, {
             ...config,
-            selectedDemo: config.mainDemo
+            selectedDemo: config?.mainDemo
           })}
         </div>
 
@@ -59,7 +59,7 @@ export const CommonTemplate = <T extends object>({
           ))}
         </div>
 
-        {Array.isArray(config.demos) && config.demos.length > 0 && (
+        {Array.isArray(config?.demos) && config.demos.length > 0 && (
           <div className="space-y-4">
             <h2 className="text-2xl md:text-3xl font-semibold" id="examples">Examples</h2>
             <p>The following is examples of our {pageTitle} class </p>
@@ -84,7 +84,7 @@ export const CommonTemplate = <T extends object>({
             <li>
               <a href="#usage" className="hover:underline">Usage</a>
             </li>
-            {Array.isArray(config.demos) && config.demos.length > 0 && (
+            {Array.isArray(config?.demos) && config.demos.length > 0 && (
               <li>
                 <a href="#examples" className="hover:underline">Examples</a>
                 <ul className="ml-4 space-y-2 text-muted-foreground mt-2">
