@@ -1,22 +1,31 @@
 "use client";
 import React, { FC, useState } from "react";
-// import CommandSnippet from "@/components/ui/commandSnippet";
 import CustomCodeBlock from "@/components/code-block"
 import { RefreshCcw } from "lucide-react";
 
 type AlertVariant = "success" | "warning" | "primary" | "default" | "danger";
 
 
+type DemoOption = {
+  label: string;
+  value: string;
+  alertTitle?: string;
+  alertDescription?: string;
+  color?: string;
+};
+
 type DemoObject = {
   title: string;
   description: string;
   type: AlertVariant;
-  options: Record<string, { label: string; value: string, alertTitle?: string, alertDescription?: string }[]>
+  options: Record<string, DemoOption[]>
 };
 
 type AlertDemoProps = {
   selectedDemo?: DemoObject;
 };
+
+
 
 import {
   Select,
@@ -36,7 +45,7 @@ export const AlertDemo: FC<AlertDemoProps> = ({ selectedDemo }) => {
 
   const [selectedOptions, setSelectedOptions] = useState(() => {
     if (!selectedDemo) return {};
-    const initialSelections: Record<string, { label: string; value: string; alertTitle?: string; alertDescription?: string }> = {};
+    const initialSelections: Record<string, DemoOption> = {};
     Object.entries(selectedDemo.options).forEach(([key, list]) => {
       if (list.length > 0) {
         initialSelections[key] = list[0]; // Set the first item as default
@@ -45,14 +54,7 @@ export const AlertDemo: FC<AlertDemoProps> = ({ selectedDemo }) => {
     return initialSelections;
   });
 
-  const colorMap: Record<string, string> = {
-    primary: "bg-primary-100",
-    secondary: "bg-secondary",
-    blue: "bg-blue-100",
-    green: "bg-green-100",
-  };
 
-  // Build code snippet dynamically
   const codeSnippet = `
 import {
   Alert,
@@ -62,7 +64,7 @@ import {
 
 
 export function aretDemo(){
-  <Alert variant="${selectedOptions.variantList?.value || "primary"}" ${selectedOptions.colorList?.value ? `className="${colorMap[selectedOptions.colorList.value]}"` : ""}>
+<Alert variant="${selectedOptions.variantList?.value || "primary"}" ${selectedOptions.colorList?.color ? `className="${selectedOptions.colorList.color}"` : ""}>
     <AlertTitle>
       ${selectedOptions.variantList?.alertTitle || "Default Title"}
     </AlertTitle>
@@ -111,8 +113,8 @@ export function aretDemo(){
                 <SelectContent className="bg-secondary">
                   {list.map(opt => (
                     <SelectItem key={opt.value} value={opt.value} className="text-black">
-                      {key === "colorList" && colorMap[opt.value] && (
-                        <span className={`w-4 h-4 ${colorMap[opt.value]} rounded-sm border border-gray-300`} />
+                      {key === "colorList" && opt.color && (
+                        <span className={`w-4 h-4 ${opt.color} rounded-sm border border-gray-300`} />
                       )}
                       {opt.label}
                     </SelectItem>
@@ -133,7 +135,7 @@ export function aretDemo(){
       <div>
         <div className="bg-white p-25 flex items-center justify-center rounded-t-md ">
           <Alert
-            className={`${colorMap[selectedOptions.colorList?.value] || ""} [&>svg]:text-${selectedOptions.variantList?.value || "primary"}-500`}
+            className={`${selectedOptions.colorList?.color || ""} [&>svg]:text-${selectedOptions.variantList?.value || "primary"}-500`}
             variant={(selectedOptions.variantList?.value as AlertVariant) || "primary"}
           >
             <AlertTitle>
