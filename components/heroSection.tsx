@@ -14,7 +14,7 @@ interface HeroSectionProps {
 
 export function HeroSection({ title, description, buttons = [] }: HeroSectionProps) {
   return (
-    <div className="mx-6 md:mx-12 lg:mx-60 pt-4 md:pt-8 lg:pt-15 ">
+    <div className="mx-6 md:mx-12 lg:mx-40 pt-4 md:pt-8 lg:pt-15 ">
       <div className="flex flex-col space-y-5">
         <h1 className="text-3xl md:text-4xl font-semibold">
           {title}

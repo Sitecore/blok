@@ -31,7 +31,7 @@ const CustomCodeBlock = ({
   lineNumbers = false,
   copyButtonClassName = 'absolute top-1 right-2',
 }: CustomCodeBlockProps) => (
-  <CodeBlock data={code} defaultValue={code[0]?.language}>
+  <CodeBlock data={code} defaultValue={code[0]?.language} className='max-h-[450px] overflow-y-auto'>
     <div className="relative flex justify-end z-10">
       <CodeBlockCopyButton
         className={copyButtonClassName}
