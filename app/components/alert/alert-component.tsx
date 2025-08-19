@@ -54,17 +54,24 @@ export const AlertDemo: FC<AlertDemoProps> = ({ selectedDemo }) => {
 
   // Build code snippet dynamically
   const codeSnippet = `
-<Alert 
-  variant="${selectedOptions.variantList?.value || "primary"}"
-  className="${colorMap[selectedOptions.colorList?.value] || ""}">
-  <AlertTitle>
-    ${selectedOptions.variantList?.alertTitle || "Default Title"}
-  </AlertTitle>
-  <AlertDescription>
-    ${selectedOptions.variantList?.alertDescription || "Default description"}
-  </AlertDescription>
-</Alert>
-`.trim();
+import {
+  Alert,
+  AlertDescription,
+  AlertTitle,
+} from "@/registry/new-york/ui/alert"
+
+
+export function aretDemo(){
+  <Alert variant="${selectedOptions.variantList?.value || "primary"}" ${selectedOptions.colorList?.value ? `className="${colorMap[selectedOptions.colorList.value]}"` : ""}>
+    <AlertTitle>
+      ${selectedOptions.variantList?.alertTitle || "Default Title"}
+    </AlertTitle>
+    <AlertDescription>
+      ${selectedOptions.variantList?.alertDescription || "Default description"}
+    </AlertDescription>
+  </Alert>
+}
+`.split("\n").filter(line => line.trim() !== "").join("\n");
 
 
   const installcationCode = [
@@ -83,13 +90,9 @@ export const AlertDemo: FC<AlertDemoProps> = ({ selectedDemo }) => {
         {Object.entries(selectedDemo.options).map(([key, list]) => (
           <div key={key} className="p-2 pl-0">
             <div className="rounded-md">
-              {Object.keys(selectedDemo.options).length === 1 && (
-                <h1 className="text-2xl md:text-3xl font-semibold pb-2">
-                  {selectedDemo.title}
-                </h1>
-              )}
-
-
+              <h1 className="text-2xl md:text-3xl font-semibold pb-2">
+                {selectedDemo.title}
+              </h1>
               <Select
                 key={selectedOptions[key]?.value ?? "reset"}
                 value={selectedOptions[key]?.value ?? undefined}
@@ -145,7 +148,8 @@ export const AlertDemo: FC<AlertDemoProps> = ({ selectedDemo }) => {
           containerClassNames="!rounded-t-none"
           bodyClassNames="bg-gray-100"
           code={installcationCode}
-          defaultValue="code"
+          defaultValue="jsx"
+          lineNumbers
         />
 
       </div>
