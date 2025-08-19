@@ -79,7 +79,6 @@ export const BreadcrumbDemo: FC<BreadcrumbDemoProps> = ({ selectedDemo }) => {
                     ]}
                     defaultValue="tsx"
                     lineNumbers={true}
-                    
                 />
             </div>
         </>
