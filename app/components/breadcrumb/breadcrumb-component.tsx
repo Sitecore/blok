@@ -10,6 +10,7 @@ type DemoObject = {
     id: string;
     title?: string;
     description?: string;
+    code?: string;
 }
 
 type BreadcrumbDemoProps = {
@@ -17,61 +18,7 @@ type BreadcrumbDemoProps = {
 }
 
 export const BreadcrumbDemo: FC<BreadcrumbDemoProps> = ({ selectedDemo }) => {
-    const codeSnippet = `import Link from "next/link"
-import {
-  Breadcrumb,
-  BreadcrumbEllipsis,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  BreadcrumbList,
-  BreadcrumbPage,
-  BreadcrumbSeparator,
-} from "@/components/ui/breadcrumb"
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
-
-export function BreadcrumbDemo() {
-  return (
-    <Breadcrumb>
-      <BreadcrumbList>
-        <BreadcrumbItem>
-          <BreadcrumbLink asChild>
-            <Link href="/">Home</Link>
-          </BreadcrumbLink>
-        </BreadcrumbItem>
-        <BreadcrumbSeparator />
-        <BreadcrumbItem>
-          <DropdownMenu>
-            <DropdownMenuTrigger className="flex items-center gap-1">
-              <BreadcrumbEllipsis className="size-4" />
-              <span className="sr-only">Toggle menu</span>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="start">
-              <DropdownMenuItem>Documentation</DropdownMenuItem>
-              <DropdownMenuItem>Themes</DropdownMenuItem>
-              <DropdownMenuItem>GitHub</DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
-        </BreadcrumbItem>
-        <BreadcrumbSeparator />
-        <BreadcrumbItem>
-          <BreadcrumbLink asChild>
-            <Link href="/docs/components">Components</Link>
-          </BreadcrumbLink>
-        </BreadcrumbItem>
-        <BreadcrumbSeparator />
-        <BreadcrumbItem>
-          <BreadcrumbPage>Breadcrumb</BreadcrumbPage>
-        </BreadcrumbItem>
-      </BreadcrumbList>
-    </Breadcrumb>
-  )
-}
-`;
+    const { id } = selectedDemo;
 
     return (
         <>
@@ -79,6 +26,7 @@ export function BreadcrumbDemo() {
                 <p className="text-xl font-semibold">{selectedDemo?.title}</p>
                 <p className="font-normal mt-3">{selectedDemo?.description}</p>
             </div>
+
             <div className="rounded-lg bg-white overflow-clip w-full flex flex-col">
                 <div className="w-full py-8 min-h-[200px] flex justify-center items-center">
                     <div className="flex items-center space-x-2">
@@ -89,17 +37,12 @@ export function BreadcrumbDemo() {
                                         <Link href="#">Home</Link>
                                     </BreadcrumbLink>
                                 </BreadcrumbItem>
-                                {selectedDemo?.id === "separator" ? (
-                                    <CustomSeparator />
-                                ) : (
-                                    <BreadcrumbSeparator />
-                                )}
-                                {(selectedDemo?.id === "main" || selectedDemo?.id === "dropdown") && (
-                                    <BreadcrumbDropdown 
-                                        triggerLabel={selectedDemo?.id === "main" ? undefined : "Components"}
-                                    />
-                                )}
-                                {selectedDemo?.id === "collapsed" && (
+
+                                <ConditionalSeparator id={id} />
+
+                                {id === "main" || id === "dropdown" ? (
+                                    <BreadcrumbDropdown triggerLabel={id === "main" ? undefined : "Components"} />
+                                ) : id === "collapsed" ? (
                                     <>
                                         <BreadcrumbItem>
                                             <BreadcrumbEllipsis />
@@ -107,20 +50,16 @@ export function BreadcrumbDemo() {
 
                                         <BreadcrumbSeparator />
                                     </>
-                                )}
-                                {selectedDemo?.id !== "dropdown" && (
+                                ) : null}
+
+                                {id !== "dropdown" && (
                                     <>
                                         <BreadcrumbItem>
                                             <BreadcrumbLink asChild>
                                                 <Link href="#">Components</Link>
                                             </BreadcrumbLink>
                                         </BreadcrumbItem>
-
-                                        {selectedDemo?.id === "separator" ? (
-                                            <CustomSeparator />
-                                        ) : (
-                                            <BreadcrumbSeparator />
-                                        )}
+                                        <ConditionalSeparator id={id} />
                                     </>
                                 )}
                                 <BreadcrumbItem>
@@ -135,11 +74,12 @@ export function BreadcrumbDemo() {
                         {
                             language: "tsx",
                             filename: "LabelExample.tsx",
-                            code: codeSnippet.trim() || ``
+                            code: selectedDemo?.code?.trim() || ``
                         }
                     ]}
                     defaultValue="tsx"
                     lineNumbers={true}
+                    
                 />
             </div>
         </>
@@ -168,16 +108,17 @@ const BreadcrumbDropdown = ({ triggerLabel }: { triggerLabel: string | undefined
                     </DropdownMenuContent>
                 </DropdownMenu>
             </BreadcrumbItem>
-
             <BreadcrumbSeparator />
         </>
     )
 }
 
-const CustomSeparator = () => {
-    return (
+const ConditionalSeparator = ({ id }: { id: string }) => {
+    return id === "separator" ? (
         <BreadcrumbSeparator>
             <Icon path={mdiSlashForward} className="mx-2" />
         </BreadcrumbSeparator>
+    ) : (
+        <BreadcrumbSeparator />
     )
 }
