@@ -75,13 +75,31 @@ export const CommonTemplate = <T extends object>({
 
       {/* Sidebar */}
 
-      <div className="w-[350px] bg-secondary text-sm font-semibold text-foreground p-6">
-        <div className="sticky top-0 max-h-screen overflow-y-auto pt-12">
-          <ul className="space-y-2 text-sm">
-            <li><a href="#installation" className="hover:underline">Installation</a></li>
-            <li><a href="#usage" className="hover:underline">Usage</a></li>
+      <div className="w-[350px] bg-secondary text-sm font-semibold text-muted-foreground">
+        <div className="sticky top-0 max-h-screen overflow-y-auto pt-8">
+          <ul className="space-y-2.5 text-sm">
+            <li>
+              <a href="#installation" className="hover:underline">Installation</a>
+            </li>
+            <li>
+              <a href="#usage" className="hover:underline">Usage</a>
+            </li>
             {Array.isArray(config.demos) && config.demos.length > 0 && (
-              <li><a href="#examples" className="hover:underline">Examples</a></li>
+              <li>
+                <a href="#examples" className="hover:underline">Examples</a>
+                <ul className="ml-4 space-y-2 text-muted-foreground mt-2">
+                  {config.demos.map((demo) => (
+                    <li key={demo.type}>
+                      <a
+                        href={`#example-${demo.type}`}
+                        className="hover:underline"
+                      >
+                        {demo.title}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </li>
             )}
           </ul>
         </div>
