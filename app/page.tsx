@@ -40,7 +40,7 @@ export default function page() {
     },
   ]
   return (
-    <div className="overflow-y-auto">
+    <div className="overflow-y-auto ">
       <div>
         <HeroSection
           title="Build better products faster"
@@ -50,7 +50,7 @@ export default function page() {
       </div>
 
       <div className="mt-15 min-h-screen w-full bg-gray-50 md:mt-10">
-        <div className="mx-6 flex flex-col space-y-2 pt-4 md:mx-12 md:pt-8 lg:mx-60">
+        <div className="mx-6 flex flex-col space-y-2 pt-4 md:mx-12 md:pt-8 lg:mx-40">
           <h1 className="text-lg font-semibold md:text-xl">Add registry</h1>
           <p>
             Start by adding all Blok components from the registry to your
@@ -60,7 +60,7 @@ export default function page() {
             <CustomCodeBlock code={installcationCode} defaultValue="code" />
           </div>
         </div>
-        <div className="mx-6 flex flex-col space-y-2 pt-4 md:mx-12 md:pt-8 lg:mx-60">
+        <div className="mx-6 flex flex-col space-y-2 pt-4 md:mx-12 md:pt-8 lg:mx-40">
           <h1 className="text-lg font-semibold md:text-xl">
             Add component to page
           </h1>
