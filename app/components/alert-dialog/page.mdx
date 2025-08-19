@@ -1,0 +1,71 @@
+
+import { CommonTemplate } from "@/components/layout/commonTemplate";
+import { AlertDialogDemo } from "./alert-dialog-component";
+
+export const pageTitle ="Alert Dialog"
+
+export const pageDescription = "Displays an Alert Dialog or a component that looks like a Alert Dialog"
+
+export const mainDemo = {
+    title: "Primary",
+    showTitle:false
+}
+
+export const alertDialogConfig = {
+  config: {
+    alerText:"Primary",
+    mainDemo
+  }
+};
+
+export const installationCodeList = [
+  { label: "npm", code: "npx next-forge@latest init" },
+  { label: "yarn", code: "yarn next-forge@latest init" },
+  { label: "pnpm", code: "pnpm next-forge@latest init" },
+  { label: "bun", code: "bunx next-forge@latest init" }
+];
+
+export const usageCodeList = [
+   { code: `import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog"` }, 
+   { code: `
+      <AlertDialog>
+        <AlertDialogTrigger asChild>
+          <Button variant="outline" colorScheme="neutral">Show Dialog</Button>
+        </AlertDialogTrigger>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
+            <AlertDialogDescription>
+              This action cannot be undone. This will permanently delete your
+              account and remove your data from our servers.
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel>Cancel</AlertDialogCancel>
+            <AlertDialogAction>Delete</AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>` }
+];
+
+
+<CommonTemplate 
+    pageTitle={pageTitle} 
+    pageDescription={pageDescription}
+    installationCommands= {installationCodeList}   
+    usageCommands={usageCodeList}
+    config={alertDialogConfig.config}
+>
+  <AlertDialogDemo />
+
+</CommonTemplate>

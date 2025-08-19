@@ -8,7 +8,7 @@ export default function ComponentLayout ({
     return (
         <div className="flex flex-1 h-full">
             <Sidebar />
-            <main className="flex-1 overflow-y-auto">
+            <main className="flex-1 overflow-y-auto scrollbar-hidden">
               {children}
             </main>
         </div>
