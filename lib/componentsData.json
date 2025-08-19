@@ -37,8 +37,16 @@
         "code": "<Alert variant=\"primary\">Primary Alert</Alert>"
       },
       {
-        "type": "new",
-        "code": "hello"
+        "type": "warning",
+        "code": "<Alert variant=\"warning\"><AlertTitle>Warning Alert</AlertTitle><AlertDescription>This is a warning alert with a title and description.</AlertDescription></Alert>"
+      },
+      {
+        "type": "success",
+        "code": "<Alert variant=\"success\"><AlertTitle>Success Alert</AlertTitle><AlertDescription>This is a success alert with a title and description.</AlertDescription></Alert>"
+      },
+      {
+        "type": "closable alert",
+        "code": "<Alert variant=\"primary\"><AlertTitle>Closable Alert</AlertTitle><AlertDescription>This is a primary alert with a title and description and even a close button.</AlertDescription><Buttonsize=\"sm\" variant=\"link\"className=\"absolute top-2.5 right-3 h-6 shadow-none\">Click</Button></Alert>"
       }
     ],
     "dependencies": [
@@ -84,7 +92,7 @@
         "type": "default",
         "code": "<Button variant=\"primary\">Primary Button</Button>"
       },
-       {
+      {
         "type": "outline",
         "code": "<Button variant=\"outline\">Outline Button</Button>"
       },

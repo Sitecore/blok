@@ -1,0 +1,43 @@
+
+import { CommonTemplate } from "@/components/layout/commonTemplate";
+import { SeparatorDemo } from "./separator-component";
+
+export const pageTitle ="Separator"
+
+export const pageDescription = "Displays an Separator or a component that looks like a Separator"
+
+export const mainDemo = {
+    title: "Primary",
+    showTitle:false
+}
+
+export const separatorConfig = {
+  config: {
+    alerText:"Primary",
+    mainDemo
+  }
+};
+
+export const installationCodeList = [
+  { label: "npm", code: "npx next-forge@latest init" },
+  { label: "yarn", code: "yarn next-forge@latest init" },
+  { label: "pnpm", code: "pnpm next-forge@latest init" },
+  { label: "bun", code: "bunx next-forge@latest init" }
+];
+
+export const usageCodeList = [
+   { code: `import { Separator } from "@/components/ui/separator` }, 
+   { code: `<Separator />` }
+];
+
+
+<CommonTemplate 
+    pageTitle={pageTitle} 
+    pageDescription={pageDescription}
+    installationCommands= {installationCodeList}   
+    usageCommands={usageCodeList}
+    config={separatorConfig.config}
+>
+  <SeparatorDemo />
+
+</CommonTemplate>
