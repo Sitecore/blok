@@ -151,7 +151,7 @@ export function ButtonDemo() {
     return (
         <>
             <p className="text-xl font-semibold mb-4">{selectedDemo?.title}</p>
-            <p className="text-md font-normal mb-4">{selectedDemo?.description}</p>
+            <p className="font-normal mb-4">{selectedDemo?.description}</p>
             <div className="flex items-center space-x-2 mb-2">
                 {selectedDemo?.dropdowns?.map((dropdown) => (
                     <DropdownSelector
