@@ -622,7 +622,6 @@
     {
       "name": "slider",
       "type": "registry:ui",
-      "active": false,
       "dependencies": [
         "@radix-ui/react-slider"
       ],
@@ -636,7 +635,6 @@
     {
       "name": "sonner",
       "type": "registry:ui",
-      "active": false,
       "dependencies": [
         "sonner",
         "next-themes"
