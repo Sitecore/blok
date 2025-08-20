@@ -89,7 +89,6 @@
     {
       "name": "aspect-ratio",
       "type": "registry:ui",
-      "active": false,
       "dependencies": [
         "@radix-ui/react-aspect-ratio"
       ],
