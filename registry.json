@@ -420,7 +420,7 @@
     {
       "name": "pagination",
       "type": "registry:ui",
-      "active": false,
+      "active": true,
       "registryDependencies": [
         "button"
       ],
