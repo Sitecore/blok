@@ -1,0 +1,52 @@
+
+import { CommonTemplate } from "@/components/layout/commonTemplate";
+import {CollapsibleDemo} from "./collapsible-component";
+export const pageTitle ="Collapsible"
+
+export const pageDescription = "Displays a collapsible or a component that looks like a collapsible."
+
+export const mainDemo = {
+  title: "Main",
+  showTitle:false,
+}
+
+export const collapsibleConfig={
+  config: {
+    alerText:"Primary",
+    mainDemo,
+  }
+};
+
+export const installationCodeList = [
+  { label: "npm", code: "npx next-forge@latest init" },
+  { label: "yarn", code: "yarn next-forge@latest init" },
+  { label: "pnpm", code: "pnpm next-forge@latest init" },
+  { label: "bun", code: "bunx next-forge@latest init" }
+];
+
+export const usageCodeList = [
+   { code: `import {
+  Collapsible,
+  CollapsibleContent,
+  CollapsibleTrigger,
+} from "@/components/ui/collapsible"` }, 
+   { code: `<Collapsible>
+  <CollapsibleTrigger>Can I use this in my project?</CollapsibleTrigger>
+  <CollapsibleContent>
+    Yes. Free to use for personal and commercial projects. No attribution
+    required.
+  </CollapsibleContent>
+</Collapsible>` }
+];
+
+
+<CommonTemplate 
+    pageTitle={pageTitle} 
+    pageDescription={pageDescription}
+    installationCommands= {installationCodeList}   
+    usageCommands={usageCodeList}
+    config={collapsibleConfig.config}
+>
+  <CollapsibleDemo />
+
+</CommonTemplate>
