@@ -4,8 +4,7 @@ import { TooltipDemo } from "./tooltip-component"
 
 export const pageTitle = "Tooltip"
 
-export const pageDescription =
-  "Displays an Tooltip or a component that looks like a Tooltip"
+export const pageDescription = "Displays an Tooltip or a component that looks like a Tooltip"
 
 export const demos = [
   {
@@ -41,13 +40,20 @@ export const installationCodeList = [
 ]
 
 export const usageCodeList = [
-  { code: 'import {component} from "@components/ui/{componentName}"' },
   {
     code: `import {
   Tooltip,
   TooltipContent,
   TooltipTrigger,
-} from "@/components/ui/tooltip`,
+} from "@/components/ui/tooltip"`,
+  },
+  {
+    code: `<Tooltip>
+  <TooltipTrigger>Hover</TooltipTrigger>
+  <TooltipContent>
+    <p>Add to library</p>
+  </TooltipContent>
+</Tooltip>`,
   },
 ]
 
