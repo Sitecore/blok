@@ -8,55 +8,20 @@ export const pageTitle ="Alert"
 export const pageDescription = "Displays an Alert or a component that looks like a Alert"
 
 
-export const mainDemo = {
-  options: {
-      variantList: [
-      { label: "Primary", value: "primary", alertTitle: "Primary Alert", alertDescription:"This is a primary alert with a title and description." },
-      { label: "Success", value: "success", alertTitle: "Success Alert", alertDescription:"This is a success alert with a title and description."  },
-      { label: "Danger", value: "danger", alertTitle: "Danger Alert", alertDescription:"This is a danger alert with a title and description."  },
-      { label: "Warning", value: "warning", alertTitle: "Warning Alert", alertDescription:"This is a warning alert with a title and description."  },
-      { label: "Default", value: "default", alertTitle: "Default Alert", alertDescription:"This is a default alert with a title and description"  }
-    ],
-    colorList:  [
-      {label: "Primary", value: "primary"},
-      {label:"Secondary", value: "secondary"},
-      { label: "Blue", value: "blue" },
-      { label: "Green", value: "green" },
-    ]
-  },
-  isMaindemo: true    
-}
-
-export const demos = [
-  {
-    title: "Variant",
-    type: "variant",
-    options: {
-      variantList: [
-      { label: "Primary", value: "primary", alertTitle: "Primary Alert", alertDescription:"This is a primary alert with a title and description." },
-      { label: "Success", value: "success", alertTitle: "Success Alert", alertDescription:"This is a success alert with a title and description."  },
-      { label: "Danger", value: "danger", alertTitle: "Danger Alert", alertDescription:"This is a danger alert with a title and description."  },
-      { label: "Warning", value: "warning", alertTitle: "Warning Alert", alertDescription:"This is a warning alert with a title and description."  },
-      { label: "Default", value: "default", alertTitle: "Default Alert", alertDescription:"This is a default alert with a title and description"  }
-    ],
-    },
-    isMaindemo: false    
-  },
-  {
-    title: "Background Color",
-    type: "Bg-color",
-    options: {
-      colorList:  [
-        {label: "Primary", value: "primary"},
-        {label:"Secondary", value: "secondary"},
-        { label: "Blue", value: "blue" },
-        { label: "Green", value: "green" },
-      ]
-    },
-    isMaindemo:false
-  }
+export const variantDropdownList = [
+  { label: "Primary", value: "primary", alertTitle: "Primary Alert", alertDescription:"This is a primary alert with a title and description." },
+  { label: "Success", value: "success", alertTitle: "Success Alert", alertDescription:"This is a success alert with a title and description." },
+  { label: "Danger", value: "danger", alertTitle: "Danger Alert", alertDescription:"This is a danger alert with a title and description." },
+  { label: "Warning", value: "warning", alertTitle: "Warning Alert", alertDescription:"This is a warning alert with a title and description." },
+  { label: "Default", value: "default", alertTitle: "Default Alert", alertDescription:"This is a default alert with a title and description" },
 ];
 
+export const colorDropdownList = [
+  { label: "Primary", value: "primary", color: "bg-primary-100" },
+  { label: "Secondary", value: "secondary", color: "bg-secondary" },
+  { label: "Blue", value: "blue", color: "bg-blue-100" },
+  { label: "Green", value: "green", color: "bg-green-100" },
+];
 
 export const installationCodeList = [
   { label: "npm", code: "npx next-forge@latest init" },
@@ -66,10 +31,47 @@ export const installationCodeList = [
 ];
 
 export const usageCodeList = [
-   { code: "import {component} from \"@components/ui/{componentName}\"" }, 
-   { code: "<Button variant='default' colorScheme='default' size='default'>Click me</Button>" }
+   { code: "import {Alert, AlertDescription, AlertTitle} from \"@/registry/new-york/ui/alert\"" }, 
+   { code: `<Alert variant="primary">
+  <AlertTitle>
+    Default Title
+  </AlertTitle>
+  <AlertDescription>
+    Default description
+  </AlertDescription>
+</Alert>`
+  }
 ];
 
+
+
+
+export const mainDemo = {
+  options: {
+    variantDropdownList,
+    colorDropdownList,  
+  },
+  isMaindemo: true    
+}
+
+export const demos = [
+  {
+    title: "Variant",
+    type: "variant",
+    options: {
+      variantDropdownList
+    },
+    isMaindemo: false    
+  },
+  {
+    title: "Background Color",
+    type: "Bg-color",
+    options: {
+      colorDropdownList
+    },
+    isMaindemo:false
+  }
+];
 
 
 export const alertConfig = {

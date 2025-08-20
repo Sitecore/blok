@@ -1,0 +1,89 @@
+import { CommonTemplate } from "@/components/layout/commonTemplate";
+import { InputOTPDemo } from "./input-otp-component";
+
+export const pageTitle = "Input OTP";
+export const pageDescription = "A one-time password input component for secure authentication codes.";
+
+export const mainDemo = {
+  title: "",
+  description: "Interactive input-otp component with different variants",
+  type: "simple",
+  options: {
+    variantList: [
+      { label: "Simple Input OTP", value: "simple" },
+      { label: "Input OTP Pattern", value: "pattern" },
+      { label: "Input OTP with Separator", value: "separator" },
+      { label: "Input OTP with Spacing", value: "spacing" }
+    ]
+  },
+  isMaindemo: true
+};
+
+export const demos = [
+  {
+    title: "Variant",
+    type: "variant",
+    options: {
+      variantList: [
+        { label: "Simple Input OTP", value: "simple" },
+        { label: "Input OTP Pattern", value: "pattern" },
+        { label: "Input OTP with Separator", value: "separator" },
+        { label: "Input OTP with Spacing", value: "spacing" }
+      ]
+    },
+    isMaindemo: false
+  }
+];
+
+export const installationCommands = [
+  {
+    label: "npm",
+    code: "npm install input-otp @radix-ui/react-slot"
+  },
+  {
+    label: "yarn",
+    code: "yarn add input-otp @radix-ui/react-slot"
+  },
+  {
+    label: "pnpm",
+    code: "pnpm add input-otp @radix-ui/react-slot"
+  }
+];
+
+export const usageCommands = [
+  {
+    code: `import {
+  InputOTP,
+  InputOTPGroup,
+  InputOTPSeparator,
+  InputOTPSlot,
+} from "@/registry/new-york/ui/input-otp"`
+  },
+  {
+    code: `<InputOTP maxLength={6}>
+  <InputOTPGroup>
+    <InputOTPSlot index={0} />
+    <InputOTPSlot index={1} />
+  </InputOTPGroup>
+</InputOTP>`
+  }
+];
+
+export const inputOTPConfig = {
+  config: {
+    otpDescription: "Basic input-otp with simple styling",
+    primaryVariant: "simple",
+    demos,
+    mainDemo
+  }
+};
+
+<CommonTemplate 
+  pageTitle={pageTitle}
+  pageDescription={pageDescription}
+  installationCommands={installationCommands}
+  usageCommands={usageCommands}
+  config={inputOTPConfig.config}
+>
+  <InputOTPDemo selectedDemo={mainDemo} />
+</CommonTemplate>
