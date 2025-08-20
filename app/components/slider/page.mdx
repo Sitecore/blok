@@ -1,0 +1,54 @@
+import { CommonTemplate } from "@/components/layout/commonTemplate";
+import { SliderDemo } from "./slider-component";
+
+export const pageTitle ="Slider"
+
+export const pageDescription = "An input where the user selects a value from within a given range."
+
+export const mainDemo = {
+    id: "main",
+    code: `import { cn } from "@/lib/utils"
+import { Slider } from "@/components/ui/slider"
+
+type SliderProps = React.ComponentProps<typeof Slider>
+
+export function SliderDemo({ className, ...props }: SliderProps) {
+    return (
+        <Slider
+            defaultValue={[50]}
+            max={100}
+            step={1}
+            className={'w-[40%]'}
+        />
+    )
+}
+`,
+}
+
+export const sliderConfig = {
+  config: {
+    mainDemo
+  }
+};
+
+export const installationCodeList = [
+  { label: "npm", code: "npx shadcn@latest add label" },
+  { label: "yarn", code: "yarn shadcn@latest add label" },
+  { label: "pnpm", code: "pnpm dlx shadcn@latest add label" },
+  { label: "bun", code: "bunx --bun shadcn@latest add label" }
+];
+
+export const usageCodeList = [
+   { code: "import { slider } from \"@components/ui/slider\"" }, 
+   { code: "<Slider defaultValue={[33]} max={100} step={1} />" }
+];
+
+<CommonTemplate 
+    pageTitle={pageTitle} 
+    pageDescription={pageDescription}
+    installationCommands= {installationCodeList}   
+    usageCommands={usageCodeList}
+    config={sliderConfig.config}
+>
+  <SliderDemo />
+</CommonTemplate>
