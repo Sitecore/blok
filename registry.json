@@ -366,7 +366,7 @@
     {
       "name": "input-otp",
       "type": "registry:ui",
-      "active": false,
+      "active": true,
       "dependencies": [
         "input-otp"
       ],
@@ -651,7 +651,7 @@
     {
       "name": "switch",
       "type": "registry:ui",
-      "active": false,
+      "active": true,
       "dependencies": [
         "@radix-ui/react-switch"
       ],
@@ -676,7 +676,7 @@
     {
       "name": "tabs",
       "type": "registry:ui",
-      "active": false,
+      "active": true,
       "dependencies": [
         "@radix-ui/react-tabs"
       ],
