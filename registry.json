@@ -245,7 +245,7 @@
     {
       "name": "command",
       "type": "registry:ui",
-      "active": false,
+      "active": true,
       "dependencies": [
         "cmdk"
       ],
@@ -502,7 +502,7 @@
     {
       "name": "select",
       "type": "registry:ui",
-      "active": false,
+      "active": true,
       "dependencies": [
         "@radix-ui/react-select"
       ],
