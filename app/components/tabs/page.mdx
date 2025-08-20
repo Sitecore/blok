@@ -1,0 +1,97 @@
+import { CommonTemplate } from "@/components/layout/commonTemplate";
+import { TabsDemo } from "./tabs-component";
+
+export const pageTitle = "Tabs";
+export const pageDescription = "A set of layered sections of content—known as tab panels—that are displayed one at a time.";
+
+export const mainDemo = {
+  title: "",
+  description: "Interactive tabs component with different variants and styles",
+  type: "line",
+  options: {
+    variantList: [
+      { label: "Line Variant", value: "line", tabsContent: "Account" },
+      { label: "Soft-rounded Variant", value: "soft-rounded", tabsContent: "Home" }
+    ],
+    styleList: [
+      { label: "Default", value: "default" },
+      { label: "With Icons", value: "with-icons" },
+      { label: "Content", value: "content" }
+    ]
+  },
+  isMaindemo: true
+};
+
+export const demos = [
+  {
+    title: "Variant",
+    type: "variant",
+    options: {
+      variantList: [
+        { label: "Line Variant", value: "line", tabsContent: "Account" },
+        { label: "Soft-rounded Variant", value: "soft-rounded", tabsContent: "Home" }
+      ]
+    },
+    isMaindemo: false
+  },
+  {
+    title: "Style",
+    type: "style",
+    options: {
+      styleList: [
+        { label: "Default", value: "default" },
+        { label: "With Icons", value: "with-icons" },
+        { label: "Content", value: "content" }
+      ]
+    },
+    isMaindemo: false
+  }
+];
+
+export const installationCommands = [
+  {
+    label: "npm",
+    code: "npm install @radix-ui/react-tabs"
+  },
+  {
+    label: "yarn",
+    code: "yarn add @radix-ui/react-tabs"
+  },
+  {
+    label: "pnpm",
+    code: "pnpm add @radix-ui/react-tabs"
+  }
+];
+
+export const usageCommands = [
+  {
+    code: `import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/registry/new-york/ui/tabs"`
+  },
+  {
+    code: `<Tabs defaultValue="tab1">
+  <TabsList variant="line">
+    <TabsTrigger value="tab1">Tab 1</TabsTrigger>
+  </TabsList>
+</Tabs>`
+  }
+];
+
+export const tabsConfig = {
+  config: {
+    tabsContent: "Account",
+    tabsDescription: "Basic tabs with line variant",
+    primaryVariant: "line",
+    demos,
+    mainDemo
+  }
+};
+
+<CommonTemplate 
+  pageTitle={pageTitle}
+  pageDescription={pageDescription}
+  installationCommands={installationCommands}
+  usageCommands={usageCommands}
+  config={tabsConfig.config}
+>
+  <TabsDemo selectedDemo={mainDemo} />
+</CommonTemplate>

@@ -37,16 +37,8 @@
         "code": "<Alert variant=\"primary\">Primary Alert</Alert>"
       },
       {
-        "type": "warning",
-        "code": "<Alert variant=\"warning\"><AlertTitle>Warning Alert</AlertTitle><AlertDescription>This is a warning alert with a title and description.</AlertDescription></Alert>"
-      },
-      {
-        "type": "success",
-        "code": "<Alert variant=\"success\"><AlertTitle>Success Alert</AlertTitle><AlertDescription>This is a success alert with a title and description.</AlertDescription></Alert>"
-      },
-      {
-        "type": "closable alert",
-        "code": "<Alert variant=\"primary\"><AlertTitle>Closable Alert</AlertTitle><AlertDescription>This is a primary alert with a title and description and even a close button.</AlertDescription><Buttonsize=\"sm\" variant=\"link\"className=\"absolute top-2.5 right-3 h-6 shadow-none\">Click</Button></Alert>"
+        "type": "new",
+        "code": "hello"
       }
     ],
     "dependencies": [
@@ -92,7 +84,7 @@
         "type": "default",
         "code": "<Button variant=\"primary\">Primary Button</Button>"
       },
-      {
+       {
         "type": "outline",
         "code": "<Button variant=\"outline\">Outline Button</Button>"
       },
@@ -203,6 +195,200 @@
     "files": [
       {
         "path": "registry/new-york/ui/component-two.tsx",
+        "type": "registry:ui"
+      }
+    ]
+  },
+  "carousel": {
+    "name": "carousel",
+    "type": "registry:ui",
+    "description": "A carousel component for displaying content in a scrollable container",
+    "sampleCode": "<Carousel>\n  <CarouselContent>\n    <CarouselItem>Content</CarouselItem>\n  </CarouselContent>\n  <CarouselPrevious />\n  <CarouselNext />\n</Carousel>",
+    "imageSrc": "/Blok-site-Illustration.png",
+    "installation": [
+      {
+        "label": "npm",
+        "code": "npm install embla-carousel-react @radix-ui/react-slot"
+      },
+      {
+        "label": "yarn",
+        "code": "yarn add embla-carousel-react @radix-ui/react-slot"
+      },
+      {
+        "label": "pnpm",
+        "code": "pnpm add embla-carousel-react @radix-ui/react-slot"
+      }
+    ],
+    "usage": {
+      "import": "import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/registry/new-york/ui/carousel'",
+      "use": "<Carousel><CarouselContent><CarouselItem>Content</CarouselItem></CarouselContent><CarouselPrevious /><CarouselNext /></Carousel>"
+    },
+    "examples": [
+      {
+        "type": "basic",
+        "code": "<Carousel><CarouselContent><CarouselItem>Basic Item</CarouselItem></CarouselContent><CarouselPrevious /><CarouselNext /></Carousel>"
+      },
+      {
+        "type": "multiple",
+        "code": "<Carousel opts={{align: 'start'}}><CarouselContent><CarouselItem className=\"md:basis-1/2\">Multiple Items</CarouselItem></CarouselContent><CarouselPrevious /><CarouselNext /></Carousel>"
+      },
+      {
+        "type": "responsive",
+        "code": "<Carousel><CarouselContent className=\"-ml-1\"><CarouselItem className=\"pl-1 md:basis-1/2\">Responsive Item</CarouselItem></CarouselContent><CarouselPrevious /><CarouselNext /></Carousel>"
+      }
+    ],
+    "dependencies": [
+      "embla-carousel-react",
+      "@radix-ui/react-slot"
+    ],
+    "files": [
+      {
+        "path": "registry/new-york/ui/carousel.tsx",
+        "type": "registry:ui"
+      }
+    ]
+  },
+  "select": {
+    "name": "select",
+    "type": "registry:ui",
+    "description": "A select component for choosing from a list of options",
+    "sampleCode": "<Select>\n  <SelectTrigger>\n    <SelectValue placeholder=\"Select an option\" />\n  </SelectTrigger>\n  <SelectContent>\n    <SelectItem value=\"option1\">Option 1</SelectItem>\n  </SelectContent>\n</Select>",
+    "imageSrc": "/Blok-site-Illustration.png",
+    "installation": [
+      {
+        "label": "npm",
+        "code": "npm install @radix-ui/react-select"
+      },
+      {
+        "label": "yarn",
+        "code": "yarn add @radix-ui/react-select"
+      },
+      {
+        "label": "pnpm",
+        "code": "pnpm add @radix-ui/react-select"
+      }
+    ],
+    "usage": {
+      "import": "import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/registry/new-york/ui/select'",
+      "use": "<Select><SelectTrigger><SelectValue placeholder=\"Select\" /></SelectTrigger><SelectContent><SelectItem value=\"option1\">Option 1</SelectItem></SelectContent></Select>"
+    },
+    "examples": [
+      {
+        "type": "basic",
+        "code": "<Select><SelectTrigger><SelectValue placeholder=\"Select a fruit\" /></SelectTrigger><SelectContent><SelectItem value=\"apple\">Apple</SelectItem></SelectContent></Select>"
+      },
+      {
+        "type": "large-list",
+        "code": "<Select><SelectTrigger><SelectValue placeholder=\"Large List\" /></SelectTrigger><SelectContent>{Array.from({ length: 100 }).map((_, i) => <SelectItem key={i} value={`item-${i}`}>Item {i}</SelectItem>)}</SelectContent></Select>"
+      },
+      {
+        "type": "with-icons",
+        "code": "<Select><SelectTrigger><SelectValue placeholder={<Icon path={mdiCircleOutline} />} /></SelectTrigger><SelectContent><SelectItem value=\"line\"><Icon path={mdiChartLine} />Line</SelectItem></SelectContent></Select>"
+      }
+    ],
+    "dependencies": [
+      "@radix-ui/react-select"
+    ],
+    "files": [
+      {
+        "path": "registry/new-york/ui/select.tsx",
+        "type": "registry:ui"
+      }
+    ]
+  },
+  "dialog": {
+    "name": "dialog",
+    "type": "registry:ui",
+    "description": "A modal dialog component for displaying content in an overlay",
+    "sampleCode": "<Dialog>\n  <DialogTrigger>Open Dialog</DialogTrigger>\n  <DialogContent>\n    <DialogHeader>\n      <DialogTitle>Title</DialogTitle>\n      <DialogDescription>Description</DialogDescription>\n    </DialogHeader>\n  </DialogContent>\n</Dialog>",
+    "imageSrc": "/Blok-site-Illustration.png",
+    "installation": [
+      {
+        "label": "npm",
+        "code": "npm install @radix-ui/react-dialog"
+      },
+      {
+        "label": "yarn",
+        "code": "yarn add @radix-ui/react-dialog"
+      },
+      {
+        "label": "pnpm",
+        "code": "pnpm add @radix-ui/react-dialog"
+      }
+    ],
+    "usage": {
+      "import": "import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '@/registry/new-york/ui/dialog'",
+      "use": "<Dialog><DialogTrigger>Open</DialogTrigger><DialogContent>Content</DialogContent></Dialog>"
+    },
+    "examples": [
+      {
+        "type": "form",
+        "code": "<Dialog><DialogTrigger>Edit Profile</DialogTrigger><DialogContent><DialogHeader><DialogTitle>Edit Profile</DialogTitle></DialogHeader></DialogContent></Dialog>"
+      },
+      {
+        "type": "scrollable",
+        "code": "<Dialog><DialogTrigger>Scrollable</DialogTrigger><DialogContent><DialogHeader><DialogTitle>Scrollable</DialogTitle></DialogHeader></DialogContent></Dialog>"
+      },
+      {
+        "type": "sticky-footer",
+        "code": "<Dialog><DialogTrigger>Sticky Footer</DialogTrigger><DialogContent><DialogHeader><DialogTitle>Sticky Footer</DialogTitle></DialogHeader><DialogFooter>Footer</DialogFooter></DialogContent></Dialog>"
+      }
+    ],
+    "dependencies": [
+      "@radix-ui/react-dialog"
+    ],
+    "files": [
+      {
+        "path": "registry/new-york/ui/dialog.tsx",
+        "type": "registry:ui"
+      }
+    ]
+  },
+  "input-otp": {
+    "name": "input-otp",
+    "type": "registry:ui",
+    "description": "A one-time password input component for secure authentication codes",
+    "sampleCode": "<InputOTP maxLength={6}>\n  <InputOTPGroup>\n    <InputOTPSlot index={0} />\n    <InputOTPSlot index={1} />\n  </InputOTPGroup>\n</InputOTP>",
+    "imageSrc": "/Blok-site-Illustration.png",
+    "installation": [
+      {
+        "label": "npm",
+        "code": "npm install input-otp @radix-ui/react-slot"
+      },
+      {
+        "label": "yarn",
+        "code": "yarn add input-otp @radix-ui/react-slot"
+      },
+      {
+        "label": "pnpm",
+        "code": "pnpm add input-otp @radix-ui/react-slot"
+      }
+    ],
+    "usage": {
+      "import": "import { InputOTP, InputOTPGroup, InputOTPSlot } from '@/registry/new-york/ui/input-otp'",
+      "use": "<InputOTP maxLength={6}><InputOTPGroup><InputOTPSlot index={0} /></InputOTPGroup></InputOTP>"
+    },
+    "examples": [
+      {
+        "type": "simple",
+        "code": "<InputOTP maxLength={6}><InputOTPGroup><InputOTPSlot index={0} /></InputOTPGroup></InputOTP>"
+      },
+      {
+        "type": "pattern",
+        "code": "<InputOTP maxLength={6} pattern={REGEXP_ONLY_DIGITS}><InputOTPGroup><InputOTPSlot index={0} /></InputOTPGroup></InputOTP>"
+      },
+      {
+        "type": "separator",
+        "code": "<InputOTP maxLength={6}><InputOTPGroup><InputOTPSlot index={0} /></InputOTPGroup><InputOTPSeparator /><InputOTPGroup><InputOTPSlot index={1} /></InputOTPGroup></InputOTP>"
+      }
+    ],
+    "dependencies": [
+      "input-otp",
+      "@radix-ui/react-slot"
+    ],
+    "files": [
+      {
+        "path": "registry/new-york/ui/input-otp.tsx",
         "type": "registry:ui"
       }
     ]
