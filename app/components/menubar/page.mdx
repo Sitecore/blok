@@ -15,27 +15,39 @@ export const installationCodeList = [
 ];
 
 export const usageCodeList = [
-   { code: "import {component} from \"@components/ui/{componentName}\"" }, 
-   { code: "<Button variant='default' colorScheme='default' size='default'>Click me</Button>" }
+   { code: `import {
+  Menubar,
+  MenubarContent,
+  MenubarItem,
+  MenubarMenu,
+  MenubarSeparator,
+  MenubarShortcut,
+  MenubarTrigger,
+} from \"@/components/ui/menubar\"` 
+}, 
+   { code: `<Menubar>
+  <MenubarMenu>
+    <MenubarTrigger>File</MenubarTrigger>
+    <MenubarContent>
+      <MenubarItem>
+        New Tab <MenubarShortcut>⌘T</MenubarShortcut>
+      </MenubarItem>
+      <MenubarItem>New Window</MenubarItem>
+      <MenubarSeparator />
+      <MenubarItem>Share</MenubarItem>
+      <MenubarSeparator />
+      <MenubarItem>Print</MenubarItem>
+    </MenubarContent>
+  </MenubarMenu>
+</Menubar>` }
 ];
 
-
-
-export const alertConfig = {
-  config: {
-    alerText:"Primary",
-    alertDescription:"This is a description",
-    primaryVariant: "primary",
-    showIcon: true,
-  }
-};
 
 <CommonTemplate 
     pageTitle={pageTitle} 
     pageDescription={pageDescription}
     installationCommands= {installationCodeList}   
     usageCommands={usageCodeList}
-    config={alertConfig.config}
 >
   <MenubarDemo />
 

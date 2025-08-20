@@ -23,8 +23,7 @@ export const MenubarDemo: FC = () => {
 
 
 
-    const codeSnippet = `
-import {
+    const codeSnippet = `import {
     Menubar,
     MenubarCheckboxItem,
     MenubarContent,
@@ -41,7 +40,7 @@ import {
     MenubarTrigger,
 } from "@/registry/new-york/ui/menubar"
 
-export function menubarDemo(){
+export function MenubarDemo(){
     <Menubar>
         <MenubarMenu>
             <MenubarTrigger>File</MenubarTrigger>
@@ -276,7 +275,7 @@ export function menubarDemo(){
 
             <CustomCodeBlock
                 containerClassNames="!rounded-t-none"
-                bodyClassNames="bg-gray-100"
+                bodyClassNames="bg-gray-100 max-h-100 overflow-auto scrollbar-hidden"
                 code={installcationCode}
                 defaultValue="jsx"
                 lineNumbers

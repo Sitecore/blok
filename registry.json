@@ -155,7 +155,7 @@
     {
       "name": "calendar",
       "type": "registry:ui",
-      "active": false,
+      "active": true,
       "dependencies": [
         "react-day-picker@8.10.1",
         "date-fns"
