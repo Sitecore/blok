@@ -89,7 +89,6 @@
     {
       "name": "aspect-ratio",
       "type": "registry:ui",
-      "active": false,
       "dependencies": [
         "@radix-ui/react-aspect-ratio"
       ],
@@ -366,7 +365,7 @@
     {
       "name": "input-otp",
       "type": "registry:ui",
-      "active": false,
+      "active": true,
       "dependencies": [
         "input-otp"
       ],
@@ -420,7 +419,7 @@
     {
       "name": "pagination",
       "type": "registry:ui",
-      "active": false,
+      "active": true,
       "registryDependencies": [
         "button"
       ],
@@ -622,7 +621,6 @@
     {
       "name": "slider",
       "type": "registry:ui",
-      "active": false,
       "dependencies": [
         "@radix-ui/react-slider"
       ],
@@ -636,7 +634,6 @@
     {
       "name": "sonner",
       "type": "registry:ui",
-      "active": false,
       "dependencies": [
         "sonner",
         "next-themes"
@@ -651,7 +648,7 @@
     {
       "name": "switch",
       "type": "registry:ui",
-      "active": false,
+      "active": true,
       "dependencies": [
         "@radix-ui/react-switch"
       ],
@@ -676,7 +673,7 @@
     {
       "name": "tabs",
       "type": "registry:ui",
-      "active": false,
+      "active": true,
       "dependencies": [
         "@radix-ui/react-tabs"
       ],

@@ -1,0 +1,56 @@
+import { CommonTemplate } from "@/components/layout/commonTemplate";
+import { AspectRatioDemo } from "./aspect-ratio-component";
+
+export const pageTitle ="Aspect Ratio"
+
+export const pageDescription = "Displays content within a desired ratio."
+
+export const mainDemo = {
+    id: "main",
+    code: `import Image from "next/image"
+
+import { AspectRatio } from "@/components/ui/aspect-ratio"
+
+export function AspectRatioDemo() {
+  return (
+    <AspectRatio ratio={16 / 9} className="bg-muted rounded-lg">
+      <Image
+        src="https://images.unsplash.com/photo-1588345921523-c2dcdb7f1dcd?w=800&dpr=2&q=80"
+        alt="Photo by Drew Beamer"
+        fill
+        className="h-full w-full rounded-lg object-cover dark:brightness-[0.2] dark:grayscale"
+      />
+    </AspectRatio>
+  )
+}`,
+}
+
+export const aspectRatioConfig = {
+  config: {
+    mainDemo
+  }
+};
+
+export const installationCodeList = [
+  { label: "npm", code: "npx shadcn@latest add label" },
+  { label: "yarn", code: "yarn shadcn@latest add label" },
+  { label: "pnpm", code: "pnpm dlx shadcn@latest add label" },
+  { label: "bun", code: "bunx --bun shadcn@latest add label" }
+];
+
+export const usageCodeList = [
+   { code: "import { AspectRatio } from \"@components/ui/aspect-ratio\"" }, 
+   { code: `<AspectRatio ratio={16 / 9}>
+  <Image src="..." alt="Image" className="rounded-md object-cover" />
+</AspectRatio>` }
+];
+
+<CommonTemplate 
+    pageTitle={pageTitle} 
+    pageDescription={pageDescription}
+    installationCommands= {installationCodeList}   
+    usageCommands={usageCodeList}
+    config={aspectRatioConfig.config}
+>
+  <AspectRatioDemo />
+</CommonTemplate>

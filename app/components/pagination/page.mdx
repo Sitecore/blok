@@ -1,0 +1,69 @@
+import { CommonTemplate } from "@/components/layout/commonTemplate"
+
+import { PaginationDemo } from "./pagination-component"
+
+export const pageTitle = "Pagination"
+
+export const pageDescription = "Displays an Pagination or a component that looks like a Pagination"
+
+export const mainDemo = {
+  title: "Main",
+  showTitle: false,
+}
+
+export const paginationConfig = {
+  config: {
+    mainDemo,
+  },
+}
+
+export const installationCodeList = [
+  { label: "npm", code: "npx next-forge@latest init" },
+  { label: "yarn", code: "yarn next-forge@latest init" },
+  { label: "pnpm", code: "pnpm next-forge@latest init" },
+  { label: "bun", code: "bunx next-forge@latest init" },
+]
+
+export const usageCodeList = [
+  {
+    code: `import {
+  Pagination,
+  PaginationContent,
+  PaginationEllipsis,
+  PaginationItem,
+  PaginationLink,
+  PaginationNext,
+  PaginationPrevious,
+} from "@/components/ui/pagination"`,
+  },
+  {
+    code: `<Pagination>
+  <PaginationContent>
+    <PaginationItem>
+      <PaginationPrevious href="#" />
+    </PaginationItem>
+    <PaginationItem>
+      <PaginationLink href="#">1</PaginationLink>
+    </PaginationItem>
+    <PaginationItem>
+      <PaginationEllipsis />
+    </PaginationItem>
+    <PaginationItem>
+      <PaginationNext href="#" />
+    </PaginationItem>
+  </PaginationContent>
+</Pagination>`,
+  },
+]
+
+<CommonTemplate 
+    pageTitle={pageTitle} 
+    pageDescription={pageDescription}
+    installationCommands= {installationCodeList}   
+    usageCommands={usageCodeList}
+    config={paginationConfig.config}
+   
+>
+  <PaginationDemo  />
+
+</CommonTemplate>

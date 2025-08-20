@@ -23,7 +23,6 @@ import { Input } from "@/registry/new-york/ui/input"
 import {
   NavigationMenu,
   NavigationMenuItem,
-  NavigationMenuLink,
   NavigationMenuList,
   navigationMenuTriggerStyle,
 } from "@/registry/new-york/ui/navigation-menu"
@@ -38,7 +37,7 @@ export default function TopBar() {
       <div className="flex items-center justify-between">
         {/* Left: Logo + Navigation */}
         <div className="flex items-center gap-4">
-          <Link href="/">
+          <Link href="/" className="h-7 w-auto object-contain hover:bg-primary-background hover:text-primary-fg active:bg-primary-background active:text-primary-fg rounded p-1 transition-colors">
             <img
               src={externalLinks?.Block_Logo || ""}
               alt="Logo"
@@ -51,12 +50,8 @@ export default function TopBar() {
             <NavigationMenuList className="flex gap-3">
               {navItems.map((item) => (
                 <NavigationMenuItem key={item.name}>
-                  <Link href={item.href} passHref legacyBehavior>
-                    <NavigationMenuLink
-                      className={navigationMenuTriggerStyle()}
-                    >
-                      {item.name}
-                    </NavigationMenuLink>
+                  <Link href={item.href} className={`${navigationMenuTriggerStyle()} hover:bg-primary-background hover:text-primary-fg active:bg-primary-background active:text-primary-fg`}>
+                    {item.name}
                   </Link>
                 </NavigationMenuItem>
               ))}
@@ -74,7 +69,7 @@ export default function TopBar() {
               <DropdownMenuContent align="start">
                 {navItems.map((item) => (
                   <DropdownMenuItem asChild key={item.name}>
-                    <Link href={item.href}>{item.name}</Link>
+                    <Link href={item.href} className="hover:bg-primary-background hover:text-primary-fg active:bg-primary-background active:text-primary-fg">{item.name}</Link>
                   </DropdownMenuItem>
                 ))}
               </DropdownMenuContent>
@@ -90,10 +85,10 @@ export default function TopBar() {
               size={0.9}
               className="absolute top-2.5 left-3 text-gray-400"
             />
-            <Input placeholder="Search Block" className="py-2 pr-3 pl-10" />
+            <Input placeholder="Search Blok" className="py-2 pr-3 pl-10" />
           </div>
 
-          <Button variant="ghost" className="hidden items-center gap-1 sm:flex">
+          <Button variant="ghost" className="hidden items-center gap-1 sm:flex hover:bg-primary-background hover:text-primary-fg active:bg-primary-background active:text-primary-fg">
             <a
               href={externalLinks?.Block_site || ""}
               target="_blank"
@@ -105,7 +100,7 @@ export default function TopBar() {
             </a>
           </Button>
 
-          <Button variant="ghost" size="icon" asChild>
+          <Button variant="ghost" size="icon" asChild className="hover:bg-primary-background hover:text-primary-fg active:bg-primary-background active:text-primary-fg">
             <a
               href={externalLinks?.Block_github || ""}
               target="_blank"
@@ -115,11 +110,11 @@ export default function TopBar() {
             </a>
           </Button>
 
-          <Button variant="ghost" size="icon" onClick={toggleDarkMode}>
+          <Button variant="ghost" size="icon" onClick={toggleDarkMode} className="hover:bg-primary-background hover:text-primary-fg active:bg-primary-background active:text-primary-fg">
             <Icon path={mdiCircleHalfFull} size={1} />
           </Button>
         </div>
       </div>
     </header>
-  )
+  );
 }
