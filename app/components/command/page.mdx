@@ -1,0 +1,68 @@
+
+import { CommonTemplate } from "@/components/layout/commonTemplate";
+import {CommandDemo} from "./command-component";
+
+export const pageTitle ="Command"
+
+export const pageDescription = "Displays a command or a component that looks like a command."
+
+export const mainDemo = {
+  title: "Main",
+  showTitle:false,
+}
+
+export const commandConfig={
+  config: {
+    alerText:"Primary",
+    mainDemo,
+  }
+};
+
+export const installationCodeList = [
+  { label: "npm", code: "npx next-forge@latest init" },
+  { label: "yarn", code: "yarn next-forge@latest init" },
+  { label: "pnpm", code: "pnpm next-forge@latest init" },
+  { label: "bun", code: "bunx next-forge@latest init" }
+];
+
+export const usageCodeList = [
+   { code: `import {
+  CommandDialog,
+  CommandEmpty,
+  CommandGroup,
+  CommandInput,
+  CommandItem,
+  CommandList,
+  CommandSeparator,
+  CommandShortcut,
+} from "@/components/ui/command"` }, 
+   { code: `<CommandDialog>
+  <CommandInput placeholder="Type a command or search..." />
+  <CommandList>
+    <CommandEmpty>No results found.</CommandEmpty>
+    <CommandGroup heading="Suggestions">
+      <CommandItem>Calendar</CommandItem>
+      <CommandItem>Search Emoji</CommandItem>
+      <CommandItem>Calculator</CommandItem>
+    </CommandGroup>
+    <CommandSeparator />
+    <CommandGroup heading="Settings">
+      <CommandItem>Profile<CommandShortcut>⌘P</CommandShortcut></CommandItem>
+      <CommandItem>Billing<CommandShortcut>⌘B</CommandShortcut></CommandItem>
+      <CommandItem>Settings<CommandShortcut>⌘S</CommandShortcut></CommandItem>
+    </CommandGroup>
+  </CommandList>
+</CommandDialog>` }
+];
+
+
+<CommonTemplate 
+    pageTitle={pageTitle} 
+    pageDescription={pageDescription}
+    installationCommands= {installationCodeList}   
+    usageCommands={usageCodeList}
+    config={commandConfig.config}
+>
+  <CommandDemo />
+
+</CommonTemplate>
