@@ -1,0 +1,78 @@
+import { CommonTemplate } from "@/components/layout/commonTemplate";
+import { SwitchDemo } from "./switch-component";
+
+export const pageTitle = "Switch";
+export const pageDescription = "A control that allows users to toggle between checked and unchecked states with customizable variants.";
+
+export const mainDemo = {
+  title: "",
+  description: "Interactive switch component with different variants",
+  type: "primary",
+  options: {
+    variantList: [
+      { label: "Primary", value: "primary", switchLabel: "Primary Switch" },
+      { label: "Success", value: "success", switchLabel: "Success Switch" },
+      { label: "Danger", value: "danger", switchLabel: "Danger Switch" }
+    ]
+  },
+  isMaindemo: true
+};
+
+export const demos = [
+  {
+    title: "Variant",
+    type: "variant",
+    options: {
+      variantList: [
+        { label: "Primary", value: "primary", switchLabel: "Primary Switch" },
+        { label: "Success", value: "success", switchLabel: "Success Switch" },
+        { label: "Danger", value: "danger", switchLabel: "Danger Switch" }
+      ]
+    },
+    isMaindemo: false
+  }
+];
+
+export const installationCommands = [
+  {
+    label: "npm",
+    code: "npm install @radix-ui/react-switch"
+  },
+  {
+    label: "yarn",
+    code: "yarn add @radix-ui/react-switch"
+  },
+  {
+    label: "pnpm",
+    code: "pnpm add @radix-ui/react-switch"
+  }
+];
+
+export const usageCommands = [
+  {
+    code: `import { Switch } from "@/registry/new-york/ui/switch"`
+  },
+  {
+    code: `<Switch variant="primary" />`
+  }
+];
+
+export const switchConfig = {
+  config: {
+    switchLabel: "Primary Switch",
+    switchDescription: "Basic switch with primary styling",
+    primaryVariant: "primary",
+    demos,
+    mainDemo
+  }
+};
+
+<CommonTemplate 
+  pageTitle={pageTitle}
+  pageDescription={pageDescription}
+  installationCommands={installationCommands}
+  usageCommands={usageCommands}
+  config={switchConfig.config}
+>
+  <SwitchDemo selectedDemo={mainDemo} />
+</CommonTemplate>
