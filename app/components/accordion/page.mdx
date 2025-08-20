@@ -1,0 +1,45 @@
+import { CommonTemplate } from "@/components/layout/commonTemplate";
+import { AccordionDemo } from "./accordion-component";
+
+export const pageTitle ="Accordion"
+
+export const pageDescription = "A vertically stacked set of interactive headings that each reveal a section of content."
+
+export const mainDemo = {
+    id: "main"
+}
+
+export const accordionConfig = {
+  config: {
+    mainDemo
+  }
+};
+
+export const installationCodeList = [
+  { label: "npm", code: "npx shadcn@latest add accordion" },
+  { label: "yarn", code: "yarn shadcn@latest add accordion" },
+  { label: "pnpm", code: "pnpm dlx shadcn@latest add accordion" },
+  { label: "bun", code: "bunx --bun shadcn@latest add accordion" }
+];
+
+export const usageCodeList = [
+   { code: "import { Accordion } from \"@components/ui/accordion\"" }, 
+   { code: `<Accordion type="single" collapsible>
+  <AccordionItem value="item-1">
+    <AccordionTrigger>Is it accessible?</AccordionTrigger>
+    <AccordionContent>
+      Yes. It adheres to the WAI-ARIA design pattern.
+    </AccordionContent>
+  </AccordionItem>
+</Accordion>` }
+];
+
+<CommonTemplate 
+    pageTitle={pageTitle} 
+    pageDescription={pageDescription}
+    installationCommands= {installationCodeList}   
+    usageCommands={usageCodeList}
+    config={accordionConfig.config}
+>
+  <AccordionDemo />
+</CommonTemplate>

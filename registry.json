@@ -19,7 +19,6 @@
     {
       "name": "accordion",
       "type": "registry:ui",
-      "active": false,
       "dependencies": [
         "@radix-ui/react-accordion"
       ],
