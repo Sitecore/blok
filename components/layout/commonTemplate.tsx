@@ -71,8 +71,8 @@ export const CommonTemplate = <T extends object>({
             <h2 className="text-2xl md:text-3xl font-semibold" id="examples">Examples</h2>
             <p>The following is examples of our {pageTitle} class </p>
 
-            {config.demos?.map((demo) => (
-              <React.Fragment key={demo.type}>
+            {config.demos?.map((demo, index) => (
+              <React.Fragment key={index}>
                 {React.cloneElement(children, { ...config, selectedDemo: demo })}
               </React.Fragment>
             ))}
@@ -95,8 +95,8 @@ export const CommonTemplate = <T extends object>({
               <li>
                 <a href="#examples" className="hover:underline">Examples</a>
                 <ul className="ml-4 space-y-2 text-muted-foreground mt-2">
-                  {config.demos.map((demo) => (
-                    <li key={demo.type}>
+                  {config.demos.map((demo, index) => (
+                    <li key={index}>
                       <a
                         href={`#example-${demo.type}`}
                         className="hover:underline"
