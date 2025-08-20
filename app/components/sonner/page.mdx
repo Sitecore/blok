@@ -1,0 +1,97 @@
+import { CommonTemplate } from "@/components/layout/commonTemplate";
+import { SonnerDemo } from "./sonner-component";
+import CustomCodeBlock from "@/components/code-block";
+
+export const pageTitle ="Sonner"
+
+export const pageDescription = "An opinionated toast component for React."
+
+export const mainDemo = {
+    id: "main",
+    code: `"use client"
+
+import { toast } from "sonner"
+
+import { Button } from "@/components/ui/button"
+
+export function SonnerDemo() {
+  return (
+    <Button
+      variant="outline"
+      onClick={() =>
+        toast("Event has been created", {
+          description: "Sunday, December 03, 2023 at 9:00 AM",
+          action: {
+            label: "Undo",
+            onClick: () => console.log("Undo"),
+          },
+        })
+      }
+    >
+      Show Toast
+    </Button>
+  )
+}
+`,
+}
+
+export const sonnerConfig = {
+  config: {
+    mainDemo
+  }
+};
+
+export const installationCodeList = [
+  { label: "npm", code: "npx shadcn@latest add label" },
+  { label: "yarn", code: "yarn shadcn@latest add label" },
+  { label: "pnpm", code: "pnpm dlx shadcn@latest add label" },
+  { label: "bun", code: "bunx --bun shadcn@latest add label" }
+];
+
+export const InstallationSteps = () => {
+  const code = `import { Toaster } from "@/components/ui/sonner"
+ 
+export default function RootLayout({ children }) {
+  return (
+    <html lang="en">
+      <head />
+      <body>
+        <main>{children}</main>
+        <Toaster />
+      </body>
+    </html>
+  )
+}`;
+
+  return (
+    <>
+      <p className='mb-4'>Add the Toaster component</p>
+      <CustomCodeBlock
+        code={[
+          {
+            language: "jsx",
+            filename: "app/layout.jsx",
+            code: code,
+          },
+        ]}
+        defaultValue="jsx"
+      />
+    </>
+  )
+}
+
+export const usageCodeList = [
+   { code: "import { toast } from \"@components/ui/sonner\"" }, 
+   { code: "toast(\"Event has been created.\")" }
+];
+
+<CommonTemplate 
+    pageTitle={pageTitle} 
+    pageDescription={pageDescription}
+    installationCommands= {installationCodeList}  
+    installationSteps={<InstallationSteps />} 
+    usageCommands={usageCodeList}
+    config={sonnerConfig.config}
+>
+  <SonnerDemo />
+</CommonTemplate>

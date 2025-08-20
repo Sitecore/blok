@@ -6,6 +6,7 @@ type CommonTemplateProps<T extends object = {}> = {
   pageTitle: string;
   pageDescription: string;
   installationCommands: Array<{ label: string; code: string }>;
+  installationSteps?: ReactElement<any>;
   usageCommands: Array<{ code: string }>;
   config: T & { demos?: any[], mainDemo?: any; };
   children: ReactElement<any>;
@@ -15,6 +16,7 @@ export const CommonTemplate = <T extends object>({
   pageTitle,
   pageDescription,
   installationCommands,
+  installationSteps,
   usageCommands,
   config,
   children
@@ -38,6 +40,11 @@ export const CommonTemplate = <T extends object>({
         <div className="space-y-4">
           <h2 className="text-2xl md:text-3xl font-semibold" id="installation">Installaton</h2>
           <CommandSnippet commands={installationCommands} />
+          {installationSteps && (
+            <div className="mt-6">
+              {installationSteps}
+            </div>
+          )}
         </div>
 
         <div className="space-y-4">
