@@ -2,8 +2,6 @@
 
 import { FC } from "react";
 import CustomCodeBlock from "../label/code-block";
-import { AspectRatio } from "@/registry/new-york/ui/aspect-ratio";
-import Image from "next/image";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/registry/new-york/ui/accordion";
 
 type DemoObject = {
