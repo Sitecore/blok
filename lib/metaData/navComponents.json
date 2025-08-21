@@ -1,0 +1,29 @@
+{
+    "items": [
+        {
+            "name": "border-radius",
+            "type": "registry:theme",
+            "active": true
+        },
+        {
+            "name": "breakpoint",
+            "type": "registry:theme",
+            "active": true
+        },
+        {
+            "name": "color",
+            "type": "registry:theme",
+            "active": true
+        },
+        {
+            "name": "shadow",
+            "type": "registry:theme",
+            "active": true
+        },
+        {
+            "name": "typogrpahy",
+            "type": "registry:theme",
+            "active": true
+        }
+    ]
+}
