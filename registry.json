@@ -339,7 +339,7 @@
     {
       "name": "hover-card",
       "type": "registry:ui",
-      "active": false,
+      "active": true,
       "dependencies": [
         "@radix-ui/react-hover-card"
       ],

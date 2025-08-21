@@ -1,0 +1,54 @@
+import { CommonTemplate } from "@/components/layout/commonTemplate"
+
+import { HoverCardDemo } from "./hover-card-component"
+
+export const pageTitle = "Hover Card"
+
+export const pageDescription = "Displays an Hover Card or a component that looks like a Hover Card"
+
+export const mainDemo = {
+  showTitle: false,
+}
+
+export const paginationConfig = {
+  config: {
+    mainDemo,
+  },
+}
+
+export const installationCodeList = [
+  { label: "npm", code: "npx next-forge@latest init" },
+  { label: "yarn", code: "yarn next-forge@latest init" },
+  { label: "pnpm", code: "pnpm next-forge@latest init" },
+  { label: "bun", code: "bunx next-forge@latest init" },
+]
+
+export const usageCodeList = [
+  {
+    code: `import {
+  HoverCard,
+  HoverCardContent,
+  HoverCardTrigger,
+} from "@/components/ui/hover-card"`,
+  },
+  {
+    code: `<HoverCard>
+  <HoverCardTrigger>Hover</HoverCardTrigger>
+  <HoverCardContent>
+    The React Framework – created and maintained by @vercel.
+  </HoverCardContent>
+</HoverCard>`,
+  },
+]
+
+<CommonTemplate 
+    pageTitle={pageTitle} 
+    pageDescription={pageDescription}
+    installationCommands= {installationCodeList}   
+    usageCommands={usageCodeList}
+    config={paginationConfig.config}
+   
+>
+  <HoverCardDemo  />
+
+</CommonTemplate>
