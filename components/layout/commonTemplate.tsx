@@ -1,6 +1,7 @@
 import React, { ReactElement } from "react";
 import CommandSnippet from "@/components/ui/commandSnippet";
 import CustomCodeBlock from "@/components/code-block"
+import RightSidebar from "./rightSidebar";
 
 type CommonTemplateProps<T extends object = {}> = {
   pageTitle: string;
@@ -43,7 +44,7 @@ export const CommonTemplate = <T extends object>({
         )}
 
         <div className="space-y-4">
-          <h2 className="text-2xl md:text-3xl font-semibold" id="installation">Installaton</h2>
+          <h2 className="text-2xl md:text-3xl font-semibold scroll-mt-6" id="installation">Installaton</h2>
           <CommandSnippet commands={installationCommands} />
           {installationSteps && (
             <div className="mt-6">
@@ -53,7 +54,7 @@ export const CommonTemplate = <T extends object>({
         </div>
 
         <div className="space-y-4">
-          <h2 className="text-2xl md:text-3xl font-semibold" id="usage">Usage</h2>
+          <h2 className="text-2xl md:text-3xl font-semibold scroll-mt-6" id="usage">Usage</h2>
           {usageCommands.map((item, idx) => (
             <div key={idx}>
               <CustomCodeBlock
@@ -72,7 +73,7 @@ export const CommonTemplate = <T extends object>({
         </div>
 
         <div className="space-y-4">
-          <h2 className="text-2xl md:text-3xl font-semibold" id="examples">Examples</h2>
+          <h2 className="text-2xl md:text-3xl font-semibold scroll-mt-6" id="examples">Examples</h2>
           <p>The following is examples of our {pageTitle} class </p>
           {page === "component" && Array.isArray(config?.demos) && config.demos.length > 0 && (
             <>
@@ -100,37 +101,9 @@ export const CommonTemplate = <T extends object>({
 
       </div>
 
-      {/* Sidebar */}
+      {/* Side bar */}
+      <RightSidebar demos={config?.demos} />
 
-      <div className="w-[350px] bg-secondary text-sm font-semibold text-muted-foreground">
-        <div className="sticky top-0 max-h-screen overflow-y-auto pt-8">
-          <ul className="space-y-2.5 text-sm">
-            <li>
-              <a href="#installation" className="hover:underline">Installation</a>
-            </li>
-            <li>
-              <a href="#usage" className="hover:underline">Usage</a>
-            </li>
-            {Array.isArray(config?.demos) && config.demos.length > 0 && (
-              <li>
-                <a href="#examples" className="hover:underline">Examples</a>
-                <ul className="ml-4 space-y-2 text-muted-foreground mt-2">
-                  {config.demos.map((demo, index) => (
-                    <li key={index}>
-                      <a
-                        href={`#example-${demo.type}`}
-                        className="hover:underline"
-                      >
-                        {demo.title}
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-              </li>
-            )}
-          </ul>
-        </div>
-      </div>
     </div>
   );
 };
