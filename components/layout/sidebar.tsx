@@ -1,6 +1,6 @@
 'use client'
 
-import { blockItems, uiItems } from "@/lib/registry-items";
+import { blockItems, uiItems, themeItems } from "@/lib/registry-items";
 import { cn } from "@/registry/new-york/lib/utils";
 import { Sidebar, SidebarContent, SidebarMenu, SidebarMenuButton, SidebarMenuItem } from "@/registry/new-york/ui/sidebar";
 import Link from "next/link";
@@ -10,7 +10,10 @@ export default function AppSidebar() {
     const pathname = usePathname();
 
     // Dynamically generate the sidebar items based on the registry
-    const items = pathname.startsWith('/blocks') ? blockItems : uiItems;
+    const items =
+        (pathname.startsWith("/blocks") && blockItems) ||
+        (pathname.startsWith("/theming") && themeItems) ||
+        uiItems;
 
     return (
         <Sidebar className="w-[200px] bg-[#f7f7f7] py-6 px-2">
@@ -21,7 +24,7 @@ export default function AppSidebar() {
 
                         return (
                             <SidebarMenuItem key={item.href}>
-                                <SidebarMenuButton 
+                                <SidebarMenuButton
                                     className={cn(
                                         "rounded-md px-2.5",
                                         "hover:bg-primary-background hover:text-primary-fg active:bg-primary-background active:text-primary-fg",
