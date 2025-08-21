@@ -1,0 +1,53 @@
+import { CommonTemplate } from "@/components/layout/commonTemplate"
+
+import { PopoverDemo } from "./popover-component"
+
+export const pageTitle = "Popover"
+
+export const pageDescription =
+  "Displays an Popover or a component that looks like a Popover"
+
+export const mainDemo = {
+  showTitle: false,
+}
+
+export const paginationConfig = {
+  config: {
+    mainDemo,
+  },
+}
+
+export const installationCodeList = [
+  { label: "npm", code: "npx next-forge@latest init" },
+  { label: "yarn", code: "yarn next-forge@latest init" },
+  { label: "pnpm", code: "pnpm next-forge@latest init" },
+  { label: "bun", code: "bunx next-forge@latest init" },
+]
+
+export const usageCodeList = [
+  {
+    code: `import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover"`,
+  },
+  {
+    code: `<Popover>
+  <PopoverTrigger>Open</PopoverTrigger>
+  <PopoverContent>Place content for the popover here.</PopoverContent>
+</Popover>`,
+  },
+]
+
+<CommonTemplate 
+    pageTitle={pageTitle} 
+    pageDescription={pageDescription}
+    installationCommands= {installationCodeList}   
+    usageCommands={usageCodeList}
+    config={paginationConfig.config}
+   
+>
+  <PopoverDemo  />
+
+</CommonTemplate>

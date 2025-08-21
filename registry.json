@@ -432,7 +432,7 @@
     {
       "name": "popover",
       "type": "registry:ui",
-      "active": false,
+      "active": true,
       "dependencies": [
         "@radix-ui/react-popover"
       ],
