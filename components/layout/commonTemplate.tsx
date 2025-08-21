@@ -10,6 +10,7 @@ type CommonTemplateProps<T extends object = {}> = {
   usageCommands: Array<{ code: string }>;
   config?: T & { demos?: any[], mainDemo?: any; };
   children: ReactElement<any>;
+  page?: "blok" | "component";
 };
 
 export const CommonTemplate = <T extends object>({
@@ -19,6 +20,7 @@ export const CommonTemplate = <T extends object>({
   installationSteps,
   usageCommands,
   config,
+  page = "component",
   children
 }: CommonTemplateProps<T>) => {
   return (
@@ -30,12 +32,15 @@ export const CommonTemplate = <T extends object>({
           <p>{pageDescription}</p>
         </div>
 
-        <div>
-          {React.cloneElement(children, {
-            ...config,
-            selectedDemo: config?.mainDemo
-          })}
-        </div>
+        {page === "component" && (
+          <div>
+            {React.cloneElement(children, {
+              ...config,
+              selectedDemo: config?.mainDemo
+            })}
+          </div>
+
+        )}
 
         <div className="space-y-4">
           <h2 className="text-2xl md:text-3xl font-semibold" id="installation">Installaton</h2>
@@ -66,18 +71,33 @@ export const CommonTemplate = <T extends object>({
           ))}
         </div>
 
-        {Array.isArray(config?.demos) && config.demos.length > 0 && (
-          <div className="space-y-4">
-            <h2 className="text-2xl md:text-3xl font-semibold" id="examples">Examples</h2>
-            <p>The following is examples of our {pageTitle} class </p>
+        <div className="space-y-4">
+          <h2 className="text-2xl md:text-3xl font-semibold" id="examples">Examples</h2>
+          <p>The following is examples of our {pageTitle} class </p>
+          {page === "component" && Array.isArray(config?.demos) && config.demos.length > 0 && (
+            <>
+              {
+                config.demos?.map((demo, index) => (
+                  <React.Fragment key={index}>
+                    {React.cloneElement(children, { ...config, selectedDemo: demo })}
+                  </React.Fragment>
+                ))
+              }
+            </>
+          )}
+          {page === "blok" && (
+            <div>
+              {React.cloneElement(children, {
+                ...config,
+                selectedDemo: config?.mainDemo
+              })}
+            </div>
 
-            {config.demos?.map((demo, index) => (
-              <React.Fragment key={index}>
-                {React.cloneElement(children, { ...config, selectedDemo: demo })}
-              </React.Fragment>
-            ))}
-          </div>
-        )}
+          )}
+        </div>
+
+
+
       </div>
 
       {/* Sidebar */}
