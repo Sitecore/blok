@@ -1,0 +1,31 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "hero",
+  "type": "registry:component",
+  "title": "Hero",
+  "description": "Attention-grabbing section for the top of your landing pages.",
+  "registryDependencies": [
+    "badge",
+    "button",
+    "https://registry-starter.vercel.app/r/theme.json"
+  ],
+  "files": [
+    {
+      "path": "src/components/hero.tsx",
+      "content": "import Image from \"next/image\";\r\nimport Link from \"next/link\";\r\n\r\nimport { Badge } from \"@/components/ui/badge\";\r\nimport { Button } from \"@/components/ui/button\";\r\n\r\nexport function Hero({\r\n  title,\r\n  description,\r\n  buttonText,\r\n  buttonLink,\r\n  backgroundImage,\r\n}: {\r\n  title: string;\r\n  description: string;\r\n  buttonText: string;\r\n  buttonLink: string;\r\n  backgroundImage: string;\r\n}) {\r\n  return (\r\n    <div className=\"relative h-[600px] w-full bg-foreground/10\">\r\n      <div className=\"relative z-10 flex h-full flex-col items-center justify-center px-4 text-center sm:px-6 lg:px-8\">\r\n        <div className=\"mx-auto max-w-3xl\">\r\n          <Badge variant=\"secondary\" className=\"mb-4\">\r\n            Coming soon\r\n          </Badge>\r\n          <h1 className=\"font-bold text-4xl tracking-tight sm:text-5xl md:text-6xl\">\r\n            {title}\r\n          </h1>\r\n          <p className=\"mt-6 text-xl\">{description}</p>\r\n          <div className=\"mt-10\">\r\n            <Button\r\n              asChild\r\n              variant=\"secondary\"\r\n              size=\"lg\"\r\n              className=\"rounded-md px-8\"\r\n            >\r\n              <Link href={buttonLink}>{buttonText}</Link>\r\n            </Button>\r\n          </div>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  );\r\n}\r\n",
+      "type": "registry:component"
+    },
+    {
+      "path": "src/layouts/minimal-layout.tsx",
+      "content": "import { Geist, Geist_Mono, Montserrat } from \"next/font/google\";\r\nimport React, { type ReactNode } from \"react\";\r\n\r\nimport { cn } from \"@/lib/utils\";\r\n\r\nimport \"@/app/globals.css\";\r\n\r\nconst GeistSans = Geist({\r\n  subsets: [\"latin\"],\r\n  variable: \"--font-sans\",\r\n});\r\n\r\nconst GeistMono = Geist_Mono({\r\n  subsets: [\"latin\"],\r\n  variable: \"--font-mono\",\r\n});\r\n\r\nconst MontserratSerif = Montserrat({\r\n  subsets: [\"latin\"],\r\n  variable: \"--font-serif\",\r\n});\r\n\r\nexport default function RootLayout({\r\n  children,\r\n}: Readonly<{\r\n  children: ReactNode;\r\n}>) {\r\n  return (\r\n    <html\r\n      lang=\"en\"\r\n      className={cn(\r\n        GeistSans.variable,\r\n        GeistMono.variable,\r\n        MontserratSerif.variable,\r\n        \"bg-background text-foreground\",\r\n      )}\r\n    >\r\n      <body>\r\n        <main className=\"mt-16 flex w-full justify-center\">\r\n          <div className=\"container\">{children}</div>\r\n        </main>\r\n      </body>\r\n    </html>\r\n  );\r\n}\r\n",
+      "type": "registry:file",
+      "target": "app/layout.tsx"
+    },
+    {
+      "path": "src/app/demo/[name]/blocks/blank-page.tsx",
+      "content": "export default function BlankPage() {\r\n  return (\r\n    <div className=\"flex flex-col items-center justify-center gap-4 rounded-md py-96\">\r\n      <div className=\"text-muted-foreground\">\r\n        Start prompting to use your component!\r\n      </div>\r\n    </div>\r\n  );\r\n}\r\n",
+      "type": "registry:page",
+      "target": "app/page.tsx"
+    }
+  ]
+}

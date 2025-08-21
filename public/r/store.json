@@ -1,0 +1,25 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "store",
+  "type": "registry:block",
+  "title": "Store",
+  "description": "A store application with your brand themed components",
+  "registryDependencies": [
+    "https://registry-starter.vercel.app/r/product-grid.json",
+    "https://registry-starter.vercel.app/r/theme.json"
+  ],
+  "files": [
+    {
+      "path": "src/layouts/minimal-layout.tsx",
+      "content": "import { Geist, Geist_Mono, Montserrat } from \"next/font/google\";\r\nimport React, { type ReactNode } from \"react\";\r\n\r\nimport { cn } from \"@/lib/utils\";\r\n\r\nimport \"@/app/globals.css\";\r\n\r\nconst GeistSans = Geist({\r\n  subsets: [\"latin\"],\r\n  variable: \"--font-sans\",\r\n});\r\n\r\nconst GeistMono = Geist_Mono({\r\n  subsets: [\"latin\"],\r\n  variable: \"--font-mono\",\r\n});\r\n\r\nconst MontserratSerif = Montserrat({\r\n  subsets: [\"latin\"],\r\n  variable: \"--font-serif\",\r\n});\r\n\r\nexport default function RootLayout({\r\n  children,\r\n}: Readonly<{\r\n  children: ReactNode;\r\n}>) {\r\n  return (\r\n    <html\r\n      lang=\"en\"\r\n      className={cn(\r\n        GeistSans.variable,\r\n        GeistMono.variable,\r\n        MontserratSerif.variable,\r\n        \"bg-background text-foreground\",\r\n      )}\r\n    >\r\n      <body>\r\n        <main className=\"mt-16 flex w-full justify-center\">\r\n          <div className=\"container\">{children}</div>\r\n        </main>\r\n      </body>\r\n    </html>\r\n  );\r\n}\r\n",
+      "type": "registry:file",
+      "target": "app/layout.tsx"
+    },
+    {
+      "path": "src/app/demo/[name]/blocks/store-page.tsx",
+      "content": "import ProductGrid from \"@/components/product-grid\";\r\nimport { getCategories, getProducts } from \"@/lib/products\";\r\n\r\nexport default async function StorePage() {\r\n  const products = await getProducts();\r\n  const categories = await getCategories();\r\n\r\n  return (\r\n    <div className=\"flex min-h-screen flex-col\">\r\n      <main className=\"flex-1\">\r\n        <section className=\"py-12\">\r\n          <div className=\"container px-4 md:px-6\">\r\n            <div className=\"flex flex-col items-center justify-center space-y-4 text-center\">\r\n              <div className=\"space-y-2\">\r\n                <h1 className=\"font-bold text-3xl tracking-tighter sm:text-4xl md:text-5xl\">\r\n                  Welcome to Store\r\n                </h1>\r\n\r\n                <p className=\"mx-auto max-w-[700px] text-gray-500 md:text-xl\">\r\n                  Shop our unique collection of products. Free shipping on all\r\n                  orders!\r\n                </p>\r\n              </div>\r\n            </div>\r\n          </div>\r\n        </section>\r\n\r\n        <section className=\"py-8 md:py-12\">\r\n          <div className=\"container px-4 md:px-6\">\r\n            <ProductGrid products={products} categories={categories} />\r\n          </div>\r\n        </section>\r\n      </main>\r\n    </div>\r\n  );\r\n}\r\n",
+      "type": "registry:page",
+      "target": "app/page.tsx"
+    }
+  ]
+}

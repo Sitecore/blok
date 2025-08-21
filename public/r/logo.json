@@ -1,0 +1,29 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "logo",
+  "type": "registry:component",
+  "title": "Brand Logo",
+  "description": "A styled, simple, reusable logo",
+  "registryDependencies": [
+    "https://registry-starter.vercel.app/r/theme.json"
+  ],
+  "files": [
+    {
+      "path": "src/components/logo.tsx",
+      "content": "export function Logo() {\r\n  return (\r\n    <div className=\"flex items-center gap-2\">\r\n      <svg\r\n        xmlns=\"http://www.w3.org/2000/svg\"\r\n        viewBox=\"0 0 24 24\"\r\n        strokeWidth=\"2\"\r\n        strokeLinecap=\"round\"\r\n        strokeLinejoin=\"round\"\r\n        className=\"size-8\"\r\n        role=\"graphics-symbol\"\r\n      >\r\n        <circle className=\"fill-primary\" cx=\"13.5\" cy=\"6.5\" r=\"2.5\" />\r\n        <circle className=\"fill-primary\" cx=\"19\" cy=\"13\" r=\"2.5\" />\r\n        <circle className=\"fill-primary\" cx=\"13.5\" cy=\"19.5\" r=\"2.5\" />\r\n        <circle className=\"fill-primary\" cx=\"6.5\" cy=\"13\" r=\"2.5\" />\r\n      </svg>\r\n\r\n      <h1 className=\"font-bold\">Brand Name</h1>\r\n    </div>\r\n  );\r\n}\r\n",
+      "type": "registry:component"
+    },
+    {
+      "path": "src/layouts/minimal-layout.tsx",
+      "content": "import { Geist, Geist_Mono, Montserrat } from \"next/font/google\";\r\nimport React, { type ReactNode } from \"react\";\r\n\r\nimport { cn } from \"@/lib/utils\";\r\n\r\nimport \"@/app/globals.css\";\r\n\r\nconst GeistSans = Geist({\r\n  subsets: [\"latin\"],\r\n  variable: \"--font-sans\",\r\n});\r\n\r\nconst GeistMono = Geist_Mono({\r\n  subsets: [\"latin\"],\r\n  variable: \"--font-mono\",\r\n});\r\n\r\nconst MontserratSerif = Montserrat({\r\n  subsets: [\"latin\"],\r\n  variable: \"--font-serif\",\r\n});\r\n\r\nexport default function RootLayout({\r\n  children,\r\n}: Readonly<{\r\n  children: ReactNode;\r\n}>) {\r\n  return (\r\n    <html\r\n      lang=\"en\"\r\n      className={cn(\r\n        GeistSans.variable,\r\n        GeistMono.variable,\r\n        MontserratSerif.variable,\r\n        \"bg-background text-foreground\",\r\n      )}\r\n    >\r\n      <body>\r\n        <main className=\"mt-16 flex w-full justify-center\">\r\n          <div className=\"container\">{children}</div>\r\n        </main>\r\n      </body>\r\n    </html>\r\n  );\r\n}\r\n",
+      "type": "registry:file",
+      "target": "app/layout.tsx"
+    },
+    {
+      "path": "src/app/demo/[name]/blocks/blank-page.tsx",
+      "content": "export default function BlankPage() {\r\n  return (\r\n    <div className=\"flex flex-col items-center justify-center gap-4 rounded-md py-96\">\r\n      <div className=\"text-muted-foreground\">\r\n        Start prompting to use your component!\r\n      </div>\r\n    </div>\r\n  );\r\n}\r\n",
+      "type": "registry:page",
+      "target": "app/page.tsx"
+    }
+  ]
+}

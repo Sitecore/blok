@@ -1,0 +1,28 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "product-grid",
+  "type": "registry:component",
+  "title": "Product Grid",
+  "description": "Product grid displaying all products with API to fetch data",
+  "registryDependencies": [
+    "https://registry-starter.vercel.app/r/theme.json"
+  ],
+  "files": [
+    {
+      "path": "src/components/product-grid.tsx",
+      "content": "\"use client\";\r\n\r\nimport { ShoppingCart } from \"lucide-react\";\r\nimport Link from \"next/link\";\r\nimport { useState } from \"react\";\r\n\r\nimport { Button } from \"@/components/ui/button\";\r\nimport { Card, CardContent, CardFooter } from \"@/components/ui/card\";\r\nimport type { Product } from \"@/lib/products\";\r\n\r\nexport default function ProductGrid({\r\n  categories,\r\n  products,\r\n}: { categories: string[]; products: Product[] }) {\r\n  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);\r\n\r\n  const filteredProducts = selectedCategory\r\n    ? products.filter((product) => product.category === selectedCategory)\r\n    : products;\r\n\r\n  return (\r\n    <div className=\"space-y-6\">\r\n      <div className=\"flex flex-wrap gap-2\">\r\n        <Button\r\n          variant={selectedCategory === null ? \"default\" : \"outline\"}\r\n          onClick={() => setSelectedCategory(null)}\r\n          className=\"rounded-full\"\r\n        >\r\n          All\r\n        </Button>\r\n\r\n        {categories.map((category) => (\r\n          <Button\r\n            key={category}\r\n            variant={selectedCategory === category ? \"default\" : \"outline\"}\r\n            onClick={() => setSelectedCategory(category)}\r\n            className=\"rounded-full\"\r\n          >\r\n            {category}\r\n          </Button>\r\n        ))}\r\n      </div>\r\n\r\n      <div className=\"grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4\">\r\n        {filteredProducts.map((product) => (\r\n          <Card key={product.id} className=\"overflow-hidden p-0\">\r\n            <Link href={`/products/${product.id}`}>\r\n              <div className=\"flex aspect-square items-center justify-center bg-white p-6\" />\r\n            </Link>\r\n\r\n            <CardContent className=\"p-4\">\r\n              <Link href={`/products/${product.id}`}>\r\n                <h3 className=\"font-semibold\">{product.name}</h3>\r\n                <p className=\"line-clamp-2 text-gray-500 text-sm\">\r\n                  {product.description}\r\n                </p>\r\n              </Link>\r\n            </CardContent>\r\n\r\n            <CardFooter className=\"flex items-center justify-between p-4 pt-0\">\r\n              <div className=\"font-semibold\">${product.price.toFixed(2)}</div>\r\n              <Button size=\"sm\">\r\n                <ShoppingCart className=\"mr-2 size-4\" /> Add\r\n              </Button>\r\n            </CardFooter>\r\n          </Card>\r\n        ))}\r\n      </div>\r\n    </div>\r\n  );\r\n}\r\n",
+      "type": "registry:component"
+    },
+    {
+      "path": "src/lib/products.ts",
+      "content": "import { z } from \"zod\";\r\n\r\nconst ProductSchema = z.object({\r\n  id: z.number(),\r\n  name: z.string(),\r\n  price: z.number(),\r\n  description: z.string(),\r\n  category: z.string(),\r\n  brand: z.string(),\r\n  stock: z.number(),\r\n});\r\n\r\nexport type Product = z.infer<typeof ProductSchema>;\r\n\r\nexport async function getProducts(): Promise<Product[]> {\r\n  try {\r\n    const response = await fetch(\"https://api.vercel.app/products\");\r\n\r\n    if (!response.ok) {\r\n      throw new Error(\"Failed to fetch products\");\r\n    }\r\n\r\n    const data = await response.json();\r\n\r\n    return z.array(ProductSchema).parse(data);\r\n  } catch (error) {\r\n    if (error instanceof z.ZodError) {\r\n      console.error(\"Validation error:\", error.issues);\r\n    } else {\r\n      console.error(\"Error fetching products:\", error);\r\n    }\r\n    throw error;\r\n  }\r\n}\r\n\r\nexport async function getCategories(): Promise<string[]> {\r\n  try {\r\n    const products = await getProducts();\r\n    return Array.from(new Set(products.map((product) => product.category)));\r\n  } catch (error) {\r\n    console.error(\"Error fetching categories:\", error);\r\n    throw error;\r\n  }\r\n}\r\n",
+      "type": "registry:lib"
+    },
+    {
+      "path": "src/layouts/minimal-layout.tsx",
+      "content": "import { Geist, Geist_Mono, Montserrat } from \"next/font/google\";\r\nimport React, { type ReactNode } from \"react\";\r\n\r\nimport { cn } from \"@/lib/utils\";\r\n\r\nimport \"@/app/globals.css\";\r\n\r\nconst GeistSans = Geist({\r\n  subsets: [\"latin\"],\r\n  variable: \"--font-sans\",\r\n});\r\n\r\nconst GeistMono = Geist_Mono({\r\n  subsets: [\"latin\"],\r\n  variable: \"--font-mono\",\r\n});\r\n\r\nconst MontserratSerif = Montserrat({\r\n  subsets: [\"latin\"],\r\n  variable: \"--font-serif\",\r\n});\r\n\r\nexport default function RootLayout({\r\n  children,\r\n}: Readonly<{\r\n  children: ReactNode;\r\n}>) {\r\n  return (\r\n    <html\r\n      lang=\"en\"\r\n      className={cn(\r\n        GeistSans.variable,\r\n        GeistMono.variable,\r\n        MontserratSerif.variable,\r\n        \"bg-background text-foreground\",\r\n      )}\r\n    >\r\n      <body>\r\n        <main className=\"mt-16 flex w-full justify-center\">\r\n          <div className=\"container\">{children}</div>\r\n        </main>\r\n      </body>\r\n    </html>\r\n  );\r\n}\r\n",
+      "type": "registry:file",
+      "target": "app/layout.tsx"
+    }
+  ]
+}
