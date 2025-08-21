@@ -76,7 +76,7 @@ export const CommonTemplate = <T extends object>({
 
           {page === "component" && Array.isArray(config?.demos) && config.demos.length > 0 && (
             <>
-              <h2 className="text-2xl md:text-3xl font-semibold" id="examples">Examples</h2>
+              <h2 className="text-2xl md:text-3xl font-semibold scroll-mt-6" id="examples">Examples</h2>
               <p>The following is examples of our {pageTitle} class </p>
               {
                 config.demos?.map((demo, index) => (
@@ -89,7 +89,7 @@ export const CommonTemplate = <T extends object>({
           )}
           {page === "blok" && (
             <div>
-              <h2 className="text-2xl md:text-3xl font-semibold" id="examples">Examples</h2>
+              <h2 className="text-2xl md:text-3xl font-semibold scroll-mt-6" id="examples">Examples</h2>
               <p>The following is examples of our {pageTitle} class </p>
               {React.cloneElement(children, {
                 ...config,
@@ -99,8 +99,6 @@ export const CommonTemplate = <T extends object>({
 
           )}
         </div>
-
-
 
       </div>
 
