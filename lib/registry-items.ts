@@ -1,10 +1,17 @@
 import registry from '@/registry.json';
+import navComponents from './metaData/navComponents.json'
 
 // Registry items for UI components
-export const uiItems = registry.items
+const allItems = [
+    ...(registry.items || []),
+    ...(navComponents.items || []),
+];
+
+
+export const uiItems = allItems
     .filter(
         (item) => item.type === "registry:ui" &&
-        item.active !== false
+            item.active !== false
     )
     .map((item) => ({
         label: item.name.replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase()),
@@ -12,9 +19,20 @@ export const uiItems = registry.items
     }));
 
 // Registry items for blocks
-export const blockItems = registry.items
+export const blockItems = allItems
     .filter((item) => item.type === "registry:block")
     .map((item) => ({
         label: item.name.replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase()),
         href: `/blocks/${item.name}`,
+    }));
+
+
+export const themeItems = allItems
+    .filter(
+        (item) => item.type === "registry:theme" &&
+            item.active !== false
+    )
+    .map((item) => ({
+        label: item.name.replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase()),
+        href: `/theming/${item.name}`,
     }));
