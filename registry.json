@@ -261,7 +261,6 @@
     {
       "name": "context-menu",
       "type": "registry:ui",
-      "active": false,
       "dependencies": [
         "@radix-ui/react-context-menu"
       ],
