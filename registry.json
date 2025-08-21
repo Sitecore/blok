@@ -458,7 +458,6 @@
     {
       "name": "radio-group",
       "type": "registry:ui",
-      "active": false,
       "dependencies": [
         "@radix-ui/react-radio-group"
       ],
