@@ -83,7 +83,6 @@ import {
   cloneElement,
   createContext,
   useContext,
-  useEffect,
   useState,
 } from 'react';
 import { Button } from '@/registry/new-york/ui/button';

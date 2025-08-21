@@ -23,8 +23,6 @@ type DemoObject = {
   title: string
   showTitle?: boolean
   description: string
-  type: "top" | "bottom" | "right" | "left"
-  tooltipContent: string
   codeContent: CodeItem[]
 }
 

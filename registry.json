@@ -19,7 +19,6 @@
     {
       "name": "accordion",
       "type": "registry:ui",
-      "active": false,
       "dependencies": [
         "@radix-ui/react-accordion"
       ],
@@ -262,7 +261,6 @@
     {
       "name": "context-menu",
       "type": "registry:ui",
-      "active": false,
       "dependencies": [
         "@radix-ui/react-context-menu"
       ],
@@ -433,7 +431,7 @@
     {
       "name": "popover",
       "type": "registry:ui",
-      "active": false,
+      "active": true,
       "dependencies": [
         "@radix-ui/react-popover"
       ],
