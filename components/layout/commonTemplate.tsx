@@ -73,10 +73,11 @@ export const CommonTemplate = <T extends object>({
         </div>
 
         <div className="space-y-4">
-          <h2 className="text-2xl md:text-3xl font-semibold scroll-mt-6" id="examples">Examples</h2>
-          <p>The following is examples of our {pageTitle} class </p>
+
           {page === "component" && Array.isArray(config?.demos) && config.demos.length > 0 && (
             <>
+              <h2 className="text-2xl md:text-3xl font-semibold" id="examples">Examples</h2>
+              <p>The following is examples of our {pageTitle} class </p>
               {
                 config.demos?.map((demo, index) => (
                   <React.Fragment key={index}>
@@ -88,6 +89,8 @@ export const CommonTemplate = <T extends object>({
           )}
           {page === "blok" && (
             <div>
+              <h2 className="text-2xl md:text-3xl font-semibold" id="examples">Examples</h2>
+              <p>The following is examples of our {pageTitle} class </p>
               {React.cloneElement(children, {
                 ...config,
                 selectedDemo: config?.mainDemo

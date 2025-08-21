@@ -31,7 +31,7 @@ export default function Page() {
                 <h2 className="text-foreground pb-4 text-3xl font-semibold md:text-4xl">
                   {letter}
                 </h2>
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6 w-full 2xl:grid-cols-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6 w-full 2xl:grid-cols-5">
                   {items.map((item) => (
                     <ComponentsBox
                       key={item.label}

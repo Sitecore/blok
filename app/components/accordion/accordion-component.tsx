@@ -4,15 +4,11 @@ import { FC } from "react";
 import CustomCodeBlock from "../label/code-block";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/registry/new-york/ui/accordion";
 
-type DemoObject = {
-    id: string;
-}
-
 type LabelDemoProps = {
-    selectedDemo: DemoObject
+    // selectedDemo: DemoObject
 }
 
-export const AccordionDemo: FC<LabelDemoProps> = ({ selectedDemo }) => {
+export const AccordionDemo: FC<LabelDemoProps> = () => {
     const code = `import {
   Accordion,
   AccordionContent,
