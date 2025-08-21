@@ -19,7 +19,7 @@ export default function Page() {
   return (
     <div>
       <HeroSection
-        title="Components"
+        title="Themes"
         description="Here you can find all the Themes available in the library. The library contains a series of Themes from Blok v1, and new developments we have added from Shadcn, and some new components of our own. We strive to continue to update our library."
       />
 
