@@ -1,0 +1,51 @@
+import { CommonTemplate } from "@/components/layout/commonTemplate";
+import { ContextMenuDemo } from "./context-menu-component";
+
+export const pageTitle ="Context Menu"
+
+export const pageDescription = "Displays a menu to the user — such as a set of actions or functions — triggered by a button."
+
+export const mainDemo = {
+    id: "main"
+}
+
+export const contextMenuConfig = {
+    config: {
+        mainDemo
+    }
+};
+
+export const installationCodeList = [
+    { label: "npm", code: "npx shadcn@latest add accordion" },
+    { label: "yarn", code: "yarn shadcn@latest add accordion" },
+    { label: "pnpm", code: "pnpm dlx shadcn@latest add accordion" },
+    { label: "bun", code: "bunx --bun shadcn@latest add accordion" }
+];
+
+export const usageCodeList = [
+    { code: `import {
+    ContextMenu,
+    ContextMenuContent,
+    ContextMenuItem,
+    ContextMenuTrigger,
+} from "@/components/ui/context-menu"` }, 
+   { code: `<ContextMenu>
+    <ContextMenuTrigger>Right click</ContextMenuTrigger>
+    <ContextMenuContent>
+        <ContextMenuItem>Profile</ContextMenuItem>
+        <ContextMenuItem>Billing</ContextMenuItem>
+        <ContextMenuItem>Team</ContextMenuItem>
+        <ContextMenuItem>Subscription</ContextMenuItem>
+    </ContextMenuContent>
+</ContextMenu>` }
+];
+
+<CommonTemplate 
+    pageTitle={pageTitle} 
+    pageDescription={pageDescription}
+    installationCommands= {installationCodeList}   
+    usageCommands={usageCodeList}
+    config={contextMenuConfig.config}
+>
+    <ContextMenuDemo />
+</CommonTemplate>
