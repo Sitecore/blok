@@ -1,46 +1,50 @@
-import {
-  Tabs,
-  TabsContent,
-  TabsList,
-  TabsTrigger,
-} from "@/registry/new-york/ui/tabs"
+import { blockItems } from "@/lib/registry-items"
+import ComponentsBox from "@/components/ui/componentsBox"
+import { HeroSection } from "@/components/heroSection"
 
-import { TopBarBlocks } from "./topbar"
-import { FilterDemo } from "@/components/filter-demo"
-import { SidebarBlocks } from "./sidebar-demo"
-import { CircularProgressDemo } from "./circular-progress-demo"
+export default function Page() {
+  // Sort alphabetically
+  const sortedData = [...blockItems].sort((a, b) => a.label.localeCompare(b.label))
 
-export default function BlocksPage() {
+  // Group by first letter
+  const groupedData: Record<string, typeof sortedData> = {}
+  sortedData.forEach((item) => {
+    const firstLetter = item.label[0].toUpperCase()
+    if (!groupedData[firstLetter]) {
+      groupedData[firstLetter] = []
+    }
+    groupedData[firstLetter].push(item)
+  })
+
   return (
-    <div className="container py-6">
-      <div className="flex flex-col gap-4 px-4">
-        <div className="flex flex-col gap-2">
-          <h1 className="text-3xl font-bold">Blocks</h1>
-          <p className="text-muted-foreground">
-            A collection of reusable blocks for your application.
-          </p>
+    <div>
+      <HeroSection
+        title="Bloks"
+        description="Bloks (Blocks), are building blocks of larger UI entities. Copy and paste bloks into your apps to build out fuller Sitecore UIs faster. "
+      />
+
+      <div className="bg-secondary mt-15 min-h-screen w-full md:mt-10 pb-20">
+        <div className="mx-6 pt-4 md:mx-12 md:pt-8 lg:mx-40 lg:pt-15">
+          <div className="space-y-10">
+            {Object.entries(groupedData).map(([letter, items]) => (
+              <div key={letter}>
+                <h2 className="text-foreground pb-4 text-3xl font-semibold md:text-4xl">
+                  {letter}
+                </h2>
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6 w-full 2xl:grid-cols-6">
+                  {items.map((item) => (
+                    <ComponentsBox
+                      key={item.label}
+                      name={item.label}
+                      imageSrc="/Blok-site-Illustration.png"
+                      href={item.href}
+                    />
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
-        <Tabs defaultValue="topBar" className="w-full">
-          <TabsList>
-            <TabsTrigger value="topBar">TopBar</TabsTrigger>
-            <TabsTrigger value="filter">Filter</TabsTrigger>
-            <TabsTrigger value="sidebar">Sidebar</TabsTrigger>
-            <TabsTrigger value="circularProgress">Circular Progress</TabsTrigger>
-            <TabsTrigger value="stream">Stream</TabsTrigger>
-          </TabsList>
-          <TabsContent value="topBar" className="mt-4">
-            <TopBarBlocks />
-          </TabsContent>
-          <TabsContent value="filter" className="mt-4">
-            <FilterDemo />
-          </TabsContent>
-          <TabsContent value="sidebar" className="mt-4">
-            <SidebarBlocks />
-          </TabsContent>
-          <TabsContent value="circularProgress" className="mt-4">
-            <CircularProgressDemo />
-          </TabsContent>
-        </Tabs>
       </div>
     </div>
   )
