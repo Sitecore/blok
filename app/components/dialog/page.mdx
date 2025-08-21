@@ -1,0 +1,92 @@
+import { CommonTemplate } from "@/components/layout/commonTemplate";
+import { DialogDemo } from "./dialog-component";
+
+export const pageTitle = "Dialog";
+export const pageDescription = "A modal dialog component for displaying content in an overlay.";
+
+export const mainDemo = {
+  title: "",
+  description: "Interactive dialog component with different variants",
+  type: "form",
+  options: {
+    variantList: [
+      { label: "Dialog with Form", value: "form" },
+      { label: "Dialog with Scrollable Content", value: "scrollable" },
+      { label: "Dialog with Sticky Footer", value: "sticky-footer" }
+    ]
+  },
+  isMaindemo: true
+};
+
+export const demos = [
+  {
+    title: "Variant",
+    type: "variant",
+    options: {
+      variantList: [
+        { label: "Dialog with Form", value: "form" },
+        { label: "Dialog with Scrollable Content", value: "scrollable" },
+        { label: "Dialog with Sticky Footer", value: "sticky-footer" }
+      ]
+    },
+    isMaindemo: false
+  }
+];
+
+export const installationCommands = [
+  {
+    label: "npm",
+    code: "npm install @radix-ui/react-dialog"
+  },
+  {
+    label: "yarn",
+    code: "yarn add @radix-ui/react-dialog"
+  },
+  {
+    label: "pnpm",
+    code: "pnpm add @radix-ui/react-dialog"
+  }
+];
+
+export const usageCommands = [
+  {
+    code: `import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/registry/new-york/ui/dialog"`
+  },
+  {
+    code: `<Dialog>
+  <DialogTrigger>Open Dialog</DialogTrigger>
+  <DialogContent>
+    <DialogHeader>
+      <DialogTitle>Title</DialogTitle>
+      <DialogDescription>Description</DialogDescription>
+    </DialogHeader>
+  </DialogContent>
+</Dialog>`
+  }
+];
+
+export const dialogConfig = {
+  config: {
+    dialogDescription: "Basic dialog with form styling",
+    primaryVariant: "form",
+    demos,
+    mainDemo
+  }
+};
+
+<CommonTemplate 
+  pageTitle={pageTitle}
+  pageDescription={pageDescription}
+  installationCommands={installationCommands}
+  usageCommands={usageCommands}
+  config={dialogConfig.config}
+>
+  <DialogDemo selectedDemo={mainDemo} />
+</CommonTemplate>

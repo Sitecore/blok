@@ -1,0 +1,79 @@
+import { CommonTemplate } from "@/components/layout/commonTemplate";
+import { SkeletonDemo } from "./skeleton-component";
+
+export const pageTitle = "Skeleton";
+export const pageDescription = "A skeleton component for displaying loading states with animated placeholders.";
+
+export const mainDemo = {
+  title: "",
+  description: "Interactive skeleton component with different variants",
+  type: "avatar",
+  options: {
+    variantList: [
+      { label: "Avatar", value: "avatar" },
+      { label: "Text", value: "text" },
+      { label: "Card", value: "card" },
+      { label: "Mixed", value: "mixed" }
+    ]
+  },
+  isMaindemo: true
+};
+
+export const demos = [
+  {
+    title: "Variant",
+    type: "variant",
+    options: {
+      variantList: [
+        { label: "Avatar", value: "avatar" },
+        { label: "Text", value: "text" },
+        { label: "Card", value: "card" },
+        { label: "Mixed", value: "mixed" }
+      ]
+    },
+    isMaindemo: false
+  }
+];
+
+export const installationCommands = [
+  {
+    label: "npm",
+    code: "npm install @radix-ui/react-slot"
+  },
+  {
+    label: "yarn",
+    code: "yarn add @radix-ui/react-slot"
+  },
+  {
+    label: "pnpm",
+    code: "pnpm add @radix-ui/react-slot"
+  }
+];
+
+export const usageCommands = [
+  {
+    code: `import { Skeleton } from "@/registry/new-york/ui/skeleton"`
+  },
+  {
+    code: `<Skeleton className="h-4 w-[200px]" />`
+  }
+];
+
+export const skeletonConfig = {
+  config: {
+    skeletonDescription: "Basic skeleton with default styling",
+    primaryVariant: "avatar",
+    demos,
+    mainDemo
+  }
+};
+
+<CommonTemplate 
+  pageTitle={pageTitle}
+  pageDescription={pageDescription}
+  installationCommands={installationCommands}
+  usageCommands={usageCommands}
+  config={skeletonConfig.config}
+>
+  <SkeletonDemo selectedDemo={mainDemo} />
+</CommonTemplate>
