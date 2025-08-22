@@ -22,9 +22,9 @@ export const alert = {
     ),
     Success: (
       <Alert variant="success">
-        <AlertTitle>Danger Alert</AlertTitle>
+        <AlertTitle>Success Alert</AlertTitle>
         <AlertDescription>
-          This is a danger alert with a title and description.
+          This is a success alert with a title and description.
         </AlertDescription>
       </Alert>
     ),
