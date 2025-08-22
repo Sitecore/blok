@@ -36,7 +36,7 @@ import {
   markdownToPlainText,
   STRIP_TEXT_REGEX,
 } from "../../utils"
-import ReferencesBuilder from "../../utils/referencesBuilder"
+import { ReferencesBuilder } from "../../utils/referencesBuilder"
 
 export type QuickActionOptionsProps = {
   icon: React.ReactNode
@@ -123,8 +123,6 @@ export function useBlogLogic(): UseBlogLogicProps {
   const orgId = useAtomValue(orgIdAtom)
   const userId = useAtomValue(userIdAtom)
 
-  const references = ReferencesBuilder({ orgId, userId })
-
   async function handleGetBrainstorm(brainstormId: string): Promise<void> {
     setIsActionPending(true)
     setApiQueue((prev) => ({ ...prev, getBrainstorm: brainstormId }))
@@ -165,7 +163,9 @@ export function useBlogLogic(): UseBlogLogicProps {
       setIsQuickActionLoading(true)
       setIsActionPending(true)
 
-      const refs = references.addChatMessage({ id: chatId, messageId }).build()
+      const references = ReferencesBuilder({ orgId, userId })
+        .addChatMessage({ id: chatId, messageId })
+        .build()
 
       try {
         const { data } =
@@ -180,7 +180,9 @@ export function useBlogLogic(): UseBlogLogicProps {
                 ],
                 predefinedPrompt,
                 numberOfVariants: 1,
-                references: refs,
+                // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                // @ts-expect-error
+                references,
               },
               path: {
                 organizationId: orgId,
@@ -201,7 +203,7 @@ export function useBlogLogic(): UseBlogLogicProps {
         setAbortController(null)
       }
     },
-    [orgId, references]
+    [orgId, userId]
   )
 
   async function handleStopQuickAction(): Promise<void> {

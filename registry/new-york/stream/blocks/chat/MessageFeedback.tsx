@@ -1,5 +1,5 @@
 import React, { useMemo, useState } from "react"
-import { ToolInvocationUIPart } from "@ai-sdk/ui-utils"
+import { ToolInvocationUIPart, UIMessage } from "@ai-sdk/ui-utils"
 import { mdiThumbDownOutline, mdiThumbUpOutline } from "@mdi/js"
 import {
   chat,
@@ -7,7 +7,6 @@ import {
   FeedbackModel,
   HTTPError,
   ListUserChatMessagesModelResponseV2,
-  Message,
   UpdateUserChatMessageModelResponseV2,
 } from "@sitecore/stream-ui-core"
 import { useAtomValue } from "jotai"
@@ -39,7 +38,7 @@ import {
 } from "./utils"
 
 export interface MessageFeedbackProps {
-  message: Message &
+  message: UIMessage &
     Pick<ListUserChatMessagesModelResponseV2, "feedback"> & {
       content?: string | Array<ContentModelRead>
     }
