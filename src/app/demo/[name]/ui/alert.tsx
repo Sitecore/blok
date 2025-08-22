@@ -6,9 +6,9 @@ export const alert = {
   components: {
     Default: (
       <Alert variant="default">
-        <AlertTitle>Primary Alert</AlertTitle>
+        <AlertTitle>Default Alert</AlertTitle>
         <AlertDescription>
-          This is a primary alert with a title and description.
+          This is a default alert with a title and description.
         </AlertDescription>
       </Alert>
     ),
