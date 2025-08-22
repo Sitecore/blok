@@ -1,0 +1,342 @@
+@import "tailwindcss";
+
+@theme {
+  /* override all tailwind colors */
+  /* --color-*: initial; */
+
+  /* Chakra theme colors as CSS variables */
+  --color-transparent: transparent;
+  --color-current: currentColor;
+  --color-black: #000000;
+  --color-white: #ffffff;
+  --color-whiteAlpha-50: rgba(255, 255, 255, 0.04);
+  --color-whiteAlpha-100: rgba(255, 255, 255, 0.06);
+  --color-whiteAlpha-200: rgba(255, 255, 255, 0.11);
+  --color-whiteAlpha-300: rgba(255, 255, 255, 0.29);
+  --color-whiteAlpha-400: rgba(255, 255, 255, 0.42);
+  --color-whiteAlpha-500: rgba(255, 255, 255, 0.55);
+  --color-whiteAlpha-600: rgba(255, 255, 255, 0.68);
+  --color-whiteAlpha-700: rgba(255, 255, 255, 0.76);
+  --color-whiteAlpha-800: rgba(255, 255, 255, 0.78);
+  --color-whiteAlpha-900: rgba(255, 255, 255, 0.94);
+  --color-blackAlpha-50: rgba(0, 0, 0, 0.04);
+  --color-blackAlpha-100: rgba(0, 0, 0, 0.06);
+  --color-blackAlpha-200: rgba(0, 0, 0, 0.11);
+  --color-blackAlpha-300: rgba(0, 0, 0, 0.29);
+  --color-blackAlpha-400: rgba(0, 0, 0, 0.42);
+  --color-blackAlpha-500: rgba(0, 0, 0, 0.55);
+  --color-blackAlpha-600: rgba(0, 0, 0, 0.68);
+  --color-blackAlpha-700: rgba(0, 0, 0, 0.76);
+  --color-blackAlpha-800: rgba(0, 0, 0, 0.78);
+  --color-blackAlpha-900: rgba(0, 0, 0, 0.94);
+
+  --color-blue-50: #f4f7ff;
+  --color-blue-100: #e1eaff;
+  --color-blue-200: #c9d8ff;
+  --color-blue-300: #9cb3fd;
+  --color-blue-400: #6987f9;
+  --color-blue-500: #4a65e8;
+  --color-blue-600: #344bc3;
+  --color-blue-700: #293ba1;
+  --color-blue-800: #1f2d7f;
+  --color-blue-900: #16215f;
+  --color-cyan-50: #eafaff;
+  --color-cyan-100: #c6f1ff;
+  --color-cyan-200: #a0e3fd;
+  --color-cyan-300: #5cc0f1;
+  --color-cyan-400: #2695de;
+  --color-cyan-500: #0873c8;
+  --color-cyan-600: #0059a1;
+  --color-cyan-700: #004783;
+  --color-cyan-800: #003767;
+  --color-cyan-900: #00294d;
+  --color-danger-50: #fff5f4;
+  --color-danger-100: #ffe4e2;
+  --color-danger-200: #ffccc8;
+  --color-danger-300: #ff9a94;
+  --color-danger-400: #f4595a;
+  --color-danger-500: #d92739;
+  --color-danger-600: #b30426;
+  --color-danger-700: #92001f;
+  --color-danger-800: #730019;
+  --color-danger-900: #580113;
+  --color-gray-50: #f7f7f7;
+  --color-gray-100: #e9e9e9;
+  --color-gray-200: #d8d8d8;
+  --color-gray-300: #b5b5b5;
+  --color-gray-400: #8e8e8e;
+  --color-gray-500: #717171;
+  --color-gray-600: #535353;
+  --color-gray-700: #3b3b3b;
+  --color-gray-800: #282828;
+  --color-gray-900: #212121;
+  --color-green-50: #e8fcf5;
+  --color-green-100: #bef6e3;
+  --color-green-200: #8bebd0;
+  --color-green-300: #44cbac;
+  --color-green-400: #0ea184;
+  --color-green-500: #007f66;
+  --color-green-600: #006450;
+  --color-green-700: #085040;
+  --color-green-800: #0d3e31;
+  --color-green-900: #0f2d25;
+  --color-info-50: #f7f6ff;
+  --color-info-100: #eae7ff;
+  --color-info-200: #d9d4ff;
+  --color-info-300: #b8a9ff;
+  --color-info-400: #9373ff;
+  --color-info-500: #6e3fff;
+  --color-info-600: #5319e0;
+  --color-info-700: #4715af;
+  --color-info-800: #401791;
+  --color-info-900: #2f1469;
+  --color-orange-50: #fff6e7;
+  --color-orange-100: #ffe6bd;
+  --color-orange-200: #fdd291;
+  --color-orange-300: #ffa037;
+  --color-orange-400: #e26e00;
+  --color-orange-500: #ba5200;
+  --color-orange-600: #953d00;
+  --color-orange-700: #7a2f00;
+  --color-orange-800: #612300;
+  --color-orange-900: #491901;
+  --color-pink-50: #fff4fe;
+  --color-pink-100: #ffe2fb;
+  --color-pink-200: #fec7f8;
+  --color-pink-300: #f592f3;
+  --color-pink-400: #de53e0;
+  --color-pink-500: #bc29bd;
+  --color-pink-600: #9d039e;
+  --color-pink-700: #800081;
+  --color-pink-800: #640664;
+  --color-pink-900: #470e46;
+  --color-primary-50: #f7f6ff;
+  --color-primary-100: #eae7ff;
+  --color-primary-200: #d9d4ff;
+  --color-primary-300: #b8a9ff;
+  --color-primary-400: #9373ff;
+  --color-primary-500: #6e3fff;
+  --color-primary-600: #5319e0;
+  --color-primary-700: #4715af;
+  --color-primary-800: #401791;
+  --color-primary-900: #2f1469;
+  --color-purple-50: #f7f6ff;
+  --color-purple-100: #eae7ff;
+  --color-purple-200: #d9d4ff;
+  --color-purple-300: #b8a9ff;
+  --color-purple-400: #9373ff;
+  --color-purple-500: #6e3fff;
+  --color-purple-600: #5319e0;
+  --color-purple-700: #4715af;
+  --color-purple-800: #401791;
+  --color-purple-900: #2f1469;
+  --color-red-50: #fff5f4;
+  --color-red-100: #ffe4e2;
+  --color-red-200: #ffccc8;
+  --color-red-300: #ff9a94;
+  --color-red-400: #f4595a;
+  --color-red-500: #d92739;
+  --color-red-600: #b30426;
+  --color-red-700: #92001f;
+  --color-red-800: #730019;
+  --color-red-900: #580113;
+  --color-success-50: #e8fcf5;
+  --color-success-100: #bef6e3;
+  --color-success-200: #8bebd0;
+  --color-success-300: #44cbac;
+  --color-success-400: #0ea184;
+  --color-success-500: #007f66;
+  --color-success-600: #006450;
+  --color-success-700: #085040;
+  --color-success-800: #0d3e31;
+  --color-success-900: #0f2d25;
+  --color-teal-50: #e7fbfb;
+  --color-teal-100: #bbf4f3;
+  --color-teal-200: #8be9e8;
+  --color-teal-300: #3cc8cb;
+  --color-teal-400: #019ea5;
+  --color-teal-500: #007c85;
+  --color-teal-600: #00626b;
+  --color-teal-700: #0a4e57;
+  --color-teal-800: #103b44;
+  --color-teal-900: #102c33;
+  --color-warning-50: #fff6e7;
+  --color-warning-100: #ffe6bd;
+  --color-warning-200: #fdd291;
+  --color-warning-300: #ffa037;
+  --color-warning-400: #e26e00;
+  --color-warning-500: #ba5200;
+  --color-warning-600: #953d00;
+  --color-warning-700: #7a2f00;
+  --color-warning-800: #612300;
+  --color-warning-900: #491901;
+  --color-yellow-50: #fdf8d2;
+  --color-yellow-100: #faec79;
+  --color-yellow-200: #f8d904;
+  --color-yellow-300: #d7b300;
+  --color-yellow-400: #ae8a00;
+  --color-yellow-500: #8b6b00;
+  --color-yellow-600: #705300;
+  --color-yellow-700: #5b4300;
+  --color-yellow-800: #483300;
+  --color-yellow-900: #362500;
+
+  /* SEMANTIC TOKENS */
+  --color-body-bg: var(--color-white);
+  --color-subtle-bg: var(--color-gray-50);
+  --color-body-text: var(--color-blackAlpha-900);
+  --color-subtle-text: var(--color-blackAlpha-500);
+  --color-placeholder-color: var(--color-blackAlpha-400);
+  --color-inverse-text: var(--color-white);
+  --color-border-color: var(--color-blackAlpha-200);
+  --color-border-color-a11y: var(--color-blackAlpha-400);
+  --color-primary-fg: var(--color-primary-600);
+  --color-danger-fg: var(--color-danger-600);
+  --color-warning-fg: var(--color-warning-600);
+  --color-success-fg: var(--color-success-600);
+  --color-info-fg: var(--color-info-600);
+  --color-neutral-fg: var(--color-blackAlpha-600);
+  --color-primary-bg: var(--color-primary-100);
+  --color-danger-bg: var(--color-danger-100);
+  --color-warning-bg: var(--color-warning-100);
+  --color-success-bg: var(--color-success-100);
+  --color-info-bg: var(--color-info-100);
+  --color-neutral-bg: var(--color-blackAlpha-100);
+  --color-primary-bg-active: var(--color-primary-200);
+  --color-danger-bg-active: var(--color-danger-200);
+  --color-warning-bg-active: var(--color-warning-200);
+  --color-success-bg-active: var(--color-success-200);
+  --color-info-bg-active: var(--color-info-200);
+  --color-neutral-bg-active: var(--color-blackAlpha-200);
+  --color-primary: var(--color-primary-500);
+  --color-danger: var(--color-danger-500);
+  --color-success: var(--color-success-500);
+  --color-warning: var(--color-warning-500);
+  --color-info: var(--color-info-500);
+  --color-neutral: var(--color-blackAlpha-500);
+  --color-gray: var(--color-gray-500);
+  --color-red: var(--color-red-500);
+  --color-orange: var(--color-orange-500);
+  --color-yellow: var(--color-yellow-500);
+  --color-green: var(--color-green-500);
+  --color-teal: var(--color-teal-500);
+  --color-cyan: var(--color-cyan-500);
+  --color-blue: var(--color-blue-500);
+  --color-purple: var(--color-purple-500);
+  --color-pink: var(--color-pink-500);
+  --color-neutral-50: var(--color-blackAlpha-50);
+  --color-neutral-100: var(--color-blackAlpha-100);
+  --color-neutral-200: var(--color-blackAlpha-200);
+  --color-neutral-300: var(--color-blackAlpha-300);
+  --color-neutral-400: var(--color-blackAlpha-400);
+  --color-neutral-500: var(--color-blackAlpha-500);
+  --color-neutral-600: var(--color-blackAlpha-600);
+  --color-neutral-700: var(--color-blackAlpha-700);
+  --color-neutral-800: var(--color-blackAlpha-800);
+  --color-neutral-900: var(--color-blackAlpha-900);
+}
+
+@layer utilities {
+  .ai {
+    background-image: linear-gradient(
+      to top right,
+      var(--color-purple-500),
+      var(--color-red-500)
+    );
+  }
+  .ai-50 {
+    background-image: linear-gradient(
+      to top right,
+      var(--color-purple-50),
+      var(--color-red-50)
+    );
+  }
+  .ai-100 {
+    background-image: linear-gradient(
+      to top right,
+      var(--color-purple-100),
+      var(--color-red-100)
+    );
+  }
+  .ai-200 {
+    background-image: linear-gradient(
+      to top right,
+      var(--color-purple-200),
+      var(--color-red-200)
+    );
+  }
+  .ai-300 {
+    background-image: linear-gradient(
+      to top right,
+      var(--color-purple-300),
+      var(--color-red-300)
+    );
+  }
+  .ai-400 {
+    background-image: linear-gradient(
+      to top right,
+      var(--color-purple-400),
+      var(--color-red-400)
+    );
+  }
+  .ai-500 {
+    background-image: linear-gradient(
+      to top right,
+      var(--color-purple-500),
+      var(--color-red-500)
+    );
+  }
+  .ai-600 {
+    background-image: linear-gradient(
+      to top right,
+      var(--color-purple-600),
+      var(--color-red-600)
+    );
+  }
+  .hover\:ai-600:hover {
+    background-image: linear-gradient(
+      to top right,
+      var(--color-purple-600),
+      var(--color-red-600)
+    );
+  }
+  .text-ai-600 {
+    background-image: linear-gradient(
+      to top right,
+      var(--color-purple-600),
+      var(--color-red-600)
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    color: transparent;
+  }
+  .ai-700 {
+    background-image: linear-gradient(
+      to top right,
+      var(--color-purple-700),
+      var(--color-red-700)
+    );
+  }
+  .active\:ai-700:active {
+    background-image: linear-gradient(
+      to top right,
+      var(--color-purple-700),
+      var(--color-red-700)
+    );
+  }
+  .ai-800 {
+    background-image: linear-gradient(
+      to top right,
+      var(--color-purple-800),
+      var(--color-red-800)
+    );
+  }
+  .ai-900 {
+    background-image: linear-gradient(
+      to top right,
+      var(--color-purple-900),
+      var(--color-red-900)
+    );
+  }
+}
