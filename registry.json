@@ -376,12 +376,13 @@
       "title": "Alert",
       "description": "Displays Alert Variants.",
       "registryDependencies": [
-        "https://registry-starter.vercel.app/r/theme.json"
+        "https://blok-shadcn.vercel.app/r/theme.json"
       ],
       "files": [
         {
           "path": "src/components/ui/alert.tsx",
           "type": "registry:ui"
+          
         }
       ]
     },
