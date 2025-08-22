@@ -1,27 +1,39 @@
-import { type VariantProps, cva } from "class-variance-authority";
-import type * as React from "react";
+import * as React from "react"
+import { mdiAlertCircle, mdiCheckCircle, mdiInformation } from "@mdi/js"
+import Icon from "@mdi/react"
+import { cva, type VariantProps } from "class-variance-authority"
 
-import { cn } from "@/lib/utils";
+import { cn } from "@/lib/utils"
 
 const alertVariants = cva(
   "relative w-full rounded-lg border px-4 py-3 text-sm grid has-[>svg]:grid-cols-[calc(var(--spacing)*4)_1fr] grid-cols-[0_1fr] has-[>svg]:gap-x-3 gap-y-0.5 items-start [&>svg]:size-4 [&>svg]:translate-y-0.5 [&>svg]:text-current",
   {
     variants: {
       variant: {
-        default: "bg-card text-card-foreground",
-        destructive:
-          "text-destructive bg-card [&>svg]:text-current *:data-[slot=alert-description]:text-destructive/90",
+        default: "bg-card text-card-foreground [&>svg]:text-card-foreground",
+        primary: "bg-primary-bg [&>svg]:text-primary-500",
+        danger: "bg-danger-bg [&>svg]:text-danger-500",
+        warning: "bg-warning-bg [&>svg]:text-warning-500",
+        success: "bg-success-bg [&>svg]:text-success-500",
       },
     },
     defaultVariants: {
       variant: "default",
     },
-  },
+  }
 );
+
+const variantIcons = {
+  default: mdiInformation,
+  primary: mdiInformation,
+  danger: mdiAlertCircle,
+  warning: mdiAlertCircle,
+  success: mdiCheckCircle,
+}
 
 function Alert({
   className,
-  variant,
+  variant = "default",
   ...props
 }: React.ComponentProps<"div"> & VariantProps<typeof alertVariants>) {
   return (
@@ -30,7 +42,12 @@ function Alert({
       role="alert"
       className={cn(alertVariants({ variant }), className)}
       {...props}
-    />
+    >
+      {variant && (
+        <Icon path={variantIcons[variant]} size={1} className="text-current" />
+      )}
+      {props.children}
+    </div>
   );
 }
 
@@ -55,8 +72,8 @@ function AlertDescription({
     <div
       data-slot="alert-description"
       className={cn(
-        "col-start-2 grid justify-items-start gap-1 text-muted-foreground text-sm [&_p]:leading-relaxed",
-        className,
+        "text-md col-start-2 grid justify-items-start gap-1 [&_p]:leading-relaxed",
+        className
       )}
       {...props}
     />
