@@ -87,6 +87,26 @@
           "target": "app/globals.css"
         },
         {
+          "path": "src/app/colors.css",
+          "type": "registry:style",
+          "target": "app/colors.css"
+        },
+        {
+          "path": "src/app/shadows.css",
+          "type": "registry:style",
+          "target": "app/shadows.css"
+        },
+        {
+          "path": "src/app/borderRadius.css",
+          "type": "registry:style",
+          "target": "app/borderRadius.css"
+        },
+        {
+          "path": "src/app/typography.css",
+          "type": "registry:style",
+          "target": "app/typography.css"
+        },
+        {
           "path": "postcss.config.mjs",
           "type": "registry:file",
           "target": "postcss.config.mjs"
@@ -375,14 +395,19 @@
       "type": "registry:ui",
       "title": "Alert",
       "description": "Displays Alert Variants.",
+      "dependencies": [
+        "@mdi/react",
+        "@mdi/js",
+        "class-variance-authority"
+      ],
       "registryDependencies": [
         "https://blok-shadcn.vercel.app/r/theme.json"
       ],
       "files": [
         {
           "path": "src/components/ui/alert.tsx",
-          "type": "registry:ui"
-          
+          "type": "registry:ui",
+          "target": "src/components/ui/alert.tsx"
         }
       ]
     },
