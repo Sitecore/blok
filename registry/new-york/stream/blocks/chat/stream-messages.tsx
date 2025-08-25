@@ -39,6 +39,16 @@ interface MessagesProps {
   brandkitId: string
   chatId: string
   token: string
+  region: string
+  env: "dev" | "qa" | "staging" | "preprod" | "prod"
+}
+
+const baseUrlEnv = {
+  dev: "-dev.sitecore-staging.cloud",
+  qa: "-qa.sitecore-staging.cloud",
+  staging: "-staging.sitecore-staging.cloud",
+  preprod: "-preprod.sitecorecloud.io",
+  prod: "sitecorecloud.io",
 }
 
 function StreamMessages({
@@ -47,6 +57,8 @@ function StreamMessages({
   brandkitId,
   chatId,
   token,
+  region,
+  env,
 }: MessagesProps): React.ReactNode {
   /* Atoms */
   const isAnyArtifactOpen = useAtomValue(isAnyArtifactOpenAtom)
@@ -58,7 +70,7 @@ function StreamMessages({
 
   /* Hooks */
   const chat = useChat({
-    api: `https://ai-chat-api-euw-dev.sitecore-staging.cloud/api/chats/v1/organizations/${orgId}/users/${userId}/chats/${chatId}/generatemessage`,
+    api: `https://ai-chat-api-${region}${baseUrlEnv[env]}/api/chats/v1/organizations/${orgId}/users/${userId}/chats/${chatId}/generatemessage`,
     headers: {
       Authorization: `Bearer ${token}`,
       "Content-Type": "application/json",

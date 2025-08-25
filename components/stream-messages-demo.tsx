@@ -12,7 +12,7 @@ const token = ""
 /*
  * Initialize the clients below in order for the StreamMessages component to work properly
  */
-streamMessagesClientsConfig(token) // !!!!!!!!!!! THIS IS MANDATORY !!!!!!!!!!!
+streamMessagesClientsConfig(token, "euw", "dev") // !!!!!!!!!!! THIS IS MANDATORY !!!!!!!!!!!
 
 export function StreamMessagesDemo() {
   const [chatId, setChatId] = useState("")
@@ -40,6 +40,8 @@ export function StreamMessagesDemo() {
       orgId="org_b07iKFjB2zYhi49p"
       chatId={chatId}
       token={token}
+      region="euw"
+      env="dev"
     />
   )
 }
