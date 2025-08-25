@@ -97,8 +97,8 @@ export const STRIP_TEXT_REGEX = /[\n\r\s\\]/g
  */
 export function streamMessagesClientsConfig(
   token: string,
-  region: string = "euw",
-  env: "dev" | "qa" | "staging" | "preprod" | "prod" = "dev"
+  region: string,
+  env: "dev" | "qa" | "staging" | "preprod" | "prod"
 ): void {
   const baseUrlEnv = {
     dev: "-dev.sitecore-staging.cloud",
