@@ -5,7 +5,7 @@ import React, {
   useId,
   useRef,
 } from "react"
-import { mdiArrowExpand, mdiClose, mdiPlus } from "@mdi/js"
+import { mdiArrowExpand, mdiClose } from "@mdi/js"
 import { useAtom, useAtomValue } from "jotai"
 import { createPortal } from "react-dom"
 

@@ -1,121 +1,108 @@
-type ReferenceTypeOptions =
-  | 'brandkit'
-  | 'document'
-  | 'chat'
-  | 'chatMessage'
-  | 'component';
+type ReferenceType =
+  | "brandkit"
+  | "document"
+  | "chat"
+  | "chatMessage"
+  | "component"
 
-type ApiVersionOptions = 'v1' | 'v2';
+type ApiVersion = "v1" | "v2"
 
-interface Reference {
-  type: ReferenceTypeOptions;
-  id: string;
-  path: string;
-  isArtefact?: boolean;
+type Reference = {
+  type: ReferenceType
+  id: string
+  path: string
+  isArtefact?: boolean
 }
 
-export type PathOptions = Pick<Reference, 'id'> & {
-  apiVersion?: ApiVersionOptions;
-  isArtefact?: boolean;
-};
-
-interface ReferencesBuilderProps {
-  addBrandkit: (options: PathOptions) => ReferencesBuilderProps;
-  addDocument: (options: PathOptions) => ReferencesBuilderProps;
-  addChat: (
-    options: PathOptions & { brandkitId?: string }
-  ) => ReferencesBuilderProps;
-  addChatMessage: (
-    options: PathOptions & { messageId: string }
-  ) => ReferencesBuilderProps;
-  addBrief: (
-    options: PathOptions & { briefId: string }
-  ) => ReferencesBuilderProps;
-  build: () => Reference[];
+export type PathOptions = Pick<Reference, "id"> & {
+  apiVersion?: ApiVersion
+  isArtefact?: boolean
 }
 
 export function ReferencesBuilder({
   orgId,
   userId,
 }: {
-  orgId: string;
-  userId: string;
-}): ReferencesBuilderProps {
-  const references: Reference[] = [];
+  orgId: string
+  userId: string
+}) {
+  const references: Reference[] = []
 
   return {
-    addBrandkit: function ({
-      id,
-      apiVersion = 'v1',
-      isArtefact,
-    }: PathOptions): ReferencesBuilderProps {
+    addBrandkit: function ({ id, apiVersion = "v1", isArtefact }: PathOptions) {
       references.push({
-        type: 'brandkit',
+        type: "brandkit",
         id,
         path: `/api/brands/${apiVersion}/organizations/${orgId}/brandkits/${id}/references`,
-        ...(isArtefact !== undefined && { isArtefact }),
-      });
-      return this;
+        ...(() => {
+          return (
+            isArtefact !== undefined && {
+              isArtefact,
+            }
+          )
+        })(),
+      })
+      return this
     },
-    addDocument: function ({
-      id,
-      apiVersion = 'v1',
-      isArtefact,
-    }: PathOptions): ReferencesBuilderProps {
+    addDocument: function ({ id, apiVersion = "v1", isArtefact }: PathOptions) {
       references.push({
-        type: 'document',
+        type: "document",
         id,
         path: `/api/documents/${apiVersion}/organizations/${orgId}/documents/${id}/references`,
-        ...(isArtefact !== undefined && { isArtefact }),
-      });
-      return this;
+        ...(() => {
+          return (
+            isArtefact !== undefined && {
+              isArtefact,
+            }
+          )
+        })(),
+      })
+      return this
     },
     addChat: function ({
       id,
-      apiVersion = 'v1',
-      brandkitId = '',
+      apiVersion = "v1",
+      brandkitId = "",
       isArtefact,
-    }: PathOptions & { brandkitId?: string }): ReferencesBuilderProps {
+    }: PathOptions & { brandkitId?: string }) {
       references.push({
-        type: 'chat',
+        type: "chat",
         id,
         path: `/api/chats/${apiVersion}/organizations/${orgId}/users/${userId}/chats/${id}/references${brandkitId && `/${brandkitId}`}`,
-        ...(isArtefact !== undefined && { isArtefact }),
-      });
-      return this;
+        ...(() => {
+          return (
+            isArtefact !== undefined && {
+              isArtefact,
+            }
+          )
+        })(),
+      })
+      return this
     },
     addChatMessage: function ({
       id,
       messageId,
-      apiVersion = 'v1',
+      apiVersion = "v1",
       isArtefact,
-    }: PathOptions & { messageId: string }): ReferencesBuilderProps {
+    }: PathOptions & { messageId: string }) {
       references.push({
-        type: 'chatMessage',
+        type: "chatMessage",
         id: messageId,
         path: `/api/chats/${apiVersion}/organizations/${orgId}/users/${userId}/chats/${id}/messages/${messageId}/references`,
-        ...(isArtefact !== undefined && { isArtefact }),
-      });
-      return this;
+        ...(() => {
+          return (
+            isArtefact !== undefined && {
+              isArtefact,
+            }
+          )
+        })(),
+      })
+      return this
     },
-    addBrief: function ({
-      id,
-      briefId,
-      apiVersion = 'v1',
-      isArtefact,
-    }: PathOptions & { briefId: string }): ReferencesBuilderProps {
-      references.push({
-        type: 'chatMessage',
-        id,
-        path: `/api/briefs/${apiVersion}/organizations/${orgId}/briefs/${briefId}/references`,
-        ...(isArtefact !== undefined && { isArtefact }),
-      });
-      return this;
+    build: function () {
+      return references
     },
-    build: function (): Reference[] {
-      return references;
-    },
-  };
+  }
 }
 
-export default ReferencesBuilder;
+export default ReferencesBuilder

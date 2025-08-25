@@ -58,7 +58,7 @@ export function FollowupQuestions({
       className="border-none bg-transparent"
     >
       <div
-        className="ml-auto flex max-w-fit flex-col gap-2 text-right"
+        className="flex max-w-fit flex-col gap-2 text-right"
         ref={wrapperRef}
       >
         {content.map(({ question }, index) => (
@@ -66,7 +66,10 @@ export function FollowupQuestions({
             data-testid={`chat_follow_up_questions_dropdown_${index}_open`}
             key={`${question}_${index}`}
             variant="outline"
-            className="text-body-text ml-auto h-auto w-full justify-end rounded-xl text-left text-lg font-normal text-wrap"
+            className="text-body-text h-auto w-full justify-end rounded-xl px-4 py-2 text-left text-lg font-normal"
+            style={{
+              textWrap: "wrap",
+            }}
           >
             <span className="block flex-1">{question}</span>
             <Icon

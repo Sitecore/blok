@@ -1,12 +1,14 @@
-import React from 'react';
-import { useAtomValue } from 'jotai';
-import { isEmpty } from 'lodash';
+"use client"
 
-import { Reveal } from '../artifacts/Reveal';
-import { isMessageAlreadyGeneratedAtom } from '../store/atoms';
-import { ToolInvocationRefProps, ToolInvocationsProps } from '../types';
+import React from "react"
+import { useAtomValue } from "jotai"
+import { isEmpty } from "lodash"
+import { createPortal } from "react-dom"
 
-import { createTool } from './utils/createTool';
+import { Reveal } from "../artifacts/Reveal"
+import { isMessageAlreadyGeneratedAtom } from "../store/atoms"
+import { ToolInvocationRefProps, ToolInvocationsProps } from "../types"
+import { createTool } from "./utils/createTool"
 
 export function ToolInvocations({
   messageId,
@@ -17,41 +19,45 @@ export function ToolInvocations({
   /* Atoms */
   const isMessageAlreadyGenerated = useAtomValue(isMessageAlreadyGeneratedAtom)(
     messageId
-  );
+  )
 
-  const thinkingTools: React.ReactNode[] = [];
-  const brainstormingTools: React.ReactNode[] = [];
-  const restTools: React.ReactNode[] = [];
+  const thinkingTools: React.ReactNode[] = []
+  const brainstormingTools: React.ReactNode[] = []
+  const restTools: React.ReactNode[] = []
+  let followupQuestionsTool = null
+
+  const followupQuestionsPlaceholder =
+    document.getElementById("followupQuestions") ?? ({} as HTMLElement)
 
   toolInvocations.forEach((toolInvocation: ToolInvocationRefProps) => {
-    const { toolName } = toolInvocation;
+    const { toolName } = toolInvocation
 
-    const tool = createTool({ messageId, message, toolInvocation });
-    if (!tool) return;
+    const tool = createTool({ messageId, message, toolInvocation })
+    if (!tool) return
 
-    if (toolName === 'brainstorming') {
-      brainstormingTools.push(tool);
-      return;
+    if (toolName === "brainstorming") {
+      brainstormingTools.push(tool)
+      return
     }
-    if (toolName === 'brief' || toolName === 'answer') {
-      restTools.push(tool);
-      return;
+    if (toolName === "brief" || toolName === "answer") {
+      restTools.push(tool)
+      return
     }
-    if (toolName === 'followup_questions') {
-      if (isLastMessage) restTools.push(tool);
-      return;
+    if (toolName === "followup_questions") {
+      if (isLastMessage) followupQuestionsTool = tool
+      return
     }
-    thinkingTools.push(tool);
-  });
+    thinkingTools.push(tool)
+  })
 
   return (
     <>
       {!isEmpty(thinkingTools) && (
         <Reveal
           isGenerating={isMessageAlreadyGenerated}
-          titleStreamStart='Thinking'
-          titleStreamEnd='Thinking'
-          id='thinking_tools'
+          titleStreamStart="Thinking"
+          titleStreamEnd="Thinking"
+          id="thinking_tools"
           isExpandable
         >
           {thinkingTools}
@@ -59,6 +65,7 @@ export function ToolInvocations({
       )}
       {!isEmpty(brainstormingTools) && brainstormingTools}
       {!isEmpty(restTools) && restTools}
+      {createPortal(followupQuestionsTool, followupQuestionsPlaceholder)}
     </>
-  );
+  )
 }

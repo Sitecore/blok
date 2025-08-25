@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useRef, useState } from "react"
-import { Message } from "@sitecore/stream-ui-core"
+import { UIMessage } from "@ai-sdk/ui-utils"
 
 export interface ScrollAnchorProps {
   messagesRef: React.RefObject<HTMLDivElement | null>
@@ -8,7 +8,7 @@ export interface ScrollAnchorProps {
   isAtBottom: boolean
 }
 
-export function useScrollAnchor(messages: Message[]): ScrollAnchorProps {
+export function useScrollAnchor(messages: UIMessage[]): ScrollAnchorProps {
   const messagesRef = useRef<HTMLDivElement>(null) // The container holding the messages
   const scrollRef = useRef<HTMLDivElement>(null) // The scrollable div itself
   const lastScrollTopRef = useRef<number>(0)
