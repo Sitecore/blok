@@ -6,8 +6,8 @@
     {
       "name": "theme",
       "type": "registry:theme",
-      "title": "Nature Theme",
-      "description": "A nature theme and styles with greens and browns using Tailwind and shadcn/ui variable names",
+      "title": "Blokcn Theme",
+      "description": "A custom Blokcn theme providing reusable UI components styled with Tailwind CSS and shadcn/ui variables, designed for consistency and efficiency across projects.",
       "cssVars": {
         "light": {
           "background": "oklch(0.97 0.01 80.72)",
