@@ -7,7 +7,7 @@ import { Button } from "@/registry/new-york/ui/button"
 import { PreviewAside } from "../../artifacts/PreviewAside"
 import EditCommands from "../../EditCommands"
 import { Markdown } from "../../Markdown"
-import { chatIdAtom, isLoadingAtom } from "../../store/atoms"
+import { isLoadingAtom, sessionAtom } from "../../store/atoms"
 import { ToolProps } from "../../types"
 import { useBriefLogic } from "./useBriefLogic"
 
@@ -39,12 +39,12 @@ export function Brief({
 
   /* Atoms */
   const isLoading = useAtomValue(isLoadingAtom)
-  const chatId = useAtomValue(chatIdAtom)
+  const session = useAtomValue(sessionAtom)
 
   /* Flags */
   const isMainContentAvailable = !!Object.keys(mainContent).length
   const canRender =
-    !!chatId?.length && !mounted.current && isMainContentAvailable
+    !!session.chatId?.length && !mounted.current && isMainContentAvailable
   const hasLatestData = !isLoading && briefId && messageId
 
   /* Effects */

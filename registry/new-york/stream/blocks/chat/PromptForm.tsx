@@ -16,6 +16,7 @@ import Textarea from "react-textarea-autosize"
 import { toast } from "sonner"
 
 import { cn } from "@/lib/utils"
+import { useAiChatProvider } from "@/registry/new-york/stream/blocks/chat/hooks/useAiChatProvider"
 import { useBrandkitById } from "@/registry/new-york/stream/hooks/use-brandkit-by-id"
 import { Button } from "@/registry/new-york/ui/button"
 import {
@@ -30,6 +31,7 @@ import {
   isChatActionPendingAtom,
   isLoadingAtom,
   postChatGenerateBodyAtom,
+  sessionAtom,
 } from "../chat/store/atoms"
 import { useEnterSubmit } from "./hooks/useEnterSubmit"
 import { useLocalStorage } from "./hooks/useLocalStorage"
@@ -37,23 +39,10 @@ import { Icon } from "./Icon"
 import { ReferencesBuilder } from "./utils/referencesBuilder"
 
 export type PromptFormProps = {
-  orgId: string
-  userId: string
-  brandkitId: string
-  chatId: string
   uploadedFiles?: File[]
   onFileRemove?: (file: File) => void
   onFileUpload?: (files: File[]) => void
   onClearFiles?: () => void
-  chat: UseChatHelpers & {
-    addToolResult: ({
-      toolCallId,
-      result,
-    }: {
-      toolCallId: string
-      result: unknown
-    }) => void
-  }
 }
 
 async function fileToDataURL(file: File): Promise<string> {
@@ -66,20 +55,17 @@ async function fileToDataURL(file: File): Promise<string> {
 }
 
 export function PromptForm({
-  orgId,
-  userId,
-  brandkitId,
-  chatId,
   uploadedFiles,
   onFileRemove,
   onFileUpload,
   onClearFiles,
-  chat,
 }: PromptFormProps) {
+  const { input, handleSubmit, handleInputChange } = useAiChatProvider()
+  const session = useAtomValue(sessionAtom)
   const { formRef, onKeyDown } = useEnterSubmit()
   const [isMultiline, setIsMultiline] = useState(false)
-  const { brandkit } = useBrandkitById(brandkitId, {
-    organizationId: orgId,
+  const { brandkit } = useBrandkitById(session.brandkitId, {
+    organizationId: session.orgId,
     includeDeleted: true,
   })
   const isBrandkitDelete = useMemo(() => !!brandkit?.deletedAt, [brandkit])
@@ -107,7 +93,7 @@ export function PromptForm({
     referencesArr.current
   )
 
-  const isBrandkitIdAvailable = !!brandkitId?.length
+  const isBrandkitIdAvailable = !!session.brandkitId?.length
   const isPromptDisabled =
     !isBrandkitIdAvailable ||
     isLoading ||
@@ -121,9 +107,9 @@ export function PromptForm({
   const handleOnSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
 
-    if (!brandkitId || !chat.input) return
+    if (!session.brandkitId || !input) return
 
-    if (!chatId) {
+    if (!session.chatId) {
       setLocalStorageRefs(referencesArr.current)
       setIsChatActionPending(true)
 
@@ -131,15 +117,15 @@ export function PromptForm({
         await chatApi.createUserChatV2ApiChatsV2OrganizationsOrganizationIdUsersUserIdChatsPost(
           {
             path: {
-              userId,
-              organizationId: orgId,
+              userId: session.userId,
+              organizationId: session.orgId,
             },
             body: {
-              title: chat.input,
+              title: input,
               // eslint-disable-next-line @typescript-eslint/ban-ts-comment
               // @ts-expect-error
               references: ReferencesBuilder({ orgId, userId })
-                .addBrandkit({ id: brandkitId, isArtefact: false })
+                .addBrandkit({ id: session.brandkitId, isArtefact: false })
                 .build(),
             },
           }
@@ -166,10 +152,10 @@ export function PromptForm({
 
     // Now that all files are uploaded and we have their IDs, call handleSubmit
     const data = {
-      content: chat.input,
+      content: input,
       references: [
-        ...ReferencesBuilder({ orgId, userId })
-          .addBrandkit({ id: brandkitId!, isArtefact: false })
+        ...ReferencesBuilder({ orgId: session.orgId, userId: session.userId })
+          .addBrandkit({ id: session.brandkitId!, isArtefact: false })
           .build(),
         ...referencesArr.current,
       ],
@@ -179,7 +165,7 @@ export function PromptForm({
 
     setChatBodyAtom(data)
 
-    chat.handleSubmit?.()
+    handleSubmit?.()
 
     referencesArr.current = []
     onClearFiles?.()
@@ -231,7 +217,9 @@ export function PromptForm({
   }
 
   const onStopGeneration = () => {
-    if (!chatId) return
+    if (!session.chatId) return
+
+    stop()
   }
 
   const handleBrainstormingOnClick = () => {
@@ -250,7 +238,7 @@ export function PromptForm({
     )
   }
 
-  const [_, setHasClickedBrainstormingButton] = useLocalStorage<boolean>(
+  const [, setHasClickedBrainstormingButton] = useLocalStorage<boolean>(
     "hasClickedBrainstormingButton"
   )
 
@@ -312,12 +300,12 @@ export function PromptForm({
             autoCorrect="off"
             maxRows={7}
             name="prompt"
-            value={chat.input}
+            value={input}
             onChange={(e) => {
               if (isProcessingAllChanges) {
                 e.preventDefault()
               }
-              chat.handleInputChange?.(e)
+              handleInputChange?.(e)
             }}
           />
           <div
@@ -553,7 +541,7 @@ export function PromptForm({
                   ref={btnRef}
                   disabled={
                     !isBrandkitIdAvailable ||
-                    chat.input.trim().length === 0 ||
+                    input.trim().length === 0 ||
                     isLoading ||
                     isProcessingAllChanges ||
                     Object.values(isProcessing).some((v) => v) ||

@@ -8,15 +8,20 @@ import {
   BrainstormingOptions,
   BrandKitDetailsModalStateOptions,
   IsMessageAlreadyGeneratedProps,
+  Session,
 } from "./types"
 
-export const orgIdAtom = atom<string>("")
-
-export const userIdAtom = atom<string>("")
+export const sessionAtom = atom<Session>({
+  chatId: "",
+  brandkitId: "",
+  orgId: "",
+  userId: "",
+  env: "dev",
+  region: "euw",
+  token: "",
+})
 
 export const brandkitIdAtom = atom<string>("")
-
-export const chatIdAtom = atom<string>("")
 
 export const currentStreamingChatIdAtom = atom<string>("")
 

@@ -1,6 +1,7 @@
 import { FunctionComponent } from "react"
 import { UIMessage } from "@ai-sdk/ui-utils"
 import { ReferenceModel, ToolInvocation } from "@sitecore/stream-ui-core"
+import { UseChatHelpers } from "ai/react"
 
 import { TOOLS_SOURCES_TITLES } from "./utils"
 

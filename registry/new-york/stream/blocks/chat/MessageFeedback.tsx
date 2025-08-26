@@ -24,12 +24,7 @@ import {
 
 import { ActionModal } from "./ActionModal"
 import { SourceItem } from "./SourceItem"
-import {
-  chatIdAtom,
-  extractSourcesFromDataAtom,
-  orgIdAtom,
-  userIdAtom,
-} from "./store/atoms"
+import { extractSourcesFromDataAtom, sessionAtom } from "./store/atoms"
 import { ExtractSourceProps } from "./types"
 import {
   createSources,
@@ -62,9 +57,7 @@ export function MessageFeedback({
 
   /* Atoms */
   const extractSourcesFromData = useAtomValue(extractSourcesFromDataAtom)
-  const userId = useAtomValue(userIdAtom)
-  const orgId = useAtomValue(orgIdAtom)
-  const chatId = useAtomValue(chatIdAtom)
+  const session = useAtomValue(sessionAtom)
 
   /* Computed */
   const parts = message?.parts as ToolInvocationUIPart[]
@@ -100,9 +93,9 @@ export function MessageFeedback({
           {
             path: {
               messageId,
-              userId,
-              chatId,
-              organizationId: orgId,
+              userId: session.userId,
+              chatId: session.chatId,
+              organizationId: session.orgId,
             },
           }
         )
@@ -116,10 +109,11 @@ export function MessageFeedback({
             },
             path: {
               messageId,
-              userId,
-              chatId,
-              organizationId: orgId,
+              userId: session.userId,
+              chatId: session.chatId,
+              organizationId: session.orgId,
             },
+            method: "PATCH",
           }
         )
 

@@ -5,8 +5,8 @@ import { uniqueId } from "lodash"
 import { cn } from "@/lib/utils"
 import { StreamIcon } from "@/registry/new-york/stream/ui/stream-icon"
 
+import { useGetDocumentProxyUrl } from "./hooks/useGetDocumentProxyUrl"
 import { Source } from "./types"
-import { getDocumentProxyUrl } from "./utils"
 
 interface SourceItemProps {
   index?: number
@@ -14,6 +14,9 @@ interface SourceItemProps {
 }
 
 export function SourceItem({ sources }: SourceItemProps): React.ReactNode {
+  /* Hooks */
+  const getDocumentProxyUrl = useGetDocumentProxyUrl()
+
   const [toolTitle, _sources] = sources
 
   /* Computed */

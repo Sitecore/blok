@@ -315,19 +315,6 @@ export function removeDuplicatesFromArray<T, K extends keyof T>(
 }
 
 /**
- * Generates a proxy URL for a document based on the provided URL.
- *
- * @param {string} url - The URL of the document to be proxied.
- * @return {string} The proxy URL if the input URL starts with 'https://mms-delivery', otherwise the original URL.
- */
-export function getDocumentProxyUrl(url: string): string {
-  if (!url) {
-    // logger.info('No document URL provided');
-  }
-  return url?.startsWith("https://mms-delivery") ? `/api/doc?path=${url}` : url
-}
-
-/**
  * Combines multiple source objects into a single aggregated source object, filtering out entries without valid content.
  *
  * @param {...ExtractSourceRecordProps[]} sources - One or more source objects to be merged and processed.
