@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import * as React from "react";
 import { mdiCheck, mdiChevronDown, mdiChevronUp } from "@mdi/js";
