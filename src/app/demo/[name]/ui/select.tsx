@@ -8,7 +8,12 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import Icon from "@mdi/react";
-import { mdiChartBar, mdiChartLine, mdiChartPie, mdiCircleOutline } from "@mdi/js";
+import {
+  mdiChartBar,
+  mdiChartLine,
+  mdiChartPie,
+  mdiCircleOutline,
+} from "@mdi/js";
 
 export const select = {
   name: "select",
@@ -24,7 +29,9 @@ export const select = {
             <SelectItem value="apple">Apple</SelectItem>
             <SelectItem value="banana">Banana</SelectItem>
             <SelectItem value="blueberry">Blueberry</SelectItem>
-            <SelectItem value="grapes" disabled>Grapes</SelectItem>
+            <SelectItem value="grapes" disabled>
+              Grapes
+            </SelectItem>
             <SelectItem value="pineapple">Pineapple</SelectItem>
           </SelectGroup>
         </SelectContent>
@@ -50,7 +57,11 @@ export const select = {
           <SelectValue
             placeholder={
               <>
-                <Icon path={mdiCircleOutline} size={0.9} className="text-neutral-foreground" />
+                <Icon
+                  path={mdiCircleOutline}
+                  size={0.9}
+                  className="text-neutral-foreground"
+                />
                 With Icon
               </>
             }
@@ -90,6 +101,6 @@ export const select = {
           <SelectItem value="pineapple">Pineapple</SelectItem>
         </SelectContent>
       </Select>
-    )
+    ),
   },
 };
