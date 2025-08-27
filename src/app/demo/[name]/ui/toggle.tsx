@@ -8,7 +8,7 @@ import {
 } from "@mdi/js";
 
 export const toggle = {
-  name: "toggle-group",
+  name: "toggle",
   components: {
     square: (
       <div className="flex flex-wrap items-center gap-6">
