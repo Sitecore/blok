@@ -13,11 +13,7 @@ const cardVariants = cva(
         sm: "shadow-sm",
         base: "shadow-base",
         md: "shadow-md",
-        lg: "shadow-lg",
-        // xl: "shadow-xl",
-        // outline: "shadow-outline",
-        // inner: "shadow-inner",
-        // darkLg: "shadow-dark-lg",
+        lg: "shadow-lg"
       },
       style: {
         flat: "bg-white border-transparent",
