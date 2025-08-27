@@ -1,6 +1,12 @@
 "use client"
 
-import React, { useCallback, useEffect, useState } from "react"
+import React, {
+  createContext,
+  useCallback,
+  useEffect,
+  useMemo,
+  useState,
+} from "react"
 import { UIMessage } from "@ai-sdk/ui-utils"
 import {
   dbMessagesToAIMessages,
@@ -9,38 +15,49 @@ import {
   ToolInvocation,
   ToolInvocationUIPart,
 } from "@sitecore/stream-ui-core"
-import { useChat } from "ai/react"
-import { useAtomValue, useSetAtom } from "jotai"
+import { useChat, UseChatHelpers } from "ai/react"
+import { useAtom, useAtomValue, useSetAtom } from "jotai"
+import { isEmpty } from "lodash"
+import { toast } from "sonner"
 
 import { cn } from "@/lib/utils"
-import { useGetChatMessages } from "@/registry/new-york/stream/hooks/use-get-chat-messages"
 
+import { useGetChatMessages } from "../../hooks/use-get-chat-messages"
 import { ButtonScrollToBottom } from "./ButtonScrollToBottom"
 import { Feedback } from "./Feedback"
+import { useAiChatProvider } from "./hooks/useAiChatProvider"
 import { useScrollAnchor } from "./hooks/useScrollAnchor"
 import { PromptForm } from "./PromptForm"
 import {
-  brandkitIdAtom,
-  chatIdAtom,
   isAnyArtifactOpenAtom,
-  orgIdAtom,
+  isLoadingAtom,
+  messagesIdsAtom,
   postChatGenerateBodyAtom,
-  userIdAtom,
+  sessionAtom,
 } from "./store/atoms"
+import { Session } from "./store/types"
 import { ToolInvocations } from "./tools/ToolInvocations"
 import { MessageAnnotation } from "./types"
 import { UserMessage } from "./UserMessage"
 
 export { streamMessagesClientsConfig } from "./utils"
 
+export type VercelAiUiProviderType = UseChatHelpers & {
+  addToolResult: ({
+    toolCallId,
+    result,
+  }: {
+    toolCallId: string
+    result: unknown
+  }) => void
+}
+
+export const VercelAiUiContext = createContext<
+  VercelAiUiProviderType | undefined
+>(undefined)
+
 interface MessagesProps {
-  orgId: string
-  userId: string
-  brandkitId: string
-  chatId: string
-  token: string
-  region: string
-  env: "dev" | "qa" | "staging" | "preprod" | "prod"
+  session: Session
 }
 
 const baseUrlEnv = {
@@ -51,36 +68,60 @@ const baseUrlEnv = {
   prod: "sitecorecloud.io",
 }
 
-function StreamMessages({
-  orgId,
-  userId,
-  brandkitId,
-  chatId,
-  token,
-  region,
-  env,
-}: MessagesProps): React.ReactNode {
-  /* Atoms */
-  const isAnyArtifactOpen = useAtomValue(isAnyArtifactOpenAtom)
-  const setOrgId = useSetAtom(orgIdAtom)
-  const setUserId = useSetAtom(userIdAtom)
-  const setBrandkitId = useSetAtom(brandkitIdAtom)
-  const setChatId = useSetAtom(chatIdAtom)
-  const chatBodyAtom = useAtomValue(postChatGenerateBodyAtom)
+function StreamMessages({ session }: MessagesProps) {
+  const { orgId, userId, chatId, region, env } = session
 
-  /* Hooks */
-  const chat = useChat({
+  /* Atoms */
+  const chatBodyAtom = useAtomValue(postChatGenerateBodyAtom)
+  const setMessageIds = useSetAtom(messagesIdsAtom)
+  const [isLoading, setIsLoading] = useAtom(isLoadingAtom)
+
+  const { isLoading: _isLoading, ...chat } = useChat({
     api: `https://ai-chat-api-${region}${baseUrlEnv[env]}/api/chats/v1/organizations/${orgId}/users/${userId}/chats/${chatId}/generatemessage`,
-    headers: {
-      Authorization: `Bearer ${token}`,
-      "Content-Type": "application/json",
-    },
     body: chatBodyAtom,
     experimental_throttle: 200,
+    onFinish: async (message) => {
+      const messageId = (
+        message?.annotations?.[0] as unknown as MessageAnnotation
+      )?.id
+      setMessageIds((prev) => [...prev, messageId])
+    },
+    onError: (error) => {
+      toast.error(error.message)
+    },
   })
+
+  const context = useMemo(
+    () => ({
+      ...chat,
+      isLoading,
+    }),
+    [chat, isLoading]
+  )
+
+  useEffect(() => {
+    if (_isLoading !== isLoading) setIsLoading(_isLoading)
+  }, [_isLoading, isLoading, setIsLoading])
+
+  return (
+    <VercelAiUiContext.Provider value={context}>
+      <Messages session={session} />
+    </VercelAiUiContext.Provider>
+  )
+}
+
+function Messages({ session }: MessagesProps): React.ReactNode {
+  const { orgId, userId, chatId } = session
+
+  /* Atoms */
+  const isAnyArtifactOpen = useAtomValue(isAnyArtifactOpenAtom)
+  const setSession = useSetAtom(sessionAtom)
+
+  /* Hooks */
+  const { messages, setMessages } = useAiChatProvider()
   const getChatMessages = useGetChatMessages(orgId, userId)
   const { messagesRef, scrollRef, isAtBottom, scrollToBottom } =
-    useScrollAnchor(chat.messages)
+    useScrollAnchor(messages)
   const [uploadedFiles, setUploadedFiles] = useState<File[]>([])
 
   const initMessages = useCallback(async (): Promise<void> => {
@@ -88,31 +129,17 @@ function StreamMessages({
     const messages: ListUserChatMessagesModelResponseV2[] =
       await getChatMessages(chatId)
 
-    chat.setMessages(dbMessagesToAIMessages(messages) as UIMessage[])
-  }, [chat, chatId, getChatMessages])
+    setMessages(dbMessagesToAIMessages(messages) as UIMessage[])
+  }, [chatId, getChatMessages, setMessages])
 
   const onClearFiles = useCallback(() => {
     setUploadedFiles([])
   }, [])
 
   useEffect(() => {
-    if (!chat.messages.length) initMessages()
-    if (orgId) setOrgId(orgId)
-    if (userId) setUserId(userId)
-    if (brandkitId) setBrandkitId(brandkitId)
-    if (chatId) setChatId(chatId)
-  }, [
-    brandkitId,
-    chat,
-    chatId,
-    initMessages,
-    orgId,
-    setBrandkitId,
-    setChatId,
-    setOrgId,
-    setUserId,
-    userId,
-  ])
+    if (!messages.length) initMessages()
+    if (!isEmpty(session)) setSession(session)
+  }, [messages.length, initMessages, session, setSession])
 
   return (
     <div className="flex h-lvh max-w-full justify-center overflow-hidden">
@@ -124,7 +151,7 @@ function StreamMessages({
             data-testid="scroll-contain-base-chat"
           >
             <div className="space-y-4" ref={messagesRef}>
-              {chat.messages?.map((message, messageIndex, messagesArray) => {
+              {messages?.map((message, messageIndex, messagesArray) => {
                 /* The message ID is found in the annotation array. The id you see in the response object is the db id */
                 const messageId = (
                   message?.annotations?.[0] as unknown as MessageAnnotation
@@ -193,11 +220,6 @@ function StreamMessages({
           />
           <div className="stream-chat-container">
             <PromptForm
-              chat={chat}
-              orgId={orgId}
-              userId={userId}
-              brandkitId={brandkitId}
-              chatId={chatId}
               uploadedFiles={uploadedFiles}
               onFileRemove={(file) => {
                 setUploadedFiles((prevFiles) =>

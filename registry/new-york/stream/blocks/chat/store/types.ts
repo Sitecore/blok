@@ -38,3 +38,12 @@ export type UserChatParams = UseChatHelpers & {
     result: unknown
   }) => void
 }
+
+export interface Session {
+  orgId: string
+  userId: string
+  brandkitId: string
+  chatId: string
+  region: string
+  env: "dev" | "qa" | "staging" | "preprod" | "prod"
+}

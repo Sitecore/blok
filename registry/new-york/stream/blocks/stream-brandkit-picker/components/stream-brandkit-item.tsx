@@ -3,7 +3,8 @@
 import React from "react"
 import { type Brandkit } from "@sitecore/stream-ui-core"
 
-import { cn, getDocumentProxyUrl } from "@/registry/new-york/lib/utils"
+import { cn } from "@/registry/new-york/lib/utils"
+import { useGetDocumentProxyUrl } from "@/registry/new-york/stream/blocks/chat/hooks/useGetDocumentProxyUrl"
 import {
   Avatar,
   AvatarFallback,
@@ -30,6 +31,9 @@ export function StreamBrandkitItem({
   showAvatar = true,
   children,
 }: StreamBrandkitItemProps): React.ReactNode {
+  /* Hooks */
+  const getDocumentProxyUrl = useGetDocumentProxyUrl()
+
   /* Events */
   const handleBrandkitOnSelect = (brandkit: Brandkit): void => {
     onSelect?.(brandkit)

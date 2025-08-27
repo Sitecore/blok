@@ -2,6 +2,7 @@ import React, { useEffect, useMemo, useRef } from "react"
 import { mdiArrowRight } from "@mdi/js"
 import { useAtomValue } from "jotai"
 
+import { useAiChatProvider } from "@/registry/new-york/stream/blocks/chat/hooks/useAiChatProvider"
 import { Button } from "@/registry/new-york/ui/button"
 
 import { Reveal } from "../artifacts/Reveal"
@@ -24,6 +25,8 @@ export function FollowupQuestions({
   const {
     args: { questions = [] as Question[], result = {} as Questions } = {},
   } = toolInvocation ?? {}
+
+  const { setInput } = useAiChatProvider()
 
   /* Atoms */
   const isMessageAlreadyGenerated = useAtomValue(isMessageAlreadyGeneratedAtom)(
@@ -70,6 +73,7 @@ export function FollowupQuestions({
             style={{
               textWrap: "wrap",
             }}
+            onClick={() => setInput(question)}
           >
             <span className="block flex-1">{question}</span>
             <Icon

@@ -5,7 +5,7 @@ import remarkMath from "remark-math"
 
 import { cn } from "@/lib/utils"
 
-import { getDocumentProxyUrl } from "./utils"
+import { useGetDocumentProxyUrl } from "./hooks/useGetDocumentProxyUrl"
 
 export interface MarkdownProps {
   id?: string
@@ -20,6 +20,9 @@ export function Markdown({
   className = "",
   componentClassName = "",
 }: MarkdownProps): React.ReactNode {
+  /* Hooks */
+  const getDocumentProxyUrl = useGetDocumentProxyUrl()
+
   return (
     <div
       data-testid={`markdown-container-div-${id}`}

@@ -29,7 +29,7 @@ import {
   setPreviewAsideMaxVersions,
 } from "../../artifacts/PreviewAside"
 import { Icon } from "../../Icon"
-import { apiQueueAtom, orgIdAtom, userIdAtom } from "../../store/atoms"
+import { apiQueueAtom, sessionAtom } from "../../store/atoms"
 import {
   copyToClipboard,
   htmlToMarkdown,
@@ -120,8 +120,7 @@ export function useBlogLogic(): UseBlogLogicProps {
 
   /* Atoms */
   const setApiQueue = useSetAtom(apiQueueAtom)
-  const orgId = useAtomValue(orgIdAtom)
-  const userId = useAtomValue(userIdAtom)
+  const session = useAtomValue(sessionAtom)
 
   async function handleGetBrainstorm(brainstormId: string): Promise<void> {
     setIsActionPending(true)
@@ -163,7 +162,10 @@ export function useBlogLogic(): UseBlogLogicProps {
       setIsQuickActionLoading(true)
       setIsActionPending(true)
 
-      const references = ReferencesBuilder({ orgId, userId })
+      const references = ReferencesBuilder({
+        orgId: session.orgId,
+        userId: session.userId,
+      })
         .addChatMessage({ id: chatId, messageId })
         .build()
 
@@ -185,7 +187,7 @@ export function useBlogLogic(): UseBlogLogicProps {
                 references,
               },
               path: {
-                organizationId: orgId,
+                organizationId: session.orgId,
               },
             }
           )
@@ -203,7 +205,7 @@ export function useBlogLogic(): UseBlogLogicProps {
         setAbortController(null)
       }
     },
-    [orgId, userId]
+    [session.orgId, session.userId]
   )
 
   async function handleStopQuickAction(): Promise<void> {

@@ -15,8 +15,8 @@ import {
   TooltipTrigger,
 } from "@/registry/new-york/ui/tooltip"
 
+import { useGetDocumentProxyUrl } from "./hooks/useGetDocumentProxyUrl"
 import type { Source } from "./types"
-import { getDocumentProxyUrl } from "./utils"
 
 export interface AnchorsProps {
   testId?: string
@@ -33,6 +33,9 @@ export function Anchors({
   className,
   buttonClassName,
 }: AnchorsProps): React.ReactNode {
+  /* Hooks */
+  const getDocumentProxyUrl = useGetDocumentProxyUrl()
+
   if (!items?.length) return null
 
   const button = ({

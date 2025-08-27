@@ -16,8 +16,8 @@ import { cn } from "@/lib/utils"
 import { StreamIcon } from "@/registry/new-york/stream/ui/stream-icon"
 import { Button } from "@/registry/new-york/ui/button"
 
+import { useGetDocumentProxyUrl } from "./hooks/useGetDocumentProxyUrl"
 import type { Source } from "./types"
-import { getDocumentProxyUrl } from "./utils"
 
 export interface LightBoxProps {
   images: Source[]
@@ -34,6 +34,8 @@ export function LightBox({
   imageContainerClassName,
   imageClassName,
 }: LightBoxProps): React.ReactNode {
+  /* Hooks */
+  const getDocumentProxyUrl = useGetDocumentProxyUrl()
   const [imageIndex, setImageIndex] = useState(0)
   const [showLightBox, setShowLightBox] = useState(false)
   const clickOutsideRef = useRef<HTMLDivElement | null>(null)

@@ -14,7 +14,7 @@ import {
   PreviewAsideVersions,
   setPreviewAsideMaxVersions,
 } from "../../artifacts/PreviewAside"
-import { apiQueueAtom, orgIdAtom } from "../../store/atoms"
+import { apiQueueAtom, sessionAtom } from "../../store/atoms"
 import {
   copyToClipboard,
   htmlToMarkdown,
@@ -73,7 +73,7 @@ export function useBriefLogic(briefId: string): UseBriefLogicProps {
 
   /* Atoms */
   const setApiQueue = useSetAtom(apiQueueAtom)
-  const orgId = useAtomValue(orgIdAtom)
+  const session = useAtomValue(sessionAtom)
 
   const getInitialSectionsLength = useCallback(async () => {
     setApiQueue((prev) => ({ ...prev, getBriefVersionSections: briefId }))
@@ -84,7 +84,7 @@ export function useBriefLogic(briefId: string): UseBriefLogicProps {
             path: {
               briefId,
               versionNumber: "1",
-              organizationId: orgId,
+              organizationId: session.orgId,
             },
           }
         )
@@ -97,7 +97,7 @@ export function useBriefLogic(briefId: string): UseBriefLogicProps {
     } finally {
       setApiQueue((prev) => omit(prev, ["getBriefVersionSections"]))
     }
-  }, [briefId, orgId, setApiQueue])
+  }, [briefId, session.orgId, setApiQueue])
 
   const handleGetBriefVersions = useCallback(
     async (versionNumber?: string) => {
@@ -116,7 +116,7 @@ export function useBriefLogic(briefId: string): UseBriefLogicProps {
                 path: {
                   briefId,
                   versionNumber,
-                  organizationId: orgId,
+                  organizationId: session.orgId,
                 },
               }
             )
@@ -145,7 +145,7 @@ export function useBriefLogic(briefId: string): UseBriefLogicProps {
                     path: {
                       briefId,
                       versionNumber,
-                      organizationId: orgId,
+                      organizationId: session.orgId,
                       sectionId: section.id,
                     },
                   }
@@ -181,7 +181,7 @@ export function useBriefLogic(briefId: string): UseBriefLogicProps {
               {
                 path: {
                   briefId,
-                  organizationId: orgId,
+                  organizationId: session.orgId,
                 },
               }
             )
@@ -205,7 +205,7 @@ export function useBriefLogic(briefId: string): UseBriefLogicProps {
       briefId,
       getInitialSectionsLength,
       initialSectionsLength,
-      orgId,
+      session.orgId,
       setApiQueue,
     ]
   )
@@ -286,7 +286,7 @@ export function useBriefLogic(briefId: string): UseBriefLogicProps {
               path: {
                 briefId,
                 sectionId: section.id,
-                organizationId: orgId,
+                organizationId: session.orgId,
               },
             }
           )
@@ -336,7 +336,7 @@ export function useBriefLogic(briefId: string): UseBriefLogicProps {
                 briefId,
                 fieldId: field?.id ?? "",
                 sectionId: section.id,
-                organizationId: orgId,
+                organizationId: session.orgId,
               },
             }
           )
@@ -365,7 +365,7 @@ export function useBriefLogic(briefId: string): UseBriefLogicProps {
           path: {
             briefId,
             sectionId: id,
-            organizationId: orgId,
+            organizationId: session.orgId,
           },
         }
       )
