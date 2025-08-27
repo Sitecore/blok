@@ -7,8 +7,8 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import Icon from "@mdi/react"
-import { mdiChartBar, mdiChartLine, mdiChartPie, mdiCircleOutline } from "@mdi/js"
+import Icon from "@mdi/react";
+import { mdiChartBar, mdiChartLine, mdiChartPie, mdiCircleOutline } from "@mdi/js";
 
 export const select = {
   name: "select",
