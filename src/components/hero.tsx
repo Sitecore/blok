@@ -21,7 +21,7 @@ export function Hero({
     <div className="relative h-[600px] w-full bg-foreground/10">
       <div className="relative z-10 flex h-full flex-col items-center justify-center px-4 text-center sm:px-6 lg:px-8">
         <div className="mx-auto max-w-3xl">
-          <Badge variant="secondary" className="mb-4">
+          <Badge className="mb-4">
             Coming soon
           </Badge>
           <h1 className="font-bold text-4xl tracking-tight sm:text-5xl md:text-6xl">
