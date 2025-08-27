@@ -31,7 +31,7 @@ export function Hero({
           <div className="mt-10">
             <Button
               asChild
-              variant="secondary"
+              variant="default"
               size="lg"
               className="rounded-md px-8"
             >
