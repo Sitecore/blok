@@ -395,8 +395,14 @@
       "type": "registry:ui",
       "title": "Alert",
       "description": "Displays Alert Variants.",
-      "dependencies": ["@mdi/react", "@mdi/js", "class-variance-authority"],
-      "registryDependencies": ["https://blok-shadcn.vercel.app/r/theme.json"],
+      "dependencies": [
+        "@mdi/react",
+        "@mdi/js",
+        "class-variance-authority"
+      ],
+      "registryDependencies": [
+        "https://blok-shadcn.vercel.app/r/theme.json"
+      ],
       "files": [
         {
           "path": "src/components/ui/alert.tsx",
@@ -427,8 +433,13 @@
       "type": "registry:ui",
       "title": "Badge",
       "description": "Displays a small count or status indicator.",
-      "registryDependencies": ["https://blok-shadcn.vercel.app/r/theme.json"],
-      "dependencies": ["@radix-ui/react-slot", "class-variance-authority"],
+      "registryDependencies": [
+        "https://blok-shadcn.vercel.app/r/theme.json"
+      ],
+      "dependencies": [
+        "@radix-ui/react-slot",
+        "class-variance-authority"
+      ],
       "files": [
         {
           "path": "src/components/ui/badge.tsx",
@@ -459,13 +470,18 @@
       "type": "registry:ui",
       "title": "Button",
       "description": "Allows users to take actions with a single click or tap.",
-      "dependencies": ["@radix-ui/react-slot", "class-variance-authority"],
-      "registryDependencies": ["https://blok-shadcn.vercel.app/r/theme.json"],
+      "dependencies": [
+        "@radix-ui/react-slot",
+        "class-variance-authority"
+      ],
+      "registryDependencies": [
+        "https://blok-shadcn.vercel.app/r/theme.json"
+      ],
       "files": [
         {
           "path": "src/components/ui/button.tsx",
           "type": "registry:ui",
-          "target": "components/ui/button.tsx"
+          "target": "src/components/ui/button.tsx"
         }
       ]
     },
@@ -644,8 +660,14 @@
       "type": "registry:ui",
       "title": "Select",
       "description": "Displays a list of options for the user to pick from—triggered by a button.",
-      "dependencies": ["@radix-ui/react-select", "@mdi/react", "@mdi/js"],
-      "registryDependencies": ["https://blok-shadcn.vercel.app/r/theme.json"],
+      "dependencies": [
+        "@radix-ui/react-select",
+        "@mdi/react",
+        "@mdi/js"
+      ],
+      "registryDependencies": [
+        "https://blok-shadcn.vercel.app/r/theme.json"
+      ],
       "files": [
         {
           "path": "src/components/ui/select.tsx",
@@ -778,43 +800,19 @@
       ]
     },
     {
-      "name": "toggle",
-      "type": "registry:ui",
-      "title": "Toggle",
-      "description": "A two-state button that can be either on or off.",
-      "registryDependencies": ["https://blok-shadcn.vercel.app/r/theme.json"],
-      "dependencies": [
-        "@radix-ui/react-toggle",
-        "@mdi/react",
-        "@mdi/js",
-        "class-variance-authority"
-      ],
-      "files": [
-        {
-          "path": "src/components/ui/toggle.tsx",
-          "type": "registry:ui"
-        }
-      ]
-    },
-    {
       "name": "toggle-group",
       "type": "registry:ui",
       "title": "Toggle Group",
       "description": "A popup that displays information related to an element when the element receives keyboard focus or the mouse hovers over it.",
       "registryDependencies": [
-        "https://blok-shadcn.vercel.app/r/theme.json",
-        "https://blok-shadcn.vercel.app/r/toggle.json"
-      ],
-      "dependencies": [
-        "@radix-ui/react-toggle-group",
-        "@mdi/react",
-        "@mdi/js",
-        "class-variance-authority"
+        "toggle-group",
+        "https://registry-starter.vercel.app/r/theme.json"
       ],
       "files": [
         {
-          "path": "src/components/ui/toggle-group.tsx",
-          "type": "registry:ui"
+          "path": "src/layouts/minimal-layout.tsx",
+          "type": "registry:file",
+          "target": "app/layout.tsx"
         }
       ]
     },
