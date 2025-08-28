@@ -11,7 +11,7 @@ const ToggleGroupContext = React.createContext<
   VariantProps<typeof toggleVariants>
 >({
   size: "default",
-  variant: "rounded",
+  variant: "square",
 });
 
 function ToggleGroup({
