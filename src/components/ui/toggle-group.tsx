@@ -11,12 +11,12 @@ const ToggleGroupContext = React.createContext<
   VariantProps<typeof toggleVariants>
 >({
   size: "default",
-  variant: "square",
+  variant: "default",
 });
 
 function ToggleGroup({
   className,
-  variant = "square", // Default to square if not provided
+  variant = "default", 
   size = "default", // Default to default size if not provided
   children,
   ...props

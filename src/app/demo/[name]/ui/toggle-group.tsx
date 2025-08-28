@@ -8,7 +8,7 @@ export const toggleGroup = {
     square: (
       <ToggleGroup
         type="multiple"
-        variant="square"
+        variant="default"
         className="p-0.5 gap-0.5 border border-border-color bg-transparent"
       >
         <ToggleGroupItem value="bold" aria-label="Toggle bold" className="w-10">
