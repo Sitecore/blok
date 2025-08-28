@@ -434,14 +434,17 @@
       "title": "Badge",
       "description": "Displays a small count or status indicator.",
       "registryDependencies": [
-        "badge",
-        "https://registry-starter.vercel.app/r/theme.json"
+        "https://blok-shadcn.vercel.app/r/theme.json"
+      ],
+      "dependencies": [
+        "@radix-ui/react-slot",
+        "class-variance-authority"
       ],
       "files": [
         {
-          "path": "src/layouts/minimal-layout.tsx",
-          "type": "registry:file",
-          "target": "app/layout.tsx"
+          "path": "src/components/ui/badge.tsx",
+          "type": "registry:ui",
+          "target": "src/components/ui/badge.tsx"
         }
       ]
     },
@@ -467,15 +470,18 @@
       "type": "registry:ui",
       "title": "Button",
       "description": "Allows users to take actions with a single click or tap.",
+      "dependencies": [
+        "@radix-ui/react-slot",
+        "class-variance-authority"
+      ],
       "registryDependencies": [
-        "button",
-        "https://registry-starter.vercel.app/r/theme.json"
+        "https://blok-shadcn.vercel.app/r/theme.json"
       ],
       "files": [
         {
-          "path": "src/layouts/minimal-layout.tsx",
-          "type": "registry:file",
-          "target": "app/layout.tsx"
+          "path": "src/components/ui/button.tsx",
+          "type": "registry:ui",
+          "target": "src/components/ui/button.tsx"
         }
       ]
     },
@@ -501,15 +507,17 @@
       "type": "registry:ui",
       "title": "Card",
       "description": "Containers for displaying content and actions about a single subject.",
+      "dependencies": [
+        "class-variance-authority"
+      ],
       "registryDependencies": [
-        "card",
-        "https://registry-starter.vercel.app/r/theme.json"
+        "https://blok-shadcn.vercel.app/r/theme.json"
       ],
       "files": [
         {
-          "path": "src/layouts/minimal-layout.tsx",
-          "type": "registry:file",
-          "target": "app/layout.tsx"
+          "path": "src/components/ui/card.tsx",
+          "type": "registry:ui",
+          "target": "src/components/ui/card.tsx"
         }
       ]
     },
@@ -654,15 +662,18 @@
       "type": "registry:ui",
       "title": "Select",
       "description": "Displays a list of options for the user to pick from—triggered by a button.",
+      "dependencies": [
+        "@radix-ui/react-select",
+        "@mdi/react",
+        "@mdi/js"
+      ],
       "registryDependencies": [
-        "select",
-        "https://registry-starter.vercel.app/r/theme.json"
+        "https://blok-shadcn.vercel.app/r/theme.json"
       ],
       "files": [
         {
-          "path": "src/layouts/minimal-layout.tsx",
-          "type": "registry:file",
-          "target": "app/layout.tsx"
+          "path": "src/components/ui/select.tsx",
+          "type": "registry:ui"
         }
       ]
     },
