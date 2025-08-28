@@ -907,13 +907,13 @@ export const blocks: Registry["items"] = [
       },
       {
         path: "stream/blocks/chat/store/atoms.ts",
-        type: "registry:file",
-        target: "stream-components/blocks/chat/store/atoms.ts",
+        type: "registry:component",
+        target: "components/stream-components/blocks/chat/store/atoms.ts",
       },
       {
         path: "stream/blocks/chat/store/types.ts",
-        type: "registry:file",
-        target: "stream-components/blocks/chat/store/types.ts",
+        type: "registry:component",
+        target: "components/stream-components/blocks/chat/store/types.ts",
       },
       {
         path: "stream/blocks/chat/tools/Tool.tsx",

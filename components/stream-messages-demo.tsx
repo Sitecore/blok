@@ -40,7 +40,7 @@ export function StreamMessagesDemo() {
         brandkitId: "2f669d68-d5ab-4664-944a-b1504a1a2a6c",
         userId: "auth0|65bce928f68ddcd240a78fb4",
         orgId: "org_b07iKFjB2zYhi49p",
-        chatId,
+        chatId: "e092c859-fce8-49be-b916-bf84477659d8",
         region: "euw",
         env: "dev",
       }}
