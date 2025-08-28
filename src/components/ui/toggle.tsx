@@ -19,7 +19,7 @@ const toggleVariants = cva(
       },
     },
     defaultVariants: {
-      variant: "square",
+      variant: "rounded",
       size: "default",
     },
   }

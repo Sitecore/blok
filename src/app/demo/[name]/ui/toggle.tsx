@@ -10,23 +10,24 @@ import {
 export const toggle = {
   name: "toggle",
   components: {
-    default: (
+    square: (
       <div className="flex flex-wrap items-center gap-6">
-        <Toggle aria-label="Toggle bold">
+        <Toggle aria-label="Toggle bold" variant="square">
           <Icon path={mdiFormatBold} size={0.8} />
         </Toggle>
-        <Toggle aria-label="Toggle underline" variant="default">
+        <Toggle aria-label="Toggle underline" variant="square">
           <Icon path={mdiFormatUnderline} size={0.8} />
         </Toggle>
-        <Toggle aria-label="Toggle italic" variant="default" disabled>
+        <Toggle aria-label="Toggle italic" variant="square" disabled>
           Disabled
         </Toggle>
-        <Toggle variant="default" aria-label="Toggle italic">
+        <Toggle variant="square" aria-label="Toggle italic">
           <Icon path={mdiFormatItalic} size={0.8} />
           Italic
         </Toggle>
         <Toggle
           aria-label="Toggle book"
+          variant="square"
           className="data-[state=on]:[&_svg]:fill-accent-foreground"
         >
           <Icon path={mdiBookmark} size={0.8} />
