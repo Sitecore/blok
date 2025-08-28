@@ -34,7 +34,7 @@ const chartConfig = {
     label: "Desktop",
     color: "var(--chart-1)",
   },
-} satisfies ChartConfig
+} satisfies ChartConfig;
 
 export function AreaChartComponent() {
   return (
