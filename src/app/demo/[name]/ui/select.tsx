@@ -7,6 +7,13 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import Icon from "@mdi/react";
+import {
+  mdiChartBar,
+  mdiChartLine,
+  mdiChartPie,
+  mdiCircleOutline,
+} from "@mdi/js";
 
 export const select = {
   name: "select",
@@ -22,9 +29,76 @@ export const select = {
             <SelectItem value="apple">Apple</SelectItem>
             <SelectItem value="banana">Banana</SelectItem>
             <SelectItem value="blueberry">Blueberry</SelectItem>
-            <SelectItem value="grapes">Grapes</SelectItem>
+            <SelectItem value="grapes" disabled>
+              Grapes
+            </SelectItem>
             <SelectItem value="pineapple">Pineapple</SelectItem>
           </SelectGroup>
+        </SelectContent>
+      </Select>
+    ),
+    largeList: (
+      <Select>
+        <SelectTrigger className="w-[180px]">
+          <SelectValue placeholder="Large List" />
+        </SelectTrigger>
+        <SelectContent>
+          {Array.from({ length: 100 }).map((_, i) => (
+            <SelectItem key={i} value={`item-${i}`}>
+              Item {i}
+            </SelectItem>
+          ))}
+        </SelectContent>
+      </Select>
+    ),
+    withIcon: (
+      <Select>
+        <SelectTrigger className="w-[180px]">
+          <SelectValue
+            placeholder={
+              <>
+                <Icon
+                  path={mdiCircleOutline}
+                  size={0.9}
+                  className="text-neutral-foreground"
+                />
+                With Icon
+              </>
+            }
+          />
+        </SelectTrigger>
+        <SelectContent>
+          <SelectGroup>
+            <SelectLabel>Chart Types</SelectLabel>
+            <SelectItem value="line">
+              <Icon path={mdiChartLine} size={0.8} />
+              Line
+            </SelectItem>
+            <SelectItem value="bar">
+              <Icon path={mdiChartBar} size={0.8} />
+              Bar
+            </SelectItem>
+            <SelectItem value="pie">
+              <Icon path={mdiChartPie} size={0.8} />
+              Pie
+            </SelectItem>
+          </SelectGroup>
+        </SelectContent>
+      </Select>
+    ),
+    disabled: (
+      <Select disabled>
+        <SelectTrigger className="w-[180px]">
+          <SelectValue placeholder="Disabled" />
+        </SelectTrigger>
+        <SelectContent>
+          <SelectItem value="apple">Apple</SelectItem>
+          <SelectItem value="banana">Banana</SelectItem>
+          <SelectItem value="blueberry">Blueberry</SelectItem>
+          <SelectItem value="grapes" disabled>
+            Grapes
+          </SelectItem>
+          <SelectItem value="pineapple">Pineapple</SelectItem>
         </SelectContent>
       </Select>
     ),

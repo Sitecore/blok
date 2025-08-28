@@ -1,6 +1,6 @@
 {
   "name": "registry-starter",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "private": true,
   "scripts": {
     "dev": "npm run registry:build && next dev --turbopack",
