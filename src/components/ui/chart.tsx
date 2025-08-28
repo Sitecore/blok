@@ -15,7 +15,7 @@ export type ChartConfig = {
   } & (
     | { color?: string; theme?: never }
     | { color?: never; theme: Record<keyof typeof THEMES, string> }
-  )
+  );
 };
 
 type ChartContextProps = {
@@ -28,7 +28,7 @@ function useChart() {
   const context = React.useContext(ChartContext);
 
   if (!context) {
-    throw new Error("useChart must be used within a <ChartContainer />")
+    throw new Error("useChart must be used within a <ChartContainer />");
   }
 
   return context;
@@ -340,7 +340,7 @@ function getPayloadConfigFromPayload(
 
   return configLabelKey in config
     ? config[configLabelKey]
-    : config[key as keyof typeof config]
+    : config[key as keyof typeof config];
 }
 
 export {
