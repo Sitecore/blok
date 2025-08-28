@@ -16,11 +16,11 @@ export type ChartConfig = {
     | { color?: string; theme?: never }
     | { color?: never; theme: Record<keyof typeof THEMES, string> }
   )
-}
+};
 
 type ChartContextProps = {
   config: ChartConfig
-}
+};
 
 const ChartContext = React.createContext<ChartContextProps | null>(null);
 
@@ -32,7 +32,7 @@ function useChart() {
   }
 
   return context
-}
+};
 
 function ChartContainer({
   id,
@@ -67,7 +67,7 @@ function ChartContainer({
       </div>
     </ChartContext.Provider>
   )
-}
+};
 
 const ChartStyle = ({ id, config }: { id: string; config: ChartConfig }) => {
   const colorConfig = Object.entries(config).filter(
@@ -100,7 +100,7 @@ ${colorConfig
       }}
     />
   )
-}
+};
 
 const ChartTooltip = RechartsPrimitive.Tooltip;
 
@@ -168,7 +168,7 @@ function ChartTooltipContent({
     return null
   }
 
-  const nestLabel = payload.length === 1 && indicator !== "dot"
+  const nestLabel = payload.length === 1 && indicator !== "dot";
 
   return (
     <div
@@ -245,8 +245,8 @@ function ChartTooltipContent({
         })}
       </div>
     </div>
-  )
-}
+  );
+};
 
 const ChartLegend = RechartsPrimitive.Legend;
 
@@ -301,8 +301,8 @@ function ChartLegendContent({
         )
       })}
     </div>
-  )
-}
+  );
+};
 
 // Helper to extract item config from a payload.
 function getPayloadConfigFromPayload(
@@ -341,7 +341,7 @@ function getPayloadConfigFromPayload(
   return configLabelKey in config
     ? config[configLabelKey]
     : config[key as keyof typeof config]
-}
+};
 
 export {
   ChartContainer,
