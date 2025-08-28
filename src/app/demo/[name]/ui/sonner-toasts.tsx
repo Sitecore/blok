@@ -30,7 +30,7 @@ export function WarningSonner() {
 export function ErrorSonner() {
   return (
     <Button
-      variant="destructive"
+      variant="outline"
       onClick={() => toast.error("There was an error")}
     >
       Error Toast
