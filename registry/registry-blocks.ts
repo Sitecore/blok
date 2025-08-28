@@ -1059,10 +1059,10 @@ export const blocks: Registry["items"] = [
         target: "components/stream-components/blocks/chat/utils/index.ts",
       },
       {
-        path: "stream/blocks/chat/utils/referencesBuilder.ts.ts",
+        path: "stream/blocks/chat/utils/referencesBuilder.ts",
         type: "registry:component",
         target:
-          "components/stream-components/blocks/chat/utils/referencesBuilder.ts.ts",
+          "components/stream-components/blocks/chat/utils/referencesBuilder.ts",
       },
     ],
     categories: ["stream", "ui", "chat", "messages"],
