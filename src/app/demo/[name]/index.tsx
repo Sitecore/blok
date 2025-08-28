@@ -23,6 +23,7 @@ import { breadcrumb } from "@/app/demo/[name]/ui/breadcrumb";
 import { button } from "@/app/demo/[name]/ui/button";
 import { calendar } from "@/app/demo/[name]/ui/calendar";
 import { card } from "@/app/demo/[name]/ui/card";
+import {carousel} from '@/app/demo/[name]/ui/carousel';
 import { chart } from "@/app/demo/[name]/ui/chart";
 import { checkbox } from "@/app/demo/[name]/ui/checkbox";
 import { dataTable } from "@/app/demo/[name]/ui/data-table";
@@ -30,6 +31,7 @@ import { datePicker } from "@/app/demo/[name]/ui/date-picker";
 import { dialog } from "@/app/demo/[name]/ui/dialog";
 import { dropdownMenu } from "@/app/demo/[name]/ui/dropdown-menu";
 import { input } from "@/app/demo/[name]/ui/input";
+import { label } from "@/app/demo/[name]/ui/label";
 import { menuBar } from "@/app/demo/[name]/ui/menu-bar";
 import { select } from "@/app/demo/[name]/ui/select";
 import { separator } from "@/app/demo/[name]/ui/separator";
@@ -73,6 +75,7 @@ export const demos: { [name: string]: Demo } = {
   button,
   calendar,
   card,
+  carousel,
   chart,
   checkbox,
   dialog,
@@ -80,6 +83,7 @@ export const demos: { [name: string]: Demo } = {
   "data-table": dataTable,
   "dropdown-menu": dropdownMenu,
   input,
+  label,
   "menu-bar": menuBar,
   select,
   separator,
