@@ -1053,6 +1053,17 @@ export const blocks: Registry["items"] = [
         type: "registry:component",
         target: "components/stream-components/ui/stream-spinner.tsx",
       },
+      {
+        path: "stream/blocks/chat/utils/index.ts",
+        type: "registry:component",
+        target: "components/stream-components/blocks/chat/utils/index.ts",
+      },
+      {
+        path: "stream/blocks/chat/utils/referencesBuilder.ts.ts",
+        type: "registry:component",
+        target:
+          "components/stream-components/blocks/chat/utils/referencesBuilder.ts.ts",
+      },
     ],
     categories: ["stream", "ui", "chat", "messages"],
   },
