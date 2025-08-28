@@ -1012,6 +1012,47 @@ export const blocks: Registry["items"] = [
         type: "registry:component",
         target: "components/stream-components/blocks/chat/artifacts/Reveal.tsx",
       },
+      {
+        path: "stream/hooks/use-brandkit-by-id.ts",
+        type: "registry:component",
+        target: "components/stream-components/hooks/use-brandkit-by-id.ts",
+      },
+      {
+        path: "stream/hooks/use-brandkits.ts",
+        type: "registry:component",
+        target: "components/stream-components/hooks/use-brandkits.ts",
+      },
+      {
+        path: "stream/hooks/use-contenthub-brandkits.ts",
+        type: "registry:component",
+        target:
+          "components/stream-components/hooks/use-contenthub-brandkits.ts",
+      },
+      {
+        path: "stream/hooks/use-get-chat-messages.ts",
+        type: "registry:component",
+        target: "components/stream-components/hooks/use-get-chat-messages.ts",
+      },
+      {
+        path: "stream/hooks/use-get-chats.ts",
+        type: "registry:component",
+        target: "components/stream-components/hooks/use-get-chats.ts",
+      },
+      {
+        path: "stream/lib/utils.ts",
+        type: "registry:component",
+        target: "components/stream-components/lib/utils.ts",
+      },
+      {
+        path: "stream/ui/stream-icon.tsx",
+        type: "registry:component",
+        target: "components/stream-components/ui/stream-icon.tsx",
+      },
+      {
+        path: "stream/ui/stream-spinner.tsx",
+        type: "registry:component",
+        target: "components/stream-components/ui/stream-spinner.tsx",
+      },
     ],
     categories: ["stream", "ui", "chat", "messages"],
   },

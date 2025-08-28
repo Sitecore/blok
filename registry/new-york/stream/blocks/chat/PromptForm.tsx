@@ -14,8 +14,6 @@ import { useAtom, useAtomValue, useSetAtom } from "jotai"
 import Textarea from "react-textarea-autosize"
 import { toast } from "sonner"
 
-import { useAiChatProvider } from "@/registry/new-york/stream/blocks/chat/hooks/useAiChatProvider"
-import { useBrandkitById } from "@/registry/new-york/stream/hooks/use-brandkit-by-id"
 import { Button } from "@/registry/new-york/ui/button"
 import {
   Popover,
@@ -23,6 +21,7 @@ import {
   PopoverTrigger,
 } from "@/registry/new-york/ui/popover"
 
+import { useBrandkitById } from "../../hooks/use-brandkit-by-id"
 import { cn } from "../../lib/utils"
 import {
   brainstormingAtom,
@@ -32,6 +31,7 @@ import {
   postChatGenerateBodyAtom,
   sessionAtom,
 } from "../chat/store/atoms"
+import { useAiChatProvider } from "./hooks/useAiChatProvider"
 import { useEnterSubmit } from "./hooks/useEnterSubmit"
 import { useLocalStorage } from "./hooks/useLocalStorage"
 import { Icon } from "./Icon"
