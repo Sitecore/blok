@@ -26,6 +26,7 @@ import { card } from "@/app/demo/[name]/ui/card";
 import {carousel} from '@/app/demo/[name]/ui/carousel';
 import { chart } from "@/app/demo/[name]/ui/chart";
 import { checkbox } from "@/app/demo/[name]/ui/checkbox";
+import { contextMenu } from "@/app/demo/[name]/ui/context-menu";
 import { dataTable } from "@/app/demo/[name]/ui/data-table";
 import { datePicker } from "@/app/demo/[name]/ui/date-picker";
 import { dialog } from "@/app/demo/[name]/ui/dialog";
@@ -79,6 +80,7 @@ export const demos: { [name: string]: Demo } = {
   carousel,
   chart,
   checkbox,
+  "context-menu": contextMenu,
   dialog,
   "date-picker": datePicker,
   "data-table": dataTable,
