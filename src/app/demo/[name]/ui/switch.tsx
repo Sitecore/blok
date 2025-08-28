@@ -12,19 +12,13 @@ export const switchComponent = {
     ),
     Danger: (
       <div className="flex items-center gap-2">
-        <Switch
-          id="switch-demo-danger"
-          variant="danger"
-        />
+        <Switch id="switch-demo-danger" variant="danger" />
         <Label htmlFor="switch-demo-danger">Danger Mode</Label>
       </div>
     ),
     Success: (
       <div className="flex items-center gap-2">
-        <Switch
-          id="switch-demo-success"
-          variant="success"
-        />
+        <Switch id="switch-demo-success" variant="success" />
         <Label htmlFor="switch-demo-success">Success Mode</Label>
       </div>
     ),
@@ -37,10 +31,7 @@ export const switchComponent = {
             app.
           </div>
         </div>
-        <Switch
-          id="switch-demo-focus-mode"
-          variant="primary"
-        />
+        <Switch id="switch-demo-focus-mode" variant="primary" />
       </Label>
     ),
   },
