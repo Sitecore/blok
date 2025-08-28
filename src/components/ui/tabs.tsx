@@ -19,7 +19,7 @@ const tabsListVariants = cva(
       variant: "line",
     },
   }
-)
+);
 
 const tabsTriggerVariants = cva(
   "inline-flex h-9 items-center justify-center gap-1.5 text-md font-medium whitespace-nowrap transition-all disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
@@ -35,7 +35,7 @@ const tabsTriggerVariants = cva(
       variant: "line",
     },
   }
-)
+);
 
 function Tabs({
   className,
