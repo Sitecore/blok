@@ -23,6 +23,7 @@ import { breadcrumb } from "@/app/demo/[name]/ui/breadcrumb";
 import { button } from "@/app/demo/[name]/ui/button";
 import { calendar } from "@/app/demo/[name]/ui/calendar";
 import { card } from "@/app/demo/[name]/ui/card";
+import {carousel} from '@/app/demo/[name]/ui/carousel';
 import { chart } from "@/app/demo/[name]/ui/chart";
 import { checkbox } from "@/app/demo/[name]/ui/checkbox";
 import { dataTable } from "@/app/demo/[name]/ui/data-table";
@@ -74,6 +75,7 @@ export const demos: { [name: string]: Demo } = {
   button,
   calendar,
   card,
+  carousel,
   chart,
   checkbox,
   dialog,
