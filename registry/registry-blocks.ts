@@ -873,7 +873,7 @@ export const blocks: Registry["items"] = [
         path: "stream/blocks/chat/hooks/useEnterSubmit.tsx",
         type: "registry:hook",
         target:
-          "components/stream-components/blocks/chat/hooks/useAutoScroll.tsx",
+          "components/stream-components/blocks/chat/hooks/useEnterSubmit.tsx",
       },
       {
         path: "stream/blocks/chat/hooks/useLocalStorage.ts",
