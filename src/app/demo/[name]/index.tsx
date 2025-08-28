@@ -26,6 +26,7 @@ import { card } from "@/app/demo/[name]/ui/card";
 import {carousel} from '@/app/demo/[name]/ui/carousel';
 import { chart } from "@/app/demo/[name]/ui/chart";
 import { checkbox } from "@/app/demo/[name]/ui/checkbox";
+import { contextMenu } from "@/app/demo/[name]/ui/context-menu";
 import { dataTable } from "@/app/demo/[name]/ui/data-table";
 import { datePicker } from "@/app/demo/[name]/ui/date-picker";
 import { dialog } from "@/app/demo/[name]/ui/dialog";
@@ -44,6 +45,7 @@ import { tabs } from "@/app/demo/[name]/ui/tabs";
 import { toggleGroup } from "@/app/demo/[name]/ui/toggle-group";
 import { tooltip } from "@/app/demo/[name]/ui/tooltip";
 import { toggle } from "@/app/demo/[name]/ui/toggle";
+import { pagination } from "@/app/demo/[name]/ui/pagination";
 
 interface Demo {
   name: string; // this must match the `registry.json` name
@@ -79,6 +81,7 @@ export const demos: { [name: string]: Demo } = {
   carousel,
   chart,
   checkbox,
+  "context-menu": contextMenu,
   dialog,
   "date-picker": datePicker,
   "data-table": dataTable,
@@ -96,5 +99,6 @@ export const demos: { [name: string]: Demo } = {
   tabs,
   "toggle-group": toggleGroup,
   tooltip,
-  toggle
+  toggle,
+  pagination
 };

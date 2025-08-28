@@ -1,16 +1,14 @@
-import {
-  ChevronLeftIcon,
-  ChevronRightIcon,
-  MoreHorizontalIcon,
-} from "lucide-react";
+import { mdiChevronLeft, mdiChevronRight, mdiDotsHorizontal } from "@mdi/js";
 import type * as React from "react";
 
-import { type Button, buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { Button, buttonVariants } from "@/components/ui/button";
+import Icon from "@mdi/react";
 
 function Pagination({ className, ...props }: React.ComponentProps<"nav">) {
   return (
     <nav
+      role="navigation"
       aria-label="pagination"
       data-slot="pagination"
       className={cn("mx-auto flex w-full justify-center", className)}
@@ -54,10 +52,14 @@ function PaginationLink({
       data-active={isActive}
       className={cn(
         buttonVariants({
-          variant: isActive ? "outline" : "ghost",
+          variant: "ghost",
+          colorScheme: "neutral",
           size,
         }),
-        className,
+        "text-neutral-fg disabled:text-neutral-fg/40",
+        isActive &&
+          "bg-primary-bg text-primary-fg hover:bg-primary-bg hover:text-primary-fg",
+        className
       )}
       {...props}
     />
@@ -71,12 +73,11 @@ function PaginationPrevious({
   return (
     <PaginationLink
       aria-label="Go to previous page"
-      size="default"
+      size="icon"
       className={cn("gap-1 px-2.5 sm:pl-2.5", className)}
       {...props}
     >
-      <ChevronLeftIcon />
-      <span className="hidden sm:block">Previous</span>
+      <Icon path={mdiChevronLeft} size={1} />
     </PaginationLink>
   );
 }
@@ -88,12 +89,11 @@ function PaginationNext({
   return (
     <PaginationLink
       aria-label="Go to next page"
-      size="default"
+      size="icon"
       className={cn("gap-1 px-2.5 sm:pr-2.5", className)}
       {...props}
     >
-      <span className="hidden sm:block">Next</span>
-      <ChevronRightIcon />
+      <Icon path={mdiChevronRight} size={1} />
     </PaginationLink>
   );
 }
@@ -106,10 +106,13 @@ function PaginationEllipsis({
     <span
       aria-hidden
       data-slot="pagination-ellipsis"
-      className={cn("flex size-9 items-center justify-center", className)}
+      className={cn(
+        "text-neutral-fg flex size-9 items-center justify-center",
+        className
+      )}
       {...props}
     >
-      <MoreHorizontalIcon className="size-4" />
+      <Icon path={mdiDotsHorizontal} size={1} />
       <span className="sr-only">More pages</span>
     </span>
   );
