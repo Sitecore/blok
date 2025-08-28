@@ -1,31 +1,29 @@
+import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 
 export const input = {
   name: "input",
   components: {
-    Email: (
-      <div className="w-75 ml-2">
-        <Input type="email" placeholder="Email" />
+    Default: <Input placeholder="Default" />,
+    Email: <Input type="email" placeholder="Email" />,
+    WithLabel: (
+      <div className="grid w-full max-w-sm items-center gap-1.5">
+        <Label htmlFor="email">Label</Label>
+        <Input type="email" id="email" placeholder="With label" />
       </div>
     ),
-    Text: (
-      <div className="w-75 ml-2">
-        <Input type="text" placeholder="Text" aria-invalid="true" />
+    WithButton: (
+      <div className="flex w-full max-w-sm items-center space-x-2">
+        <Input type="email" placeholder="With button" />
+        <Button type="submit">Button</Button>
       </div>
     ),
-    Password: (
-      <div className="w-75 ml-2">
-        <Input type="password" placeholder="Password" />
-      </div>
-    ),
+
     File: (
-      <div className="w-75 ml-2">
-        <Input type="file" placeholder="File" />
-      </div>
-    ),
-    Disabled: (
-      <div className="w-75 ml-2">
-        <Input disabled placeholder="Disabled" />
+      <div className="grid w-full max-w-sm items-center gap-1.5">
+        <Label htmlFor="picture">File</Label>
+        <Input id="picture" type="file" />
       </div>
     ),
   },
