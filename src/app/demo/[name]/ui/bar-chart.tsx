@@ -76,5 +76,5 @@ export function BarChartComponent() {
         </div>
       </CardFooter>
     </Card>
-  )
+  );
 }

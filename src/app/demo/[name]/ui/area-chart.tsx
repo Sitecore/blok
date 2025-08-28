@@ -90,5 +90,5 @@ export function AreaChartComponent() {
         </div>
       </CardFooter>
     </Card>
-  )
+  );
 }

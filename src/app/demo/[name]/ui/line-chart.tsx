@@ -96,5 +96,5 @@ export function LineChartComponent() {
         </div>
       </CardFooter>
     </Card>
-  )
+  );
 }

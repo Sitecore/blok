@@ -99,5 +99,5 @@ export function BarMixedChartComponent() {
         </div>
       </CardFooter>
     </Card>
-  )
+  );
 }
