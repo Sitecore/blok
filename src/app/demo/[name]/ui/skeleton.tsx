@@ -13,7 +13,7 @@ export const skeleton = {
         </div>
       </div>
     ),
-    cardList: (
+    CardList: (
       <div className="flex w-full flex-wrap items-start gap-4">
         {Array.from({ length: 2 }).map((_, index) => (
           <Card key={index} className="w-full @md:w-auto @md:min-w-sm">
