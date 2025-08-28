@@ -559,14 +559,16 @@
       "title": "Chart",
       "description": "Beautiful charts. Built using Recharts. Copy and paste into your apps.",
       "registryDependencies": [
-        "chart",
-        "https://registry-starter.vercel.app/r/theme.json"
+        "https://blok-shadcn.vercel.app/r/theme.json"
+      ],
+      "dependencies": [
+        "recharts"
       ],
       "files": [
         {
-          "path": "src/layouts/minimal-layout.tsx",
+          "path": "src/components/ui/chart.tsx",
           "type": "registry:file",
-          "target": "app/layout.tsx"
+          "target": "src/components/ui/chart.tsx"
         }
       ]
     },
