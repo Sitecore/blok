@@ -3,60 +3,56 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 export const avatar = {
   name: "avatar",
   components: {
-    Default: (
+    default: (
       <Avatar>
-        <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
+        <AvatarImage src="https://ca.slack-edge.com/T1S2RKGUA-U015TJJS8MS-b581732f917e-512" alt="Frank Grinaert" />
         <AvatarFallback className="bg-primary text-primary-foreground">
           <span className="text-xs">CN</span>
         </AvatarFallback>
       </Avatar>
     ),
-    Fallback: (
+    fallback: (
       <Avatar>
-        <AvatarImage src="https://github.com" alt="@shadcn" />
-        <AvatarFallback className="bg-primary text-primary-foreground">
-          <span className="text-xs">CN</span>
-        </AvatarFallback>
+        <AvatarFallback>BM</AvatarFallback>
       </Avatar>
     ),
     large:(
       <div className="*:data-[slot=avatar]:ring-background flex -space-x-2 *:data-[slot=avatar]:size-12 
         *:data-[slot=avatar]:ring-2 *:data-[slot=avatar]:grayscale">
         <Avatar>
-          <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
           <AvatarFallback>CN</AvatarFallback>
         </Avatar>
         <Avatar>
-          <AvatarImage src="https://github.com/leerob.png" alt="@leerob" />
-          <AvatarFallback>LR</AvatarFallback>
+          <AvatarImage src="https://ca.slack-edge.com/T1S2RKGUA-U015TJJS8MS-b581732f917e-512" alt="Martin Svarrer Christensen" />
+          <AvatarFallback>MS</AvatarFallback>
         </Avatar>
         <Avatar>
           <AvatarImage
-            src="https://github.com/evilrabbit.png"
-            alt="@evilrabbit"
+            src="https://avatars.githubusercontent.com/u/126190057"
+            alt="Omar Oueslati"
           />
-          <AvatarFallback>ER</AvatarFallback>
+          <AvatarFallback>OO</AvatarFallback>
         </Avatar>
       </div>
     ),
-    Interactive: (
+    interactive: (
       <div className="*:data-[slot=avatar]:ring-background flex -space-x-2 hover:space-x-1 
         *:data-[slot=avatar]:size-12 *:data-[slot=avatar]:ring-2 *:data-[slot=avatar]:grayscale 
         *:data-[slot=avatar]:transition-all *:data-[slot=avatar]:duration-300 *:data-[slot=avatar]:ease-in-out">
         <Avatar>
-          <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
+          <AvatarImage src="https://avatars.githubusercontent.com/u/105914467" alt="Robert Watt" />
           <AvatarFallback>CN</AvatarFallback>
         </Avatar>
         <Avatar>
-          <AvatarImage src="https://github.com/leerob.png" alt="@leerob" />
-          <AvatarFallback>LR</AvatarFallback>
+          <AvatarImage src="https://avatars.githubusercontent.com/u/136078144" alt="Charalampos Vitoros" />
+          <AvatarFallback>CV</AvatarFallback>
         </Avatar>
         <Avatar>
           <AvatarImage
-            src="https://github.com/evilrabbit.png"
-            alt="@evilrabbit"
+            src="https://avatars.githubusercontent.com/u/105914470"
+            alt="Eric Sitarz"
           />
-          <AvatarFallback>ER</AvatarFallback>
+          <AvatarFallback>ES</AvatarFallback>
         </Avatar>
       </div>
     )
