@@ -36,6 +36,7 @@ import { label } from "@/app/demo/[name]/ui/label";
 import { menuBar } from "@/app/demo/[name]/ui/menu-bar";
 import { select } from "@/app/demo/[name]/ui/select";
 import { separator } from "@/app/demo/[name]/ui/separator";
+import {sheet} from "@/app/demo/[name]/ui/sheet";
 import { skeleton } from "@/app/demo/[name]/ui/skeleton";
 import { slider } from "@/app/demo/[name]/ui/slider";
 import { sonner } from "@/app/demo/[name]/ui/sonner";
@@ -90,6 +91,7 @@ export const demos: { [name: string]: Demo } = {
   "menu-bar": menuBar,
   select,
   separator,
+  sheet,
   skeleton,
   slider,
   switch: switchComponent,
