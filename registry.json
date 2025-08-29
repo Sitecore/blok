@@ -708,6 +708,26 @@
       ]
     },
     {
+      "name": "drawer",
+      "type": "registry:ui",
+      "title": "Drawer",
+      "description": "A modal dialog that interrupts the user with important content.",
+      "dependencies": [
+        "vaul"
+      ],
+      "registryDependencies": [
+        "http://blok-shadcn.vercel.app/r/button.json",
+        "http://blok-shadcn.vercel.app/r/theme.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui/drawer.tsx",
+          "type": "registry:ui",
+          "target": "src/components/ui/drawer.tsx"
+        }
+      ]
+    },
+    {
       "name": "dropdown-menu",
       "type": "registry:ui",
       "title": "Dropdown",
