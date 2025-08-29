@@ -35,6 +35,7 @@ import { dropdownMenu } from "@/app/demo/[name]/ui/dropdown-menu";
 import { input } from "@/app/demo/[name]/ui/input";
 import { label } from "@/app/demo/[name]/ui/label";
 import { menuBar } from "@/app/demo/[name]/ui/menu-bar";
+import { radioGroup } from "@/app/demo/[name]/ui/radio-group";
 import { select } from "@/app/demo/[name]/ui/select";
 import { separator } from "@/app/demo/[name]/ui/separator";
 import { skeleton } from "@/app/demo/[name]/ui/skeleton";
@@ -91,6 +92,7 @@ export const demos: { [name: string]: Demo } = {
   input,
   label,
   "menu-bar": menuBar,
+  "radio-group": radioGroup,
   select,
   separator,
   skeleton,
