@@ -849,6 +849,27 @@
       ]
     },
     {
+      "name": "resizable",
+      "type": "registry:ui",
+      "title": "Resizable",
+      "description": "Accessible resizable panel groups and layouts with keyboard support.",
+      "registryDependencies": [
+        "https://blok-shadcn.vercel.app/r/theme.json"
+      ],
+      "dependencies": [
+        "react-resizable-panels",
+        "@mdi/react",
+        "@mdi/js"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui/resizable.tsx",
+          "type": "registry:ui",
+          "target": "src/components/ui/resizable.tsx"
+        }
+      ]
+    },
+    {
       "name": "select",
       "type": "registry:ui",
       "title": "Select",
