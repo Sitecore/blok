@@ -2,9 +2,8 @@ import React from "react"
 import { mdiCheck, mdiLoading, mdiStarFourPoints } from "@mdi/js"
 import { isString } from "lodash"
 
-import { cn } from "@/lib/utils"
-import { StreamIcon } from "@/registry/new-york/stream/ui/stream-icon"
-
+import { cn } from "../../lib/utils"
+import { StreamIcon } from "../../ui/stream-icon"
 import { Markdown } from "./Markdown"
 import type { Source } from "./types"
 import { firstCharToUpperCase, TOOLS_SOURCES_TITLES } from "./utils"

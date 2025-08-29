@@ -2,10 +2,9 @@ import React from "react"
 import { mdiArrowRight, mdiLinkVariant } from "@mdi/js"
 import { uniqueId } from "lodash"
 
-import { cn } from "@/lib/utils"
-import { StreamIcon } from "@/registry/new-york/stream/ui/stream-icon"
-
-import { useGetDocumentProxyUrl } from "./hooks/useGetDocumentProxyUrl"
+import { cn } from "../../lib/utils"
+import { StreamIcon } from "../../ui/stream-icon"
+import { GetDocumentProxyUrl } from "./GetDocumentProxyUrl"
 import { Source } from "./types"
 
 interface SourceItemProps {
@@ -14,9 +13,6 @@ interface SourceItemProps {
 }
 
 export function SourceItem({ sources }: SourceItemProps): React.ReactNode {
-  /* Hooks */
-  const getDocumentProxyUrl = useGetDocumentProxyUrl()
-
   const [toolTitle, _sources] = sources
 
   /* Computed */
@@ -41,28 +37,40 @@ export function SourceItem({ sources }: SourceItemProps): React.ReactNode {
 
         return (
           <div key={`source_item_${uniqueId()}`}>
-            <a
-              href={getDocumentProxyUrl(url)}
-              className="bg-subtle-bg my-1 flex cursor-pointer flex-col space-y-2 rounded-lg p-3"
-              target="_blank"
-              rel="noopener noreferrer"
-              data-testid={`all_sources_source_item_${contentTestId}_${index}`}
-            >
-              <header className="flex items-center text-lg font-semibold text-black">
-                {toolTitle === "Web sources" && (
-                  <StreamIcon path={mdiLinkVariant} />
-                )}
-                <span className={cn("", toolTitle === "Web sources" && "ml-2")}>
-                  {name || title || ""}
-                </span>
-              </header>
-              <div className="text-md text-blackAlpha-900 font-normal">
-                {description || snippet || ""}
-              </div>
-              <footer className="flex justify-end">
-                <StreamIcon path={mdiArrowRight} />
-              </footer>
-            </a>
+            <GetDocumentProxyUrl
+              url={url}
+              item={(url) => {
+                return (
+                  <a
+                    href={url}
+                    className="bg-subtle-bg my-1 flex cursor-pointer flex-col space-y-2 rounded-lg p-3"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    data-testid={`all_sources_source_item_${contentTestId}_${index}`}
+                  >
+                    <header className="flex items-center text-lg font-semibold text-black">
+                      {toolTitle === "Web sources" && (
+                        <StreamIcon path={mdiLinkVariant} />
+                      )}
+                      <span
+                        className={cn(
+                          "",
+                          toolTitle === "Web sources" && "ml-2"
+                        )}
+                      >
+                        {name || title || ""}
+                      </span>
+                    </header>
+                    <div className="text-md text-blackAlpha-900 font-normal">
+                      {description || snippet || ""}
+                    </div>
+                    <footer className="flex justify-end">
+                      <StreamIcon path={mdiArrowRight} />
+                    </footer>
+                  </a>
+                )
+              }}
+            />
           </div>
         )
       })}

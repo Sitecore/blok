@@ -4,10 +4,10 @@ import React, { useEffect, useState } from "react"
 import { type Brandkit } from "@sitecore/stream-ui-core"
 
 import { cn } from "@/registry/new-york/lib/utils"
-import { StreamSpinner } from "@/registry/new-york/stream/ui/stream-spinner"
 import { Input } from "@/registry/new-york/ui/input"
 import { Separator } from "@/registry/new-york/ui/separator"
 
+import { StreamSpinner } from "../../../ui/stream-spinner"
 import { StreamBrandkitItem } from "./stream-brandkit-item"
 
 export interface StreamBrandkitListProps {

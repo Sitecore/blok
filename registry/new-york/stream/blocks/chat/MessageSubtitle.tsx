@@ -1,8 +1,8 @@
 import React from "react"
 import { mdiLoading, mdiStarFourPoints } from "@mdi/js"
 
-import { cn } from "@/lib/utils"
-import { StreamIcon } from "@/registry/new-york/stream/ui/stream-icon"
+import { cn } from "../../lib/utils"
+import { StreamIcon } from "../../ui/stream-icon"
 
 export interface MessageSubtitleProps {
   icon?: string

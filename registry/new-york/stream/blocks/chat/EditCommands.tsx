@@ -1,10 +1,10 @@
 import React from "react"
 import { mdiContentCopy } from "@mdi/js"
 
-import { cn } from "@/lib/utils"
-import { StreamIcon } from "@/registry/new-york/stream/ui/stream-icon"
 import { Button } from "@/registry/new-york/ui/button"
 
+import { cn } from "../../lib/utils"
+import { StreamIcon } from "../../ui/stream-icon"
 import { copyToClipboard } from "./utils"
 
 interface EditCommandsProps {

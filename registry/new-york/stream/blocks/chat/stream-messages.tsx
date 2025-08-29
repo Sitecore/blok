@@ -20,9 +20,8 @@ import { useAtom, useAtomValue, useSetAtom } from "jotai"
 import { isEmpty } from "lodash"
 import { toast } from "sonner"
 
-import { cn } from "@/lib/utils"
-
 import { useGetChatMessages } from "../../hooks/use-get-chat-messages"
+import { cn } from "../../lib/utils"
 import { ButtonScrollToBottom } from "./ButtonScrollToBottom"
 import { Feedback } from "./Feedback"
 import { useAiChatProvider } from "./hooks/useAiChatProvider"
@@ -39,8 +38,9 @@ import { Session } from "./store/types"
 import { ToolInvocations } from "./tools/ToolInvocations"
 import { MessageAnnotation } from "./types"
 import { UserMessage } from "./UserMessage"
+import { streamMessagesClientsConfig } from "./utils"
 
-export { streamMessagesClientsConfig } from "./utils"
+import "../../stream.css"
 
 export type VercelAiUiProviderType = UseChatHelpers & {
   addToolResult: ({
@@ -248,4 +248,4 @@ function Messages({ session }: MessagesProps): React.ReactNode {
   )
 }
 
-export { StreamMessages, type MessagesProps }
+export { StreamMessages, type MessagesProps, streamMessagesClientsConfig }

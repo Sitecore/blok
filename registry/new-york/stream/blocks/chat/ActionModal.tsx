@@ -1,7 +1,6 @@
 import React, { MouseEvent, useState } from "react"
 import { upperFirst } from "lodash"
 
-import { cn } from "@/lib/utils"
 import { Button } from "@/registry/new-york/ui/button"
 import {
   Dialog,
@@ -12,6 +11,8 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/registry/new-york/ui/dialog"
+
+import { cn } from "../../lib/utils"
 
 export type ActionModalProps = {
   ctaElement?: React.ReactNode

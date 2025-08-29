@@ -1,0 +1,136 @@
+/* Stream only related classes */
+.stream-chat-container {
+    width: 100%;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.stream-chat-editable[contenteditable] {
+    outline: 0 solid transparent !important;
+}
+
+.stream-w-icon {
+    width: 1.571428571428571em;
+}
+
+.stream-w-icon-2xl {
+    width: 3rem;
+}
+
+.stream-w-icon-2xs {
+    width: 1.25rem;
+}
+
+.stream-w-icon-3xl {
+    width: 3.5rem;
+}
+
+.stream-w-icon-3xs {
+    width: 1rem;
+}
+
+.stream-w-icon-4xl {
+    width: 4rem;
+}
+
+.stream-w-icon-5xl {
+    width: 5rem;
+}
+
+.stream-w-icon-6xl {
+    width: 6rem;
+}
+
+.stream-w-icon-7xl {
+    width: 7rem;
+}
+
+.stream-w-icon-8xl {
+    width: 8rem;
+}
+
+.stream-w-icon-lg {
+    width: 2.25rem;
+}
+
+.stream-w-icon-md {
+    width: 2rem;
+}
+
+.stream-w-icon-sm {
+    width: 1.75rem;
+}
+
+.stream-w-icon-xl {
+    width: 2.5rem;
+}
+
+.stream-w-icon-xs {
+    width: 1.5rem;
+}
+
+.stream-icon {
+    height: 1.571428571428571em;
+}
+
+.stream-icon-2xl {
+    height: 3rem;
+}
+
+.stream-icon-2xs {
+    height: 1.25rem;
+}
+
+.stream-icon-3xl {
+    height: 3.5rem;
+}
+
+.stream-icon-3xs {
+    height: 1rem;
+}
+
+.stream-icon-4xl {
+    height: 4rem;
+}
+
+.stream-icon-5xl {
+    height: 5rem;
+}
+
+.stream-icon-6xl {
+    height: 6rem;
+}
+
+.stream-icon-7xl {
+    height: 7rem;
+}
+
+.stream-icon-lg {
+    height: 2.25rem;
+}
+
+.stream-icon-md {
+    height: 2rem;
+}
+
+.stream-icon-sm {
+    height: 1.75rem;
+}
+
+.stream-icon-xl {
+    height: 2.5rem;
+}
+
+.stream-icon-xs {
+    height: 1.5rem;
+}
+
+.stream-bg-ai-400 {
+    background-image: var(--ai-400);
+    background-color: var(--ai-400);
+}
+
+.ai-textbox-expanded-border-radius {
+    border-radius: calc(1rem - 1px);
+}

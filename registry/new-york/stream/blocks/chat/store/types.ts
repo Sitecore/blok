@@ -46,4 +46,5 @@ export interface Session {
   chatId: string
   region: string
   env: "dev" | "qa" | "staging" | "preprod" | "prod"
+  token: string
 }

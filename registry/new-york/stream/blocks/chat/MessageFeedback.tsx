@@ -13,8 +13,6 @@ import { useAtomValue } from "jotai"
 import { isEmpty } from "lodash"
 import { toast } from "sonner"
 
-import { cn } from "@/lib/utils"
-import { StreamIcon } from "@/registry/new-york/stream/ui/stream-icon"
 import { Button } from "@/registry/new-york/ui/button"
 import {
   Tooltip,
@@ -22,6 +20,8 @@ import {
   TooltipTrigger,
 } from "@/registry/new-york/ui/tooltip"
 
+import { cn } from "../../lib/utils"
+import { StreamIcon } from "../../ui/stream-icon"
 import { ActionModal } from "./ActionModal"
 import { SourceItem } from "./SourceItem"
 import { extractSourcesFromDataAtom, sessionAtom } from "./store/atoms"

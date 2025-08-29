@@ -4,13 +4,14 @@ import React from "react"
 import { type Brandkit } from "@sitecore/stream-ui-core"
 
 import { cn } from "@/registry/new-york/lib/utils"
-import { useGetDocumentProxyUrl } from "@/registry/new-york/stream/blocks/chat/hooks/useGetDocumentProxyUrl"
 import {
   Avatar,
   AvatarFallback,
   AvatarImage,
 } from "@/registry/new-york/ui/avatar"
 import { Button } from "@/registry/new-york/ui/button"
+
+import { GetDocumentProxyUrl } from "../../chat/GetDocumentProxyUrl"
 
 export interface StreamBrandkitItemProps {
   brandkit: Brandkit
@@ -31,9 +32,6 @@ export function StreamBrandkitItem({
   showAvatar = true,
   children,
 }: StreamBrandkitItemProps): React.ReactNode {
-  /* Hooks */
-  const getDocumentProxyUrl = useGetDocumentProxyUrl()
-
   /* Events */
   const handleBrandkitOnSelect = (brandkit: Brandkit): void => {
     onSelect?.(brandkit)
@@ -52,10 +50,17 @@ export function StreamBrandkitItem({
     >
       {showAvatar && (
         <Avatar className="h-9 w-9 border-2">
-          <AvatarImage
-            className="object-contain"
-            src={getDocumentProxyUrl(brandkit?.logo)}
-            alt={brandkit?.name}
+          <GetDocumentProxyUrl
+            url={brandkit?.logo}
+            item={(url) => {
+              return (
+                <AvatarImage
+                  className="object-contain"
+                  src={url}
+                  alt={brandkit?.name}
+                />
+              )
+            }}
           />
           <AvatarFallback className="flex h-full w-full items-center justify-center font-bold text-gray-500">
             {brandkit?.name.charAt(0).toUpperCase()}

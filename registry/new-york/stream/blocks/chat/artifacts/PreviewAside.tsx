@@ -9,7 +9,6 @@ import { mdiArrowExpand, mdiClose } from "@mdi/js"
 import { useAtom, useAtomValue } from "jotai"
 import { createPortal } from "react-dom"
 
-import { cn } from "@/lib/utils"
 import { Button } from "@/registry/new-york/ui/button"
 import {
   Card,
@@ -26,6 +25,7 @@ import {
   SelectValue,
 } from "@/registry/new-york/ui/select"
 
+import { cn } from "../../../lib/utils"
 import { Icon } from "../Icon"
 import { RectangleStar } from "../icons/RectangleStar"
 import { Spinner } from "../Spinner"

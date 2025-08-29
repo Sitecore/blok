@@ -2,8 +2,9 @@
 
 import { mdiChatOutline, mdiTrashCanOutline } from "@mdi/js"
 
-import { cn } from "@/lib/utils"
 import { Icon } from "@/registry/new-york/blocks/icon/components/icon"
+
+import { cn } from "../../lib/utils"
 
 export type ChatHistoryProps = {
   className?: string

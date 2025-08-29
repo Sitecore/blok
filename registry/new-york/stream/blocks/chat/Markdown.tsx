@@ -1,11 +1,13 @@
 import React from "react"
+import { mdiLinkVariant, mdiOpenInNew } from "@mdi/js"
 import ReactMarkdown from "react-markdown"
 import remarkGfm from "remark-gfm"
 import remarkMath from "remark-math"
 
-import { cn } from "@/lib/utils"
+import { StreamIcon } from "@/registry/new-york/stream/ui/stream-icon"
 
-import { useGetDocumentProxyUrl } from "./hooks/useGetDocumentProxyUrl"
+import { cn } from "../../lib/utils"
+import { GetDocumentProxyUrl } from "./GetDocumentProxyUrl"
 
 export interface MarkdownProps {
   id?: string
@@ -20,9 +22,6 @@ export function Markdown({
   className = "",
   componentClassName = "",
 }: MarkdownProps): React.ReactNode {
-  /* Hooks */
-  const getDocumentProxyUrl = useGetDocumentProxyUrl()
-
   return (
     <div
       data-testid={`markdown-container-div-${id}`}
@@ -45,13 +44,20 @@ export function Markdown({
           img({ src, ...rest }) {
             return (
               <div className="mb-2 bg-gray-50 py-2">
-                <img
-                  {...rest}
-                  contentEditable={false}
-                  alt={rest.alt || ""}
-                  src={getDocumentProxyUrl(src as string)}
-                  height={400}
-                  className="mx-auto my-0 w-full max-w-2xl"
+                <GetDocumentProxyUrl
+                  url={src as string}
+                  item={(url) => {
+                    return (
+                      <img
+                        {...rest}
+                        contentEditable={false}
+                        alt={rest.alt || ""}
+                        src={url}
+                        height={400}
+                        className="mx-auto my-0 w-full max-w-2xl"
+                      />
+                    )
+                  }}
                 />
               </div>
             )
@@ -59,12 +65,20 @@ export function Markdown({
 
           a({ href, ...rest }) {
             return (
-              <a
-                {...rest}
-                contentEditable={false}
-                href={getDocumentProxyUrl(href!)}
-                target="_blank"
-                className="text-md text-subtle-text underline underline-offset-2"
+              <GetDocumentProxyUrl
+                url={href!}
+                item={(url) => {
+                  return (
+                    <a
+                      {...rest}
+                      contentEditable={false}
+                      href={url}
+                      rel="noopener noreferrer"
+                      target="_blank"
+                      className="text-md text-subtle-text underline underline-offset-2"
+                    />
+                  )
+                }}
               />
             )
           },

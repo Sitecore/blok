@@ -2,10 +2,10 @@ import React, { useEffect, useMemo, useRef } from "react"
 import { mdiArrowRight } from "@mdi/js"
 import { useAtomValue } from "jotai"
 
-import { useAiChatProvider } from "@/registry/new-york/stream/blocks/chat/hooks/useAiChatProvider"
 import { Button } from "@/registry/new-york/ui/button"
 
 import { Reveal } from "../artifacts/Reveal"
+import { useAiChatProvider } from "../hooks/useAiChatProvider"
 import { Icon } from "../Icon"
 import { isMessageAlreadyGeneratedAtom } from "../store/atoms"
 import { ToolProps } from "../types"

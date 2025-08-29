@@ -9,14 +9,15 @@ import {
   mdiChevronLeft,
   mdiChevronRight,
   mdiClose,
+  mdiLinkVariant,
   mdiOpenInNew,
 } from "@mdi/js"
 
-import { cn } from "@/lib/utils"
-import { StreamIcon } from "@/registry/new-york/stream/ui/stream-icon"
 import { Button } from "@/registry/new-york/ui/button"
 
-import { useGetDocumentProxyUrl } from "./hooks/useGetDocumentProxyUrl"
+import { cn } from "../../lib/utils"
+import { StreamIcon } from "../../ui/stream-icon"
+import { GetDocumentProxyUrl } from "./GetDocumentProxyUrl"
 import type { Source } from "./types"
 
 export interface LightBoxProps {
@@ -35,7 +36,6 @@ export function LightBox({
   imageClassName,
 }: LightBoxProps): React.ReactNode {
   /* Hooks */
-  const getDocumentProxyUrl = useGetDocumentProxyUrl()
   const [imageIndex, setImageIndex] = useState(0)
   const [showLightBox, setShowLightBox] = useState(false)
   const clickOutsideRef = useRef<HTMLDivElement | null>(null)
@@ -109,11 +109,18 @@ export function LightBox({
               )}
               onClick={() => handleOpenLightBoxOnClick(index)}
             >
-              <img
-                data-testid={`lightbox_image_preview_${index}`}
-                className={cn("w-[230px]", imageClassName)}
-                alt={`${title} preview`}
-                src={getDocumentProxyUrl(url)}
+              <GetDocumentProxyUrl
+                url={url}
+                item={(url) => {
+                  return (
+                    <img
+                      data-testid={`lightbox_image_preview_${index}`}
+                      className={cn("w-[230px]", imageClassName)}
+                      alt={`${title} preview`}
+                      src={url}
+                    />
+                  )
+                }}
               />
             </div>
           ))}
@@ -142,15 +149,22 @@ export function LightBox({
           </h4>
           <div className="flex items-center justify-between space-x-1">
             <Button data-testid={`lightbox_button_goto_source`} className="p-0">
-              <a
-                href={getDocumentProxyUrl(selectedImage?.url)}
-                className="flex h-full w-full items-center justify-center space-x-2 px-4 py-2 text-white"
-                target="_blank"
-                rel="noreferrer noopener"
-              >
-                <span className="truncate">Go to source</span>
-                <StreamIcon path={mdiOpenInNew} />
-              </a>
+              <GetDocumentProxyUrl
+                url={selectedImage?.url}
+                item={(url) => {
+                  return (
+                    <a
+                      href={url}
+                      className="flex h-full w-full items-center justify-center space-x-2 px-4 py-2 text-white"
+                      target="_blank"
+                      rel="noreferrer noopener"
+                    >
+                      <span className="truncate">Go to source</span>
+                      <StreamIcon path={mdiOpenInNew} />
+                    </a>
+                  )
+                }}
+              />
             </Button>
             <Button
               data-testid={`lightbox_button_close`}
@@ -166,10 +180,17 @@ export function LightBox({
           ref={clickOutsideRef}
           className="flex h-full w-full items-center justify-center px-10 py-8"
         >
-          <img
-            data-testid={`lightbox_image`}
-            alt={selectedImage?.title}
-            src={getDocumentProxyUrl(selectedImage?.url)}
+          <GetDocumentProxyUrl
+            url={selectedImage?.url}
+            item={(url) => {
+              return (
+                <img
+                  data-testid={`lightbox_image`}
+                  alt={selectedImage?.title}
+                  src={url}
+                />
+              )
+            }}
           />
         </div>
         <footer className="flex w-full items-center justify-center space-x-4 px-7 py-5">

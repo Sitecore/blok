@@ -5,7 +5,6 @@ import { mdiChevronDown } from "@mdi/js"
 import { type Brandkit } from "@sitecore/stream-ui-core"
 
 import { cn } from "@/registry/new-york/lib/utils"
-import { StreamIcon } from "@/registry/new-york/stream/ui/stream-icon"
 import { Button } from "@/registry/new-york/ui/button"
 import {
   Popover,
@@ -13,6 +12,7 @@ import {
   PopoverTrigger,
 } from "@/registry/new-york/ui/popover"
 
+import { StreamIcon } from "../../../ui/stream-icon"
 import { StreamBrandkitItem } from "./stream-brandkit-item"
 import {
   StreamBrandkitList,

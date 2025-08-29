@@ -55,19 +55,23 @@ export default function UseContentHubBrandkitsPage() {
             <div>
               <h3 className="mb-2 text-lg font-semibold">Hook Overview</h3>
               <p className="text-muted-foreground">
-                The useContentHubBrandkits hook fetches brandkits from ContentHub API for a specific brand.
-                It returns the same interface as useBrandkits() for consistent developer experience.
+                The useContentHubBrandkits hook fetches brandkits from
+                ContentHub API for a specific brand. It returns the same
+                interface as useBrandkits() for consistent developer experience.
               </p>
             </div>
 
             <div>
-              <h3 className="mb-2 text-lg font-semibold">Mock ContentHub Data</h3>
+              <h3 className="mb-2 text-lg font-semibold">
+                Mock ContentHub Data
+              </h3>
               <div className="grid gap-2">
                 {mockContentHubBrandkits.map((brandkit) => (
                   <div key={brandkit.id} className="rounded border p-3">
                     <div className="font-medium">{brandkit.name}</div>
                     <div className="text-muted-foreground text-sm">
-                      Status: {brandkit.status} | Brand: {brandkit.brandName} | Industry: {brandkit.industry}
+                      Status: {brandkit.status} | Brand: {brandkit.brandName} |
+                      Industry: {brandkit.industry}
                     </div>
                   </div>
                 ))}
@@ -105,12 +109,19 @@ console.log(\`Total: \${stats.total}, Published: \${stats.published}\`);`}
             </div>
 
             <div>
-              <h3 className="mb-2 text-lg font-semibold">ContentHub-Specific Features</h3>
+              <h3 className="mb-2 text-lg font-semibold">
+                ContentHub-Specific Features
+              </h3>
               <ul className="list-inside list-disc space-y-1 text-sm">
                 <li>Simplified interface with ContentHub brand ID (number)</li>
-                <li>Client-side search filtering (ContentHub API doesn't support server-side search)</li>
+                <li>
+                  Client-side search filtering (ContentHub API doesn't support
+                  server-side search)
+                </li>
                 <li>Same return interface as useBrandkits for consistency</li>
-                <li>ContentHub-specific API transformation and normalization</li>
+                <li>
+                  ContentHub-specific API transformation and normalization
+                </li>
                 <li>No pagination support (ContentHub limitation)</li>
                 <li>Built-in error handling for ContentHub API responses</li>
               </ul>
@@ -120,10 +131,16 @@ console.log(\`Total: \${stats.total}, Published: \${stats.published}\`);`}
               <h3 className="mb-2 text-lg font-semibold">Parameters</h3>
               <div className="space-y-2 text-sm">
                 <div>
-                  <code className="bg-muted rounded px-2 py-1">brandId: number</code> - Required ContentHub brand ID
+                  <code className="bg-muted rounded px-2 py-1">
+                    brandId: number
+                  </code>{" "}
+                  - Required ContentHub brand ID
                 </div>
                 <div>
-                  <code className="bg-muted rounded px-2 py-1">search?: string</code> - Optional search term (client-side filtering)
+                  <code className="bg-muted rounded px-2 py-1">
+                    search?: string
+                  </code>{" "}
+                  - Optional search term (client-side filtering)
                 </div>
               </div>
             </div>
