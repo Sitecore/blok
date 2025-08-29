@@ -42,6 +42,7 @@ import { sonner } from "@/app/demo/[name]/ui/sonner";
 import { switchComponent } from "@/app/demo/[name]/ui/switch";
 import { table } from "@/app/demo/[name]/ui/table";
 import { tabs } from "@/app/demo/[name]/ui/tabs";
+import { textarea } from "@/app/demo/[name]/ui/textarea";
 import { toggleGroup } from "@/app/demo/[name]/ui/toggle-group";
 import { tooltip } from "@/app/demo/[name]/ui/tooltip";
 import { pagination } from "@/app/demo/[name]/ui/pagination";
@@ -96,6 +97,7 @@ export const demos: { [name: string]: Demo } = {
   sonner,
   table,
   tabs,
+  textarea,
   "toggle-group": toggleGroup,
   tooltip,
   pagination,
