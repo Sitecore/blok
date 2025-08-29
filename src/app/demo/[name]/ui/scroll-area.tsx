@@ -1,5 +1,4 @@
 import * as React from "react";
-import Image from "next/image";
 
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import { Separator } from "@/components/ui/separator";
@@ -47,7 +46,7 @@ export const scrollArea = {
           {works.map((artwork) => (
             <figure key={artwork.artist} className="shrink-0">
               <div className="overflow-hidden rounded-md">
-                <Image
+                <img
                   src={artwork.art}
                   alt={`Photo by ${artwork.artist}`}
                   className="aspect-[3/4] h-fit w-fit object-cover"
