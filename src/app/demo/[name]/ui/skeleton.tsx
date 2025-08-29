@@ -1,24 +1,31 @@
+import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
 
 export const skeleton = {
   name: "skeleton",
   components: {
     Default: (
-      <div className="flex items-center space-x-4">
-        <Skeleton className="h-12 w-12 rounded-full" />
-        <div className="space-y-2">
-          <Skeleton className="h-4 w-[250px]" />
-          <Skeleton className="h-4 w-[200px]" />
+      <div className="flex items-center gap-4">
+        <Skeleton className="size-10 shrink-0 rounded-full" />
+        <div className="grid gap-2">
+          <Skeleton className="h-4 w-[150px]" />
+          <Skeleton className="h-4 w-[100px]" />
         </div>
       </div>
     ),
-    Card: (
-      <div className="mt-16 flex flex-col space-y-3">
-        <Skeleton className="h-[125px] w-[250px] rounded-xl" />
-        <div className="space-y-2">
-          <Skeleton className="h-4 w-[250px]" />
-          <Skeleton className="h-4 w-[200px]" />
-        </div>
+    CardList: (
+      <div className="flex w-full flex-wrap items-start gap-4">
+        {Array.from({ length: 2 }).map((_, index) => (
+          <Card key={index} className="w-full @md:w-auto @md:min-w-sm">
+            <CardHeader>
+              <Skeleton className="h-4 w-2/3" />
+              <Skeleton className="h-4 w-1/2" />
+            </CardHeader>
+            <CardContent>
+              <Skeleton className="aspect-square w-full" />
+            </CardContent>
+          </Card>
+        ))}
       </div>
     ),
   },
