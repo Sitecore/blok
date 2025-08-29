@@ -395,6 +395,28 @@
       ]
     },
     {
+      "name": "alert-dialog",
+      "type": "registry:ui",
+      "title": "Alert Dialog",
+      "description": "A modal dialog that interrupts the user with important content and expects a response.",
+      "dependencies": [
+        "@radix-ui/react-alert-dialog",
+        "class-variance-authority"
+      ],
+      "registryDependencies": [
+        "https://blok-shadcn.vercel.app/r/theme.json",
+        "https://blok-shadcn.vercel.app/r/button.json"
+
+      ],
+      "files": [
+        {
+          "path": "src/components/ui/alert-dialog.tsx",
+          "type": "registry:ui",
+          "target": "src/components/ui/alert-dialog.tsx"
+        }
+      ]
+    },
+    {
       "name": "alert",
       "type": "registry:ui",
       "title": "Alert",
@@ -412,6 +434,25 @@
           "path": "src/components/ui/alert.tsx",
           "type": "registry:ui",
           "target": "src/components/ui/alert.tsx"
+        }
+      ]
+    },
+    {
+      "name": "aspect-ratio",
+      "type": "registry:ui",
+      "title": "Aspect Ratio",
+      "description": "Displays content within a desired ratio.",
+      "registryDependencies": [
+        "https://blok-shadcn.vercel.app/r/theme.json"
+      ],
+      "dependencies": [
+        "@radix-ui/react-aspect-ratio"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui/aspect-ratio.tsx",
+          "type": "registry:ui",
+          "target": "src/components/ui/aspect-ratio.tsx"
         }
       ]
     },
@@ -920,6 +961,21 @@
       ]
     },
     {
+      "name": "textarea",
+      "type": "registry:ui",
+      "title": "Textarea",
+      "description": "A textarea component for multi-line text input with various states and configurations.",
+      "registryDependencies": [
+        "https://blok-shadcn.vercel.app/r/theme.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui/textarea.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
       "name": "toggle-group",
       "type": "registry:ui",
       "title": "Toggle Group",
@@ -952,6 +1008,21 @@
           "path": "src/components/ui/tooltip.tsx",
           "type": "registry:ui",
           "target": "src/components/ui/tooltip.tsx"
+        }
+      ]
+    },
+    {
+      "name": "hover-card",
+      "type": "registry:ui",
+      "title": "Hover Card",
+      "description": "For sighted users to preview content available behind a link.",
+      "registryDependencies": ["https://blok-shadcn.vercel.app/r/theme.json"],
+      "dependencies": ["@radix-ui/react-hover-card"],
+      "files": [
+        {
+          "path": "src/components/ui/hover-card.tsx",
+          "type": "registry:ui",
+          "target": "src/components/ui/hover-card.tsx"
         }
       ]
     }
