@@ -32,6 +32,7 @@ import { contextMenu } from "@/app/demo/[name]/ui/context-menu";
 import { dataTable } from "@/app/demo/[name]/ui/data-table";
 import { datePicker } from "@/app/demo/[name]/ui/date-picker";
 import { dialog } from "@/app/demo/[name]/ui/dialog";
+import {drawer} from "@/app/demo/[name]/ui/drawer";
 import { dropdownMenu } from "@/app/demo/[name]/ui/dropdown-menu";
 import { input } from "@/app/demo/[name]/ui/input";
 import { inputOtp } from "@/app/demo/[name]/ui/inputOtp";
@@ -97,6 +98,7 @@ export const demos: { [name: string]: Demo } = {
   dialog,
   "date-picker": datePicker,
   "data-table": dataTable,
+   drawer,
   "dropdown-menu": dropdownMenu,
   input,
   inputOtp,
