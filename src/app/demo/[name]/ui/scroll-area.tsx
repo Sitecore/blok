@@ -24,7 +24,7 @@ const tags = Array.from({ length: 50 }).map(
 );
 
 export const scrollArea = {
-  name: "scroll-area",
+  name: "scrollarea",
   components: {
     ScrollAreaVertical: (
       <div className="flex flex-col gap-6">
