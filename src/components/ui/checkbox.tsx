@@ -27,7 +27,7 @@ function Checkbox({
         <Icon path={mdiCheck} size={0.7} className="-mt-px" />
       </CheckboxPrimitive.Indicator>
     </CheckboxPrimitive.Root>
-  )
+  );
 }
 
 export { Checkbox };
