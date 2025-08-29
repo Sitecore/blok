@@ -42,7 +42,7 @@ export default function RootLayout({
         GeistSans.variable,
         GeistMono.variable,
         MontserratSerif.variable,
-        "bg-background text-foreground",
+        "bg-subtle-bg text-foreground",
       )}
     >
       <meta
