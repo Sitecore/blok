@@ -1,11 +1,8 @@
 "use client";
 
-import {
-  ChevronDownIcon,
-  ChevronLeftIcon,
-  ChevronRightIcon,
-} from "lucide-react";
 import * as React from "react";
+import { mdiChevronLeft, mdiChevronRight,mdiChevronDown } from "@mdi/js";
+import Icon from "@mdi/react";
 
 import {
   type DayButton,
@@ -33,12 +30,7 @@ function Calendar({
   return (
     <DayPicker
       showOutsideDays={showOutsideDays}
-      className={cn(
-        "group/calendar bg-background p-3 [--cell-size:--spacing(8)] [[data-slot=card-content]_&]:bg-transparent [[data-slot=popover-content]_&]:bg-transparent",
-        String.raw`rtl:**:[.rdp-button\_next>svg]:rotate-180`,
-        String.raw`rtl:**:[.rdp-button\_previous>svg]:rotate-180`,
-        className,
-      )}
+      className={cn("p-3", className)}
       captionLayout={captionLayout}
       formatters={{
         formatMonthDropdown: (date) =>
@@ -57,14 +49,20 @@ function Calendar({
           defaultClassNames.nav,
         ),
         button_previous: cn(
-          buttonVariants({ variant: buttonVariant }),
-          "size-(--cell-size) aria-disabled:opacity-50 p-0 select-none",
-          defaultClassNames.button_previous,
+          buttonVariants({
+            variant: "ghost",
+            colorScheme: "neutral",
+            size: "icon",
+          }),
+          "size-icon bg-transparent p-0 opacity-50 hover:opacity-100"
         ),
         button_next: cn(
-          buttonVariants({ variant: buttonVariant }),
-          "size-(--cell-size) aria-disabled:opacity-50 p-0 select-none",
-          defaultClassNames.button_next,
+          buttonVariants({
+            variant: "ghost",
+            colorScheme: "neutral",
+            size: "icon",
+          }),
+          "size-icon bg-transparent p-0 opacity-50 hover:opacity-100 "
         ),
         month_caption: cn(
           "flex items-center justify-center h-(--cell-size) w-full px-(--cell-size)",
@@ -105,15 +103,17 @@ function Calendar({
           defaultClassNames.week_number,
         ),
         day: cn(
-          "relative w-full h-full p-0 text-center [&:first-child[data-selected=true]_button]:rounded-l-md [&:last-child[data-selected=true]_button]:rounded-r-md group/day aspect-square select-none",
-          defaultClassNames.day,
+          buttonVariants({ variant: "ghost", colorScheme: "neutral" }),
+          "hover:rounded-md size-8 p-0 font-normal aria-selected:opacity-100 border border-transparent hover:border-primary text-body-text hover:bg-white"
         ),
-        range_start: cn(
-          "rounded-l-md bg-accent",
-          defaultClassNames.range_start,
-        ),
-        range_middle: cn("rounded-none", defaultClassNames.range_middle),
-        range_end: cn("rounded-r-md bg-accent", defaultClassNames.range_end),
+        day_range_start:
+          "day-range-start aria-selected:bg-primary-500 aria-selected:text-primary-foreground rounded-l-md rounded-r-none",
+        day_range_end:
+          "day-range-end aria-selected:bg-primary-500 aria-selected:text-primary-foreground rounded-r-md rounded-l-none",
+
+        range_start: "day-range-start aria-selected:bg-primary-500 aria-selected:text-primary-foreground rounded-l-md rounded-r-none",
+        range_middle: "aria-selected:bg-primary-bg aria-selected:text-body-text rounded-none",
+        range_end: "day-range-end aria-selected:bg-primary-500 aria-selected:text-primary-foreground rounded-r-md rounded-l-none",
         today: cn(
           "bg-accent text-accent-foreground rounded-md data-[selected=true]:rounded-none",
           defaultClassNames.today,
@@ -143,21 +143,32 @@ function Calendar({
         Chevron: ({ className, orientation, ...props }) => {
           if (orientation === "left") {
             return (
-              <ChevronLeftIcon className={cn("size-4", className)} {...props} />
-            );
-          }
-
-          if (orientation === "right") {
-            return (
-              <ChevronRightIcon
-                className={cn("size-4", className)}
+              <Icon
+                path={mdiChevronLeft}
+                size={0.9}
+                className={cn("text-neutral size-4", className)}
                 {...props}
               />
             );
           }
 
+          if (orientation === "right") {
+            return (
+              <Icon
+                path={mdiChevronRight}
+                size={0.9}
+                className={cn("text-neutral size-4", className)}
+                {...props}
+              />
+            );
+          }
           return (
-            <ChevronDownIcon className={cn("size-4", className)} {...props} />
+            <Icon
+              path={mdiChevronDown}
+              size={0.9}
+              className={cn("text-neutral size-4", className)}
+              {...props}
+            />
           );
         },
         DayButton: CalendarDayButton,
@@ -183,9 +194,8 @@ function CalendarDayButton({
   modifiers,
   ...props
 }: React.ComponentProps<typeof DayButton>) {
-  const defaultClassNames = getDefaultClassNames();
-
   const ref = React.useRef<HTMLButtonElement>(null);
+
   React.useEffect(() => {
     if (modifiers.focused) ref.current?.focus();
   }, [modifiers.focused]);
@@ -196,23 +206,29 @@ function CalendarDayButton({
       variant="ghost"
       size="icon"
       data-day={day.date.toLocaleDateString()}
-      data-selected-single={
-        modifiers.selected &&
-        !modifiers.range_start &&
-        !modifiers.range_end &&
-        !modifiers.range_middle
-      }
+      data-selected={modifiers.selected ? "true" : "false"}
       data-range-start={modifiers.range_start}
       data-range-end={modifiers.range_end}
       data-range-middle={modifiers.range_middle}
+      aria-selected={modifiers.selected || undefined}
       className={cn(
-        "flex aspect-square size-auto w-full min-w-(--cell-size) flex-col gap-1 font-normal leading-none data-[range-end=true]:rounded-md data-[range-middle=true]:rounded-none data-[range-start=true]:rounded-md data-[range-end=true]:rounded-r-md data-[range-start=true]:rounded-l-md data-[range-end=true]:bg-primary data-[range-middle=true]:bg-accent data-[range-start=true]:bg-primary data-[selected-single=true]:bg-primary data-[range-end=true]:text-primary-foreground data-[range-middle=true]:text-accent-foreground data-[range-start=true]:text-primary-foreground data-[selected-single=true]:text-primary-foreground group-data-[focused=true]/day:relative group-data-[focused=true]/day:z-10 group-data-[focused=true]/day:border-ring group-data-[focused=true]/day:ring-[3px] group-data-[focused=true]/day:ring-ring/50 dark:hover:text-accent-foreground [&>span]:text-xs [&>span]:opacity-70",
-        defaultClassNames.day,
-        className,
+        buttonVariants({ variant: "ghost", colorScheme: "neutral" }),
+        "hover:rounded-md size-8 p-0 font-normal border border-transparent hover:border-primary text-body-text hover:bg-white",
+        modifiers.selected &&
+          !modifiers.range_start &&
+          !modifiers.range_end &&
+          !modifiers.range_middle &&
+          "bg-primary-500 text-primary-foreground",
+        modifiers.range_start &&
+          "bg-primary-500 text-white rounded-l-md hover:bg-primary-500",
+        modifiers.range_end &&
+          "bg-primary-500 text-white rounded-r-md hover:bg-primary-500",
+        className
       )}
       {...props}
     />
   );
-}
+};
+
 
 export { Calendar, CalendarDayButton };
