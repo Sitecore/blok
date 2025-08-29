@@ -97,6 +97,7 @@ export const demos: { [name: string]: Demo } = {
   chart,
   checkbox,
   collapsible,
+  collapsible,
   "context-menu": contextMenu,
   dialog,
   "date-picker": datePicker,
