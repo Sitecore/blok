@@ -406,7 +406,6 @@
       "registryDependencies": [
         "https://blok-shadcn.vercel.app/r/theme.json",
         "https://blok-shadcn.vercel.app/r/button.json"
-      
       ],
       "files": [
         {
