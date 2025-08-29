@@ -5,7 +5,7 @@ import type { DateRange } from "react-day-picker";
 
 import { Calendar } from "@/components/ui/calendar";
 
-export function MultiCalendar() {
+export function MultiCalendar({numberOfMonths = 1}: {numberOfMonths?: number}) {
   const [dateRange, setDateRange] = React.useState<DateRange | undefined>({
     from: new Date(2025, 5, 9),
     to: new Date(2025, 5, 26),
@@ -17,6 +17,7 @@ export function MultiCalendar() {
       defaultMonth={dateRange?.from}
       selected={dateRange}
       onSelect={setDateRange}
+      numberOfMonths={numberOfMonths}
       className="rounded-lg border shadow-sm"
     />
   );
