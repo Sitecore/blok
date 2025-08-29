@@ -1063,10 +1063,13 @@
       "type": "registry:ui",
       "title": "Toggle",
       "description": "A two-state button that can be either on or off.",
-      "registryDependencies": [
-        "https://blok-shadcn.vercel.app/r/theme.json"
+      "registryDependencies": ["https://blok-shadcn.vercel.app/r/theme.json"],
+      "dependencies": [
+        "@radix-ui/react-toggle",
+        "@mdi/react",
+        "@mdi/js",
+        "class-variance-authority"
       ],
-      "dependencies": ["@radix-ui/react-toggle","@mdi/react","@mdi/js","class-variance-authority"],
       "files": [
         {
           "path": "src/components/ui/toggle.tsx",
