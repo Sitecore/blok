@@ -48,6 +48,7 @@ import { textarea } from "@/app/demo/[name]/ui/textarea";
 import { toggleGroup } from "@/app/demo/[name]/ui/toggle-group";
 import { tooltip } from "@/app/demo/[name]/ui/tooltip";
 import { pagination } from "@/app/demo/[name]/ui/pagination";
+import { hoverCard } from "@/app/demo/[name]/ui/hover-card";
 
 interface Demo {
   name: string; // this must match the `registry.json` name
@@ -105,4 +106,5 @@ export const demos: { [name: string]: Demo } = {
   "toggle-group": toggleGroup,
   tooltip,
   pagination,
+  "hover-card": hoverCard,
 };

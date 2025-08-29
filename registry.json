@@ -1010,6 +1010,21 @@
           "target": "src/components/ui/tooltip.tsx"
         }
       ]
+    },
+    {
+      "name": "hover-card",
+      "type": "registry:ui",
+      "title": "Hover Card",
+      "description": "For sighted users to preview content available behind a link.",
+      "registryDependencies": ["https://blok-shadcn.vercel.app/r/theme.json"],
+      "dependencies": ["@radix-ui/react-hover-card"],
+      "files": [
+        {
+          "path": "src/components/ui/hover-card.tsx",
+          "type": "registry:ui",
+          "target": "src/components/ui/hover-card.tsx"
+        }
+      ]
     }
   ]
 }
