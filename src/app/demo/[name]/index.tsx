@@ -50,6 +50,7 @@ import { textarea } from "@/app/demo/[name]/ui/textarea";
 import { toggleGroup } from "@/app/demo/[name]/ui/toggle-group";
 import { tooltip } from "@/app/demo/[name]/ui/tooltip";
 import { pagination } from "@/app/demo/[name]/ui/pagination";
+import { popover } from "@/app/demo/[name]/ui/popover";
 import { hoverCard } from "@/app/demo/[name]/ui/hover-card";
 
 interface Demo {
@@ -110,5 +111,6 @@ export const demos: { [name: string]: Demo } = {
   "toggle-group": toggleGroup,
   tooltip,
   pagination,
+  popover,
   "hover-card": hoverCard,
 };
