@@ -379,14 +379,18 @@
       "title": "Accordion",
       "description": "A vertically stacked set of interactive headings that each reveal a section of content.",
       "registryDependencies": [
-        "accordion",
-        "https://registry-starter.vercel.app/r/theme.json"
+        "https://blok-shadcn.vercel.app/r/theme.json"
+      ],
+      "dependencies": [
+        "@radix-ui/react-accordion",
+        "@mdi/react",
+        "@mdi/js"
       ],
       "files": [
         {
-          "path": "src/layouts/minimal-layout.tsx",
-          "type": "registry:file",
-          "target": "app/layout.tsx"
+          "path": "src/components/ui/accordion.tsx",
+          "type": "registry:ui",
+          "target": "src/components/ui/accordion.tsx"
         }
       ]
     },
@@ -417,14 +421,16 @@
       "title": "Avatar",
       "description": "An image element with a fallback for representing the user.",
       "registryDependencies": [
-        "avatar",
-        "https://registry-starter.vercel.app/r/theme.json"
+        "https://blok-shadcn.vercel.app/r/theme.json"
+      ],
+      "dependencies": [
+        "@radix-ui/react-avatar"
       ],
       "files": [
         {
-          "path": "src/layouts/minimal-layout.tsx",
-          "type": "registry:file",
-          "target": "app/layout.tsx"
+          "path": "src/components/ui/avatar.tsx",
+          "type": "registry:ui",
+          "target": "src/components/ui/avatar.tsx"
         }
       ]
     },
@@ -454,14 +460,18 @@
       "title": "Breadcrumb",
       "description": "Displays the path to the current resource using a hierarchy of links.",
       "registryDependencies": [
-        "breadcrumb",
-        "https://registry-starter.vercel.app/r/theme.json"
+        "https://blok-shadcn.vercel.app/r/theme.json"
+      ],
+      "dependencies": [
+        "@radix-ui/react-slot",
+        "@mdi/react",
+        "@mdi/js"
       ],
       "files": [
         {
-          "path": "src/layouts/minimal-layout.tsx",
-          "type": "registry:file",
-          "target": "app/layout.tsx"
+          "path": "src/components/ui/breadcrumb.tsx",
+          "type": "registry:ui",
+          "target": "src/components/ui/breadcrumb.tsx"
         }
       ]
     },
@@ -522,19 +532,43 @@
       ]
     },
     {
+      "name": "carousel",
+      "type": "registry:ui",
+      "title": "Carousel",
+      "description": "A carousel component for displaying a series of items in a sliding manner.",
+      "registryDependencies": [
+        "https://blok-shadcn.vercel.app/r/button.json",
+        "https://blok-shadcn.vercel.app/r/theme.json"
+      ],
+      "dependencies": [
+        "embla-carousel-react",
+        "@mdi/react",
+        "@mdi/js"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui/carousel.tsx",
+          "type": "registry:ui",
+          "target": "src/components/ui/carousel.tsx"
+        }
+      ]
+    },
+    {
       "name": "chart",
       "type": "registry:ui",
       "title": "Chart",
       "description": "Beautiful charts. Built using Recharts. Copy and paste into your apps.",
       "registryDependencies": [
-        "chart",
-        "https://registry-starter.vercel.app/r/theme.json"
+        "https://blok-shadcn.vercel.app/r/theme.json"
+      ],
+      "dependencies": [
+        "recharts@2.15.4"
       ],
       "files": [
         {
-          "path": "src/layouts/minimal-layout.tsx",
+          "path": "src/components/ui/chart.tsx",
           "type": "registry:file",
-          "target": "app/layout.tsx"
+          "target": "src/components/ui/chart.tsx"
         }
       ]
     },
@@ -615,15 +649,20 @@
       "type": "registry:ui",
       "title": "Dialog",
       "description": "A modal dialog that interrupts the user with important content.",
+      "dependencies": [
+        "@mdi/js",
+        "@mdi/react",
+        "@radix-ui/react-dialog"
+      ],
       "registryDependencies": [
-        "dialog",
-        "https://registry-starter.vercel.app/r/theme.json"
+        "https://blok-shadcn.vercel.app/r/theme.json",
+        "https://blok-shadcn.vercel.app/r/button.json"
       ],
       "files": [
         {
-          "path": "src/layouts/minimal-layout.tsx",
-          "type": "registry:file",
-          "target": "app/layout.tsx"
+          "path": "src/components/ui/dialog.tsx",
+          "type": "registry:ui",
+          "target": "src/components/ui/dialog.tsx"
         }
       ]
     },
@@ -632,15 +671,19 @@
       "type": "registry:ui",
       "title": "Dropdown",
       "description": "Displays a menu to the user triggered by a button.",
+      "dependencies": [
+        "@mdi/react",
+        "@mdi/js",
+        "@radix-ui/react-dropdown-menu"
+      ],
       "registryDependencies": [
-        "dropdown-menu",
-        "https://registry-starter.vercel.app/r/theme.json"
+        "https://blok-shadcn.vercel.app/r/theme.json"
       ],
       "files": [
         {
-          "path": "src/layouts/minimal-layout.tsx",
-          "type": "registry:file",
-          "target": "app/layout.tsx"
+          "path": "src/components/ui/dropdown-menu.tsx",
+          "type": "registry:ui",
+          "target": "src/components/ui/dropdown-menu.tsx"
         }
       ]
     },
@@ -650,14 +693,13 @@
       "title": "Input",
       "description": "Displays a form input field or a component that looks like an input field.",
       "registryDependencies": [
-        "input",
-        "https://registry-starter.vercel.app/r/theme.json"
+        "https://blok-shadcn.vercel.app/r/theme.json"
       ],
       "files": [
         {
-          "path": "src/layouts/minimal-layout.tsx",
-          "type": "registry:file",
-          "target": "app/layout.tsx"
+          "path": "src/components/ui/input.tsx",
+          "type": "registry:ui",
+          "target": "src/components/ui/input.tsx"
         }
       ]
     },
@@ -685,15 +727,41 @@
       "type": "registry:ui",
       "title": "Menu Bar",
       "description": "A visually persistent menu common in desktop applications that provides quick access to a consistent set of commands.",
+      "dependencies": [
+        "@mdi/react",
+        "@mdi/js",
+        "@radix-ui/react-menubar"
+      ],
       "registryDependencies": [
-        "menu-bar",
-        "https://registry-starter.vercel.app/r/theme.json"
+        "https://blok-shadcn.vercel.app/r/theme.json"
       ],
       "files": [
         {
-          "path": "src/layouts/minimal-layout.tsx",
-          "type": "registry:file",
-          "target": "app/layout.tsx"
+          "path": "src/components/ui/menubar.tsx",
+          "type": "registry:ui",
+          "target": "src/components/ui/menubar.tsx"
+        }
+      ]
+    },
+    {
+      "name": "pagination",
+      "type": "registry:ui",
+      "title": "Pagination",
+      "description": "Pagination with page navigation, next and previous links.",
+      "registryDependencies": [
+        "https://blok-shadcn.vercel.app/r/theme.json",
+        "https://blok-shadcn.vercel.app/r/button.json"
+      ],
+      "dependencies": [
+        "@radix-ui/react-popover",
+        "@mdi/react",
+        "@mdi/js"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui/pagination.tsx",
+          "type": "registry:ui",
+          "target": "src/components/ui/pagination.tsx"
         }
       ]
     },
@@ -722,15 +790,17 @@
       "type": "registry:ui",
       "title": "Separator",
       "description": "Visually or semantically separates content.",
+      "dependencies": [
+        "@radix-ui/react-separator"
+      ],
       "registryDependencies": [
-        "separator",
-        "https://registry-starter.vercel.app/r/theme.json"
+        "https://blok-shadcn.vercel.app/r/theme.json"
       ],
       "files": [
         {
-          "path": "src/layouts/minimal-layout.tsx",
-          "type": "registry:file",
-          "target": "app/layout.tsx"
+          "path": "src/components/ui/separator.tsx",
+          "type": "registry:ui",
+          "target": "src/components/ui/separator.tsx"
         }
       ]
     },
@@ -740,14 +810,13 @@
       "title": "Skeleton",
       "description": "Use to show a placeholder while content is loading.",
       "registryDependencies": [
-        "skeleton",
-        "https://registry-starter.vercel.app/r/theme.json"
+        "https://blok-shadcn.vercel.app/r/theme.json"
       ],
       "files": [
         {
-          "path": "src/layouts/minimal-layout.tsx",
-          "type": "registry:file",
-          "target": "app/layout.tsx"
+          "path": "src/components/ui/skeleton.tsx",
+          "type": "registry:ui",
+          "target": "src/components/ui/skeleton.tsx"
         }
       ]
     },
@@ -757,14 +826,16 @@
       "title": "Slider",
       "description": "An input where the user selects a value from within a given range.",
       "registryDependencies": [
-        "slider",
-        "https://registry-starter.vercel.app/r/theme.json"
+        "https://blok-shadcn.vercel.app/r/theme.json"
+      ],
+      "dependencies": [
+        "@radix-ui/react-slider"
       ],
       "files": [
         {
-          "path": "src/layouts/minimal-layout.tsx",
-          "type": "registry:file",
-          "target": "app/layout.tsx"
+          "path": "src/components/ui/slider.tsx",
+          "type": "registry:ui",
+          "target": "src/components/ui/slider.tsx"
         }
       ]
     },
@@ -774,19 +845,19 @@
       "title": "Sonner",
       "description": "An opinionated toast component for React.",
       "registryDependencies": [
+        "https://blok-shadcn.vercel.app/r/theme.json"
+      ],
+      "dependencies": [
         "sonner",
-        "https://registry-starter.vercel.app/r/theme.json"
+        "next-themes",
+        "@mdi/react",
+        "@mdi/js"
       ],
       "files": [
         {
-          "path": "src/layouts/minimal-layout.tsx",
-          "type": "registry:file",
-          "target": "app/layout.tsx"
-        },
-        {
           "path": "src/components/ui/sonner.tsx",
-          "type": "registry:file",
-          "target": "components/ui/sonner.tsx"
+          "type": "registry:ui",
+          "target": "src/components/ui/sonner.tsx"
         }
       ]
     },
@@ -795,15 +866,19 @@
       "type": "registry:ui",
       "title": "Switch",
       "description": "A control that allows the user to toggle between checked and not checked.",
+      "dependencies": [
+        "@radix-ui/react-switch",
+        "class-variance-authority"
+      ],
       "registryDependencies": [
-        "switch",
-        "https://registry-starter.vercel.app/r/theme.json"
+        "https://blok-shadcn.vercel.app/r/theme.json",
+        "https://blok-shadcn.vercel.app/r/label.json"
       ],
       "files": [
         {
-          "path": "src/layouts/minimal-layout.tsx",
-          "type": "registry:file",
-          "target": "app/layout.tsx"
+          "path": "src/components/ui/switch.tsx",
+          "type": "registry:ui",
+          "target": "src/components/ui/switch.tsx"
         }
       ]
     },
@@ -828,16 +903,19 @@
       "name": "tabs",
       "type": "registry:ui",
       "title": "Tabs",
-      "description": "A set of layered sections of content—known as tab panels—that are displayed one at a time.",
+      "description": "A set of layered sections of content known as tab panels that are displayed one at a time.",
+      "dependencies": [
+        "@radix-ui/react-tabs",
+        "class-variance-authority"
+      ],
       "registryDependencies": [
-        "tabs",
-        "https://registry-starter.vercel.app/r/theme.json"
+        "https://blok-shadcn.vercel.app/r/theme.json"
       ],
       "files": [
         {
-          "path": "src/layouts/minimal-layout.tsx",
-          "type": "registry:file",
-          "target": "app/layout.tsx"
+          "path": "src/components/ui/tabs.tsx",
+          "type": "registry:ui",
+          "target": "src/components/ui/tabs.tsx"
         }
       ]
     },
@@ -864,14 +942,16 @@
       "title": "Tooltip",
       "description": "A popup that displays information related to an element when the element receives keyboard focus or the mouse hovers over it.",
       "registryDependencies": [
-        "tooltip",
-        "https://registry-starter.vercel.app/r/theme.json"
+        "https://blok-shadcn.vercel.app/r/theme.json"
+      ],
+      "dependencies": [
+        "@radix-ui/react-tooltip"
       ],
       "files": [
         {
-          "path": "src/layouts/minimal-layout.tsx",
-          "type": "registry:file",
-          "target": "app/layout.tsx"
+          "path": "src/components/ui/tooltip.tsx",
+          "type": "registry:ui",
+          "target": "src/components/ui/tooltip.tsx"
         }
       ]
     }
