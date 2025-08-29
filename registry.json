@@ -404,8 +404,8 @@
         "class-variance-authority"
       ],
       "registryDependencies": [
-        "https://registry-starter.vercel.app/r/theme.json",
-        "https://registry-starter.vercel.app/r/button.json"
+        "https://blok-shadcn.vercel.app/r/theme.json",
+        "https://blok-shadcn.vercel.app/r/button.json"
 
       ],
       "files": [
