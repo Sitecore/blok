@@ -1026,7 +1026,12 @@
         "https://blok-shadcn.vercel.app/r/theme.json",
         "https://blok-shadcn.vercel.app/r/toggle.json"
       ],
-      "dependencies": ["@radix-ui/react-toggle-group","@mdi/react","@mdi/js","class-variance-authority"],
+      "dependencies": [
+        "@radix-ui/react-toggle-group",
+        "@mdi/react",
+        "@mdi/js",
+        "class-variance-authority"
+      ],
       "files": [
         {
           "path": "src/components/ui/toggle-group.tsx",
