@@ -52,6 +52,7 @@ import { textarea } from "@/app/demo/[name]/ui/textarea";
 import { toggleGroup } from "@/app/demo/[name]/ui/toggle-group";
 import { tooltip } from "@/app/demo/[name]/ui/tooltip";
 import { pagination } from "@/app/demo/[name]/ui/pagination";
+import { scrollArea } from "@/app/demo/[name]/ui/scroll-area";
 import { popover } from "@/app/demo/[name]/ui/popover";
 import { hoverCard } from "@/app/demo/[name]/ui/hover-card";
 
@@ -100,6 +101,7 @@ export const demos: { [name: string]: Demo } = {
   inputOtp,
   label,
   "menu-bar": menuBar,
+  "scroll-area" :scrollArea,
   "radio-group": radioGroup,
   resizable,
   select,
