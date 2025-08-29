@@ -34,8 +34,10 @@ import { datePicker } from "@/app/demo/[name]/ui/date-picker";
 import { dialog } from "@/app/demo/[name]/ui/dialog";
 import { dropdownMenu } from "@/app/demo/[name]/ui/dropdown-menu";
 import { input } from "@/app/demo/[name]/ui/input";
+import { inputOtp } from "@/app/demo/[name]/ui/inputOtp";
 import { label } from "@/app/demo/[name]/ui/label";
 import { menuBar } from "@/app/demo/[name]/ui/menu-bar";
+import { radioGroup } from "@/app/demo/[name]/ui/radio-group";
 import { select } from "@/app/demo/[name]/ui/select";
 import { separator } from "@/app/demo/[name]/ui/separator";
 import { skeleton } from "@/app/demo/[name]/ui/skeleton";
@@ -48,6 +50,7 @@ import { textarea } from "@/app/demo/[name]/ui/textarea";
 import { toggleGroup } from "@/app/demo/[name]/ui/toggle-group";
 import { tooltip } from "@/app/demo/[name]/ui/tooltip";
 import { pagination } from "@/app/demo/[name]/ui/pagination";
+import { popover } from "@/app/demo/[name]/ui/popover";
 import { hoverCard } from "@/app/demo/[name]/ui/hover-card";
 
 interface Demo {
@@ -92,8 +95,10 @@ export const demos: { [name: string]: Demo } = {
   "data-table": dataTable,
   "dropdown-menu": dropdownMenu,
   input,
+  inputOtp,
   label,
   "menu-bar": menuBar,
+  "radio-group": radioGroup,
   select,
   separator,
   skeleton,
@@ -106,5 +111,6 @@ export const demos: { [name: string]: Demo } = {
   "toggle-group": toggleGroup,
   tooltip,
   pagination,
+  popover,
   "hover-card": hoverCard,
 };
