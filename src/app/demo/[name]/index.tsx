@@ -58,6 +58,7 @@ import { scrollArea } from "@/app/demo/[name]/ui/scroll-area";
 import { popover } from "@/app/demo/[name]/ui/popover";
 import { hoverCard } from "@/app/demo/[name]/ui/hover-card";
 import { collapsible } from "@/app/demo/[name]/ui/collapsible";
+import { progress } from "@/app/demo/[name]/ui/progress";
 
 interface Demo {
   name: string; // this must match the `registry.json` name
@@ -106,6 +107,7 @@ export const demos: { [name: string]: Demo } = {
   inputOtp,
   label,
   "menu-bar": menuBar,
+  progress,
   "scroll-area" :scrollArea,
   "radio-group": radioGroup,
   resizable,
