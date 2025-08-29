@@ -416,6 +416,25 @@
       ]
     },
     {
+      "name": "aspect-ratio",
+      "type": "registry:ui",
+      "title": "Aspect Ratio",
+      "description": "Displays content within a desired ratio.",
+      "registryDependencies": [
+        "https://blok-shadcn.vercel.app/r/theme.json"
+      ],
+      "dependencies": [
+        "@radix-ui/react-aspect-ratio"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui/aspect-ratio.tsx",
+          "type": "registry:ui",
+          "target": "src/components/ui/aspect-ratio.tsx"
+        }
+      ]
+    },
+    {
       "name": "avatar",
       "type": "registry:ui",
       "title": "Avatar",
