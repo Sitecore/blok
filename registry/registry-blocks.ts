@@ -915,12 +915,6 @@ export const blocks: Registry["items"] = [
           "components/stream-components/blocks/chat/hooks/useAiChatProvider.tsx",
       },
       {
-        path: "stream/blocks/chat/hooks/useGetDocumentProxyUrl.tsx",
-        type: "registry:hook",
-        target:
-          "components/stream-components/blocks/chat/hooks/useGetDocumentProxyUrl.tsx",
-      },
-      {
         path: "stream/blocks/chat/icons/RectangleStar.tsx",
         type: "registry:component",
         target:
