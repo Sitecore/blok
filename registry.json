@@ -909,6 +909,28 @@
       ]
     },
     {
+      "name": "sheet",
+      "type": "registry:ui",
+      "title": "Sheet",
+      "description": "Visually or semantically separates content.",
+      "dependencies": [
+        "@radix-ui/react-dialog",
+        "@mdi/react",
+        "@mdi/js"
+      ],
+      "registryDependencies": [
+        "http://blok-shadcn.vercel.app/r/button.json",
+        "http://blok-shadcn.vercel.app/r/theme.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui/sheet.tsx",
+          "type": "registry:ui",
+          "target": "src/components/ui/sheet.tsx"
+        }
+      ]
+    },
+    {
       "name": "skeleton",
       "type": "registry:ui",
       "title": "Skeleton",

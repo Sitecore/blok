@@ -41,6 +41,7 @@ import { radioGroup } from "@/app/demo/[name]/ui/radio-group";
 import { resizable } from "@/app/demo/[name]/ui/resizable";
 import { select } from "@/app/demo/[name]/ui/select";
 import { separator } from "@/app/demo/[name]/ui/separator";
+import {sheet} from "@/app/demo/[name]/ui/sheet";
 import { skeleton } from "@/app/demo/[name]/ui/skeleton";
 import { slider } from "@/app/demo/[name]/ui/slider";
 import { sonner } from "@/app/demo/[name]/ui/sonner";
@@ -103,6 +104,7 @@ export const demos: { [name: string]: Demo } = {
   resizable,
   select,
   separator,
+  sheet,
   skeleton,
   slider,
   switch: switchComponent,
