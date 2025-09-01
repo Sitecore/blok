@@ -60,6 +60,7 @@ import { hoverCard } from "@/app/demo/[name]/ui/hover-card";
 import { collapsible } from "@/app/demo/[name]/ui/collapsible";
 import { progress } from "@/app/demo/[name]/ui/progress";
 import { command } from "@/app/demo/[name]/ui/command";
+import { combobox } from "@/app/demo/[name]/ui/combobox";
 
 interface Demo {
   name: string; // this must match the `registry.json` name
@@ -98,6 +99,7 @@ export const demos: { [name: string]: Demo } = {
   chart,
   checkbox,
   collapsible,
+  combobox,
   "context-menu": contextMenu,
   command,
   dialog,

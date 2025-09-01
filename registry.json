@@ -655,6 +655,12 @@
       ]
     },
     {
+      "name": "combobox",
+      "type": "registry:ui",
+      "title": "Combobox",
+      "description": "Autocomplete input and command palette with a list of suggestions."
+    },
+    {
       "name": "command",
       "type": "registry:ui",
       "title": "Command",
