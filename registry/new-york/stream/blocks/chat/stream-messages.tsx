@@ -8,6 +8,7 @@ import React, {
   useState,
 } from "react"
 import { UIMessage } from "@ai-sdk/ui-utils"
+import { mdiTextLong, mdiTuneVariant } from "@mdi/js"
 import {
   dbMessagesToAIMessages,
   ListUserChatMessagesModelResponseV2,
@@ -20,21 +21,35 @@ import { useAtom, useAtomValue, useSetAtom } from "jotai"
 import { isEmpty } from "lodash"
 import { toast } from "sonner"
 
+import { Button } from "@/registry/new-york/ui/button"
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/registry/new-york/ui/dialog"
+import { Tabs, TabsList, TabsTrigger } from "@/registry/new-york/ui/tabs"
+
 import { useGetChatMessages } from "../../hooks/use-get-chat-messages"
 import { cn } from "../../lib/utils"
 import { ButtonScrollToBottom } from "./ButtonScrollToBottom"
 import { Feedback } from "./Feedback"
 import { useAiChatProvider } from "./hooks/useAiChatProvider"
+import { useImageDropzone } from "./hooks/useImageDropzone"
 import { useScrollAnchor } from "./hooks/useScrollAnchor"
+import { Icon } from "./Icon"
 import { PromptForm } from "./PromptForm"
 import {
+  brainstormingAtom,
   isAnyArtifactOpenAtom,
   isLoadingAtom,
   messagesIdsAtom,
   postChatGenerateBodyAtom,
   sessionAtom,
 } from "./store/atoms"
-import { Session } from "./store/types"
+import { BrainstormingSearchTypeOptions, Session } from "./store/types"
 import { ToolInvocations } from "./tools/ToolInvocations"
 import { MessageAnnotation } from "./types"
 import { UserMessage } from "./UserMessage"
@@ -56,10 +71,6 @@ export const VercelAiUiContext = createContext<
   VercelAiUiProviderType | undefined
 >(undefined)
 
-interface MessagesProps {
-  session: Session
-}
-
 const baseUrlEnv = {
   dev: "-dev.sitecore-staging.cloud",
   qa: "-qa.sitecore-staging.cloud",
@@ -68,17 +79,22 @@ const baseUrlEnv = {
   prod: "sitecorecloud.io",
 }
 
-function StreamMessages({ session }: MessagesProps) {
-  const { orgId, userId, chatId, region, env } = session
+function StreamMessages({ session }: { session: Session }) {
+  const { orgId, userId, chatId, region, env, token } = session
 
   /* Atoms */
   const chatBodyAtom = useAtomValue(postChatGenerateBodyAtom)
   const setMessageIds = useSetAtom(messagesIdsAtom)
   const [isLoading, setIsLoading] = useAtom(isLoadingAtom)
+  const setSession = useSetAtom(sessionAtom)
 
   const { isLoading: _isLoading, ...chat } = useChat({
     api: `https://ai-chat-api-${region}${baseUrlEnv[env]}/api/chats/v1/organizations/${orgId}/users/${userId}/chats/${chatId}/generatemessage`,
     body: chatBodyAtom,
+    headers: {
+      Authorization: `Bearer ${token}`,
+      "Content-Type": "application/json",
+    },
     experimental_throttle: 200,
     onFinish: async (message) => {
       const messageId = (
@@ -101,21 +117,23 @@ function StreamMessages({ session }: MessagesProps) {
 
   useEffect(() => {
     if (_isLoading !== isLoading) setIsLoading(_isLoading)
-  }, [_isLoading, isLoading, setIsLoading])
+    if (!isEmpty(session))
+      setSession({ ...session, apiEnv: `${region}${baseUrlEnv[env]}` })
+  }, [_isLoading, env, isLoading, region, session, setIsLoading, setSession])
 
   return (
     <VercelAiUiContext.Provider value={context}>
-      <Messages session={session} />
+      {!isEmpty(session) && <Messages />}
     </VercelAiUiContext.Provider>
   )
 }
 
-function Messages({ session }: MessagesProps): React.ReactNode {
-  const { orgId, userId, chatId } = session
-
+function Messages(): React.ReactNode {
   /* Atoms */
   const isAnyArtifactOpen = useAtomValue(isAnyArtifactOpenAtom)
-  const setSession = useSetAtom(sessionAtom)
+  const [brainstormingData, setBrainstormingData] = useAtom(brainstormingAtom)
+  const { orgId, userId, chatId } = useAtomValue(sessionAtom)
+  const setMessageIds = useSetAtom(messagesIdsAtom)
 
   /* Hooks */
   const { messages, setMessages } = useAiChatProvider()
@@ -129,108 +147,249 @@ function Messages({ session }: MessagesProps): React.ReactNode {
     const messages: ListUserChatMessagesModelResponseV2[] =
       await getChatMessages(chatId)
 
-    setMessages(dbMessagesToAIMessages(messages) as UIMessage[])
-  }, [chatId, getChatMessages, setMessages])
+    const dbMessages = dbMessagesToAIMessages(messages) as UIMessage[]
+
+    setMessages(dbMessages)
+    setMessageIds(
+      dbMessages.map((message) => {
+        return (message?.annotations?.[0] as unknown as MessageAnnotation)?.id
+      })
+    )
+  }, [chatId, getChatMessages, setMessageIds, setMessages])
+
+  const handleSaveToolConfigurationOnClick = (
+    value: BrainstormingSearchTypeOptions
+  ) => {
+    setBrainstormingData({
+      mode: "brainstorming",
+      params: { searchType: value },
+    })
+  }
+
+  const onDrop = useCallback((acceptedFiles: File[]) => {
+    setUploadedFiles((prevFiles) => [...prevFiles, ...acceptedFiles])
+  }, [])
 
   const onClearFiles = useCallback(() => {
     setUploadedFiles([])
   }, [])
 
+  // Remaining upload slots; note: react-dropzone treats maxFiles=0 as "unlimited",
+  // so we clamp to at least 1 and explicitly disable when no slots remain.
+  const remainingSlots = Math.max(0, 10 - uploadedFiles.length)
+
+  // Keep dropzone enabled even when no slots remain so we can surface validation errors.
+  // Use a validator to force a "too-many-files" reject when remainingSlots === 0.
+  const fileValidator = useCallback(() => {
+    if (remainingSlots === 0) {
+      return {
+        code: "too-many-files",
+        message: "You can only upload up to 10 files.",
+      }
+    }
+    return null
+  }, [remainingSlots])
+
+  const { getRootProps, getInputProps, isDragActive } = useImageDropzone({
+    enabled: true,
+    currentCount: uploadedFiles.length,
+    maxTotal: 10,
+    maxSizeBytes: 5 * 1024 * 1024,
+    onFilesAccepted: (files) => onDrop(files),
+  })
+
   useEffect(() => {
     if (!messages.length) initMessages()
-    if (!isEmpty(session)) setSession(session)
-  }, [messages.length, initMessages, session, setSession])
+  }, [initMessages, messages.length])
 
   return (
-    <div className="flex h-lvh max-w-full justify-center overflow-hidden">
-      <div className="relative flex flex-col gap-4 px-6 pt-2 pb-2">
-        <div className="group relative flex-1 overflow-hidden">
-          <div
-            className="flex h-full flex-col gap-4 overflow-auto"
-            ref={scrollRef}
-            data-testid="scroll-contain-base-chat"
-          >
-            <div className="space-y-4" ref={messagesRef}>
-              {messages?.map((message, messageIndex, messagesArray) => {
-                /* The message ID is found in the annotation array. The id you see in the response object is the db id */
-                const messageId = (
-                  message?.annotations?.[0] as unknown as MessageAnnotation
-                )?.id
-
-                const isLastMessage = messageIndex === messagesArray.length - 1
-
-                const toolInvocations = (
-                  message.parts as ToolInvocationUIPart[] | undefined
-                )
-                  ?.filter(
-                    (part: ToolInvocationUIPart) =>
-                      part.type === "tool-invocation"
-                  )
-                  .map(
-                    (part: ToolInvocationUIPart) => part.toolInvocation
-                  ) as (ToolInvocation & {
-                  reference: ReferenceModel
-                })[]
-
-                const areToolInvocationsAvailable = !!toolInvocations?.length
-
-                return (
-                  <div
-                    key={`${message.id}_${messageIndex}`}
-                    className={cn("stream-chat-container space-y-4", {
-                      "pb-4": messageIndex % 2 !== 0 && !isLastMessage,
-                    })}
-                  >
-                    {message.role === "user" && (
-                      <UserMessage>{message.content}</UserMessage>
-                    )}
-                    {message.role === "assistant" && (
-                      <>
-                        {areToolInvocationsAvailable && (
-                          <>
-                            <ToolInvocations
-                              messageId={messageId}
-                              message={message}
-                              toolInvocations={toolInvocations}
-                              isLastMessage={isLastMessage}
-                            />
-                            <Feedback
-                              messageId={messageId}
-                              message={message}
-                              isLastMessage={isLastMessage}
-                            />
-                          </>
-                        )}
-                      </>
-                    )}
-                  </div>
-                )
-              })}
-              <div
-                className="stream-chat-container space-y-4"
-                id="followupQuestions"
+    <div
+      className="flex h-lvh max-w-full justify-center overflow-hidden"
+      {...getRootProps()}
+    >
+      <input {...getInputProps()} />
+      {isDragActive && (
+        <div className="pointer-events-none absolute inset-0 z-20 grid place-items-center bg-white/40 backdrop-blur-sm">
+          <div className="text-center">
+            <div className="relative mx-auto h-24 w-32">
+              <img
+                src="https://delivery-sitecore.sitecorecontenthub.cloud/api/public/content/spot-drag-items"
+                alt="Drag items illustration"
               />
             </div>
+            <h2 className="text-2xl font-bold">Drag & drop</h2>
+            <p className="text-subtle-text text-lg">
+              Drop your assets to use them as context
+            </p>
           </div>
         </div>
-        <div className="relative flex flex-col gap-4">
-          <ButtonScrollToBottom
-            isAtBottom={isAtBottom}
-            scrollToBottom={scrollToBottom}
-          />
-          <div className="stream-chat-container">
-            <PromptForm
-              uploadedFiles={uploadedFiles}
-              onFileRemove={(file) => {
-                setUploadedFiles((prevFiles) =>
-                  prevFiles.filter((f) => f !== file)
-                )
-              }}
-              onFileUpload={(files) => {
-                setUploadedFiles((prevFiles) => [...prevFiles, ...files])
-              }}
-              onClearFiles={onClearFiles}
+      )}
+      <div className="relative flex h-lvh flex-1 basis-1/2 flex-col gap-4 px-6 pt-14 pb-2">
+        <Dialog>
+          <DialogTrigger
+            id="tour-chat-brainstorming-tools-settings"
+            className="absolute top-[17px] right-[16px] z-10"
+            asChild
+          >
+            <Button
+              data-testid="brainstorming_button_tool_configuration"
+              variant={"ghost"}
+              colorScheme={"neutral"}
+              size={"icon-sm"}
+              title="Tool configuration"
+            >
+              <Icon path={mdiTuneVariant} />
+            </Button>
+          </DialogTrigger>
+
+          <DialogContent className="flex flex-col gap-4">
+            <DialogHeader className="gap-2">
+              <DialogTitle>Tool configuration</DialogTitle>
+              <DialogDescription>
+                Tune and configure how each tool handles your chats, retrieves
+                information and outputs responses
+              </DialogDescription>
+            </DialogHeader>
+            <div className="space-y-2">
+              <h2 className="text-md text-blackAlpha-600">Tools</h2>
+              <div className="space-y-2 rounded-md bg-gray-50 p-2">
+                <div className="flex items-center gap-2">
+                  <div className="bg-primary-100 inline-block rounded p-1">
+                    <Icon
+                      path={mdiTextLong}
+                      className="text-primary-600"
+                      size={"xs"}
+                    />
+                  </div>
+                  <span className="font-bold">Brainstorming</span>
+                </div>
+                <div className="space-y-2 px-10">
+                  <h2 className="text-md text-blackAlpha-600">
+                    Default search type
+                  </h2>
+                  <Tabs
+                    className="w-fit"
+                    defaultValue={
+                      brainstormingData?.params?.searchType ?? "knowledge_web"
+                    }
+                    onValueChange={(value) =>
+                      handleSaveToolConfigurationOnClick(
+                        value as BrainstormingSearchTypeOptions
+                      )
+                    }
+                  >
+                    <TabsList className="border-blackAlpha-200 rounded-md border p-1">
+                      <TabsTrigger
+                        className="data-[state=active]:bg-primary-100 w-fit rounded-md border-none"
+                        value="knowledge_web"
+                      >
+                        Knowledge & web
+                      </TabsTrigger>
+                      <TabsTrigger
+                        className="data-[state=active]:bg-primary-100 w-fit rounded-md border-none"
+                        value="knowledge"
+                      >
+                        Knowledge search
+                      </TabsTrigger>
+                      <TabsTrigger
+                        className="data-[state=active]:bg-primary-100 w-fit rounded-md border-none"
+                        value="web"
+                      >
+                        Web search
+                      </TabsTrigger>
+                    </TabsList>
+                  </Tabs>
+                </div>
+              </div>
+            </div>
+          </DialogContent>
+        </Dialog>
+        <div className="relative flex flex-col gap-4 px-6 pt-2 pb-2">
+          <div className="group relative flex-1">
+            <div
+              className="flex flex-col gap-4"
+              ref={scrollRef}
+              data-testid="scroll-contain-base-chat"
+            >
+              <div className="h-lvh space-y-4 overflow-auto" ref={messagesRef}>
+                {messages?.map((message, messageIndex, messagesArray) => {
+                  /* The message ID is found in the annotation array. The id you see in the response object is the db id */
+                  const messageId = (
+                    message?.annotations?.[0] as unknown as MessageAnnotation
+                  )?.id
+
+                  const isLastMessage =
+                    messageIndex === messagesArray.length - 1
+
+                  const toolInvocations = (
+                    message.parts as ToolInvocationUIPart[] | undefined
+                  )
+                    ?.filter(
+                      (part: ToolInvocationUIPart) =>
+                        part.type === "tool-invocation"
+                    )
+                    .map(
+                      (part: ToolInvocationUIPart) => part.toolInvocation
+                    ) as (ToolInvocation & {
+                    reference: ReferenceModel
+                  })[]
+
+                  const areToolInvocationsAvailable = !!toolInvocations?.length
+
+                  return (
+                    <div
+                      key={`${message.id}_${messageIndex}`}
+                      className={cn("stream-chat-container space-y-4", {
+                        "pb-4": messageIndex % 2 !== 0 && !isLastMessage,
+                      })}
+                    >
+                      {message.role === "user" && (
+                        <UserMessage>{message.content}</UserMessage>
+                      )}
+                      {message.role === "assistant" && (
+                        <>
+                          {areToolInvocationsAvailable && (
+                            <>
+                              <ToolInvocations
+                                messageId={messageId}
+                                message={message}
+                                toolInvocations={toolInvocations}
+                                isLastMessage={isLastMessage}
+                              />
+                              <Feedback
+                                messageId={messageId}
+                                message={message}
+                                isLastMessage={isLastMessage}
+                              />
+                            </>
+                          )}
+                        </>
+                      )}
+                    </div>
+                  )
+                })}
+              </div>
+            </div>
+          </div>
+          <div className="relative flex flex-col gap-4">
+            <ButtonScrollToBottom
+              isAtBottom={isAtBottom}
+              scrollToBottom={scrollToBottom}
             />
+            <div className="stream-chat-container">
+              <PromptForm
+                uploadedFiles={uploadedFiles}
+                onFileRemove={(file) => {
+                  setUploadedFiles((prevFiles) =>
+                    prevFiles.filter((f) => f !== file)
+                  )
+                }}
+                onFileUpload={(files) => {
+                  setUploadedFiles((prevFiles) => [...prevFiles, ...files])
+                }}
+                onClearFiles={onClearFiles}
+              />
+            </div>
           </div>
         </div>
       </div>
@@ -248,4 +407,4 @@ function Messages({ session }: MessagesProps): React.ReactNode {
   )
 }
 
-export { StreamMessages, type MessagesProps, streamMessagesClientsConfig }
+export { StreamMessages, streamMessagesClientsConfig }

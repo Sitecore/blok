@@ -19,6 +19,7 @@ export const sessionAtom = atom<Session>({
   env: "dev",
   region: "euw",
   token: "",
+  apiEnv: "",
 })
 
 export const brandkitIdAtom = atom<string>("")

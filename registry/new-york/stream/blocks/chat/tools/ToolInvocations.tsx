@@ -24,10 +24,6 @@ export function ToolInvocations({
   const thinkingTools: React.ReactNode[] = []
   const brainstormingTools: React.ReactNode[] = []
   const restTools: React.ReactNode[] = []
-  let followupQuestionsTool = null
-
-  const followupQuestionsPlaceholder =
-    document.getElementById("followupQuestions") ?? ({} as HTMLElement)
 
   toolInvocations.forEach((toolInvocation: ToolInvocationRefProps) => {
     const { toolName } = toolInvocation
@@ -44,7 +40,7 @@ export function ToolInvocations({
       return
     }
     if (toolName === "followup_questions") {
-      if (isLastMessage) followupQuestionsTool = tool
+      if (isLastMessage) restTools.push(tool)
       return
     }
     thinkingTools.push(tool)
@@ -65,7 +61,6 @@ export function ToolInvocations({
       )}
       {!isEmpty(brainstormingTools) && brainstormingTools}
       {!isEmpty(restTools) && restTools}
-      {createPortal(followupQuestionsTool, followupQuestionsPlaceholder)}
     </>
   )
 }

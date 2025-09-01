@@ -100,62 +100,34 @@ export function MessageFeedback({
           }
         )
 
-      const { data: patchData } =
-        await chat.updateUserChatMessageV2ApiChatsV2OrganizationsOrganizationIdUsersUserIdChatsChatIdMessagesMessageIdPatch(
-          {
-            body: {
-              content: data?.content ?? null,
-              feedback: hasFeedback ? null : { type },
-            },
-            path: {
-              messageId,
-              userId: session.userId,
-              chatId: session.chatId,
-              organizationId: session.orgId,
-            },
-            method: "PATCH",
-          }
-        )
+      const result = await fetch(
+        `https://ai-chat-api-${session.apiEnv}/api/chats/v2/organizations/${session.orgId}/users/${session.userId}/chats/${session.chatId}/messages/${messageId}`,
+        {
+          method: "PATCH",
+          body: JSON.stringify({
+            content: data?.content ?? null,
+            feedback: hasFeedback ? null : { type },
+          }),
+          headers: {
+            "Content-Type": "application/json",
+            ...(session?.token
+              ? { Authorization: `Bearer ${session?.token}` }
+              : {}),
+          },
+        }
+      )
 
-      updatedMessage = patchData
+      if (!result.ok) {
+        throw result
+      }
+
+      updatedMessage = await result.json()
       setRollbackFeedback(updatedMessage?.feedback ?? null)
       setFeedback(updatedMessage?.feedback ?? null)
     } catch (error) {
       setFeedback(rollbackFeedback)
-
-      const { response } = error as HTTPError
-      toast.error(response.statusText)
+      toast.error((error as Response).statusText)
     }
-
-    /*await getChatMessage(
-      { params: { userId, chatId: chatId as string, messageId } },
-      {
-        onSuccess: data => {
-          const { content } = data;
-
-          patchChatMessageMutate(
-            {
-              chatId,
-              messageId,
-              message: { content, feedback: hasFeedback ? null : { type } },
-            },
-            {
-              onSuccess: data => {
-                updatedMessage = data;
-                setRollbackFeedback(updatedMessage?.feedback ?? null);
-                setFeedback(updatedMessage?.feedback ?? null);
-              },
-              onError: () => {
-                setFeedback(rollbackFeedback);
-              },
-            }
-          );
-        },
-        onError: message => {
-          toast.error(message);
-        },
-      }
-    );*/
   }
 
   return (

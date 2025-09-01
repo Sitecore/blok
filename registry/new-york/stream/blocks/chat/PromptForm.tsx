@@ -33,6 +33,7 @@ import {
 } from "../chat/store/atoms"
 import { useAiChatProvider } from "./hooks/useAiChatProvider"
 import { useEnterSubmit } from "./hooks/useEnterSubmit"
+import { useImageDropzone } from "./hooks/useImageDropzone"
 import { useLocalStorage } from "./hooks/useLocalStorage"
 import { Icon } from "./Icon"
 import { ReferencesBuilder } from "./utils/referencesBuilder"
@@ -98,6 +99,18 @@ export function PromptForm({
     isLoading ||
     isBrandkitDelete ||
     isChatActionPending
+
+  const {
+    open: openFileDialog,
+    getInputProps,
+    remainingSlots,
+  } = useImageDropzone({
+    enabled: true,
+    currentCount: uploadedFiles?.length ?? 0,
+    maxTotal: 10,
+    maxSizeBytes: 5 * 1024 * 1024,
+    onFilesAccepted: (files) => onFileUpload?.(files),
+  })
 
   const onHeight = () => {
     setIsMultiline(true)
@@ -170,49 +183,13 @@ export function PromptForm({
     onClearFiles?.()
   }
 
-  const handleFileUpload = async () => {
-    // Open file picker dialog for multiplefiles for JPEG, PNG
-    const fileInput = document.createElement("input")
-    fileInput.type = "file"
-    fileInput.multiple = true
-    fileInput.accept = "image/jpeg, image/png"
-    fileInput.click()
-
-    const files = await new Promise<File[]>((resolve) => {
-      fileInput.onchange = () => {
-        resolve(fileInput.files ? Array.from(fileInput.files) : [])
-      }
-    })
-
-    // Filter files that are 5MB or smaller
-    const validFiles = files.filter((file) => file.size <= 5 * 1024 * 1024)
-    const rejectedFiles = files.filter((file) => file.size > 5 * 1024 * 1024)
-
-    if (rejectedFiles.length > 0) {
-      toast.error(
-        `${rejectedFiles.length} file(s) were rejected: Maximum file size is 5MB`
-      )
+  const handleFileUpload = () => {
+    // If no slots remain, show immediate feedback and skip opening dialog
+    if (remainingSlots === 0) {
+      toast.error("You can only upload up to 10 files.")
+      return
     }
-
-    // Check if adding these files would exceed 10 image limit
-    const currentFileCount = uploadedFiles?.length || 0
-    const totalFiles = currentFileCount + validFiles.length
-
-    if (totalFiles > 10) {
-      const allowedCount = 10 - currentFileCount
-      const filesToAdd = validFiles.slice(0, allowedCount)
-      const rejectedCount = validFiles.length - filesToAdd.length
-
-      if (rejectedCount > 0) {
-        toast.error(
-          `${rejectedCount} file(s) were rejected: Maximum 10 images allowed`
-        )
-      }
-
-      onFileUpload?.(filesToAdd)
-    } else {
-      onFileUpload?.(validFiles)
-    }
+    openFileDialog()
   }
 
   const onStopGeneration = () => {
@@ -267,6 +244,7 @@ export function PromptForm({
 
   return (
     <form ref={formRef} className="w-full space-y-2" onSubmit={handleOnSubmit}>
+      <input {...getInputProps()} style={{ display: "none" }} />
       <div
         className={cn(
           "stream-bg-ai-400 w-full rounded-full p-[2px]",

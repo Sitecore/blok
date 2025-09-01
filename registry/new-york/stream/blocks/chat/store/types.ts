@@ -22,6 +22,7 @@ export type BrainstormingOptions =
     }
   | {
       mode: "web_search"
+      params: never
     }
   | undefined
 
@@ -47,4 +48,5 @@ export interface Session {
   region: string
   env: "dev" | "qa" | "staging" | "preprod" | "prod"
   token: string
+  apiEnv?: string
 }
