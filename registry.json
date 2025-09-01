@@ -406,7 +406,6 @@
       "registryDependencies": [
         "https://blok-shadcn.vercel.app/r/theme.json",
         "https://blok-shadcn.vercel.app/r/button.json"
-
       ],
       "files": [
         {
@@ -624,14 +623,18 @@
       "title": "Checkbox",
       "description": "Allows users to select multiple items from a list of options.",
       "registryDependencies": [
-        "checkbox",
-        "https://registry-starter.vercel.app/r/theme.json"
+        "https://blok-shadcn.vercel.app/r/theme.json"
+      ],
+      "dependencies": [
+        "@radix-ui/react-checkbox",
+        "@mdi/react",
+        "@mdi/js"
       ],
       "files": [
         {
-          "path": "src/layouts/minimal-layout.tsx",
-          "type": "registry:file",
-          "target": "app/layout.tsx"
+          "path": "src/components/ui/checkbox.tsx",
+          "type": "registry:ui",
+          "target": "src/components/ui/checkbox.tsx"
         }
       ]
     },
@@ -1118,14 +1121,13 @@
       "title": "Table",
       "description": "A responsive table component.",
       "registryDependencies": [
-        "table",
-        "https://registry-starter.vercel.app/r/theme.json"
+        "https://blok-shadcn.vercel.app/r/theme.json"
       ],
       "files": [
         {
-          "path": "src/layouts/minimal-layout.tsx",
-          "type": "registry:file",
-          "target": "app/layout.tsx"
+          "path": "src/components/ui/table.tsx",
+          "type": "registry:ui",
+          "target": "src/components/ui/table.tsx"
         }
       ]
     },
