@@ -41,18 +41,20 @@ export default function TokensPage() {
             A comprehensive overview of all color tokens used in the design system
           </p>
         </div>
-        <ComponentWrapper name="border-radius">
-          <BorderRadiusDemo content={borderRadiusContent} />
-        </ComponentWrapper>
-        <ComponentWrapper name="colors">
-          <ColorsDemo content={colorsContent} />
-        </ComponentWrapper>
-        <ComponentWrapper name="shadows">
-          <ShadowDemo content={shadowsContent} />
-        </ComponentWrapper>
-        <ComponentWrapper name="typography">
-          <TypographyDemo content={typographyContent} />
-        </ComponentWrapper>
+        <div className=" flex flex-col gap-5">
+          <ComponentWrapper name="border-radius">
+            <BorderRadiusDemo content={borderRadiusContent} />
+          </ComponentWrapper>
+          <ComponentWrapper name="colors">
+            <ColorsDemo content={colorsContent} />
+          </ComponentWrapper>
+          <ComponentWrapper name="shadows">
+            <ShadowDemo content={shadowsContent} />
+          </ComponentWrapper>
+          <ComponentWrapper name="typography">
+            <TypographyDemo content={typographyContent} />
+          </ComponentWrapper>
+        </div>
       </div>
     </div>
   )
