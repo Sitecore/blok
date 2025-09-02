@@ -3,7 +3,8 @@ import {
   FrameworkCombobox,
   TimezoneCombobox,
   UserCombobox,
-} from "./combobox-options";
+} from "@/components/ui/combobox";
+
 const frameworks = [
   {
     value: "next.js",
@@ -79,16 +80,28 @@ const timezones = [
 export const combobox = {
   name: "combobox",
   components: {
-    FrameworkCombobox: <FrameworkCombobox frameworks={[...frameworks]} />,
+    FrameworkCombobox: (
+      <div className="p-1">
+        <FrameworkCombobox frameworks={[...frameworks]} />
+      </div>
+    ),
     UserCombobox: (
-      <UserCombobox users={[...users]} selectedUserId={users[0].id} />
+      <div className="p-1">
+        <UserCombobox users={[...users]} selectedUserId={users[0].id} />
+      </div>
     ),
     TimezoneCombobox: (
-      <TimezoneCombobox
-        timezones={[...timezones]}
-        selectedTimezone={timezones[0].timezones[0]}
-      />
+      <div className="p-1">
+        <TimezoneCombobox
+          timezones={[...timezones]}
+          selectedTimezone={timezones[0].timezones[0]}
+        />
+      </div>
     ),
-    ComboboxWithCheckbox: <ComboboxWithCheckbox frameworks={[...frameworks]} />,
+    ComboboxWithCheckbox: (
+      <div className="p-1">
+        <ComboboxWithCheckbox frameworks={[...frameworks]} />
+      </div>
+    ),
   },
 };
