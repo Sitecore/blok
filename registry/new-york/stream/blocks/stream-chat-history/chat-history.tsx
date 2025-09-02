@@ -2,9 +2,8 @@
 
 import { mdiChatOutline, mdiTrashCanOutline } from "@mdi/js"
 
-import { Icon } from "@/registry/new-york/blocks/icon/components/icon"
-
 import { cn } from "../../lib/utils"
+import { Icon } from "../chat/Icon"
 
 export type ChatHistoryProps = {
   className?: string
@@ -17,6 +16,16 @@ export type ChatHistoryProps = {
   onChatDelete?: (chat: NonNullable<ChatHistoryProps["chats"]>[number]) => void
 }
 
+/**
+ * Renders a chat history list with clickable chat items and delete buttons.
+ *
+ * @param {Object} props The properties for the ChatHistory component.
+ * @param {string} props.className Optional additional class names for the container.
+ * @param {Array} props.chats An array of chat objects to be displayed. Each chat object should include `id`, `title`, and `disabled` properties.
+ * @param {Function} [props.onChatClick] A callback function invoked when a chat item is clicked. Receives the clicked chat object as a parameter.
+ * @param {Function} [props.onChatDelete] A callback function invoked when the delete button for a chat is clicked. Receives the chat object to be deleted as a parameter.
+ * @return {JSX.Element} The rendered ChatHistory component.
+ */
 export function ChatHistory(props: ChatHistoryProps) {
   const { className, chats, onChatClick, onChatDelete } = props
 

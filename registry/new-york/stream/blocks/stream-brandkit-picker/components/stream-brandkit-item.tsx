@@ -3,7 +3,6 @@
 import React from "react"
 import { type Brandkit } from "@sitecore/stream-ui-core"
 
-import { cn } from "@/registry/new-york/lib/utils"
 import {
   Avatar,
   AvatarFallback,
@@ -11,6 +10,7 @@ import {
 } from "@/registry/new-york/ui/avatar"
 import { Button } from "@/registry/new-york/ui/button"
 
+import { cn } from "../../../lib/utils"
 import { GetDocumentProxyUrl } from "../../chat/GetDocumentProxyUrl"
 
 export interface StreamBrandkitItemProps {

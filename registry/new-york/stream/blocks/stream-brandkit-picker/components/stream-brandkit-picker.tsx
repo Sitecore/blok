@@ -4,7 +4,6 @@ import React, { useEffect, useState } from "react"
 import { mdiChevronDown } from "@mdi/js"
 import { type Brandkit } from "@sitecore/stream-ui-core"
 
-import { cn } from "@/registry/new-york/lib/utils"
 import { Button } from "@/registry/new-york/ui/button"
 import {
   Popover,
@@ -12,6 +11,7 @@ import {
   PopoverTrigger,
 } from "@/registry/new-york/ui/popover"
 
+import { cn } from "../../../lib/utils"
 import { StreamIcon } from "../../../ui/stream-icon"
 import { StreamBrandkitItem } from "./stream-brandkit-item"
 import {
@@ -32,6 +32,23 @@ export interface StreamBrandkitPickerProps {
   testId?: string
 }
 
+/**
+ * A component that renders a picker for selecting a brandkit.
+ *
+ * @param {Object} props - The properties to configure the component.
+ * @param {Brandkit[]} props.brandkits - An array of available brandkits that can be selected.
+ * @param {Brandkit|null} props.recentBrandkit - The most recently used brandkit to display by default.
+ * @param {Function} props.onSelect - A callback function triggered when a brandkit is selected. Receives the selected brandkit as an argument.
+ * @param {Function} [props.onSearch] - An optional callback function triggered when performing a search within the picker.
+ * @param {boolean} [props.disabled=false] - A flag to disable interaction with the picker.
+ * @param {boolean} [props.loading=false] - A flag to indicate a loading state for fetching brandkits.
+ * @param {string} [props.placeholder="Search"] - Placeholder text shown in the search input field.
+ * @param {string} [props.className] - Additional CSS classes for styling the component.
+ * @param {string} [props.emptyStateMessage] - A message displayed when no brandkits are available.
+ * @param {string} [props.testId] - A unique identifier for testing purposes.
+ *
+ * @return {React.ReactNode} The rendered brandkit picker component.
+ */
 export function StreamBrandkitPicker({
   brandkits,
   recentBrandkit,
