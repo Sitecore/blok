@@ -4,7 +4,6 @@ import React, { useEffect, useState } from "react"
 import { mdiChevronDown } from "@mdi/js"
 import { type Brandkit } from "@sitecore/stream-ui-core"
 
-import { cn } from "@/registry/new-york/lib/utils"
 import { Button } from "@/registry/new-york/ui/button"
 import {
   Popover,
@@ -12,6 +11,7 @@ import {
   PopoverTrigger,
 } from "@/registry/new-york/ui/popover"
 
+import { cn } from "../../../lib/utils"
 import { StreamIcon } from "../../../ui/stream-icon"
 import { StreamBrandkitItem } from "./stream-brandkit-item"
 import {
