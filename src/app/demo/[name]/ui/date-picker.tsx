@@ -1,6 +1,4 @@
-import { DatePickerSimple, DatePickerWithRange } from "./datepicker-options";
-
-const date = new Date();
+import { DatePickerSimple, DatePickerWithRange } from "@/components/ui/date-picker";
 
 export const datePicker = {
   name: "date-picker",
