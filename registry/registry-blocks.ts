@@ -897,6 +897,12 @@ export const blocks: Registry["items"] = [
           "components/stream-components/blocks/chat/hooks/useEnterSubmit.tsx",
       },
       {
+        path: "stream/blocks/chat/hooks/useImageDropzone.tsx",
+        type: "registry:hook",
+        target:
+          "components/stream-components/blocks/chat/hooks/useImageDropzone.tsx",
+      },
+      {
         path: "stream/blocks/chat/hooks/useLocalStorage.ts",
         type: "registry:hook",
         target:
