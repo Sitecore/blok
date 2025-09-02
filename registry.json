@@ -662,6 +662,11 @@
       "type": "registry:ui",
       "title": "Combobox",
       "description": "Autocomplete input and command palette with a list of suggestions.",
+      "dependencies": [
+        "@mdi/js",
+        "@mdi/react",
+        "lucide-react"
+      ],
       "registryDependencies": [
         "https://blok-shadcn.vercel.app/r/theme.json",
         "https://blok-shadcn.vercel.app/r/avatar.json",
