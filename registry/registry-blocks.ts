@@ -760,7 +760,15 @@ export const blocks: Registry["items"] = [
     name: "stream-messages",
     type: "registry:block",
     description: "Stream team's chat messages for rendering in a chat window",
-    dependencies: ["@sitecore/stream-ui-core", "@mdi/js", "react-dropzone"],
+    dependencies: [
+      "@sitecore/stream-ui-core",
+      "@mdi/js",
+      "react-dropzone",
+      "jotai",
+      "sonner",
+      "lodash",
+      "react-textarea-autosize",
+    ],
     registryDependencies: [
       "button",
       "popover",
