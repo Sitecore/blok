@@ -59,6 +59,7 @@ import { popover } from "@/app/demo/[name]/ui/popover";
 import { hoverCard } from "@/app/demo/[name]/ui/hover-card";
 import { collapsible } from "@/app/demo/[name]/ui/collapsible";
 import { progress } from "@/app/demo/[name]/ui/progress";
+import { command } from "@/app/demo/[name]/ui/command";
 
 interface Demo {
   name: string; // this must match the `registry.json` name
@@ -98,6 +99,7 @@ export const demos: { [name: string]: Demo } = {
   checkbox,
   collapsible,
   "context-menu": contextMenu,
+  command,
   dialog,
   "date-picker": datePicker,
   "data-table": dataTable,
