@@ -662,7 +662,25 @@
       "type": "registry:ui",
       "title": "Combobox",
       "description": "Autocomplete input and command palette with a list of suggestions.",
-      "files": []
+      "dependencies": [
+        "@mdi/js",
+        "@mdi/react",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "https://blok-shadcn.vercel.app/r/theme.json",
+        "https://blok-shadcn.vercel.app/r/avatar.json",
+        "https://blok-shadcn.vercel.app/r/button.json",
+        "https://blok-shadcn.vercel.app/r/command.json",
+        "https://blok-shadcn.vercel.app/r/popover.json"        
+      ],
+      "files": [
+        {
+          "path": "src/components/ui/combobox.tsx",
+          "type": "registry:ui",
+          "target": "src/components/ui/combobox.tsx"
+        }
+      ]
     },
     {
       "name": "command",
