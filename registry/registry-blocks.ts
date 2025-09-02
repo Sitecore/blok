@@ -714,19 +714,19 @@ export const blocks: Registry["items"] = [
         path: "stream/blocks/stream-brandkit-picker/components/stream-brandkit-picker.tsx",
         type: "registry:component",
         target:
-          "components/stream-components/blocks/stream-brandkit-picker/stream-brandkit-picker.tsx",
+          "components/stream-components/blocks/stream-brandkit-picker/components/stream-brandkit-picker.tsx",
       },
       {
         path: "stream/blocks/stream-brandkit-picker/components/stream-brandkit-list.tsx",
         type: "registry:component",
         target:
-          "components/stream-components/blocks/stream-brandkit-picker/stream-brandkit-list.tsx",
+          "components/stream-components/blocks/stream-brandkit-picker/components/stream-brandkit-list.tsx",
       },
       {
         path: "stream/blocks/stream-brandkit-picker/components/stream-brandkit-item.tsx",
         type: "registry:component",
         target:
-          "components/stream-components/blocks/stream-brandkit-picker/stream-brandkit-item.tsx",
+          "components/stream-components/blocks/stream-brandkit-picker/components/stream-brandkit-item.tsx",
       },
       {
         path: "stream/blocks/stream-brandkit-picker/page.tsx",
