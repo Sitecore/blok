@@ -31,20 +31,18 @@ export function getRegistryItem(name: string): Component {
   return component;
 }
 
+// Get Blocks
 export function getBlocks() {
-  return getRegistryItems().filter(
-    (component) => component.type === "registry:block",
-  );
+  return getRegistryItems()
+    .filter((component) =>
+      component.type === "registry:block" || component.type === "registry:component"
+    )
+    .sort((a, b) => a.title.localeCompare(b.title));
 }
 
-export function getUIPrimitives() {
-  return getRegistryItems().filter(
-    (component) => component.type === "registry:ui",
-  );
-}
-
+// Get Components
 export function getComponents() {
-  return getRegistryItems().filter(
-    (component) => component.type === "registry:component",
-  );
+  return getRegistryItems()
+    .filter((component) => component.type === "registry:ui")
+    .sort((a, b) => a.title.localeCompare(b.title));
 }
