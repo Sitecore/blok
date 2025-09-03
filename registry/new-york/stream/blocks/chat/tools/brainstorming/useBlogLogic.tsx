@@ -182,9 +182,7 @@ export function useBlogLogic(): UseBlogLogicProps {
                 ],
                 predefinedPrompt,
                 numberOfVariants: 1,
-                // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-                // @ts-expect-error
-                references,
+                references: references as never,
               },
               path: {
                 organizationId: session.orgId,
@@ -247,25 +245,6 @@ export function useBlogLogic(): UseBlogLogicProps {
     } finally {
       setIsActionPending(false)
     }
-    /*await patchBrainstorm(
-      {
-        brainstormId,
-        output: data,
-      },
-      {
-        onSuccess: data => {
-          artifactContentRef.current = data.output;
-          setVersions({
-            selected: String(data.version),
-            available: setPreviewAsideMaxVersions(String(data.version)),
-          });
-          setUnSavedArtifactContent(data.output);
-        },
-        onFinally: () => {
-          setIsActionPending(false);
-        },
-      }
-    );*/
   }
 
   async function handleSetVersionOnSelect(

@@ -55,11 +55,9 @@ function workflowRenderSearchItems(item: WorkflowItem): WorkflowItem {
         ...item,
         content: (item.content as SearchContentProps[]).map(
           (cont, index: number) => {
-            const keys = Object.keys(cont)
+            const keys = Object.keys(cont) as (keyof SearchContentProps)[]
 
             return keys.map((key, idx: number) => {
-              // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-              // @ts-expect-error
               const sources = cont[key]
 
               return (
@@ -81,7 +79,7 @@ function workflowRenderSearchItems(item: WorkflowItem): WorkflowItem {
                           key as keyof typeof TOOLS_SOURCES_TITLES
                         ] ?? key}
                       </h4>
-                      <Sources sources={sources} />
+                      <Sources sources={sources as Source[]} />
                     </div>
                   )}
                 </div>

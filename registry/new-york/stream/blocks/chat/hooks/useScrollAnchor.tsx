@@ -2,15 +2,15 @@ import React, { useCallback, useEffect, useRef, useState } from "react"
 import { UIMessage } from "@ai-sdk/ui-utils"
 
 export interface ScrollAnchorProps {
-  messagesRef: React.RefObject<HTMLDivElement | null>
-  scrollRef: React.RefObject<HTMLDivElement | null>
+  messagesRef: React.RefObject<HTMLDivElement>
+  scrollRef: React.RefObject<HTMLDivElement>
   scrollToBottom: () => void
   isAtBottom: boolean
 }
 
 export function useScrollAnchor(messages: UIMessage[]): ScrollAnchorProps {
-  const messagesRef = useRef<HTMLDivElement>(null) // The container holding the messages
-  const scrollRef = useRef<HTMLDivElement>(null) // The scrollable div itself
+  const messagesRef = useRef<HTMLDivElement>({} as HTMLDivElement) // The container holding the messages
+  const scrollRef = useRef<HTMLDivElement>({} as HTMLDivElement) // The scrollable div itself
   const lastScrollTopRef = useRef<number>(0)
 
   const [isAtBottom, setIsAtBottom] = useState(true)

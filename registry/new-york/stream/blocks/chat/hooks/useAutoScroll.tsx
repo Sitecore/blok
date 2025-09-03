@@ -1,10 +1,10 @@
 import React, { ReactNode, useEffect, useRef, useState } from "react"
 
 function useAutoScroll(content: ReactNode | ReactNode[]): {
-  contentRef: React.RefObject<HTMLDivElement | null>
+  contentRef: React.RefObject<HTMLDivElement>
   handleStopAutoScrollingOnScroll: () => void
 } {
-  const contentRef = useRef<HTMLDivElement | null>(null)
+  const contentRef = useRef<HTMLDivElement>({} as HTMLDivElement)
   const [isUserScrolling, setIsUserScrolling] = useState<boolean>(false)
 
   const handleStopAutoScrollingOnScroll = (): void => {

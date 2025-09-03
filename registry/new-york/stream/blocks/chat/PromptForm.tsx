@@ -134,11 +134,12 @@ export function PromptForm({
             },
             body: {
               title: input,
-              // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-              // @ts-expect-error
-              references: ReferencesBuilder({ orgId, userId })
+              references: ReferencesBuilder({
+                orgId: session.orgId,
+                userId: session.userId,
+              })
                 .addBrandkit({ id: session.brandkitId, isArtefact: false })
-                .build(),
+                .build() as never,
             },
           }
         )
