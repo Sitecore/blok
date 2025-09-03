@@ -201,7 +201,7 @@
       "files": [
         {
           "path": "src/components/blocks/top-bar.tsx",
-          "type": "registry:component",
+          "type": "registry:block",
           "target": "src/components/blocks/top-bar.tsx"
         }
       ]
