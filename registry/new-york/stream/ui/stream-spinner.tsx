@@ -1,6 +1,6 @@
 import React from "react"
 
-import { cn } from "@/registry/new-york/lib/utils"
+import { cn } from "../lib/utils"
 
 interface StreamSpinnerProps extends React.HTMLAttributes<HTMLDivElement> {
   size?: "xs" | "sm" | "md" | "lg" | "xl"
