@@ -658,6 +658,31 @@
       ]
     },
     {
+      "name": "combobox",
+      "type": "registry:ui",
+      "title": "Combobox",
+      "description": "Autocomplete input and command palette with a list of suggestions.",
+      "dependencies": [
+        "@mdi/js",
+        "@mdi/react",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "https://blok-shadcn.vercel.app/r/theme.json",
+        "https://blok-shadcn.vercel.app/r/avatar.json",
+        "https://blok-shadcn.vercel.app/r/button.json",
+        "https://blok-shadcn.vercel.app/r/command.json",
+        "https://blok-shadcn.vercel.app/r/popover.json"        
+      ],
+      "files": [
+        {
+          "path": "src/components/ui/combobox.tsx",
+          "type": "registry:ui",
+          "target": "src/components/ui/combobox.tsx"
+        }
+      ]
+    },
+    {
       "name": "command",
       "type": "registry:ui",
       "title": "Command",
@@ -871,6 +896,28 @@
           "path": "src/components/ui/menubar.tsx",
           "type": "registry:ui",
           "target": "src/components/ui/menubar.tsx"
+        }
+      ]
+    },
+    {
+      "name": "navigation-menu",
+      "type": "registry:ui",
+      "title": "Navigation Menu",
+      "description": "A collection of links for navigating websites.",
+      "registryDependencies": [
+        "https://blok-shadcn.vercel.app/r/theme.json"
+      ],
+      "dependencies": [
+        "@mdi/react",
+        "@mdi/js",
+        "@radix-ui/react-navigation-menu",
+        "class-variance-authority"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui/navigation-menu.tsx",
+          "type": "registry:ui",
+          "target": "src/components/ui/navigation-menu.tsx"
         }
       ]
     },
