@@ -9,9 +9,8 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { getBlocks, getComponents, getUIPrimitives } from "@/lib/registry";
+import { getBlocks, getComponents } from "@/lib/registry";
 
-const uiItems = getUIPrimitives().slice(0, 5);
 const componentItems = getComponents().slice(0, 5);
 const blockItems = getBlocks().slice(0, 5);
 
@@ -67,46 +66,13 @@ export default function Home() {
         <Card className="shadow-none">
           <CardHeader className="space-y-1">
             <div className="flex items-center justify-between">
-              <CardTitle>UI Primitives</CardTitle>
+              <CardTitle>Components</CardTitle>
               <div className="rounded-md bg-foreground p-1">
                 <ToyBrick className="size-5 text-primary-foreground" />
               </div>
             </div>
             <CardDescription>
               Reusable UI primitives to build your components
-            </CardDescription>
-          </CardHeader>
-
-          <CardContent>
-            <div className="space-y-2">
-              {uiItems.map((item) => (
-                <div
-                  key={item.name}
-                  className="flex items-center justify-between"
-                >
-                  <Link
-                    href={`/registry/${item.name}`}
-                    className="text-sm hover:underline"
-                  >
-                    {item.title}
-                  </Link>
-                  <ArrowRight className="size-4 text-muted-foreground" />
-                </div>
-              ))}
-            </div>
-          </CardContent>
-        </Card>
-
-        <Card className="shadow-none">
-          <CardHeader className="space-y-1">
-            <div className="flex items-center justify-between">
-              <CardTitle>Components</CardTitle>
-              <div className="rounded-md bg-foreground p-1">
-                <Component className="size-5 text-primary-foreground" />
-              </div>
-            </div>
-            <CardDescription>
-              Compound components using common patterns
             </CardDescription>
           </CardHeader>
 
