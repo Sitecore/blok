@@ -25,7 +25,7 @@ import { StreamIcon } from "../../ui/stream-icon"
 import { ActionModal } from "./ActionModal"
 import { SourceItem } from "./SourceItem"
 import { extractSourcesFromDataAtom, sessionAtom } from "./store/atoms"
-import { ExtractSourceProps } from "./types"
+import { ExtractSourceProps, HTTPValidationError } from "./types"
 import {
   createSources,
   extractSourcesFromBrainstorming,
@@ -100,7 +100,7 @@ export function MessageFeedback({
           }
         )
 
-      const result = await fetch(
+      const patchMessageRes = await fetch(
         `https://ai-chat-api-${session.apiEnv}/api/chats/v2/organizations/${session.orgId}/users/${session.userId}/chats/${session.chatId}/messages/${messageId}`,
         {
           method: "PATCH",
@@ -117,16 +117,17 @@ export function MessageFeedback({
         }
       )
 
-      if (!result.ok) {
-        throw result
+      if (!patchMessageRes.ok) {
+        throw patchMessageRes
       }
 
-      updatedMessage = await result.json()
+      updatedMessage = await patchMessageRes.json()
       setRollbackFeedback(updatedMessage?.feedback ?? null)
       setFeedback(updatedMessage?.feedback ?? null)
     } catch (error) {
+      const { detail } = error as HTTPValidationError
       setFeedback(rollbackFeedback)
-      toast.error((error as Response).statusText)
+      toast.error(detail[0]?.msg)
     }
   }
 
