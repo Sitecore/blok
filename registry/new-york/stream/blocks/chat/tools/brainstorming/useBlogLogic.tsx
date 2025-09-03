@@ -30,6 +30,7 @@ import {
 } from "../../artifacts/PreviewAside"
 import { Icon } from "../../Icon"
 import { apiQueueAtom, sessionAtom } from "../../store/atoms"
+import { HTTPValidationError } from "../../types"
 import {
   copyToClipboard,
   htmlToMarkdown,
@@ -151,6 +152,49 @@ export function useBlogLogic(): UseBlogLogicProps {
     }
   }
 
+  const handlePatchBrainstorm = useCallback(
+    async function (brainstormId: string, patchData: string): Promise<void> {
+      setIsActionPending(true)
+
+      try {
+        const patchBrainstormRes = await fetch(
+          `https://ai-brainstorming-api-${session.apiEnv}/api/brainstorms/v1/brainstorms/${brainstormId}`,
+          {
+            method: "PATCH",
+            body: JSON.stringify({
+              output: patchData,
+            }),
+            headers: {
+              "Content-Type": "application/json",
+              ...(session?.token
+                ? { Authorization: `Bearer ${session?.token}` }
+                : {}),
+            },
+          }
+        )
+
+        if (!patchBrainstormRes.ok) {
+          throw patchBrainstormRes
+        }
+
+        const data = await patchBrainstormRes.json()
+
+        artifactContentRef.current = data?.output ?? ""
+        setVersions({
+          selected: String(data?.version),
+          available: setPreviewAsideMaxVersions(String(data?.version)),
+        })
+        setUnSavedArtifactContent(data?.output ?? "")
+      } catch (error: unknown) {
+        const { detail } = error as HTTPValidationError
+        toast.error(detail[0]?.msg)
+      } finally {
+        setIsActionPending(false)
+      }
+    },
+    [session.apiEnv, session?.token]
+  )
+
   const handleQuickActionOnSelect = useCallback(
     async function (
       predefinedPrompt: AbRecommendations["predefinedPrompt"],
@@ -203,7 +247,7 @@ export function useBlogLogic(): UseBlogLogicProps {
         setAbortController(null)
       }
     },
-    [session.orgId, session.userId]
+    [handlePatchBrainstorm, session.orgId, session.userId]
   )
 
   async function handleStopQuickAction(): Promise<void> {
@@ -211,39 +255,6 @@ export function useBlogLogic(): UseBlogLogicProps {
       abortController.abort()
       setAbortController(null)
       setIsQuickActionLoading(false)
-    }
-  }
-
-  async function handlePatchBrainstorm(
-    brainstormId: string,
-    patchData: string
-  ): Promise<void> {
-    setIsActionPending(true)
-
-    try {
-      const { data } =
-        await brainstorming.updateBrainstormApiBrainstormsV1BrainstormsBrainstormIdPatch(
-          {
-            body: {
-              output: patchData,
-            },
-            path: {
-              brainstormId,
-            },
-          }
-        )
-
-      artifactContentRef.current = data?.output ?? ""
-      setVersions({
-        selected: String(data?.version),
-        available: setPreviewAsideMaxVersions(String(data?.version)),
-      })
-      setUnSavedArtifactContent(data?.output ?? "")
-    } catch (error: unknown) {
-      const { response } = error as HTTPError
-      toast.error(response.statusText)
-    } finally {
-      setIsActionPending(false)
     }
   }
 

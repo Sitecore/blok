@@ -15,6 +15,7 @@ import {
   setPreviewAsideMaxVersions,
 } from "../../artifacts/PreviewAside"
 import { apiQueueAtom, sessionAtom } from "../../store/atoms"
+import { HTTPValidationError } from "../../types"
 import {
   copyToClipboard,
   htmlToMarkdown,
@@ -276,24 +277,34 @@ export function useBriefLogic(briefId: string): UseBriefLogicProps {
     switch (type) {
       case "section":
         try {
-          await brief.updateBriefSectionApiBrandsV1OrganizationsOrganizationIdBriefsBriefIdSectionsSectionIdPatch(
+          const patchSectionRes = await fetch(
+            `https://ai-brief-api-${session.apiEnv}/api/brands/v1/organizations/${session.orgId}/briefs/${briefId}/sections/${section.id}`,
             {
-              body: pick({ ...section, name: contentValue }, [
-                "deletable",
-                "name",
-                "order",
-              ]),
-              path: {
-                briefId,
-                sectionId: section.id,
-                organizationId: session.orgId,
+              method: "PATCH",
+              body: JSON.stringify(
+                pick({ ...section, name: contentValue }, [
+                  "deletable",
+                  "name",
+                  "order",
+                ])
+              ),
+              headers: {
+                "Content-Type": "application/json",
+                ...(session?.token
+                  ? { Authorization: `Bearer ${session?.token}` }
+                  : {}),
               },
             }
           )
+
+          if (!patchSectionRes.ok) {
+            throw patchSectionRes
+          }
+
           await handleGetBriefVersions()
         } catch (error: unknown) {
-          const { response } = error as HTTPError
-          toast.error(response.statusText)
+          const { detail } = error as HTTPValidationError
+          toast.error(detail[0]?.msg)
         } finally {
           setIsActionPending(false)
         }
@@ -321,29 +332,38 @@ export function useBriefLogic(briefId: string): UseBriefLogicProps {
         }
 
         try {
-          await brief.updateBriefSectionFieldApiBrandsV2OrganizationsOrganizationIdBriefsBriefIdSectionsSectionIdFieldsFieldIdPatch(
+          const patchFieldRes = await fetch(
+            `https://ai-brief-api-${session.apiEnv}/api/brands/v2/organizations/${session.orgId}/briefs/${briefId}/sections/${section.id}/fields/${field?.id ?? ""}`,
             {
-              body: pick(fieldValue, [
-                "deletable",
-                "name",
-                "order",
-                "value",
-                "intent",
-                "aiEditable",
-                "verified",
-              ]) as FieldsModel,
-              path: {
-                briefId,
-                fieldId: field?.id ?? "",
-                sectionId: section.id,
-                organizationId: session.orgId,
+              method: "PATCH",
+              body: JSON.stringify(
+                pick(fieldValue, [
+                  "deletable",
+                  "name",
+                  "order",
+                  "value",
+                  "intent",
+                  "aiEditable",
+                  "verified",
+                ]) as FieldsModel
+              ),
+              headers: {
+                "Content-Type": "application/json",
+                ...(session?.token
+                  ? { Authorization: `Bearer ${session?.token}` }
+                  : {}),
               },
             }
           )
+
+          if (!patchFieldRes.ok) {
+            throw patchFieldRes
+          }
+
           await handleGetBriefVersions()
         } catch (error: unknown) {
-          const { response } = error as HTTPError
-          toast.error(response.statusText)
+          const { detail } = error as HTTPValidationError
+          toast.error(detail[0]?.msg)
         } finally {
           setIsActionPending(false)
         }
@@ -359,20 +379,30 @@ export function useBriefLogic(briefId: string): UseBriefLogicProps {
     const { id, name } = section as SectionProps
 
     try {
-      await brief.updateBriefSectionApiBrandsV1OrganizationsOrganizationIdBriefsBriefIdSectionsSectionIdPatch(
+      const patchSectionRes = await fetch(
+        `https://ai-brief-api-${session.apiEnv}/api/brands/v1/organizations/${session.orgId}/briefs/${briefId}/sections/${id}`,
         {
-          body: pick({ ...section, name }, ["deletable", "name", "order"]),
-          path: {
-            briefId,
-            sectionId: id,
-            organizationId: session.orgId,
+          method: "PATCH",
+          body: JSON.stringify(
+            pick({ ...section, name }, ["deletable", "name", "order"])
+          ),
+          headers: {
+            "Content-Type": "application/json",
+            ...(session?.token
+              ? { Authorization: `Bearer ${session?.token}` }
+              : {}),
           },
         }
       )
+
+      if (!patchSectionRes.ok) {
+        throw patchSectionRes
+      }
+
       await handleGetBriefVersions()
     } catch (error: unknown) {
-      const { response } = error as HTTPError
-      toast.error(response.statusText)
+      const { detail } = error as HTTPValidationError
+      toast.error(detail[0]?.msg)
     } finally {
       setIsActionPending(false)
     }

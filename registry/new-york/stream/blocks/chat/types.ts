@@ -28,6 +28,14 @@ export interface ToolProps {
   toolInvocation: ToolInvocationRefProps
 }
 
+export type HTTPValidationError = {
+  detail: {
+    loc: string | number[]
+    msg: string
+    type: string
+  }[]
+}
+
 export interface ToolInvocationsProps {
   messageId: string
   message: UIMessage
