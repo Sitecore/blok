@@ -406,7 +406,6 @@
       "registryDependencies": [
         "https://blok-shadcn.vercel.app/r/theme.json",
         "https://blok-shadcn.vercel.app/r/button.json"
-
       ],
       "files": [
         {
@@ -624,14 +623,18 @@
       "title": "Checkbox",
       "description": "Allows users to select multiple items from a list of options.",
       "registryDependencies": [
-        "checkbox",
-        "https://registry-starter.vercel.app/r/theme.json"
+        "https://blok-shadcn.vercel.app/r/theme.json"
+      ],
+      "dependencies": [
+        "@radix-ui/react-checkbox",
+        "@mdi/react",
+        "@mdi/js"
       ],
       "files": [
         {
-          "path": "src/layouts/minimal-layout.tsx",
-          "type": "registry:file",
-          "target": "app/layout.tsx"
+          "path": "src/components/ui/checkbox.tsx",
+          "type": "registry:ui",
+          "target": "src/components/ui/checkbox.tsx"
         }
       ]
     },
@@ -651,6 +654,53 @@
           "path": "src/components/ui/collapsible.tsx",
           "type": "registry:ui",
           "target": "src/components/ui/collapsible.tsx"
+        }
+      ]
+    },
+    {
+      "name": "combobox",
+      "type": "registry:ui",
+      "title": "Combobox",
+      "description": "Autocomplete input and command palette with a list of suggestions.",
+      "dependencies": [
+        "@mdi/js",
+        "@mdi/react",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "https://blok-shadcn.vercel.app/r/theme.json",
+        "https://blok-shadcn.vercel.app/r/avatar.json",
+        "https://blok-shadcn.vercel.app/r/button.json",
+        "https://blok-shadcn.vercel.app/r/command.json",
+        "https://blok-shadcn.vercel.app/r/popover.json"        
+      ],
+      "files": [
+        {
+          "path": "src/components/ui/combobox.tsx",
+          "type": "registry:ui",
+          "target": "src/components/ui/combobox.tsx"
+        }
+      ]
+    },
+    {
+      "name": "command",
+      "type": "registry:ui",
+      "title": "Command",
+      "description": "Fast, composable, unstyled command menu for React.",
+      "registryDependencies": [
+        "https://blok-shadcn.vercel.app/r/theme.json",
+        "https://blok-shadcn.vercel.app/r/dialog.json"
+      ],
+      "dependencies": [
+        "cmdk",
+        "@mdi/js",
+        "@mdi/react"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui/command.tsx",
+          "type": "registry:ui",
+          "target": "src/components/ui/command.tsx"
         }
       ]
     },
@@ -846,6 +896,28 @@
           "path": "src/components/ui/menubar.tsx",
           "type": "registry:ui",
           "target": "src/components/ui/menubar.tsx"
+        }
+      ]
+    },
+    {
+      "name": "navigation-menu",
+      "type": "registry:ui",
+      "title": "Navigation Menu",
+      "description": "A collection of links for navigating websites.",
+      "registryDependencies": [
+        "https://blok-shadcn.vercel.app/r/theme.json"
+      ],
+      "dependencies": [
+        "@mdi/react",
+        "@mdi/js",
+        "@radix-ui/react-navigation-menu",
+        "class-variance-authority"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui/navigation-menu.tsx",
+          "type": "registry:ui",
+          "target": "src/components/ui/navigation-menu.tsx"
         }
       ]
     },
@@ -1096,14 +1168,13 @@
       "title": "Table",
       "description": "A responsive table component.",
       "registryDependencies": [
-        "table",
-        "https://registry-starter.vercel.app/r/theme.json"
+        "https://blok-shadcn.vercel.app/r/theme.json"
       ],
       "files": [
         {
-          "path": "src/layouts/minimal-layout.tsx",
-          "type": "registry:file",
-          "target": "app/layout.tsx"
+          "path": "src/components/ui/table.tsx",
+          "type": "registry:ui",
+          "target": "src/components/ui/table.tsx"
         }
       ]
     },
