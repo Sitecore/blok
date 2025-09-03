@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react"
 
-import { convertCssVariablesToObject } from "@/app/(registry)/tokens/utils"
+import { convertCssVariablesToObject } from "@/lib/token-utils"
 
 type Props = {
   content: string // The CSS content containing your @theme breakpoints

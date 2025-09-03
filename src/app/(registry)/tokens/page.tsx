@@ -4,25 +4,24 @@ import path from "path"
 import { ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import BorderRadiusDemo from "./border-radius-demo"
-import BreakpointsDemo from "./breakpoints-demo"
-import ColorsDemo from "./colors-demo"
-import { ComponentWrapper } from "./component-wrapper"
-import ShadowDemo from "./shadow-demo"
-import TypographyDemo from "./typography-demo"
+import BorderRadiusDemo from "./components/border-radius-demo";
+import ColorsDemo from "./components/colors-demo";
+import { ComponentWrapper } from "./component-wrapper";
+import ShadowDemo from "./components/shadow-demo";
+import TypographyDemo from "./components/typography-demo";
 
-let cssPath = path.join(process.cwd(), "src", "app", "colors.css")
-const colorsContent = fs.readFileSync(cssPath, "utf-8")
+let cssPath = path.join(process.cwd(), "src", "app", "colors.css");
+const colorsContent = fs.readFileSync(cssPath, "utf-8");
 
-cssPath = path.join(process.cwd(), "src", "app", "typography.css")
-const typographyContent = fs.readFileSync(cssPath, "utf-8")
+cssPath = path.join(process.cwd(), "src", "app", "typography.css");
+const typographyContent = fs.readFileSync(cssPath, "utf-8");
 
 
-cssPath = path.join(process.cwd(), "src", "app", "borderRadius.css")
-const borderRadiusContent = fs.readFileSync(cssPath, "utf-8")
+cssPath = path.join(process.cwd(), "src", "app", "borderRadius.css");
+const borderRadiusContent = fs.readFileSync(cssPath, "utf-8");
 
-cssPath = path.join(process.cwd(), "src", "app", "shadows.css")
-const shadowsContent = fs.readFileSync(cssPath, "utf-8")
+cssPath = path.join(process.cwd(), "src", "app", "shadows.css");
+const shadowsContent = fs.readFileSync(cssPath, "utf-8");
 
 export default function TokensPage() {
   return (
@@ -57,5 +56,5 @@ export default function TokensPage() {
         </div>
       </div>
     </div>
-  )
+  );
 }

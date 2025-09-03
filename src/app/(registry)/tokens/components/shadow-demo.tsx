@@ -1,52 +1,47 @@
 "use client"
 
-import { convertCssVariablesToObject } from "@/app/(registry)/tokens/utils"
+import { convertCssVariablesToObject } from "@/lib/token-utils"
 
 type Props = {
   content: string // The CSS content containing your @theme breakpoints
 }
 
 const NOTES: Record<string, string> = {
-  md: "The most common rounded. Used on many elements, such as inputs, cards, tags, and more.",
-  lg: "The preferred larger rounded. Used on modals and large panels.",
-  full: "Used for circular elements, such as avatars and buttons.",
+  xs: "Looks like a light 1px border",
+  base: "Top bar",
+  lg: "Modal, Drawer",
+  outline: "Used as focus ring",
+  "dark-lg": "Only used in dark mode",
 }
 
-const BorderroundedDemo = ({ content }: Props) => {
-  const borderRadiuses = convertCssVariablesToObject(content, "--rounded-")
+const ShadowDemo = ({ content }: Props) => {
+  const shadows = convertCssVariablesToObject(content, "--shadow-")
 
   return (
-    <div>
-      <div style={{ width: "100%", overflowX: "auto" }}>
+      <div style={{ width: "100%" }}>
         <table
           style={{
             width: "100%",
             borderCollapse: "collapse",
             marginTop: "1rem",
           }}
+          className="rounded-lg bg-neutral-50"
         >
           <thead>
             <tr style={{ borderBottom: "2px solid #ccc" }}>
               <th style={{ padding: "0.8rem", textAlign: "left" }}>Example</th>
               <th style={{ padding: "0.8rem", textAlign: "left" }}>Token</th>
-              <th style={{ padding: "0.8rem", textAlign: "left" }}>
-                Value (rem)
-              </th>
-              <th style={{ padding: "0.8rem", textAlign: "left" }}>
-                Value (px)
-              </th>
+              <th style={{ padding: "0.8rem", textAlign: "left" }}>Value</th>
               <th style={{ padding: "0.8rem", textAlign: "left" }}>Notes</th>
             </tr>
           </thead>
           <tbody>
-            {Object.entries(borderRadiuses).map(([key, value]) => {
-              const pxValue = parseFloat(value) * 16
-
+            {Object.entries(shadows).map(([key, value]) => {
               return (
                 <tr key={key} style={{ borderBottom: "1px solid #eee" }}>
                   <td style={{ padding: "0.8rem" }}>
                     <div
-                      className={`h-16 w-16 bg-pink-200 rounded-${key}`}
+                      className={`h-16 w-16 rounded-md bg-white shadow-${key}`}
                     ></div>
                   </td>
                   <td style={{ padding: "0.8rem" }}>{key}</td>
@@ -61,17 +56,7 @@ const BorderroundedDemo = ({ content }: Props) => {
                       {value}
                     </span>
                   </td>
-                  <td style={{ padding: "0.8rem" }}>
-                    <span
-                      style={{
-                        fontFamily: "monospace",
-                        fontSize: "0.9rem",
-                        color: "#555",
-                      }}
-                    >
-                      {pxValue}px
-                    </span>
-                  </td>
+
                   <td style={{ padding: "0.8rem" }}>
                     <span
                       style={{
@@ -89,8 +74,7 @@ const BorderroundedDemo = ({ content }: Props) => {
           </tbody>
         </table>
       </div>
-    </div>
   )
 }
 
-export default BorderroundedDemo
+export default ShadowDemo

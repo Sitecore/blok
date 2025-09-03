@@ -1,14 +1,14 @@
-"use client"
+"use client";
 
-import * as React from "react"
+import * as React from "react";
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
-} from "@radix-ui/react-accordion"
+} from "@radix-ui/react-accordion";
 
-import { cn } from "@/lib/utils"
+import { cn } from "@/lib/utils";
 
 export function ComponentWrapper({
   className,
@@ -62,7 +62,7 @@ class ComponentErrorBoundary extends React.Component<
   }
 
   componentDidCatch(error: Error, errorInfo: React.ErrorInfo) {
-    console.error(`Error in component ${this.props.name}:`, error, errorInfo)
+    console.error(`Error in component ${this.props.name}:`, error, errorInfo);
   }
 
   render() {
@@ -71,7 +71,7 @@ class ComponentErrorBoundary extends React.Component<
         <div className="p-4 text-red-500">
           Something went wrong in component: {this.props.name}
         </div>
-      )
+      );
     }
 
     return this.props.children
@@ -80,5 +80,5 @@ class ComponentErrorBoundary extends React.Component<
 
 function getComponentName(name: string) {
   // convert kebab-case to title case
-  return name.replace(/-/g, " ").replace(/\b\w/g, (char) => char.toUpperCase())
+  return name.replace(/-/g, " ").replace(/\b\w/g, (char) => char.toUpperCase());
 }

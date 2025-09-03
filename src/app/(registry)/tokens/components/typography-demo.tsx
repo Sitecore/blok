@@ -1,4 +1,4 @@
-import { convertCssVariablesToObject } from "./utils"
+import { convertCssVariablesToObject } from "@/lib/token-utils";
 
 type Props = {
   content: string
