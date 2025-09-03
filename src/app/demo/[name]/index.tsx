@@ -38,6 +38,7 @@ import { input } from "@/app/demo/[name]/ui/input";
 import { inputOtp } from "@/app/demo/[name]/ui/inputOtp";
 import { label } from "@/app/demo/[name]/ui/label";
 import { menuBar } from "@/app/demo/[name]/ui/menu-bar";
+import { navigationMenu } from "@/app/demo/[name]/ui/navigation-menu";
 import { radioGroup } from "@/app/demo/[name]/ui/radio-group";
 import { resizable } from "@/app/demo/[name]/ui/resizable";
 import { select } from "@/app/demo/[name]/ui/select";
@@ -60,6 +61,7 @@ import { hoverCard } from "@/app/demo/[name]/ui/hover-card";
 import { collapsible } from "@/app/demo/[name]/ui/collapsible";
 import { progress } from "@/app/demo/[name]/ui/progress";
 import { command } from "@/app/demo/[name]/ui/command";
+import { combobox } from "@/app/demo/[name]/ui/combobox";
 
 interface Demo {
   name: string; // this must match the `registry.json` name
@@ -98,6 +100,7 @@ export const demos: { [name: string]: Demo } = {
   chart,
   checkbox,
   collapsible,
+  combobox,
   "context-menu": contextMenu,
   command,
   dialog,
@@ -109,6 +112,7 @@ export const demos: { [name: string]: Demo } = {
   inputOtp,
   label,
   "menu-bar": menuBar,
+  "navigation-menu": navigationMenu,
   progress,
   "scroll-area" :scrollArea,
   "radio-group": radioGroup,
