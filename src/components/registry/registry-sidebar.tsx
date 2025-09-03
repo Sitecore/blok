@@ -36,7 +36,7 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
   useSidebar,
-} from "@/components/ui/sidebar";
+} from "@/components/registry/docsite-sidebar";
 import { getBlocks, getComponents } from "@/lib/registry";
 
 const componentItems = getComponents();
