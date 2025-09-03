@@ -1,16 +1,16 @@
 import { convertCssVariablesToObject } from "@/lib/token-utils";
 
 type Props = {
-  content: string
-}
+  content: string;
+};
 const TypographyDemo = ({ content }: Props) => {
-  const typography = convertCssVariablesToObject(content, "--text-")
+  const typography = convertCssVariablesToObject(content, "--text-");
 
   return (
     <div style={{ width: "100%" }}>
-      <h2 style={{ fontSize: "1.5rem"}}>Font sizes</h2>
+      <h2 style={{ fontSize: "1.5rem" }}>Font sizes</h2>
 
-      <div style={{ width: "100%"}}>
+      <div style={{ width: "100%" }}>
         <table
           style={{
             width: "100%",
@@ -61,7 +61,7 @@ const TypographyDemo = ({ content }: Props) => {
         </table>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default TypographyDemo
+export default TypographyDemo;

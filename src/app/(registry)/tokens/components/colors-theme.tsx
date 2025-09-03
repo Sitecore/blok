@@ -1,11 +1,11 @@
-import { convertCssVariablesToObject } from "@/lib/token-utils"
+import { convertCssVariablesToObject } from "@/lib/token-utils";
 
 type Props = {
-  content: string
-}
+  content: string;
+};
 
 const ColorsDemo = ({ content }: Props) => {
-  const colors = convertCssVariablesToObject(content, "--color-")
+  const colors = convertCssVariablesToObject(content, "--color-");
 
   return (
     <div style={{ width: "100%", overflowX: "auto" }}>
@@ -51,7 +51,7 @@ const ColorsDemo = ({ content }: Props) => {
         </tbody>
       </table>
     </div>
-  )
-}
+  );
+};
 
-export default ColorsDemo
+export default ColorsDemo;

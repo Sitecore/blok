@@ -1,21 +1,20 @@
-import fs from "fs"
-import path from "path"
+import fs from "fs";
+import path from "path";
 
 import { ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import BorderRadiusDemo from "./components/border-radius-demo";
-import ColorsDemo from "./components/colors-demo";
+import BorderRadiusDemo from "./components/border-radius-theme";
+import ColorsDemo from "./components/colors-theme";
 import { ComponentWrapper } from "./component-wrapper";
-import ShadowDemo from "./components/shadow-demo";
-import TypographyDemo from "./components/typography-demo";
+import ShadowDemo from "./components/shadow-theme";
+import TypographyDemo from "./components/typography-theme";
 
 let cssPath = path.join(process.cwd(), "src", "app", "colors.css");
 const colorsContent = fs.readFileSync(cssPath, "utf-8");
 
 cssPath = path.join(process.cwd(), "src", "app", "typography.css");
 const typographyContent = fs.readFileSync(cssPath, "utf-8");
-
 
 cssPath = path.join(process.cwd(), "src", "app", "borderRadius.css");
 const borderRadiusContent = fs.readFileSync(cssPath, "utf-8");
@@ -37,7 +36,8 @@ export default function TokensPage() {
 
           <h1 className="font-bold text-3xl tracking-tight">Design Tokens</h1>
           <p className="mt-1 text-muted-foreground">
-            A comprehensive overview of all color tokens used in the design system
+            A comprehensive overview of all color tokens used in the design
+            system
           </p>
         </div>
         <div className=" flex flex-col gap-5">

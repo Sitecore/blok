@@ -3,8 +3,8 @@
 import { convertCssVariablesToObject } from "@/lib/token-utils";
 
 type Props = {
-  content: string // The CSS content containing your @theme breakpoints
-}
+  content: string; // The CSS content containing your @theme breakpoints
+};
 
 const NOTES: Record<string, string> = {
   md: "The most common rounded. Used on many elements, such as inputs, cards, tags, and more.",
@@ -40,7 +40,7 @@ const BorderroundedDemo = ({ content }: Props) => {
           </thead>
           <tbody>
             {Object.entries(borderRadiuses).map(([key, value]) => {
-              const pxValue = parseFloat(value) * 16
+              const pxValue = parseFloat(value) * 16;
 
               return (
                 <tr key={key} style={{ borderBottom: "1px solid #eee" }}>
@@ -84,13 +84,13 @@ const BorderroundedDemo = ({ content }: Props) => {
                     </span>
                   </td>
                 </tr>
-              )
+              );
             })}
           </tbody>
         </table>
       </div>
     </div>
   );
-}
+};
 
 export default BorderroundedDemo;

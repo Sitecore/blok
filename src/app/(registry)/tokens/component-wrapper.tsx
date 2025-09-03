@@ -45,7 +45,7 @@ export function ComponentWrapper({
         </div>
       </Accordion>
     </ComponentErrorBoundary>
-  )
+  );
 }
 
 class ComponentErrorBoundary extends React.Component<
@@ -53,12 +53,12 @@ class ComponentErrorBoundary extends React.Component<
   { hasError: boolean }
 > {
   constructor(props: { children: React.ReactNode; name: string }) {
-    super(props)
-    this.state = { hasError: false }
+    super(props);
+    this.state = { hasError: false };
   }
 
   static getDerivedStateFromError() {
-    return { hasError: true }
+    return { hasError: true };
   }
 
   componentDidCatch(error: Error, errorInfo: React.ErrorInfo) {
@@ -74,7 +74,7 @@ class ComponentErrorBoundary extends React.Component<
       );
     }
 
-    return this.props.children
+    return this.props.children;
   }
 }
 
