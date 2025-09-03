@@ -7,10 +7,10 @@ const TypographyDemo = ({ content }: Props) => {
   const typography = convertCssVariablesToObject(content, "--text-")
 
   return (
-    <div>
-      <h2 style={{ fontSize: "1.5rem", marginBottom: "1rem" }}>Font sizes</h2>
+    <div style={{ width: "100%" }}>
+      <h2 style={{ fontSize: "1.5rem"}}>Font sizes</h2>
 
-      <div style={{ width: "100%", overflowX: "auto" }}>
+      <div style={{ width: "100%"}}>
         <table
           style={{
             width: "100%",

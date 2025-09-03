@@ -18,8 +18,7 @@ const ShadowDemo = ({ content }: Props) => {
   const shadows = convertCssVariablesToObject(content, "--shadow-")
 
   return (
-    <div>
-      <div style={{ width: "100%", overflowX: "auto" }}>
+      <div style={{ width: "100%" }}>
         <table
           style={{
             width: "100%",
@@ -75,7 +74,6 @@ const ShadowDemo = ({ content }: Props) => {
           </tbody>
         </table>
       </div>
-    </div>
   )
 }
 
