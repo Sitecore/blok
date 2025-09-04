@@ -7,6 +7,7 @@ import type { ReactNode } from "react";
 import { cn } from "@/lib/utils";
 
 import "@/app/globals.css";
+import { Toaster } from "@/components/ui/sonner";
 
 export const metadata: Metadata = {
   title: "Registry Starter",
@@ -41,7 +42,7 @@ export default function RootLayout({
         GeistSans.variable,
         GeistMono.variable,
         MontserratSerif.variable,
-        "bg-background text-foreground",
+        "bg-subtle-bg text-foreground",
       )}
     >
       <meta
@@ -52,6 +53,7 @@ export default function RootLayout({
         {children}
         <Analytics />
         <SpeedInsights />
+        <Toaster />
       </body>
     </html>
   );

@@ -5,6 +5,7 @@ export const calendar = {
   name: "calendar",
   components: {
     Default: <SingleCalendar />,
-    Multi: <MultiCalendar />,
+    TwoMonths: <MultiCalendar numberOfMonths={2} />,
+    ThreeMonths: <MultiCalendar numberOfMonths={3} />,
   },
 };
