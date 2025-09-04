@@ -28,14 +28,14 @@ export const tooltip = {
               Add to library (Bottom)
             </TooltipContent>
           </Tooltip>
-          {/* Rigth Tooltip */}
+          {/* Right Tooltip */}
           <Tooltip>
             <TooltipTrigger asChild>
-              <Button variant="outline">Hover Rigth</Button>
+              <Button variant="outline">Hover Right</Button>
             </TooltipTrigger>
-            <TooltipContent side="right">Add to library (Rigth)</TooltipContent>
+            <TooltipContent side="right">Add to library (Right)</TooltipContent>
           </Tooltip>
-          {/* Rigth Tooltip */}
+          {/* Left Tooltip */}
           <Tooltip>
             <TooltipTrigger asChild>
               <Button variant="outline">Hover Left</Button>
