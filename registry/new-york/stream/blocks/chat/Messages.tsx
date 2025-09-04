@@ -220,7 +220,7 @@ export function Messages(): React.ReactNode {
           </DialogContent>
         </Dialog>
         <div
-          className="relative flex basis-[29%] flex-col gap-4 overflow-auto"
+          className="relative flex flex-col gap-4 overflow-auto"
           ref={scrollRef}
           data-testid="scroll-contain-base-chat"
         >
@@ -282,7 +282,7 @@ export function Messages(): React.ReactNode {
             })}
           </div>
         </div>
-        <div className="relative flex flex-col gap-4">
+        <div className="relative flex basis-[31%] flex-col gap-4">
           <ButtonScrollToBottom
             isAtBottom={isAtBottom}
             scrollToBottom={scrollToBottom}
