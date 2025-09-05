@@ -27,7 +27,7 @@ export default async function DemoPage({
   const { components } = demos[name];
 
   return (
-    <div className="flex h-[100vh] w-full flex-col gap-4 bg-card">
+    <div className="flex min-h-[100vh] w-full flex-col gap-4 bg-card">
       {components &&
         Object.entries(components).map(([key, node]) => (
           <div className="relative w-full" key={key}>
