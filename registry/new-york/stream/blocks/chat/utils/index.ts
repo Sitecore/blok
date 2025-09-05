@@ -3,6 +3,7 @@ import { remarkDocx } from "@m2d/remark-docx"
 import {
   abTestingClient,
   brainstormingClient,
+  brandsClient,
   briefClient,
   chatClient,
   ContentModelRead,
@@ -86,20 +87,30 @@ export const TOOLS_SOURCES_TITLES = {
 export const STRIP_TEXT_REGEX = /[\n\r\s\\]/g
 
 /**
- * Configures multiple client instances for streaming messages by setting their
- * respective base URLs and fetch implementations for API communication.
+ * Configures and initializes multiple API clients for streaming messages
+ * based on the given parameters.
  *
- * @param {string} token - The authentication token to be used for API requests.
- * @param {string} [region='euw'] - The geographical region for API endpoints (default is 'euw').
- * @param {'dev' | 'qa' | 'staging' | 'preprod' | 'prod'} [env='dev'] - The environment in which
- * the clients should operate (default is 'dev').
- * @return {void} Does not return anything.
+ * @param {string} token - The authentication token used to access the APIs.
+ * @param {string} region - The region identifier to determine the API base URLs.
+ * @param {'dev' | 'qa' | 'staging' | 'preprod' | 'prod'} env - The environment
+ * key specifying which stage of the platform to connect to.
+ * @return {{clientsLoaded: boolean}} - An object indicating whether the API
+ * clients were successfully configured and loaded.
  */
-export function streamMessagesClientsConfig(
+export function useStreamMessagesClientsConfig(
   token: string,
   region: string,
   env: "dev" | "qa" | "staging" | "preprod" | "prod"
-): void {
+): {
+  clientsLoaded: boolean
+} {
+  if (!token || !region || !env) {
+    toast.error("Missing required parameters")
+    return {
+      clientsLoaded: false,
+    }
+  }
+
   const baseUrlEnv = {
     dev: "-dev.sitecore-staging.cloud",
     qa: "-qa.sitecore-staging.cloud",
@@ -108,45 +119,64 @@ export function streamMessagesClientsConfig(
     prod: "sitecorecloud.io",
   }
 
-  chatClient.setConfig({
-    baseUrl: `https://ai-chat-api-${region}${baseUrlEnv[env]}`,
-    fetch: createStreamFetch({
-      tokenProvider: async () => token,
-      refreshTokenProvider: async () => token,
-    }),
-  })
+  try {
+    brandsClient.setConfig({
+      baseUrl: `https://ai-brands-api-${region}${baseUrlEnv[env]}`,
+      fetch: createStreamFetch({
+        tokenProvider: async () => token,
+        refreshTokenProvider: async () => token,
+      }),
+    })
 
-  documentsClient.setConfig({
-    baseUrl: `https://ai-documents-api-${region}${baseUrlEnv[env]}`,
-    fetch: createStreamFetch({
-      tokenProvider: async () => token,
-      refreshTokenProvider: async () => token,
-    }),
-  })
+    chatClient.setConfig({
+      baseUrl: `https://ai-chat-api-${region}${baseUrlEnv[env]}`,
+      fetch: createStreamFetch({
+        tokenProvider: async () => token,
+        refreshTokenProvider: async () => token,
+      }),
+    })
 
-  abTestingClient.setConfig({
-    baseUrl: `https://ai-ab-testing-api-${region}${baseUrlEnv[env]}`,
-    fetch: createStreamFetch({
-      tokenProvider: async () => token,
-      refreshTokenProvider: async () => token,
-    }),
-  })
+    documentsClient.setConfig({
+      baseUrl: `https://ai-documents-api-${region}${baseUrlEnv[env]}`,
+      fetch: createStreamFetch({
+        tokenProvider: async () => token,
+        refreshTokenProvider: async () => token,
+      }),
+    })
 
-  briefClient.setConfig({
-    baseUrl: `https://ai-brief-api-${region}${baseUrlEnv[env]}`,
-    fetch: createStreamFetch({
-      tokenProvider: async () => token,
-      refreshTokenProvider: async () => token,
-    }),
-  })
+    abTestingClient.setConfig({
+      baseUrl: `https://ai-ab-testing-api-${region}${baseUrlEnv[env]}`,
+      fetch: createStreamFetch({
+        tokenProvider: async () => token,
+        refreshTokenProvider: async () => token,
+      }),
+    })
 
-  brainstormingClient.setConfig({
-    baseUrl: `https://ai-brainstorming-api-${region}${baseUrlEnv[env]}`,
-    fetch: createStreamFetch({
-      tokenProvider: async () => token,
-      refreshTokenProvider: async () => token,
-    }),
-  })
+    briefClient.setConfig({
+      baseUrl: `https://ai-brief-api-${region}${baseUrlEnv[env]}`,
+      fetch: createStreamFetch({
+        tokenProvider: async () => token,
+        refreshTokenProvider: async () => token,
+      }),
+    })
+
+    brainstormingClient.setConfig({
+      baseUrl: `https://ai-brainstorming-api-${region}${baseUrlEnv[env]}`,
+      fetch: createStreamFetch({
+        tokenProvider: async () => token,
+        refreshTokenProvider: async () => token,
+      }),
+    })
+
+    return {
+      clientsLoaded: true,
+    }
+  } catch (error) {
+    toast.error("Error loading clients")
+    return {
+      clientsLoaded: false,
+    }
+  }
 }
 
 /**

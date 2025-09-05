@@ -49,4 +49,5 @@ export interface Session {
   env: "dev" | "qa" | "staging" | "preprod" | "prod"
   token: string
   apiEnv?: string
+  isNewChat?: boolean
 }

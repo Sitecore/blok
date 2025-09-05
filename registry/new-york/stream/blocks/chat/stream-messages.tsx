@@ -1,9 +1,15 @@
 "use client"
 
-import React, { createContext, JSX, useEffect, useMemo } from "react"
+import React, {
+  createContext,
+  JSX,
+  useCallback,
+  useEffect,
+  useMemo,
+} from "react"
+import { UIMessage } from "@ai-sdk/ui-utils"
 import { useChat, UseChatHelpers } from "ai/react"
 import { useAtom, useAtomValue, useSetAtom } from "jotai"
-import { isEmpty } from "lodash"
 import { toast } from "sonner"
 
 import { Messages } from "./Messages"
@@ -15,9 +21,16 @@ import {
 } from "./store/atoms"
 import { Session } from "./store/types"
 import { MessageAnnotation } from "./types"
-import { streamMessagesClientsConfig } from "./utils"
+import { useStreamMessagesClientsConfig } from "./utils"
 
 import "../../stream.css"
+
+import {
+  dbMessagesToAIMessages,
+  ListUserChatMessagesModelResponseV2,
+} from "@sitecore/stream-ui-core"
+
+import { useGetChatMessages } from "../../hooks/use-get-chat-messages"
 
 export type VercelAiUiProviderType = UseChatHelpers & {
   addToolResult: ({
@@ -58,21 +71,22 @@ const baseUrlEnv = {
 function StreamMessages({
   session,
 }: {
-  session: Omit<Session, "apiEnv">
+  session: Omit<Session, "apiEnv" | "isNewChat">
 }): JSX.Element {
-  const { orgId, userId, chatId, region, env, token } = session
-
   /* Atoms */
   const chatBodyAtom = useAtomValue(postChatGenerateBodyAtom)
   const setMessageIds = useSetAtom(messagesIdsAtom)
   const [isLoading, setIsLoading] = useAtom(isLoadingAtom)
-  const setSession = useSetAtom(sessionAtom)
+  const [_session, setSession] = useAtom(sessionAtom)
+
+  /* Hooks */
+  const getChatMessages = useGetChatMessages(_session.orgId, _session.userId)
 
   const { isLoading: _isLoading, ...chat } = useChat({
-    api: `https://ai-chat-api-${region}${baseUrlEnv[env]}/api/chats/v1/organizations/${orgId}/users/${userId}/chats/${chatId}/generatemessage`,
+    api: `https://ai-chat-api-${_session.region}${baseUrlEnv[_session.env]}/api/chats/v1/organizations/${_session.orgId}/users/${_session.userId}/chats/${_session.chatId}/generatemessage`,
     body: chatBodyAtom,
     headers: {
-      Authorization: `Bearer ${token}`,
+      Authorization: `Bearer ${_session.token}`,
       "Content-Type": "application/json",
     },
     experimental_throttle: 200,
@@ -95,17 +109,69 @@ function StreamMessages({
     [chat, isLoading]
   )
 
+  const initMessages = useCallback(async (): Promise<void> => {
+    /* Get messages for a specific chat */
+    const messages: ListUserChatMessagesModelResponseV2[] =
+      await getChatMessages(_session.chatId)
+    const dbMessages = dbMessagesToAIMessages(messages) as UIMessage[]
+
+    chat.setMessages(dbMessages)
+    setMessageIds(
+      dbMessages.map((message) => {
+        return (message?.annotations?.[0] as unknown as MessageAnnotation)?.id
+      })
+    )
+  }, [chat, _session.chatId, getChatMessages, setMessageIds])
+
   useEffect(() => {
-    if (_isLoading !== isLoading) setIsLoading(_isLoading)
-    if (!isEmpty(session))
-      setSession({ ...session, apiEnv: `${region}${baseUrlEnv[env]}` })
-  }, [_isLoading, env, isLoading, region, session, setIsLoading, setSession])
+    if (session) {
+      const apiEnv = `${_session.region}${baseUrlEnv[_session.env]}`
+
+      // If we change the brandkit or is empty, we need to reset the chatId
+      if (_session.brandkitId !== session.brandkitId || !session.brandkitId) {
+        setSession((prev) => ({ ...prev, ...session, apiEnv, chatId: "" }))
+        return
+      }
+
+      setSession((prev) => ({ ...prev, ...session, apiEnv }))
+    }
+  }, [_session.brandkitId, _session.env, _session.region, session, setSession])
+
+  useEffect(
+    function () {
+      if (_isLoading !== isLoading) setIsLoading(_isLoading)
+    },
+    [_isLoading, isLoading, setIsLoading]
+  )
+
+  useEffect(
+    function () {
+      if (_session.chatId) {
+        if (_session.isNewChat) {
+          setSession((prev) => ({ ...prev, isNewChat: false }))
+          chat.handleSubmit()
+        } else {
+          if (!chat.messages.length) {
+            initMessages()
+          }
+        }
+      }
+    },
+    [
+      _session.chatId,
+      _session.isNewChat,
+      chat,
+      initMessages,
+      session,
+      setSession,
+    ]
+  )
 
   return (
     <VercelAiUiContext.Provider value={context}>
-      {!isEmpty(session) && <Messages />}
+      <Messages />
     </VercelAiUiContext.Provider>
   )
 }
 
-export { StreamMessages, streamMessagesClientsConfig }
+export { StreamMessages, useStreamMessagesClientsConfig }

@@ -5,7 +5,6 @@ import {
   chat,
   ContentModelRead,
   FeedbackModel,
-  HTTPError,
   ListUserChatMessagesModelResponseV2,
   UpdateUserChatMessageModelResponseV2,
 } from "@sitecore/stream-ui-core"

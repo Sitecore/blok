@@ -768,6 +768,7 @@ export const blocks: Registry["items"] = [
       "sonner",
       "lodash",
       "react-textarea-autosize",
+      "ai@4.1.20",
     ],
     registryDependencies: [
       "button",

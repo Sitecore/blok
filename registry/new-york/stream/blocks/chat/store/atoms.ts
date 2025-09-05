@@ -20,6 +20,7 @@ export const sessionAtom = atom<Session>({
   region: "euw",
   token: "",
   apiEnv: "",
+  isNewChat: false,
 })
 
 export const brandkitIdAtom = atom<string>("")
@@ -58,8 +59,6 @@ export const brainstormingAtom = atom<BrainstormingOptions>()
 
 export const isBrainstormingActiveAtom = atom<boolean>(false)
 
-export const isNewChatAtom = atom<boolean>(true)
-
 export const isChatActionPendingAtom = atom<boolean>(false)
 
 export const hasErrorAtom = atom<boolean>(false)
@@ -87,3 +86,8 @@ export const isLoadingAtom = atom<boolean>(false)
 export const extractSourcesFromDataAtom = atom<
   Record<string, ExtractSourceRecordProps>
 >({})
+
+// Holds transient added context (e.g., images as base64) across new-chat redirect
+export const addedContextAtom = atom<
+  Array<{ type: "image_base64"; value: string }>
+>([])

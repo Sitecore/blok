@@ -19,18 +19,21 @@ export function GetDocumentProxyUrl({ url, item }: GetDocumentProxyUrlProps) {
     async (url: string): Promise<string | undefined> => {
       if (!url?.startsWith("https://mms-delivery")) return url
 
-      const res = await fetch(url, {
-        credentials: "include",
-        headers: {
-          ...(session?.token
-            ? { Authorization: `Bearer ${session?.token}` }
-            : {}),
-        },
-      })
+      try {
+        const res = await fetch(url, {
+          headers: {
+            ...(session?.token
+              ? { Authorization: `Bearer ${session?.token}` }
+              : {}),
+          },
+        })
 
-      if (!res.ok) return undefined
+        if (!res.ok) return undefined
 
-      setObjectUrl(URL.createObjectURL(await res.blob()))
+        setObjectUrl(URL.createObjectURL(await res.blob()))
+      } catch (error) {
+        return undefined
+      }
     },
     [session?.token]
   )
@@ -38,8 +41,8 @@ export function GetDocumentProxyUrl({ url, item }: GetDocumentProxyUrlProps) {
   const renderItem = () => item(objectUrl || url)
 
   useEffect(() => {
-    getDocumentProxyUrl(url)
-  }, [getDocumentProxyUrl, url])
+    if (session?.token) getDocumentProxyUrl(url)
+  }, [getDocumentProxyUrl, session?.token, url])
 
   useEffect(() => {
     return () => {

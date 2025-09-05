@@ -49,9 +49,7 @@ export function ChatHistory(props: ChatHistoryProps) {
         >
           <div className="flex min-w-0 items-center gap-2">
             <Icon path={mdiChatOutline} className="size-6 text-gray-500" />
-            <h2 className="text-md min-w-0 truncate">
-              {chat.title} asdasdasdasdasd asdasdasdasd asdasdsa
-            </h2>
+            <h2 className="text-md min-w-0 truncate">{chat.title}</h2>
           </div>
           <button
             disabled={chat.disabled}

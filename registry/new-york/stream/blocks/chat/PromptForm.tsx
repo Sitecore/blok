@@ -24,6 +24,7 @@ import {
 import { useBrandkitById } from "../../hooks/use-brandkit-by-id"
 import { cn } from "../../lib/utils"
 import {
+  addedContextAtom,
   brainstormingAtom,
   isBrainstormingActiveAtom,
   isChatActionPendingAtom,
@@ -61,7 +62,7 @@ export function PromptForm({
   onClearFiles,
 }: PromptFormProps) {
   const { input, handleSubmit, handleInputChange } = useAiChatProvider()
-  const session = useAtomValue(sessionAtom)
+  const [session, setSession] = useAtom(sessionAtom)
   const { formRef, onKeyDown } = useEnterSubmit()
   const [isMultiline, setIsMultiline] = useState(false)
   const { brandkit } = useBrandkitById(session.brandkitId, {
@@ -82,6 +83,7 @@ export function PromptForm({
     isBrainstormingActiveAtom
   )
   const setChatBodyAtom = useSetAtom(postChatGenerateBodyAtom)
+  const [addedContext, setAddedContext] = useAtom(addedContextAtom)
 
   /* Computed */
   const isProcessingAllChanges = Object.values(isProcessing).some((v) => v)
@@ -116,43 +118,7 @@ export function PromptForm({
     setIsMultiline(true)
   }
 
-  const handleOnSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
-
-    if (!session.brandkitId || !input) return
-
-    if (!session.chatId) {
-      setLocalStorageRefs(referencesArr.current)
-      setIsChatActionPending(true)
-
-      try {
-        await chatApi.createUserChatV2ApiChatsV2OrganizationsOrganizationIdUsersUserIdChatsPost(
-          {
-            path: {
-              userId: session.userId,
-              organizationId: session.orgId,
-            },
-            body: {
-              title: input,
-              references: ReferencesBuilder({
-                orgId: session.orgId,
-                userId: session.userId,
-              })
-                .addBrandkit({ id: session.brandkitId, isArtefact: false })
-                .build() as never,
-            },
-          }
-        )
-      } catch (error: unknown) {
-        const { response } = error as HTTPError
-        toast.error(response.statusText)
-      } finally {
-        setIsChatActionPending(false)
-      }
-
-      return
-    }
-
+  const setChatData = async (cb?: () => void) => {
     const filesToUpload = await Promise.all(
       (uploadedFiles || []).map(async (file) => {
         const dataUrl = await fileToDataURL(file)
@@ -177,11 +143,56 @@ export function PromptForm({
     }
 
     setChatBodyAtom(data)
-
-    handleSubmit?.()
-
+    cb?.()
     referencesArr.current = []
     onClearFiles?.()
+  }
+
+  const handleOnSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+
+    if (!session.brandkitId || !input) return
+
+    if (!session.chatId) {
+      setLocalStorageRefs(referencesArr.current)
+      setIsChatActionPending(true)
+
+      try {
+        const { data } =
+          await chatApi.createUserChatV2ApiChatsV2OrganizationsOrganizationIdUsersUserIdChatsPost(
+            {
+              path: {
+                userId: session.userId,
+                organizationId: session.orgId,
+              },
+              body: {
+                title: input,
+                references: ReferencesBuilder({
+                  orgId: session.orgId,
+                  userId: session.userId,
+                })
+                  .addBrandkit({ id: session.brandkitId, isArtefact: false })
+                  .build() as never,
+              },
+            }
+          )
+        setChatData(() =>
+          setSession((prev) => ({
+            ...prev,
+            chatId: data?.id as string,
+            isNewChat: true,
+          }))
+        )
+        return
+      } catch (error: unknown) {
+        const { response } = error as HTTPError
+        toast.error(response.statusText)
+      } finally {
+        setIsChatActionPending(false)
+      }
+    }
+
+    setChatData(() => handleSubmit?.())
   }
 
   const handleFileUpload = () => {

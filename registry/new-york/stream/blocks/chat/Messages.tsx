@@ -1,14 +1,11 @@
 import React, { useCallback, useEffect, useState } from "react"
-import { UIMessage } from "@ai-sdk/ui-utils"
 import { mdiTextLong, mdiTuneVariant } from "@mdi/js"
 import {
-  dbMessagesToAIMessages,
-  ListUserChatMessagesModelResponseV2,
   ReferenceModel,
   ToolInvocation,
   ToolInvocationUIPart,
 } from "@sitecore/stream-ui-core"
-import { useAtom, useAtomValue, useSetAtom } from "jotai"
+import { useAtom, useAtomValue } from "jotai"
 
 import { Button } from "@/registry/new-york/ui/button"
 import {
@@ -21,7 +18,6 @@ import {
 } from "@/registry/new-york/ui/dialog"
 import { Tabs, TabsList, TabsTrigger } from "@/registry/new-york/ui/tabs"
 
-import { useGetChatMessages } from "../../hooks/use-get-chat-messages"
 import { cn } from "../../lib/utils"
 import { ButtonScrollToBottom } from "./ButtonScrollToBottom"
 import { Feedback } from "./Feedback"
@@ -30,12 +26,7 @@ import { useImageDropzone } from "./hooks/useImageDropzone"
 import { useScrollAnchor } from "./hooks/useScrollAnchor"
 import { Icon } from "./Icon"
 import { PromptForm } from "./PromptForm"
-import {
-  brainstormingAtom,
-  isAnyArtifactOpenAtom,
-  messagesIdsAtom,
-  sessionAtom,
-} from "./store/atoms"
+import { brainstormingAtom, isAnyArtifactOpenAtom } from "./store/atoms"
 import { BrainstormingSearchTypeOptions } from "./store/types"
 import { ToolInvocations } from "./tools/ToolInvocations"
 import { MessageAnnotation } from "./types"
@@ -45,30 +36,12 @@ export function Messages(): React.ReactNode {
   /* Atoms */
   const isAnyArtifactOpen = useAtomValue(isAnyArtifactOpenAtom)
   const [brainstormingData, setBrainstormingData] = useAtom(brainstormingAtom)
-  const { orgId, userId, chatId } = useAtomValue(sessionAtom)
-  const setMessageIds = useSetAtom(messagesIdsAtom)
 
   /* Hooks */
-  const { messages, setMessages } = useAiChatProvider()
-  const getChatMessages = useGetChatMessages(orgId, userId)
+  const { messages } = useAiChatProvider()
   const { messagesRef, scrollRef, isAtBottom, scrollToBottom } =
     useScrollAnchor(messages)
   const [uploadedFiles, setUploadedFiles] = useState<File[]>([])
-
-  const initMessages = useCallback(async (): Promise<void> => {
-    /* Get messages for a specific chat */
-    const messages: ListUserChatMessagesModelResponseV2[] =
-      await getChatMessages(chatId)
-
-    const dbMessages = dbMessagesToAIMessages(messages) as UIMessage[]
-
-    setMessages(dbMessages)
-    setMessageIds(
-      dbMessages.map((message) => {
-        return (message?.annotations?.[0] as unknown as MessageAnnotation)?.id
-      })
-    )
-  }, [chatId, getChatMessages, setMessageIds, setMessages])
 
   const handleSaveToolConfigurationOnClick = (
     value: BrainstormingSearchTypeOptions
@@ -111,13 +84,16 @@ export function Messages(): React.ReactNode {
     onFilesAccepted: (files) => onDrop(files),
   })
 
+  /* Will run when scroll changes */
   useEffect(() => {
-    if (!messages.length) initMessages()
-  }, [initMessages, messages.length])
+    if (scrollRef.current) {
+      scrollRef.current.scrollTop = scrollRef.current.scrollHeight
+    }
+  }, [messages, scrollRef])
 
   return (
     <div
-      className="relative flex max-w-full overflow-hidden"
+      className="relative flex h-lvh flex-1 overflow-hidden"
       {...getRootProps()}
     >
       <input {...getInputProps()} />
@@ -139,7 +115,7 @@ export function Messages(): React.ReactNode {
           </div>
         </div>
       )}
-      <div className="relative flex flex-1 basis-1/2 flex-col gap-4">
+      <div className="relative flex h-lvh flex-1 flex-col gap-4">
         <Dialog>
           <DialogTrigger
             id="tour-chat-brainstorming-tools-settings"
@@ -220,7 +196,7 @@ export function Messages(): React.ReactNode {
           </DialogContent>
         </Dialog>
         <div
-          className="relative flex flex-col gap-4 overflow-auto"
+          className="relative flex basis-full flex-col gap-4 overflow-auto"
           ref={scrollRef}
           data-testid="scroll-contain-base-chat"
         >
@@ -282,7 +258,7 @@ export function Messages(): React.ReactNode {
             })}
           </div>
         </div>
-        <div className="relative flex basis-[31%] flex-col gap-4">
+        <div className="relative flex basis-[27%] flex-col gap-4">
           <ButtonScrollToBottom
             isAtBottom={isAtBottom}
             scrollToBottom={scrollToBottom}
