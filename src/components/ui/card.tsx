@@ -27,7 +27,7 @@ const cardVariants = cva(
       },
     },
     defaultVariants: {
-      elevation: "sm",
+      elevation: "none",
       style: "flat",
       padding: "lg",
     },

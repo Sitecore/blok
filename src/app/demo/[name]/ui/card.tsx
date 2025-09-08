@@ -11,6 +11,20 @@ import {
 export const card = {
   name: "card",
   components: {
+    Default: (
+      <Card style="flat" elevation="none" padding="lg" className="w-[400px]">
+        <CardHeader>
+          <CardTitle>Default Card</CardTitle>
+          <CardDescription>Style: flat, Elevation: none</CardDescription>
+        </CardHeader>
+        <CardContent>
+          <p>This is a default card with flat style and no elevation.</p>
+        </CardContent>
+        <CardFooter>
+          <Button variant="outline">Action</Button>
+        </CardFooter>
+      </Card>
+    ),
     // Elevation Variants
     ElevationNone: (
       <Card style="outline" elevation="none" padding="lg" className="w-[400px]">
