@@ -184,6 +184,29 @@
       ]
     },
     {
+      "name": "topbar",
+      "type": "registry:block",
+      "title": "Topbar",
+      "description": "A topbar application with your brand themed components",
+      "registryDependencies": [
+        "https://blok-shadcn.vercel.app/r/theme.json",
+        "https://blok-shadcn.vercel.app/r/avatar.json",
+        "https://blok-shadcn.vercel.app/r/button.json",
+        "https://blok-shadcn.vercel.app/r/navigation-menu.json"
+      ],
+      "dependencies": [
+        "@mdi/react",
+        "@mdi/js"
+      ],
+      "files": [
+        {
+          "path": "src/components/blocks/top-bar.tsx",
+          "type": "registry:block",
+          "target": "src/components/blocks/top-bar.tsx"
+        }
+      ]
+    },
+    {
       "name": "brand-header",
       "type": "registry:component",
       "title": "Brand Header",
