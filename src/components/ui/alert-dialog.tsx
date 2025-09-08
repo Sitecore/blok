@@ -123,7 +123,7 @@ function AlertDialogAction({
   className,
   variant = "default",
   size,
-  colorScheme = "primary",
+  colorScheme = "danger",
   ...props
 }: React.ComponentProps<typeof AlertDialogPrimitive.Action> &
   VariantProps<typeof buttonVariants>) {
