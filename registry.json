@@ -770,15 +770,23 @@
       "type": "registry:ui",
       "title": "Date Picker",
       "description": "Displays the path to the current resource using a hierarchy of links.",
+      "dependencies": [
+        "date-fns",
+        "@mdi/js",
+        "@mdi/react",
+        "react-day-picker"
+      ],
       "registryDependencies": [
-        "date-picker",
-        "https://registry-starter.vercel.app/r/theme.json"
+        "https://blok-shadcn.vercel.app/r/theme.json",
+        "https://blok-shadcn.vercel.app/r/calendar.json",
+        "https://blok-shadcn.vercel.app/r/button.json",
+        "https://blok-shadcn.vercel.app/r/popover.json"        
       ],
       "files": [
         {
-          "path": "src/layouts/minimal-layout.tsx",
-          "type": "registry:file",
-          "target": "app/layout.tsx"
+          "path": "src/components/ui/date-picker.tsx",
+          "type": "registry:ui",
+          "target": "src/components/ui/date-picker.tsx"
         }
       ]
     },
