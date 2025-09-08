@@ -1,6 +1,5 @@
 import { mdiDotsGrid, mdiHelpCircleOutline } from "@mdi/js";
 import Icon from "@mdi/react";
-import Link from "next/link";
 
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
@@ -37,11 +36,12 @@ export default function Topbar() {
         <NavigationMenu className="ml-6">
           <NavigationMenuList>
             <NavigationMenuItem>
-              <Link href="#" legacyBehavior passHref>
-                <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                  Home
-                </NavigationMenuLink>
-              </Link>
+              <NavigationMenuLink
+                href="#"
+                className={navigationMenuTriggerStyle()}
+              >
+                Home
+              </NavigationMenuLink>
             </NavigationMenuItem>
 
             <NavigationMenuItem>
@@ -49,48 +49,45 @@ export default function Topbar() {
               <NavigationMenuContent>
                 <ul className="grid w-[200px] gap-2">
                   <li>
-                    <NavigationMenuLink asChild>
-                      <Link href="#">Components</Link>
+                    <NavigationMenuLink href="#">Components</NavigationMenuLink>
+                  </li>
+                  <li>
+                    <NavigationMenuLink href="#">
+                      Documentation
                     </NavigationMenuLink>
                   </li>
                   <li>
-                    <NavigationMenuLink asChild>
-                      <Link href="#">Documentation</Link>
-                    </NavigationMenuLink>
-                  </li>
-                  <li>
-                    <NavigationMenuLink asChild>
-                      <Link href="#">Blocks</Link>
-                    </NavigationMenuLink>
+                    <NavigationMenuLink href="#">Blocks</NavigationMenuLink>
                   </li>
                 </ul>
               </NavigationMenuContent>
             </NavigationMenuItem>
 
             <NavigationMenuItem>
-              <Link href="#" legacyBehavior passHref>
-                <NavigationMenuLink
-                  className={`${navigationMenuTriggerStyle()} active`}
-                >
-                  Content
-                </NavigationMenuLink>
-              </Link>
+              <NavigationMenuLink
+                href="#"
+                className={`${navigationMenuTriggerStyle()} active`}
+              >
+                Content
+              </NavigationMenuLink>
             </NavigationMenuItem>
 
             <NavigationMenuItem>
-              <Link href="#" legacyBehavior passHref>
-                <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                  Media
-                </NavigationMenuLink>
-              </Link>
+              <NavigationMenuLink
+                href="#"
+                className={navigationMenuTriggerStyle()}
+              >
+                Media
+              </NavigationMenuLink>
             </NavigationMenuItem>
 
             <NavigationMenuItem>
-              <Link href="#" legacyBehavior passHref>
-                <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                  Settings
-                </NavigationMenuLink>
-              </Link>
+              <NavigationMenuLink
+                href="#"
+                className={navigationMenuTriggerStyle()}
+              >
+                Settings
+              </NavigationMenuLink>
             </NavigationMenuItem>
           </NavigationMenuList>
         </NavigationMenu>
