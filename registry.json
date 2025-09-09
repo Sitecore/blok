@@ -766,6 +766,31 @@
       ]
     },
     {
+      "name": "date-picker",
+      "type": "registry:ui",
+      "title": "Date Picker",
+      "description": "Displays the path to the current resource using a hierarchy of links.",
+      "dependencies": [
+        "date-fns",
+        "@mdi/js",
+        "@mdi/react",
+        "react-day-picker"
+      ],
+      "registryDependencies": [
+        "https://blok-shadcn.vercel.app/r/theme.json",
+        "https://blok-shadcn.vercel.app/r/calendar.json",
+        "https://blok-shadcn.vercel.app/r/button.json",
+        "https://blok-shadcn.vercel.app/r/popover.json"        
+      ],
+      "files": [
+        {
+          "path": "src/components/ui/date-picker.tsx",
+          "type": "registry:ui",
+          "target": "src/components/ui/date-picker.tsx"
+        }
+      ]
+    },
+    {
       "name": "dialog",
       "type": "registry:ui",
       "title": "Dialog",
@@ -881,27 +906,6 @@
           "path": "src/components/ui/label.tsx",
           "type": "registry:ui",
           "target": "src/components/ui/label.tsx"
-        }
-      ]
-    },
-    {
-      "name": "menu-bar",
-      "type": "registry:ui",
-      "title": "Menu Bar",
-      "description": "A visually persistent menu common in desktop applications that provides quick access to a consistent set of commands.",
-      "dependencies": [
-        "@mdi/react",
-        "@mdi/js",
-        "@radix-ui/react-menubar"
-      ],
-      "registryDependencies": [
-        "https://blok-shadcn.vercel.app/r/theme.json"
-      ],
-      "files": [
-        {
-          "path": "src/components/ui/menubar.tsx",
-          "type": "registry:ui",
-          "target": "src/components/ui/menubar.tsx"
         }
       ]
     },
