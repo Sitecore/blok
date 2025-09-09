@@ -4,7 +4,7 @@ export const input = {
   name: "input",
   components: {
     Email: (
-      <div className="w-75 ml-2">
+      <div className="w-75 ml-2 mt-2">
         <Input type="email" placeholder="Email" />
       </div>
     ),
