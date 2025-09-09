@@ -45,6 +45,6 @@ export const button = {
           <Icon path={mdiInformationOutline} />
         </Button>
       </div>
-    )
+    ),
   },
 };
