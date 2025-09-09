@@ -31,7 +31,7 @@ import { chart } from "@/app/demo/[name]/ui/chart";
 import { checkbox } from "@/app/demo/[name]/ui/checkbox";
 import { contextMenu } from "@/app/demo/[name]/ui/context-menu";
 import { dataTable } from "@/app/demo/[name]/ui/data-table";
-import { datePicker } from "@/app/demo/[name]/ui/date-picker";
+// import { datePicker } from "@/app/demo/[name]/ui/date-picker";
 import { dialog } from "@/app/demo/[name]/ui/dialog";
 import {drawer} from "@/app/demo/[name]/ui/drawer";
 import { dropdownMenu } from "@/app/demo/[name]/ui/dropdown-menu";
@@ -106,7 +106,7 @@ export const demos: { [name: string]: Demo } = {
   "context-menu": contextMenu,
   command,
   dialog,
-  "date-picker": datePicker,
+  // "date-picker": datePicker,
   "data-table": dataTable,
    drawer,
   "dropdown-menu": dropdownMenu,
