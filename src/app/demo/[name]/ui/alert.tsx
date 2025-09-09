@@ -1,16 +1,9 @@
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+import { ClosableAlert } from "@/app/demo/[name]/ui/alert-closable";
 
 export const alert = {
   name: "alert",
   components: {
-    Default: (
-      <Alert variant="default">
-        <AlertTitle>Default Alert</AlertTitle>
-        <AlertDescription>
-          This is a default alert with a title and description.
-        </AlertDescription>
-      </Alert>
-    ),
     Primary: (
       <Alert variant="primary">
         <AlertTitle>Primary Alert</AlertTitle>
@@ -43,6 +36,7 @@ export const alert = {
         </AlertDescription>
       </Alert>
     ),
+    Closable: <ClosableAlert />,
     Descriptive: (
       <Alert variant="primary">
         <AlertTitle>
