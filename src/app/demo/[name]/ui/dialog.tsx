@@ -39,7 +39,7 @@ export const dialog = {
           </div>
           <DialogFooter>
             <DialogClose asChild>
-              <Button variant="ghost">Cancel</Button>
+              <Button variant="ghost" colorScheme="neutral">Cancel</Button>
             </DialogClose>
             <Button type="submit">Save changes</Button>
           </DialogFooter>
@@ -107,7 +107,7 @@ export const dialog = {
           </div>
           <DialogFooter>
             <DialogClose asChild>
-              <Button variant="outline">Close</Button>
+              <Button variant="outline" colorScheme="neutral">Close</Button>
             </DialogClose>
           </DialogFooter>
         </DialogContent>
