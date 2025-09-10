@@ -116,6 +116,7 @@ function DialogContent({
               buttonVariants({
                 variant: "ghost",
                 size: "icon",
+                colorScheme:"neutral"
               }),
               "absolute top-2.5 right-4 min-w-0 opacity-70 transition-opacity hover:opacity-100"
             )}

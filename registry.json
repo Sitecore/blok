@@ -910,27 +910,6 @@
       ]
     },
     {
-      "name": "menu-bar",
-      "type": "registry:ui",
-      "title": "Menu Bar",
-      "description": "A visually persistent menu common in desktop applications that provides quick access to a consistent set of commands.",
-      "dependencies": [
-        "@mdi/react",
-        "@mdi/js",
-        "@radix-ui/react-menubar"
-      ],
-      "registryDependencies": [
-        "https://blok-shadcn.vercel.app/r/theme.json"
-      ],
-      "files": [
-        {
-          "path": "src/components/ui/menubar.tsx",
-          "type": "registry:ui",
-          "target": "src/components/ui/menubar.tsx"
-        }
-      ]
-    },
-    {
       "name": "navigation-menu",
       "type": "registry:ui",
       "title": "Navigation Menu",
