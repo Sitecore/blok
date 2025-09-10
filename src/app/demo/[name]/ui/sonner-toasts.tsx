@@ -3,9 +3,11 @@
 import { toast } from "sonner";
 
 import { Button } from "@/components/ui/button";
+import Icon from "@mdi/react";
+import { mdiInformation } from "@mdi/js";
 
 export function Sonner() {
-  return <Button onClick={() => toast("Toast")}>Normal Toast</Button>;
+  return <Button onClick={() => toast.info("Toast")}>Normal Toast</Button>;
 }
 
 export function SuccessfulSonner() {
@@ -38,10 +40,11 @@ export function ErrorSonner() {
 export function ActionSonner() {
   return (
     <Button
-      variant="outline"
+      variant="link"
       onClick={() =>
         toast("Toast with an Action", {
-          description: "A description with some more information",
+          description: `A description with some more information ${<a href="#">link</a>}`,
+          icon: <Icon path={mdiInformation} />,
           action: {
             label: "Action",
             onClick: () => console.log("Action!"),
