@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Codeblocks } from "@/components/registry/code-block";
 
-const InstallationCode = `npx shadcn@latest add ${process.env.VERCEL_PROJECT_PRODUCTION_URL}/r/button.json `;
+const InstallationCode = `npx shadcn@latest add ${process.env.VERCEL_PROJECT_PRODUCTION_URL}/r/blok-components.json `;
 
 const sampleButtonCode = `import { Button } from "@/components/ui/button"
 export function ButtonDemo() {
