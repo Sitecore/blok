@@ -14,6 +14,8 @@ import { toast } from "sonner"
 
 import { Messages } from "./Messages"
 import {
+  brainstormingAtom,
+  isBrainstormingActiveAtom,
   isLoadingAtom,
   messagesIdsAtom,
   postChatGenerateBodyAtom,
@@ -54,6 +56,11 @@ const baseUrlEnv = {
   prod: "sitecorecloud.io",
 }
 
+export interface StreamMessagesProps {
+  session: Omit<Session, "apiEnv" | "isNewChat">
+  prompt?: string
+}
+
 /**
  * Streams messages for a chat session. It sets up necessary configurations,
  * manages message states, and provides context for the chat UI.
@@ -68,16 +75,14 @@ const baseUrlEnv = {
  *
  * @return {JSX.Element} The component context containing chat functionality and the rendered messages.
  */
-function StreamMessages({
-  session,
-}: {
-  session: Omit<Session, "apiEnv" | "isNewChat">
-}): JSX.Element {
+function StreamMessages({ session, prompt }: StreamMessagesProps): JSX.Element {
   /* Atoms */
   const chatBodyAtom = useAtomValue(postChatGenerateBodyAtom)
   const setMessageIds = useSetAtom(messagesIdsAtom)
   const [isLoading, setIsLoading] = useAtom(isLoadingAtom)
   const [_session, setSession] = useAtom(sessionAtom)
+  const setBrainstormingData = useSetAtom(brainstormingAtom)
+  const setIsBrainstormingActive = useSetAtom(isBrainstormingActiveAtom)
 
   /* Hooks */
   const getChatMessages = useGetChatMessages(_session.orgId, _session.userId)
@@ -85,6 +90,7 @@ function StreamMessages({
   const { isLoading: _isLoading, ...chat } = useChat({
     api: `https://ai-chat-api-${_session.region}${baseUrlEnv[_session.env]}/api/chats/v1/organizations/${_session.orgId}/users/${_session.userId}/chats/${_session.chatId}/generatemessage`,
     body: chatBodyAtom,
+    initialInput: prompt ?? "",
     headers: {
       Authorization: `Bearer ${_session.token}`,
       "Content-Type": "application/json",
@@ -123,25 +129,32 @@ function StreamMessages({
     )
   }, [chat, _session.chatId, getChatMessages, setMessageIds])
 
-  useEffect(() => {
-    if (session) {
-      const apiEnv = `${_session.region}${baseUrlEnv[_session.env]}`
-
-      // If we change the brandkit or is empty, we need to reset the chatId
-      if (_session.brandkitId !== session.brandkitId || !session.brandkitId) {
-        setSession((prev) => ({ ...prev, ...session, apiEnv, chatId: "" }))
-        return
-      }
-
-      setSession((prev) => ({ ...prev, ...session, apiEnv }))
-    }
-  }, [_session.brandkitId, _session.env, _session.region, session, setSession])
-
   useEffect(
     function () {
-      if (_isLoading !== isLoading) setIsLoading(_isLoading)
+      if (session) {
+        const apiEnv = `${_session.region}${baseUrlEnv[_session.env]}`
+
+        if (
+          _session.brandkitId !== session.brandkitId ||
+          !session.brandkitId ||
+          !session.chatId
+        ) {
+          setBrainstormingData(undefined)
+          setIsBrainstormingActive(false)
+        }
+
+        setSession((prev) => ({ ...prev, ...session, apiEnv }))
+      }
     },
-    [_isLoading, isLoading, setIsLoading]
+    [
+      _session.brandkitId,
+      _session.env,
+      _session.region,
+      session,
+      setBrainstormingData,
+      setIsBrainstormingActive,
+      setSession,
+    ]
   )
 
   useEffect(
@@ -163,6 +176,35 @@ function StreamMessages({
       chat,
       initMessages,
       session,
+      setSession,
+    ]
+  )
+
+  useEffect(
+    function () {
+      if (_isLoading !== isLoading) setIsLoading(_isLoading)
+    },
+    [_isLoading, isLoading, setIsLoading]
+  )
+
+  useEffect(
+    function () {
+      return function () {
+        if (!session.chatId) {
+          const apiEnv = `${_session.region}${baseUrlEnv[_session.env]}`
+
+          setBrainstormingData(undefined)
+          setIsBrainstormingActive(false)
+          setSession((prev) => ({ ...prev, ...session, apiEnv }))
+        }
+      }
+    },
+    [
+      _session.env,
+      _session.region,
+      session,
+      setBrainstormingData,
+      setIsBrainstormingActive,
       setSession,
     ]
   )
