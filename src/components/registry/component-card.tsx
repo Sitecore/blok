@@ -66,7 +66,8 @@ export function ComponentCard({
                       <Button
                         onClick={copyToClipboard}
                         variant="outline"
-                        className="p-4 rounded-full aspect-square"
+                        size="icon-lg"
+                        className="p-4"
                         aria-label="Copy npx command to clipboard"
                       >
                         {copied ? (
