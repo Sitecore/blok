@@ -4,6 +4,7 @@ import type { ReactElement, ReactNode } from "react";
 import { blank } from "@/app/demo/[name]/blocks/blank";
 import { dashboard } from "@/app/demo/[name]/blocks/dashboard";
 import { store } from "@/app/demo/[name]/blocks/store";
+import { topbar } from "@/app/demo/[name]/blocks/top-bar";
 
 // components
 import { brandHeader } from "@/app/demo/[name]/components/brand-header";
@@ -37,7 +38,7 @@ import { dropdownMenu } from "@/app/demo/[name]/ui/dropdown-menu";
 import { input } from "@/app/demo/[name]/ui/input";
 import { inputOtp } from "@/app/demo/[name]/ui/inputOtp";
 import { label } from "@/app/demo/[name]/ui/label";
-import { menuBar } from "@/app/demo/[name]/ui/menu-bar";
+// import { menuBar } from "@/app/demo/[name]/ui/menu-bar";
 import { navigationMenu } from "@/app/demo/[name]/ui/navigation-menu";
 import { radioGroup } from "@/app/demo/[name]/ui/radio-group";
 import { resizable } from "@/app/demo/[name]/ui/resizable";
@@ -75,6 +76,7 @@ export const demos: { [name: string]: Demo } = {
   blank,
   store,
   dashboard,
+  topbar,
 
   // components
   hero,
@@ -111,7 +113,7 @@ export const demos: { [name: string]: Demo } = {
   input,
   inputOtp,
   label,
-  "menu-bar": menuBar,
+  // "menu-bar": menuBar,
   "navigation-menu": navigationMenu,
   progress,
   "scroll-area" :scrollArea,
