@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Codeblocks } from "@/components/registry/code-block";
 
-const InstallationCode = `npx shadcn@latest add ${process.env.VERCEL_PROJECT_PRODUCTION_URL}/r/blok-components.json `;
+const InstallationCode = `npx shadcn@latest add https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}/r/blok-components.json `;
 
 const sampleButtonCode = `import { Button } from "@/components/ui/button"
 export function ButtonDemo() {
@@ -27,7 +27,7 @@ export default function Home() {
             language.
           </p>
           <div className="flex space-x-4">
-            <Button className="bg-primary text-white px-4 py-2 rounded-full text-xs">
+            {/* <Button className="bg-primary text-white px-4 py-2 rounded-full text-xs">
               Get started
             </Button>
             <Button
@@ -35,7 +35,7 @@ export default function Home() {
               className="rounded-full border-gray-300 text-gray-600 hover:bg-gray-100 text-xs w-30"
             >
               Browse blocks
-            </Button>
+            </Button> */}
           </div>
         </div>
       </div>

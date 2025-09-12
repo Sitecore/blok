@@ -115,7 +115,7 @@
     },
     {
       "name": "blok-components",
-      "type": "registry:ui",
+      "type": "registry:component",
       "title": "All Components",
       "description": "This installs all components from the Blokcn registry",
       "registryDependencies": [
@@ -145,7 +145,6 @@
         "https://blok-shadcn.vercel.app/r/input.json",
         "https://blok-shadcn.vercel.app/r/inputOtp.json",
         "https://blok-shadcn.vercel.app/r/label.json",
-        "https://blok-shadcn.vercel.app/r/menu-bar.json",
         "https://blok-shadcn.vercel.app/r/navigation-menu.json",
         "https://blok-shadcn.vercel.app/r/pagination.json",
         "https://blok-shadcn.vercel.app/r/popover.json",
