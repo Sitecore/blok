@@ -102,10 +102,6 @@ function Calendar({
           "text-[0.8rem] select-none text-muted-foreground",
           defaultClassNames.week_number,
         ),
-        day: cn(
-          buttonVariants({ variant: "ghost", colorScheme: "neutral" }),
-          "hover:rounded-md size-8 p-0 font-normal aria-selected:opacity-100 border border-transparent hover:border-primary text-body-text hover:bg-white"
-        ),
         day_range_start:
           "day-range-start aria-selected:bg-primary-500 aria-selected:text-primary-foreground rounded-l-md rounded-r-none",
         day_range_end:
@@ -213,16 +209,23 @@ function CalendarDayButton({
       aria-selected={modifiers.selected || undefined}
       className={cn(
         buttonVariants({ variant: "ghost", colorScheme: "neutral" }),
-        "hover:rounded-md size-8 p-0 font-normal border border-transparent hover:border-primary text-body-text hover:bg-white",
+        "hover:rounded-md size-8 p-0 font-normal border border-solid border-transparent rounded-md text-body-text transition-none", 
+        !modifiers.selected &&
+          !modifiers.range_start &&
+          !modifiers.range_end &&
+          !modifiers.range_middle &&
+          "hover:bg-primary hover:text-primary-foreground",
         modifiers.selected &&
           !modifiers.range_start &&
           !modifiers.range_end &&
           !modifiers.range_middle &&
-          "bg-primary-500 text-primary-foreground",
+          "bg-primary-500 text-primary-foreground hover:bg-primary-500 rounded-md",
         modifiers.range_start &&
-          "bg-primary-500 text-white rounded-l-md hover:bg-primary-500",
+          "bg-primary-500 text-white rounded-l-md hover:bg-primary-600 hover:text-white",
+        modifiers.range_middle &&
+          "bg-primary-100 text-primary-900 hover:bg-primary hover:text-primary-foreground rounded-none",
         modifiers.range_end &&
-          "bg-primary-500 text-white rounded-r-md hover:bg-primary-500",
+          "bg-primary-500 text-white rounded-r-md hover:bg-primary-600 hover:text-white",
         className
       )}
       {...props}
