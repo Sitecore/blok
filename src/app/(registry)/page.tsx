@@ -64,30 +64,32 @@ export default function Home() {
           <p className="text-muted-foreground">(example used: button):</p>
           <Codeblocks code={sampleButtonCode} />
 
-         <div className="pt-8">
-          <div className="mb-4 rounded-lg border bg-card p-6">
-            <div className="flex flex-col gap-2">
-              <h2 className="font-semibold text-xl">MCP</h2>
-              <p className="mb-4 text-muted-foreground">
-                Integrate this registry with AI IDEs using Model Context
-                Protocol (MCP) using the following configuration. This utilizes
-                this Registry's theme tokens and CSS variables with the Shadcn
-                CLI. To ensure this works, double check that the{" "}
-                <Link href="/r/registry.json">
-                  <code className="inline text-sm tabular-nums underline">
-                    style:theme
+          <div className="pt-8">
+            <div className="mb-4 rounded-lg border bg-card p-6">
+              <div className="flex flex-col gap-2">
+                <h2 className="font-semibold text-xl">MCP</h2>
+                <p className="mb-4 text-muted-foreground">
+                  Integrate this registry with AI IDEs using Model Context
+                  Protocol (MCP) using the following configuration. This
+                  utilizes this Registry's theme tokens and CSS variables with
+                  the Shadcn CLI. To ensure this works, double check that the{" "}
+                  <Link href="/r/registry.json">
+                    <code className="inline text-sm tabular-nums underline">
+                      style:theme
+                    </code>
+                  </Link>{" "}
+                  contains the same colors as your{" "}
+                  <code className="inline text-sm tabular-nums">
+                    tokens.css
                   </code>
-                </Link>{" "}
-                contains the same colors as your{" "}
-                <code className="inline text-sm tabular-nums">tokens.css</code>
-              </p>
+                </p>
 
-              <MCPTabs
-                rootUrl={process.env.VERCEL_PROJECT_PRODUCTION_URL ?? ""}
-              />
+                <MCPTabs
+                  rootUrl={process.env.VERCEL_PROJECT_PRODUCTION_URL ?? ""}
+                />
+              </div>
             </div>
           </div>
-         </div>
         </div>
       </div>
     </main>
