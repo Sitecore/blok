@@ -6,12 +6,14 @@ import { cn } from "../../lib/utils"
 import { StreamIcon } from "../../ui/stream-icon"
 import { Markdown } from "./Markdown"
 import type { Source } from "./types"
-import { firstCharToUpperCase, TOOLS_SOURCES_TITLES } from "./utils"
+import { firstCharToUpperCase } from "./utils"
 
 export type SearchContentProps = {
   question: string
 } & {
-  [K in keyof typeof TOOLS_SOURCES_TITLES]?: Source[]
+  knowledge_search: Source[]
+  brand_knowledge: Source[]
+  web_search: { result: string; sources: Source[] }[]
 }
 
 export interface BrainstormingWorkflowSearch {

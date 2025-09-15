@@ -58,7 +58,12 @@ function workflowRenderSearchItems(item: WorkflowItem): WorkflowItem {
             const keys = Object.keys(cont) as (keyof SearchContentProps)[]
 
             return keys.map((key, idx: number) => {
-              const sources = cont[key]
+              const sources =
+                key === "web_search"
+                  ? cont[key]?.reduce((acc, cur): Source[] => {
+                      return [...acc, ...cur.sources]
+                    }, [] as Source[])
+                  : cont[key]
 
               return (
                 <div
