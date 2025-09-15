@@ -1,0 +1,57 @@
+{
+    "$schema": "https://ui.shadcn.com/schema/registry.json",
+    "name": "sitecore marketplace",
+    "homepage": "https://blok-shadcn.vercel.app",
+    "items": [
+      {
+        "name": "quickstart",
+        "type": "registry:block",
+        "title": "Quickstart for React SPA Sitecore marketplace apps with marketplace sdk",
+        "description": "A quickstart for next.js Sitecore marketplace apps with marketplace sdk",
+        "dependencies": [
+          "@sitecore-marketplace-sdk/client"
+        ],
+        "files": [
+            {
+                "path": "src/marketplace/react/components/providers/marketplace.tsx",
+                "type": "registry:file",
+                "target": "app/providers/marketplace.tsx"
+            },
+            {
+                "path": "src/marketplace/react/components/examples/example.tsx",
+                "type": "registry:file",
+                "target": "app/page.tsx"
+            }
+        ]
+      },
+      {
+        "name": "quickstart-with-xmc",
+        "type": "registry:block",
+        "title": "Examples for React SPA Sitecore marketplace apps with marketplace sdk",
+        "description": "Examples for next.js Sitecore marketplace apps with marketplace sdk",
+        "dependencies": [
+            "@sitecore-marketplace-sdk/xmc"
+        ],
+        "registryDependencies":[
+            "http://localhost:5000/r/marketplace/react/quickstart.json"
+        ],
+        "files": [
+            {
+                "path": "src/marketplace/react/components/providers/marketplace-w-xmc.tsx",
+                "type": "registry:file",
+                "target": "components/providers/marketplace.tsx"
+            },
+            {
+                "path": "src/marketplace/react/components/examples/with-xmc/list-languages.tsx",
+                "type": "registry:file",
+                "target": "components/examples/with-xmc/list-languages.tsx"
+            },
+            {
+                "path": "src/marketplace/react/components/examples/with-xmc/example.tsx",
+                "type": "registry:file",
+                "target": "app/page.tsx"
+            }
+        ]
+      }
+    ]
+  }
