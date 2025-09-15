@@ -6,6 +6,8 @@ import { useEffect, useState } from "react";
 import { AddToCursor } from "@/components/registry/add-to-cursor";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import Icon from "@mdi/react";
+import { mdiClipboardOutline } from "@mdi/js";
 
 export async function copyToClipboard(value: string) {
   await navigator.clipboard.writeText(value);
@@ -29,7 +31,7 @@ export function MCPTabs({ rootUrl }: { rootUrl: string }) {
       },
     },
     null,
-    2,
+    2
   );
 
   useEffect(() => {
@@ -42,7 +44,7 @@ export function MCPTabs({ rootUrl }: { rootUrl: string }) {
 
   return (
     <Tabs value={tab} onValueChange={setTab}>
-      <div className="flex items-center justify-between">
+      <div className="flex items-center justify-between ">
         <TabsList>
           <TabsTrigger value="cursor">Cursor</TabsTrigger>
           <TabsTrigger value="windsurf">Windsurf</TabsTrigger>
@@ -71,19 +73,26 @@ export function MCPTabs({ rootUrl }: { rootUrl: string }) {
 
           <Button
             size="sm"
-            variant="outline"
+            variant="ghost"
             onClick={() => {
               copyToClipboard(mcpServer);
               setHasCopied(true);
             }}
             className="shadow-none"
           >
-            {hasCopied ? <Check /> : <ClipboardIcon />}
-            Copy
+            {hasCopied ? (
+              <Check />
+            ) : (
+              <Icon
+                className="text-muted-foreground"
+                path={mdiClipboardOutline}
+                size={1}
+              />
+            )}
           </Button>
         </div>
 
-        <pre className="mt-16 overflow-x-auto rounded-lg border bg-muted p-1 sm:mt-0">
+        <pre className="mt-16 overflow-x-auto rounded-lg border bg-muted p-1 sm:mt-0 bg-white">
           <code className="relative rounded bg-transparent p-1 font-mono text-muted-foreground text-sm">
             {mcpServer}
           </code>
