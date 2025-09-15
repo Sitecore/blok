@@ -60,9 +60,9 @@ function workflowRenderSearchItems(item: WorkflowItem): WorkflowItem {
             return keys.map((key, idx: number) => {
               const sources =
                 key === "web_search"
-                  ? cont[key]?.reduce((acc, cur): Source[] => {
-                      return [...acc, ...cur.sources]
-                    }, [] as Source[])
+                  ? (cont[key]?.reduce((acc, cur): Source[] => {
+                      return [...acc, ...(cur?.sources ?? [])]
+                    }, [] as Source[]) ?? [])
                   : cont[key]
 
               return (

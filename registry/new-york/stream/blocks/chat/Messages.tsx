@@ -224,6 +224,12 @@ export function Messages(): React.ReactNode {
 
               const areToolInvocationsAvailable = !!toolInvocations?.length
 
+              const previousMessageContent = Array.isArray(
+                messages[messages.length - 2]?.content
+              )
+                ? (messages[messages.length - 2]?.content as any)?.[0]?.value
+                : messages[messages.length - 2]?.content
+
               return (
                 <div
                   key={`${message.id}_${messageIndex}`}
@@ -248,6 +254,7 @@ export function Messages(): React.ReactNode {
                             messageId={messageId}
                             message={message}
                             isLastMessage={isLastMessage}
+                            previousMessageContent={previousMessageContent}
                           />
                         </>
                       )}
