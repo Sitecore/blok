@@ -1,0 +1,17 @@
+{
+  "extends": "../../../tsconfig.json",
+  "compilerOptions": {
+    "composite": true,
+    "noEmit": false,
+    "outDir": "../../../dist/marketplace/next",
+    "rootDir": ".",
+    "paths": {
+      "@/*": ["../../../src/*"],
+      "@/registry": ["../../../registry.json"],
+      "@/lib/*": ["./lib/*", "../../../src/lib/*"],
+      "@/components/*": ["./components/*", "../../../src/components/*"]
+    }
+  },
+  "include": ["./**/*"],
+  "exclude": ["node_modules"]
+}
