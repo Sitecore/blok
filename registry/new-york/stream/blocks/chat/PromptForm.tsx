@@ -1,5 +1,4 @@
 import React, { useEffect, useMemo, useRef, useState } from "react"
-import Image from "next/image"
 import {
   mdiClose,
   mdiPaperclip,
@@ -26,6 +25,7 @@ import { cn } from "../../lib/utils"
 import {
   addedContextAtom,
   brainstormingAtom,
+  configAtom,
   isBrainstormingActiveAtom,
   isChatActionPendingAtom,
   isLoadingAtom,
@@ -84,6 +84,7 @@ export function PromptForm({
   )
   const setChatBodyAtom = useSetAtom(postChatGenerateBodyAtom)
   const [addedContext, setAddedContext] = useAtom(addedContextAtom)
+  const config = useAtomValue(configAtom)
 
   /* Computed */
   const isProcessingAllChanges = Object.values(isProcessing).some((v) => v)
@@ -362,29 +363,24 @@ export function PromptForm({
                       <div className="relative size-6 shrink-0 overflow-hidden rounded-sm bg-gray-100 ring-1 ring-black/5">
                         {p.isImage ? (
                           <>
-                            <Image
+                            <img
                               src={p.url}
                               alt=""
-                              fill
                               className="scale-110 object-cover opacity-50 blur-sm"
-                              unoptimized
                               sizes="28px"
                               aria-hidden
                             />
-                            <Image
+                            <img
                               src={p.url}
                               alt={p.file.name}
-                              fill
                               className="object-contain"
-                              unoptimized
                               sizes="28px"
                             />
                           </>
                         ) : (
-                          <Image
+                          <img
                             src="/icons/file-icon.svg"
                             alt=""
-                            fill
                             className="object-contain"
                             sizes="28px"
                           />
@@ -424,29 +420,24 @@ export function PromptForm({
                             <div className="relative size-6 shrink-0 overflow-hidden rounded-sm bg-gray-100 ring-1 ring-black/5">
                               {p.isImage ? (
                                 <>
-                                  <Image
+                                  <img
                                     src={p.url}
                                     alt=""
-                                    fill
                                     className="scale-110 object-cover opacity-50 blur-sm"
-                                    unoptimized
                                     sizes="28px"
                                     aria-hidden
                                   />
-                                  <Image
+                                  <img
                                     src={p.url}
                                     alt={p.file.name}
-                                    fill
                                     className="object-contain"
-                                    unoptimized
                                     sizes="28px"
                                   />
                                 </>
                               ) : (
-                                <Image
+                                <img
                                   src="/icons/file-icon.svg"
                                   alt=""
-                                  fill
                                   className="object-contain"
                                   sizes="28px"
                                 />
@@ -551,7 +542,9 @@ export function PromptForm({
         </div>
       </div>
       <p className="text-blackAlpha-300 text-center text-sm font-semibold">
-        Stream AI can make mistakes. Check important info.
+        {config?.disclaimer
+          ? config?.disclaimer
+          : "Stream AI can make mistakes. Check important info."}
       </p>
     </form>
   )

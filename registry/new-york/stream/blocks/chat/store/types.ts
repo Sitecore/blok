@@ -51,3 +51,7 @@ export interface Session {
   apiEnv?: string
   isNewChat?: boolean
 }
+
+export interface Config {
+  disclaimer?: string | React.ReactNode
+}

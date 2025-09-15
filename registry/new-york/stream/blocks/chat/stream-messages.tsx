@@ -15,6 +15,7 @@ import { toast } from "sonner"
 import { Messages } from "./Messages"
 import {
   brainstormingAtom,
+  configAtom,
   isBrainstormingActiveAtom,
   isLoadingAtom,
   messagesIdsAtom,
@@ -59,23 +60,16 @@ const baseUrlEnv = {
 export interface StreamMessagesProps {
   session: Omit<Session, "apiEnv" | "isNewChat">
   prompt?: string
+  config?: {
+    disclaimer?: string | React.ReactNode
+  }
 }
 
-/**
- * Streams messages for a chat session. It sets up necessary configurations,
- * manages message states, and provides context for the chat UI.
- *
- * @param {Object} session - The session object containing details about the current session.
- * @param {string} session.orgId - The organization ID of the user.
- * @param {string} session.userId - The user ID for the session.
- * @param {string} session.chatId - The chat ID associated with the session.
- * @param {string} session.region - The region identifier for API configuration.
- * @param {string} session.env - The environment for configuring the base API URL.
- * @param {string} session.token - The authorization token for making API requests.
- *
- * @return {JSX.Element} The component context containing chat functionality and the rendered messages.
- */
-function StreamMessages({ session, prompt }: StreamMessagesProps): JSX.Element {
+function StreamMessages({
+  session,
+  prompt,
+  config,
+}: StreamMessagesProps): JSX.Element {
   /* Atoms */
   const chatBodyAtom = useAtomValue(postChatGenerateBodyAtom)
   const setMessageIds = useSetAtom(messagesIdsAtom)
@@ -83,6 +77,7 @@ function StreamMessages({ session, prompt }: StreamMessagesProps): JSX.Element {
   const [_session, setSession] = useAtom(sessionAtom)
   const setBrainstormingData = useSetAtom(brainstormingAtom)
   const setIsBrainstormingActive = useSetAtom(isBrainstormingActiveAtom)
+  const setConfig = useSetAtom(configAtom)
 
   /* Hooks */
   const getChatMessages = useGetChatMessages(_session.orgId, _session.userId)
@@ -156,6 +151,12 @@ function StreamMessages({ session, prompt }: StreamMessagesProps): JSX.Element {
       setSession,
     ]
   )
+
+  useEffect(() => {
+    if (config) {
+      setConfig(config)
+    }
+  }, [config, setConfig])
 
   useEffect(
     function () {

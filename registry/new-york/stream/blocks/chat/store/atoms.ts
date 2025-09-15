@@ -7,6 +7,7 @@ import {
   ArtifactsProperties,
   BrainstormingOptions,
   BrandKitDetailsModalStateOptions,
+  Config,
   IsMessageAlreadyGeneratedProps,
   Session,
 } from "./types"
@@ -22,6 +23,8 @@ export const sessionAtom = atom<Session>({
   apiEnv: "",
   isNewChat: false,
 })
+
+export const configAtom = atom<Config>()
 
 export const brandkitIdAtom = atom<string>("")
 
