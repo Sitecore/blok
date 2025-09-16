@@ -14,7 +14,8 @@
     "incremental": true,
     "paths": {
       "@/*": ["./src/*"],
-      "@/registry": ["./registry.json"]
+      "@/registry": ["./registry.json"],
+      "@/lib/*": ["./src/lib/*"]
     },
     "plugins": [
       {
@@ -23,6 +24,10 @@
     ],
     "target": "ES2017"
   },
+  "references": [
+    { "path": "./src/marketplace/next" },
+    { "path": "./src/marketplace/react-spa" }
+  ],
   "include": ["**/*.ts", "**/*.tsx", "next-env.d.ts", ".next/types/**/*.ts"],
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules", "src/marketplace"]
 }
