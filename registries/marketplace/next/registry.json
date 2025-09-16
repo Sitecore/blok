@@ -38,7 +38,7 @@
           "@auth0/nextjs-auth0"
         ],
         "registryDependencies":[
-            "http://localhost:5000/r/marketplace/next/quickstart.json"
+            "https://blok-shadcn.vercel.app/r/marketplace/next/quickstart.json"
         ],
         "files": [
             {
@@ -82,7 +82,7 @@
             "@sitecore-marketplace-sdk/xmc"
         ],
         "registryDependencies":[
-            "http://localhost:5000/r/marketplace/next/quickstart.json"
+            "https://blok-shadcn.vercel.app/r/marketplace/next/quickstart.json"
         ],
         "files": [
             {
@@ -111,7 +111,7 @@
             "@sitecore-marketplace-sdk/xmc"
         ],
         "registryDependencies":[
-            "http://localhost:5000/r/marketplace/next/quickstart-with-auth.json"
+            "https://blok-shadcn.vercel.app/r/marketplace/next/quickstart-with-auth.json"
         ],
         "files": [
             {
@@ -157,8 +157,8 @@
         "title": "Examples for next.js Sitecore marketplace apps with marketplace sdk",
         "description": "Examples for next.js Sitecore marketplace apps with marketplace sdk",
         "registryDependencies":[
-            "http://localhost:5000/r/marketplace/next/examples-api-client-side.json",
-            "http://localhost:5000/r/marketplace/next/examples-api-server-side.json"
+            "https://blok-shadcn.vercel.app/r/marketplace/next/examples-api-client-side.json",
+            "https://blok-shadcn.vercel.app/r/marketplace/next/examples-api-server-side.json"
         ],
         "files": [
             {

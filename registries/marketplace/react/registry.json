@@ -33,7 +33,7 @@
             "@sitecore-marketplace-sdk/xmc"
         ],
         "registryDependencies":[
-            "http://localhost:5000/r/marketplace/react/quickstart.json"
+            "https://blok-shadcn.vercel.app/r/marketplace/react/quickstart.json"
         ],
         "files": [
             {
