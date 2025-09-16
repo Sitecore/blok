@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from "react"
-import { useAppContext } from "@/components/providers/marketplace-w-xmc"
+import { useAppContext } from "@/components/providers/marketplace"
 import type { Xmapp } from "@sitecore-marketplace-sdk/xmc"
 import { fetchLanguagesAction } from "./action"
 

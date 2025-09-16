@@ -15,7 +15,7 @@
             {
                 "path": "src/marketplace/next/components/providers/marketplace.tsx",
                 "type": "registry:file",
-                "target": "app/providers/marketplace.tsx"
+                "target": "components/providers/marketplace.tsx"
             },
             {
                 "path": "src/marketplace/next/layouts/layout.tsx",
@@ -49,7 +49,7 @@
             {
                 "path": "src/marketplace/next/components/providers/auth.tsx",
                 "type": "registry:file",
-                "target": "app/providers/auth.tsx"
+                "target": "components/providers/auth.tsx"
             },
             {
                 "path": "src/marketplace/next/layouts/with-auth.tsx",
@@ -59,7 +59,7 @@
             {
                 "path": "src/marketplace/next/middleware.ts",
                 "type": "registry:file",
-                "target": "app/middleware.ts"
+                "target": "middleware.ts"
             },
             {
                 "path": "src/marketplace/next/next.config.ts",
@@ -125,9 +125,19 @@
                 "target": "components/examples/server-side/next-api-route/list-languages.tsx"
             },
             {
+                "path": "src/marketplace/next/components/examples/server-side/next-api-route/route.ts",
+                "type": "registry:file",
+                "target": "app/api/sites/languages/route.ts"
+            },
+            {
                 "path": "src/marketplace/next/components/examples/server-side/next-server-action/list-languages.tsx",
                 "type": "registry:file",
                 "target": "components/examples/server-side/next-server-action/list-languages.tsx"
+            },
+            {
+                "path": "src/marketplace/next/components/examples/server-side/next-server-action/action.ts",
+                "type": "registry:file",
+                "target": "components/examples/server-side/next-server-action/action.ts"
             },
             {
                 "path": "src/marketplace/next/components/examples/server-side/server-component/list-languages.tsx",

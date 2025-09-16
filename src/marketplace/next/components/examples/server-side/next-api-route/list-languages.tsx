@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from "react"
-import { useAppContext } from "@/components/providers/marketplace-w-xmc"
+import { useAppContext } from "@/components/providers/marketplace"
 import type { Xmapp } from "@sitecore-marketplace-sdk/xmc"
 
 export const ListLanguagesFromApiRoute = () => {
@@ -10,7 +10,7 @@ export const ListLanguagesFromApiRoute = () => {
     
     const fetchLanguages = async () => {
         try {
-        const response = await fetch(`/api/sites/collections?contextid=${appContext?.resourceAccess?.[0]?.context?.preview}`)
+        const response = await fetch(`/api/sites/languages?contextid=${appContext?.resourceAccess?.[0]?.context?.preview}`)
         const data = await response.json()
         console.log('languages from api', data)
         setLanguages(data)

@@ -3,7 +3,7 @@
 import { ListLanguagesFromApiRoute } from "@/components/examples/server-side/next-api-route/list-languages";
 import { ListLanguagesFromServerAction } from "@/components/examples/server-side/next-server-action/list-languages";
 import { ListLanguagesFromServerComponent } from "@/components/examples/server-side/server-component/list-languages";
-import { ListLanguagesFromClientSdk } from "./client-side/with-xmc/list-languages";
+import { ListLanguagesFromClientSdk } from "@/components/examples/client-side/with-xmc/list-languages";
 import { useAppContext } from "@/components/providers/marketplace";
 
 
