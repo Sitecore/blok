@@ -64,7 +64,7 @@ export default function Home() {
           <p className="text-muted-foreground">(example used: button):</p>
           <Codeblocks code={sampleButtonCode} />
 
-          <div className="pt-8">
+          <div className="pt-15">
             <h1 className="font-bold text-3xl tracking-tight md:text-4xl">
               MCP
             </h1>
