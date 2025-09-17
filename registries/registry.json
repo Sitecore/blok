@@ -1125,6 +1125,33 @@
       ]
     },
     {
+      "name": "sidebar",
+      "type": "registry:ui",
+      "title": "Sidebar",
+      "description": "A styled, simple, reusable sidebar",
+      "dependencies": [
+        "@mdi/react",
+        "@mdi/js",
+        "class-variance-authority",
+        "@radix-ui/react-slot"
+      ],
+      "registryDependencies": [
+        "https://blok-shadcn.vercel.app/r/theme.json",
+        "https://blok-shadcn.vercel.app/r/tooltip.json",
+        "https://blok-shadcn.vercel.app/r/skeleton.json",
+        "https://blok-shadcn.vercel.app/r/separator.json",
+        "https://blok-shadcn.vercel.app/r/input.json",
+        "https://blok-shadcn.vercel.app/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui/sidebar.tsx",
+          "type": "registry:ui",
+          "target": "src/components/ui/sidebar.tsx"
+        }
+      ]
+    },
+    {
       "name": "skeleton",
       "type": "registry:ui",
       "title": "Skeleton",

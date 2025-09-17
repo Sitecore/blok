@@ -4,7 +4,7 @@ import type { ReactElement, ReactNode } from "react";
 import { blank } from "@/app/demo/[name]/blocks/blank";
 import { dashboard } from "@/app/demo/[name]/blocks/dashboard";
 import { store } from "@/app/demo/[name]/blocks/store";
-import { sidebar } from "@/app/demo/[name]/blocks/sidebar";
+
 
 
 // components
@@ -46,6 +46,7 @@ import { resizable } from "@/app/demo/[name]/ui/resizable";
 import { select } from "@/app/demo/[name]/ui/select";
 import { separator } from "@/app/demo/[name]/ui/separator";
 import {sheet} from "@/app/demo/[name]/ui/sheet";
+import { sidebar } from "@/app/demo/[name]/ui/sidebar";
 import { skeleton } from "@/app/demo/[name]/ui/skeleton";
 import { slider } from "@/app/demo/[name]/ui/slider";
 import { sonner } from "@/app/demo/[name]/ui/sonner";
@@ -78,7 +79,6 @@ export const demos: { [name: string]: Demo } = {
   blank,
   store,
   dashboard,
-  sidebar,
 
   // components
   hero,
@@ -124,6 +124,7 @@ export const demos: { [name: string]: Demo } = {
   select,
   separator,
   sheet,
+  sidebar,
   skeleton,
   slider,
   switch: switchComponent,
