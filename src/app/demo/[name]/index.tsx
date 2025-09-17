@@ -63,6 +63,7 @@ import { collapsible } from "@/app/demo/[name]/ui/collapsible";
 import { progress } from "@/app/demo/[name]/ui/progress";
 import { command } from "@/app/demo/[name]/ui/command";
 import { combobox } from "@/app/demo/[name]/ui/combobox";
+import { spinner } from "@/app/demo/[name]/ui/spinner";
 
 interface Demo {
   name: string; // this must match the `registry.json` name
@@ -123,6 +124,7 @@ export const demos: { [name: string]: Demo } = {
   sheet,
   skeleton,
   slider,
+  spinner,
   switch: switchComponent,
   sonner,
   table,
