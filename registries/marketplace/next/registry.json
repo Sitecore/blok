@@ -1,12 +1,12 @@
 {
     "$schema": "https://ui.shadcn.com/schema/registry.json",
-    "name": "sitecore marketplace",
+    "name": "Sitecore Marketplace",
     "homepage": "https://blok-shadcn.vercel.app",
     "items": [
       {
         "name": "quickstart",
         "type": "registry:block",
-        "title": "Quickstart for next.js Sitecore marketplace apps with marketplace sdk",
+        "title": "Quickstart for Next.js",
         "description": "A quickstart for next.js Sitecore marketplace apps with marketplace sdk",
         "dependencies": [
           "@sitecore-marketplace-sdk/client"
@@ -14,7 +14,7 @@
         "files": [
             {
                 "path": "src/marketplace/next/components/providers/marketplace.tsx",
-                "type": "registry:file",
+                "type": "registry:component",
                 "target": "components/providers/marketplace.tsx"
             },
             {
@@ -24,15 +24,15 @@
             },
             {
                 "path": "src/marketplace/next/components/examples/client-side/page.tsx",
-                "type": "registry:file",
+                "type": "registry:page",
                 "target": "app/page.tsx"
             }
         ]
       },
       {
-        "name": "quickstart-with-auth",
+        "name": "quickstart-with-custom-auth",
         "type": "registry:block",
-        "title": "Quickstart for next.js Sitecore marketplace apps with server side authentication",
+        "title": "Quickstart for Next js with server side authentication",
         "description": "A quickstart for next.js Sitecore marketplace apps with server side authentication",
         "dependencies": [
           "@auth0/nextjs-auth0"
@@ -48,7 +48,7 @@
             },
             {
                 "path": "src/marketplace/next/components/providers/auth.tsx",
-                "type": "registry:file",
+                "type": "registry:component",
                 "target": "components/providers/auth.tsx"
             },
             {
@@ -65,19 +65,25 @@
                 "path": "src/marketplace/next/next.config.ts",
                 "type": "registry:file",
                 "target": "next.config.ts"
-            },
-            {
-                "path": "src/marketplace/next/.env.example-server-side-auth",
-                "type": "registry:file",
-                "target": ".env.example-marketplace"
             }
-        ]
+        ],
+        "envVars": {
+          "AUTH0_DOMAIN": "https://auth.sitecorecloud.io",
+          "AUTH0_AUDIENCE": "https://api-webapp.sitecorecloud.io",
+          "AUTH0_SCOPE": "openid profile email offline_access",
+          "AUTH0_SECRET": "Generate using `openssl rand -hex 32` or at https://www.cryptool.org/en/cto/openssl/",
+          "AUTH0_CLIENT_ID": "your-marketplace-client-id",
+          "AUTH0_CLIENT_SECRET": "your-marketplace-client-secret",
+          "SITECORE_APP_ID": "your-app-id",
+          "APP_BASE_URL": "https://localhost:3000"
+        },
+      "docs": "Your app needs to run in 'https'. We suggest to add '--experimental-https' in your dev script in package.json. Also, make sure to update your environment variables. Happy coding!"
       },
       {
-        "name": "quickstart-with-xmc",
+        "name": "quickstart-with-client-side-xmc",
         "type": "registry:block",
-        "title": "Examples for next.js Sitecore marketplace apps with marketplace sdk",
-        "description": "Examples for next.js Sitecore marketplace apps with marketplace sdk",
+        "title": "Quickstart for Next.js with XMC API examples",
+        "description": "A quickstart for next.js Sitecore marketplace apps with XMC API examples",
         "dependencies": [
             "@sitecore-marketplace-sdk/xmc"
         ],
@@ -87,31 +93,31 @@
         "files": [
             {
                 "path": "src/marketplace/next/components/providers/marketplace-w-xmc.tsx",
-                "type": "registry:file",
+                "type": "registry:component",
                 "target": "components/providers/marketplace.tsx"
             },
             {
                 "path": "src/marketplace/next/components/examples/client-side/with-xmc/list-languages.tsx",
-                "type": "registry:file",
+                "type": "registry:component",
                 "target": "components/examples/client-side/with-xmc/list-languages.tsx"
             },
             {
                 "path": "src/marketplace/next/components/examples/client-side/with-xmc/page.tsx",
-                "type": "registry:file",
+                "type": "registry:page",
                 "target": "app/page.tsx"
             }
         ]
       },
       {
-        "name": "quickstart-with-server-side-xmc",
+        "name": "quickstart-with-full-stack-xmc",
         "type": "registry:block",
-        "title": "Examples for next.js Sitecore marketplace apps with marketplace sdk",
-        "description": "Examples for next.js Sitecore marketplace apps with marketplace sdk",
+        "title": "Quickstart for Next.js with full-stack XMC APIs examples",
+        "description": "A quickstart for next.js Sitecore marketplace apps with full-stack XMC API examples",
         "dependencies": [
             "@sitecore-marketplace-sdk/xmc"
         ],
         "registryDependencies":[
-            "https://blok-shadcn.vercel.app/r/marketplace/next/quickstart-with-auth.json"
+            "https://blok-shadcn.vercel.app/r/marketplace/next/quickstart-with-custom-auth.json"
         ],
         "files": [
             {
@@ -121,7 +127,7 @@
             },
             {
                 "path": "src/marketplace/next/components/examples/server-side/next-api-route/list-languages.tsx",
-                "type": "registry:file",
+                "type": "registry:component",
                 "target": "components/examples/server-side/next-api-route/list-languages.tsx"
             },
             {
@@ -131,7 +137,7 @@
             },
             {
                 "path": "src/marketplace/next/components/examples/server-side/next-server-action/list-languages.tsx",
-                "type": "registry:file",
+                "type": "registry:component",
                 "target": "components/examples/server-side/next-server-action/list-languages.tsx"
             },
             {
@@ -141,29 +147,12 @@
             },
             {
                 "path": "src/marketplace/next/components/examples/server-side/server-component/list-languages.tsx",
-                "type": "registry:file",
+                "type": "registry:component",
                 "target": "components/examples/server-side/server-component/list-languages.tsx"
             },
             {
                 "path": "src/marketplace/next/components/examples/server-side/page.tsx",
-                "type": "registry:file",
-                "target": "app/page.tsx"
-            }
-        ]
-      },
-      {
-        "name": "quickstart-full-example",
-        "type": "registry:block",
-        "title": "Examples for next.js Sitecore marketplace apps with marketplace sdk",
-        "description": "Examples for next.js Sitecore marketplace apps with marketplace sdk",
-        "registryDependencies":[
-            "https://blok-shadcn.vercel.app/r/marketplace/next/examples-api-client-side.json",
-            "https://blok-shadcn.vercel.app/r/marketplace/next/examples-api-server-side.json"
-        ],
-        "files": [
-            {
-                "path": "src/marketplace/next/components/examples/page.tsx",
-                "type": "registry:file",
+                "type": "registry:page",
                 "target": "app/page.tsx"
             }
         ]

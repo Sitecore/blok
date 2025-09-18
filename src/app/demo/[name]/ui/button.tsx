@@ -27,7 +27,6 @@ export const button = {
         <Button colorScheme="neutral">Secondary</Button>
         <Button colorScheme="success">Success</Button>
         <Button colorScheme="danger">Danger</Button>
-        <Button colorScheme="ai">Info</Button>
       </div>
     ),
     IconSizing: (

@@ -4,7 +4,6 @@ import type { ReactElement, ReactNode } from "react";
 import { blank } from "@/app/demo/[name]/blocks/blank";
 import { dashboard } from "@/app/demo/[name]/blocks/dashboard";
 import { store } from "@/app/demo/[name]/blocks/store";
-import { topbar } from "@/app/demo/[name]/blocks/top-bar";
 
 // components
 import { brandHeader } from "@/app/demo/[name]/components/brand-header";
@@ -55,6 +54,7 @@ import { textarea } from "@/app/demo/[name]/ui/textarea";
 import { toggleGroup } from "@/app/demo/[name]/ui/toggle-group";
 import { tooltip } from "@/app/demo/[name]/ui/tooltip";
 import { toggle } from "@/app/demo/[name]/ui/toggle";
+import { topbar } from "@/app/demo/[name]/blocks/top-bar";
 import { pagination } from "@/app/demo/[name]/ui/pagination";
 import { scrollArea } from "@/app/demo/[name]/ui/scroll-area";
 import { popover } from "@/app/demo/[name]/ui/popover";
@@ -76,7 +76,6 @@ export const demos: { [name: string]: Demo } = {
   blank,
   store,
   dashboard,
-  topbar,
 
   // components
   hero,
@@ -132,6 +131,7 @@ export const demos: { [name: string]: Demo } = {
   "toggle-group": toggleGroup,
   tooltip,
   toggle,
+  topbar,
   pagination,
   popover,
   "hover-card": hoverCard,

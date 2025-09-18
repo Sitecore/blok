@@ -19,7 +19,7 @@ export const auth0 = new Auth0Client({
     scope: process.env.AUTH0_SCOPE,
     audience: process.env.AUTH0_AUDIENCE,
     redirect_uri: process.env.APP_BASE_URL,
-    product_codes: `mkp_${process.env.APP_ID}`,
+    product_codes: `mkp_${process.env.SITECORE_APP_ID}`,
     organization_id: process.env.SITECORE_ORGANIZATION_ID,
     tenant_id: process.env.SITECORE_TENANT_ID,
   }
