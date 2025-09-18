@@ -1,0 +1,26 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "use-get-chats",
+  "type": "registry:hook",
+  "dependencies": [
+    "@sitecore/stream-ui-core"
+  ],
+  "files": [
+    {
+      "path": "registry/new-york/stream/hooks/use-get-chats.ts",
+      "content": "import { useCallback } from \"react\"\nimport { chat, ListUserChatsModelResponseV2 } from \"@sitecore/stream-ui-core\"\n\n/**\n * Hook to retrieve the list of user chats for a specific organization and user.\n *\n * @param {string} orgId - The unique identifier of the organization.\n * @param {string} userId - The unique identifier of the user whose chats are to be fetched.\n * @return {function(): Promise<ListUserChatsModelResponseV2[]>} A function that, when invoked, returns a promise resolving to an array of chat data associated with the user.\n */\nexport function useGetChats(\n  orgId: string,\n  userId: string\n): () => Promise<ListUserChatsModelResponseV2[]> {\n  return useCallback(async (): Promise<ListUserChatsModelResponseV2[]> => {\n    const { data } =\n      await chat.listUserChatsV2ApiChatsV2OrganizationsOrganizationIdUsersUserIdChatsGet(\n        {\n          path: {\n            organizationId: orgId,\n            userId,\n          },\n        }\n      )\n\n    return data ?? []\n  }, [orgId, userId])\n}\n",
+      "type": "registry:hook"
+    },
+    {
+      "path": "registry/new-york/stream/blocks/chat/page.tsx",
+      "content": "import { useCallback, useEffect, useState } from \"react\"\nimport { Message } from \"@sitecore/stream-ui-core\"\nimport {\n  dbMessagesToAIMessages,\n  ListUserChatMessagesModelResponseV2,\n} from \"@sitecore/stream-ui-core/\"\n\nimport {\n  StreamMessages,\n  streamMessagesClientsConfig,\n} from \"@/registry/new-york/stream/blocks/chat/stream-messages\"\nimport { useGetChatMessages } from \"@/registry/new-york/stream/hooks/use-get-chat-messages\"\nimport { useGetChats } from \"@/registry/new-york/stream/hooks/use-get-chats\"\n\n/* Token for the example to be able to work */\nconst token = \"\"\n\n/*\n * Initialize the clients below in order for the StreamMessages component to work properly\n */\nstreamMessagesClientsConfig(token) // !!!!!!!!!!! THIS IS MANDATORY !!!!!!!!!!!\n\nexport function StreamMessagesPage() {\n  const [messages, setMessages] = useState<Message[]>([])\n  const [chatId, setChatId] = useState(\"\")\n  const getChats = useGetChats(\n    \"org_b07iKFjB2zYhi49p\",\n    \"auth0|65bce928f68ddcd240a78fb4\"\n  )\n  const getChatMessages = useGetChatMessages(\n    \"org_b07iKFjB2zYhi49p\",\n    \"auth0|65bce928f68ddcd240a78fb4\"\n  )\n\n  const init = useCallback(async (): Promise<void> => {\n    /* Get all available chats */\n    const data = await getChats()\n\n    /* Get messages for a specific chat */\n    const messages: ListUserChatMessagesModelResponseV2[] =\n      await getChatMessages(data?.[1]?.id)\n\n    setMessages(dbMessagesToAIMessages(messages) as Message[])\n    setChatId(data?.[1]?.id)\n  }, [getChatMessages, getChats])\n\n  useEffect(() => {\n    if (!messages.length) init()\n  }, [init, messages])\n\n  return (\n    <StreamMessages\n      userId=\"auth0|65bce928f68ddcd240a78fb4\"\n      orgId=\"org_b07iKFjB2zYhi49p\"\n      messages={messages}\n      chatId={chatId}\n    />\n  )\n}\n",
+      "type": "registry:page",
+      "target": "app/blocks/chat/page.tsx"
+    }
+  ],
+  "categories": [
+    "stream",
+    "hooks",
+    "chats"
+  ]
+}
