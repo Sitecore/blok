@@ -5,8 +5,6 @@ import { blank } from "@/app/demo/[name]/blocks/blank";
 import { dashboard } from "@/app/demo/[name]/blocks/dashboard";
 import { store } from "@/app/demo/[name]/blocks/store";
 
-
-
 // components
 import { brandHeader } from "@/app/demo/[name]/components/brand-header";
 import { brandSidebar } from "@/app/demo/[name]/components/brand-sidebar";

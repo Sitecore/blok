@@ -33,7 +33,7 @@ function useSidebar() {
     throw new Error("useSidebar must be used within a SidebarProvider.");
   }
   return context;
-}
+};
 
 function SidebarProvider({
   defaultOpen = true,
@@ -91,7 +91,7 @@ function SidebarProvider({
         </div>
       </TooltipProvider>
     </SidebarContext.Provider>
-  )
+  );
 }
 
 function Sidebar({
@@ -113,7 +113,7 @@ function Sidebar({
     >
       {children}
     </div>
-  )
+  );
 }
 
 function SidebarTrigger({
@@ -139,7 +139,7 @@ function SidebarTrigger({
       <Icon path={mdiMenu} size={0.9} />
       <span className="sr-only">Toggle Sidebar</span>
     </Button>
-  )
+  );
 }
 
 function SidebarInput({
@@ -153,7 +153,7 @@ function SidebarInput({
       className={cn("bg-background h-8 w-full shadow-none", className)}
       {...props}
     />
-  )
+  );
 }
 
 function SidebarHeader({ className, ...props }: React.ComponentProps<"div">) {
@@ -164,7 +164,7 @@ function SidebarHeader({ className, ...props }: React.ComponentProps<"div">) {
       className={cn("flex flex-col gap-2 p-2", className)}
       {...props}
     />
-  )
+  );
 }
 
 function SidebarFooter({ className, ...props }: React.ComponentProps<"div">) {
@@ -175,7 +175,7 @@ function SidebarFooter({ className, ...props }: React.ComponentProps<"div">) {
       className={cn("flex flex-col gap-2 p-2", className)}
       {...props}
     />
-  )
+  );
 }
 
 function SidebarSeparator({
@@ -189,7 +189,7 @@ function SidebarSeparator({
       className={cn("bg-sidebar-border mx-2 w-auto", className)}
       {...props}
     />
-  )
+  );
 }
 
 function SidebarContent({ className, ...props }: React.ComponentProps<"div">) {
@@ -203,7 +203,7 @@ function SidebarContent({ className, ...props }: React.ComponentProps<"div">) {
       )}
       {...props}
     />
-  )
+  );
 }
 
 function SidebarMenu({ className, ...props }: React.ComponentProps<"ul">) {
@@ -214,7 +214,7 @@ function SidebarMenu({ className, ...props }: React.ComponentProps<"ul">) {
       className={cn("flex w-full min-w-0 flex-col gap-1", className)}
       {...props}
     />
-  )
+  );
 }
 
 function SidebarMenuItem({ className, ...props }: React.ComponentProps<"li">) {
@@ -248,7 +248,7 @@ const sidebarMenuButtonVariants = cva(
       size: "default",
     },
   }
-)
+);
 
 function SidebarMenuButton({
   asChild = false,
@@ -275,10 +275,10 @@ function SidebarMenuButton({
       className={cn(sidebarMenuButtonVariants({ variant, size }), className)}
       {...props}
     />
-  )
+  );
 
   if (!tooltip) {
-    return button
+    return button;
   }
 
   if (typeof tooltip === "string") {
@@ -297,7 +297,7 @@ function SidebarMenuButton({
         {...tooltip}
       />
     </Tooltip>
-  )
+  );
 }
 
 export {
@@ -313,4 +313,4 @@ export {
   SidebarSeparator,
   SidebarTrigger,
   useSidebar,
-}
+};
