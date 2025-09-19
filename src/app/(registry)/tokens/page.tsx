@@ -9,6 +9,7 @@ import ColorsDemo from "./components/colors-theme";
 import { ComponentWrapper } from "./component-wrapper";
 import ShadowDemo from "./components/shadow-theme";
 import TypographyDemo from "./components/typography-theme";
+import BreakpointsDemo from "./components/breakpoint-theme";
 
 let cssPath = path.join(process.cwd(), "src", "app", "colors.css");
 const colorsContent = fs.readFileSync(cssPath, "utf-8");
@@ -21,6 +22,10 @@ const borderRadiusContent = fs.readFileSync(cssPath, "utf-8");
 
 cssPath = path.join(process.cwd(), "src", "app", "shadows.css");
 const shadowsContent = fs.readFileSync(cssPath, "utf-8");
+
+
+cssPath = path.join(process.cwd(), "src", "app", "breakpoints.css");
+const breakpoints = fs.readFileSync(cssPath, "utf-8");
 
 export default function TokensPage() {
   return (
@@ -52,6 +57,9 @@ export default function TokensPage() {
           </ComponentWrapper>
           <ComponentWrapper name="typography">
             <TypographyDemo content={typographyContent} />
+          </ComponentWrapper>
+             <ComponentWrapper name="breakpoints">
+            <BreakpointsDemo content={breakpoints} />
           </ComponentWrapper>
         </div>
       </div>
