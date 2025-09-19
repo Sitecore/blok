@@ -11,6 +11,7 @@
 @import "./typography.css";
 @import "./borderRadius.css";
 @import "./shadows.css";
+@import "./breakpoints.css";
 
 :root {
   --radius: 0.625rem;

@@ -1,9 +1,11 @@
-import { xmcClient } from "@/lib/server/xmc-client";
-import { NextRequest,NextResponse } from "next/server";
+import { experimental_createXMCClient } from "@sitecore-marketplace-sdk/xmc";
+import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(request: NextRequest) {
   const url = new URL(request.url);
   const contextId = url.searchParams.get("contextid");
+
+  const accessToken = request.headers.get("authorization")?.split(" ")[1];
 
   if (!contextId) {
     return NextResponse.json(
@@ -12,6 +14,19 @@ export async function GET(request: NextRequest) {
     );
   }
 
+  if (!accessToken) {
+    return NextResponse.json(
+      { error: "Access token is required" },
+      { status: 401 }
+    );
+  }
+
+  const xmcClient = await experimental_createXMCClient({
+    getAccessToken: async () => {
+      return accessToken;
+    },
+  });
+
   try {
     const languages = await xmcClient.sites.listLanguages({
       query: {
@@ -19,7 +34,7 @@ export async function GET(request: NextRequest) {
       },
     });
 
-    console.log("languages", languages);
+    console.log("languages from API", languages);
     return NextResponse.json(languages);
   } catch (error) {
     console.error("Error fetching languages", error);

@@ -107,6 +107,11 @@
           "target": "app/typography.css"
         },
         {
+          "path": "src/app/breakpoints.css",
+          "type": "registry:style",
+          "target": "app/breakpoints.css"
+        },
+        {
           "path": "postcss.config.mjs",
           "type": "registry:file",
           "target": "postcss.config.mjs"
@@ -163,7 +168,7 @@
         "https://blok-shadcn.vercel.app/r/toggle.json",
         "https://blok-shadcn.vercel.app/r/toggle-group.json",
         "https://blok-shadcn.vercel.app/r/tooltip.json",
-        "https://blok-shadcn.vercel.app/r/input.json" 
+        "https://blok-shadcn.vercel.app/r/input.json"
       ]
     },
     {
@@ -431,14 +436,8 @@
       "type": "registry:ui",
       "title": "Accordion",
       "description": "A vertically stacked set of interactive headings that each reveal a section of content.",
-      "registryDependencies": [
-        "https://blok-shadcn.vercel.app/r/theme.json"
-      ],
-      "dependencies": [
-        "@radix-ui/react-accordion",
-        "@mdi/react",
-        "@mdi/js"
-      ],
+      "registryDependencies": ["https://blok-shadcn.vercel.app/r/theme.json"],
+      "dependencies": ["@radix-ui/react-accordion", "@mdi/react", "@mdi/js"],
       "files": [
         {
           "path": "src/components/ui/accordion.tsx",
@@ -473,14 +472,8 @@
       "type": "registry:ui",
       "title": "Alert",
       "description": "Displays Alert Variants.",
-      "dependencies": [
-        "@mdi/react",
-        "@mdi/js",
-        "class-variance-authority"
-      ],
-      "registryDependencies": [
-        "https://blok-shadcn.vercel.app/r/theme.json"
-      ],
+      "dependencies": ["@mdi/react", "@mdi/js", "class-variance-authority"],
+      "registryDependencies": ["https://blok-shadcn.vercel.app/r/theme.json"],
       "files": [
         {
           "path": "src/components/ui/alert.tsx",
@@ -494,12 +487,8 @@
       "type": "registry:ui",
       "title": "Aspect Ratio",
       "description": "Displays content within a desired ratio.",
-      "registryDependencies": [
-        "https://blok-shadcn.vercel.app/r/theme.json"
-      ],
-      "dependencies": [
-        "@radix-ui/react-aspect-ratio"
-      ],
+      "registryDependencies": ["https://blok-shadcn.vercel.app/r/theme.json"],
+      "dependencies": ["@radix-ui/react-aspect-ratio"],
       "files": [
         {
           "path": "src/components/ui/aspect-ratio.tsx",
@@ -513,12 +502,8 @@
       "type": "registry:ui",
       "title": "Avatar",
       "description": "An image element with a fallback for representing the user.",
-      "registryDependencies": [
-        "https://blok-shadcn.vercel.app/r/theme.json"
-      ],
-      "dependencies": [
-        "@radix-ui/react-avatar"
-      ],
+      "registryDependencies": ["https://blok-shadcn.vercel.app/r/theme.json"],
+      "dependencies": ["@radix-ui/react-avatar"],
       "files": [
         {
           "path": "src/components/ui/avatar.tsx",
@@ -532,13 +517,8 @@
       "type": "registry:ui",
       "title": "Badge",
       "description": "Displays a small count or status indicator.",
-      "registryDependencies": [
-        "https://blok-shadcn.vercel.app/r/theme.json"
-      ],
-      "dependencies": [
-        "@radix-ui/react-slot",
-        "class-variance-authority"
-      ],
+      "registryDependencies": ["https://blok-shadcn.vercel.app/r/theme.json"],
+      "dependencies": ["@radix-ui/react-slot", "class-variance-authority"],
       "files": [
         {
           "path": "src/components/ui/badge.tsx",
@@ -552,14 +532,8 @@
       "type": "registry:ui",
       "title": "Breadcrumb",
       "description": "Displays the path to the current resource using a hierarchy of links.",
-      "registryDependencies": [
-        "https://blok-shadcn.vercel.app/r/theme.json"
-      ],
-      "dependencies": [
-        "@radix-ui/react-slot",
-        "@mdi/react",
-        "@mdi/js"
-      ],
+      "registryDependencies": ["https://blok-shadcn.vercel.app/r/theme.json"],
+      "dependencies": ["@radix-ui/react-slot", "@mdi/react", "@mdi/js"],
       "files": [
         {
           "path": "src/components/ui/breadcrumb.tsx",
@@ -573,13 +547,8 @@
       "type": "registry:ui",
       "title": "Button",
       "description": "Allows users to take actions with a single click or tap.",
-      "dependencies": [
-        "@radix-ui/react-slot",
-        "class-variance-authority"
-      ],
-      "registryDependencies": [
-        "https://blok-shadcn.vercel.app/r/theme.json"
-      ],
+      "dependencies": ["@radix-ui/react-slot", "class-variance-authority"],
+      "registryDependencies": ["https://blok-shadcn.vercel.app/r/theme.json"],
       "files": [
         {
           "path": "src/components/ui/button.tsx",
@@ -593,11 +562,7 @@
       "type": "registry:ui",
       "title": "Calendar",
       "description": "A date field component that allows users to enter and edit date.",
-      "dependencies": [
-        "react-day-picker",
-        "@mdi/react",
-        "@mdi/js"
-      ],
+      "dependencies": ["react-day-picker", "@mdi/react", "@mdi/js"],
       "registryDependencies": [
         "https://blok-shadcn.vercel.app/r/theme.json",
         "https://blok-shadcn.vercel.app/r/button.json"
@@ -615,12 +580,8 @@
       "type": "registry:ui",
       "title": "Card",
       "description": "Containers for displaying content and actions about a single subject.",
-      "dependencies": [
-        "class-variance-authority"
-      ],
-      "registryDependencies": [
-        "https://blok-shadcn.vercel.app/r/theme.json"
-      ],
+      "dependencies": ["class-variance-authority"],
+      "registryDependencies": ["https://blok-shadcn.vercel.app/r/theme.json"],
       "files": [
         {
           "path": "src/components/ui/card.tsx",
@@ -638,11 +599,7 @@
         "https://blok-shadcn.vercel.app/r/button.json",
         "https://blok-shadcn.vercel.app/r/theme.json"
       ],
-      "dependencies": [
-        "embla-carousel-react",
-        "@mdi/react",
-        "@mdi/js"
-      ],
+      "dependencies": ["embla-carousel-react", "@mdi/react", "@mdi/js"],
       "files": [
         {
           "path": "src/components/ui/carousel.tsx",
@@ -656,12 +613,8 @@
       "type": "registry:ui",
       "title": "Chart",
       "description": "Beautiful charts. Built using Recharts. Copy and paste into your apps.",
-      "registryDependencies": [
-        "https://blok-shadcn.vercel.app/r/theme.json"
-      ],
-      "dependencies": [
-        "recharts@2.15.4"
-      ],
+      "registryDependencies": ["https://blok-shadcn.vercel.app/r/theme.json"],
+      "dependencies": ["recharts@2.15.4"],
       "files": [
         {
           "path": "src/components/ui/chart.tsx",
@@ -675,14 +628,8 @@
       "type": "registry:ui",
       "title": "Checkbox",
       "description": "Allows users to select multiple items from a list of options.",
-      "registryDependencies": [
-        "https://blok-shadcn.vercel.app/r/theme.json"
-      ],
-      "dependencies": [
-        "@radix-ui/react-checkbox",
-        "@mdi/react",
-        "@mdi/js"
-      ],
+      "registryDependencies": ["https://blok-shadcn.vercel.app/r/theme.json"],
+      "dependencies": ["@radix-ui/react-checkbox", "@mdi/react", "@mdi/js"],
       "files": [
         {
           "path": "src/components/ui/checkbox.tsx",
@@ -696,12 +643,8 @@
       "type": "registry:ui",
       "title": "Collapsible",
       "description": "An interactive component which expands/collapses a panel.",
-      "registryDependencies": [
-        "https://blok-shadcn.vercel.app/r/theme.json"
-      ],
-      "dependencies": [
-        "@radix-ui/react-collapsible"
-      ],
+      "registryDependencies": ["https://blok-shadcn.vercel.app/r/theme.json"],
+      "dependencies": ["@radix-ui/react-collapsible"],
       "files": [
         {
           "path": "src/components/ui/collapsible.tsx",
@@ -715,17 +658,13 @@
       "type": "registry:ui",
       "title": "Combobox",
       "description": "Autocomplete input and command palette with a list of suggestions.",
-      "dependencies": [
-        "@mdi/js",
-        "@mdi/react",
-        "lucide-react"
-      ],
+      "dependencies": ["@mdi/js", "@mdi/react", "lucide-react"],
       "registryDependencies": [
         "https://blok-shadcn.vercel.app/r/theme.json",
         "https://blok-shadcn.vercel.app/r/avatar.json",
         "https://blok-shadcn.vercel.app/r/button.json",
         "https://blok-shadcn.vercel.app/r/command.json",
-        "https://blok-shadcn.vercel.app/r/popover.json"        
+        "https://blok-shadcn.vercel.app/r/popover.json"
       ],
       "files": [
         {
@@ -744,11 +683,7 @@
         "https://blok-shadcn.vercel.app/r/theme.json",
         "https://blok-shadcn.vercel.app/r/dialog.json"
       ],
-      "dependencies": [
-        "cmdk",
-        "@mdi/js",
-        "@mdi/react"
-      ],
+      "dependencies": ["cmdk", "@mdi/js", "@mdi/react"],
       "files": [
         {
           "path": "src/components/ui/command.tsx",
@@ -762,14 +697,8 @@
       "type": "registry:ui",
       "title": "Context Menu",
       "description": "Displays a menu to the user — such as a set of actions or functions — triggered by a button.",
-      "registryDependencies": [
-        "https://blok-shadcn.vercel.app/r/theme.json"
-      ],
-      "dependencies": [
-        "@radix-ui/react-context-menu",
-        "@mdi/react",
-        "@mdi/js"
-      ],
+      "registryDependencies": ["https://blok-shadcn.vercel.app/r/theme.json"],
+      "dependencies": ["@radix-ui/react-context-menu", "@mdi/react", "@mdi/js"],
       "files": [
         {
           "path": "src/components/ui/context-menu.tsx",
@@ -800,17 +729,12 @@
       "type": "registry:ui",
       "title": "Date Picker",
       "description": "Displays the path to the current resource using a hierarchy of links.",
-      "dependencies": [
-        "date-fns",
-        "@mdi/js",
-        "@mdi/react",
-        "react-day-picker"
-      ],
+      "dependencies": ["date-fns", "@mdi/js", "@mdi/react", "react-day-picker"],
       "registryDependencies": [
         "https://blok-shadcn.vercel.app/r/theme.json",
         "https://blok-shadcn.vercel.app/r/calendar.json",
         "https://blok-shadcn.vercel.app/r/button.json",
-        "https://blok-shadcn.vercel.app/r/popover.json"        
+        "https://blok-shadcn.vercel.app/r/popover.json"
       ],
       "files": [
         {
@@ -825,11 +749,7 @@
       "type": "registry:ui",
       "title": "Dialog",
       "description": "A modal dialog that interrupts the user with important content.",
-      "dependencies": [
-        "@mdi/js",
-        "@mdi/react",
-        "@radix-ui/react-dialog"
-      ],
+      "dependencies": ["@mdi/js", "@mdi/react", "@radix-ui/react-dialog"],
       "registryDependencies": [
         "https://blok-shadcn.vercel.app/r/theme.json",
         "https://blok-shadcn.vercel.app/r/button.json"
@@ -847,9 +767,7 @@
       "type": "registry:ui",
       "title": "Drawer",
       "description": "A modal dialog that interrupts the user with important content.",
-      "dependencies": [
-        "vaul"
-      ],
+      "dependencies": ["vaul"],
       "registryDependencies": [
         "http://blok-shadcn.vercel.app/r/button.json",
         "http://blok-shadcn.vercel.app/r/theme.json"
@@ -872,9 +790,7 @@
         "@mdi/js",
         "@radix-ui/react-dropdown-menu"
       ],
-      "registryDependencies": [
-        "https://blok-shadcn.vercel.app/r/theme.json"
-      ],
+      "registryDependencies": ["https://blok-shadcn.vercel.app/r/theme.json"],
       "files": [
         {
           "path": "src/components/ui/dropdown-menu.tsx",
@@ -884,13 +800,30 @@
       ]
     },
     {
+      "name": "form",
+      "type": "registry:ui",
+      "title": "Form",
+      "description": "A form component for user input.",
+      "registryDependencies": [
+        "http://blok-shadcn.vercel.app/r/form.json",
+        "http://blok-shadcn.vercel.app/r/input.json",
+        "http://blok-shadcn.vercel.app/r/button.json",
+        "http://blok-shadcn.vercel.app/r/theme.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui/forms/form.tsx",
+          "type": "registry:ui",
+          "target": "src/components/ui/forms/form.tsx"
+        }
+      ]
+    },
+    {
       "name": "input",
       "type": "registry:ui",
       "title": "Input",
       "description": "Displays a form input field or a component that looks like an input field.",
-      "registryDependencies": [
-        "https://blok-shadcn.vercel.app/r/theme.json"
-      ],
+      "registryDependencies": ["https://blok-shadcn.vercel.app/r/theme.json"],
       "files": [
         {
           "path": "src/components/ui/input.tsx",
@@ -902,16 +835,10 @@
     {
       "name": "inputOtp",
       "type": "registry:ui",
-      "title": "InputOtp",
+      "title": "Input OTP",
       "description": "A one-time password input component for verification codes.",
-      "dependencies": [
-        "@mdi/js", 
-        "@mdi/react", 
-        "input-otp"
-      ],
-      "registryDependencies": [
-        "https://blok-shadcn.vercel.app/r/theme.json"
-      ],
+      "dependencies": ["@mdi/js", "@mdi/react", "input-otp"],
+      "registryDependencies": ["https://blok-shadcn.vercel.app/r/theme.json"],
       "files": [
         {
           "path": "src/components/ui/inputOtp.tsx",
@@ -925,12 +852,8 @@
       "type": "registry:ui",
       "title": "Label",
       "description": "Renders an accessible label associated with controls.",
-      "registryDependencies": [
-        "https://blok-shadcn.vercel.app/r/theme.json"
-      ],
-      "dependencies": [
-        "@radix-ui/react-label"
-      ],
+      "registryDependencies": ["https://blok-shadcn.vercel.app/r/theme.json"],
+      "dependencies": ["@radix-ui/react-label"],
       "files": [
         {
           "path": "src/components/ui/label.tsx",
@@ -944,9 +867,7 @@
       "type": "registry:ui",
       "title": "Navigation Menu",
       "description": "A collection of links for navigating websites.",
-      "registryDependencies": [
-        "https://blok-shadcn.vercel.app/r/theme.json"
-      ],
+      "registryDependencies": ["https://blok-shadcn.vercel.app/r/theme.json"],
       "dependencies": [
         "@mdi/react",
         "@mdi/js",
@@ -970,11 +891,7 @@
         "https://blok-shadcn.vercel.app/r/theme.json",
         "https://blok-shadcn.vercel.app/r/button.json"
       ],
-      "dependencies": [
-        "@radix-ui/react-popover",
-        "@mdi/react",
-        "@mdi/js"
-      ],
+      "dependencies": ["@radix-ui/react-popover", "@mdi/react", "@mdi/js"],
       "files": [
         {
           "path": "src/components/ui/pagination.tsx",
@@ -988,12 +905,8 @@
       "type": "registry:ui",
       "title": "Progress",
       "description": "Displays an indicator showing the completion progress of a task, typically displayed as a progress bar.",
-      "registryDependencies": [
-        "https://blok-shadcn.vercel.app/r/theme.json"
-      ],
-      "dependencies": [
-        "@radix-ui/react-progress"
-      ],
+      "registryDependencies": ["https://blok-shadcn.vercel.app/r/theme.json"],
+      "dependencies": ["@radix-ui/react-progress"],
       "files": [
         {
           "path": "src/components/ui/progress.tsx",
@@ -1007,14 +920,8 @@
       "type": "registry:ui",
       "title": "Radio Group",
       "description": "A set of checkable buttons—known as radio buttons—where no more than one of the buttons can be checked at a time.",
-      "registryDependencies": [
-        "https://blok-shadcn.vercel.app/r/theme.json"
-      ],
-      "dependencies": [
-        "@radix-ui/react-radio-group",
-        "@mdi/react",
-        "@mdi/js"
-      ],
+      "registryDependencies": ["https://blok-shadcn.vercel.app/r/theme.json"],
+      "dependencies": ["@radix-ui/react-radio-group", "@mdi/react", "@mdi/js"],
       "files": [
         {
           "path": "src/components/ui/radio-group.tsx",
@@ -1028,14 +935,8 @@
       "type": "registry:ui",
       "title": "Resizable",
       "description": "Accessible resizable panel groups and layouts with keyboard support.",
-      "registryDependencies": [
-        "https://blok-shadcn.vercel.app/r/theme.json"
-      ],
-      "dependencies": [
-        "react-resizable-panels",
-        "@mdi/react",
-        "@mdi/js"
-      ],
+      "registryDependencies": ["https://blok-shadcn.vercel.app/r/theme.json"],
+      "dependencies": ["react-resizable-panels", "@mdi/react", "@mdi/js"],
       "files": [
         {
           "path": "src/components/ui/resizable.tsx",
@@ -1049,12 +950,8 @@
       "type": "registry:ui",
       "title": "Scroll Area",
       "description": "Augments native scroll functionality for custom, cross-browser styling.",
-      "registryDependencies": [
-        "https://blok-shadcn.vercel.app/r/theme.json"
-      ],
-      "dependencies": [
-        "@radix-ui/react-scroll-area"
-      ],
+      "registryDependencies": ["https://blok-shadcn.vercel.app/r/theme.json"],
+      "dependencies": ["@radix-ui/react-scroll-area"],
       "files": [
         {
           "path": "src/components/ui/scroll-area.tsx",
@@ -1068,14 +965,8 @@
       "type": "registry:ui",
       "title": "Select",
       "description": "Displays a list of options for the user to pick from—triggered by a button.",
-      "dependencies": [
-        "@radix-ui/react-select",
-        "@mdi/react",
-        "@mdi/js"
-      ],
-      "registryDependencies": [
-        "https://blok-shadcn.vercel.app/r/theme.json"
-      ],
+      "dependencies": ["@radix-ui/react-select", "@mdi/react", "@mdi/js"],
+      "registryDependencies": ["https://blok-shadcn.vercel.app/r/theme.json"],
       "files": [
         {
           "path": "src/components/ui/select.tsx",
@@ -1088,12 +979,8 @@
       "type": "registry:ui",
       "title": "Separator",
       "description": "Visually or semantically separates content.",
-      "dependencies": [
-        "@radix-ui/react-separator"
-      ],
-      "registryDependencies": [
-        "https://blok-shadcn.vercel.app/r/theme.json"
-      ],
+      "dependencies": ["@radix-ui/react-separator"],
+      "registryDependencies": ["https://blok-shadcn.vercel.app/r/theme.json"],
       "files": [
         {
           "path": "src/components/ui/separator.tsx",
@@ -1107,11 +994,7 @@
       "type": "registry:ui",
       "title": "Sheet",
       "description": "Visually or semantically separates content.",
-      "dependencies": [
-        "@radix-ui/react-dialog",
-        "@mdi/react",
-        "@mdi/js"
-      ],
+      "dependencies": ["@radix-ui/react-dialog", "@mdi/react", "@mdi/js"],
       "registryDependencies": [
         "http://blok-shadcn.vercel.app/r/button.json",
         "http://blok-shadcn.vercel.app/r/theme.json"
@@ -1125,13 +1008,38 @@
       ]
     },
     {
+      "name": "sidebar",
+      "type": "registry:ui",
+      "title": "Sidebar",
+      "description": "A styled, simple, reusable sidebar",
+      "dependencies": [
+        "@mdi/react",
+        "@mdi/js",
+        "class-variance-authority",
+        "@radix-ui/react-slot"
+      ],
+      "registryDependencies": [
+        "https://blok-shadcn.vercel.app/r/theme.json",
+        "https://blok-shadcn.vercel.app/r/tooltip.json",
+        "https://blok-shadcn.vercel.app/r/skeleton.json",
+        "https://blok-shadcn.vercel.app/r/separator.json",
+        "https://blok-shadcn.vercel.app/r/input.json",
+        "https://blok-shadcn.vercel.app/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui/sidebar.tsx",
+          "type": "registry:ui",
+          "target": "src/components/ui/sidebar.tsx"
+        }
+      ]
+    },
+    {
       "name": "skeleton",
       "type": "registry:ui",
       "title": "Skeleton",
       "description": "Use to show a placeholder while content is loading.",
-      "registryDependencies": [
-        "https://blok-shadcn.vercel.app/r/theme.json"
-      ],
+      "registryDependencies": ["https://blok-shadcn.vercel.app/r/theme.json"],
       "files": [
         {
           "path": "src/components/ui/skeleton.tsx",
@@ -1145,12 +1053,8 @@
       "type": "registry:ui",
       "title": "Slider",
       "description": "An input where the user selects a value from within a given range.",
-      "registryDependencies": [
-        "https://blok-shadcn.vercel.app/r/theme.json"
-      ],
-      "dependencies": [
-        "@radix-ui/react-slider"
-      ],
+      "registryDependencies": ["https://blok-shadcn.vercel.app/r/theme.json"],
+      "dependencies": ["@radix-ui/react-slider"],
       "files": [
         {
           "path": "src/components/ui/slider.tsx",
@@ -1164,15 +1068,8 @@
       "type": "registry:ui",
       "title": "Sonner",
       "description": "An opinionated toast component for React.",
-      "registryDependencies": [
-        "https://blok-shadcn.vercel.app/r/theme.json"
-      ],
-      "dependencies": [
-        "sonner",
-        "next-themes",
-        "@mdi/react",
-        "@mdi/js"
-      ],
+      "registryDependencies": ["https://blok-shadcn.vercel.app/r/theme.json"],
+      "dependencies": ["sonner", "next-themes", "@mdi/react", "@mdi/js"],
       "files": [
         {
           "path": "src/components/ui/sonner.tsx",
@@ -1182,14 +1079,25 @@
       ]
     },
     {
+      "name": "spinner",
+      "type": "registry:ui",
+      "title": "Spinner",
+      "description": "An opinionated toast component for React.",
+      "registryDependencies": ["https://blok-shadcn.vercel.app/r/theme.json"],
+      "files": [
+        {
+          "path": "src/components/ui/spinner.tsx",
+          "type": "registry:ui",
+          "target": "src/components/ui/spinner.tsx"
+        }
+      ]
+    },
+    {
       "name": "switch",
       "type": "registry:ui",
       "title": "Switch",
       "description": "A control that allows the user to toggle between checked and not checked.",
-      "dependencies": [
-        "@radix-ui/react-switch",
-        "class-variance-authority"
-      ],
+      "dependencies": ["@radix-ui/react-switch", "class-variance-authority"],
       "registryDependencies": [
         "https://blok-shadcn.vercel.app/r/theme.json",
         "https://blok-shadcn.vercel.app/r/label.json"
@@ -1207,9 +1115,7 @@
       "type": "registry:ui",
       "title": "Table",
       "description": "A responsive table component.",
-      "registryDependencies": [
-        "https://blok-shadcn.vercel.app/r/theme.json"
-      ],
+      "registryDependencies": ["https://blok-shadcn.vercel.app/r/theme.json"],
       "files": [
         {
           "path": "src/components/ui/table.tsx",
@@ -1223,13 +1129,8 @@
       "type": "registry:ui",
       "title": "Tabs",
       "description": "A set of layered sections of content known as tab panels that are displayed one at a time.",
-      "dependencies": [
-        "@radix-ui/react-tabs",
-        "class-variance-authority"
-      ],
-      "registryDependencies": [
-        "https://blok-shadcn.vercel.app/r/theme.json"
-      ],
+      "dependencies": ["@radix-ui/react-tabs", "class-variance-authority"],
+      "registryDependencies": ["https://blok-shadcn.vercel.app/r/theme.json"],
       "files": [
         {
           "path": "src/components/ui/tabs.tsx",
@@ -1243,9 +1144,7 @@
       "type": "registry:ui",
       "title": "Textarea",
       "description": "A textarea component for multi-line text input with various states and configurations.",
-      "registryDependencies": [
-        "https://blok-shadcn.vercel.app/r/theme.json"
-      ],
+      "registryDependencies": ["https://blok-shadcn.vercel.app/r/theme.json"],
       "files": [
         {
           "path": "src/components/ui/textarea.tsx",
@@ -1280,12 +1179,8 @@
       "type": "registry:ui",
       "title": "Tooltip",
       "description": "A popup that displays information related to an element when the element receives keyboard focus or the mouse hovers over it.",
-      "registryDependencies": [
-        "https://blok-shadcn.vercel.app/r/theme.json"
-      ],
-      "dependencies": [
-        "@radix-ui/react-tooltip"
-      ],
+      "registryDependencies": ["https://blok-shadcn.vercel.app/r/theme.json"],
+      "dependencies": ["@radix-ui/react-tooltip"],
       "files": [
         {
           "path": "src/components/ui/tooltip.tsx",
@@ -1324,10 +1219,7 @@
         "https://blok-shadcn.vercel.app/r/button.json",
         "https://blok-shadcn.vercel.app/r/navigation-menu.json"
       ],
-      "dependencies": [
-        "@mdi/react",
-        "@mdi/js"
-      ],
+      "dependencies": ["@mdi/react", "@mdi/js"],
       "files": [
         {
           "path": "src/components/ui/top-bar.tsx",
