@@ -6,7 +6,10 @@ const getXMCClient = async () => {
     const client = await experimental_createXMCClient({
         getAccessToken: async () => {
             const session = await auth0.getSession()
-            return session?.accessToken
+            if(!session || !session.tokenSet) {
+                throw new Error("No session or token set found")
+            }
+            return session.tokenSet.accessToken
         }
     })
     return client

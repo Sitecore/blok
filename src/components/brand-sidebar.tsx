@@ -29,7 +29,7 @@ import {
   SidebarMenuItem,
   SidebarSeparator,
   useSidebar,
-} from "@/components/ui/sidebar";
+} from "@/components/registry/docsite-sidebar";
 import { cn } from "@/lib/utils";
 
 interface NavItem {
