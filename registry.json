@@ -884,6 +884,25 @@
       ]
     },
     {
+      "name": "form",
+      "type": "registry:ui",
+      "title": "Form",
+      "description": "A form component for user input.",
+      "registryDependencies": [
+        "http://blok-shadcn.vercel.app/r/form.json",
+        "http://blok-shadcn.vercel.app/r/input.json",
+        "http://blok-shadcn.vercel.app/r/button.json",
+        "http://blok-shadcn.vercel.app/r/theme.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui/forms/form.tsx",
+          "type": "registry:ui",
+          "target": "src/components/ui/forms/form.tsx"
+        }
+      ]
+    },
+    {
       "name": "input",
       "type": "registry:ui",
       "title": "Input",

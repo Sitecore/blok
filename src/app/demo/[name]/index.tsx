@@ -15,9 +15,10 @@ import { productGrid } from "@/app/demo/[name]/components/product-grid";
 import { promo } from "@/app/demo/[name]/components/promo";
 
 // ui
+// import { menuBar } from "@/app/demo/[name]/ui/menu-bar";
 import { accordion } from "@/app/demo/[name]/ui/accordion";
-import { alertDialog } from "@/app/demo/[name]/ui/alert-dialog";
 import { alert } from "@/app/demo/[name]/ui/alert";
+import { alertDialog } from "@/app/demo/[name]/ui/alert-dialog";
 import { aspectRatio } from "@/app/demo/[name]/ui/aspect-ratio";
 import { avatar } from "@/app/demo/[name]/ui/avatar";
 import { badge } from "@/app/demo/[name]/ui/badge";
@@ -25,25 +26,33 @@ import { breadcrumb } from "@/app/demo/[name]/ui/breadcrumb";
 import { button } from "@/app/demo/[name]/ui/button";
 import { calendar } from "@/app/demo/[name]/ui/calendar";
 import { card } from "@/app/demo/[name]/ui/card";
-import {carousel} from '@/app/demo/[name]/ui/carousel';
+import { carousel } from "@/app/demo/[name]/ui/carousel";
 import { chart } from "@/app/demo/[name]/ui/chart";
 import { checkbox } from "@/app/demo/[name]/ui/checkbox";
+import { collapsible } from "@/app/demo/[name]/ui/collapsible";
+import { combobox } from "@/app/demo/[name]/ui/combobox";
+import { command } from "@/app/demo/[name]/ui/command";
 import { contextMenu } from "@/app/demo/[name]/ui/context-menu";
 import { dataTable } from "@/app/demo/[name]/ui/data-table";
 import { datePicker } from "@/app/demo/[name]/ui/date-picker";
 import { dialog } from "@/app/demo/[name]/ui/dialog";
-import {drawer} from "@/app/demo/[name]/ui/drawer";
+import { drawer } from "@/app/demo/[name]/ui/drawer";
 import { dropdownMenu } from "@/app/demo/[name]/ui/dropdown-menu";
+import { form } from "@/app/demo/[name]/ui/forms/form";
+import { hoverCard } from "@/app/demo/[name]/ui/hover-card";
 import { input } from "@/app/demo/[name]/ui/input";
 import { inputOtp } from "@/app/demo/[name]/ui/inputOtp";
 import { label } from "@/app/demo/[name]/ui/label";
-// import { menuBar } from "@/app/demo/[name]/ui/menu-bar";
 import { navigationMenu } from "@/app/demo/[name]/ui/navigation-menu";
+import { pagination } from "@/app/demo/[name]/ui/pagination";
+import { popover } from "@/app/demo/[name]/ui/popover";
+import { progress } from "@/app/demo/[name]/ui/progress";
 import { radioGroup } from "@/app/demo/[name]/ui/radio-group";
 import { resizable } from "@/app/demo/[name]/ui/resizable";
+import { scrollArea } from "@/app/demo/[name]/ui/scroll-area";
 import { select } from "@/app/demo/[name]/ui/select";
 import { separator } from "@/app/demo/[name]/ui/separator";
-import {sheet} from "@/app/demo/[name]/ui/sheet";
+import { sheet } from "@/app/demo/[name]/ui/sheet";
 import { skeleton } from "@/app/demo/[name]/ui/skeleton";
 import { slider } from "@/app/demo/[name]/ui/slider";
 import { sonner } from "@/app/demo/[name]/ui/sonner";
@@ -51,18 +60,10 @@ import { switchComponent } from "@/app/demo/[name]/ui/switch";
 import { table } from "@/app/demo/[name]/ui/table";
 import { tabs } from "@/app/demo/[name]/ui/tabs";
 import { textarea } from "@/app/demo/[name]/ui/textarea";
+import { toggle } from "@/app/demo/[name]/ui/toggle";
 import { toggleGroup } from "@/app/demo/[name]/ui/toggle-group";
 import { tooltip } from "@/app/demo/[name]/ui/tooltip";
-import { toggle } from "@/app/demo/[name]/ui/toggle";
 import { topbar } from "@/app/demo/[name]/blocks/top-bar";
-import { pagination } from "@/app/demo/[name]/ui/pagination";
-import { scrollArea } from "@/app/demo/[name]/ui/scroll-area";
-import { popover } from "@/app/demo/[name]/ui/popover";
-import { hoverCard } from "@/app/demo/[name]/ui/hover-card";
-import { collapsible } from "@/app/demo/[name]/ui/collapsible";
-import { progress } from "@/app/demo/[name]/ui/progress";
-import { command } from "@/app/demo/[name]/ui/command";
-import { combobox } from "@/app/demo/[name]/ui/combobox";
 
 interface Demo {
   name: string; // this must match the `registry.json` name
@@ -88,7 +89,7 @@ export const demos: { [name: string]: Demo } = {
 
   // ui
   accordion,
-  "alert-dialog":alertDialog,
+  "alert-dialog": alertDialog,
   alert,
   "aspect-ratio": aspectRatio,
   avatar,
@@ -107,15 +108,16 @@ export const demos: { [name: string]: Demo } = {
   dialog,
   "date-picker": datePicker,
   "data-table": dataTable,
-   drawer,
+  drawer,
   "dropdown-menu": dropdownMenu,
+  form,
   input,
   inputOtp,
   label,
   // "menu-bar": menuBar,
   "navigation-menu": navigationMenu,
   progress,
-  "scroll-area" :scrollArea,
+  "scroll-area": scrollArea,
   "radio-group": radioGroup,
   resizable,
   select,
