@@ -1,4 +1,4 @@
-import { SidebarProvider } from "@/components/ui/sidebar";
+import { SidebarProvider } from "@/components/registry/docsite-sidebar";
 import type { ReactNode } from "react";
 
 import {
