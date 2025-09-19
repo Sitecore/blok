@@ -67,7 +67,7 @@ import { combobox } from "@/app/demo/[name]/ui/combobox";
 import { spinner } from "@/app/demo/[name]/ui/spinner";
 
 interface Demo {
-  name: string; // this must match the `registry.json` name
+  name: string; // this must match the `/registries/registry.json` name
   components?: {
     [name: string]: ReactNode | ReactElement;
   };
