@@ -44,6 +44,7 @@ import { resizable } from "@/app/demo/[name]/ui/resizable";
 import { select } from "@/app/demo/[name]/ui/select";
 import { separator } from "@/app/demo/[name]/ui/separator";
 import {sheet} from "@/app/demo/[name]/ui/sheet";
+import { sidebar } from "@/app/demo/[name]/ui/sidebar";
 import { skeleton } from "@/app/demo/[name]/ui/skeleton";
 import { slider } from "@/app/demo/[name]/ui/slider";
 import { sonner } from "@/app/demo/[name]/ui/sonner";
@@ -122,6 +123,7 @@ export const demos: { [name: string]: Demo } = {
   select,
   separator,
   sheet,
+  sidebar,
   skeleton,
   slider,
   spinner,
