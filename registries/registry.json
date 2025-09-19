@@ -642,7 +642,7 @@
     {
       "name": "inputOtp",
       "type": "registry:ui",
-      "title": "InputOtp",
+      "title": "Input OTP",
       "description": "A one-time password input component for verification codes.",
       "dependencies": [
         "@mdi/js", 
@@ -865,6 +865,33 @@
       ]
     },
     {
+      "name": "sidebar",
+      "type": "registry:ui",
+      "title": "Sidebar",
+      "description": "A styled, simple, reusable sidebar",
+      "dependencies": [
+        "@mdi/react",
+        "@mdi/js",
+        "class-variance-authority",
+        "@radix-ui/react-slot"
+      ],
+      "registryDependencies": [
+        "https://blok-shadcn.vercel.app/r/theme.json",
+        "https://blok-shadcn.vercel.app/r/tooltip.json",
+        "https://blok-shadcn.vercel.app/r/skeleton.json",
+        "https://blok-shadcn.vercel.app/r/separator.json",
+        "https://blok-shadcn.vercel.app/r/input.json",
+        "https://blok-shadcn.vercel.app/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui/sidebar.tsx",
+          "type": "registry:ui",
+          "target": "src/components/ui/sidebar.tsx"
+        }
+      ]
+    },
+    {
       "name": "skeleton",
       "type": "registry:ui",
       "title": "Skeleton",
@@ -918,6 +945,22 @@
           "path": "src/components/ui/sonner.tsx",
           "type": "registry:ui",
           "target": "src/components/ui/sonner.tsx"
+        }
+      ]
+    },
+    {
+      "name": "spinner",
+      "type": "registry:ui",
+      "title": "Spinner",
+      "description": "An opinionated toast component for React.",
+      "registryDependencies": [
+        "https://blok-shadcn.vercel.app/r/theme.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui/spinner.tsx",
+          "type": "registry:ui",
+          "target": "src/components/ui/spinner.tsx"
         }
       ]
     },

@@ -7,7 +7,7 @@ import { useState } from "react";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { useSidebar } from "@/components/ui/sidebar";
+import { useSidebar } from "@/components/registry/docsite-sidebar";
 
 import { Logo } from "./logo";
 
