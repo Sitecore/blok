@@ -1,5 +1,7 @@
 import { UseChatHelpers } from "ai/react"
 
+import { ExamplePrompt } from "../EmptyScreenBoxes.jsx"
+
 export interface ArtifactsProperties {
   open: boolean
 }
@@ -54,4 +56,5 @@ export interface Session {
 
 export interface Config {
   disclaimer?: string | React.ReactNode
+  examplePrompts?: ExamplePrompt[]
 }

@@ -1,0 +1,29 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "stream-chat-history",
+  "type": "registry:block",
+  "description": "Stream chat history component",
+  "dependencies": [
+    "@mdi/js"
+  ],
+  "files": [
+    {
+      "path": "registry/new-york/stream/blocks/stream-chat-history/chat-history.tsx",
+      "content": "\"use client\"\n\nimport { mdiChatOutline, mdiTrashCanOutline } from \"@mdi/js\"\n\nimport { cn } from \"../../lib/utils\"\nimport { Icon } from \"../chat/Icon\"\n\nexport type ChatHistoryProps = {\n  className?: string\n  chats?: Array<{\n    id: string\n    title: string\n    disabled?: boolean\n  }>\n  onChatClick?: (chat: NonNullable<ChatHistoryProps[\"chats\"]>[number]) => void\n  onChatDelete?: (chat: NonNullable<ChatHistoryProps[\"chats\"]>[number]) => void\n}\n\n/**\n * Renders a chat history list with clickable chat items and delete buttons.\n *\n * @param {Object} props The properties for the ChatHistory component.\n * @param {string} props.className Optional additional class names for the container.\n * @param {Array} props.chats An array of chat objects to be displayed. Each chat object should include `id`, `title`, and `disabled` properties.\n * @param {Function} [props.onChatClick] A callback function invoked when a chat item is clicked. Receives the clicked chat object as a parameter.\n * @param {Function} [props.onChatDelete] A callback function invoked when the delete button for a chat is clicked. Receives the chat object to be deleted as a parameter.\n * @return {JSX.Element} The rendered ChatHistory component.\n */\nexport function ChatHistory(props: ChatHistoryProps) {\n  const { className, chats, onChatClick, onChatDelete } = props\n\n  return (\n    <div className={cn(\"flex w-64 flex-col gap-1\", className)}>\n      {chats?.map((chat) => (\n        <div\n          key={chat.id}\n          aria-disabled={chat.disabled}\n          className={cn(\n            \"group flex min-h-10 items-center justify-between gap-2 rounded px-2 py-1 transition-colors\",\n            {\n              \"cursor-pointer hover:bg-purple-100\": !chat.disabled,\n              \"cursor-not-allowed opacity-50\": chat.disabled,\n            }\n          )}\n          onClick={() => {\n            if (chat.disabled) return\n            onChatClick?.(chat)\n          }}\n        >\n          <div className=\"flex min-w-0 items-center gap-2\">\n            <Icon path={mdiChatOutline} className=\"size-6 text-gray-500\" />\n            <h2 className=\"text-md min-w-0 truncate\">{chat.title}</h2>\n          </div>\n          <button\n            disabled={chat.disabled}\n            className={cn(\"hidden\", {\n              \"cursor-pointer group-hover:block\": !chat.disabled,\n              \"cursor-not-allowed\": chat.disabled,\n            })}\n            onClick={(e) => {\n              e.stopPropagation()\n              if (chat.disabled) return\n              onChatDelete?.(chat)\n            }}\n          >\n            <Icon\n              path={mdiTrashCanOutline}\n              className=\"size-8 rounded-full p-1 text-gray-500 hover:bg-purple-300\"\n            />\n          </button>\n        </div>\n      ))}\n    </div>\n  )\n}\n",
+      "type": "registry:component",
+      "target": "components/stream-components/blocks/stream-chat-history/chat-history.tsx"
+    },
+    {
+      "path": "registry/new-york/stream/blocks/stream-chat-history/page.tsx",
+      "content": "import { ChatHistory } from \"./chat-history\"\n\nconst mockChats = [\n  { id: \"1\", title: \"General\" },\n  { id: \"2\", title: \"Support\" },\n  { id: \"3\", title: \"Random\", disabled: true },\n]\n\nexport default function StreamChatHistoryPage() {\n  return (\n    <div className=\"container mx-auto space-y-6 p-6\">\n      <div className=\"space-y-2\">\n        <h1 className=\"text-2xl font-bold\">Stream Chat History</h1>\n        <p className=\"text-muted-foreground\">\n          A component for displaying a list of chat conversations with actions.\n        </p>\n      </div>\n      <div className=\"space-y-4\">\n        <ChatHistory\n          chats={mockChats}\n          onChatClick={(chat) => alert(`Clicked: ${chat.title}`)}\n          onChatDelete={(chat) => alert(`Deleted: ${chat.title}`)}\n        />\n      </div>\n    </div>\n  )\n}\n",
+      "type": "registry:page",
+      "target": "app/blocks/stream-chat-history/page.tsx"
+    }
+  ],
+  "categories": [
+    "stream",
+    "ui",
+    "chat",
+    "history"
+  ]
+}

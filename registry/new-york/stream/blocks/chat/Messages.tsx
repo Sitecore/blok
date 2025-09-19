@@ -20,6 +20,7 @@ import { Tabs, TabsList, TabsTrigger } from "@/registry/new-york/ui/tabs"
 
 import { cn } from "../../lib/utils"
 import { ButtonScrollToBottom } from "./ButtonScrollToBottom"
+import { EmptyScreen } from "./EmptyScreen"
 import { Feedback } from "./Feedback"
 import { useAiChatProvider } from "./hooks/useAiChatProvider"
 import { useImageDropzone } from "./hooks/useImageDropzone"
@@ -90,6 +91,8 @@ export function Messages(): React.ReactNode {
       scrollRef.current.scrollTop = scrollRef.current.scrollHeight
     }
   }, [messages, scrollRef])
+
+  const shouldShowExamplePropmts = !messages?.length
 
   return (
     <div
@@ -200,6 +203,7 @@ export function Messages(): React.ReactNode {
           ref={scrollRef}
           data-testid="scroll-contain-base-chat"
         >
+          {shouldShowExamplePropmts && <EmptyScreen />}
           <div className="space-y-4" ref={messagesRef}>
             {messages?.map((message, messageIndex, messagesArray) => {
               /* The message ID is found in the annotation array. The id you see in the response object is the db id */
