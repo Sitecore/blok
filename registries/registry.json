@@ -902,7 +902,7 @@
     {
       "name": "inputOtp",
       "type": "registry:ui",
-      "title": "InputOtp",
+      "title": "Input OTP",
       "description": "A one-time password input component for verification codes.",
       "dependencies": [
         "@mdi/js", 
