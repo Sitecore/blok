@@ -1,0 +1,34 @@
+"use client";
+
+import { ApplicationContext } from "@/components/examples/build-in-auth/application-context";
+import { ListLanguagesFromClientSdk } from "@/components/examples/build-in-auth/with-xmc/list-languages";
+import { Separator } from "@/components/ui/separator";
+
+function Examples() {
+  return (
+    <div className="container mx-auto p-6 space-y-8 max-w-3xl">
+      <div className="space-y-4">
+        <h1 className="text-3xl font-bold tracking-tight">
+          Marketplace SDK Demo
+        </h1>
+        <p className="text-muted-foreground">
+          Marketplace SDK with custom authentication and XMC client-side
+          examples
+        </p>
+      </div>
+
+      <ApplicationContext />
+
+      <Separator />
+
+      <div className="space-y-6">
+        <h2 className="text-2xl font-semibold">Build-in Auth Examples</h2>
+        <div className="grid gap-6">
+          <ListLanguagesFromClientSdk />
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default Examples;
