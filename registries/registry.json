@@ -107,6 +107,11 @@
           "target": "app/typography.css"
         },
         {
+          "path": "src/app/breakpoints.css",
+          "type": "registry:style",
+          "target": "app/breakpoints.css"
+        },
+        {
           "path": "postcss.config.mjs",
           "type": "registry:file",
           "target": "postcss.config.mjs"
@@ -902,7 +907,7 @@
     {
       "name": "inputOtp",
       "type": "registry:ui",
-      "title": "InputOtp",
+      "title": "Input OTP",
       "description": "A one-time password input component for verification codes.",
       "dependencies": [
         "@mdi/js", 
@@ -1205,6 +1210,22 @@
           "path": "src/components/ui/sonner.tsx",
           "type": "registry:ui",
           "target": "src/components/ui/sonner.tsx"
+        }
+      ]
+    },
+    {
+      "name": "spinner",
+      "type": "registry:ui",
+      "title": "Spinner",
+      "description": "An opinionated toast component for React.",
+      "registryDependencies": [
+        "https://blok-shadcn.vercel.app/r/theme.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui/spinner.tsx",
+          "type": "registry:ui",
+          "target": "src/components/ui/spinner.tsx"
         }
       ]
     },

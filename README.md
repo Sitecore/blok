@@ -32,7 +32,7 @@ registry's `/r/${component_name}.json` endpoint. This endpoint will provide v0 t
 and metadata to start your v0 chat with your component, theme, and other related code.
 
 These `/r/${component_name}.json` files are generated using `shadcn/ui` during the `build` and `dev` based on the
-repository's [`registry.json`](./registry.json). For more information, refer to the
+repository's [`registry.json`](./registries/registry.json). For more information, refer to the
 [documentation](https://ui.shadcn.com/docs/registry/registry-json).
 
 ## Theming
@@ -43,7 +43,7 @@ on [ui.shadcn.com/docs](https://ui.shadcn.com/docs).
 
 #### MCP
 
-To use this registry with MCP, you must also edit [`registry.json`](./registry.json)'s first
+To use this registry with MCP, you must also edit [`registry.json`](./registries/registry.json)'s first
 `registry-item` named `theme`. This `registry:theme` item not only contains the tailwind configuration, but it also
 contains your design tokens / CSS variables.
 
