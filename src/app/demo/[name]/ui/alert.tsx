@@ -12,6 +12,7 @@ export const alert = {
         </AlertDescription>
       </Alert>
     ),
+    PrimaryClosable: <ClosableAlert variantProp="primary" />,
     Success: (
       <Alert variant="success">
         <AlertTitle>Success Alert</AlertTitle>
@@ -20,6 +21,7 @@ export const alert = {
         </AlertDescription>
       </Alert>
     ),
+    SuccessClosable: <ClosableAlert variantProp="success" />,
     Danger: (
       <Alert variant="danger">
         <AlertTitle>Danger Alert</AlertTitle>
@@ -28,6 +30,7 @@ export const alert = {
         </AlertDescription>
       </Alert>
     ),
+    DangerClosable: <ClosableAlert variantProp="danger" />,
     Warning: (
       <Alert variant="warning">
         <AlertTitle>Warning Alert</AlertTitle>
@@ -36,7 +39,7 @@ export const alert = {
         </AlertDescription>
       </Alert>
     ),
-    Closable: <ClosableAlert />,
+    WarningClosable: <ClosableAlert variantProp="warning" />,
     Descriptive: (
       <Alert variant="primary">
         <AlertTitle>
@@ -53,6 +56,6 @@ export const alert = {
           length.
         </AlertDescription>
       </Alert>
-    )
+    ),
   },
 };

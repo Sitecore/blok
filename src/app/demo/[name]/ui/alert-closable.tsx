@@ -3,14 +3,14 @@ import * as React from "react";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { Button } from "@/components/ui/button";
 
-export function ClosableAlert() {
+export function ClosableAlert({ variantProp }: { variantProp: "default" | "primary" | "danger" | "warning" | "success" }) {
   const [isOpen, setIsOpen] = React.useState(true);
 
   if (!isOpen) return null;
 
   return (
-    <Alert variant="danger">
-      <AlertTitle>Closable Danger Alert</AlertTitle>
+    <Alert variant = {variantProp} >
+      <AlertTitle>Closable {variantProp} Alert</AlertTitle>
       <AlertDescription>This is a closable alert with a title and description.</AlertDescription>
       <Button
         size="sm"
