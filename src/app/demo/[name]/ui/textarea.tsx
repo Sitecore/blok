@@ -5,34 +5,37 @@ export const textarea = {
   name: "textarea",
   components: {
     // Basic textarea
-    Basic: <Textarea placeholder="Type your message here." />,
+    Basic:<div className="m-2">
+            <Textarea placeholder="Type your message here." />
+          </div>,
     
     // Invalid state
-    Invalid: <Textarea placeholder="Type your message here." aria-invalid="true" />,
+    Invalid: <div className="m-2">
+      <Textarea placeholder="Type your message here." aria-invalid="true" /></div>,
     
     // With label
     WithLabel: (
-      <div className="grid gap-3">
+      <div className="grid gap-3 m-2">
         <Label htmlFor="textarea-demo-message">Message</Label>
-        <Textarea
-          id="textarea-demo-message"
-          placeholder="Type your message here."
-          rows={6}
-        />
+          <Textarea
+            id="textarea-demo-message"
+            placeholder="Type your message here."
+            rows={6}
+          />
       </div>
     ),
     
     // With label and description
     WithLabelAndDescription: (
-      <div className="grid gap-3">
+      <div className="grid gap-3 m-2">
         <Label htmlFor="textarea-demo-message-2">
           Message
         </Label>
-        <Textarea
-          id="textarea-demo-message-2"
-          placeholder="Type your message here."
-          rows={6}
-        />
+          <Textarea
+            id="textarea-demo-message-2"
+            placeholder="Type your message here."
+            rows={6}
+          />
         <div className="text-muted-foreground text-sm">
           Type your message and press enter to send.
         </div>
@@ -41,51 +44,51 @@ export const textarea = {
     
     // Disabled state
     Disabled: (
-      <div className="grid gap-3">
+      <div className="grid gap-3 m-2">
         <Label htmlFor="textarea-demo-disabled">Disabled Textarea</Label>
-        <Textarea
-          id="textarea-demo-disabled"
-          placeholder="Type your message here."
-          disabled
-        />
+          <Textarea
+            id="textarea-demo-disabled"
+            placeholder="Type your message here."
+            disabled
+          />
       </div>
     ),
     
     // Small size
     Small: (
-      <div className="grid gap-3">
+      <div className="grid gap-3 m-2">
         <Label htmlFor="small-textarea">Small (3 rows)</Label>
-        <Textarea
-          id="small-textarea"
-          placeholder="Small textarea"
-          rows={3}
-          className="min-h-[60px]"
-        />
+          <Textarea
+            id="small-textarea"
+            placeholder="Small textarea"
+            rows={3}
+            className="min-h-[60px]"
+          />
       </div>
     ),
     
     // Large size
     Large: (
-      <div className="grid gap-3">
+      <div className="grid gap-3 m-2">
         <Label htmlFor="large-textarea">Large (8 rows)</Label>
-        <Textarea
-          id="large-textarea"
-          placeholder="Large textarea"
-          rows={8}
-          className="min-h-[160px]"
-        />
+          <Textarea
+            id="large-textarea"
+            placeholder="Large textarea"
+            rows={8}
+            className="min-h-[160px]"
+          />
       </div>
     ),
     
     // With default value
     WithDefaultValue: (
-      <div className="grid gap-3">
+      <div className="grid gap-3 m-2">
         <Label htmlFor="textarea-with-value">Pre-filled Textarea</Label>
-        <Textarea
-          id="textarea-with-value"
-          defaultValue="This textarea comes with some pre-filled content. You can edit this text or add more content as needed."
-          rows={4}
-        />
+          <Textarea
+            id="textarea-with-value"
+            defaultValue="This textarea comes with some pre-filled content. You can edit this text or add more content as needed."
+            rows={4}
+          />
       </div>
     ),
   },
