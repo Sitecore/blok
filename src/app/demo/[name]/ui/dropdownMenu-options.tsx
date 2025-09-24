@@ -2,17 +2,9 @@
 
 import * as React from "react";
 import {
-  mdiAccount,
-  mdiBell,
   mdiChevronDown,
-  mdiCreditCard,
   mdiLogout,
   mdiDotsHorizontal,
-  mdiPencil,
-  mdiCog,
-  mdiShare,
-  mdiStar,
-  mdiDelete,
   mdiCheck,
   mdiAccountOutline,
   mdiCreditCardOutline,
