@@ -181,7 +181,7 @@ function UserCombobox({ users, selectedUserId }: UserComboboxProps) {
             </CommandGroup>
           </CommandList>
           <div className="absolute bottom-0 left-0 right-0 border-x border-b bg-background p-2 rounded-b-md z-10">
-            <Button variant="default" size="sm">
+            <Button variant="ghost" size="sm" colorScheme="primary">
               <Icon path={mdiPlus} size={0.9} className="" />
               Create user
             </Button>
@@ -271,7 +271,7 @@ function TimezoneCombobox({
             ))}
           </CommandList>
           <div className="absolute bottom-0 left-0 right-0 border-x border-b bg-background p-2 rounded-b-md z-10">
-            <Button variant="default" size="sm">
+            <Button variant="ghost" size="sm" colorScheme="primary">
               <Icon path={mdiPlus} size={0.9} className="" />
               Create timezone
             </Button>

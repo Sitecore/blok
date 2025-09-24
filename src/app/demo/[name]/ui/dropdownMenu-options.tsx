@@ -2,18 +2,18 @@
 
 import * as React from "react";
 import {
-  mdiAccount,
-  mdiBell,
   mdiChevronDown,
-  mdiCreditCard,
   mdiLogout,
   mdiDotsHorizontal,
-  mdiPencil,
-  mdiCog,
-  mdiShare,
-  mdiStar,
-  mdiDelete,
   mdiCheck,
+  mdiAccountOutline,
+  mdiCreditCardOutline,
+  mdiCogOutline,
+  mdiStarOutline,
+  mdiBellOutline,
+  mdiPencilOutline,
+  mdiShareOutline,
+  mdiDeleteOutline,
 } from "@mdi/js";
 import Icon from "@mdi/react";
 
@@ -114,13 +114,13 @@ function DropdownMenuCheckboxes() {
         <DropdownMenuGroup>
           <DropdownMenuLabel>Account</DropdownMenuLabel>
           <DropdownMenuItem>
-            <Icon path={mdiAccount} size={0.8} /> Profile
+            <Icon path={mdiAccountOutline} size={0.8} /> Profile
           </DropdownMenuItem>
           <DropdownMenuItem>
-            <Icon path={mdiCreditCard} size={0.8} /> Billing
+            <Icon path={mdiCreditCardOutline} size={0.8} /> Billing
           </DropdownMenuItem>
           <DropdownMenuItem>
-            <Icon path={mdiCog} size={0.8} /> Settings
+            <Icon path={mdiCogOutline} size={0.8} /> Settings
           </DropdownMenuItem>
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
@@ -230,7 +230,7 @@ function DropdownMenuWithAvatar() {
         <DropdownMenuSeparator />
         <DropdownMenuGroup>
           <DropdownMenuItem>
-            <Icon path={mdiStar} size={0.8} />
+            <Icon path={mdiStarOutline} size={0.8} />
             Upgrade to Pro
           </DropdownMenuItem>
         </DropdownMenuGroup>
@@ -241,11 +241,11 @@ function DropdownMenuWithAvatar() {
             Account
           </DropdownMenuItem>
           <DropdownMenuItem>
-            <Icon path={mdiCreditCard} size={0.8} />
+            <Icon path={mdiCreditCardOutline} size={0.8} />
             Billing
           </DropdownMenuItem>
           <DropdownMenuItem>
-            <Icon path={mdiBell} size={0.8} />
+            <Icon path={mdiBellOutline} size={0.8} />
             Notifications
           </DropdownMenuItem>
         </DropdownMenuGroup>
@@ -295,7 +295,7 @@ function DropdownMenuAvatarOnly() {
         <DropdownMenuSeparator />
         <DropdownMenuGroup>
           <DropdownMenuItem>
-            <Icon path={mdiStar} size={0.8} />
+            <Icon path={mdiStarOutline} size={0.8} />
             Upgrade to Pro
           </DropdownMenuItem>
         </DropdownMenuGroup>
@@ -306,11 +306,11 @@ function DropdownMenuAvatarOnly() {
             Account
           </DropdownMenuItem>
           <DropdownMenuItem>
-            <Icon path={mdiCreditCard} size={0.8} />
+            <Icon path={mdiCreditCardOutline} size={0.8} />
             Billing
           </DropdownMenuItem>
           <DropdownMenuItem>
-            <Icon path={mdiBell} size={0.8} />
+            <Icon path={mdiBellOutline} size={0.8} />
             Notifications
           </DropdownMenuItem>
         </DropdownMenuGroup>
@@ -336,16 +336,16 @@ function DropdownMenuIconColor() {
       <DropdownMenuContent align="start">
         <DropdownMenuGroup className="*:data-[slot=dropdown-menu-item]:[&>svg]:text-muted-foreground">
           <DropdownMenuItem>
-            <Icon path={mdiPencil} size={0.8} />
+            <Icon path={mdiPencilOutline} size={0.8} />
             Edit
           </DropdownMenuItem>
           <DropdownMenuItem>
-            <Icon path={mdiShare} size={0.8} />
+            <Icon path={mdiShareOutline} size={0.8} />
             Share
           </DropdownMenuItem>
           <DropdownMenuSeparator />
           <DropdownMenuItem variant="destructive">
-            <Icon path={mdiDelete} size={0.8} />
+            <Icon path={mdiDeleteOutline} size={0.8} />
             Delete
           </DropdownMenuItem>
         </DropdownMenuGroup>
