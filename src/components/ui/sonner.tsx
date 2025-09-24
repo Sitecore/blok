@@ -22,6 +22,7 @@ const Toaster = ({ ...props }: ToasterProps) => {
       toastOptions={{
         classNames: {
           toast: "!border-none",
+          icon: "!self-start !mt-0.5",
           success: "!bg-success-100",
           error: "!bg-red-100",
           info: "!bg-info-100",
@@ -30,7 +31,7 @@ const Toaster = ({ ...props }: ToasterProps) => {
           title: "text-sm !text-black !font-normal",
           description: "text-sm !text-black",
           closeButton:
-            "!absolute !top-3 !right-0 !left-auto !bg-transparent !border-none !text-black scale-120",
+            "!absolute !top-3 !right-0 !left-auto !bg-transparent !border-none !text-black",
         },
       }}
       {...props}
