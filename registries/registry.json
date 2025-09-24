@@ -107,6 +107,11 @@
           "target": "app/typography.css"
         },
         {
+          "path": "src/app/breakpoints.css",
+          "type": "registry:style",
+          "target": "app/breakpoints.css"
+        },
+        {
           "path": "postcss.config.mjs",
           "type": "registry:file",
           "target": "postcss.config.mjs"
