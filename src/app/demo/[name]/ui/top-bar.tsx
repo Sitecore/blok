@@ -1,5 +1,5 @@
 import Topbar from "@/components/ui/top-bar";
-import MinimalLayout from "./minimal-layout";
+import MinimalLayout from "../blocks/minimal-layout";
 
 export const topbar = {
   name: "topbar",

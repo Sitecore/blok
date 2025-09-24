@@ -56,9 +56,9 @@ function PaginationLink({
           colorScheme: "neutral",
           size,
         }),
-        "text-neutral-fg disabled:text-neutral-fg/40",
+        "text-neutral-fg disabled:text-neutral-fg/40 font-medium",
         isActive &&
-          "bg-primary-bg text-primary-fg hover:bg-primary-bg hover:text-primary-fg",
+          "bg-primary-bg text-primary-fg hover:bg-primary-bg hover:text-primary-fg font-medium",
         className
       )}
       {...props}
