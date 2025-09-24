@@ -1,9 +1,8 @@
-<div align="center">
-  <img src="https://delivery-sitecore.sitecorecontenthub.cloud/api/public/content/logo-blok" alt="Blok Design System" width="200" />
+<div align="left">
+  <img src="https://delivery-sitecore.sitecorecontenthub.cloud/api/public/content/mark-blok" alt="Blok Design System" width="200" />
 </div>
 
-  [![GitHub license](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](https://github.com/sitecore/blok/blob/main/LICENSE)
-  [![npm version](https://img.shields.io/npm/v/@sitecore/blok.svg?style=flat)](https://www.npmjs.com/package/@sitecore/blok)
+  [![GitHub license](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](https://github.com/sitecore/blok/blob/main/LICENSE.md)
   [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/sitecore/blok/blob/main/CONTRIBUTING.md)
 </div>
 
@@ -173,7 +172,7 @@ export function ButtonExamples() {
 
 - **Documentation**: [https://blok.sitecore.com/beta](https://blok.sitecore.com/beta)
 - **Issues**: [GitHub Issues](https://github.com/sitecore/blok/issues)
-- **Slack**: Join our community Slack workspace
+- **Slack**: [Join our community Slack workspace](https://siteco.re/sitecoreslack)
 
 ## Contributing
 
@@ -185,7 +184,7 @@ Sitecore has adopted a Code of Conduct that we expect project participants to ad
 
 ### Contributing guide
 
-Read our contributing guide to learn about our development process, how to propose bug fixes and improvements, and how to build and test your changes to React.
+Read our [contributing guide](https://github.com/sitecore/blok/blob/main/CONTRIBUTING.md) to learn about our development process, how to propose bug fixes and improvements, and how to build and test your changes to React.
 
 ## Acknowledgements
 
@@ -193,4 +192,4 @@ We would like to thank the open source community for their contributions and the
 
 ## License
 
-Sitecore Blok is using the Apache 2.0 license.
+Sitecore Blok is using the [Apache 2.0 license](https://github.com/sitecore/blok/blob/main/LICENSE.md).
