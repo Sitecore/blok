@@ -64,7 +64,6 @@ Our versioning strategy is as follows:
     - Tooltip ([#45](https://github.com/Sitecore/blok/pull/45))
     - Top Bar ([#155](https://github.com/Sitecore/blok/pull/155))
 
----
 
 ## Chores
 
