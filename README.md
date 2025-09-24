@@ -2,7 +2,7 @@
   <img src="https://delivery-sitecore.sitecorecontenthub.cloud/api/public/content/logo-blok-dark" alt="Blok Design System" width="200" />
 </div>
 
-  [![GitHub license](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](https://github.com/sitecore/blok/blob/main/LICENSE.md)
+  [![GitHub license](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](https://github.com/sitecore/blok/blob/main/LICENSE)
   [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/sitecore/blok/blob/main/CONTRIBUTING.md)
 </div>
 
@@ -171,6 +171,7 @@ export function ButtonExamples() {
 ## Community & Support
 
 - **Documentation**: [https://blok.sitecore.com/beta](https://blok.sitecore.com/beta)
+- **Support**: [Support Guide](https://github.com/sitecore/blok/blob/main/SUPPORT.md)
 - **Issues**: [GitHub Issues](https://github.com/sitecore/blok/issues)
 - **Slack**: [Join our community Slack workspace](https://siteco.re/sitecoreslack)
 
@@ -180,7 +181,7 @@ We are very grateful to the community for contributing bug fixes and improvement
 
 ### Code of Conduct
 
-Sitecore has adopted a Code of Conduct that we expect project participants to adhere to. Please read the full text so that you can understand what actions will and will not be tolerated.
+Sitecore has adopted a [Code of Conduct](https://github.com/sitecore/blok/blob/main/CODE_OF_CONDUCT.md) that we expect project participants to adhere to. Please read the full text so that you can understand what actions will and will not be tolerated.
 
 ### Contributing guide
 
@@ -192,4 +193,4 @@ We would like to thank the open source community for their contributions and the
 
 ## License
 
-Sitecore Blok is using the [Apache 2.0 license](https://github.com/sitecore/blok/blob/main/LICENSE.md).
+Sitecore Blok is using the [Apache 2.0 license](https://github.com/sitecore/blok/blob/main/LICENSE).
