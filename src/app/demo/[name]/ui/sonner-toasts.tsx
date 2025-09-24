@@ -3,8 +3,8 @@
 import { toast } from "sonner";
 
 import { Button } from "@/components/ui/button";
-import Icon from "@mdi/react";
 import { mdiInformation } from "@mdi/js";
+import Icon from "@mdi/react";
 
 export function Sonner() {
   return <Button onClick={() => toast.info("Toast")}>Normal Toast</Button>;
@@ -53,6 +53,21 @@ export function ActionSonner() {
       }
     >
       Action Toast
+    </Button>
+  );
+}
+
+export function ClosableSonner() {
+  return (
+    <Button
+      variant="outline"
+      onClick={() =>
+        toast("This toast is closable", {
+          closeButton: true,
+        })
+      }
+    >
+      Closable Toast
     </Button>
   );
 }
