@@ -1,9 +1,10 @@
 "use client";
 
 import * as React from "react";
-import { mdiMagnify } from "@mdi/js";
+import { mdiClose, mdiMagnify } from "@mdi/js";
 import Icon from "@mdi/react";
 import { Command as CommandPrimitive } from "cmdk";
+import * as DialogPrimitive from "@radix-ui/react-dialog";
 
 import { cn } from "@/lib/utils";
 import {
@@ -13,6 +14,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
+import { Button } from "@/components/ui/button";
 
 function Command({
   className,
@@ -46,8 +48,9 @@ function CommandDialog({
         <DialogDescription>{description}</DialogDescription>
       </DialogHeader>
       <DialogContent className="overflow-hidden p-0">
-        <Command className="[&_[cmdk-group-heading]]:text-muted-foreground **:data-[slot=command-input-wrapper]:h-12 [&_[cmdk-group-heading]]:px-2 [&_[cmdk-group-heading]]:font-medium [&_[cmdk-group]]:px-2 [&_[cmdk-group]:not([hidden])_~[cmdk-group]]:pt-0 [&_[cmdk-input-wrapper]_svg]:h-5 [&_[cmdk-input-wrapper]_svg]:w-5 [&_[cmdk-input]]:h-12 [&_[cmdk-item]]:px-2 [&_[cmdk-item]]:py-3 [&_[cmdk-item]_svg]:h-5 [&_[cmdk-item]_svg]:w-5">
+        <Command className="[&_[cmdk-group-heading]]:text-muted-foreground **:data-[slot=command-input-wrapper]:h-12 [&_[cmdk-group-heading]]:px-2 [&_[cmdk-group-heading]]:font-medium [&_[cmdk-group]]:px-2 [&_[cmdk-group]:not([hidden])_~[cmdk-group]]:pt-0 [&_[cmdk-input-wrapper]_svg]:h-5 [&_[cmdk-input-wrapper]_svg]:w-5 [&_[cmdk-input]]:h-12 [&_[cmdk-item]]:px-2 [&_[cmdk-item]_svg]:h-5 [&_[cmdk-item]_svg]:w-5">
           {children}
+          <DialogPrimitive.Close style={{ display: "none" }} />
         </Command>
       </DialogContent>
     </Dialog>
@@ -58,12 +61,28 @@ function CommandInput({
   className,
   ...props
 }: React.ComponentProps<typeof CommandPrimitive.Input>) {
+  const [value, setValue] = React.useState("");
+
+  const handleClear = () => {
+    setValue("");
+  };
+
+  function buttonVariants(arg0: {
+    variant: string;
+    size: string;
+    colorScheme: string;
+  }): import("clsx").ClassValue {
+    throw new Error("Function not implemented.");
+  }
+
   return (
     <div data-slot="command-input-wrapper" className="relative my-2 px-3">
       <CommandPrimitive.Input
+        value={value}
+        onValueChange={setValue}
         data-slot="command-input"
         className={cn(
-          "file:text-foreground placeholder:text-muted-foreground selection:bg-primary selection:text-primary-foreground dark:bg-input/30 flex h-10 w-full min-w-0 rounded-sm border bg-white py-1 pr-3 pl-9 text-base transition-[color,box-shadow] outline-none file:inline-flex file:h-7 file:border-0 file:bg-transparent file:text-sm file:font-medium disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 md:text-sm",
+          "file:text-foreground placeholder:text-muted-foreground selection:bg-primary selection:text-primary-foreground dark:bg-input/30 flex h-8 w-full min-w-0 rounded-sm border bg-white py-1 pr-10 pl-9 text-base transition-[color,box-shadow] outline-none file:inline-flex file:h-7 file:border-0 file:bg-transparent file:text-sm file:font-medium disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 md:text-sm",
           "aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive",
           "text-md font-regular placeholder-blackAlpha-400 rounded-md border-1 focus:border",
           className
@@ -75,6 +94,17 @@ function CommandInput({
         size={0.9}
         className="absolute top-1/2 left-6 shrink-0 -translate-y-1/2 opacity-50"
       />
+      {value && (
+        <Button
+          onClick={handleClear}
+          variant="ghost"
+          size="icon"
+          colorScheme="neutral"
+          className="absolute top-1/2 right-4 -translate-y-1/2 text-gray-400 hover:text-gray-600 focus:outline-none"
+        >
+          <Icon path={mdiClose} size={0.9} />
+        </Button>
+      )}
     </div>
   );
 }

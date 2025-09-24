@@ -13,11 +13,11 @@ import {
 } from "@/components/ui/command";
 import {
   mdiCalendarBlankOutline,
-  mdiCalculator,
-  mdiCreditCardCheckOutline,
-  mdiCog,
   mdiEmoticonHappyOutline,
   mdiAccountOutline,
+  mdiCalculatorVariantOutline,
+  mdiCreditCardOutline,
+  mdiCogOutline,
 } from "@mdi/js";
 import Icon from "@mdi/react";
 
@@ -59,7 +59,7 @@ const CommandDemo = () => {
                   <span>Search Emoji</span>
                 </CommandItem>
                 <CommandItem>
-                  <Icon path={mdiCalculator} />
+                  <Icon path={mdiCalculatorVariantOutline} />
                   <span>Calculator</span>
                 </CommandItem>
               </CommandGroup>
@@ -71,12 +71,12 @@ const CommandDemo = () => {
                   <CommandShortcut>⌘P</CommandShortcut>
                 </CommandItem>
                 <CommandItem>
-                  <Icon path={mdiCreditCardCheckOutline} />
+                  <Icon path={mdiCreditCardOutline} />
                   <span>Billing</span>
                   <CommandShortcut>⌘B</CommandShortcut>
                 </CommandItem>
                 <CommandItem>
-                  <Icon path={mdiCog} />
+                  <Icon path={mdiCogOutline} />
 
                   <span>Settings</span>
                   <CommandShortcut>⌘S</CommandShortcut>
