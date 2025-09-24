@@ -28,7 +28,7 @@ This Code of Conduct applies to all interactions within the Blok CN community in
 
 ## Reporting
 
-If you experience or witness any behavior that violates this Code of Conduct, please report it promptly. Reports can be submitted by contacting `{{ An email to reach out }}` or through `{{ A link to a reporting channel }}`. All reports will be treated confidentially to the extent possible and without retaliation.
+If you experience or witness any behavior that violates this Code of Conduct, please report it promptly. All reports will be treated confidentially to the extent possible and without retaliation.
 
 ## Enforcement
 
