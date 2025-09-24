@@ -5,14 +5,22 @@ export const textarea = {
   name: "textarea",
   components: {
     // Basic textarea
-    Basic: <Textarea placeholder="Type your message here." />,
+    Basic: (
+      <div className="m-2">
+        <Textarea placeholder="Type your message here." />
+      </div>
+    ),
     
     // Invalid state
-    Invalid: <Textarea placeholder="Type your message here." aria-invalid="true" />,
+    Invalid: (
+      <div className="m-2">
+        <Textarea placeholder="Type your message here." aria-invalid="true" />
+      </div>
+    ),
     
     // With label
     WithLabel: (
-      <div className="grid gap-3">
+      <div className="grid gap-3 m-2">
         <Label htmlFor="textarea-demo-message">Message</Label>
         <Textarea
           id="textarea-demo-message"
@@ -24,7 +32,7 @@ export const textarea = {
     
     // With label and description
     WithLabelAndDescription: (
-      <div className="grid gap-3">
+      <div className="grid gap-3 m-2">
         <Label htmlFor="textarea-demo-message-2">
           Message
         </Label>
@@ -41,7 +49,7 @@ export const textarea = {
     
     // Disabled state
     Disabled: (
-      <div className="grid gap-3">
+      <div className="grid gap-3 m-2">
         <Label htmlFor="textarea-demo-disabled">Disabled Textarea</Label>
         <Textarea
           id="textarea-demo-disabled"
@@ -53,7 +61,7 @@ export const textarea = {
     
     // Small size
     Small: (
-      <div className="grid gap-3">
+      <div className="grid gap-3 m-2">
         <Label htmlFor="small-textarea">Small (3 rows)</Label>
         <Textarea
           id="small-textarea"
@@ -66,7 +74,7 @@ export const textarea = {
     
     // Large size
     Large: (
-      <div className="grid gap-3">
+      <div className="grid gap-3 m-2">
         <Label htmlFor="large-textarea">Large (8 rows)</Label>
         <Textarea
           id="large-textarea"
@@ -79,7 +87,7 @@ export const textarea = {
     
     // With default value
     WithDefaultValue: (
-      <div className="grid gap-3">
+      <div className="grid gap-3 m-2">
         <Label htmlFor="textarea-with-value">Pre-filled Textarea</Label>
         <Textarea
           id="textarea-with-value"
