@@ -1,5 +1,5 @@
 <div align="left">
-  <img src="https://delivery-sitecore.sitecorecontenthub.cloud/api/public/content/mark-blok" alt="Blok Design System" width="200" />
+  <img src="https://delivery-sitecore.sitecorecontenthub.cloud/api/public/content/logo-blok-dark" alt="Blok Design System" width="200" />
 </div>
 
   [![GitHub license](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](https://github.com/sitecore/blok/blob/main/LICENSE.md)
