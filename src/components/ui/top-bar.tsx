@@ -25,7 +25,7 @@ export default function Topbar() {
             <span className="text-xl font-bold text-red-500">
               <img
                 alt="Logo"
-                className="rounded-md object-cover object-left p-1"
+                className="flex-shrink-0 flex-grow-0 rounded-md object-cover object-left p-1"
                 src="https://delivery-sitecore.sitecorecontenthub.cloud/api/public/content/logo-sitecore"
               />
             </span>
@@ -33,7 +33,7 @@ export default function Topbar() {
         </div>
 
         {/* Navigation Menu */}
-        <NavigationMenu className="ml-6">
+        <NavigationMenu className="ml-6 md:inline-flex hidden">
           <NavigationMenuList>
             <NavigationMenuItem>
               <NavigationMenuLink
