@@ -1,7 +1,17 @@
 "use client";
 
 import React from "react";
-import { Auth0Provider, useAuth0 } from "@auth0/auth0-react";
+import {
+  Auth0Provider,
+  GetTokenSilentlyOptions,
+  useAuth0,
+  Auth0ContextInterface,
+  withAuthenticationRequired,
+} from "@auth0/auth0-react";
+
+export const WithAuth = withAuthenticationRequired(
+  ({ children }: { children: React.ReactNode }) => children
+);
 
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const authParams = {
@@ -28,23 +38,28 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         ...authParams,
       }}
     >
-      {children}
+      <WithAuth>{children}</WithAuth>
     </Auth0Provider>
   );
 };
 
-export const useAuth = () => {
+export const useAuth = (): Auth0ContextInterface => {
   const { getAccessTokenSilently, ...rest } = useAuth0();
-  // custom getAccessTokenSilently to add organization_id and tenant_id
-  // required for refresh token flow
-  const customGetAccessTokenSilently = async () => {
-    const token = await getAccessTokenSilently({
+
+  const customGetAccessTokenSilently = (options?: GetTokenSilentlyOptions) => {
+    return getAccessTokenSilently({
+      ...options,
       authorizationParams: {
+        ...options?.authorizationParams,
         organization_id: process.env.NEXT_PUBLIC_SITECORE_ORGANIZATION_ID,
         tenant_id: process.env.NEXT_PUBLIC_SITECORE_TENANT_ID,
       },
     });
-    return token;
   };
-  return { ...rest, getAccessTokenSilently: customGetAccessTokenSilently };
+
+  return {
+    ...rest,
+    getAccessTokenSilently:
+      customGetAccessTokenSilently as Auth0ContextInterface["getAccessTokenSilently"],
+  };
 };
