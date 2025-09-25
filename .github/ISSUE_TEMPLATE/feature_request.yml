@@ -1,0 +1,158 @@
+name: Feature Request
+description: Suggest a new feature or enhancement for Blok
+title: "[Feature]: "
+labels: ["enhancement", "needs-triage"]
+assignees: []
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for suggesting a new feature! Please provide as much detail as possible to help us understand your request.
+
+  - type: dropdown
+    id: feature-type
+    attributes:
+      label: Feature Type
+      description: What type of feature are you requesting?
+      options:
+        - "New UI Component"
+        - "Component Enhancement"
+        - "Theme/Design System"
+        - "Developer Experience"
+        - "Documentation"
+        - "Performance"
+        - "Accessibility"
+        - "Integration (v0, MCP, etc.)"
+        - "Other"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: priority
+    attributes:
+      label: Priority
+      description: How important is this feature to you?
+      options:
+        - "Critical - Blocking my project"
+        - "High - Would significantly improve my workflow"
+        - "Medium - Nice to have"
+        - "Low - Minor improvement"
+    validations:
+      required: true
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem Statement
+      description: What problem does this feature solve?
+      placeholder: |
+        Is your feature request related to a problem? Please describe.
+        A clear and concise description of what the problem is.
+        Ex. I'm always frustrated when [...]
+    validations:
+      required: true
+
+  - type: textarea
+    id: solution
+    attributes:
+      label: Proposed Solution
+      description: Describe the solution you'd like
+      placeholder: |
+        A clear and concise description of what you want to happen.
+        Include any specific requirements or constraints.
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternative Solutions
+      description: Describe any alternative solutions you've considered
+      placeholder: |
+        A clear and concise description of any alternative solutions 
+        or features you've considered.
+
+  - type: textarea
+    id: use-cases
+    attributes:
+      label: Use Cases
+      description: Describe specific use cases for this feature
+      placeholder: |
+        - Use case 1: [Description]
+        - Use case 2: [Description]
+        - Use case 3: [Description]
+
+  - type: textarea
+    id: mockups
+    attributes:
+      label: Mockups/Examples
+      description: If applicable, add mockups, screenshots, or examples
+      placeholder: |
+        If you have any mockups, screenshots, or examples from other libraries,
+        please share them here. You can drag and drop images or paste links.
+
+  - type: textarea
+    id: code-example
+    attributes:
+      label: Code Example
+      description: If applicable, show how you'd like to use this feature
+      render: typescript
+      placeholder: |
+        ```tsx
+        // Example of how you'd like to use the new feature
+        import { NewComponent } from "@/components/ui/new-component"
+        
+        export function MyComponent() {
+          return (
+            <NewComponent 
+              prop1="value"
+              prop2={true}
+            >
+              Content here
+            </NewComponent>
+          )
+        }
+        ```
+
+  - type: textarea
+    id: accessibility
+    attributes:
+      label: Accessibility Considerations
+      description: Any accessibility requirements or considerations
+      placeholder: |
+        - Keyboard navigation requirements
+        - Screen reader support needs
+        - Color contrast considerations
+        - Other accessibility requirements
+
+  - type: textarea
+    id: breaking-changes
+    attributes:
+      label: Breaking Changes
+      description: Would this feature require breaking changes?
+      placeholder: |
+        - Would this require changes to existing APIs?
+        - Would this affect existing components?
+        - Any migration considerations?
+
+  - type: textarea
+    id: additional
+    attributes:
+      label: Additional Context
+      description: Add any other context about the feature request here
+      placeholder: Any additional information that might be helpful...
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Checklist
+      description: Please confirm the following
+      options:
+        - label: I have searched existing issues to ensure this is not a duplicate
+          required: true
+        - label: I have provided a clear problem statement and proposed solution
+          required: true
+        - label: I have considered the impact on existing users
+          required: true
+        - label: I am willing to help implement this feature if needed
+          required: false

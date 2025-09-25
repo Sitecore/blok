@@ -1,0 +1,80 @@
+name: Component Request
+description: Request a new UI component to be added to Blok
+title: "[Component]: "
+labels: ["component-request", "needs-triage"]
+assignees: []
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for requesting a new component! Please provide detailed information about the component you'd like to see added to Blok.
+
+  - type: input
+    id: component-name
+    attributes:
+      label: Component Name
+      description: What should this component be called?
+      placeholder: e.g., "Data Table", "Timeline", "Stepper"
+    validations:
+      required: true
+
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Component Description
+      description: Describe what this component does and its purpose
+      placeholder: |
+        A clear and concise description of what this component should do.
+        What problem does it solve? What functionality should it provide?
+    validations:
+      required: true
+
+  - type: textarea
+    id: use-cases
+    attributes:
+      label: Use Cases
+      description: Describe specific use cases for this component
+      placeholder: |
+        - Use case 1: [Detailed description]
+        - Use case 2: [Detailed description]
+        - Use case 3: [Detailed description]
+    validations:
+      required: true
+
+  - type: textarea
+    id: examples
+    attributes:
+      label: Examples & References
+      description: Provide examples from other libraries or design systems
+      placeholder: |
+        Please provide links to or descriptions of similar components from:
+        - Other UI libraries (Material-UI, Ant Design, Chakra UI, etc.)
+        - Design systems (Fluent UI, Carbon, etc.)
+        - Popular websites or applications
+        - Include screenshots or links if possible
+
+
+  - type: textarea
+    id: additional
+    attributes:
+      label: Additional Context
+      description: Any other information about this component request
+      placeholder: |
+        - Priority level
+        - Timeline requirements
+        - Related components
+        - Any other considerations
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Checklist
+      description: Please confirm the following
+      options:
+        - label: I have searched existing issues to ensure this component doesn't already exist
+          required: true
+        - label: I have provided clear use cases and examples
+          required: true
+        - label: I am willing to help with implementation or testing
+          required: false
