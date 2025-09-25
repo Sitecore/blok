@@ -1,6 +1,7 @@
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { Button } from "@/components/ui/button";
 import { ClosableAlert } from "@/app/demo/[name]/ui/alert-closable";
+import { ButtonLinkAlert } from "./alert-button-Link";
 
 export const alert = {
   name: "alert",
@@ -14,18 +15,7 @@ export const alert = {
       </Alert>
     ),
     PrimaryClosable: <ClosableAlert variantProp="primary" />,
-    PrimaryLinkBtn: (
-      <Alert variant="primary">
-        <AlertTitle>Closable Alert</AlertTitle>
-        <AlertDescription>
-          This is a primary alert with a title and description and even a close
-          button.
-          <Button size="sm" variant="link" className="p-0">
-            Click
-          </Button>
-        </AlertDescription>
-      </Alert>
-    ),
+    PrimaryLinkBtn: <ButtonLinkAlert variantProp="primary" />,
     Success: (
       <Alert variant="success">
         <AlertTitle>Success Alert</AlertTitle>
@@ -35,6 +25,7 @@ export const alert = {
       </Alert>
     ),
     SuccessClosable: <ClosableAlert variantProp="success" />,
+    SuccessLinkBtn: <ButtonLinkAlert variantProp="success" />,
     Danger: (
       <Alert variant="danger">
         <AlertTitle>Danger Alert</AlertTitle>
@@ -44,6 +35,7 @@ export const alert = {
       </Alert>
     ),
     DangerClosable: <ClosableAlert variantProp="danger" />,
+    DangerLinkBtn: <ButtonLinkAlert variantProp="danger" />,
     Warning: (
       <Alert variant="warning">
         <AlertTitle>Warning Alert</AlertTitle>
@@ -53,6 +45,8 @@ export const alert = {
       </Alert>
     ),
     WarningClosable: <ClosableAlert variantProp="warning" />,
+    WarningLinkBtn: <ButtonLinkAlert variantProp="warning" />,
+    
     Descriptive: (
       <Alert variant="primary">
         <AlertTitle>
