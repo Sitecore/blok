@@ -25,14 +25,16 @@ import { cn } from "../../lib/utils"
 import {
   addedContextAtom,
   brainstormingAtom,
+  chatIdAtom,
   configAtom,
   isBrainstormingActiveAtom,
   isChatActionPendingAtom,
   isLoadingAtom,
+  isNewChatAtom,
   postChatGenerateBodyAtom,
-  sessionAtom,
 } from "../chat/store/atoms"
 import { useAiChatProvider } from "./hooks/useAiChatProvider"
+import { useChatProvider } from "./hooks/useChatProvider"
 import { useEnterSubmit } from "./hooks/useEnterSubmit"
 import { useImageDropzone } from "./hooks/useImageDropzone"
 import { useLocalStorage } from "./hooks/useLocalStorage"
@@ -61,12 +63,17 @@ export function PromptForm({
   onFileUpload,
   onClearFiles,
 }: PromptFormProps) {
-  const { input, handleSubmit, handleInputChange, rollbackChatChanges } =
-    useAiChatProvider()
-  const [session, setSession] = useAtom(sessionAtom)
+  const { session } = useChatProvider()
+  const {
+    input,
+    handleSubmit,
+    handleInputChange,
+    rollbackChatChanges,
+    brandkitId,
+  } = useAiChatProvider()
   const { formRef, onKeyDown } = useEnterSubmit()
   const [isMultiline, setIsMultiline] = useState(false)
-  const { brandkit } = useBrandkitById(session.brandkitId, {
+  const { brandkit } = useBrandkitById(brandkitId, {
     organizationId: session.orgId,
     includeDeleted: true,
   })
@@ -86,6 +93,8 @@ export function PromptForm({
   const setChatBodyAtom = useSetAtom(postChatGenerateBodyAtom)
   const [addedContext, setAddedContext] = useAtom(addedContextAtom)
   const config = useAtomValue(configAtom)
+  const [chatId, setChatId] = useAtom(chatIdAtom)
+  const setIsNewChat = useSetAtom(isNewChatAtom)
 
   /* Computed */
   const isProcessingAllChanges = Object.values(isProcessing).some((v) => v)
@@ -97,7 +106,7 @@ export function PromptForm({
     referencesArr.current
   )
 
-  const isBrandkitIdAvailable = !!session.brandkitId?.length
+  const isBrandkitIdAvailable = !!brandkitId?.length
   const isPromptDisabled =
     !isBrandkitIdAvailable ||
     isLoading ||
@@ -136,7 +145,7 @@ export function PromptForm({
       content: input,
       references: [
         ...ReferencesBuilder({ orgId: session.orgId, userId: session.userId })
-          .addBrandkit({ id: session.brandkitId!, isArtefact: false })
+          .addBrandkit({ id: brandkitId!, isArtefact: false })
           .build(),
         ...referencesArr.current,
       ],
@@ -153,9 +162,9 @@ export function PromptForm({
   const handleOnSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
 
-    if (!session.brandkitId || !input) return
+    if (!brandkitId || !input) return
 
-    if (!session.chatId) {
+    if (!chatId) {
       setLocalStorageRefs(referencesArr.current)
       setIsChatActionPending(true)
 
@@ -173,18 +182,15 @@ export function PromptForm({
                   orgId: session.orgId,
                   userId: session.userId,
                 })
-                  .addBrandkit({ id: session.brandkitId, isArtefact: false })
+                  .addBrandkit({ id: brandkitId, isArtefact: false })
                   .build() as never,
               },
             }
           )
-        setChatData(() =>
-          setSession((prev) => ({
-            ...prev,
-            chatId: data?.id as string,
-            isNewChat: true,
-          }))
-        )
+        setChatData(() => {
+          setChatId(data?.id as string)
+          setIsNewChat(true)
+        })
         return
       } catch (error: unknown) {
         const { response } = error as HTTPError
@@ -207,7 +213,7 @@ export function PromptForm({
   }
 
   const onStopGeneration = () => {
-    if (!session.chatId) return
+    if (!chatId) return
 
     rollbackChatChanges()
   }
@@ -348,6 +354,7 @@ export function PromptForm({
                 <Button
                   onClick={handleBrainstormingOnClick}
                   variant={"outline"}
+                  className={cn("", isBrainstormingActive && "bg-primary-200")}
                 >
                   <Icon path={mdiTextLong} size={"2xs"} />{" "}
                   <span>Brainstorming</span>

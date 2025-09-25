@@ -5,13 +5,14 @@ import {
   ContentModelRead,
   ListUserChatMessagesModelResponseV2,
 } from "@sitecore/stream-ui-core"
-import { useAtomValue, useSetAtom } from "jotai"
+import { useSetAtom } from "jotai"
 
 import { Button } from "@/registry/new-york/ui/button"
 
 import { Icon } from "../chat/Icon"
-import { postChatGenerateBodyAtom, sessionAtom } from "../chat/store/atoms"
+import { postChatGenerateBodyAtom } from "../chat/store/atoms"
 import { useAiChatProvider } from "./hooks/useAiChatProvider"
+import { useChatProvider } from "./hooks/useChatProvider"
 import { MessageFeedback } from "./MessageFeedback"
 import { MessageAnnotation } from "./types"
 import { ReferencesBuilder } from "./utils/referencesBuilder"
@@ -35,11 +36,11 @@ export function Feedback({
   isLastMessage,
 }: FeedbackProps): React.ReactNode {
   /* Hooks */
-  const { setInput, handleSubmit, input } = useAiChatProvider()
+  const { session } = useChatProvider()
+  const { setInput, handleSubmit, input, brandkitId } = useAiChatProvider()
   const [searchWeb, setSearchWeb] = useState(false)
 
   /* Atoms */
-  const session = useAtomValue(sessionAtom)
   const setChatBodyAtom = useSetAtom(postChatGenerateBodyAtom)
 
   /* Computed */
@@ -69,7 +70,7 @@ export function Feedback({
       content: prompt,
       references: [
         ...ReferencesBuilder({ orgId: session.orgId, userId: session.userId })
-          .addBrandkit({ id: session.brandkitId, isArtefact: false })
+          .addBrandkit({ id: brandkitId, isArtefact: false })
           .build(),
       ],
       mode: "web_search",

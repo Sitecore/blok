@@ -921,6 +921,12 @@ export const blocks: Registry["items"] = [
           "components/stream-components/blocks/chat/hooks/useScrollAnchor.tsx",
       },
       {
+        path: "stream/blocks/chat/hooks/useChatProvider.tsx",
+        type: "registry:hook",
+        target:
+          "components/stream-components/blocks/chat/hooks/useChatProvider.tsx",
+      },
+      {
         path: "stream/blocks/chat/hooks/useAiChatProvider.tsx",
         type: "registry:hook",
         target:
@@ -1045,9 +1051,9 @@ export const blocks: Registry["items"] = [
         target: "components/stream-components/hooks/use-brandkits.ts",
       },
       {
-        path: "stream/hooks/use-chat-id.ts",
+        path: "stream/hooks/use-chat.ts",
         type: "registry:component",
-        target: "components/stream-components/hooks/use-chat-id.ts",
+        target: "components/stream-components/hooks/use-chat.ts",
       },
       {
         path: "stream/hooks/use-contenthub-brandkits.ts",

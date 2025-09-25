@@ -29,7 +29,7 @@ import { cn } from "../../../lib/utils"
 import { Icon } from "../Icon"
 import { RectangleStar } from "../icons/RectangleStar"
 import { Spinner } from "../Spinner"
-import { artifactsAtom, isLoadingAtom, sessionAtom } from "../store/atoms"
+import { artifactsAtom, chatIdAtom, isLoadingAtom } from "../store/atoms"
 import { firstCharToUpperCase } from "../utils"
 
 export interface PreviewAsideVersions {
@@ -95,7 +95,7 @@ export function PreviewAside({
   /* Atoms */
   const isLoading = useAtomValue(isLoadingAtom)
   const [artifacts, setArtifacts] = useAtom(artifactsAtom)
-  const session = useAtomValue(sessionAtom)
+  const chatId = useAtomValue(chatIdAtom)
 
   /* Computed */
   const areVersionsAvailable = !!versions?.available?.length
@@ -103,10 +103,7 @@ export function PreviewAside({
     document.getElementById("artifactsPortalPlaceholder") ?? ({} as HTMLElement)
   const isPortalPlaceHolderAvailable = !!Object.keys(portalPlaceHolder).length
   const isArtifactOpenWhileGenerating =
-    !mounted.current &&
-    session.chatId &&
-    isLoading &&
-    !(artifactId in artifacts)
+    !mounted.current && chatId && isLoading && !(artifactId in artifacts)
   const _isPreview = isPreview ?? !artifacts?.[artifactId]?.open
 
   /* Keep open if the last artifact to be rendered in the chat */

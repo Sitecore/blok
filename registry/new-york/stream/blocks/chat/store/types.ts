@@ -45,13 +45,10 @@ export type UserChatParams = UseChatHelpers & {
 export interface Session {
   orgId: string
   userId: string
-  brandkitId: string
-  chatId: string
   region: string
   env: "dev" | "qa" | "staging" | "preprod" | "prod"
   token: string
   apiEnv?: string
-  isNewChat?: boolean
 }
 
 export interface Config {

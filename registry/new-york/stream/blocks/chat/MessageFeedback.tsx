@@ -22,8 +22,9 @@ import {
 import { cn } from "../../lib/utils"
 import { StreamIcon } from "../../ui/stream-icon"
 import { ActionModal } from "./ActionModal"
+import { useChatProvider } from "./hooks/useChatProvider"
 import { SourceItem } from "./SourceItem"
-import { extractSourcesFromDataAtom, sessionAtom } from "./store/atoms"
+import { chatIdAtom, extractSourcesFromDataAtom } from "./store/atoms"
 import { ExtractSourceProps, HTTPValidationError } from "./types"
 import {
   createSources,
@@ -48,6 +49,8 @@ export function MessageFeedback({
   messageId,
   message,
 }: MessageFeedbackProps): React.ReactNode {
+  /* Hooks */
+  const { session } = useChatProvider()
   const [rollbackFeedback, setRollbackFeedback] =
     useState<FeedbackModel | null>(message?.feedback ?? null)
   const [feedback, setFeedback] = useState<FeedbackModel | null>(
@@ -56,7 +59,7 @@ export function MessageFeedback({
 
   /* Atoms */
   const extractSourcesFromData = useAtomValue(extractSourcesFromDataAtom)
-  const session = useAtomValue(sessionAtom)
+  const chatId = useAtomValue(chatIdAtom)
 
   /* Computed */
   const parts = message?.parts as ToolInvocationUIPart[]
@@ -93,14 +96,14 @@ export function MessageFeedback({
             path: {
               messageId,
               userId: session.userId,
-              chatId: session.chatId,
+              chatId,
               organizationId: session.orgId,
             },
           }
         )
 
       const patchMessageRes = await fetch(
-        `https://ai-chat-api-${session.apiEnv}/api/chats/v2/organizations/${session.orgId}/users/${session.userId}/chats/${session.chatId}/messages/${messageId}`,
+        `https://ai-chat-api-${session.apiEnv}/api/chats/v2/organizations/${session.orgId}/users/${session.userId}/chats/${chatId}/messages/${messageId}`,
         {
           method: "PATCH",
           body: JSON.stringify({

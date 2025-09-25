@@ -9,24 +9,15 @@ import {
   BrandKitDetailsModalStateOptions,
   Config,
   IsMessageAlreadyGeneratedProps,
-  Session,
 } from "./types"
-
-export const sessionAtom = atom<Session>({
-  chatId: "",
-  brandkitId: "",
-  orgId: "",
-  userId: "",
-  env: "dev",
-  region: "euw",
-  token: "",
-  apiEnv: "",
-  isNewChat: false,
-})
 
 export const configAtom = atom<Config>()
 
 export const brandkitIdAtom = atom<string>("")
+
+export const chatIdAtom = atom<string>("")
+
+export const isNewChatAtom = atom<boolean>(false)
 
 export const currentStreamingChatIdAtom = atom<string>("")
 

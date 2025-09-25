@@ -3,11 +3,12 @@ import { useAtomValue, useSetAtom } from "jotai"
 import { isEmpty } from "lodash"
 
 import { Reveal } from "../../artifacts/Reveal"
+import { useChatProvider } from "../../hooks/useChatProvider"
 import {
+  chatIdAtom,
   extractSourcesFromDataAtom,
   isLoadingAtom,
   isMessageAlreadyGeneratedAtom,
-  sessionAtom,
 } from "../../store/atoms"
 import { ToolProps } from "../../types"
 import { extractBrandkitSourcesFromWorkflow } from "../../utils"
@@ -30,6 +31,7 @@ export function Brainstorming(props: ToolProps): React.ReactNode {
   const brainstormId = args?.data?.id
 
   /* Hooks */
+  const { session } = useChatProvider()
   const mounted = useRef<boolean>(false)
   const workflowItems = useRef<WorkflowItem[]>([])
 
@@ -39,13 +41,13 @@ export function Brainstorming(props: ToolProps): React.ReactNode {
   )
   const isLoading = useAtomValue(isLoadingAtom)
   const setExtractSourcesFromData = useSetAtom(extractSourcesFromDataAtom)
-  const session = useAtomValue(sessionAtom)
+  const chatId = useAtomValue(chatIdAtom)
 
   /* Computed */
   const isWorkflowAvailable = !!args?.result?.workflow?.length
   const isBlogAvailable = !!args?.result?.output?.length
   const canRender =
-    !!session.chatId.length && !mounted.current && !isEmpty(args?.result)
+    !!chatId.length && !mounted.current && !isEmpty(args?.result)
   const hasLatestData = !isLoading && brainstormId && messageId
 
   const handleAddBrandkitSectionsSourcesToWorkflow = useCallback(async () => {

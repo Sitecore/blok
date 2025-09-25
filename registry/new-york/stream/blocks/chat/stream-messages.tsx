@@ -6,26 +6,30 @@ import React, {
   useCallback,
   useEffect,
   useMemo,
+  useRef,
 } from "react"
 import { UIMessage } from "@ai-sdk/ui-utils"
 import { useChat, UseChatHelpers } from "ai/react"
 import { useAtom, useAtomValue, useSetAtom } from "jotai"
 import { toast } from "sonner"
 
+import { useChatProvider } from "./hooks/useChatProvider"
 import { Messages } from "./Messages"
 import {
   apiQueueAtom,
   artifactsAtom,
   brainstormingAtom,
+  brandkitIdAtom,
+  chatIdAtom,
   configAtom,
   hasErrorAtom,
   isBrainstormingActiveAtom,
   isChatActionPendingAtom,
   isLoadingAtom,
+  isNewChatAtom,
   messagesIdsAtom,
   postChatGenerateBodyAtom,
   selectedChatWithIdAtom,
-  sessionAtom,
 } from "./store/atoms"
 import { Session } from "./store/types"
 import { MessageAnnotation, ResetSelections, SelectionValues } from "./types"
@@ -43,9 +47,15 @@ import { Message } from "ai"
 import { last } from "lodash"
 
 import { useGetChatMessages } from "../../hooks/use-get-chat-messages"
-import { Artifacts } from "../chat/store/types"
+import { Artifacts } from "./store/types"
+
+export type ChatContextType = {
+  session: Session
+}
 
 export type VercelAiUiProviderType = UseChatHelpers & {
+  brandkitId: string
+  chatId: string
   addToolResult: ({
     toolCallId,
     result,
@@ -60,6 +70,7 @@ export type VercelAiUiProviderType = UseChatHelpers & {
   reset: (selections: ResetSelections) => void
 }
 
+export const ChatContext = createContext<ChatContextType | undefined>(undefined)
 export const VercelAiUiContext = createContext<
   VercelAiUiProviderType | undefined
 >(undefined)
@@ -89,24 +100,18 @@ type ExamplePrompt = {
   content: string
 }
 
+export interface ChatProps {
+  session: Omit<Session, "apiEnv">
+  children?: React.ReactNode
+}
+
 /**
  * Props for the StreamMessages component.
  */
 export interface StreamMessagesProps {
-  /**
-   * Session configuration containing user and organization information for chat functionality.
-   * @example {
-   *   brandkitId: '2f669d68-d5ab-4664-944a-b1504a1a2a6c',
-   *   userId: 'auth0|1234567890',
-   *   orgId: 'org_b07iKFjB2zYhi49p',
-   *   chatId: 'e092c859-fce8-49be-b916-bf84477659d8',
-   *   region: 'euw',
-   *   env: 'dev',
-   *   token: 'your-auth-token-here'
-   * }
-   */
-  session: Omit<Session, "apiEnv" | "isNewChat">
-
+  brandkitId: string
+  chatId: string
+  isNewChat: boolean
   /**
    * Initial prompt to display in the chat interface.
    * @example "Generate a creative brief for a new product launch"
@@ -143,6 +148,16 @@ export interface StreamMessagesProps {
      */
     examplePrompts?: ExamplePrompt[]
   }
+}
+
+export function Chat({ session, children }: ChatProps) {
+  const apiEnv = `${session.region}${baseUrlEnv[session.env]}`
+
+  return (
+    <ChatContext.Provider value={{ session: { ...session, apiEnv } }}>
+      {children}
+    </ChatContext.Provider>
+  )
 }
 
 /**
@@ -206,39 +221,47 @@ export interface StreamMessagesProps {
  * with the Vercel AI SDK for chat functionality.
  */
 function StreamMessages({
-  session,
+  brandkitId,
+  chatId,
   prompt,
   config,
+  isNewChat,
 }: StreamMessagesProps): JSX.Element {
   /* Atoms */
   const chatBodyAtom = useAtomValue(postChatGenerateBodyAtom)
   const setMessageIds = useSetAtom(messagesIdsAtom)
   const [isLoading, setIsLoading] = useAtom(isLoadingAtom)
-  const [_session, setSession] = useAtom(sessionAtom)
   const setBrainstormingData = useSetAtom(brainstormingAtom)
   const setIsBrainstormingActive = useSetAtom(isBrainstormingActiveAtom)
-  const setConfig = useSetAtom(configAtom)
+  const [_config, setConfig] = useAtom(configAtom)
 
   /* Hooks */
-  const getChatMessages = useGetChatMessages(_session.orgId, _session.userId)
+  const { session } = useChatProvider()
+  const getChatMessages = useGetChatMessages(session.orgId, session.userId)
   const setApiQueue = useSetAtom(apiQueueAtom)
   const setArtifacts = useSetAtom(artifactsAtom)
   const setSelectedChatWithId = useSetAtom(selectedChatWithIdAtom)
   const setIsChatActionPending = useSetAtom(isChatActionPendingAtom)
   const setHasError = useSetAtom(hasErrorAtom)
+  const [_isNewChat, setIsNewChat] = useAtom(isNewChatAtom)
+  const [_chatId, setChatId] = useAtom(chatIdAtom)
+  const [_brandkitId, setBrandkitId] = useAtom(brandkitIdAtom)
+  const brandkitIdRef = useRef("")
+  const chatIdRef = useRef("")
 
   const {
     isLoading: _isLoading,
     messages,
     setMessages,
     setInput,
+    stop,
     ...chat
   } = useChat({
-    api: `https://ai-chat-api-${_session.region}${baseUrlEnv[_session.env]}/api/chats/v1/organizations/${_session.orgId}/users/${_session.userId}/chats/${_session.chatId}/generatemessage`,
+    api: `https://ai-chat-api-${session.region}${baseUrlEnv[session.env]}/api/chats/v1/organizations/${session.orgId}/users/${session.userId}/chats/${_chatId}/generatemessage`,
     body: chatBodyAtom,
     initialInput: prompt ?? "",
     headers: {
-      Authorization: `Bearer ${_session.token}`,
+      Authorization: `Bearer ${session.token}`,
       "Content-Type": "application/json",
     },
     experimental_throttle: 200,
@@ -252,6 +275,9 @@ function StreamMessages({
       console.error("Error:", error)
     },
   })
+
+  /* Computed */
+  const areMessagesAvailable = !!messages?.length
 
   const reset = useCallback(
     (selections: ResetSelections) => {
@@ -289,7 +315,7 @@ function StreamMessages({
   const initMessages = useCallback(async (): Promise<void> => {
     /* Get messages for a specific chat */
     const messages: ListUserChatMessagesModelResponseV2[] =
-      await getChatMessages(_session.chatId)
+      await getChatMessages(_chatId)
     const dbMessages = dbMessagesToAIMessages(messages) as UIMessage[]
 
     setMessages(dbMessages)
@@ -298,7 +324,7 @@ function StreamMessages({
         return (message?.annotations?.[0] as unknown as MessageAnnotation)?.id
       })
     )
-  }, [_session.chatId, getChatMessages, setMessageIds, setMessages])
+  }, [getChatMessages, _chatId, setMessageIds, setMessages])
 
   const rollbackChatChanges = useCallback(
     async (callbacks?: {
@@ -327,9 +353,9 @@ function StreamMessages({
           await chatApi.deleteUserChatApiChatsV1OrganizationsOrganizationIdUsersUserIdChatsChatIdDelete(
             {
               path: {
-                userId: _session.userId,
-                chatId: _session.chatId,
-                organizationId: _session.orgId,
+                userId: session.userId,
+                chatId: _chatId,
+                organizationId: session.orgId,
               },
             }
           )
@@ -363,9 +389,9 @@ function StreamMessages({
         await chatApi.deleteUserChatMessageApiChatsV1OrganizationsOrganizationIdUsersUserIdChatsChatIdMessagesMessageIdDelete(
           {
             path: {
-              userId: _session.userId,
-              chatId: _session.chatId,
-              organizationId: _session.orgId,
+              userId: session.userId,
+              chatId: _chatId,
+              organizationId: session.orgId,
               messageId,
             },
           }
@@ -384,110 +410,90 @@ function StreamMessages({
       }
     },
     [
-      _session.chatId,
-      _session.orgId,
-      _session.userId,
       initMessages,
       messages,
       reset,
+      _chatId,
+      session.orgId,
+      session.userId,
       setApiQueue,
+      stop,
     ]
   )
 
-  useEffect(
-    function () {
-      const apiEnv = `${_session.region}${baseUrlEnv[_session.env]}`
+  const handleNewChat = useCallback(() => {
+    setIsNewChat(false)
+    setBrainstormingData(undefined)
+    setIsBrainstormingActive(false)
+    setMessages([])
+    setChatId("")
 
-      if (
-        _session.brandkitId !== session.brandkitId ||
-        !session.brandkitId ||
-        !session.chatId
-      ) {
-        setBrainstormingData(undefined)
-        setIsBrainstormingActive(false)
+    if (isLoading) {
+      rollbackChatChanges({
+        onDeleteMessage: () => {
+          setMessages([])
+        },
+      })
+    }
+  }, [
+    isLoading,
+    rollbackChatChanges,
+    setBrainstormingData,
+    setChatId,
+    setIsBrainstormingActive,
+    setIsNewChat,
+    setMessages,
+  ])
 
-        if (isLoading) {
-          rollbackChatChanges({
-            onDeleteMessage: () => {
-              setMessages([])
-            },
-          })
-        }
-      }
+  const updateInternalState = useCallback(() => {
+    if (chatId) setChatId(chatId)
+    if (brandkitId) setBrandkitId(brandkitId)
+    if (isNewChat) {
+      setIsNewChat(isNewChat)
+      handleNewChat()
+    }
+    if (config) setConfig(config)
+    if (_isLoading !== isLoading) setIsLoading(_isLoading)
+  }, [
+    _isLoading,
+    brandkitId,
+    chatId,
+    config,
+    handleNewChat,
+    isLoading,
+    isNewChat,
+    setBrandkitId,
+    setChatId,
+    setConfig,
+    setIsLoading,
+    setIsNewChat,
+  ])
 
-      setSession((prev) => ({ ...prev, ...session, apiEnv }))
-    },
-    [
-      _session.brandkitId,
-      _session.env,
-      _session.region,
-      isLoading,
-      rollbackChatChanges,
-      session,
-      setBrainstormingData,
-      setIsBrainstormingActive,
-      setMessages,
-      setSession,
-    ]
-  )
+  const handleChatInit = useCallback(() => {
+    if (!_chatId) return
+
+    if (_isNewChat) {
+      setIsNewChat(false)
+      chat.handleSubmit()
+      return
+    }
+
+    if (!areMessagesAvailable) {
+      initMessages()
+    }
+  }, [
+    _chatId,
+    _isNewChat,
+    areMessagesAvailable,
+    chat,
+    initMessages,
+    setIsNewChat,
+  ])
 
   useEffect(() => {
-    if (config) {
-      setConfig(config)
-    }
-  }, [config, setConfig])
-
-  useEffect(
-    function () {
-      if (_session.chatId) {
-        if (_session.isNewChat) {
-          setSession((prev) => ({ ...prev, isNewChat: false }))
-          chat.handleSubmit()
-        } else {
-          if (!messages.length) {
-            initMessages()
-          }
-        }
-      }
-    },
-    [
-      _session.chatId,
-      _session.isNewChat,
-      chat,
-      initMessages,
-      messages.length,
-      setSession,
-    ]
-  )
-
-  useEffect(
-    function () {
-      if (_isLoading !== isLoading) setIsLoading(_isLoading)
-    },
-    [_isLoading, isLoading, setIsLoading]
-  )
-
-  useEffect(
-    function () {
-      return function () {
-        if (!session.chatId) {
-          const apiEnv = `${_session.region}${baseUrlEnv[_session.env]}`
-
-          setBrainstormingData(undefined)
-          setIsBrainstormingActive(false)
-          setSession((prev) => ({ ...prev, ...session, apiEnv }))
-        }
-      }
-    },
-    [
-      _session.env,
-      _session.region,
-      session,
-      setBrainstormingData,
-      setIsBrainstormingActive,
-      setSession,
-    ]
-  )
+    updateInternalState()
+    handleChatInit()
+  }, [handleChatInit, updateInternalState])
 
   const context = useMemo(
     () => ({
@@ -498,15 +504,21 @@ function StreamMessages({
       setMessages,
       messages,
       isLoading,
+      stop,
+      brandkitId,
+      chatId,
     }),
     [
+      brandkitId,
       chat,
+      chatId,
       isLoading,
       messages,
       reset,
       rollbackChatChanges,
       setInput,
       setMessages,
+      stop,
     ]
   )
 

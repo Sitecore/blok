@@ -1,7 +1,6 @@
 import { useCallback, useEffect, useState } from "react"
-import { useAtomValue } from "jotai"
 
-import { sessionAtom } from "./store/atoms"
+import { useChatProvider } from "../chat/hooks/useChatProvider"
 
 export interface GetDocumentProxyUrlProps {
   url: string
@@ -10,7 +9,7 @@ export interface GetDocumentProxyUrlProps {
 
 export function GetDocumentProxyUrl({ url, item }: GetDocumentProxyUrlProps) {
   /* Atoms */
-  const session = useAtomValue(sessionAtom)
+  const { session } = useChatProvider()
 
   /* Hooks */
   const [objectUrl, setObjectUrl] = useState<string | undefined>(undefined)
@@ -22,9 +21,7 @@ export function GetDocumentProxyUrl({ url, item }: GetDocumentProxyUrlProps) {
       try {
         const res = await fetch(url, {
           headers: {
-            ...(session?.token
-              ? { Authorization: `Bearer ${session?.token}` }
-              : {}),
+            Authorization: `Bearer ${session?.token}`,
           },
         })
 

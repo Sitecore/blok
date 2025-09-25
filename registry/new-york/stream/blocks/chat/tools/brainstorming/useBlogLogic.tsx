@@ -13,7 +13,7 @@ import {
   brainstorming,
   HTTPError,
 } from "@sitecore/stream-ui-core"
-import { useAtomValue, useSetAtom } from "jotai"
+import { useSetAtom } from "jotai"
 import { omit } from "lodash"
 import { toast } from "sonner"
 
@@ -28,8 +28,9 @@ import {
   PreviewAsideVersions,
   setPreviewAsideMaxVersions,
 } from "../../artifacts/PreviewAside"
+import { useChatProvider } from "../../hooks/useChatProvider"
 import { Icon } from "../../Icon"
-import { apiQueueAtom, sessionAtom } from "../../store/atoms"
+import { apiQueueAtom } from "../../store/atoms"
 import { HTTPValidationError } from "../../types"
 import {
   copyToClipboard,
@@ -106,6 +107,7 @@ export interface UseBlogLogicProps {
 
 export function useBlogLogic(): UseBlogLogicProps {
   /* Hooks */
+  const { session } = useChatProvider()
   const [versions, setVersions] = useState<PreviewAsideVersions>({
     selected: "",
     available: [],
@@ -121,7 +123,6 @@ export function useBlogLogic(): UseBlogLogicProps {
 
   /* Atoms */
   const setApiQueue = useSetAtom(apiQueueAtom)
-  const session = useAtomValue(sessionAtom)
 
   async function handleGetBrainstorm(brainstormId: string): Promise<void> {
     setIsActionPending(true)

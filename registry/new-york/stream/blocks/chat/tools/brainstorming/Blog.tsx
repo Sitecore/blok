@@ -6,7 +6,7 @@ import { Button } from "@/registry/new-york/ui/button"
 import { PreviewAside } from "../../artifacts/PreviewAside"
 import EditCommands from "../../EditCommands"
 import { Markdown } from "../../Markdown"
-import { isLoadingAtom, sessionAtom } from "../../store/atoms"
+import { chatIdAtom, isLoadingAtom } from "../../store/atoms"
 import { ToolProps } from "../../types"
 import { markdownToPlainText, replaceNewLines, saveToDocx } from "../../utils"
 import { useBlogLogic } from "./useBlogLogic"
@@ -42,12 +42,12 @@ export function Blog({
 
   /* Atoms */
   const isLoading = useAtomValue(isLoadingAtom)
-  const session = useAtomValue(sessionAtom)
+  const chatId = useAtomValue(chatIdAtom)
 
   /* Flags */
   const isMainContentAvailable = !!mainContent?.length
   const canRender =
-    !!session.chatId?.length && !mounted.current && isMainContentAvailable
+    !!chatId?.length && !mounted.current && isMainContentAvailable
   const hasLatestData = !isLoading && brainstormId && messageId
 
   /* Effects */
@@ -92,7 +92,7 @@ export function Blog({
         onSelectNewVersion={handleOnSelectNewVersion}
         onClose={() => handleArtifactPanelOnClose(brainstormId)}
         footerContent={{
-          start: <>{quickActions(session.chatId, messageId, brainstormId)}</>,
+          start: <>{quickActions(chatId, messageId, brainstormId)}</>,
           end: (
             <>
               <EditCommands>

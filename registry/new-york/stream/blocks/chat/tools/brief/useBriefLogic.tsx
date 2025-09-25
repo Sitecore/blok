@@ -6,7 +6,7 @@ import {
   ListBriefVersionSectionFieldsResponseModel,
   ListBriefVersionSectionsModel,
 } from "@sitecore/stream-ui-core"
-import { useAtomValue, useSetAtom } from "jotai"
+import { useSetAtom } from "jotai"
 import { cloneDeep, get, omit, pick, set } from "lodash"
 import { toast } from "sonner"
 
@@ -14,7 +14,8 @@ import {
   PreviewAsideVersions,
   setPreviewAsideMaxVersions,
 } from "../../artifacts/PreviewAside"
-import { apiQueueAtom, sessionAtom } from "../../store/atoms"
+import { useChatProvider } from "../../hooks/useChatProvider"
+import { apiQueueAtom } from "../../store/atoms"
 import { HTTPValidationError } from "../../types"
 import {
   copyToClipboard,
@@ -62,6 +63,7 @@ export interface UseBriefLogicProps {
 
 export function useBriefLogic(briefId: string): UseBriefLogicProps {
   /* Hooks */
+  const { session } = useChatProvider()
   const [versions, setVersions] = useState<PreviewAsideVersions>({
     selected: "",
     available: [],
@@ -74,7 +76,6 @@ export function useBriefLogic(briefId: string): UseBriefLogicProps {
 
   /* Atoms */
   const setApiQueue = useSetAtom(apiQueueAtom)
-  const session = useAtomValue(sessionAtom)
 
   const getInitialSectionsLength = useCallback(async () => {
     setApiQueue((prev) => ({ ...prev, getBriefVersionSections: briefId }))
