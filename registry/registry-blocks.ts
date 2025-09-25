@@ -819,6 +819,16 @@ export const blocks: Registry["items"] = [
         target: "components/stream-components/blocks/chat/MessageFeedback.tsx",
       },
       {
+        path: "stream/blocks/chat/EmptyScreen.tsx",
+        type: "registry:component",
+        target: "components/stream-components/blocks/chat/EmptyScreen.tsx",
+      },
+      {
+        path: "stream/blocks/chat/EmptyScreenBoxes.tsx",
+        type: "registry:component",
+        target: "components/stream-components/blocks/chat/EmptyScreenBoxes.tsx",
+      },
+      {
         path: "stream/blocks/chat/MessageSubtitle.tsx",
         type: "registry:component",
         target: "components/stream-components/blocks/chat/MessageSubtitle.tsx",
