@@ -1,0 +1,131 @@
+name: Bug Report
+description: Report a bug or unexpected behavior in Blok components
+title: "[Bug]: "
+labels: ["bug", "needs-triage"]
+assignees: []
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to report a bug! Please fill out the form below to help us understand and reproduce the issue.
+
+  - type: input
+    id: component
+    attributes:
+      label: Affected Component
+      description: Which component is experiencing the bug?
+      placeholder: e.g., "Button", "Dialog", "Theme", "Other"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: severity
+    attributes:
+      label: Severity
+      description: How severe is this bug?
+      options:
+        - "Critical - App breaking"
+        - "High - Major functionality affected"
+        - "Medium - Minor functionality affected"
+        - "Low - Cosmetic issue"
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Bug Description
+      description: A clear and concise description of what the bug is.
+      placeholder: Describe the bug in detail...
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to Reproduce
+      description: Steps to reproduce the behavior
+      placeholder: |
+        1. Go to '...'
+        2. Click on '....'
+        3. Scroll down to '....'
+        4. See error
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected Behavior
+      description: What you expected to happen
+      placeholder: A clear and concise description of what you expected to happen.
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual Behavior
+      description: What actually happened
+      placeholder: A clear and concise description of what actually happened.
+    validations:
+      required: true
+
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      description: Please provide your environment details
+      placeholder: |
+        - OS: [e.g. Windows 11, macOS 14, Ubuntu 22.04]
+        - Browser: [e.g. Chrome 120, Firefox 121, Safari 17]
+        - Node.js version: [e.g. 22.0.0]
+        - Project type: [e.g. Next.js, Create React App, Vite, TanStack, etc.]
+    validations:
+      required: true
+
+  - type: textarea
+    id: code
+    attributes:
+      label: Code Sample
+      description: If applicable, add code samples to help explain your problem
+      render: typescript
+      placeholder: |
+        ```tsx
+        import { Button } from "@/components/ui/button"
+        
+        export function MyComponent() {
+          return (
+            <Button variant="destructive">
+              Click me
+            </Button>
+          )
+        }
+        ```
+
+  - type: textarea
+    id: console
+    attributes:
+      label: Console Errors
+      description: Any console errors or warnings (if applicable)
+      placeholder: Paste any console errors or warnings here...
+
+  - type: textarea
+    id: additional
+    attributes:
+      label: Additional Context
+      description: Add any other context about the problem here
+      placeholder: Any additional information that might be helpful...
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Checklist
+      description: Please confirm the following
+      options:
+        - label: I have searched existing issues to ensure this is not a duplicate
+          required: true
+        - label: I have provided all the required information above
+          required: true
+        - label: I have tested this in a clean environment
+          required: false

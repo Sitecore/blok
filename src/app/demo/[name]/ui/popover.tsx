@@ -19,7 +19,7 @@ export const popover = {
           <PopoverContent className="w-80" align="start">
             <div className="grid gap-4">
               <div className="grid gap-1.5">
-                <h4 className="leading-none font-medium">Dimensions</h4>
+                <h4 className="leading-none font-medium pt-5">Dimensions</h4>
                 <p className="text-muted-foreground text-sm">
                   Set the dimensions for the layer.
                 </p>

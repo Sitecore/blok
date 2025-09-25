@@ -1,99 +1,196 @@
-<a href="https://registry-starter.vercel.app/">
-  <h1 align="center">Registry Starter</h1>
-</a>
+<div align="left">
+  <img src="https://delivery-sitecore.sitecorecontenthub.cloud/api/public/content/logo-blok-dark" alt="Blok Design System" width="200" />
+</div>
 
-<p align="center">
-    Registry Starter is a free, open-source template built with Next.js and Shadcn/ui Registry to accelerate your AI-Native Design System.
-</p>
+  [![GitHub license](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](https://github.com/sitecore/blok/blob/main/LICENSE)
+  [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/sitecore/blok/blob/main/CONTRIBUTING.md)
+</div>
 
-<p align="center">
-  <a href="#deploy-your-own"><strong>Deploy Your Own</strong></a> ·
-  <a href="#open-in-v0"><strong>Open in v0</strong></a> ·
-  <a href="#theming"><strong>Theming</strong></a> ·
-  <a href="#running-locally"><strong>Running Locally</strong></a> ·
-  <a href="#file-structure"><strong>File Structure</strong></a> ·
-  <a href="https://ui.shadcn.com/docs/registry"><strong>Read Docs</strong></a>
-</p>
+
 <br/>
 
-## Deploy Your Own
+# Build better products faster
 
-You can deploy your own version of the Next.js Registry Starter to Vercel with one click:
+Blok is Sitecore's product design system: the UI framework and style guide we use to build great apps. It's publicly available, so that anyone can easily build software in the Sitecore product design language.
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fvercel%2Fregistry-starter&project-name=my-registry&repository-name=my-registry&demo-title=Registry%20Starter&demo-description=Registry%20Starter%20is%20a%20free%2C%20open-source%20template%20built%20with%20Next.js%20and%20Shadcn%2Fui%20Registry%20to%20accelerate%20your%20AI-Native%20Design%20System.&demo-url=https%3A%2F%2Fregistry-starter.vercel.app&demo-image=%2F%2Fregistry-starter.vercel.app%2Fpreview.png)
+## Table of Contents
 
-## Open in v0
+- [Overview](#overview)
+- [Features](#features)
+- [Architecture](#architecture)
+- [Getting Started](#getting-started)
+- [Usage](#usage)
+- [Configurations](#configurations)
+- [Community & Support](#community--support)
+- [Contributing](#contributing)
+- [Acknowledgements](#acknowledgements)
+- [License](#license)
 
-[![Open in v0](https://registry-starter.vercel.app/open-in-v0.svg)](https://v0.dev/chat/api/open?title=Dashboard+Kit&prompt=These+are+existing+design+system+styles+and+files.+Please+utilize+them+alongside+base+components+to+build.&url=https%3A%2F%2Fregistry-starter.vercel.app%2Fr%2Fdashboard.json)
+## Overview
 
-This registry application also exposes `Open in v0` buttons for each component. Once this application is deployed, the
-`Open in v0` button redirects to [`v0.dev`](https://v0.dev) with a prepopulated prompt and a URL pointing back to this
-registry's `/r/${component_name}.json` endpoint. This endpoint will provide v0 the necessary file information, content,
-and metadata to start your v0 chat with your component, theme, and other related code.
+Blok provides a comprehensive design system that includes:
 
-These `/r/${component_name}.json` files are generated using `shadcn/ui` during the `build` and `dev` based on the
-repository's [`registry.json`](./registries/registry.json). For more information, refer to the
-[documentation](https://ui.shadcn.com/docs/registry/registry-json).
+- **Design Tokens**: Colors, typography, icons, logos, illustrations - the raw materials
+- **Components**: Ready-to-use React UI components built with accessibility and consistency in mind
+- **Patterns**: Recommended patterns and compositions built with our components
+- **Best Practices**: Guidelines for writing code and content
+- **Tools**: Developer and designer tools for efficient workflow
 
-## Theming
+This design system is built on top of shadcn/ui and Tailwind CSS, providing a solid foundation while maintaining Sitecore's unique design language.
 
-To use a custom theme for all the components, all you need to do is modify the CSS tokens in
-[`globals.css`](./src/app/globals.css). More information on these practices can be found
-on [ui.shadcn.com/docs](https://ui.shadcn.com/docs).
+**Document site**: https://blok.sitecore.com/beta
 
-#### MCP
+## Features
 
-To use this registry with MCP, you must also edit [`registry.json`](./registries/registry.json)'s first
-`registry-item` named `theme`. This `registry:theme` item not only contains the tailwind configuration, but it also
-contains your design tokens / CSS variables.
+- **Modern Tech Stack** - Built with Next.js, React, TypeScript, and Tailwind CSS
+- **Developer-Friendly** - Easy installation and customization
+- **Type-Safe** - Full TypeScript support
+- **AI-Native** - Compatible with MCP tools
+- **Modular** - Install only the components you need
+- **Customizable** - Easy theming and customization options
 
-The `shadcn/ui` CLI's MCP command will use the entire `registy.json` file, so it must be put in the `/public` folder 
-with all of your `registry:item`s. This will enable you to use your registry in tools like Cursor & Windsurf. 
+## Architecture
 
-#### Fonts
+### Folder Structure
 
-To use custom fonts, you can either use [
-`next/font/google`](https://nextjs.org/docs/pages/getting-started/fonts#google-fonts) or the 
-[`@font-face`](https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face) CSS rule in your 
-[`globals.css`](./src/app/globals.css).
+Blok combines a component registry system with a documentation site for examples. The following structure shows how both systems work together:
 
-```css
-@font-face {
-    font-family: 'Montserrat';
-    font-style: normal;
-    font-weight: 400;
-    src: url('https://fonts.gstatic.com/s/montserrat/v15/JTUSjIg1_i6t8kCHKm45xW5rygbi49c.woff2') format('woff2'),
-    url('https://fonts.gstatic.com/s/montserrat/v15/JTUSjIg1_i6t8kCHKm45xW5rygbj49c.woff') format('woff');
+```
+blok/
+├── src/
+│   ├── app/                   
+│   │   ├── (registry)/        # Registry pages and components
+│   │   ├── demo/              # Component demos and examples
+│   │   ├── globals.css        # Global styles and CSS variables
+│   │   ├── colors.css         # Color system
+│   │   ├── typography.css     # Typography system
+│   │   ├── shadows.css        # Shadow system
+│   │   └── borderRadius.css   # Border radius system
+│   ├── components/
+│   │   ├── ui/                # Core UI components 
+│   │   ├── registry/          # Document site specific components
+│   │   └── blocks             # Sitecore block components
+│   ├── layouts/               # Document site Layout components
+│   ├── lib/                   # Utilities
+│   └── hooks/                 # Custom React hooks
+├── public/r/                  # Generated registry files
+├── registries/                # Registry configuration
+```
+
+## Getting Started
+
+### Prerequisites
+
+- Node.js 22 or higher
+- pnpm (recommended) or npm
+- Git
+
+### Installation
+
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/sitecore/blok.git
+   ```
+
+2. **Install dependencies**
+   ```bash
+   pnpm install
+   ```
+
+3. **Build the registry**
+   ```bash
+   pnpm run registry:build
+   ```
+
+4. **Start the development server**
+   ```bash
+   pnpm run dev
+   ```
+
+### Configuration
+
+#### Environment Variables
+
+Create a `.env.local` file in your project root:
+
+```env
+# Vercel Project URL
+VERCEL_PROJECT_PRODUCTION_URL=your_vercel_project_url
+```
+
+## Usage
+
+### Development Usage
+
+To use Blok in your development workflow:
+
+1. **Install the theme and components**
+   ```bash
+   npx shadcn@latest add https://blok-shadcn.vercel.app/r/theme.json
+   npx shadcn@latest add https://blok-shadcn.vercel.app/r/button.json
+   ```
+
+2. **Import and use components in your code**
+   ```tsx
+   import { Button } from "@/components/ui/button"
+   
+   export function MyComponent() {
+     return <Button>Click me</Button>
+   }
+   ```
+
+3. **Customize the theme by modifying CSS variables in your globals.css**
+
+### Usage Examples
+
+```tsx
+import { Button } from "@/components/ui/button"
+
+export function ButtonExamples() {
+  return (
+    <div className="space-x-2">
+      {/* Default button */}
+      <Button>Default</Button>
+      
+      {/* Primary button */}
+      <Button variant="default">Primary</Button>
+      
+      {/* Secondary button */}
+      <Button variant="secondary">Secondary</Button>
+      
+      {/* Destructive button */}
+      <Button variant="destructive">Delete</Button>
+      
+      {/* Outline button */}
+      <Button variant="outline">Outline</Button>
+    </div>
+  )
 }
 ```
 
-If you use `@font-face`, ensure you modify [`globals.css`](src/app/globals.css) tailwind configuration to map 
-your custom font variables to Tailwind fonts. Refer to this
-[Tailwind documentation](https://tailwindcss.com/docs/font-family#customizing-your-theme)
+## Community & Support
 
-## Running locally
+- **Documentation**: [https://blok.sitecore.com/beta](https://blok.sitecore.com/beta)
+- **Support**: [Support Guide](https://github.com/sitecore/blok/blob/main/SUPPORT.md)
+- **Issues**: [GitHub Issues](https://github.com/sitecore/blok/issues)
+- **Slack**: [Join our community Slack workspace](https://siteco.re/sitecoreslack)
 
-```bash
-pnpm install
-pnpm dev
-```
+## Contributing
 
-Your app should now be running on [localhost:3000](http://localhost:3000).
+We are very grateful to the community for contributing bug fixes and improvements. We welcome all efforts to evolve and improve the Blok; read below to learn how to participate in those efforts.
 
-## File Structure
+### Code of Conduct
 
-`app/(registry)` routes contains the registry pages.
+Sitecore has adopted a [Code of Conduct](https://github.com/sitecore/blok/blob/main/CODE_OF_CONDUCT.md) that we expect project participants to adhere to. Please read the full text so that you can understand what actions will and will not be tolerated.
 
-`app/demo` routes contains various UI primitives, Components, or Blocks (based on `registry.json`)
+### Contributing guide
 
-`@/components` contains all components used in the registry
+Read our [contributing guide](https://github.com/sitecore/blok/blob/main/CONTRIBUTING.md) to learn about our development process, how to propose bug fixes and improvements, and how to build and test your changes to React.
 
-`@/components/ui` contains all `shadcn/ui` UI Primitives used in the registry
+## Acknowledgements
 
-`@/components/registry` contains all components for this Registry Starter application
+We would like to thank the open source community for their contributions and the shadcn/ui team for providing the excellent foundation that Blok is built upon.
 
-`@/hooks` contains all React hooks
+## License
 
-`@/lib` contains all business logic & utils
-
-`@/layouts` contains all v0 layouts used in `registry.json`
+Sitecore Blok is using the [Apache 2.0 license](https://github.com/sitecore/blok/blob/main/LICENSE).

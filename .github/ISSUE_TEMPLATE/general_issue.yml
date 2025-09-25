@@ -1,0 +1,92 @@
+name: General Issue
+description: For general questions, discussions, or issues that don't fit other categories
+title: "[General]: "
+labels: ["general", "needs-triage"]
+assignees: []
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for reaching out! Please provide details about your general question or issue.
+
+  - type: dropdown
+    id: issue-type
+    attributes:
+      label: Issue Type
+      description: What type of general issue is this?
+      options:
+        - "Question"
+        - "Discussion"
+        - "General Feedback"
+        - "Support Request"
+        - "Other"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: priority
+    attributes:
+      label: Priority
+      description: How important is this issue?
+      options:
+        - "Low - General inquiry"
+        - "Medium - Needs attention"
+        - "High - Important issue"
+        - "Critical - Urgent"
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: Please describe your question, issue, or topic for discussion
+      placeholder: |
+        Provide a clear and detailed description of what you'd like to discuss or ask about.
+        Include any relevant context or background information.
+    validations:
+      required: true
+
+  - type: textarea
+    id: context
+    attributes:
+      label: Context
+      description: Any additional context or background information
+      placeholder: |
+        - What led you to this question/issue?
+        - Any relevant project details
+        - What you've already tried or researched
+        - Any constraints or requirements
+
+  - type: textarea
+    id: expected-outcome
+    attributes:
+      label: Expected Outcome
+      description: What would you like to achieve or learn?
+      placeholder: |
+        - What resolution are you looking for?
+        - What information do you need?
+        - What would be helpful to you?
+
+  - type: textarea
+    id: additional
+    attributes:
+      label: Additional Information
+      description: Any other relevant information
+      placeholder: |
+        - Links to related issues or discussions
+        - Screenshots or examples
+        - Any other details that might be helpful
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Checklist
+      description: Please confirm the following
+      options:
+        - label: I have searched existing issues and discussions
+          required: true
+        - label: I have provided clear details about my question or issue
+          required: true
+        - label: I am willing to provide additional information if needed
+          required: false
