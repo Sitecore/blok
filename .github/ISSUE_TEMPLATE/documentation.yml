@@ -1,0 +1,138 @@
+name: Document Site Issue
+description: Report documentation issues or suggest improvements
+title: "[Docs]: "
+labels: ["documentation", "needs-triage"]
+assignees: []
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for helping improve Blok's documentation! Please provide details about the documentation issue or improvement you'd like to see.
+
+  - type: dropdown
+    id: doc-type
+    attributes:
+      label: Documentation Type
+      description: What type of documentation issue is this?
+      options:
+        - "Missing Documentation"
+        - "Incorrect/Outdated Information"
+        - "Unclear/Confusing Content"
+        - "Missing Examples"
+        - "Installation Guide Issues"
+        - "API Documentation"
+        - "Component Documentation"
+        - "Theme Customization Guide"
+        - "Troubleshooting Guide"
+        - "Other"
+    validations:
+      required: true
+
+  - type: input
+    id: component
+    attributes:
+      label: Related Component (if applicable)
+      description: Which component does this documentation relate to?
+      placeholder: e.g., "Button", "Dialog", "Theme", "General"
+    validations:
+      required: false
+
+  - type: textarea
+    id: current-docs
+    attributes:
+      label: Current Documentation
+      description: What is the current state of the documentation?
+      placeholder: |
+        - URL or location of the current documentation
+        - What information is currently provided
+        - What specific content is problematic
+    validations:
+      required: true
+
+  - type: textarea
+    id: issue-description
+    attributes:
+      label: Issue Description
+      description: Describe the documentation problem or improvement needed
+      placeholder: |
+        - What information is missing, incorrect, or unclear?
+        - How does this affect users?
+        - What would you like to see instead?
+    validations:
+      required: true
+
+  - type: textarea
+    id: suggested-content
+    attributes:
+      label: Suggested Content
+      description: What should the documentation say instead?
+      placeholder: |
+        Provide the corrected or improved documentation content.
+        Include code examples, explanations, or step-by-step instructions as needed.
+    validations:
+      required: false
+
+  - type: textarea
+    id: examples
+    attributes:
+      label: Code Examples Needed
+      description: What code examples would be helpful?
+      render: typescript
+      placeholder: |
+        ```tsx
+        // Example of what should be documented
+        import { Component } from "@/components/ui/component"
+        
+        export function Example() {
+          return (
+            <Component 
+              prop1="value"
+              prop2={true}
+            >
+              Content
+            </Component>
+          )
+        }
+        ```
+
+  - type: textarea
+    id: user-impact
+    attributes:
+      label: User Impact
+      description: How does this documentation issue affect users?
+      placeholder: |
+        - Who is affected by this issue?
+        - What problems does it cause?
+        - How critical is this for users?
+
+  - type: textarea
+    id: additional-resources
+    attributes:
+      label: Additional Resources
+      description: Any helpful resources or references
+      placeholder: |
+        - Links to similar documentation from other libraries
+        - Design system references
+        - External resources that could inform the documentation
+
+  - type: textarea
+    id: additional
+    attributes:
+      label: Additional Context
+      description: Any other information about this documentation issue
+      placeholder: Any additional context that might be helpful...
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Checklist
+      description: Please confirm the following
+      options:
+        - label: I have searched existing issues to ensure this is not a duplicate
+          required: true
+        - label: I have provided specific details about the documentation issue
+          required: true
+        - label: I have suggested improvements or corrections
+          required: true
+        - label: I am willing to help write or review the documentation
+          required: false

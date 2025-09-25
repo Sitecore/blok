@@ -1,0 +1,193 @@
+name: Installation Help
+description: Get help with installing, setting up, or configuring Blok
+title: "[Installation]: "
+labels: ["installation", "help", "needs-triage"]
+assignees: []
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for reaching out for installation help! Please provide details about your setup and the issues you're experiencing.
+
+  - type: dropdown
+    id: installation-type
+    attributes:
+      label: Installation Type
+      description: What type of installation are you trying to do?
+      options:
+        - "Fresh Installation"
+        - "Upgrading Existing Installation"
+        - "Adding Components to Existing Project"
+        - "Registry Setup"
+        - "Theme Integration"
+        - "MCP Integration"
+        - "v0 Integration"
+        - "Custom Build Setup"
+        - "Other"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: project-type
+    attributes:
+      label: Project Type
+      description: What type of project are you working with?
+      options:
+        - "Next.js (App Router)"
+        - "Next.js (Pages Router)"
+        - "React (Create React App)"
+        - "React (Vite)"
+        - "React (Other)"
+        - "Other Framework"
+        - "Starting from Scratch"
+    validations:
+      required: true
+
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment Details
+      description: Please provide your environment information
+      placeholder: |
+        - OS: [e.g. Windows 11, macOS 14, Ubuntu 22.04]
+        - Node.js version: [e.g. 22.0.0]
+        - Package manager: [e.g. npm, yarn, pnpm]
+        - Framework version: [e.g. Next.js 15.4.4, React 19.1.0]
+        - TypeScript version: [e.g. 5.4.5]
+    validations:
+      required: true
+
+  - type: textarea
+    id: current-setup
+    attributes:
+      label: Current Setup
+      description: Describe your current project setup
+      placeholder: |
+        - Is this a new project or existing project?
+        - What components/frameworks are you already using?
+        - Any existing UI libraries or design systems?
+        - Current folder structure (if relevant)
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps-taken
+    attributes:
+      label: Steps Taken
+      description: What steps have you already tried?
+      placeholder: |
+        1. [Step you tried]
+        2. [Another step you tried]
+        3. [Any other attempts]
+        
+        Include any commands you ran or configuration changes you made.
+    validations:
+      required: true
+
+  - type: textarea
+    id: error-messages
+    attributes:
+      label: Error Messages
+      description: Any error messages you're seeing
+      placeholder: |
+        Paste any error messages, warnings, or unexpected output here.
+        Include the full error stack trace if available.
+    validations:
+      required: false
+
+  - type: textarea
+    id: expected-behavior
+    attributes:
+      label: Expected Behavior
+      description: What should happen after successful installation?
+      placeholder: |
+        - What should you be able to do?
+        - What should the project structure look like?
+        - What components should be available?
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual-behavior
+    attributes:
+      label: Actual Behavior
+      description: What is actually happening?
+      placeholder: |
+        - What's not working as expected?
+        - What error or issue are you encountering?
+        - What's different from what you expected?
+    validations:
+      required: true
+
+  - type: textarea
+    id: configuration-files
+    attributes:
+      label: Configuration Files
+      description: Share relevant configuration files (if applicable)
+      render: json
+      placeholder: |
+        ```json
+        // package.json
+        {
+          "dependencies": {
+            "next": "15.4.4",
+            "react": "19.1.0"
+          }
+        }
+        ```
+        
+        ```json
+        // components.json
+        {
+          "style": "new-york",
+          "rsc": true,
+          "tsx": true
+        }
+        ```
+
+  - type: textarea
+    id: console-output
+    attributes:
+      label: Console Output
+      description: Any relevant console output or logs
+      placeholder: |
+        Paste any relevant console output, build logs, or terminal output here.
+
+  - type: textarea
+    id: troubleshooting
+    attributes:
+      label: Troubleshooting Attempted
+      description: What troubleshooting have you already tried?
+      placeholder: |
+        - Cleared node_modules and reinstalled
+        - Checked for version conflicts
+        - Searched existing issues
+        - Tried different installation methods
+        - Any other troubleshooting steps
+
+  - type: textarea
+    id: additional
+    attributes:
+      label: Additional Context
+      description: Any other information that might be helpful
+      placeholder: |
+        - Any specific requirements or constraints
+        - Timeline or urgency
+        - Any other relevant information
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Checklist
+      description: Please confirm the following
+      options:
+        - label: I have searched existing issues and documentation
+          required: true
+        - label: I have provided my environment details
+          required: true
+        - label: I have described the steps I've already tried
+          required: true
+        - label: I have included any error messages or console output
+          required: true
+        - label: I am willing to provide additional information if needed
+          required: false
