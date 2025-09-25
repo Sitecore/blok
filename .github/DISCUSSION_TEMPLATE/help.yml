@@ -1,14 +1,17 @@
-name: "Help"
-description: Request help or support for using the Sitecore Blok CN UI library.
-labels: ["help wanted", "support"]
-title: "[Help]: "
-about: Need help? Fill out the form below and we'll do our best to assist you.
-template: |
-  ## What do you need help with?
-  Describe the issue or question you have.
-
-  ## What have you tried so far?
-  Let us know what you've already attempted.
-
-  ## Additional context
-  Any other relevant information or screenshots.
+title: "[Issue Title] "
+labels: ["Help"]
+body:
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: A detailed description of the issue
+    validations:
+      required: true
+  - type: textarea
+    id: additional-information
+    attributes:
+      label: Additional information
+      description: Please add any other context, environment information or screenshots
+    validations:
+      required: false
