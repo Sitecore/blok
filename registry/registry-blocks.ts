@@ -1051,9 +1051,9 @@ export const blocks: Registry["items"] = [
         target: "components/stream-components/hooks/use-brandkits.ts",
       },
       {
-        path: "stream/hooks/use-chat-id.ts",
+        path: "stream/hooks/use-chat.ts",
         type: "registry:component",
-        target: "components/stream-components/hooks/use-chat-id.ts",
+        target: "components/stream-components/hooks/use-chat.ts",
       },
       {
         path: "stream/hooks/use-contenthub-brandkits.ts",

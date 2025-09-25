@@ -1,6 +1,6 @@
 import { useState } from "react"
 
-export function useChatId() {
+export function useChat() {
   const [chatId, setChatId] = useState<string>("")
   const [isNewChat, setNewChat] = useState<boolean>(false)
 
