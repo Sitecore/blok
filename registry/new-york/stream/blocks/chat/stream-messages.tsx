@@ -6,11 +6,15 @@ import React, {
   useCallback,
   useEffect,
   useMemo,
-  useRef,
 } from "react"
 import { UIMessage } from "@ai-sdk/ui-utils"
 import { useChat, UseChatHelpers } from "ai/react"
-import { useAtom, useAtomValue, useSetAtom } from "jotai"
+import {
+  Provider as JotaiProvider,
+  useAtom,
+  useAtomValue,
+  useSetAtom,
+} from "jotai"
 import { toast } from "sonner"
 
 import { useChatProvider } from "./hooks/useChatProvider"
@@ -156,7 +160,7 @@ export function Chat({ session, children }: ChatProps) {
 
   return (
     <ChatContext.Provider value={{ session: { ...session, apiEnv } }}>
-      {children}
+      <JotaiProvider>{children}</JotaiProvider>
     </ChatContext.Provider>
   )
 }
@@ -235,7 +239,7 @@ function StreamMessages({
   const [isLoading, setIsLoading] = useAtom(isLoadingAtom)
   const setBrainstormingData = useSetAtom(brainstormingAtom)
   const setIsBrainstormingActive = useSetAtom(isBrainstormingActiveAtom)
-  const [_config, setConfig] = useAtom(configAtom)
+  const setConfig = useSetAtom(configAtom)
 
   /* Hooks */
   const { session } = useChatProvider()
@@ -247,7 +251,7 @@ function StreamMessages({
   const setHasError = useSetAtom(hasErrorAtom)
   const [_isNewChat, setIsNewChat] = useAtom(isNewChatAtom)
   const [_chatId, setChatId] = useAtom(chatIdAtom)
-  const [_brandkitId, setBrandkitId] = useAtom(brandkitIdAtom)
+  const setBrandkitId = useSetAtom(brandkitIdAtom)
 
   const {
     isLoading: _isLoading,
