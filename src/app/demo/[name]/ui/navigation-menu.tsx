@@ -68,13 +68,13 @@ export const navigationMenu = {
                   href="#"
                   className="row-span-3 from-muted/50 to-muted flex h-full w-full flex-col justify-end rounded-md bg-linear-to-b p-6 no-underline outline-hidden select-none focus:shadow-md"
                 >
-                  <div className="mt-4 mb-2 text-lg font-medium">shadcn/ui</div>
+                  <div className="mt-4 mb-2 text-lg font-medium">Blok CN</div>
                   <p className="text-muted-foreground text-sm leading-tight">
                     Beautifully designed components built with Tailwind CSS.
                   </p>
                 </ListItem>
-                <ListItem href="/docs" title="Introduction">
-                  Re-usable components built using Radix UI and Tailwind CSS.
+                <ListItem href="/docs" title="Build better products faster">
+                  Blok is a Sitecore's product design system: the ui framework and style guide we use to build great apps. It's publicly available, so that anyone can easily build software in the Sitecore product design language.
                 </ListItem>
                 <ListItem href="/docs/installation" title="Installation">
                   How to install dependencies and structure your app.
