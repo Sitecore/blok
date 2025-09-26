@@ -118,17 +118,17 @@ export function Messages(): React.ReactNode {
           </div>
         </div>
       )}
-      <div className="relative flex h-screen flex-1 flex-col gap-4 px-6">
+      <div className="relative flex h-screen flex-1 flex-col gap-4 px-6 pt-6">
         <Dialog>
           <DialogTrigger
             id="tour-chat-brainstorming-tools-settings"
-            className="absolute top-[17px] right-[16px] z-10"
+            className="absolute top-[-6px] right-[16px] z-10"
             asChild
           >
             <Button
               data-testid="brainstorming_button_tool_configuration"
-              variant={"ghost"}
-              colorScheme={"neutral"}
+              variant="ghost"
+              colorScheme="neutral"
               size={"icon-sm"}
               title="Tool configuration"
             >

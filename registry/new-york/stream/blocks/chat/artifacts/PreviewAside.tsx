@@ -239,7 +239,7 @@ export function PreviewAside({
         <CardTitle className="pt-5 pb-3.5 text-lg font-semibold">
           {firstCharToUpperCase(asideTitle)}
         </CardTitle>
-        <div className="relative">{children}</div>
+        <div className="relative mb-[125px]">{children}</div>
       </CardContent>
       {!_isPreview && (
         <CardFooter className="relative bottom-[105px] flex items-center justify-between bg-white px-0">

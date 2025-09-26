@@ -112,6 +112,7 @@ export interface StreamMessagesProps {
   brandkitId: string
   chatId: string
   isNewChat: boolean
+  onStream?: (data: { isStreaming: boolean }) => void
   /**
    * Initial prompt to display in the chat interface.
    * @example "Generate a creative brief for a new product launch"
@@ -226,6 +227,7 @@ function StreamMessages({
   prompt,
   config,
   isNewChat,
+  onStream,
 }: StreamMessagesProps): JSX.Element {
   /* Atoms */
   const chatBodyAtom = useAtomValue(postChatGenerateBodyAtom)
@@ -246,8 +248,6 @@ function StreamMessages({
   const [_isNewChat, setIsNewChat] = useAtom(isNewChatAtom)
   const [_chatId, setChatId] = useAtom(chatIdAtom)
   const [_brandkitId, setBrandkitId] = useAtom(brandkitIdAtom)
-  const brandkitIdRef = useRef("")
-  const chatIdRef = useRef("")
 
   const {
     isLoading: _isLoading,
@@ -425,6 +425,7 @@ function StreamMessages({
     setIsNewChat(false)
     setBrainstormingData(undefined)
     setIsBrainstormingActive(false)
+    setArtifacts({})
     setMessages([])
     setChatId("")
 
@@ -438,6 +439,7 @@ function StreamMessages({
   }, [
     isLoading,
     rollbackChatChanges,
+    setArtifacts,
     setBrainstormingData,
     setChatId,
     setIsBrainstormingActive,
@@ -453,7 +455,10 @@ function StreamMessages({
       handleNewChat()
     }
     if (config) setConfig(config)
-    if (_isLoading !== isLoading) setIsLoading(_isLoading)
+    if (_isLoading !== isLoading) {
+      setIsLoading(_isLoading)
+      onStream?.({ isStreaming: _isLoading })
+    }
   }, [
     _isLoading,
     brandkitId,
@@ -462,6 +467,7 @@ function StreamMessages({
     handleNewChat,
     isLoading,
     isNewChat,
+    onStream,
     setBrandkitId,
     setChatId,
     setConfig,
