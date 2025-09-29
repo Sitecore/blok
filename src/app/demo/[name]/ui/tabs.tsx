@@ -1,5 +1,5 @@
 import { mdiCodeBraces, mdiCog, mdiHome, mdiWindowMaximize } from "@mdi/js";
-import Icon from "@mdi/react";
+import { Icon } from "@/lib/icon";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -75,11 +75,11 @@ export const tabs = {
       <Tabs defaultValue="home">
         <TabsList>
           <TabsTrigger value="home">
-            <Icon path={mdiHome} size={0.8} />
+            <Icon path={mdiHome} size={1.2} />
             Home
           </TabsTrigger>
           <TabsTrigger value="settings">
-            <Icon path={mdiCog} size={0.8} />
+            <Icon path={mdiCog} size={1.2} />
             Settings
           </TabsTrigger>
         </TabsList>
@@ -101,11 +101,11 @@ export const tabs = {
       <Tabs defaultValue="preview">
         <TabsList variant="soft-rounded">
           <TabsTrigger value="preview" variant="soft-rounded">
-            <Icon path={mdiWindowMaximize} size={0.8} />
+            <Icon path={mdiWindowMaximize} size={1.2} />
             Preview
           </TabsTrigger>
           <TabsTrigger value="code" variant="soft-rounded">
-            <Icon path={mdiCodeBraces} size={0.8} />
+            <Icon path={mdiCodeBraces} size={1.2} />
             Code
           </TabsTrigger>
         </TabsList>

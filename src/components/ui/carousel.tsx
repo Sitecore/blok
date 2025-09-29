@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import { mdiArrowLeft, mdiArrowRight } from "@mdi/js";
-import Icon from "@mdi/react";
+import { Icon } from "@/lib/icon";
 import useEmblaCarousel, {
   type UseEmblaCarouselType,
 } from "embla-carousel-react";

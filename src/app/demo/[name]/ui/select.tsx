@@ -7,7 +7,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import Icon from "@mdi/react";
+import { Icon } from "@/lib/icon";
 import {
   mdiChartBar,
   mdiChartLine,
@@ -59,7 +59,7 @@ export const select = {
               <>
                 <Icon
                   path={mdiCircleOutline}
-                  size={0.9}
+                  size={1.2}
                   className="text-neutral-foreground"
                 />
                 With Icon
@@ -71,15 +71,15 @@ export const select = {
           <SelectGroup>
             <SelectLabel>Chart Types</SelectLabel>
             <SelectItem value="line">
-              <Icon path={mdiChartLine} size={0.8} />
+              <Icon path={mdiChartLine} size={1.2} />
               Line
             </SelectItem>
             <SelectItem value="bar">
-              <Icon path={mdiChartBar} size={0.8} />
+              <Icon path={mdiChartBar} size={1.2} />
               Bar
             </SelectItem>
             <SelectItem value="pie">
-              <Icon path={mdiChartPie} size={0.8} />
+              <Icon path={mdiChartPie} size={1.2} />
               Pie
             </SelectItem>
           </SelectGroup>

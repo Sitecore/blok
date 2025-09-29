@@ -12,7 +12,7 @@ import {
   mdiCircleOutline,
   mdiHelpCircleOutline,
 } from "@mdi/js";
-import Icon from "@mdi/react";
+import { Icon } from "@/lib/icon";
 import Link from "next/link";
 import type React from "react";
 

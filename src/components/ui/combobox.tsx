@@ -3,7 +3,7 @@
 import * as React from "react";
 import { CheckIcon, ChevronDownIcon, ChevronsUpDown } from "lucide-react";
 import { mdiPlus } from "@mdi/js";
-import Icon from "@mdi/react";
+import { Icon } from "@/lib/icon";
 
 import { cn } from "@/lib/utils";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";

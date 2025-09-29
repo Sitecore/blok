@@ -1,7 +1,7 @@
 "use client";
 
 import { mdiChevronDown } from "@mdi/js";
-import Icon from "@mdi/react";
+import { Icon } from "@/lib/icon";
 import * as AccordionPrimitive from "@radix-ui/react-accordion";
 import type * as React from "react";
 
@@ -44,8 +44,7 @@ function AccordionTrigger({
         {children}
         <Icon
           path={mdiChevronDown}
-          size={0.9}
-          className="shrink-0 transition-transform duration-200"
+          className="transition-transform duration-200 size-6 "
         />
       </AccordionPrimitive.Trigger>
     </AccordionPrimitive.Header>

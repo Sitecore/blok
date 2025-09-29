@@ -1,5 +1,5 @@
 import { mdiDotsGrid, mdiHelpCircleOutline } from "@mdi/js";
-import Icon from "@mdi/react";
+import { Icon } from "@/lib/icon";
 
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
