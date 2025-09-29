@@ -1,0 +1,22 @@
+name: " General Q&A"
+description: Ask questions or start a general discussion about the Sitecore Blok CN UI library.
+labels: [question, discussion]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Welcome! Feel free to ask questions or start a conversation.
+  - type: textarea
+    id: topic
+    attributes:
+      label: What's your question or topic?
+      description: Describe what you'd like to discuss.
+    validations:
+      required: true
+  - type: textarea
+    id: details
+    attributes:
+      label: Additional details
+      description: Provide any background or context.
+    validations:
+      required: false

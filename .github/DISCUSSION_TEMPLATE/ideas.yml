@@ -1,0 +1,29 @@
+name: " Ideas"
+description: Share creative ideas or improvements for the UI library.
+labels: [idea, brainstorming]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Got a cool idea? We'd love to hear it!
+  - type: textarea
+    id: idea
+    attributes:
+      label: Describe your idea
+      description: What is your idea and how could it improve the project?
+    validations:
+      required: true
+  - type: textarea
+    id: benefits
+    attributes:
+      label: What are the benefits?
+      description: How would this idea help users or developers?
+    validations:
+      required: false
+  - type: textarea
+    id: context
+    attributes:
+      label: Additional context
+      description: Any other relevant information or examples.
+    validations:
+      required: false

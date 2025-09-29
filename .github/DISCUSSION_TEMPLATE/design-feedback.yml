@@ -1,0 +1,34 @@
+name: " Design Feedback"
+description: Share feedback on UI components or design patterns in the Blok CN.
+labels: [design, feedback]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        We appreciate your design insights! Help us improve the UI experience.
+  - type: input
+    id: component
+    attributes:
+      label: Which component or pattern are you giving feedback on?
+      placeholder: Alert, Alert Dialog, Button, etc.
+    validations:
+      required: true
+  - type: textarea
+    id: likes
+    attributes:
+      label: What do you like about it?
+    validations:
+      required: false
+  - type: textarea
+    id: improvements
+    attributes:
+      label: What could be improved?
+    validations:
+      required: false
+  - type: textarea
+    id: references
+    attributes:
+      label: Any references or examples?
+      description: Links, screenshots, or design inspiration that could help.
+    validations:
+      required: false

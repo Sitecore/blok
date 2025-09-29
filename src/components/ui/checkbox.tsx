@@ -24,7 +24,7 @@ function Checkbox({
         data-slot="checkbox-indicator"
         className="flex h-full items-center justify-center text-current transition-none"
       >
-        <Icon path={mdiCheck} size={0.8} className="-mt" />
+        <Icon path={mdiCheck} size={0.8} />
       </CheckboxPrimitive.Indicator>
     </CheckboxPrimitive.Root>
   );
