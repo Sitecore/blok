@@ -388,36 +388,6 @@
       },
       "files": [
         {
-          "path": "src/app/globals.css",
-          "type": "registry:style",
-          "target": "app/globals.css"
-        },
-        {
-          "path": "src/app/colors.css",
-          "type": "registry:style",
-          "target": "app/colors.css"
-        },
-        {
-          "path": "src/app/shadows.css",
-          "type": "registry:style",
-          "target": "app/shadows.css"
-        },
-        {
-          "path": "src/app/borderRadius.css",
-          "type": "registry:style",
-          "target": "app/borderRadius.css"
-        },
-        {
-          "path": "src/app/typography.css",
-          "type": "registry:style",
-          "target": "app/typography.css"
-        },
-        {
-          "path": "src/app/breakpoints.css",
-          "type": "registry:style",
-          "target": "app/breakpoints.css"
-        },
-        {
           "path": "postcss.config.mjs",
           "type": "registry:file",
           "target": "postcss.config.mjs"
