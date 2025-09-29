@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react"
+import { useCallback, useEffect, useRef, useState } from "react"
 
 import { useChatProvider } from "../chat/hooks/useChatProvider"
 
@@ -13,10 +13,23 @@ export function GetDocumentProxyUrl({ url, item }: GetDocumentProxyUrlProps) {
 
   /* Hooks */
   const [objectUrl, setObjectUrl] = useState<string | undefined>(undefined)
+  const currentObjectUrlRef = useRef<string | undefined>(undefined)
 
   const getDocumentProxyUrl = useCallback(
     async (url: string): Promise<string | undefined> => {
-      if (!url?.startsWith("https://mms-delivery")) return url
+      // Clean up previous object URL
+      if (currentObjectUrlRef.current) {
+        URL.revokeObjectURL(currentObjectUrlRef.current)
+        currentObjectUrlRef.current = undefined
+      }
+
+      // If URL is falsy, clear the state and return
+      if (!url) {
+        setObjectUrl(undefined)
+        return undefined
+      }
+
+      if (!url.startsWith("https://mms-delivery")) return url
 
       try {
         const res = await fetch(url, {
@@ -25,10 +38,16 @@ export function GetDocumentProxyUrl({ url, item }: GetDocumentProxyUrlProps) {
           },
         })
 
-        if (!res.ok) return undefined
+        if (!res.ok) {
+          setObjectUrl(undefined)
+          return undefined
+        }
 
-        setObjectUrl(URL.createObjectURL(await res.blob()))
+        const newObjectUrl = URL.createObjectURL(await res.blob())
+        currentObjectUrlRef.current = newObjectUrl
+        setObjectUrl(newObjectUrl)
       } catch (error) {
+        setObjectUrl(undefined)
         return undefined
       }
     },
@@ -38,14 +57,18 @@ export function GetDocumentProxyUrl({ url, item }: GetDocumentProxyUrlProps) {
   const renderItem = () => item(objectUrl || url)
 
   useEffect(() => {
-    if (session?.token) getDocumentProxyUrl(url)
+    if (session?.token || !url) {
+      getDocumentProxyUrl(url)
+    }
   }, [getDocumentProxyUrl, session?.token, url])
 
   useEffect(() => {
     return () => {
-      if (objectUrl) URL.revokeObjectURL(objectUrl)
+      if (currentObjectUrlRef.current) {
+        URL.revokeObjectURL(currentObjectUrlRef.current)
+      }
     }
-  }, [objectUrl])
+  }, [])
 
   return <>{renderItem()}</>
 }

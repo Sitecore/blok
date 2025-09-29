@@ -116,7 +116,11 @@ export interface StreamMessagesProps {
   brandkitId: string
   chatId: string
   isNewChat: boolean
-  onStream?: (data: { isStreaming: boolean }) => void
+  onStream?: (data: {
+    isStreaming: boolean
+    finished: boolean
+    message: Message | null
+  }) => void
   /**
    * Initial prompt to display in the chat interface.
    * @example "Generate a creative brief for a new product launch"
@@ -269,14 +273,20 @@ function StreamMessages({
       "Content-Type": "application/json",
     },
     experimental_throttle: 200,
+    onResponse: () => {
+      onStream?.({ isStreaming: true, finished: false, message: null })
+    },
     onFinish: async (message) => {
       const messageId = (
         message?.annotations?.[0] as unknown as MessageAnnotation
       )?.id
       setMessageIds((prev) => [...prev, messageId])
+
+      onStream?.({ isStreaming: _isLoading, finished: true, message: message })
     },
     onError: (error) => {
       console.error("Error:", error)
+      onStream?.({ isStreaming: false, finished: true, message: null })
     },
   })
 
@@ -348,8 +358,10 @@ function StreamMessages({
 
       stop()
 
-      setApiQueue({})
-      reset(["hasError", "artifacts"])
+      queueMicrotask(() => {
+        setApiQueue({})
+        reset(["hasError", "artifacts"])
+      })
 
       /* If there are two or fewer messages, then delete the chat */
       if (isFirstMessage) {
@@ -376,6 +388,19 @@ function StreamMessages({
             detail: string
           }
           toast.error(detail)
+        } finally {
+          queueMicrotask(() => {
+            setChatId("")
+            setApiQueue({})
+            reset([
+              "hasError",
+              "artifacts",
+              "isChatActionPending",
+              "input",
+              "messages",
+              "artifacts",
+            ])
+          })
         }
         return
       }
@@ -414,14 +439,15 @@ function StreamMessages({
       }
     },
     [
-      initMessages,
       messages,
-      reset,
-      _chatId,
-      session.orgId,
-      session.userId,
-      setApiQueue,
       stop,
+      setChatId,
+      setApiQueue,
+      reset,
+      session.userId,
+      session.orgId,
+      _chatId,
+      initMessages,
     ]
   )
 
@@ -461,7 +487,6 @@ function StreamMessages({
     if (config) setConfig(config)
     if (_isLoading !== isLoading) {
       setIsLoading(_isLoading)
-      onStream?.({ isStreaming: _isLoading })
     }
   }, [
     _isLoading,
@@ -471,7 +496,6 @@ function StreamMessages({
     handleNewChat,
     isLoading,
     isNewChat,
-    onStream,
     setBrandkitId,
     setChatId,
     setConfig,

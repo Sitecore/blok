@@ -9,9 +9,9 @@ import {
   mdiChevronLeft,
   mdiChevronRight,
   mdiClose,
-  mdiLinkVariant,
   mdiOpenInNew,
 } from "@mdi/js"
+import { createPortal } from "react-dom"
 
 import { Button } from "@/registry/new-york/ui/button"
 
@@ -43,6 +43,7 @@ export function LightBox({
   /* Computed */
   const imagesLength = images?.length
   const selectedImage = images[imageIndex]
+  const body = document.querySelector("body") ?? ({} as HTMLBodyElement)
 
   const handleOpenLightBoxOnClick = (imageIndex: number): void => {
     setShowLightBox(true)
@@ -88,6 +89,91 @@ export function LightBox({
   }, [showLightBox])
 
   if (!images?.length) return null
+
+  const lightBoxSection = (
+    <section
+      data-testid={`lightbox_main_section`}
+      className={cn(
+        "bg-blackAlpha-900 pointer-events-none fixed inset-0 z-[60] flex flex-col items-center opacity-0 transition-all duration-300",
+        showLightBox && "pointer-events-auto opacity-100"
+      )}
+    >
+      <header className="flex w-full items-center justify-between px-7 py-5">
+        <h4 className="text-xl font-semibold text-white">
+          {selectedImage?.title || selectedImage?.name}
+        </h4>
+        <div className="flex items-center justify-between space-x-1">
+          <Button data-testid={`lightbox_button_goto_source`} className="p-0">
+            <GetDocumentProxyUrl
+              url={selectedImage?.url}
+              item={(url) => {
+                return (
+                  <a
+                    href={url}
+                    className="flex h-full w-full items-center justify-center space-x-2 px-4 py-2 text-white"
+                    target="_blank"
+                    rel="noreferrer noopener"
+                  >
+                    <span className="truncate">Go to source</span>
+                    <StreamIcon path={mdiOpenInNew} />
+                  </a>
+                )
+              }}
+            />
+          </Button>
+          <Button
+            data-testid={`lightbox_button_close`}
+            className="border-none bg-transparent text-white hover:bg-transparent active:bg-transparent"
+            variant="outline"
+            onClick={handleCloseOnClick}
+          >
+            <StreamIcon path={mdiClose} />
+          </Button>
+        </div>
+      </header>
+      <div
+        ref={clickOutsideRef}
+        className="flex h-full w-full items-center justify-center px-10 py-8"
+      >
+        <GetDocumentProxyUrl
+          url={selectedImage?.url}
+          item={(url) => {
+            return (
+              <img
+                data-testid={`lightbox_image`}
+                alt={selectedImage?.title}
+                src={url}
+              />
+            )
+          }}
+        />
+      </div>
+      <footer className="flex w-full items-center justify-center space-x-4 px-7 py-5">
+        <Button
+          data-testid={`lightbox_button_prev`}
+          className="border-none bg-neutral-800 p-2 text-white hover:bg-neutral-800 active:bg-neutral-800"
+          variant="outline"
+          onClick={() => handleImageControlsOnClick("prev")}
+        >
+          <StreamIcon path={mdiChevronLeft} />
+        </Button>
+        <span
+          data-testid={`lightbox_images_size`}
+          className="text-sm font-normal text-white"
+        >
+          {imageIndex + 1} / {imagesLength}
+        </span>
+        <Button
+          data-testid={`lightbox_button_next`}
+          className="border-none bg-neutral-800 p-2 text-white hover:bg-neutral-800 active:bg-neutral-800"
+          variant="outline"
+          onClick={() => handleImageControlsOnClick("next")}
+        >
+          <StreamIcon path={mdiChevronRight} />
+        </Button>
+      </footer>
+    </section>
+  )
 
   return (
     <>
@@ -136,88 +222,7 @@ export function LightBox({
           </div>
         )}
       </div>
-      <section
-        data-testid={`lightbox_main_section`}
-        className={cn(
-          "bg-blackAlpha-900 pointer-events-none fixed inset-0 z-[60] flex flex-col items-center opacity-0 transition-all duration-300",
-          showLightBox && "pointer-events-auto opacity-100"
-        )}
-      >
-        <header className="flex w-full items-center justify-between px-7 py-5">
-          <h4 className="text-xl font-semibold text-white">
-            {selectedImage?.title || selectedImage?.name}
-          </h4>
-          <div className="flex items-center justify-between space-x-1">
-            <Button data-testid={`lightbox_button_goto_source`} className="p-0">
-              <GetDocumentProxyUrl
-                url={selectedImage?.url}
-                item={(url) => {
-                  return (
-                    <a
-                      href={url}
-                      className="flex h-full w-full items-center justify-center space-x-2 px-4 py-2 text-white"
-                      target="_blank"
-                      rel="noreferrer noopener"
-                    >
-                      <span className="truncate">Go to source</span>
-                      <StreamIcon path={mdiOpenInNew} />
-                    </a>
-                  )
-                }}
-              />
-            </Button>
-            <Button
-              data-testid={`lightbox_button_close`}
-              className="border-none bg-transparent text-white hover:bg-transparent active:bg-transparent"
-              variant="outline"
-              onClick={handleCloseOnClick}
-            >
-              <StreamIcon path={mdiClose} />
-            </Button>
-          </div>
-        </header>
-        <div
-          ref={clickOutsideRef}
-          className="flex h-full w-full items-center justify-center px-10 py-8"
-        >
-          <GetDocumentProxyUrl
-            url={selectedImage?.url}
-            item={(url) => {
-              return (
-                <img
-                  data-testid={`lightbox_image`}
-                  alt={selectedImage?.title}
-                  src={url}
-                />
-              )
-            }}
-          />
-        </div>
-        <footer className="flex w-full items-center justify-center space-x-4 px-7 py-5">
-          <Button
-            data-testid={`lightbox_button_prev`}
-            className="border-none bg-neutral-800 p-2 text-white hover:bg-neutral-800 active:bg-neutral-800"
-            variant="outline"
-            onClick={() => handleImageControlsOnClick("prev")}
-          >
-            <StreamIcon path={mdiChevronLeft} />
-          </Button>
-          <span
-            data-testid={`lightbox_images_size`}
-            className="text-sm font-normal text-white"
-          >
-            {imageIndex + 1} / {imagesLength}
-          </span>
-          <Button
-            data-testid={`lightbox_button_next`}
-            className="border-none bg-neutral-800 p-2 text-white hover:bg-neutral-800 active:bg-neutral-800"
-            variant="outline"
-            onClick={() => handleImageControlsOnClick("next")}
-          >
-            <StreamIcon path={mdiChevronRight} />
-          </Button>
-        </footer>
-      </section>
+      {createPortal(lightBoxSection, body)}
     </>
   )
 }
