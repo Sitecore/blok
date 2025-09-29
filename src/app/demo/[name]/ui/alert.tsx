@@ -1,5 +1,7 @@
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+import { Button } from "@/components/ui/button";
 import { ClosableAlert } from "@/app/demo/[name]/ui/alert-closable";
+import { ButtonLinkAlert } from "./alert-button-Link";
 
 export const alert = {
   name: "alert",
@@ -12,6 +14,8 @@ export const alert = {
         </AlertDescription>
       </Alert>
     ),
+    PrimaryClosable: <ClosableAlert variantProp="primary" />,
+    PrimaryLinkBtn: <ButtonLinkAlert variantProp="primary" />,
     Success: (
       <Alert variant="success">
         <AlertTitle>Success Alert</AlertTitle>
@@ -20,6 +24,8 @@ export const alert = {
         </AlertDescription>
       </Alert>
     ),
+    SuccessClosable: <ClosableAlert variantProp="success" />,
+    SuccessLinkBtn: <ButtonLinkAlert variantProp="success" />,
     Danger: (
       <Alert variant="danger">
         <AlertTitle>Danger Alert</AlertTitle>
@@ -28,6 +34,8 @@ export const alert = {
         </AlertDescription>
       </Alert>
     ),
+    DangerClosable: <ClosableAlert variantProp="danger" />,
+    DangerLinkBtn: <ButtonLinkAlert variantProp="danger" />,
     Warning: (
       <Alert variant="warning">
         <AlertTitle>Warning Alert</AlertTitle>
@@ -36,7 +44,9 @@ export const alert = {
         </AlertDescription>
       </Alert>
     ),
-    Closable: <ClosableAlert />,
+    WarningClosable: <ClosableAlert variantProp="warning" />,
+    WarningLinkBtn: <ButtonLinkAlert variantProp="warning" />,
+    
     Descriptive: (
       <Alert variant="primary">
         <AlertTitle>
@@ -53,6 +63,6 @@ export const alert = {
           length.
         </AlertDescription>
       </Alert>
-    )
+    ),
   },
 };

@@ -36,7 +36,7 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
   useSidebar,
-} from "@/components/ui/sidebar";
+} from "@/components/registry/docsite-sidebar";
 import { getBlocks, getComponents } from "@/lib/registry";
 
 const componentItems = getComponents();
@@ -140,6 +140,7 @@ export function RegistrySidebar() {
                         <SidebarMenuButton
                           asChild
                           isActive={pathname === item.path}
+                          className="data-[active=true]:text-primary data-[active=true]:bg-primary-background"
                         >
                           <Link
                             onClick={() => setOpenMobile(false)}
@@ -176,7 +177,8 @@ export function RegistrySidebar() {
                       <SidebarMenuItem key={item.name}>
                         <SidebarMenuButton
                           asChild
-                          isActive={pathname === item.name}
+                          isActive={pathname === `/registry/${item.name}`}
+                          className="data-[active=true]:text-primary data-[active=true]:bg-primary-background"
                         >
                           <Link
                             onClick={() => setOpenMobile(false)}

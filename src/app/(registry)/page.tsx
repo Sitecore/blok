@@ -42,7 +42,7 @@ export default function Home() {
         </div>
       </div>
       <div className="px-6">
-        <div className="flex flex-col space-y-2 mt-4 p-5 md:mt-2 md:p-10">
+        <div className="flex flex-col space-y-2 mt-4 p-5 md:mt-2 md:px-10">
           <h1 className="font-bold text-3xl tracking-tight md:text-4xl">
             Add registry
           </h1>
@@ -63,30 +63,27 @@ export default function Home() {
           </p>
           <p className="text-muted-foreground">(example used: button):</p>
           <Codeblocks code={sampleButtonCode} />
+        </div>
+        <div className="flex flex-col space-y-2 mt-4 p-5 md:mt-2 md:px-10">
+          <h1 className="font-bold text-3xl tracking-tight md:text-4xl">MCP</h1>
+          <p className="pt-2">
+            Integrate this registry with AI IDEs using Model Context Protocol
+            (MCP) using the following configuration. This utilizes this
+            Registry's theme tokens and CSS variables with the Shadcn CLI. To
+            ensure this works, double check that the{" "}
+            <Link href="/r/registry.json">
+              <code className="inline text-sm tabular-nums underline">
+                style:theme
+              </code>
+            </Link>{" "}
+            contains the same colors as your{" "}
+            <code className="inline text-sm tabular-nums">tokens.css</code>
+          </p>
 
-          <div className="pt-8">
-            <h1 className="font-bold text-3xl tracking-tight md:text-4xl">
-              MCP
-            </h1>
-            <p className="pt-2">
-              Integrate this registry with AI IDEs using Model Context Protocol
-              (MCP) using the following configuration. This utilizes this
-              Registry's theme tokens and CSS variables with the Shadcn CLI. To
-              ensure this works, double check that the{" "}
-              <Link href="/r/registry.json">
-                <code className="inline text-sm tabular-nums underline">
-                  style:theme
-                </code>
-              </Link>{" "}
-              contains the same colors as your{" "}
-              <code className="inline text-sm tabular-nums">tokens.css</code>
-            </p>
-
-            <div className="pt-2">
-              <MCPTabs
-                rootUrl={process.env.VERCEL_PROJECT_PRODUCTION_URL ?? ""}
-              />
-            </div>
+          <div className="pt-2">
+            <MCPTabs
+              rootUrl={process.env.VERCEL_PROJECT_PRODUCTION_URL ?? ""}
+            />
           </div>
         </div>
       </div>

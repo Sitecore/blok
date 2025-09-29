@@ -1,5 +1,7 @@
 import { Badge } from "@/components/ui/badge"
 import { ArrowRightIcon } from "lucide-react"
+import Icon from "@mdi/react"
+import { mdiClose } from "@mdi/js"
 
 export const badge = {
   name: "badge",
@@ -112,6 +114,67 @@ export const badge = {
         <a href="#">
           Bold Link <ArrowRightIcon className="size-3" />
         </a>
+      </Badge>
+    ),
+
+    // Closable badges
+    ClosableNeutral: (
+      <Badge>
+        Closable Neutral <Icon path={mdiClose} className="size-3" />
+      </Badge>
+    ),
+    ClosablePrimary: (
+      <Badge colorScheme="primary">
+        Closable Primary <Icon path={mdiClose} className="size-3" />
+      </Badge>
+    ),
+    ClosableDanger: (
+      <Badge colorScheme="danger">
+        Closable Danger <Icon path={mdiClose} className="size-3" />
+      </Badge>
+    ),
+    ClosableSuccess: (
+      <Badge colorScheme="success">
+        Closable Success <Icon path={mdiClose} className="size-3" />
+      </Badge>
+    ),
+    ClosableWarning: (
+      <Badge colorScheme="warning">
+        Closable Warning <Icon path={mdiClose} className="size-3" />
+      </Badge>
+    ),
+
+    // Closable bold badges
+    ClosableBoldNeutral: (
+      <Badge variant="bold">
+        Closable Bold <Icon path={mdiClose} className="size-3" />
+      </Badge>
+    ),
+    ClosableBoldPrimary: (
+      <Badge variant="bold" colorScheme="primary">
+        Closable Bold Primary <Icon path={mdiClose} className="size-3" />
+      </Badge>
+    ),
+    ClosableBoldDanger: (
+      <Badge variant="bold" colorScheme="danger">
+        Closable Bold Danger <Icon path={mdiClose} className="size-3" />
+      </Badge>
+    ),
+
+    // Closable with different sizes
+    ClosableSmall: (
+      <Badge size="sm" colorScheme="blue">
+        Small <Icon path={mdiClose} className="size-3" />
+      </Badge>
+    ),
+    ClosableMedium: (
+      <Badge size="md" colorScheme="teal">
+        Medium <Icon path={mdiClose} className="size-3" />
+      </Badge>
+    ),
+    ClosableLarge: (
+      <Badge size="lg" colorScheme="pink">
+        Large <Icon path={mdiClose} className="size-3" />
       </Badge>
     ),
   },

@@ -1,0 +1,26 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Documentation
+    url: https://blok-shadcn.vercel.app
+    about: Check out our documentation for guides and examples
+  - name: Bug Reports
+    url: https://github.com/Sitecore/blok/issues/new?template=bug_report.yml
+    about: Report a bug or unexpected behavior
+  - name: Feature Requests
+    url: https://github.com/Sitecore/blok/issues/new?template=feature_request.yml
+    about: Suggest a new feature or enhancement
+  - name: Component Requests
+    url: https://github.com/Sitecore/blok/issues/new?template=component_request.yml
+    about: Request a new UI component
+  - name: Document Site Improvements
+    url: https://github.com/Sitecore/blok/issues/new?template=documentation.yml
+    about: Report documentation issues or suggest improvements
+  - name: Theme Customization
+    url: https://github.com/Sitecore/blok/issues/new?template=theme_customization.yml
+    about: Get help with theming and styling
+  - name: Installation Help
+    url: https://github.com/Sitecore/blok/issues/new?template=installation_help.yml
+    about: Get help with installation and setup
+  - name: General Issues
+    url: https://github.com/Sitecore/blok/issues/new?template=general_issue.yml
+    about: General questions, discussions, or issues that don't fit other categories

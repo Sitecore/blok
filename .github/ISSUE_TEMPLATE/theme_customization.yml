@@ -1,0 +1,200 @@
+name: Theme Customization
+description: Request help with theming, styling, or design system customization
+title: "[Theme]: "
+labels: ["theme", "styling", "needs-triage"]
+assignees: []
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for reaching out about theme customization! Please provide details about your theming needs or issues.
+
+  - type: dropdown
+    id: theme-type
+    attributes:
+      label: Theme Request Type
+      description: What type of theme customization do you need help with?
+      options:
+        - "Custom Color Scheme"
+        - "Typography Customization"
+        - "Component Styling"
+        - "Dark/Light Mode Issues"
+        - "CSS Variables/Custom Properties"
+        - "Design Token Customization"
+        - "Brand Integration"
+        - "Responsive Design Issues"
+        - "Accessibility (Color Contrast, etc.)"
+        - "Other"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: scope
+    attributes:
+      label: Scope
+      description: What is the scope of your customization?
+      options:
+        - "Global Theme Changes"
+        - "Specific Component(s)"
+        - "Layout/Structure"
+        - "Typography Only"
+        - "Colors Only"
+        - "Spacing/Sizing"
+        - "Multiple Areas"
+    validations:
+      required: true
+
+  - type: textarea
+    id: current-setup
+    attributes:
+      label: Current Setup
+      description: Describe your current theme setup
+      placeholder: |
+        - Are you using the default Blok theme?
+        - Have you made any customizations already?
+        - What CSS framework are you using? (Tailwind, CSS Modules, etc.)
+        - Any custom CSS or styling approach?
+    validations:
+      required: true
+
+  - type: textarea
+    id: requirements
+    attributes:
+      label: Requirements
+      description: What specific theming requirements do you have?
+      placeholder: |
+        - Brand colors that need to be integrated
+        - Specific design system requirements
+        - Accessibility requirements
+        - Browser support requirements
+        - Any design mockups or references
+    validations:
+      required: true
+
+  - type: textarea
+    id: colors
+    attributes:
+      label: Color Requirements
+      description: If applicable, describe your color requirements
+      placeholder: |
+        **Primary Colors:**
+        - Primary: #hexcode
+        - Secondary: #hexcode
+        - Accent: #hexcode
+        
+        **Semantic Colors:**
+        - Success: #hexcode
+        - Warning: #hexcode
+        - Error: #hexcode
+        - Info: #hexcode
+        
+        **Neutral Colors:**
+        - Background: #hexcode
+        - Foreground: #hexcode
+        - Muted: #hexcode
+
+  - type: textarea
+    id: typography
+    attributes:
+      label: Typography Requirements
+      description: If applicable, describe your typography needs
+      placeholder: |
+        **Font Families:**
+        - Primary: "Font Name"
+        - Secondary: "Font Name"
+        - Monospace: "Font Name"
+        
+        **Font Sizes:**
+        - Heading sizes
+        - Body text sizes
+        - Caption sizes
+        
+        **Font Weights:**
+        - Light, Regular, Medium, Bold, etc.
+
+  - type: textarea
+    id: components
+    attributes:
+      label: Affected Components
+      description: Which components need customization?
+      placeholder: |
+        - Button variants
+        - Card styling
+        - Form elements
+        - Navigation components
+        - Specific component names
+
+  - type: textarea
+    id: code-example
+    attributes:
+      label: Current Code
+      description: Show your current theme configuration or CSS
+      render: css
+      placeholder: |
+        ```css
+        /* Current theme configuration */
+        :root {
+          --primary: #your-color;
+          --secondary: #your-color;
+        }
+        
+        /* Or show your current CSS customizations */
+        .custom-button {
+          background-color: var(--primary);
+        }
+        ```
+
+  - type: textarea
+    id: expected-result
+    attributes:
+      label: Expected Result
+      description: What should the final result look like?
+      placeholder: |
+        - Describe the visual appearance you want
+        - Any specific behaviors or interactions
+        - Screenshots or mockups if available
+
+  - type: textarea
+    id: issues
+    attributes:
+      label: Current Issues
+      description: What problems are you experiencing?
+      placeholder: |
+        - Components not picking up custom colors
+        - Dark mode not working properly
+        - Inconsistent styling across components
+        - Performance issues
+        - Browser compatibility problems
+
+  - type: textarea
+    id: accessibility
+    attributes:
+      label: Accessibility Considerations
+      description: Any accessibility requirements for your theme?
+      placeholder: |
+        - Color contrast requirements
+        - High contrast mode support
+        - Reduced motion preferences
+        - Screen reader considerations
+
+  - type: textarea
+    id: additional
+    attributes:
+      label: Additional Context
+      description: Any other information about your theming needs
+      placeholder: |
+        - Design system guidelines you need to follow
+        - Timeline requirements
+        - Any constraints or limitations
+        - References to other design systems or websites
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Checklist
+      description: Please confirm the following
+      options:
+        - label: I have provided clear requirements and examples
+          required: true
+        - label: I have included color codes or design specifications
+          required: true
