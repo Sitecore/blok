@@ -1,7 +1,7 @@
 import { useCallback } from "react"
 import { atom, useAtom } from "jotai"
-import { atomWithReset } from "jotai/utils"
 import type { PrimitiveAtom } from "jotai"
+import { atomWithReset } from "jotai/utils"
 
 export const TOOL_ACTIONS = {
   TOGGLE_BRAINSTORMING: "TOGGLE_BRAINSTORMING",
@@ -53,7 +53,10 @@ export interface ToolAction {
 }
 
 // Reducer
-export const toolReducer = (state: ToolState, action: ToolAction): ToolState => {
+export const toolReducer = (
+  state: ToolState,
+  action: ToolAction
+): ToolState => {
   switch (action.type) {
     case TOOL_ACTIONS.TOGGLE_BRAINSTORMING: {
       const isCurrentlyActive = state.brainstorming.active
@@ -132,7 +135,9 @@ export function useToolDispatch() {
 }
 
 // Selectors
-export const brainstormingStateAtom = atom((get) => get(toolStateAtom).brainstorming)
+export const brainstormingStateAtom = atom(
+  (get) => get(toolStateAtom).brainstorming
+)
 export const briefStateAtom = atom((get) => get(toolStateAtom).contentOpsBrief)
 export const isAnyToolActiveAtom = atom((get) => {
   const state = get(toolStateAtom)

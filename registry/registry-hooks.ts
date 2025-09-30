@@ -55,11 +55,6 @@ export const hooks: Registry["items"] = [
         path: "stream/hooks/use-get-chats.ts",
         type: "registry:hook",
       },
-      {
-        path: "stream/blocks/chat/page.tsx",
-        type: "registry:page",
-        target: "app/blocks/chat/page.tsx",
-      },
     ],
     categories: ["stream", "hooks", "chats"],
   },
@@ -71,11 +66,6 @@ export const hooks: Registry["items"] = [
       {
         path: "stream/hooks/use-get-chat-messages.ts",
         type: "registry:hook",
-      },
-      {
-        path: "stream/blocks/chat/page.tsx",
-        type: "registry:page",
-        target: "app/blocks/chat/page.tsx",
       },
     ],
     categories: ["stream", "hooks", "messages"],
