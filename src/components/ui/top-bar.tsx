@@ -25,9 +25,16 @@ export default function Topbar() {
             <span className="text-xl font-bold text-red-500">
               <img
                 alt="Logo"
-                className="flex-shrink-0 flex-grow-0 rounded-md object-cover object-left p-1"
+                className="flex-shrink-0 flex-grow-0 rounded-md object-cover object-left p-1 block dark:hidden"
                 src="https://delivery-sitecore.sitecorecontenthub.cloud/api/public/content/logo-sitecore"
               />
+              <img
+                alt="Logo"
+                className="flex-shrink-0 flex-grow-0 rounded-md object-cover object-left p-1 hidden dark:block"
+                src="https://delivery-sitecore.sitecorecontenthub.cloud/api/public/content/logo-sitecore-dark"
+              />
+            </span>
+            <span className="text-lg font-semibold">Blok
             </span>
           </div>
         </div>
