@@ -1,4 +1,4 @@
-import React, { FormEvent, useCallback, useRef, useState } from "react"
+import React, { useCallback, useRef, useState, type FormEvent } from "react"
 import {
   mdiMagicStaff,
   mdiReload,
@@ -8,10 +8,10 @@ import {
   mdiTextLong,
 } from "@mdi/js"
 import {
-  AbRecommendations,
   abTesting,
   brainstorming,
   HTTPError,
+  type AbRecommendations,
 } from "@sitecore/stream-ui-core"
 import { useSetAtom } from "jotai"
 import { omit } from "lodash"
@@ -25,13 +25,13 @@ import {
 } from "@/registry/new-york/ui/popover"
 
 import {
-  PreviewAsideVersions,
   setPreviewAsideMaxVersions,
+  type PreviewAsideVersions,
 } from "../../artifacts/PreviewAside"
 import { useChatProvider } from "../../hooks/useChatProvider"
 import { Icon } from "../../Icon"
 import { apiQueueAtom } from "../../store/atoms"
-import { HTTPValidationError } from "../../types"
+import { type HTTPValidationError } from "../../types"
 import {
   copyToClipboard,
   htmlToMarkdown,

@@ -1,6 +1,6 @@
-import { UseChatHelpers } from "ai/react"
+import { type UseChatHelpers } from "ai/react"
 
-import { ExamplePrompt } from "../EmptyScreenBoxes.jsx"
+import { type ExamplePrompt } from "../EmptyScreenBoxes.jsx"
 
 export interface ArtifactsProperties {
   open: boolean

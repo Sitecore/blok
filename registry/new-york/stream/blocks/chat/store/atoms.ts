@@ -1,13 +1,13 @@
 import { atom } from "jotai"
 import { isEmpty } from "lodash"
 
-import { ExtractSourceRecordProps } from "../types"
+import { type ExtractSourceRecordProps } from "../types"
 import {
-  Artifacts,
-  ArtifactsProperties,
-  BrandKitDetailsModalStateOptions,
-  Config,
-  IsMessageAlreadyGeneratedProps,
+  type Artifacts,
+  type ArtifactsProperties,
+  type BrandKitDetailsModalStateOptions,
+  type Config,
+  type IsMessageAlreadyGeneratedProps,
 } from "./types"
 
 export const configAtom = atom<Config>()
@@ -47,7 +47,6 @@ export const artifactsAtom = atom(
 export const postChatGenerateBodyAtom = atom({})
 
 export const messagesIdsAtom = atom<string[]>([])
-
 
 export const isChatActionPendingAtom = atom<boolean>(false)
 

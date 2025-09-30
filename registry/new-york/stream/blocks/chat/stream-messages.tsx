@@ -1,14 +1,6 @@
-"use client"
-
-import React, {
-  createContext,
-  JSX,
-  useCallback,
-  useEffect,
-  useMemo,
-} from "react"
-import { UIMessage } from "@ai-sdk/ui-utils"
-import { useChat, UseChatHelpers } from "ai/react"
+import React, { useCallback, useEffect, useMemo, type JSX } from "react"
+import { type UIMessage } from "@ai-sdk/ui-utils"
+import { useChat } from "ai/react"
 import {
   Provider as JotaiProvider,
   useAtom,
@@ -34,9 +26,12 @@ import {
   selectedChatWithIdAtom,
 } from "./store/atoms"
 import { TOOL_ACTIONS, useToolDispatch } from "./store/tools"
-import { Session } from "./store/types"
-import { MessageAnnotation, ResetSelections, SelectionValues } from "./types"
-import { useStreamMessagesClientsConfig } from "./utils"
+import { type Session } from "./store/types"
+import {
+  type MessageAnnotation,
+  type ResetSelections,
+  type SelectionValues,
+} from "./types"
 
 import "../../stream.css"
 
@@ -44,39 +39,14 @@ import {
   chat as chatApi,
   dbMessagesToAIMessages,
   HTTPError,
-  ListUserChatMessagesModelResponseV2,
+  type ListUserChatMessagesModelResponseV2,
 } from "@sitecore/stream-ui-core"
-import { Message } from "ai"
+import { type Message } from "ai"
 import { last } from "lodash"
 
 import { useGetChatMessages } from "../../hooks/use-get-chat-messages"
-import { Artifacts } from "./store/types"
-
-export type ChatContextType = {
-  session: Session
-}
-
-export type VercelAiUiProviderType = UseChatHelpers & {
-  brandkitId: string
-  chatId: string
-  addToolResult: ({
-    toolCallId,
-    result,
-  }: {
-    toolCallId: string
-    result: unknown
-  }) => void
-  rollbackChatChanges: (callbacks?: {
-    onRemoveChat?: () => void
-    onDeleteMessage?: () => void
-  }) => void
-  reset: (selections: ResetSelections) => void
-}
-
-export const ChatContext = createContext<ChatContextType | undefined>(undefined)
-export const VercelAiUiContext = createContext<
-  VercelAiUiProviderType | undefined
->(undefined)
+import { type Artifacts } from "./store/types"
+import { ChatContext, VercelAiUiContext } from "./streamContexts"
 
 const baseUrlEnv = {
   dev: "-dev.sitecore-staging.cloud",
@@ -560,4 +530,4 @@ function StreamMessages({
   )
 }
 
-export { StreamMessages, useStreamMessagesClientsConfig }
+export { StreamMessages }

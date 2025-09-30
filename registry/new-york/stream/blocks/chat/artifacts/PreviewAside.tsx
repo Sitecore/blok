@@ -1,9 +1,9 @@
 import React, {
-  ReactNode,
-  SyntheticEvent,
   useEffect,
   useId,
   useRef,
+  type ReactNode,
+  type SyntheticEvent,
 } from "react"
 import { mdiArrowExpand, mdiClose } from "@mdi/js"
 import { useAtom, useAtomValue } from "jotai"

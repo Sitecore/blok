@@ -8,7 +8,7 @@ import { Reveal } from "../artifacts/Reveal"
 import { useAiChatProvider } from "../hooks/useAiChatProvider"
 import { Icon } from "../Icon"
 import { isMessageAlreadyGeneratedAtom } from "../store/atoms"
-import { ToolProps } from "../types"
+import { type ToolProps } from "../types"
 
 interface Question {
   question: string

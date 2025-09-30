@@ -1,9 +1,9 @@
 import React, { useCallback, useEffect, useState } from "react"
 import { mdiTextLong, mdiTuneVariant } from "@mdi/js"
 import {
-  ReferenceModel,
-  ToolInvocation,
-  ToolInvocationUIPart,
+  type ReferenceModel,
+  type ToolInvocation,
+  type ToolInvocationUIPart,
 } from "@sitecore/stream-ui-core"
 import { useAtomValue } from "jotai"
 
@@ -29,9 +29,9 @@ import { Icon } from "./Icon"
 import { PromptForm } from "./PromptForm"
 import { isAnyArtifactOpenAtom } from "./store/atoms"
 import { TOOL_ACTIONS, useToolDispatch } from "./store/tools"
-import { BrainstormingSearchTypeOptions } from "./store/types"
+import { type BrainstormingSearchTypeOptions } from "./store/types"
 import { ToolInvocations } from "./tools/ToolInvocations"
-import { MessageAnnotation } from "./types"
+import { type MessageAnnotation } from "./types"
 import { UserMessage } from "./UserMessage"
 
 export function Messages(): React.ReactNode {

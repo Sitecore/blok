@@ -1,15 +1,15 @@
 import React from "react"
 import { mdiCheckboxMarkedCircleOutline } from "@mdi/js"
 import {
-  ChunkModelV2,
   documents,
-  ListChunksModelResponseV2,
+  type ChunkModelV2,
+  type ListChunksModelResponseV2,
 } from "@sitecore/stream-ui-core"
 import { pick } from "lodash"
 
 import { Markdown } from "../../Markdown"
 import { MessageSubtitle } from "../../MessageSubtitle"
-import { Source } from "../../types"
+import { type Source } from "../../types"
 import {
   extractBrandkitSourcesFromWorkflow,
   firstCharToUpperCase,
@@ -17,9 +17,9 @@ import {
   TOOLS_SOURCES_TITLES,
 } from "../../utils"
 import {
-  SearchContentProps,
-  WorkflowBrandkitSection,
-  WorkflowItem,
+  type SearchContentProps,
+  type WorkflowBrandkitSection,
+  type WorkflowItem,
 } from "../../Workflow"
 import { Sources } from "../Sources"
 

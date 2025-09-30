@@ -1,22 +1,22 @@
-import React, { FormEvent, useCallback, useRef, useState } from "react"
+import React, { useCallback, useRef, useState, type FormEvent } from "react"
 import {
   brief,
-  FieldsModel,
   HTTPError,
-  ListBriefVersionSectionFieldsResponseModel,
-  ListBriefVersionSectionsModel,
+  type FieldsModel,
+  type ListBriefVersionSectionFieldsResponseModel,
+  type ListBriefVersionSectionsModel,
 } from "@sitecore/stream-ui-core"
 import { useSetAtom } from "jotai"
 import { cloneDeep, get, omit, pick, set } from "lodash"
 import { toast } from "sonner"
 
 import {
-  PreviewAsideVersions,
   setPreviewAsideMaxVersions,
+  type PreviewAsideVersions,
 } from "../../artifacts/PreviewAside"
 import { useChatProvider } from "../../hooks/useChatProvider"
 import { apiQueueAtom } from "../../store/atoms"
-import { HTTPValidationError } from "../../types"
+import { type HTTPValidationError } from "../../types"
 import {
   copyToClipboard,
   htmlToMarkdown,

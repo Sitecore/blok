@@ -1,7 +1,7 @@
 import { useCallback } from "react"
 import {
   chat,
-  ListUserChatMessagesModelResponseV2,
+  type ListUserChatMessagesModelResponseV2,
 } from "@sitecore/stream-ui-core"
 
 /**

@@ -1,9 +1,9 @@
 import React, {
-  SyntheticEvent,
   useCallback,
   useEffect,
   useRef,
   useState,
+  type SyntheticEvent,
 } from "react"
 import {
   mdiChevronLeft,

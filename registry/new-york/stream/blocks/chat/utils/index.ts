@@ -1,4 +1,4 @@
-import { ToolInvocationUIPart } from "@ai-sdk/ui-utils"
+import { type ToolInvocationUIPart } from "@ai-sdk/ui-utils"
 import { remarkDocx } from "@m2d/remark-docx"
 import {
   abTestingClient,
@@ -6,10 +6,10 @@ import {
   brandsClient,
   briefClient,
   chatClient,
-  ContentModelRead,
   createStreamFetch,
   documentsClient,
-  ListUserChatMessagesModelResponseV2,
+  type ContentModelRead,
+  type ListUserChatMessagesModelResponseV2,
 } from "@sitecore/stream-ui-core"
 import { merge, omit, uniqueId } from "lodash"
 import rehypeParse from "rehype-parse"
@@ -20,9 +20,12 @@ import remarkStringify from "remark-stringify"
 import { toast } from "sonner"
 import strip from "strip-markdown"
 
-import { ExtractSourceRecordProps, ExtractSourcesProps } from "../types"
+import {
+  type ExtractSourceRecordProps,
+  type ExtractSourcesProps,
+} from "../types"
 import type { Source } from "../types"
-import { SearchContentProps, WorkflowItem } from "../Workflow"
+import { type SearchContentProps, type WorkflowItem } from "../Workflow"
 
 /**
  * A list of tools that are allowed to be utilized within the application or system.

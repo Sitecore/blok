@@ -1,7 +1,7 @@
 import React, { useMemo } from "react"
 
 import { Markdown } from "../Markdown"
-import { ToolProps } from "../types"
+import { type ToolProps } from "../types"
 import { replaceNewLines } from "../utils"
 import { Tool } from "./Tool"
 

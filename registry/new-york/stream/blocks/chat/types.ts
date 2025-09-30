@@ -1,9 +1,12 @@
-import { FunctionComponent } from "react"
-import { UIMessage } from "@ai-sdk/ui-utils"
-import { ReferenceModel, ToolInvocation } from "@sitecore/stream-ui-core"
-import { Message } from "ai"
+import { type FunctionComponent } from "react"
+import { type UIMessage } from "@ai-sdk/ui-utils"
+import {
+  type ReferenceModel,
+  type ToolInvocation,
+} from "@sitecore/stream-ui-core"
+import { type Message } from "ai"
 
-import { Artifacts } from "../chat/store/types"
+import { type Artifacts } from "../chat/store/types"
 import { TOOLS_SOURCES_TITLES } from "./utils"
 
 export type ExtractSourceRecordProps = Record<

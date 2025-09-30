@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react"
-import { UIMessage } from "@ai-sdk/ui-utils"
+import { type UIMessage } from "@ai-sdk/ui-utils"
 import { mdiWeb } from "@mdi/js"
 import {
-  ContentModelRead,
-  ListUserChatMessagesModelResponseV2,
+  type ContentModelRead,
+  type ListUserChatMessagesModelResponseV2,
 } from "@sitecore/stream-ui-core"
 import { useSetAtom } from "jotai"
 
@@ -14,7 +14,7 @@ import { postChatGenerateBodyAtom } from "../chat/store/atoms"
 import { useAiChatProvider } from "./hooks/useAiChatProvider"
 import { useChatProvider } from "./hooks/useChatProvider"
 import { MessageFeedback } from "./MessageFeedback"
-import { MessageAnnotation } from "./types"
+import { type MessageAnnotation } from "./types"
 import { ReferencesBuilder } from "./utils/referencesBuilder"
 
 export interface FeedbackProps {

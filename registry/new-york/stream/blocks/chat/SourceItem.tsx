@@ -5,7 +5,7 @@ import { uniqueId } from "lodash"
 import { cn } from "../../lib/utils"
 import { StreamIcon } from "../../ui/stream-icon"
 import { GetDocumentProxyUrl } from "./GetDocumentProxyUrl"
-import { Source } from "./types"
+import { type Source } from "./types"
 
 interface SourceItemProps {
   index?: number

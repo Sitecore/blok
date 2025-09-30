@@ -1,10 +1,7 @@
 import React from "react"
-import { mdiLinkVariant, mdiOpenInNew } from "@mdi/js"
 import ReactMarkdown from "react-markdown"
 import remarkGfm from "remark-gfm"
 import remarkMath from "remark-math"
-
-import { StreamIcon } from "@/registry/new-york/stream/ui/stream-icon"
 
 import { cn } from "../../lib/utils"
 import { GetDocumentProxyUrl } from "./GetDocumentProxyUrl"

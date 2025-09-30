@@ -1,12 +1,12 @@
 import React, { useMemo, useState } from "react"
-import { ToolInvocationUIPart, UIMessage } from "@ai-sdk/ui-utils"
+import { type ToolInvocationUIPart, type UIMessage } from "@ai-sdk/ui-utils"
 import { mdiThumbDownOutline, mdiThumbUpOutline } from "@mdi/js"
 import {
   chat,
-  ContentModelRead,
-  FeedbackModel,
-  ListUserChatMessagesModelResponseV2,
-  UpdateUserChatMessageModelResponseV2,
+  type ContentModelRead,
+  type FeedbackModel,
+  type ListUserChatMessagesModelResponseV2,
+  type UpdateUserChatMessageModelResponseV2,
 } from "@sitecore/stream-ui-core"
 import { useAtomValue } from "jotai"
 import { isEmpty } from "lodash"
@@ -25,7 +25,7 @@ import { ActionModal } from "./ActionModal"
 import { useChatProvider } from "./hooks/useChatProvider"
 import { SourceItem } from "./SourceItem"
 import { chatIdAtom, extractSourcesFromDataAtom } from "./store/atoms"
-import { ExtractSourceProps, HTTPValidationError } from "./types"
+import { type ExtractSourceProps, type HTTPValidationError } from "./types"
 import {
   createSources,
   extractSourcesFromBrainstorming,

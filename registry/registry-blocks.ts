@@ -707,8 +707,6 @@ export const blocks: Registry["items"] = [
     type: "registry:block",
     description:
       "Stream team's comprehensive brandkit picker with all brandkit components",
-    dependencies: ["@sitecore/stream-ui-core", "@mdi/js"],
-    registryDependencies: ["button", "popover", "input", "separator", "avatar"],
     files: [
       {
         path: "stream/blocks/stream-brandkit-picker/components/stream-brandkit-picker.tsx",
@@ -740,7 +738,6 @@ export const blocks: Registry["items"] = [
     name: "stream-chat-history",
     type: "registry:block",
     description: "Stream chat history component",
-    dependencies: ["@mdi/js"],
     files: [
       {
         path: "stream/blocks/stream-chat-history/chat-history.tsx",
@@ -761,6 +758,7 @@ export const blocks: Registry["items"] = [
     type: "registry:block",
     description: "Stream team's chat messages for rendering in a chat window",
     dependencies: [
+      "react-markdown",
       "@sitecore/stream-ui-core",
       "@mdi/js",
       "react-dropzone",
@@ -769,6 +767,20 @@ export const blocks: Registry["items"] = [
       "lodash",
       "react-textarea-autosize",
       "ai@4.1.20",
+      "@types/lodash",
+      "@m2d/remark-docx",
+      "rehype-parse",
+      "rehype-remark",
+      "remark-gfm",
+      "remark",
+      "remark-html",
+      "remark-stringify",
+      "strip-markdown",
+      "class-variance-authority",
+      "lucide-react",
+      "clsx",
+      "tailwind-merge",
+      "tw-animate-css",
     ],
     registryDependencies: [
       "button",
@@ -781,8 +793,14 @@ export const blocks: Registry["items"] = [
       "card",
       "select",
       "dialog",
+      "tabs",
     ],
     files: [
+      {
+        path: "lib/utils.ts",
+        type: "registry:component",
+        target: "components/lib/utils.ts",
+      },
       {
         path: "stream/blocks/chat/stream-messages.tsx",
         type: "registry:component",
@@ -812,6 +830,11 @@ export const blocks: Registry["items"] = [
         path: "stream/blocks/chat/Markdown.tsx",
         type: "registry:component",
         target: "components/stream-components/blocks/chat/Markdown.tsx",
+      },
+      {
+        path: "stream/blocks/chat/streamContexts.tsx",
+        type: "registry:component",
+        target: "components/stream-components/blocks/chat/streamContexts.tsx",
       },
       {
         path: "stream/blocks/chat/MessageFeedback.tsx",

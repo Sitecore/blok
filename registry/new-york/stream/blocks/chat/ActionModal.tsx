@@ -1,4 +1,4 @@
-import React, { MouseEvent, useState } from "react"
+import React, { useState, type MouseEvent } from "react"
 import { upperFirst } from "lodash"
 
 import { Button } from "@/registry/new-york/ui/button"

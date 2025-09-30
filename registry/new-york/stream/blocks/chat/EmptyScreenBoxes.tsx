@@ -1,6 +1,6 @@
 "use client"
 
-import { JSX, memo } from "react"
+import { memo, type JSX } from "react"
 import {
   mdiAccountBadgeOutline,
   mdiArrowBottomRight,

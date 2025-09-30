@@ -1,4 +1,4 @@
-import React, { ReactNode, useEffect, useRef, useState } from "react"
+import React, { useEffect, useRef, useState, type ReactNode } from "react"
 
 function useAutoScroll(content: ReactNode | ReactNode[]): {
   contentRef: React.RefObject<HTMLDivElement>

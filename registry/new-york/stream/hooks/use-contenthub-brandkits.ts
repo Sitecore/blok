@@ -1,6 +1,5 @@
 import { useCallback, useEffect, useMemo, useState } from "react"
 import {
-  Brandkit,
   brandkitFromApiResponse,
   contenthubBrandsBrandKit,
   getBrandkitDisplayName,
@@ -9,6 +8,7 @@ import {
   isDraftBrandkit,
   isPublishedBrandkit,
   normalizeContentHubBrandkitFromHeyApi,
+  type Brandkit,
   // Types
   type BrandkitStatus,
 } from "@sitecore/stream-ui-core"

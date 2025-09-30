@@ -3,11 +3,13 @@
 import React from "react"
 import { useAtomValue } from "jotai"
 import { isEmpty } from "lodash"
-import { createPortal } from "react-dom"
 
 import { Reveal } from "../artifacts/Reveal"
 import { isMessageAlreadyGeneratedAtom } from "../store/atoms"
-import { ToolInvocationRefProps, ToolInvocationsProps } from "../types"
+import {
+  type ToolInvocationRefProps,
+  type ToolInvocationsProps,
+} from "../types"
 import { createTool } from "./utils/createTool"
 
 export function ToolInvocations({

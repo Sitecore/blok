@@ -1,4 +1,4 @@
-import React, { ReactNode, useEffect, useRef, useState } from "react"
+import React, { useEffect, useRef, useState, type ReactNode } from "react"
 import {
   mdiArrowCollapseVertical,
   mdiArrowExpandVertical,

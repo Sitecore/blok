@@ -40,8 +40,8 @@ import {
   activeToolDataAtom,
   activeToolNameAtom,
   isAnyToolActiveAtom,
-  ToolAction,
   useToolDispatch,
+  type ToolAction,
 } from "./store/tools"
 import { ReferencesBuilder } from "./utils/referencesBuilder"
 

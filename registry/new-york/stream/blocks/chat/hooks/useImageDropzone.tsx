@@ -1,8 +1,8 @@
 import { useCallback, useMemo } from "react"
 import {
-  DropzoneInputProps,
-  DropzoneRootProps,
   useDropzone,
+  type DropzoneInputProps,
+  type DropzoneRootProps,
 } from "react-dropzone"
 import { toast } from "sonner"
 

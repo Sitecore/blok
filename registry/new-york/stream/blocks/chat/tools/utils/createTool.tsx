@@ -1,7 +1,7 @@
 import React, { Fragment } from "react"
 import { mdiCheckboxMarkedCircleOutline, mdiWeb } from "@mdi/js"
 
-import { ToolProps, Tools } from "../../types"
+import { type ToolProps, type Tools } from "../../types"
 import { Answer } from "../Answer"
 import { Brainstorming } from "../brainstorming/Brainstorming"
 import { Brief } from "../brief/Brief"

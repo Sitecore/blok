@@ -23,7 +23,7 @@ import {
 export type UseBrandkitsOptions =
   ListBrandKitsApiBrandsV1OrganizationsOrganizationIdBrandkitsGetData["path"] &
     (ListBrandKitsApiBrandsV1OrganizationsOrganizationIdBrandkitsGetData["query"] extends undefined
-      ? {}
+      ? object
       : ListBrandKitsApiBrandsV1OrganizationsOrganizationIdBrandkitsGetData["query"])
 
 export interface UseBrandkitsReturn {

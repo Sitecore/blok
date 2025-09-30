@@ -14,10 +14,7 @@ import {
 import { cn } from "../../../lib/utils"
 import { StreamIcon } from "../../../ui/stream-icon"
 import { StreamBrandkitItem } from "./stream-brandkit-item"
-import {
-  StreamBrandkitList,
-  StreamBrandkitListProps,
-} from "./stream-brandkit-list"
+import { StreamBrandkitList } from "./stream-brandkit-list"
 
 export interface StreamBrandkitPickerProps {
   brandkits: Brandkit[]

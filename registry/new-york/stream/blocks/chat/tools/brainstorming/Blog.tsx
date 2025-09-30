@@ -7,7 +7,7 @@ import { PreviewAside } from "../../artifacts/PreviewAside"
 import EditCommands from "../../EditCommands"
 import { Markdown } from "../../Markdown"
 import { chatIdAtom, isLoadingAtom } from "../../store/atoms"
-import { ToolProps } from "../../types"
+import { type ToolProps } from "../../types"
 import { markdownToPlainText, replaceNewLines, saveToDocx } from "../../utils"
 import { useBlogLogic } from "./useBlogLogic"
 

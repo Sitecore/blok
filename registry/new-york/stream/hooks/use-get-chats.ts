@@ -1,5 +1,8 @@
 import { useCallback } from "react"
-import { chat, ListUserChatsModelResponseV2 } from "@sitecore/stream-ui-core"
+import {
+  chat,
+  type ListUserChatsModelResponseV2,
+} from "@sitecore/stream-ui-core"
 
 /**
  * Hook to retrieve the list of user chats for a specific organization and user.

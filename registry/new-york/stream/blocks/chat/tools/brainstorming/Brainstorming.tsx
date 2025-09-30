@@ -10,7 +10,7 @@ import {
   isLoadingAtom,
   isMessageAlreadyGeneratedAtom,
 } from "../../store/atoms"
-import { ToolProps } from "../../types"
+import { type ToolProps } from "../../types"
 import { extractBrandkitSourcesFromWorkflow } from "../../utils"
 import { Workflow, type WorkflowItem } from "../../Workflow"
 import { Tool } from "../Tool"

@@ -1,5 +1,6 @@
 import { mdiFileDocumentOutline, mdiTextLong } from "@mdi/js"
-import { TOOL_ACTIONS, ToolActionType } from "./tools"
+
+import { TOOL_ACTIONS, type ToolActionType } from "./tools"
 
 export type ToolDefinition = {
   name: string

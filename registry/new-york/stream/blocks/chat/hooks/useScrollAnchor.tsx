@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useRef, useState } from "react"
-import { UIMessage } from "@ai-sdk/ui-utils"
+import { type UIMessage } from "@ai-sdk/ui-utils"
 
 export interface ScrollAnchorProps {
   messagesRef: React.RefObject<HTMLDivElement>

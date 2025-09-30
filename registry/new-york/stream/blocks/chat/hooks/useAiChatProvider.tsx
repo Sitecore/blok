@@ -1,6 +1,6 @@
 import { useContext } from "react"
 
-import { VercelAiUiContext } from "../stream-messages"
+import { VercelAiUiContext } from "../streamContexts"
 
 export const useAiChatProvider = () => {
   const context = useContext(VercelAiUiContext)

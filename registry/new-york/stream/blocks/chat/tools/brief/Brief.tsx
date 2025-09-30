@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useRef } from "react"
-import { ListBriefVersionSectionFieldsResponseModel } from "@sitecore/stream-ui-core"
+import { type ListBriefVersionSectionFieldsResponseModel } from "@sitecore/stream-ui-core"
 import { useAtomValue } from "jotai"
 
 import { Button } from "@/registry/new-york/ui/button"
@@ -8,7 +8,7 @@ import { PreviewAside } from "../../artifacts/PreviewAside"
 import EditCommands from "../../EditCommands"
 import { Markdown } from "../../Markdown"
 import { chatIdAtom, isLoadingAtom } from "../../store/atoms"
-import { ToolProps } from "../../types"
+import { type ToolProps } from "../../types"
 import { useBriefLogic } from "./useBriefLogic"
 
 export function Brief({
