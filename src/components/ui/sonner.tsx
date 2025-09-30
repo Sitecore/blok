@@ -28,10 +28,10 @@ const Toaster = ({ ...props }: ToasterProps) => {
           info: "!bg-info-bg",
           warning: "!bg-warning-bg",
           default: "!bg-info-bg",
-          title: "text-sm !text-black !font-normal",
-          description: "text-sm !text-black",
+          title: "text-sm !text-body-text !font-normal",
+          description: "text-sm !text-body-text",
           closeButton:
-            "!absolute !top-3 !right-0 !left-auto !bg-transparent !border-none !text-black",
+            "!absolute !top-3 !right-0 !left-auto !bg-transparent !border-none",
         },
       }}
       {...props}
