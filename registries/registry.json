@@ -498,7 +498,7 @@
         "class-variance-authority"
       ],
       "registryDependencies": [
-        "http://localhost:3000/r/theme.json"
+        "https://blok-shadcn.vercel.app/r/theme.json"
       ],
       "files": [
         {
@@ -836,8 +836,8 @@
         "vaul"
       ],
       "registryDependencies": [
-        "http://blok-shadcn.vercel.app/r/button.json",
-        "http://blok-shadcn.vercel.app/r/theme.json"
+        "https://blok-shadcn.vercel.app/r/button.json",
+        "https://blok-shadcn.vercel.app/r/theme.json"
       ],
       "files": [
         {
@@ -1086,8 +1086,8 @@
         "@mdi/js"
       ],
       "registryDependencies": [
-        "http://blok-shadcn.vercel.app/r/button.json",
-        "http://blok-shadcn.vercel.app/r/theme.json"
+        "https://blok-shadcn.vercel.app/r/button.json",
+        "https://blok-shadcn.vercel.app/r/theme.json"
       ],
       "files": [
         {
