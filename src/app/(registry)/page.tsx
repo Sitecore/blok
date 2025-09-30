@@ -17,7 +17,7 @@ export function ButtonDemo() {
 export default function Home() {
   return (
     <main className="w-full">
-      <div className="bg-white p-6 ">
+      <div className="bg-body-bg p-6 ">
         <div className="flex flex-col space-y-5 mt-4 p-5 md:mt-8 md:p-10">
           <h1 className="font-bold text-4xl tracking-tight md:text-4xl">
             Build better products faster
@@ -29,12 +29,12 @@ export default function Home() {
             language.
           </p>
           <div className="flex space-x-4">
-            {/* <Button className="bg-primary text-white px-4 py-2 rounded-full text-xs">
+            {/* <Button className="bg-primary-fg text-inverse-text px-4 py-2 rounded-full text-xs">
               Get started
             </Button>
             <Button
               variant="outline"
-              className="rounded-full border-gray-300 text-gray-600 hover:bg-gray-100 text-xs w-30"
+              className="rounded-full border-border-color text-subtle-text hover:bg-subtle-bg text-xs w-30"
             >
               Browse blocks
             </Button> */}

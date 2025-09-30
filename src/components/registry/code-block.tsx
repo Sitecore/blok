@@ -53,7 +53,7 @@ export function Codeblocks({ code, showLineNumbers = true }: CodeblocksProps) {
         </Button>
       </div>
 
-      <div className="mt-16 sm:mt-0 flex rounded-lg border bg-white">
+      <div className="mt-16 sm:mt-0 flex rounded-lg border bg-body-bg">
         {showLineNumbers && (
           <div className="flex flex-col items-center justify-start py-2 px-2 text-sm text-muted-foreground gap-y-1">
             {codeLines.map((_, index) => (

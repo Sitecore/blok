@@ -41,7 +41,7 @@ const ShadowDemo = ({ content }: Props) => {
               <tr key={key} style={{ borderBottom: "1px solid #eee" }}>
                 <td style={{ padding: "0.8rem" }}>
                   <div
-                    className={`h-16 w-16 rounded-md bg-white shadow-${key}`}
+                    className={`h-16 w-16 rounded-md bg-body-bg shadow-${key}`}
                   ></div>
                 </td>
                 <td style={{ padding: "0.8rem" }}>{key}</td>

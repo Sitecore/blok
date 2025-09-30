@@ -15,7 +15,7 @@ import {
 
 export default function Topbar() {
   return (
-    <header className="border-b bg-white">
+    <header className="border-b bg-body-bg">
       <div className="flex h-16 items-center px-4">
         <div className="flex items-center gap-4">
           <Button variant="ghost" size="icon" colorScheme="neutral">

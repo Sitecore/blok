@@ -40,13 +40,13 @@ export const radioGroup = {
       <RadioGroup defaultValue="starter" className="max-w-sm">
         {plans.map((plan) => (
           <Label
-            className="hover:bg-accent/50 flex items-start gap-3 rounded-lg border p-4 has-[[data-state=checked]]:border-info-600 has-[[data-state=checked]]:bg-info-50 dark:has-[[data-state=checked]]:border-info-900 dark:has-[[data-state=checked]]:bg-info-950"
+            className="hover:bg-accent/50 flex items-start gap-3 rounded-lg border p-4 has-[[data-state=checked]]:border-info-fg has-[[data-state=checked]]:bg-info-bg dark:has-[[data-state=checked]]:border-info-fg dark:has-[[data-state=checked]]:bg-info-bg"
             key={plan.id}
           >
             <RadioGroupItem
               value={plan.id}
               id={plan.name}
-              className="shadow-none data-[state=checked]:border-info-600 data-[state=checked]:bg-info-50 *:data-[slot=radio-group-indicator]:[&>svg]:fill-white *:data-[slot=radio-group-indicator]:[&>svg]:stroke-white"
+              className="shadow-none data-[state=checked]:border-info-fg data-[state=checked]:bg-info-fg *:data-[slot=radio-group-indicator]:[&>svg]:fill-inverse-text *:data-[slot=radio-group-indicator]:[&>svg]:stroke-inverse-text"
             />
             <div className="grid gap-1 font-normal">
               <div className="font-medium">{plan.name}</div>
