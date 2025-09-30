@@ -55,8 +55,8 @@ const BorderroundedDemo = ({ content }: Props) => {
                       style={{
                         fontFamily: "monospace",
                         fontSize: "0.9rem",
-                        color: "#555",
                       }}
+                      className="text-muted-foreground"
                     >
                       {value}
                     </span>
@@ -66,8 +66,8 @@ const BorderroundedDemo = ({ content }: Props) => {
                       style={{
                         fontFamily: "monospace",
                         fontSize: "0.9rem",
-                        color: "#555",
                       }}
+                      className="text-muted-foreground"
                     >
                       {pxValue}px
                     </span>
@@ -77,8 +77,8 @@ const BorderroundedDemo = ({ content }: Props) => {
                       style={{
                         fontFamily: "monospace",
                         fontSize: "0.9rem",
-                        color: "#555",
                       }}
+                      className="text-muted-foreground"
                     >
                       {NOTES[key] ?? ""}
                     </span>
