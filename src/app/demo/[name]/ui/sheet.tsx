@@ -45,10 +45,10 @@ const SheetPopupComponent = ({ side = "left" }: { side?: "top" | "right" | "bott
                 ))}
             </div>
             <SheetFooter>
-                <Button type="submit">Save changes</Button>
                 <SheetClose asChild>
                     <Button variant="outline">Cancel</Button>
                 </SheetClose>
+                <Button type="submit">Save changes</Button>
             </SheetFooter>
         </SheetContent>
     </Sheet>
@@ -82,10 +82,10 @@ export const sheet = {
                             </div>
                         </div>
                         <SheetFooter>
-                            <Button type="submit">Save changes</Button>
                             <SheetClose asChild>
                                 <Button variant="outline" colorScheme="neutral">Close</Button>
                             </SheetClose>
+                            <Button type="submit">Save changes</Button>
                         </SheetFooter>
                     </SheetContent>
                 </Sheet>
