@@ -25,7 +25,6 @@ const ShadowDemo = ({ content }: Props) => {
           borderCollapse: "collapse",
           marginTop: "1rem",
         }}
-        className="rounded-lg bg-neutral-50"
       >
         <thead>
           <tr style={{ borderBottom: "2px solid #ccc" }}>
@@ -50,8 +49,8 @@ const ShadowDemo = ({ content }: Props) => {
                     style={{
                       fontFamily: "monospace",
                       fontSize: "0.9rem",
-                      color: "#555",
                     }}
+                    className="text-muted-foreground"
                   >
                     {value}
                   </span>
@@ -62,8 +61,8 @@ const ShadowDemo = ({ content }: Props) => {
                     style={{
                       fontFamily: "monospace",
                       fontSize: "0.9rem",
-                      color: "#555",
                     }}
+                    className="text-muted-foreground"
                   >
                     {NOTES[key] ?? ""}
                   </span>
