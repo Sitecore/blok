@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import { mdiMenu } from "@mdi/js";
-import Icon from "@mdi/react";
+import { Icon } from "@/lib/icon";
 import { Slot } from "@radix-ui/react-slot";
 import { cva, VariantProps } from "class-variance-authority";
 

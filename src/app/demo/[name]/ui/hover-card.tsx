@@ -6,7 +6,7 @@ import {
   HoverCardTrigger,
 } from "@/components/ui/hover-card";
 import { mdiCalendar } from "@mdi/js";
-import Icon from "@mdi/react";
+import { Icon } from "@/lib/icon";
 
 export const hoverCard = {
   name: "hover-card",
@@ -30,8 +30,7 @@ export const hoverCard = {
               <div className="mt-1 flex items-center gap-2">
                 <Icon
                   path={mdiCalendar}
-                  size={0.875}
-                  className="text-muted-foreground"
+                  className="text-muted-foreground size-5"
                 />
                 <span className="text-muted-foreground text-xs">
                   Joined December 2021
