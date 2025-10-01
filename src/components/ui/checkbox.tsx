@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import { mdiCheck } from "@mdi/js";
-import Icon from "@mdi/react";
+import { Icon } from "@/lib/icon";
 import * as CheckboxPrimitive from "@radix-ui/react-checkbox";
 
 import { cn } from "@/lib/utils";
@@ -24,7 +24,7 @@ function Checkbox({
         data-slot="checkbox-indicator"
         className="flex h-full items-center justify-center text-current transition-none"
       >
-        <Icon path={mdiCheck} size={0.7} />
+        <Icon path={mdiCheck} size={0.8} />
       </CheckboxPrimitive.Indicator>
     </CheckboxPrimitive.Root>
   );

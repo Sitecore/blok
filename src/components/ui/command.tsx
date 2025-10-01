@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import { mdiClose, mdiMagnify } from "@mdi/js";
-import Icon from "@mdi/react";
+import { Icon } from "@/lib/icon";
 import { Command as CommandPrimitive } from "cmdk";
 import * as DialogPrimitive from "@radix-ui/react-dialog";
 
@@ -91,8 +91,8 @@ function CommandInput({
       />
       <Icon
         path={mdiMagnify}
-        size={0.9}
-        className="absolute top-1/2 left-6 shrink-0 -translate-y-1/2 opacity-50"
+       
+        className="absolute top-1/2 left-6 shrink-0 -translate-y-1/2 opacity-50 size-6"
       />
       {value && (
         <Button
@@ -102,7 +102,7 @@ function CommandInput({
           colorScheme="neutral"
           className="absolute top-1/2 right-4 -translate-y-1/2 text-gray-400 hover:text-gray-600 focus:outline-none"
         >
-          <Icon path={mdiClose} size={0.9} />
+          <Icon path={mdiClose} size={1} />
         </Button>
       )}
     </div>
