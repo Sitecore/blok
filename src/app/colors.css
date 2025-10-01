@@ -234,6 +234,18 @@
   --color-neutral-700: var(--color-blackAlpha-700);
   --color-neutral-800: var(--color-blackAlpha-800);
   --color-neutral-900: var(--color-blackAlpha-900);
+  
+  /* Neutral color scale tokens */
+  --color-neutral-color-50: var(--color-blackAlpha-50);
+  --color-neutral-color-100: var(--color-blackAlpha-100);
+  --color-neutral-color-200: var(--color-blackAlpha-200);
+  --color-neutral-color-300: var(--color-blackAlpha-300);
+  --color-neutral-color-400: var(--color-blackAlpha-400);
+  --color-neutral-color-500: var(--color-blackAlpha-500);
+  --color-neutral-color-600: var(--color-blackAlpha-600);
+  --color-neutral-color-700: var(--color-blackAlpha-700);
+  --color-neutral-color-800: var(--color-blackAlpha-800);
+  --color-neutral-color-900: var(--color-blackAlpha-900);
 }
 
 @layer utilities {

@@ -44,7 +44,7 @@ export function ActionSonner() {
       onClick={() =>
         toast("Toast with an Action", {
           description: `A description with some more information ${<a href="#">link</a>}`,
-          icon: <Icon path={mdiInformation} />,
+          icon: <Icon path={mdiInformation} className="text-body-text" />,
           action: {
             label: "Action",
             onClick: () => console.log("Action!"),
