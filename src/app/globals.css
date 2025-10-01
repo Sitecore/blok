@@ -58,6 +58,22 @@
   --color-info: var(--color-info-500);
   --color-neutral: var(--color-blackAlpha-500);
   
+  /* Button hover colors (light mode) */
+  --color-primary-hover: var(--color-primary-600);
+  --color-danger-hover: var(--color-danger-600);
+  --color-success-hover: var(--color-success-600);
+  --color-warning-hover: var(--color-warning-600);
+  --color-info-hover: var(--color-info-600);
+  --color-neutral-hover: var(--color-neutral-600);
+  
+  /* Button active colors (light mode) */
+  --color-primary-active: var(--color-primary-700);
+  --color-danger-active: var(--color-danger-700);
+  --color-success-active: var(--color-success-700);
+  --color-warning-active: var(--color-warning-700);
+  --color-info-active: var(--color-info-700);
+  --color-neutral-active: var(--color-neutral-700);
+  
   /* Extended color tokens */
   --color-gray: var(--color-gray-500);
   --color-red: var(--color-red-500);
@@ -171,6 +187,22 @@
   --color-warning: var(--color-warning-200);
   --color-info: var(--color-info-200);
   --color-neutral: var(--color-whiteAlpha-600);
+  
+  /* Button hover colors (dark mode) */
+  --color-primary-hover: var(--color-primary-300);
+  --color-danger-hover: var(--color-danger-300);
+  --color-success-hover: var(--color-success-300);
+  --color-warning-hover: var(--color-warning-300);
+  --color-info-hover: var(--color-info-300);
+  --color-neutral-hover: var(--color-neutral-300);
+  
+  /* Button active colors (dark mode) */
+  --color-primary-active: var(--color-primary-400);
+  --color-danger-active: var(--color-danger-400);
+  --color-success-active: var(--color-success-400);
+  --color-warning-active: var(--color-warning-400);
+  --color-info-active: var(--color-info-400);
+  --color-neutral-active: var(--color-neutral-400);
   
   /* Extended color tokens */
   --color-gray: var(--color-gray-200);
@@ -290,6 +322,22 @@
   --color-warning: var(--color-warning);
   --color-info: var(--color-info);
   --color-neutral: var(--color-neutral);
+  
+  /* Button hover colors */
+  --color-primary-hover: var(--color-primary-hover);
+  --color-danger-hover: var(--color-danger-hover);
+  --color-success-hover: var(--color-success-hover);
+  --color-warning-hover: var(--color-warning-hover);
+  --color-info-hover: var(--color-info-hover);
+  --color-neutral-hover: var(--color-neutral-hover);
+  
+  /* Button active colors */
+  --color-primary-active: var(--color-primary-active);
+  --color-danger-active: var(--color-danger-active);
+  --color-success-active: var(--color-success-active);
+  --color-warning-active: var(--color-warning-active);
+  --color-info-active: var(--color-info-active);
+  --color-neutral-active: var(--color-neutral-active);
   
   /* Extended color tokens */
   --color-gray: var(--color-gray);

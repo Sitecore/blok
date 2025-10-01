@@ -33,11 +33,11 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        default: "bg-primary text-primary-foreground hover:bg-primary-600",
+        default: "bg-primary text-primary-foreground hover:bg-primary-500",
         outline:
           "border bg-backgrounds hover:bg-neutral-bg hover:text-accent-foreground dark:bg-input/30 dark:border-input dark:hover:bg-input/50",
         ghost:
-          "hover:bg-neutral-bg hover:text-accent-foreground dark:hover:bg-accent/50",
+          "bg-transparent hover:bg-neutral-bg active:bg-neutral-bg-active",
         link: "text-primary underline-offset-4 hover:underline",
       },
       size: {
@@ -65,24 +65,24 @@ const buttonVariants = cva(
         variant: "default",
         colorScheme: "primary",
         class:
-          "bg-primary text-inverse-text hover:bg-primary-600 active:bg-primary-700",
+          "bg-primary text-inverse-text hover:bg-primary-hover active:bg-primary-active",
       },
       {
         variant: "default",
         colorScheme: "success",
         class:
-          "bg-success text-inverse-text hover:bg-success-600 active:bg-success-700",
+          "bg-success text-inverse-text hover:bg-success-hover active:bg-success-active",
       },
       {
         variant: "default",
         colorScheme: "danger",
-        class: "bg-danger text-inverse-text hover:bg-danger-600 active:bg-danger-700",
+        class: "bg-danger text-inverse-text hover:bg-danger-hover active:bg-danger-active",
       },
       {
         variant: "default",
         colorScheme: "neutral",
         class:
-          "bg-neutral text-inverse-text hover:bg-neutral-600 active:bg-neutral-700",
+          "bg-neutral text-inverse-text hover:bg-neutral-hover active:bg-neutral-active",
       },
       {
         variant: "default",
