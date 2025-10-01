@@ -388,23 +388,15 @@ export function PromptForm({
                           <>
                             <img
                               src={p.url}
-                              alt=""
-                              className="scale-110 object-cover opacity-50 blur-sm"
-                              sizes="28px"
-                              aria-hidden
-                            />
-                            <img
-                              src={p.url}
                               alt={p.file.name}
-                              className="object-contain"
-                              sizes="28px"
+                              className="h-full w-auto object-contain opacity-50"
                             />
                           </>
                         ) : (
                           <img
-                            src="/icons/file-icon.svg"
+                            src={undefined}
                             alt=""
-                            className="object-contain"
+                            className="h-full w-auto opacity-50"
                             sizes="28px"
                           />
                         )}

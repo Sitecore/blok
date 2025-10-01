@@ -242,7 +242,7 @@ export function PreviewAside({
         <div className="relative mb-[125px]">{children}</div>
       </CardContent>
       {!_isPreview && (
-        <CardFooter className="relative bottom-[105px] flex items-center justify-between bg-white px-0">
+        <CardFooter className="relative mb-[110px] flex items-center justify-between bg-white px-0">
           <div className="flex items-center gap-4 self-start">{start}</div>
           <div className="flex items-center gap-4 self-end">{end}</div>
         </CardFooter>

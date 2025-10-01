@@ -84,7 +84,7 @@ export function Messages(): React.ReactNode {
       )}
       <div className="relative flex h-screen flex-1 flex-col gap-4 px-6 pt-6">
         <div
-          className="relative z-0 mb-[125px] flex min-h-0 flex-grow flex-col gap-4 overflow-auto"
+          className="relative z-0 flex min-h-0 flex-grow flex-col gap-4 overflow-auto"
           ref={scrollRef}
           data-testid="scroll-contain-base-chat"
         >
@@ -158,7 +158,7 @@ export function Messages(): React.ReactNode {
             })}
           </div>
         </div>
-        <div className="relative bottom-[125px] z-10 flex flex-shrink-0 flex-col gap-4 bg-[#FBFBFB]">
+        <div className="relative z-10 mb-[125px] flex flex-shrink-0 flex-col gap-4 bg-[#FBFBFB]">
           <ButtonScrollToBottom
             isAtBottom={isAtBottom}
             scrollToBottom={scrollToBottom}
