@@ -1,22 +1,10 @@
 import React, { useCallback, useEffect, useState } from "react"
-import { mdiTextLong, mdiTuneVariant } from "@mdi/js"
 import {
-  type ReferenceModel,
-  type ToolInvocation,
-  type ToolInvocationUIPart,
+  ReferenceModel,
+  ToolInvocation,
+  ToolInvocationUIPart,
 } from "@sitecore/stream-ui-core"
 import { useAtomValue } from "jotai"
-
-import { Button } from "@/registry/new-york/ui/button"
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/registry/new-york/ui/dialog"
-import { Tabs, TabsList, TabsTrigger } from "@/registry/new-york/ui/tabs"
 
 import { cn } from "../../lib/utils"
 import { ButtonScrollToBottom } from "./ButtonScrollToBottom"
@@ -25,34 +13,21 @@ import { Feedback } from "./Feedback"
 import { useAiChatProvider } from "./hooks/useAiChatProvider"
 import { useImageDropzone } from "./hooks/useImageDropzone"
 import { useScrollAnchor } from "./hooks/useScrollAnchor"
-import { Icon } from "./Icon"
 import { PromptForm } from "./PromptForm"
 import { isAnyArtifactOpenAtom } from "./store/atoms"
-import { TOOL_ACTIONS, useToolDispatch } from "./store/tools"
-import { type BrainstormingSearchTypeOptions } from "./store/types"
 import { ToolInvocations } from "./tools/ToolInvocations"
-import { type MessageAnnotation } from "./types"
+import { MessageAnnotation } from "./types"
 import { UserMessage } from "./UserMessage"
 
 export function Messages(): React.ReactNode {
   /* Atoms */
   const isAnyArtifactOpen = useAtomValue(isAnyArtifactOpenAtom)
-  const [toolState, dispatchToolAction] = useToolDispatch()
 
   /* Hooks */
   const { messages } = useAiChatProvider()
   const { messagesRef, scrollRef, isAtBottom, scrollToBottom } =
     useScrollAnchor(messages)
   const [uploadedFiles, setUploadedFiles] = useState<File[]>([])
-
-  const handleSaveToolConfigurationOnClick = (
-    value: BrainstormingSearchTypeOptions
-  ) => {
-    dispatchToolAction({
-      type: TOOL_ACTIONS.CONFIGURE_BRAINSTORMING,
-      payload: { searchType: value },
-    })
-  }
 
   const onDrop = useCallback((acceptedFiles: File[]) => {
     setUploadedFiles((prevFiles) => [...prevFiles, ...acceptedFiles])
@@ -108,86 +83,6 @@ export function Messages(): React.ReactNode {
         </div>
       )}
       <div className="relative flex h-screen flex-1 flex-col gap-4 px-6 pt-6">
-        <Dialog>
-          <DialogTrigger
-            id="tour-chat-brainstorming-tools-settings"
-            className="absolute top-[-6px] right-[16px] z-10"
-            asChild
-          >
-            <Button
-              data-testid="brainstorming_button_tool_configuration"
-              variant={"ghost"}
-              colorScheme={"neutral"}
-              size={"icon-sm"}
-              title="Tool configuration"
-            >
-              <Icon path={mdiTuneVariant} />
-            </Button>
-          </DialogTrigger>
-
-          <DialogContent className="flex flex-col gap-4">
-            <DialogHeader className="gap-2">
-              <DialogTitle>Tool configuration</DialogTitle>
-              <DialogDescription>
-                Tune and configure how each tool handles your chats, retrieves
-                information and outputs responses
-              </DialogDescription>
-            </DialogHeader>
-            <div className="space-y-2">
-              <h2 className="text-md text-blackAlpha-600">Tools</h2>
-              <div className="space-y-2 rounded-md bg-gray-50 p-2">
-                <div className="flex items-center gap-2">
-                  <div className="bg-primary-100 inline-block rounded p-1">
-                    <Icon
-                      path={mdiTextLong}
-                      className="text-primary-600"
-                      size={"xs"}
-                    />
-                  </div>
-                  <span className="font-bold">Brainstorming</span>
-                </div>
-                <div className="space-y-2 px-10">
-                  <h2 className="text-md text-blackAlpha-600">
-                    Default search type
-                  </h2>
-                  <Tabs
-                    className="w-fit"
-                    defaultValue={
-                      toolState.brainstorming.data?.params?.searchType ??
-                      "knowledge_web"
-                    }
-                    onValueChange={(value) =>
-                      handleSaveToolConfigurationOnClick(
-                        value as BrainstormingSearchTypeOptions
-                      )
-                    }
-                  >
-                    <TabsList className="border-blackAlpha-200 rounded-md border p-1">
-                      <TabsTrigger
-                        className="data-[state=active]:bg-primary-100 w-fit rounded-md border-none"
-                        value="knowledge_web"
-                      >
-                        Knowledge & web
-                      </TabsTrigger>
-                      <TabsTrigger
-                        className="data-[state=active]:bg-primary-100 w-fit rounded-md border-none"
-                        value="knowledge"
-                      >
-                        Knowledge search
-                      </TabsTrigger>
-                      <TabsTrigger
-                        className="data-[state=active]:bg-primary-100 w-fit rounded-md border-none"
-                        value="web"
-                      >
-                        Web search
-                      </TabsTrigger>
-                    </TabsList>
-                  </Tabs>
-                </div>
-              </div>
-            </div>
-          </DialogContent>
-        </Dialog>
         <div
           className="relative z-0 mb-[125px] flex min-h-0 flex-grow flex-col gap-4 overflow-auto"
           ref={scrollRef}

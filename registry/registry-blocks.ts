@@ -827,6 +827,12 @@ export const blocks: Registry["items"] = [
         target: "components/stream-components/blocks/chat/Messages.tsx",
       },
       {
+        path: "stream/blocks/chat/ChatConfigurationButton.tsx",
+        type: "registry:component",
+        target:
+          "components/stream-components/blocks/chat/ChatConfigurationButton.tsx",
+      },
+      {
         path: "stream/blocks/chat/Markdown.tsx",
         type: "registry:component",
         target: "components/stream-components/blocks/chat/Markdown.tsx",
