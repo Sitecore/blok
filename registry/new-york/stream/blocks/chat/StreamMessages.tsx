@@ -72,7 +72,7 @@ type ExamplePrompt = {
 /**
  * Props for the StreamMessages component.
  */
-export interface StreamProps {
+export interface StreamMessagesProps {
   brandkitId: string
   chatId: string
   isNewChat: boolean
@@ -179,14 +179,14 @@ export interface StreamProps {
  * before it can function properly. It manages chat state through Jotai atoms and integrates
  * with the Vercel AI SDK for chat functionality.
  */
-export function Stream({
+export function StreamMessages({
   brandkitId,
   chatId,
   prompt,
   config,
   isNewChat,
   onStream,
-}: StreamProps): JSX.Element {
+}: StreamMessagesProps): JSX.Element {
   /* Atoms */
   const chatBodyAtom = useAtomValue(postChatGenerateBodyAtom)
   const setMessageIds = useSetAtom(messagesIdsAtom)
