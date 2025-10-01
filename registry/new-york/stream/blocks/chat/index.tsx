@@ -1,17 +1,12 @@
 "use client"
 
-import React, { createContext } from "react"
+import React from "react"
 import { Provider as JotaiProvider } from "jotai"
 
 import { type Session } from "./store/types"
+import { ChatContext } from "./streamContexts"
 
 import "../../stream.css"
-
-export type ChatContextType = {
-  session: Session
-}
-
-export const ChatContext = createContext<ChatContextType | undefined>(undefined)
 
 const baseUrlEnv = {
   dev: "-dev.sitecore-staging.cloud",

@@ -1,14 +1,8 @@
 "use client"
 
-import React, {
-  createContext,
-  useCallback,
-  useEffect,
-  useMemo,
-  type JSX,
-} from "react"
+import React, { useCallback, useEffect, useMemo, type JSX } from "react"
 import { type UIMessage } from "@ai-sdk/ui-utils"
-import { useChat, type UseChatHelpers } from "ai/react"
+import { useChat } from "ai/react"
 import { useAtom, useAtomValue, useSetAtom } from "jotai"
 import { toast } from "sonner"
 
@@ -29,7 +23,7 @@ import {
   selectedChatWithIdAtom,
 } from "./store/atoms"
 import { TOOL_ACTIONS, useToolDispatch } from "./store/tools"
-import { type Session } from "./store/types"
+import { VercelAiUiContext } from "./streamContexts"
 import {
   type MessageAnnotation,
   type ResetSelections,
@@ -49,32 +43,6 @@ import { last } from "lodash"
 
 import { useGetChatMessages } from "../../hooks/use-get-chat-messages"
 import { type Artifacts } from "./store/types"
-
-export type ChatContextType = {
-  session: Session
-}
-
-export type VercelAiUiProviderType = UseChatHelpers & {
-  brandkitId: string
-  chatId: string
-  addToolResult: ({
-    toolCallId,
-    result,
-  }: {
-    toolCallId: string
-    result: unknown
-  }) => void
-  rollbackChatChanges: (callbacks?: {
-    onRemoveChat?: () => void
-    onDeleteMessage?: () => void
-  }) => void
-  reset: (selections: ResetSelections) => void
-}
-
-export const ChatContext = createContext<ChatContextType | undefined>(undefined)
-export const VercelAiUiContext = createContext<
-  VercelAiUiProviderType | undefined
->(undefined)
 
 const baseUrlEnv = {
   dev: "-dev.sitecore-staging.cloud",
@@ -104,7 +72,7 @@ type ExamplePrompt = {
 /**
  * Props for the StreamMessages component.
  */
-export interface StreamMessagesProps {
+export interface StreamProps {
   brandkitId: string
   chatId: string
   isNewChat: boolean
@@ -218,7 +186,7 @@ export function Stream({
   config,
   isNewChat,
   onStream,
-}: StreamMessagesProps): JSX.Element {
+}: StreamProps): JSX.Element {
   /* Atoms */
   const chatBodyAtom = useAtomValue(postChatGenerateBodyAtom)
   const setMessageIds = useSetAtom(messagesIdsAtom)
