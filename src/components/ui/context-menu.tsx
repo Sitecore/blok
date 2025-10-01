@@ -1,7 +1,7 @@
 "use client";
 
 import { mdiCheck, mdiChevronRight, mdiCircle } from "@mdi/js";
-import Icon from "@mdi/react";
+import { Icon } from "@/lib/icon";
 import * as ContextMenuPrimitive from "@radix-ui/react-context-menu";
 import type * as React from "react";
 
@@ -73,7 +73,7 @@ function ContextMenuSubTrigger({
       {...props}
     >
       {children}
-      <Icon path={mdiChevronRight} size={0.8} className="ml-auto" />
+      <Icon path={mdiChevronRight} size={1.5} className="ml-auto" />
     </ContextMenuPrimitive.SubTrigger>
   );
 }
@@ -153,7 +153,7 @@ function ContextMenuCheckboxItem({
     >
       <span className="pointer-events-none absolute left-2 flex size-3.5 items-center justify-center">
         <ContextMenuPrimitive.ItemIndicator>
-          <Icon path={mdiCheck} size={0.7} />
+          <Icon path={mdiCheck} size={1.5} />
         </ContextMenuPrimitive.ItemIndicator>
       </span>
       {children}
@@ -177,7 +177,7 @@ function ContextMenuRadioItem({
     >
       <span className="pointer-events-none absolute left-2 flex size-3.5 items-center justify-center">
         <ContextMenuPrimitive.ItemIndicator>
-          <Icon path={mdiCircle} size={0.5} />
+          <Icon path={mdiCircle} size={1.1} />
         </ContextMenuPrimitive.ItemIndicator>
       </span>
       {children}

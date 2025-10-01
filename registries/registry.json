@@ -420,13 +420,17 @@
       ],
       "dependencies": [
         "@radix-ui/react-accordion",
-        "@mdi/react",
         "@mdi/js"
       ],
       "files": [
         {
           "path": "src/components/ui/accordion.tsx",
-          "type": "registry:ui"
+          "type": "registry:ui",
+          "target": "src/components/ui/accordion.tsx"
+        },
+        {
+          "path": "src/lib/icon.tsx",
+          "type": "registry:lib"  
         }
       ]
     },
@@ -456,7 +460,6 @@
       "title": "Alert",
       "description": "Displays Alert Variants.",
       "dependencies": [
-        "@mdi/react",
         "@mdi/js",
         "class-variance-authority"
       ],
@@ -466,7 +469,12 @@
       "files": [
         {
           "path": "src/components/ui/alert.tsx",
-          "type": "registry:ui"
+          "type": "registry:ui",
+          "target": "src/components/ui/alert.tsx"
+        },
+        {
+          "path": "src/lib/icon.tsx",
+          "type": "registry:lib"  
         }
       ]
     },
@@ -535,13 +543,17 @@
       ],
       "dependencies": [
         "@radix-ui/react-slot",
-        "@mdi/react",
         "@mdi/js"
       ],
       "files": [
         {
           "path": "src/components/ui/breadcrumb.tsx",
-          "type": "registry:ui"
+          "type": "registry:ui",
+          "target": "src/components/ui/breadcrumb.tsx"
+        },
+        {
+          "path": "src/lib/icon.tsx",
+          "type": "registry:lib"  
         }
       ]
     },
@@ -571,7 +583,6 @@
       "description": "A date field component that allows users to enter and edit date.",
       "dependencies": [
         "react-day-picker",
-        "@mdi/react",
         "@mdi/js"
       ],
       "registryDependencies": [
@@ -614,13 +625,17 @@
       ],
       "dependencies": [
         "embla-carousel-react",
-        "@mdi/react",
         "@mdi/js"
       ],
       "files": [
         {
           "path": "src/components/ui/carousel.tsx",
-          "type": "registry:ui"
+          "type": "registry:ui",
+          "target": "src/components/ui/carousel.tsx"
+        },
+        {
+          "path": "src/lib/icon.tsx",
+          "type": "registry:lib"  
         }
       ]
     },
@@ -653,13 +668,17 @@
       ],
       "dependencies": [
         "@radix-ui/react-checkbox",
-        "@mdi/react",
         "@mdi/js"
       ],
       "files": [
         {
           "path": "src/components/ui/checkbox.tsx",
-          "type": "registry:ui"
+          "type": "registry:ui",
+          "target": "src/components/ui/checkbox.tsx"
+        },
+        {
+          "path": "src/lib/icon.tsx",
+          "type": "registry:lib"  
         }
       ]
     },
@@ -688,7 +707,6 @@
       "description": "Autocomplete input and command palette with a list of suggestions.",
       "dependencies": [
         "@mdi/js",
-        "@mdi/react",
         "lucide-react"
       ],
       "registryDependencies": [
@@ -701,7 +719,12 @@
       "files": [
         {
           "path": "src/components/ui/combobox.tsx",
-          "type": "registry:ui"
+          "type": "registry:ui",
+          "target": "src/components/ui/combobox.tsx"
+        },
+        {
+          "path": "src/lib/icon.tsx",
+          "type": "registry:lib"  
         }
       ]
     },
@@ -716,13 +739,17 @@
       ],
       "dependencies": [
         "cmdk",
-        "@mdi/js",
-        "@mdi/react"
+        "@mdi/js"
       ],
       "files": [
         {
           "path": "src/components/ui/command.tsx",
-          "type": "registry:ui"
+          "type": "registry:ui",
+          "target": "src/components/ui/command.tsx"
+        },
+        {
+          "path": "src/lib/icon.tsx",
+          "type": "registry:lib"  
         }
       ]
     },
@@ -736,13 +763,17 @@
       ],
       "dependencies": [
         "@radix-ui/react-context-menu",
-        "@mdi/react",
         "@mdi/js"
       ],
       "files": [
         {
           "path": "src/components/ui/context-menu.tsx",
-          "type": "registry:ui"
+          "type": "registry:ui",
+          "target": "src/components/ui/context-menu.tsx"
+        },
+        {
+          "path": "src/lib/icon.tsx",
+          "type": "registry:lib"  
         }
       ]
     },
@@ -754,7 +785,6 @@
       "dependencies": [
         "date-fns",
         "@mdi/js",
-        "@mdi/react",
         "react-day-picker"
       ],
       "registryDependencies": [
@@ -766,7 +796,12 @@
       "files": [
         {
           "path": "src/components/ui/date-picker.tsx",
-          "type": "registry:ui"
+          "type": "registry:ui",
+          "target": "src/components/ui/date-picker.tsx"
+        },
+        {
+          "path": "src/lib/icon.tsx",
+          "type": "registry:lib"  
         }
       ]
     },
@@ -777,7 +812,6 @@
       "description": "A modal dialog that interrupts the user with important content.",
       "dependencies": [
         "@mdi/js",
-        "@mdi/react",
         "@radix-ui/react-dialog"
       ],
       "registryDependencies": [
@@ -787,7 +821,12 @@
       "files": [
         {
           "path": "src/components/ui/dialog.tsx",
-          "type": "registry:ui"
+          "type": "registry:ui",
+          "target": "src/components/ui/dialog.tsx"
+        },
+        {
+          "path": "src/lib/icon.tsx",
+          "type": "registry:lib"  
         }
       ]
     },
@@ -816,7 +855,6 @@
       "title": "Dropdown",
       "description": "Displays a menu to the user triggered by a button.",
       "dependencies": [
-        "@mdi/react",
         "@mdi/js",
         "@radix-ui/react-dropdown-menu"
       ],
@@ -826,7 +864,12 @@
       "files": [
         {
           "path": "src/components/ui/dropdown-menu.tsx",
-          "type": "registry:ui"
+          "type": "registry:ui",
+          "target": "src/components/ui/dropdown-menu.tsx"
+        },
+        {
+          "path": "src/lib/icon.tsx",
+          "type": "registry:lib"  
         }
       ]
     },
@@ -851,8 +894,7 @@
       "title": "Input OTP",
       "description": "A one-time password input component for verification codes.",
       "dependencies": [
-        "@mdi/js",
-        "@mdi/react",
+        "@mdi/js", 
         "input-otp"
       ],
       "registryDependencies": [
@@ -861,7 +903,12 @@
       "files": [
         {
           "path": "src/components/ui/inputOtp.tsx",
-          "type": "registry:ui"
+          "type": "registry:ui",
+          "target": "src/components/ui/inputOtp.tsx"
+        },
+        {
+          "path": "src/lib/icon.tsx",
+          "type": "registry:lib"  
         }
       ]
     },
@@ -892,7 +939,6 @@
         "https://blok-shadcn.vercel.app/r/theme.json"
       ],
       "dependencies": [
-        "@mdi/react",
         "@mdi/js",
         "@radix-ui/react-navigation-menu",
         "class-variance-authority"
@@ -900,7 +946,12 @@
       "files": [
         {
           "path": "src/components/ui/navigation-menu.tsx",
-          "type": "registry:ui"
+          "type": "registry:ui",
+          "target": "src/components/ui/navigation-menu.tsx"
+        },
+        {
+          "path": "src/lib/icon.tsx",
+          "type": "registry:lib"  
         }
       ]
     },
@@ -915,13 +966,17 @@
       ],
       "dependencies": [
         "@radix-ui/react-popover",
-        "@mdi/react",
         "@mdi/js"
       ],
       "files": [
         {
           "path": "src/components/ui/pagination.tsx",
-          "type": "registry:ui"
+          "type": "registry:ui",
+          "target": "src/components/ui/pagination.tsx"
+        },
+        {
+          "path": "src/lib/icon.tsx",
+          "type": "registry:lib"  
         }
       ]
     },
@@ -953,13 +1008,17 @@
       ],
       "dependencies": [
         "@radix-ui/react-radio-group",
-        "@mdi/react",
         "@mdi/js"
       ],
       "files": [
         {
           "path": "src/components/ui/radio-group.tsx",
-          "type": "registry:ui"
+          "type": "registry:ui",
+          "target": "src/components/ui/radio-group.tsx"
+        },
+        {
+          "path": "src/lib/icon.tsx",
+          "type": "registry:lib"  
         }
       ]
     },
@@ -973,13 +1032,17 @@
       ],
       "dependencies": [
         "react-resizable-panels",
-        "@mdi/react",
         "@mdi/js"
       ],
       "files": [
         {
           "path": "src/components/ui/resizable.tsx",
-          "type": "registry:ui"
+          "type": "registry:ui",
+          "target": "src/components/ui/resizable.tsx"
+        },
+        {
+          "path": "src/lib/icon.tsx",
+          "type": "registry:lib"  
         }
       ]
     },
@@ -1008,7 +1071,6 @@
       "description": "Displays a list of options for the user to pick from—triggered by a button.",
       "dependencies": [
         "@radix-ui/react-select",
-        "@mdi/react",
         "@mdi/js"
       ],
       "registryDependencies": [
@@ -1018,6 +1080,10 @@
         {
           "path": "src/components/ui/select.tsx",
           "type": "registry:ui"
+        },
+        {
+          "path": "src/lib/icon.tsx",
+          "type": "registry:lib"  
         }
       ]
     },
@@ -1046,7 +1112,6 @@
       "description": "Visually or semantically separates content.",
       "dependencies": [
         "@radix-ui/react-dialog",
-        "@mdi/react",
         "@mdi/js"
       ],
       "registryDependencies": [
@@ -1056,7 +1121,12 @@
       "files": [
         {
           "path": "src/components/ui/sheet.tsx",
-          "type": "registry:ui"
+          "type": "registry:ui",
+          "target": "src/components/ui/sheet.tsx"
+        },
+        {
+          "path": "src/lib/icon.tsx",
+          "type": "registry:lib"  
         }
       ]
     },
@@ -1066,7 +1136,6 @@
       "title": "Sidebar",
       "description": "A styled, simple, reusable sidebar",
       "dependencies": [
-        "@mdi/react",
         "@mdi/js",
         "class-variance-authority",
         "@radix-ui/react-slot"
@@ -1082,7 +1151,12 @@
       "files": [
         {
           "path": "src/components/ui/sidebar.tsx",
-          "type": "registry:ui"
+          "type": "registry:ui",
+          "target": "src/components/ui/sidebar.tsx"
+        },
+        {
+          "path": "src/lib/icon.tsx",
+          "type": "registry:lib"  
         }
       ]
     },
@@ -1130,13 +1204,17 @@
       "dependencies": [
         "sonner",
         "next-themes",
-        "@mdi/react",
         "@mdi/js"
       ],
       "files": [
         {
           "path": "src/components/ui/sonner.tsx",
-          "type": "registry:ui"
+          "type": "registry:ui",
+          "target": "src/components/ui/sonner.tsx"
+        },
+        {
+          "path": "src/lib/icon.tsx",
+          "type": "registry:lib"  
         }
       ]
     },
@@ -1235,7 +1313,6 @@
       ],
       "dependencies": [
         "@radix-ui/react-toggle-group",
-        "@mdi/react",
         "@mdi/js",
         "class-variance-authority"
       ],
@@ -1243,6 +1320,10 @@
         {
           "path": "src/components/ui/toggle-group.tsx",
           "type": "registry:ui"
+        },
+        {
+          "path": "src/lib/icon.tsx",
+          "type": "registry:lib"  
         }
       ]
     },
@@ -1274,7 +1355,6 @@
       ],
       "dependencies": [
         "@radix-ui/react-toggle",
-        "@mdi/react",
         "@mdi/js",
         "class-variance-authority"
       ],
@@ -1282,6 +1362,10 @@
         {
           "path": "src/components/ui/toggle.tsx",
           "type": "registry:ui"
+        },
+        {
+          "path": "src/lib/icon.tsx",
+          "type": "registry:lib"  
         }
       ]
     },
@@ -1297,13 +1381,17 @@
         "https://blok-shadcn.vercel.app/r/navigation-menu.json"
       ],
       "dependencies": [
-        "@mdi/react",
         "@mdi/js"
       ],
       "files": [
         {
           "path": "src/components/ui/top-bar.tsx",
-          "type": "registry:ui"
+          "type": "registry:ui",
+          "target": "src/components/ui/top-bar.tsx"
+        },
+        {
+          "path": "src/lib/icon.tsx",
+          "type": "registry:lib"  
         }
       ]
     },

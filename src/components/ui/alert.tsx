@@ -1,9 +1,9 @@
-import * as React from "react"
-import { mdiAlertCircle, mdiCheckCircle, mdiInformation } from "@mdi/js"
-import Icon from "@mdi/react"
-import { cva, type VariantProps } from "class-variance-authority"
+import * as React from "react";
+import { mdiAlertCircle, mdiCheckCircle, mdiInformation } from "@mdi/js";
+import { cva, type VariantProps } from "class-variance-authority";
 
-import { cn } from "@/lib/utils"
+import { cn } from "@/lib/utils";
+import { Icon } from "@/lib/icon";
 
 const alertVariants = cva(
   "relative w-full rounded-md px-4 py-3 text-sm grid has-[>svg]:grid-cols-[calc(var(--spacing)*4)_1fr] grid-cols-[0_1fr] has-[>svg]:gap-x-4 gap-y-0.5 items-center [&>svg]:size-4 [&>svg]:text-current",
@@ -27,9 +27,9 @@ const variantIcons = {
   default: mdiInformation,
   primary: mdiInformation,
   danger: mdiAlertCircle,
-  warning: mdiAlertCircle, 
+  warning: mdiAlertCircle,
   success: mdiCheckCircle,
-}
+};
 
 function Alert({
   className,
@@ -44,7 +44,11 @@ function Alert({
       {...props}
     >
       {variant && (
-        <Icon path={variantIcons[variant]} size={1} className="text-current" />
+        <Icon
+          path={variantIcons[variant]}
+          size={1.2}
+          className="text-current"
+        />
       )}
       {props.children}
     </div>

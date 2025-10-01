@@ -3,7 +3,7 @@ import type * as React from "react";
 
 import { cn } from "@/lib/utils";
 import { Button, buttonVariants } from "@/components/ui/button";
-import Icon from "@mdi/react";
+import { Icon } from "@/lib/icon";
 
 function Pagination({ className, ...props }: React.ComponentProps<"nav">) {
   return (
@@ -112,7 +112,7 @@ function PaginationEllipsis({
       )}
       {...props}
     >
-      <Icon path={mdiDotsHorizontal} size={1} />
+      <Icon path={mdiDotsHorizontal} size={0.6} />
       <span className="sr-only">More pages</span>
     </span>
   );
