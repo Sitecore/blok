@@ -11,8 +11,11 @@ import {
   PopoverTrigger,
 } from "@/registry/new-york/ui/popover"
 
+import { useBrandkitById } from "../../../hooks/use-brandkit-by-id"
+import { useGetChats } from "../../../hooks/use-get-chats"
 import { cn } from "../../../lib/utils"
 import { StreamIcon } from "../../../ui/stream-icon"
+import { useChatProvider } from "../../chat/hooks/useChatProvider"
 import { StreamBrandkitItem } from "./stream-brandkit-item"
 import { StreamBrandkitList } from "./stream-brandkit-list"
 
@@ -48,7 +51,7 @@ export interface StreamBrandkitPickerProps {
  */
 export function StreamBrandkitPicker({
   brandkits,
-  recentBrandkit,
+  recentBrandkit: recentBrandkitFromProps,
   onSelect,
   onSearch,
   disabled,
@@ -63,6 +66,41 @@ export function StreamBrandkitPicker({
 
   const [selectedBrandkit, setSelectedBrandkit] = useState<Brandkit | null>()
 
+  // Recent brandkit logic (mirrors BrandkitPickerNew): fetch chats -> take first reference id -> fetch brandkit
+  const { session } = useChatProvider()
+  const getChats = useGetChats(session.orgId, session.userId)
+  const [recentBrandkitId, setRecentBrandkitId] = useState<string>("")
+  const { brandkit: recentBrandkit, isLoading: isRecentBrandkitLoading } =
+    useBrandkitById(recentBrandkitId, {
+      organizationId: session.orgId,
+      includeDeleted: false,
+    })
+
+  useEffect(() => {
+    let isMounted = true
+    async function fetchRecentFromChats() {
+      try {
+        if (!session?.orgId || !session?.userId) return
+        const chats = await getChats()
+        if (!isMounted) return
+        if (Array.isArray(chats) && chats.length > 0) {
+          const firstChat = chats[0]
+          const brandkitId = firstChat.references?.[0]?.id ?? ""
+          if (!brandkitId) return
+          setRecentBrandkitId(brandkitId)
+          onSelect?.(firstChat as unknown as Brandkit)
+        }
+      } catch (err) {
+        // Swallow errors to avoid breaking the picker; recent brandkit is optional
+        console.error("Failed to fetch chats for recent brandkit:", err)
+      }
+    }
+    fetchRecentFromChats()
+    return () => {
+      isMounted = false
+    }
+  }, [getChats, onSelect, session?.orgId, session?.userId])
+
   /* Events */
   const handleBrandkitOnSelect = (brandkit: Brandkit): void => {
     setSelectedBrandkit(brandkit)
@@ -70,9 +108,13 @@ export function StreamBrandkitPicker({
     setIsOpen(false)
   }
 
+  // Prefer fetched recent brandkit, fallback to prop-provided one
+  const effectiveRecentBrandkit =
+    recentBrandkit ?? recentBrandkitFromProps ?? undefined
+
   useEffect(() => {
-    if (recentBrandkit) setSelectedBrandkit(recentBrandkit)
-  }, [recentBrandkit])
+    if (effectiveRecentBrandkit) setSelectedBrandkit(effectiveRecentBrandkit)
+  }, [effectiveRecentBrandkit])
 
   return (
     <Popover
@@ -96,7 +138,7 @@ export function StreamBrandkitPicker({
               variant="outline"
               className="text-md truncate rounded-full text-left font-normal"
             >
-              {loading
+              {loading || isRecentBrandkitLoading
                 ? "Loading brandkit..."
                 : selectedBrandkit?.name || "Select a brandkit"}
               <StreamIcon
@@ -118,10 +160,10 @@ export function StreamBrandkitPicker({
         <StreamBrandkitList
           brandkits={brandkits}
           placeholder={placeholder}
-          recentBrandkit={recentBrandkit}
+          recentBrandkit={effectiveRecentBrandkit}
           onSelect={handleBrandkitOnSelect}
           onSearch={onSearch}
-          loading={loading}
+          loading={loading || isRecentBrandkitLoading}
           emptyStateMessage={emptyStateMessage}
         />
       </PopoverContent>

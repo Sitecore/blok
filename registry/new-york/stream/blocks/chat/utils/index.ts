@@ -19,6 +19,7 @@ import remarkHtml from "remark-html"
 import remarkStringify from "remark-stringify"
 import { toast } from "sonner"
 import strip from "strip-markdown"
+import { VFile } from "vfile"
 
 import {
   type ExtractSourceRecordProps,
@@ -211,7 +212,7 @@ export function markdownToHtml(markdownText: string): string {
  * @param {string} markdownText - The string containing Markdown content to be converted.
  * @return {VFile} Returns a VFile object containing the converted DOCX document data.
  */
-export function markdownToDocx(markdownText: string) {
+export function markdownToDocx(markdownText: string): VFile {
   return remark().use(remarkDocx).processSync(markdownText)
 }
 
