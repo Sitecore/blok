@@ -21,7 +21,7 @@ export function ClosableAlert({
       <Button
         size="icon-xs"
         variant="ghost"
-        className="absolute top-2.5 right-3 h-6 shadow-none"
+        className="absolute top-2.5 right-3 h-6 shadow-none dark:hover:bg-accent-foreground/10"
         onClick={() => setIsOpen(false)}
       >
         ✕
