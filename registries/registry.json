@@ -463,7 +463,7 @@
         "class-variance-authority"
       ],
       "registryDependencies": [
-        "http://localhost:3000/r/theme.json"
+        "https://blok-shadcn.vercel.app/r/theme.json"
       ],
       "files": [
         {
