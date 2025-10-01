@@ -2,13 +2,13 @@
 
 import React, {
   createContext,
-  JSX,
   useCallback,
   useEffect,
   useMemo,
+  type JSX,
 } from "react"
-import { UIMessage } from "@ai-sdk/ui-utils"
-import { useChat, UseChatHelpers } from "ai/react"
+import { type UIMessage } from "@ai-sdk/ui-utils"
+import { useChat, type UseChatHelpers } from "ai/react"
 import {
   Provider as JotaiProvider,
   useAtom,
@@ -34,8 +34,12 @@ import {
   selectedChatWithIdAtom,
 } from "./store/atoms"
 import { TOOL_ACTIONS, useToolDispatch } from "./store/tools"
-import { Session } from "./store/types"
-import { MessageAnnotation, ResetSelections, SelectionValues } from "./types"
+import { type Session } from "./store/types"
+import {
+  type MessageAnnotation,
+  type ResetSelections,
+  type SelectionValues,
+} from "./types"
 import { useStreamMessagesClientsConfig } from "./utils"
 
 import "../../stream.css"
@@ -44,13 +48,13 @@ import {
   chat as chatApi,
   dbMessagesToAIMessages,
   HTTPError,
-  ListUserChatMessagesModelResponseV2,
+  type ListUserChatMessagesModelResponseV2,
 } from "@sitecore/stream-ui-core"
-import { Message } from "ai"
+import { type Message } from "ai"
 import { last } from "lodash"
 
 import { useGetChatMessages } from "../../hooks/use-get-chat-messages"
-import { Artifacts } from "./store/types"
+import { type Artifacts } from "./store/types"
 
 export type ChatContextType = {
   session: Session
