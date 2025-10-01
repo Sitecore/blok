@@ -52,11 +52,10 @@ function PaginationLink({
       data-active={isActive}
       className={cn(
         buttonVariants({
-          variant: "ghost",
           colorScheme: "neutral",
           size,
         }),
-        "text-neutral-fg disabled:text-neutral-fg/40 font-medium",
+        "text-neutral-fg bg-transparent disabled:text-neutral-fg/40 font-medium hover:bg-primary-bg",
         isActive &&
           "bg-primary-bg text-primary-fg hover:bg-primary-bg hover:text-primary-fg font-medium",
         className
