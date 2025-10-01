@@ -12,6 +12,7 @@ import { Button } from "@/registry/new-york/ui/button"
 
 import { cn } from "../../../lib/utils"
 import { GetDocumentProxyUrl } from "../../chat/GetDocumentProxyUrl"
+import { firstCharToUpperCase } from "../../chat/utils"
 
 export interface StreamBrandkitItemProps {
   brandkit: Brandkit
@@ -63,7 +64,7 @@ export function StreamBrandkitItem({
             }}
           />
           <AvatarFallback className="flex h-full w-full items-center justify-center font-bold text-gray-500">
-            {brandkit?.name.charAt(0).toUpperCase()}
+            {firstCharToUpperCase(brandkit?.name)}
           </AvatarFallback>
         </Avatar>
       )}
