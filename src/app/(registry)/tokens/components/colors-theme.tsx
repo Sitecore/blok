@@ -40,8 +40,8 @@ const ColorsDemo = ({ content }: Props) => {
                   style={{
                     fontFamily: "monospace",
                     fontSize: "0.9rem",
-                    color: "#555",
                   }}
+                  className="text-muted-foreground"
                 >
                   {value}
                 </span>

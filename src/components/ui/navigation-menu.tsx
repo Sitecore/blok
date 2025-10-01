@@ -60,7 +60,7 @@ function NavigationMenuItem({
 }
 
 const navigationMenuTriggerStyle = cva(
-  "group inline-flex h-9 w-max items-center justify-center rounded-md bg-background px-4 py-2 text-neutral-fg text-md font-medium hover:bg-neutral-100 hover:text-neutral-fg focus:bg-accent focus:text-accent-foreground disabled:pointer-events-none disabled:opacity-50 data-[state=open]:hover:bg-accent data-[state=open]:text-neutral-fg data-[state=open]:focus:bg-accent data-[state=open]:bg-accent/50 focus-visible:ring-ring/50 outline-none transition-[color,box-shadow] focus-visible:ring-[3px] focus-visible:outline-1 [&.active]:bg-primary-bg [&.active]:text-primary-fg [&.active]:hover:bg-primary-bg [&.active]:hover:text-primary-fg",
+  "group inline-flex h-9 w-max items-center justify-center rounded-md bg-background px-4 py-2 text-neutral-fg text-md font-medium hover:bg-neutral-bg hover:text-neutral-fg focus:bg-accent focus:text-accent-foreground disabled:pointer-events-none disabled:opacity-50 data-[state=open]:hover:bg-accent data-[state=open]:text-neutral-fg data-[state=open]:focus:bg-accent data-[state=open]:bg-accent/50 focus-visible:ring-ring/50 outline-none transition-[color,box-shadow] focus-visible:ring-[3px] focus-visible:outline-1 [&.active]:bg-primary-bg [&.active]:text-primary-fg [&.active]:hover:bg-primary-bg [&.active]:hover:text-primary-fg",
 );
 
 function NavigationMenuTrigger({

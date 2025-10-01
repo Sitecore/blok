@@ -16,7 +16,7 @@ export const alertDialog = {
   components: {
     Default: (
       <div>
-        <div className="flex items-center justify-center rounded-t-md bg-white p-25">
+        <div className="flex items-center justify-center rounded-t-md bg-body-bg p-25">
           <AlertDialog>
             <AlertDialogTrigger asChild>
               <Button variant="outline" colorScheme="neutral">

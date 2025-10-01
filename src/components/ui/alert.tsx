@@ -11,10 +11,10 @@ const alertVariants = cva(
     variants: {
       variant: {
         default: "bg-card text-card-foreground [&>svg]:text-card-foreground",
-        primary: "bg-primary-bg [&>svg]:text-primary-500",
-        danger: "bg-danger-bg [&>svg]:text-danger-500",
-        warning: "bg-warning-bg [&>svg]:text-warning-500",
-        success: "bg-success-bg [&>svg]:text-success-500",
+        primary: "bg-primary-bg [&>svg]:text-primary-500 dark:[&>svg]:text-primary-200",
+        danger: "bg-danger-bg [&>svg]:text-danger-500 dark:[&>svg]:text-danger-200",
+        warning: "bg-warning-bg [&>svg]:text-warning-500 dark:[&>svg]:text-warning-200",
+        success: "bg-success-bg [&>svg]:text-success-500 dark:[&>svg]:text-success-200",
       },
     },
     defaultVariants: {

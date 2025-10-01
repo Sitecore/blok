@@ -199,8 +199,7 @@ export function RegistrySidebar() {
 
       <SidebarFooter>
         <div className="flex justify-end">
-          {/* TODO: Hide mode toggle until proper dark theme is implemented */}
-          {/* <ModeToggle /> */}
+          <ModeToggle />
         </div>
       </SidebarFooter>
     </Sidebar>

@@ -16,9 +16,9 @@ const cardVariants = cva(
         lg: "shadow-lg"
       },
       style: {
-        flat: "bg-white border-transparent",
-        outline: "bg-white border-color-border",
-        filled: "bg-neutral-50 border-transparent",
+        flat: "bg-body-bg border-transparent",
+        outline: "bg-body-bg border-border-color",
+        filled: "bg-subtle-bg border-transparent",
       },
       padding: {
         sm: "px-3 py-3 rounded-base",
@@ -77,7 +77,7 @@ function CardDescription({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
       data-slot="card-description"
-      className={cn("text-muted-foreground text-sm", className)}
+      className={cn("text-subtle-text text-sm", className)}
       {...props}
     />
   );
