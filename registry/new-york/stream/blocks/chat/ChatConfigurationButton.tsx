@@ -14,7 +14,7 @@ import { Tabs, TabsList, TabsTrigger } from "@/registry/new-york/ui/tabs"
 
 import { Icon } from "./Icon"
 import { TOOL_ACTIONS, useToolDispatch } from "./store/tools"
-import { BrainstormingSearchTypeOptions } from "./store/types"
+import { type BrainstormingSearchTypeOptions } from "./store/types"
 
 export interface ChatConfigurationButtonProps {
   className?: string
