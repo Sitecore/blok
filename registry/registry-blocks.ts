@@ -758,7 +758,7 @@ export const blocks: Registry["items"] = [
     type: "registry:block",
     description: "Stream team's chat messages for rendering in a chat window",
     dependencies: [
-      "react-markdown",
+      "react-markdown@9.0.1",
       "@sitecore/stream-ui-core",
       "@mdi/js",
       "react-dropzone",
