@@ -807,9 +807,9 @@ export const blocks: Registry["items"] = [
         target: "components/stream-components/blocks/chat/index.tsx",
       },
       {
-        path: "stream/blocks/chat/Stream.tsx",
+        path: "stream/blocks/chat/StreamMessages.tsx",
         type: "registry:component",
-        target: "components/stream-components/blocks/chat/Stream.tsx",
+        target: "components/stream-components/blocks/chat/StreamMessages.tsx",
       },
       {
         path: "stream/blocks/chat/Anchors.tsx",
