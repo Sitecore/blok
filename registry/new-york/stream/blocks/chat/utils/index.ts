@@ -326,6 +326,20 @@ export function firstCharToUpperCase(text: string = ""): string {
 }
 
 /**
+ * Retrieves the first character of a given string. Optionally, converts the character to uppercase.
+ *
+ * @param {string} [text=""] - The input string from which to extract the first character.
+ * @param {boolean} [toUpperCase=false] - Indicates whether to convert the first character to uppercase.
+ * @return {string} The first character of the input string, optionally converted to uppercase. If the input string is empty, returns an empty string.
+ */
+export function getFirstChar(
+  text: string = "",
+  toUpperCase: boolean = false
+): string {
+  return toUpperCase ? text?.charAt(0).toUpperCase() : text?.charAt(0)
+}
+
+/**
  * Removes duplicate objects from an array based on a specified property.
  *
  * @param {T[]} obj - The array of objects to filter for duplicates.
