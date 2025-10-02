@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import { mdiCheck, mdiChevronRight, mdiCircle } from "@mdi/js";
-import Icon from "@mdi/react";
+import { Icon } from "@/lib/icon";
 import * as DropdownMenuPrimitive from "@radix-ui/react-dropdown-menu";
 
 import { cn } from "@/lib/utils";
@@ -101,7 +101,7 @@ function DropdownMenuCheckboxItem({
     >
       <span className="pointer-events-none absolute left-2 flex size-3.5 items-center justify-center">
         <DropdownMenuPrimitive.ItemIndicator>
-          <Icon path={mdiCheck} size={0.7} />
+          <Icon path={mdiCheck} size={1.5} />
         </DropdownMenuPrimitive.ItemIndicator>
       </span>
       {children}
@@ -136,7 +136,7 @@ function DropdownMenuRadioItem({
     >
       <span className="pointer-events-none absolute left-2 flex size-3.5 items-center justify-center">
         <DropdownMenuPrimitive.ItemIndicator>
-          <Icon path={mdiCircle} size={0.5} />
+          <Icon path={mdiCircle} size={0.7} />
         </DropdownMenuPrimitive.ItemIndicator>
       </span>
       {children}
@@ -218,7 +218,7 @@ function DropdownMenuSubTrigger({
       {...props}
     >
       {children}
-      <Icon path={mdiChevronRight} size={0.8} className="ml-auto" />
+      <Icon path={mdiChevronRight} size={1.5} className="ml-auto" />
     </DropdownMenuPrimitive.SubTrigger>
   );
 }

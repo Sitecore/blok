@@ -3,7 +3,7 @@
 import * as React from "react";
 import { addDays, format } from "date-fns";
 import { mdiCalendarBlankOutline } from "@mdi/js";
-import Icon from "@mdi/react";
+import { Icon } from "@/lib/icon";
 import { DateRange } from "react-day-picker";
 
 import { cn } from "@/lib/utils";
@@ -31,7 +31,7 @@ function DatePickerSimple() {
         >
           <Icon
             path={mdiCalendarBlankOutline}
-            size={0.9}
+            size={1}
             className="text-muted-foreground"
           />
           {date ? format(date, "PPP") : <span>Pick a date</span>}
@@ -69,7 +69,7 @@ function DatePickerWithRange() {
         >
           <Icon
             path={mdiCalendarBlankOutline}
-            size={0.9}
+            size={1}
             className="text-muted-foreground"
           />
           {date?.from ? (

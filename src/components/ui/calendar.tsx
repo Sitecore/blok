@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import { mdiChevronLeft, mdiChevronRight,mdiChevronDown } from "@mdi/js";
-import Icon from "@mdi/react";
+import { Icon } from "@/lib/icon";
 
 import {
   type DayButton,

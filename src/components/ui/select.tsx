@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import { mdiCheck, mdiChevronDown, mdiChevronUp } from "@mdi/js";
-import Icon from "@mdi/react";
+import { Icon } from "@/lib/icon";
 import * as SelectPrimitive from "@radix-ui/react-select";
 
 import { cn } from "@/lib/utils";
@@ -45,7 +45,7 @@ function SelectTrigger({
     >
       {children}
       <SelectPrimitive.Icon asChild>
-        <Icon path={mdiChevronDown} size={0.9} className="opacity-50" />
+        <Icon path={mdiChevronDown} size={1.3} className="opacity-50" />
       </SelectPrimitive.Icon>
     </SelectPrimitive.Trigger>
   );
@@ -152,7 +152,7 @@ function SelectScrollUpButton({
       )}
       {...props}
     >
-      <Icon path={mdiChevronDown} size={0.9} />
+      <Icon path={mdiChevronDown} className="size-6" />
     </SelectPrimitive.ScrollUpButton>
   );
 }
@@ -170,7 +170,7 @@ function SelectScrollDownButton({
       )}
       {...props}
     >
-      <Icon path={mdiChevronDown} size={0.9} />
+      <Icon path={mdiChevronDown} className="size-6" />
     </SelectPrimitive.ScrollDownButton>
   );
 }

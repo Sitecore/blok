@@ -6,7 +6,7 @@ import {
   mdiClose,
   mdiInformation,
 } from "@mdi/js";
-import Icon from "@mdi/react";
+import { Icon } from "@/lib/icon";
 import { useTheme } from "next-themes";
 import { Toaster as Sonner, type ToasterProps } from "sonner";
 
@@ -38,27 +38,27 @@ const Toaster = ({ ...props }: ToasterProps) => {
       icons={{
         success: (
           <div className="text-success">
-            <Icon path={mdiCheckCircle} size={0.9} />
+            <Icon path={mdiCheckCircle} className="size-5" />
           </div>
         ),
         error: (
           <div className="text-danger">
-            <Icon path={mdiAlertCircle} size={0.9} />
+            <Icon path={mdiAlertCircle} className="size-5" />
           </div>
         ),
         info: (
           <div className="text-info">
-            <Icon path={mdiInformation} size={0.9} />
+            <Icon path={mdiInformation} className="size-5" />
           </div>
         ),
         warning: (
           <div className="text-warning">
-            <Icon path={mdiAlertCircle} size={0.9} />
+            <Icon path={mdiAlertCircle} className="size-5" />
           </div>
         ),
         close: (
           <div className="text-neutral-fg">
-            <Icon path={mdiClose} size={0.7} />
+            <Icon path={mdiClose} className="size-4" />
           </div>
         ),
       }}

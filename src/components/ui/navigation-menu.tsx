@@ -1,5 +1,5 @@
 import { mdiChevronDown } from "@mdi/js";
-import Icon from "@mdi/react";
+import { Icon } from "@/lib/icon";
 import * as NavigationMenuPrimitive from "@radix-ui/react-navigation-menu";
 import { cva } from "class-variance-authority";
 import type * as React from "react";
@@ -77,7 +77,7 @@ function NavigationMenuTrigger({
       {children}{" "}
       <Icon
         path={mdiChevronDown}
-        size={0.9}
+        size={1.8}
         className="relative top-[1px] ml-1 size-3 transition duration-300 group-data-[state=open]:rotate-180"
         aria-hidden="true"
       />

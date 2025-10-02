@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { mdiInformationOutline } from "@mdi/js";
-import Icon from "@mdi/react";
+import { Icon } from "@/lib/icon";
 
 export const button = {
   name: "button",

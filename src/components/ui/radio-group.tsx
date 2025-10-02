@@ -1,7 +1,7 @@
 "use client";
 
 import { mdiCircle } from "@mdi/js";
-import Icon from "@mdi/react";
+import { Icon } from "@/lib/icon";
 import * as RadioGroupPrimitive from "@radix-ui/react-radio-group";
 import type * as React from "react";
 
@@ -37,7 +37,7 @@ function RadioGroupItem({
         data-slot="radio-group-indicator"
         className="relative flex items-center justify-center"
       >
-        <Icon path={mdiCircle} size={0.5} />
+        <Icon path={mdiCircle} size={0.8} />
       </RadioGroupPrimitive.Indicator>
     </RadioGroupPrimitive.Item>
   );

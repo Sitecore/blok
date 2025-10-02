@@ -19,7 +19,7 @@ import {
   mdiCreditCardOutline,
   mdiCogOutline,
 } from "@mdi/js";
-import Icon from "@mdi/react";
+import { Icon } from "@/lib/icon";
 
 const CommandDemo = () => {
   const [open, setOpen] = React.useState(false);
