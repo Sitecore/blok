@@ -92,7 +92,7 @@ export function MCPTabs({ rootUrl }: { rootUrl: string }) {
           </Button>
         </div>
 
-        <pre className="mt-16 overflow-x-auto rounded-lg border bg-muted p-1 sm:mt-0 bg-body-bg">
+        <pre className="mt-16 overflow-x-auto rounded-lg border p-1 sm:mt-0 bg-body-bg">
           <code className="relative rounded bg-transparent p-1 font-mono text-muted-foreground text-sm">
             {mcpServer}
           </code>
