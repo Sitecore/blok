@@ -1,3 +1,5 @@
+@plugin "@tailwindcss/typography";
+
 /* Stream only related classes */
 .stream-chat-container {
     width: 100%;
@@ -133,4 +135,8 @@
 
 .ai-textbox-expanded-border-radius {
     border-radius: calc(1rem - 1px);
+}
+
+* {
+    scrollbar-color: #DADADA transparent;
 }

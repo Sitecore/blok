@@ -27,7 +27,7 @@ export function Markdown({
     >
       <ReactMarkdown
         className={cn(
-          "prose dark:prose-invert prose-p:leading-relaxed prose-pre:p-0 max-w-full break-words",
+          "prose dark:prose-invert prose-p:leading-relaxed prose-pre:p-0 max-w-full text-left break-words",
           className
         )}
         remarkPlugins={[remarkGfm, remarkMath]}

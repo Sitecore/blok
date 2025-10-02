@@ -60,7 +60,7 @@ export function Messages(): React.ReactNode {
 
   return (
     <div
-      className="relative flex h-screen flex-1 overflow-hidden bg-[#FBFBFB]"
+      className="relative flex h-screen flex-1 overflow-hidden bg-white"
       {...getRootProps()}
     >
       <input {...getInputProps()} />

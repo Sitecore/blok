@@ -781,6 +781,7 @@ export const blocks: Registry["items"] = [
       "clsx",
       "tailwind-merge",
       "tw-animate-css",
+      "@tailwindcss/typography",
     ],
     registryDependencies: [
       "button",

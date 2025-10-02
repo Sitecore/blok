@@ -1,5 +1,3 @@
-"use client"
-
 import React, { useEffect, useState } from "react"
 import { mdiChevronDown } from "@mdi/js"
 import { type Brandkit } from "@sitecore/stream-ui-core"
@@ -127,16 +125,17 @@ export function StreamBrandkitPicker({
         <div title={selectedBrandkit?.name || "Select a brandkit"}>
           {selectedBrandkit?.id ? (
             <StreamBrandkitItem
-              variant="outline"
               brandkit={selectedBrandkit}
-              className="max-w-[240px] rounded-full"
+              className="hover:bg-blackAlpha-100 border-blackAlpha-200 z-10 flex h-9 max-w-[240px] items-center justify-start rounded-full border-none bg-gray-50 py-1 pr-3 pl-1"
               testId="stream-brandkit-picker"
-            />
-          ) : (
-            <Button
-              variant="outline"
-              className="text-md truncate rounded-full text-left font-normal"
             >
+              <StreamIcon
+                path={mdiChevronDown}
+                className="neutral transition"
+              />
+            </StreamBrandkitItem>
+          ) : (
+            <Button className="text-md hover:bg-blackAlpha-100 border-blackAlpha-200 z-10 h-9 max-w-[240px] justify-between truncate rounded-full border-none bg-gray-50 py-1 pr-3 pl-1 text-left font-normal">
               {loading || isRecentBrandkitLoading
                 ? "Loading brandkit..."
                 : selectedBrandkit?.name || "Select a brandkit"}

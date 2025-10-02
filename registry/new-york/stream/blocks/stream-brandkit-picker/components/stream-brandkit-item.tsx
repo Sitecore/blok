@@ -48,7 +48,7 @@ export function StreamBrandkitItem({
       title={brandkit.name}
     >
       {showAvatar && (
-        <Avatar className="h-9 w-9 border-2">
+        <Avatar className="h-7 w-7 border-2">
           <GetDocumentProxyUrl
             url={brandkit?.logo}
             item={(url) => {
@@ -66,7 +66,7 @@ export function StreamBrandkitItem({
           </AvatarFallback>
         </Avatar>
       )}
-      <span className="overflow-hidden overflow-ellipsis whitespace-nowrap">
+      <span className="text-md truncate font-normal whitespace-nowrap">
         {brandkit?.name}
       </span>
       {children}
