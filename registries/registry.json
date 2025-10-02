@@ -10,53 +10,6 @@
       "description": "A custom Blokcn theme providing reusable UI components styled with Tailwind CSS and shadcn/ui variables, designed for consistency and efficiency across projects.",
       "cssVars": {
         "theme": {
-
-          "--text-3xs": "0.625rem",
-          "--text-2xs": "0.6875rem",
-          "--text-xs": "0.75rem",
-          "--text-sm": "0.8125rem",
-          "--text-base": "0.875rem",
-          "--text-md": "0.875rem",
-          "--text-lg": "1rem",
-          "--text-xl": "1.125rem",
-          "--text-2xl": "1.25rem",
-          "--text-3xl": "1.5rem",
-          "--text-4xl": "1.875rem",
-          "--text-5xl": "2.25rem",
-          "--text-6xl": "3rem",
-          "--text-7xl": "3.75rem",
-          "--text-8xl": "4.5rem",
-          "--text-9xl": "6rem",
-
-          "--shadow-none": "none",
-          "--shadow-xs": "0 0 0 1px rgba(0, 0, 0, 0.05)",
-          "--shadow-sm": "0 1px 2px 0 rgba(0, 0, 0, 0.05)",
-          "--shadow-base": "0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06)",
-          "--shadow-md": "0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)",
-          "--shadow-lg": "0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)",
-          "--shadow-xl": "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)",
-          "--shadow-2xl": "0 25px 50px -12px rgba(0, 0, 0, 0.25)",
-          "--shadow-outline": "0 0 0 3px rgba(110, 63, 255, 0.6)",
-          "--shadow-inner": "inset 0 2px 4px 0 rgba(0, 0, 0, 0.06)",
-          "--shadow-dark-lg": "rgba(0, 0, 0, 0.1) 0px 0px 0px 1px, rgba(0, 0, 0, 0.2) 0px 5px 10px, rgba(0, 0, 0, 0.4) 0px 15px 40px",
-       
-          "--rounded-none": "0",
-          "--rounded-sm": "0.125rem",
-          "--rounded-base": "0.25rem",
-          "--rounded-md": "0.375rem",
-          "--rounded-lg": "0.5rem",
-          "--rounded-xl": "0.75rem",
-          "--rounded-2xl": "1rem",
-          "--rounded-3xl": "1.5rem",
-          "--rounded-full": "624.938rem",
-
-          "--breakpoint-base": "0rem",
-          "--breakpoint-sm": "30rem",
-          "--breakpoint-md": "48rem",
-          "--breakpoint-lg": "62rem",
-          "--breakpoint-xl": "80rem",
-          "--breakpoint-2xl": "96rem",
-
           "--color-transparent": "transparent",
           "--color-current": "currentColor",
           "--color-black": "#000000",
@@ -231,84 +184,95 @@
           "--color-yellow-700": "#5b4300",
           "--color-yellow-800": "#483300",
           "--color-yellow-900": "#362500",
-          "--color-body-bg": "var(--color-body-bg)",
-          "--color-subtle-bg": "var(--color-subtle-bg)",
-          "--color-body-text": "var(--color-body-text)",
-          "--color-subtle-text": "var(--color-subtle-text)",
-          "--color-placeholder-color": "var(--color-placeholder-color)",
-          "--color-inverse-text": "var(--color-inverse-text)",
-          "--color-border-color": "var(--color-border-color)",
-          "--color-border-color-a11y": "var(--color-border-color-a11y)",
-          "--color-primary-fg": "var(--color-primary-fg)",
-          "--color-danger-fg": "var(--color-danger-fg)",
-          "--color-warning-fg": "var(--color-warning-fg)",
-          "--color-success-fg": "var(--color-success-fg)",
-          "--color-info-fg": "var(--color-info-fg)",
-          "--color-neutral-fg": "var(--color-neutral-fg)",
-          "--color-primary-bg": "var(--color-primary-bg)",
-          "--color-danger-bg": "var(--color-danger-bg)",
-          "--color-warning-bg": "var(--color-warning-bg)",
-          "--color-success-bg": "var(--color-success-bg)",
-          "--color-info-bg": "var(--color-info-bg)",
-          "--color-neutral-bg": "var(--color-neutral-bg)",
-          "--color-primary-bg-active": "var(--color-primary-bg-active)",
-          "--color-danger-bg-active": "var(--color-danger-bg-active)",
-          "--color-warning-bg-active": "var(--color-warning-bg-active)",
-          "--color-success-bg-active": "var(--color-success-bg-active)",
-          "--color-info-bg-active": "var(--color-info-bg-active)",
-          "--color-neutral-bg-active": "var(--color-neutral-bg-active)",
-          "--color-primary": "var(--color-primary)",
-          "--color-danger": "var(--color-danger)",
-          "--color-success": "var(--color-success)",
-          "--color-warning": "var(--color-warning)",
-          "--color-info": "var(--color-info)",
-          "--color-neutral": "var(--color-neutral)",
-          "--color-primary-hover": "var(--color-primary-hover)",
-          "--color-danger-hover": "var(--color-danger-hover)",
-          "--color-success-hover": "var(--color-success-hover)",
-          "--color-warning-hover": "var(--color-warning-hover)",
-          "--color-info-hover": "var(--color-info-hover)",
-          "--color-neutral-hover": "var(--color-neutral-hover)",
-          "--color-primary-active": "var(--color-primary-active)",
-          "--color-danger-active": "var(--color-danger-active)",
-          "--color-success-active": "var(--color-success-active)",
-          "--color-warning-active": "var(--color-warning-active)",
-          "--color-info-active": "var(--color-info-active)",
-          "--color-neutral-active": "var(--color-neutral-active)",
-          "--color-gray": "var(--color-gray)",
-          "--color-red": "var(--color-red)",
-          "--color-orange": "var(--color-orange)",
-          "--color-yellow": "var(--color-yellow)",
-          "--color-green": "var(--color-green)",
-          "--color-teal": "var(--color-teal)",
-          "--color-cyan": "var(--color-cyan)",
-          "--color-blue": "var(--color-blue)",
-          "--color-purple": "var(--color-purple)",
-          "--color-pink": "var(--color-pink)",
-          "--color-neutral-50": "var(--color-neutral-50)",
-          "--color-neutral-100": "var(--color-neutral-100)",
-          "--color-neutral-200": "var(--color-neutral-200)",
-          "--color-neutral-300": "var(--color-neutral-300)",
-          "--color-neutral-400": "var(--color-neutral-400)",
-          "--color-neutral-500": "var(--color-neutral-500)",
-          "--color-neutral-600": "var(--color-neutral-600)",
-          "--color-neutral-700": "var(--color-neutral-700)",
-          "--color-neutral-800": "var(--color-neutral-800)",
-          "--color-neutral-900": "var(--color-neutral-900)",
-          "--color-neutral-color-50": "var(--color-neutral-color-50)",
-          "--color-neutral-color-100": "var(--color-neutral-color-100)",
-          "--color-neutral-color-200": "var(--color-neutral-color-200)",
-          "--color-neutral-color-300": "var(--color-neutral-color-300)",
-          "--color-neutral-color-400": "var(--color-neutral-color-400)",
-          "--color-neutral-color-500": "var(--color-neutral-color-500)",
-          "--color-neutral-color-600": "var(--color-neutral-color-600)",
-          "--color-neutral-color-700": "var(--color-neutral-color-700)",
-          "--color-neutral-color-800": "var(--color-neutral-color-800)",
-          "--color-neutral-color-900": "var(--color-neutral-color-900)",
-
-
-
-          "--radius": "0.625rem",
+          "--color-body-bg": "var(--color-white)",
+          "--color-subtle-bg": "var(--color-gray-50)",
+          "--color-body-text": "var(--color-blackAlpha-900)",
+          "--color-subtle-text": "var(--color-blackAlpha-500)",
+          "--color-placeholder-color": "var(--color-blackAlpha-400)",
+          "--color-inverse-text": "var(--color-white)",
+          "--color-border-color": "var(--color-blackAlpha-200)",
+          "--color-border-color-a11y": "var(--color-blackAlpha-400)",
+          "--color-primary-fg": "var(--color-primary-600)",
+          "--color-danger-fg": "var(--color-danger-600)",
+          "--color-warning-fg": "var(--color-warning-600)",
+          "--color-success-fg": "var(--color-success-600)",
+          "--color-info-fg": "var(--color-info-600)",
+          "--color-neutral-fg": "var(--color-blackAlpha-600)",
+          "--color-primary-bg": "var(--color-primary-100)",
+          "--color-danger-bg": "var(--color-danger-100)",
+          "--color-warning-bg": "var(--color-warning-100)",
+          "--color-success-bg": "var(--color-success-100)",
+          "--color-info-bg": "var(--color-info-100)",
+          "--color-neutral-bg": "var(--color-blackAlpha-100)",
+          "--color-primary-bg-active": "var(--color-primary-200)",
+          "--color-danger-bg-active": "var(--color-danger-200)",
+          "--color-warning-bg-active": "var(--color-warning-200)",
+          "--color-success-bg-active": "var(--color-success-200)",
+          "--color-info-bg-active": "var(--color-info-200)",
+          "--color-neutral-bg-active": "var(--color-blackAlpha-200)",
+          "--color-gray": "var(--color-gray-500)",
+          "--color-red": "var(--color-red-500)",
+          "--color-orange": "var(--color-orange-500)",
+          "--color-yellow": "var(--color-yellow-500)",
+          "--color-green": "var(--color-green-500)",
+          "--color-teal": "var(--color-teal-500)",
+          "--color-cyan": "var(--color-cyan-500)",
+          "--color-blue": "var(--color-blue-500)",
+          "--color-purple": "var(--color-purple-500)",
+          "--color-pink": "var(--color-pink-500)",
+          "--color-neutral": "var(--color-blackAlpha-500)",
+          "--color-neutral-50": "var(--color-blackAlpha-50)",
+          "--color-neutral-100": "var(--color-blackAlpha-100)",
+          "--color-neutral-200": "var(--color-blackAlpha-200)",
+          "--color-neutral-300": "var(--color-blackAlpha-300)",
+          "--color-neutral-400": "var(--color-blackAlpha-400)",
+          "--color-neutral-500": "var(--color-blackAlpha-500)",
+          "--color-neutral-600": "var(--color-blackAlpha-600)",
+          "--color-neutral-700": "var(--color-blackAlpha-700)",
+          "--color-neutral-800": "var(--color-blackAlpha-800)",
+          "--color-neutral-900": "var(--color-blackAlpha-900)",
+          "--rounded-none": "0",
+          "--rounded-sm": "0.125rem",
+          "--rounded-base": "0.25rem",
+          "--rounded-md": "0.375rem",
+          "--rounded-lg": "0.5rem",
+          "--rounded-xl": "0.75rem",
+          "--rounded-2xl": "1rem",
+          "--rounded-3xl": "1.5rem",
+          "--rounded-full": "624.938rem",
+          "--breakpoint-base": "0rem",
+          "--breakpoint-sm": "30rem",
+          "--breakpoint-md": "48rem",
+          "--breakpoint-lg": "62rem",
+          "--breakpoint-xl": "80rem",
+          "--breakpoint-2xl": "96rem",
+          "--text-3xs": "0.625rem",
+          "--text-2xs": "0.6875rem",
+          "--text-xs": "0.75rem",
+          "--text-sm": "0.8125rem",
+          "--text-base": "0.875rem",
+          "--text-md": "0.875rem",
+          "--text-lg": "1rem",
+          "--text-xl": "1.125rem",
+          "--text-2xl": "1.25rem",
+          "--text-3xl": "1.5rem",
+          "--text-4xl": "1.875rem",
+          "--text-5xl": "2.25rem",
+          "--text-6xl": "3rem",
+          "--text-7xl": "3.75rem",
+          "--text-8xl": "4.5rem",
+          "--text-9xl": "6rem",
+          "--shadow-none": "none",
+          "--shadow-xs": "0 0 0 1px rgba(0, 0, 0, 0.05)",
+          "--shadow-sm": "0 1px 2px 0 rgba(0, 0, 0, 0.05)",
+          "--shadow-base": "0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06)",
+          "--shadow-md": "0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)",
+          "--shadow-lg": "0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)",
+          "--shadow-xl": "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)",
+          "--shadow-2xl": "0 25px 50px -12px rgba(0, 0, 0, 0.25)",
+          "--shadow-outline": "0 0 0 3px rgba(110, 63, 255, 0.6)",
+          "--shadow-inner": "inset 0 2px 4px 0 rgba(0, 0, 0, 0.06)",
+          "--shadow-dark-lg": "rgba(0, 0, 0, 0.1) 0px 0px 0px 1px, rgba(0, 0, 0, 0.2) 0px 5px 10px, rgba(0, 0, 0, 0.4) 0px 15px 40px",
           "--radius-sm": "calc(var(--radius) - 4px)",
           "--radius-md": "calc(var(--radius) - 2px)",
           "--radius-lg": "var(--radius)",
@@ -345,223 +309,29 @@
           "--color-sidebar-accent-foreground": "var(--sidebar-accent-foreground)",
           "--color-sidebar-border": "var(--sidebar-border)",
           "--color-sidebar-ring": "var(--sidebar-ring)"
-       
         }
       },
       "css": {
         ":root": {
-
-
-          ".text-3xs": {
-            "font-size": "var(--text-3xs)"
-          },
-          ".text-2xs": {
-            "font-size": "var(--text-2xs)"
-          },
-          ".text-xs": {
-            "font-size": "var(--text-xs)"
-          },
-          ".text-sm": {
-            "font-size": "var(--text-sm)"
-          },
-          ".text-base": {
-            "font-size": "var(--text-base)"
-          },
-          ".text-md": {
-            "font-size": "var(--text-md)"
-          },
-          ".text-lg": {
-            "font-size": "var(--text-lg)"
-          },
-          ".text-xl": {
-            "font-size": "var(--text-xl)"
-          },
-          ".text-2xl": {
-            "font-size": "var(--text-2xl)"
-          },
-          ".text-3xl": {
-            "font-size": "var(--text-3xl)"
-          },
-          ".text-4xl": {
-            "font-size": "var(--text-4xl)"
-          },
-          ".text-5xl": {
-            "font-size": "var(--text-5xl)"
-          },
-          ".text-6xl": {
-            "font-size": "var(--text-6xl)"
-          },
-          ".text-7xl": {
-            "font-size": "var(--text-7xl)"
-          },
-          ".text-8xl": {
-            "font-size": "var(--text-8xl)"
-          },
-          ".text-9xl": {
-            "font-size": "var(--text-9xl)"
-          },
-
-
-
-          ".shadow-none": {
-            "box-shadow": "var(--shadow-none)"
-          },
-          ".shadow-xs": {
-            "box-shadow": "var(--shadow-xs)"
-          },
-          ".shadow-sm": {
-            "box-shadow": "var(--shadow-sm)"
-          },
-          ".shadow-base": {
-            "box-shadow": "var(--shadow-base)"
-          },
-          ".shadow-md": {
-            "box-shadow": "var(--shadow-md)"
-          },
-          ".shadow-lg": {
-            "box-shadow": "var(--shadow-lg)"
-          },
-          ".shadow-xl": {
-            "box-shadow": "var(--shadow-xl)"
-          },
-          ".shadow-2xl": {
-            "box-shadow": "var(--shadow-2xl)"
-          },
-          ".shadow-outline": {
-            "box-shadow": "var(--shadow-outline)"
-          },
-          ".shadow-inner": {
-            "box-shadow": "var(--shadow-inner)"
-          },
-          ".shadow-dark-lg": {
-            "box-shadow": "var(--shadow-dark-lg)"
-          },
-
-
-
-
-          ".rounded-none": {
-            "border-radius": "var(--rounded-none)"
-          },
-          ".rounded-sm": {
-            "border-radius": "var(--rounded-sm)"
-          },
-          ".rounded-base": {
-            "border-radius": "var(--rounded-base)"
-          },
-          ".rounded-md": {
-            "border-radius": "var(--rounded-md)"
-          },
-          ".rounded-lg": {
-            "border-radius": "var(--rounded-lg)"
-          },
-          ".rounded-xl": {
-            "border-radius": "var(--rounded-xl)"
-          },
-          ".rounded-2xl": {
-            "border-radius": "var(--rounded-2xl)"
-          },
-          ".rounded-3xl": {
-            "border-radius": "var(--rounded-3xl)"
-          },
-          ".rounded-full": {
-            "border-radius": "var(--rounded-full)"
-          },
-
-
-
-          "--color-body-bg": "var(--color-white)",
-          "--color-subtle-bg": "var(--color-gray-50)",
-          "--color-body-text": "var(--color-blackAlpha-900)",
-          "--color-subtle-text": "var(--color-blackAlpha-500)",
-          "--color-placeholder-color": "var(--color-blackAlpha-400)",
-          "--color-inverse-text": "var(--color-white)",
-          "--color-border-color": "var(--color-blackAlpha-200)",
-          "--color-border-color-a11y": "var(--color-blackAlpha-400)",
-          "--color-primary-fg": "var(--color-primary-600)",
-          "--color-danger-fg": "var(--color-danger-600)",
-          "--color-warning-fg": "var(--color-warning-600)",
-          "--color-success-fg": "var(--color-success-600)",
-          "--color-info-fg": "var(--color-info-600)",
-          "--color-neutral-fg": "var(--color-blackAlpha-600)",
-          "--color-primary-bg": "var(--color-primary-100)",
-          "--color-danger-bg": "var(--color-danger-100)",
-          "--color-warning-bg": "var(--color-warning-100)",
-          "--color-success-bg": "var(--color-success-100)",
-          "--color-info-bg": "var(--color-info-100)",
-          "--color-neutral-bg": "var(--color-blackAlpha-100)",
-          "--color-primary-bg-active": "var(--color-primary-200)",
-          "--color-danger-bg-active": "var(--color-danger-200)",
-          "--color-warning-bg-active": "var(--color-warning-200)",
-          "--color-success-bg-active": "var(--color-success-200)",
-          "--color-info-bg-active": "var(--color-info-200)",
-          "--color-neutral-bg-active": "var(--color-blackAlpha-200)",
-          "--color-primary": "var(--color-primary-500)",
-          "--color-danger": "var(--color-danger-500)",
-          "--color-success": "var(--color-success-500)",
-          "--color-warning": "var(--color-warning-500)",
-          "--color-info": "var(--color-info-500)",
-          "--color-neutral": "var(--color-blackAlpha-500)",
-          "--color-primary-hover": "var(--color-primary-600)",
-          "--color-danger-hover": "var(--color-danger-600)",
-          "--color-success-hover": "var(--color-success-600)",
-          "--color-warning-hover": "var(--color-warning-600)",
-          "--color-info-hover": "var(--color-info-600)",
-          "--color-neutral-hover": "var(--color-neutral-600)",
-          "--color-primary-active": "var(--color-primary-700)",
-          "--color-danger-active": "var(--color-danger-700)",
-          "--color-success-active": "var(--color-success-700)",
-          "--color-warning-active": "var(--color-warning-700)",
-          "--color-info-active": "var(--color-info-700)",
-          "--color-neutral-active": "var(--color-neutral-700)",
-          "--color-gray": "var(--color-gray-500)",
-          "--color-red": "var(--color-red-500)",
-          "--color-orange": "var(--color-orange-500)",
-          "--color-yellow": "var(--color-yellow-500)",
-          "--color-green": "var(--color-green-500)",
-          "--color-teal": "var(--color-teal-500)",
-          "--color-cyan": "var(--color-cyan-500)",
-          "--color-blue": "var(--color-blue-500)",
-          "--color-purple": "var(--color-purple-500)",
-          "--color-pink": "var(--color-pink-500)",
-          "--color-neutral-50": "var(--color-blackAlpha-50)",
-          "--color-neutral-100": "var(--color-blackAlpha-100)",
-          "--color-neutral-200": "var(--color-blackAlpha-200)",
-          "--color-neutral-300": "var(--color-blackAlpha-300)",
-          "--color-neutral-400": "var(--color-blackAlpha-400)",
-          "--color-neutral-500": "var(--color-blackAlpha-500)",
-          "--color-neutral-600": "var(--color-blackAlpha-600)",
-          "--color-neutral-700": "var(--color-blackAlpha-700)",
-          "--color-neutral-800": "var(--color-blackAlpha-800)",
-          "--color-neutral-900": "var(--color-blackAlpha-900)",
-          "--color-neutral-color-50": "var(--color-blackAlpha-50)",
-          "--color-neutral-color-100": "var(--color-blackAlpha-100)",
-          "--color-neutral-color-200": "var(--color-blackAlpha-200)",
-          "--color-neutral-color-300": "var(--color-blackAlpha-300)",
-          "--color-neutral-color-400": "var(--color-blackAlpha-400)",
-          "--color-neutral-color-500": "var(--color-blackAlpha-500)",
-          "--color-neutral-color-600": "var(--color-blackAlpha-600)",
-          "--color-neutral-color-700": "var(--color-blackAlpha-700)",
-          "--color-neutral-color-800": "var(--color-blackAlpha-800)",
-          "--color-neutral-color-900": "var(--color-blackAlpha-900)",
-          "--background": "var(--color-body-bg)",
-          "--foreground": "var(--color-body-text)",
-          "--card": "var(--color-body-bg)",
-          "--card-foreground": "var(--color-body-text)",
-          "--popover": "var(--color-body-bg)",
-          "--popover-foreground": "var(--color-body-text)",
-          "--primary": "var(--color-primary-fg)",
-          "--primary-foreground": "var(--color-inverse-text)",
-          "--primary-background": "var(--color-primary-bg)",
-          "--secondary": "var(--color-subtle-bg)",
-          "--secondary-foreground": "var(--color-body-text)",
-          "--muted": "var(--color-subtle-bg)",
-          "--muted-foreground": "var(--color-subtle-text)",
-          "--accent": "var(--color-subtle-bg)",
-          "--accent-foreground": "var(--color-body-text)",
-          "--destructive": "var(--color-danger-fg)",
-          "--border": "var(--color-border-color)",
-          "--input": "var(--color-placeholder-color)",
+          "--radius": "0.625rem",
+          "--background": "var(--color-white)",
+          "--foreground": "var(--color-blackAlpha-900)",
+          "--card": "var(--color-white)",
+          "--card-foreground": "var(--color-blackAlpha-900)",
+          "--popover": "var(--color-white)",
+          "--popover-foreground": "var(--color-blackAlpha-900)",
+          "--primary": "var(--color-primary-500)",
+          "--primary-foreground": "var(--color-white)",
+          "--primary-background": "var(--color-primary-100)",
+          "--secondary": "var(--color-gray-50)",
+          "--secondary-foreground": "var(--color-blackAlpha-900)",
+          "--muted": "var(--color-gray-50)",
+          "--muted-foreground": "var(--color-blackAlpha-500)",
+          "--accent": "var(--color-gray-50)",
+          "--accent-foreground": "var(--color-blackAlpha-900)",
+          "--destructive": "var(--color-danger-500)",
+          "--border": "var(--color-blackAlpha-200)",
+          "--input": "var(--color-blackAlpha-400)",
           "--ring": "#6987f9",
           "--chart-1": "#4E41CC",
           "--chart-2": "#0FB5AE",
@@ -575,141 +345,9 @@
           "--sidebar-accent": "oklch(0.97 0 0)",
           "--sidebar-accent-foreground": "oklch(0.205 0 0)",
           "--sidebar-border": "oklch(0.922 0 0)",
-          "--sidebar-ring": "oklch(0.708 0 0)",
-          ".scrollbar-hidden": {
-            "-ms-overflow-style": "none",
-            "scrollbar-width": "none"
-          },
-          ".scrollbar-hidden::-webkit-scrollbar": {
-            "display": "none"
-          }
-
-
-
-
+          "--sidebar-ring": "oklch(0.708 0 0)"
         },
-        ".dark": {
-
-          "--shadow-xs": "0 0 0 1px rgba(255, 255, 255, 0.05)",
-          "--shadow-sm": "0 1px 2px 0 rgba(255, 255, 255, 0.05)",
-          "--shadow-base": "0 1px 3px 0 rgba(255, 255, 255, 0.1), 0 1px 2px 0 rgba(255, 255, 255, 0.06)",
-          "--shadow-md": "0 4px 6px -1px rgba(255, 255, 255, 0.1), 0 2px 4px -1px rgba(255, 255, 255, 0.06)",
-          "--shadow-lg": "0 10px 15px -3px rgba(255, 255, 255, 0.1), 0 4px 6px -2px rgba(255, 255, 255, 0.05)",
-          "--shadow-xl": "0 20px 25px -5px rgba(255, 255, 255, 0.1), 0 10px 10px -5px rgba(255, 255, 255, 0.04)",
-          "--shadow-2xl": "0 25px 50px -12px rgba(255, 255, 255, 0.25)",
-          "--shadow-outline": "0 0 0 3px rgba(110, 63, 255, 0.6)",
-          "--shadow-inner": "inset 0 2px 4px 0 rgba(255, 255, 255, 0.06)",
-          "--shadow-dark-lg": "rgba(255, 255, 255, 0.1) 0px 0px 0px 1px, rgba(255, 255, 255, 0.2) 0px 5px 10px, rgba(255, 255, 255, 0.4) 0px 15px 40px",
-
-
-           "--color-body-bg": "var(--color-gray-800)",
-          "--color-subtle-bg": "var(--color-gray-900)",
-          "--color-body-text": "var(--color-white)",
-          "--color-subtle-text": "var(--color-whiteAlpha-600)",
-          "--color-placeholder-color": "var(--color-whiteAlpha-500)",
-          "--color-inverse-text": "var(--color-blackAlpha-900)",
-          "--color-border-color": "var(--color-whiteAlpha-200)",
-          "--color-border-color-a11y": "var(--color-whiteAlpha-400)",
-          "--color-primary-fg": "var(--color-primary-200)",
-          "--color-danger-fg": "var(--color-danger-200)",
-          "--color-warning-fg": "var(--color-warning-200)",
-          "--color-success-fg": "var(--color-success-200)",
-          "--color-info-fg": "var(--color-info-200)",
-          "--color-neutral-fg": "var(--color-whiteAlpha-700)",
-          "--color-primary-bg": "rgba(217, 212, 255, 0.12)",
-          "--color-danger-bg": "rgba(255, 204, 200, 0.12)",
-          "--color-warning-bg": "rgba(253, 210, 145, 0.12)",
-          "--color-success-bg": "rgba(139, 235, 208, 0.12)",
-          "--color-info-bg": "rgba(217, 212, 255, 0.12)",
-          "--color-neutral-bg": "var(--color-whiteAlpha-100)",
-          "--color-primary-bg-active": "rgba(217, 212, 255, 0.24)",
-          "--color-danger-bg-active": "rgba(255, 204, 200, 0.24)",
-          "--color-warning-bg-active": "rgba(253, 210, 145, 0.24)",
-          "--color-success-bg-active": "rgba(139, 235, 208, 0.24)",
-          "--color-info-bg-active": "rgba(217, 212, 255, 0.24)",
-          "--color-neutral-bg-active": "var(--color-whiteAlpha-300)",
-          "--color-primary": "var(--color-primary-200)",
-          "--color-danger": "var(--color-danger-200)",
-          "--color-success": "var(--color-success-200)",
-          "--color-warning": "var(--color-warning-200)",
-          "--color-info": "var(--color-info-200)",
-          "--color-neutral": "var(--color-whiteAlpha-600)",
-          "--color-primary-hover": "var(--color-primary-300)",
-          "--color-danger-hover": "var(--color-danger-300)",
-          "--color-success-hover": "var(--color-success-300)",
-          "--color-warning-hover": "var(--color-warning-300)",
-          "--color-info-hover": "var(--color-info-300)",
-          "--color-neutral-hover": "var(--color-neutral-300)",
-          "--color-primary-active": "var(--color-primary-400)",
-          "--color-danger-active": "var(--color-danger-400)",
-          "--color-success-active": "var(--color-success-400)",
-          "--color-warning-active": "var(--color-warning-400)",
-          "--color-info-active": "var(--color-info-400)",
-          "--color-neutral-active": "var(--color-neutral-400)",
-          "--color-gray": "var(--color-gray-200)",
-          "--color-red": "var(--color-red-200)",
-          "--color-orange": "var(--color-orange-200)",
-          "--color-yellow": "var(--color-yellow-200)",
-          "--color-green": "var(--color-green-200)",
-          "--color-teal": "var(--color-teal-200)",
-          "--color-cyan": "var(--color-cyan-200)",
-          "--color-blue": "var(--color-blue-200)",
-          "--color-purple": "var(--color-purple-200)",
-          "--color-pink": "var(--color-pink-200)",
-          "--color-neutral-50": "var(--color-whiteAlpha-900)",
-          "--color-neutral-100": "var(--color-whiteAlpha-800)",
-          "--color-neutral-200": "var(--color-whiteAlpha-700)",
-          "--color-neutral-300": "var(--color-whiteAlpha-600)",
-          "--color-neutral-400": "var(--color-whiteAlpha-500)",
-          "--color-neutral-500": "var(--color-whiteAlpha-400)",
-          "--color-neutral-600": "var(--color-whiteAlpha-300)",
-          "--color-neutral-700": "var(--color-whiteAlpha-200)",
-          "--color-neutral-800": "var(--color-whiteAlpha-100)",
-          "--color-neutral-900": "var(--color-whiteAlpha-50)",
-          "--color-neutral-color-50": "var(--color-whiteAlpha-100)",
-          "--color-neutral-color-100": "var(--color-whiteAlpha-200)",
-          "--color-neutral-color-200": "var(--color-whiteAlpha-300)",
-          "--color-neutral-color-300": "var(--color-whiteAlpha-400)",
-          "--color-neutral-color-400": "var(--color-whiteAlpha-500)",
-          "--color-neutral-color-500": "var(--color-whiteAlpha-600)",
-          "--color-neutral-color-600": "var(--color-whiteAlpha-700)",
-          "--color-neutral-color-700": "var(--color-whiteAlpha-800)",
-          "--color-neutral-color-800": "var(--color-whiteAlpha-900)",
-          "--color-neutral-color-900": "var(--color-white)",
-          "--background": "var(--color-body-bg)",
-          "--foreground": "var(--color-body-text)",
-          "--card": "var(--color-body-bg)",
-          "--card-foreground": "var(--color-body-text)",
-          "--popover": "var(--color-body-bg)",
-          "--popover-foreground": "var(--color-body-text)",
-          "--primary": "var(--color-primary-fg)",
-          "--primary-foreground": "var(--color-inverse-text)",
-          "--primary-background": "var(--color-primary-bg)",
-          "--secondary": "var(--color-subtle-bg)",
-          "--secondary-foreground": "var(--color-body-text)",
-          "--muted": "var(--color-subtle-bg)",
-          "--muted-foreground": "var(--color-subtle-text)",
-          "--accent": "var(--color-subtle-bg)",
-          "--accent-foreground": "var(--color-body-text)",
-          "--destructive": "var(--color-danger-fg)",
-          "--border": "var(--color-border-color)",
-          "--input": "var(--color-placeholder-color)",
-          "--ring": "#6987f9",
-          "--chart-1": "var(--color-purple-500)",
-          "--chart-2": "var(--color-blue-500)",
-          "--chart-3": "var(--color-cyan-500)",
-          "--chart-4": "var(--color-teal-500)",
-          "--chart-5": "var(--color-green-500)",
-          "--sidebar": "oklch(0.205 0 0)",
-          "--sidebar-foreground": "oklch(0.985 0 0)",
-          "--sidebar-primary": "oklch(0.488 0.243 264.376)",
-          "--sidebar-primary-foreground": "oklch(0.985 0 0)",
-          "--sidebar-accent": "oklch(0.269 0 0)",
-          "--sidebar-accent-foreground": "oklch(0.985 0 0)",
-          "--sidebar-border": "oklch(1 0 0 / 10%)",
-          "--sidebar-ring": "oklch(0.439 0 0)"
-     
-        }
+        ".dark": {}
       },
       "files": [
         {
