@@ -1,5 +1,3 @@
-"use client"
-
 import React from "react"
 import { type Brandkit } from "@sitecore/stream-ui-core"
 
@@ -12,7 +10,7 @@ import { Button } from "@/registry/new-york/ui/button"
 
 import { cn } from "../../../lib/utils"
 import { GetDocumentProxyUrl } from "../../chat/GetDocumentProxyUrl"
-import { firstCharToUpperCase } from "../../chat/utils"
+import { getFirstChar } from "../../chat/utils"
 
 export interface StreamBrandkitItemProps {
   brandkit: Brandkit
@@ -64,7 +62,7 @@ export function StreamBrandkitItem({
             }}
           />
           <AvatarFallback className="flex h-full w-full items-center justify-center font-bold text-gray-500">
-            {firstCharToUpperCase(brandkit?.name)}
+            {getFirstChar(brandkit?.name)}
           </AvatarFallback>
         </Avatar>
       )}
