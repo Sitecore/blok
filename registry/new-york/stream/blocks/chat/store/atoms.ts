@@ -80,3 +80,9 @@ export const extractSourcesFromDataAtom = atom<
 export const addedContextAtom = atom<
   Array<{ type: "image_base64"; value: string }>
 >([])
+
+export const resetAllToolsAtom = atom(undefined, function (_get, set) {
+  set(artifactsAtom, {})
+  set(isNewChatAtom, false)
+  set(chatIdAtom, "")
+})

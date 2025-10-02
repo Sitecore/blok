@@ -20,6 +20,7 @@ import {
   isNewChatAtom,
   messagesIdsAtom,
   postChatGenerateBodyAtom,
+  resetAllToolsAtom,
   selectedChatWithIdAtom,
 } from "./store/atoms"
 import { TOOL_ACTIONS, useToolDispatch } from "./store/tools"
@@ -192,6 +193,7 @@ export function StreamMessages({
   const setMessageIds = useSetAtom(messagesIdsAtom)
   const [isLoading, setIsLoading] = useAtom(isLoadingAtom)
   const [, dispatchToolAction] = useToolDispatch()
+  const setResetAllTools = useSetAtom(resetAllToolsAtom)
   const setConfig = useSetAtom(configAtom)
 
   /* Hooks */
@@ -403,11 +405,9 @@ export function StreamMessages({
   )
 
   const handleNewChat = useCallback(() => {
-    setIsNewChat(false)
     dispatchToolAction({ type: TOOL_ACTIONS.RESET_ALL_TOOLS })
-    setArtifacts({})
+    setResetAllTools()
     setMessages([])
-    setChatId("")
 
     if (isLoading) {
       rollbackChatChanges({
@@ -420,10 +420,8 @@ export function StreamMessages({
     dispatchToolAction,
     isLoading,
     rollbackChatChanges,
-    setArtifacts,
-    setChatId,
-    setIsNewChat,
     setMessages,
+    setResetAllTools,
   ])
 
   const updateInternalState = useCallback(() => {
