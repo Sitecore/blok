@@ -23,15 +23,15 @@ const Toaster = ({ ...props }: ToasterProps) => {
         classNames: {
           toast: "!border-none",
           icon: "!self-start !mt-0.5",
-          success: "!bg-success-100",
-          error: "!bg-red-100",
-          info: "!bg-info-100",
-          warning: "!bg-warning-100",
-          default: "!bg-info-100",
-          title: "text-sm !text-black !font-normal",
-          description: "text-sm !text-black",
+          success: "!bg-success-bg",
+          error: "!bg-danger-bg",
+          info: "!bg-info-bg",
+          warning: "!bg-warning-bg",
+          default: "!bg-info-bg",
+          title: "text-sm !text-body-text !font-normal",
+          description: "text-sm !text-body-text",
           closeButton:
-            "!absolute !top-3 !right-0 !left-auto !bg-transparent !border-none !text-black",
+            "!absolute !top-3 !right-0 !left-auto !bg-transparent !border-none",
         },
       }}
       {...props}

@@ -5,7 +5,7 @@ export const progress = {
   components: {
     Default: (
       <div>
-       <div className="flex items-center justify-center rounded-t-md bg-white p-10">
+       <div className="flex items-center justify-center rounded-t-md bg-body-bg p-10">
           <Progress value={80} />
         </div>
       </div>

@@ -5,7 +5,7 @@ export const separator = {
   components: {
     Default: (
       <div>
-        <div className="flex rounded-t-md bg-white ">
+        <div className="flex rounded-t-md bg-body-bg ">
           <div className="">
             <div className="flex flex-col gap-1">
               <div className="text-sm leading-none font-medium">
