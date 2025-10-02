@@ -1,6 +1,7 @@
 "use client"
 
 import { useCallback, useEffect, useState } from "react"
+import * as React from "react"
 import { mdiChatOutline, mdiTrashCanOutline } from "@mdi/js"
 import { chat as chatApi, HTTPError } from "@sitecore/stream-ui-core"
 import { useSetAtom } from "jotai"
@@ -37,6 +38,8 @@ export type ChatHistoryProps = {
   refetch?: boolean
 }
 
+const CHATS_PER_PAGE = 20
+
 /**
  * Renders a chat history list with clickable chat items and delete buttons.
  *
@@ -51,6 +54,7 @@ export function ChatHistory(props: ChatHistoryProps) {
   const { className, onChatClick, onChatDelete, disabled, refetch } = props
 
   /* Hooks */
+  const [page, setPage] = useState(1)
   const { session } = useChatProvider()
   const [deletedChat, setDeletedChat] = useState<ChatItem | null>(null)
   const [isDeleting, setIsDeleting] = useState(false)
@@ -60,6 +64,10 @@ export function ChatHistory(props: ChatHistoryProps) {
 
   /* Atoms */
   const setApiQueue = useSetAtom(apiQueueAtom)
+
+  /* Computed */
+  const areChatsEmpty = !_chats?.length
+  const chatsPaginated = _chats.slice(0, page * CHATS_PER_PAGE)
 
   async function handleDeleteChatOnDelete(chat: ChatItem) {
     setIsDeleting(true)
@@ -124,9 +132,16 @@ export function ChatHistory(props: ChatHistoryProps) {
     if (refetch) fetchChats()
   }, [fetchChats, refetch])
 
+  if (areChatsEmpty)
+    return (
+      <div className="p-8 text-center">
+        <p className="text-muted-fg text-sm">No chat history</p>
+      </div>
+    )
+
   return (
     <div className={cn("flex w-64 flex-col gap-1", className)}>
-      {_chats
+      {chatsPaginated
         ?.map((chat) => ({ ...chat, disabled }) as ChatItem)
         .map((chat) => (
           <div
@@ -168,6 +183,15 @@ export function ChatHistory(props: ChatHistoryProps) {
             </button>
           </div>
         ))}
+      {chatsPaginated.length < _chats.length && (
+        <Button
+          variant="ghost"
+          colorScheme="neutral"
+          onClick={() => setPage((prevState) => prevState + 1)}
+        >
+          Load more recents
+        </Button>
+      )}
       <Dialog
         open={isDeleteChatModalOpen}
         onOpenChange={setIsDeleteChatModalOpen}
