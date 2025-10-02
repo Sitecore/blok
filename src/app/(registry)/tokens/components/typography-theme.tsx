@@ -35,8 +35,8 @@ const TypographyDemo = ({ content }: Props) => {
                     style={{
                       fontFamily: "monospace",
                       fontSize: "0.9rem",
-                      color: "#555",
                     }}
+                    className="text-muted-foreground"
                   >
                     {value}
                   </span>
@@ -46,8 +46,8 @@ const TypographyDemo = ({ content }: Props) => {
                     style={{
                       fontFamily: "monospace",
                       fontSize: "0.9rem",
-                      color: "#555",
                     }}
+                    className="text-muted-foreground"
                   >
                     {parseFloat(value) * 16}px
                   </span>

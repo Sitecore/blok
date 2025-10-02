@@ -9,108 +9,347 @@
       "title": "Blokcn Theme",
       "description": "A custom Blokcn theme providing reusable UI components styled with Tailwind CSS and shadcn/ui variables, designed for consistency and efficiency across projects.",
       "cssVars": {
-        "light": {
-          "background": "oklch(0.97 0.01 80.72)",
-          "foreground": "oklch(0.3 0.04 30.2)",
-          "card": "oklch(0.97 0.01 80.72)",
-          "card-foreground": "oklch(0.3 0.04 30.2)",
-          "popover": "oklch(0.97 0.01 80.72)",
-          "popover-foreground": "oklch(0.3 0.04 30.2)",
-          "primary": "oklch(0.52 0.13 144.17)",
-          "primary-foreground": "oklch(1.0 0 0)",
-          "secondary": "oklch(0.96 0.02 147.64)",
-          "secondary-foreground": "oklch(0.43 0.12 144.31)",
-          "muted": "oklch(0.94 0.01 74.42)",
-          "muted-foreground": "oklch(0.45 0.05 39.21)",
-          "accent": "oklch(0.9 0.05 146.04)",
-          "accent-foreground": "oklch(0.43 0.12 144.31)",
-          "destructive": "oklch(0.54 0.19 26.72)",
-          "destructive-foreground": "oklch(1.0 0 0)",
-          "border": "oklch(0.88 0.02 74.64)",
-          "input": "oklch(0.88 0.02 74.64)",
-          "ring": "oklch(0.52 0.13 144.17)",
-          "chart-1": "oklch(0.67 0.16 144.21)",
-          "chart-2": "oklch(0.58 0.14 144.18)",
-          "chart-3": "oklch(0.52 0.13 144.17)",
-          "chart-4": "oklch(0.43 0.12 144.31)",
-          "chart-5": "oklch(0.22 0.05 145.73)",
-          "sidebar": "oklch(0.94 0.01 74.42)",
-          "sidebar-foreground": "oklch(0.3 0.04 30.2)",
-          "sidebar-primary": "oklch(0.52 0.13 144.17)",
-          "sidebar-primary-foreground": "oklch(1.0 0 0)",
-          "sidebar-accent": "oklch(0.9 0.05 146.04)",
-          "sidebar-accent-foreground": "oklch(0.43 0.12 144.31)",
-          "sidebar-border": "oklch(0.88 0.02 74.64)",
-          "sidebar-ring": "oklch(0.52 0.13 144.17)",
-          "radius": "0.5rem"
-        },
-        "dark": {
-          "background": "oklch(0.15 0.01 74.42)",
-          "foreground": "oklch(0.95 0.02 80.72)",
-          "card": "oklch(0.12 0.01 80.72)",
-          "card-foreground": "oklch(0.95 0.02 80.72)",
-          "popover": "oklch(0.12 0.01 80.72)",
-          "popover-foreground": "oklch(0.95 0.02 80.72)",
-          "primary": "oklch(0.58 0.15 144.17)",
-          "primary-foreground": "oklch(0.09 0.01 80.72)",
-          "secondary": "oklch(0.15 0.02 147.64)",
-          "secondary-foreground": "oklch(0.65 0.12 144.31)",
-          "muted": "oklch(0.18 0.01 74.42)",
-          "muted-foreground": "oklch(0.65 0.03 74.42)",
-          "accent": "oklch(0.22 0.04 146.04)",
-          "accent-foreground": "oklch(0.65 0.12 144.31)",
-          "destructive": "oklch(0.62 0.22 26.72)",
-          "destructive-foreground": "oklch(0.95 0.02 80.72)",
-          "border": "oklch(0.22 0.02 74.64)",
-          "input": "oklch(0.22 0.02 74.64)",
-          "ring": "oklch(0.58 0.15 144.17)",
-          "chart-1": "oklch(0.72 0.16 144.21)",
-          "chart-2": "oklch(0.63 0.14 144.18)",
-          "chart-3": "oklch(0.58 0.15 144.17)",
-          "chart-4": "oklch(0.48 0.12 144.31)",
-          "chart-5": "oklch(0.35 0.08 145.73)",
-          "sidebar": "oklch(0.15 0.01 74.42)",
-          "sidebar-foreground": "oklch(0.95 0.02 80.72)",
-          "sidebar-primary": "oklch(0.58 0.15 144.17)",
-          "sidebar-primary-foreground": "oklch(0.09 0.01 80.72)",
-          "sidebar-accent": "oklch(0.22 0.04 146.04)",
-          "sidebar-accent-foreground": "oklch(0.65 0.12 144.31)",
-          "sidebar-border": "oklch(0.22 0.02 74.64)",
-          "sidebar-ring": "oklch(0.58 0.15 144.17)",
-          "radius": "0.5rem"
+        "theme": {
+          "--color-transparent": "transparent",
+          "--color-current": "currentColor",
+          "--color-black": "#000000",
+          "--color-white": "#ffffff",
+          "--color-whiteAlpha-50": "rgba(255, 255, 255, 0.04)",
+          "--color-whiteAlpha-100": "rgba(255, 255, 255, 0.06)",
+          "--color-whiteAlpha-200": "rgba(255, 255, 255, 0.11)",
+          "--color-whiteAlpha-300": "rgba(255, 255, 255, 0.29)",
+          "--color-whiteAlpha-400": "rgba(255, 255, 255, 0.42)",
+          "--color-whiteAlpha-500": "rgba(255, 255, 255, 0.55)",
+          "--color-whiteAlpha-600": "rgba(255, 255, 255, 0.68)",
+          "--color-whiteAlpha-700": "rgba(255, 255, 255, 0.76)",
+          "--color-whiteAlpha-800": "rgba(255, 255, 255, 0.78)",
+          "--color-whiteAlpha-900": "rgba(255, 255, 255, 0.94)",
+          "--color-blackAlpha-50": "rgba(0, 0, 0, 0.04)",
+          "--color-blackAlpha-100": "rgba(0, 0, 0, 0.06)",
+          "--color-blackAlpha-200": "rgba(0, 0, 0, 0.11)",
+          "--color-blackAlpha-300": "rgba(0, 0, 0, 0.29)",
+          "--color-blackAlpha-400": "rgba(0, 0, 0, 0.42)",
+          "--color-blackAlpha-500": "rgba(0, 0, 0, 0.55)",
+          "--color-blackAlpha-600": "rgba(0, 0, 0, 0.68)",
+          "--color-blackAlpha-700": "rgba(0, 0, 0, 0.76)",
+          "--color-blackAlpha-800": "rgba(0, 0, 0, 0.78)",
+          "--color-blackAlpha-900": "rgba(0, 0, 0, 0.94)",
+          "--color-blue-50": "#f4f7ff",
+          "--color-blue-100": "#e1eaff",
+          "--color-blue-200": "#c9d8ff",
+          "--color-blue-300": "#9cb3fd",
+          "--color-blue-400": "#6987f9",
+          "--color-blue-500": "#4a65e8",
+          "--color-blue-600": "#344bc3",
+          "--color-blue-700": "#293ba1",
+          "--color-blue-800": "#1f2d7f",
+          "--color-blue-900": "#16215f",
+          "--color-cyan-50": "#eafaff",
+          "--color-cyan-100": "#c6f1ff",
+          "--color-cyan-200": "#a0e3fd",
+          "--color-cyan-300": "#5cc0f1",
+          "--color-cyan-400": "#2695de",
+          "--color-cyan-500": "#0873c8",
+          "--color-cyan-600": "#0059a1",
+          "--color-cyan-700": "#004783",
+          "--color-cyan-800": "#003767",
+          "--color-cyan-900": "#00294d",
+          "--color-danger-50": "#fff5f4",
+          "--color-danger-100": "#ffe4e2",
+          "--color-danger-200": "#ffccc8",
+          "--color-danger-300": "#ff9a94",
+          "--color-danger-400": "#f4595a",
+          "--color-danger-500": "#d92739",
+          "--color-danger-600": "#b30426",
+          "--color-danger-700": "#92001f",
+          "--color-danger-800": "#730019",
+          "--color-danger-900": "#580113",
+          "--color-gray-50": "#f7f7f7",
+          "--color-gray-100": "#e9e9e9",
+          "--color-gray-200": "#d8d8d8",
+          "--color-gray-300": "#b5b5b5",
+          "--color-gray-400": "#8e8e8e",
+          "--color-gray-500": "#717171",
+          "--color-gray-600": "#535353",
+          "--color-gray-700": "#3b3b3b",
+          "--color-gray-800": "#282828",
+          "--color-gray-900": "#212121",
+          "--color-green-50": "#e8fcf5",
+          "--color-green-100": "#bef6e3",
+          "--color-green-200": "#8bebd0",
+          "--color-green-300": "#44cbac",
+          "--color-green-400": "#0ea184",
+          "--color-green-500": "#007f66",
+          "--color-green-600": "#006450",
+          "--color-green-700": "#085040",
+          "--color-green-800": "#0d3e31",
+          "--color-green-900": "#0f2d25",
+          "--color-info-50": "#f7f6ff",
+          "--color-info-100": "#eae7ff",
+          "--color-info-200": "#d9d4ff",
+          "--color-info-300": "#b8a9ff",
+          "--color-info-400": "#9373ff",
+          "--color-info-500": "#6e3fff",
+          "--color-info-600": "#5319e0",
+          "--color-info-700": "#4715af",
+          "--color-info-800": "#401791",
+          "--color-info-900": "#2f1469",
+          "--color-orange-50": "#fff6e7",
+          "--color-orange-100": "#ffe6bd",
+          "--color-orange-200": "#fdd291",
+          "--color-orange-300": "#ffa037",
+          "--color-orange-400": "#e26e00",
+          "--color-orange-500": "#ba5200",
+          "--color-orange-600": "#953d00",
+          "--color-orange-700": "#7a2f00",
+          "--color-orange-800": "#612300",
+          "--color-orange-900": "#491901",
+          "--color-pink-50": "#fff4fe",
+          "--color-pink-100": "#ffe2fb",
+          "--color-pink-200": "#fec7f8",
+          "--color-pink-300": "#f592f3",
+          "--color-pink-400": "#de53e0",
+          "--color-pink-500": "#bc29bd",
+          "--color-pink-600": "#9d039e",
+          "--color-pink-700": "#800081",
+          "--color-pink-800": "#640664",
+          "--color-pink-900": "#470e46",
+          "--color-primary-50": "#f7f6ff",
+          "--color-primary-100": "#eae7ff",
+          "--color-primary-200": "#d9d4ff",
+          "--color-primary-300": "#b8a9ff",
+          "--color-primary-400": "#9373ff",
+          "--color-primary-500": "#6e3fff",
+          "--color-primary-600": "#5319e0",
+          "--color-primary-700": "#4715af",
+          "--color-primary-800": "#401791",
+          "--color-primary-900": "#2f1469",
+          "--color-purple-50": "#f7f6ff",
+          "--color-purple-100": "#eae7ff",
+          "--color-purple-200": "#d9d4ff",
+          "--color-purple-300": "#b8a9ff",
+          "--color-purple-400": "#9373ff",
+          "--color-purple-500": "#6e3fff",
+          "--color-purple-600": "#5319e0",
+          "--color-purple-700": "#4715af",
+          "--color-purple-800": "#401791",
+          "--color-purple-900": "#2f1469",
+          "--color-red-50": "#fff5f4",
+          "--color-red-100": "#ffe4e2",
+          "--color-red-200": "#ffccc8",
+          "--color-red-300": "#ff9a94",
+          "--color-red-400": "#f4595a",
+          "--color-red-500": "#d92739",
+          "--color-red-600": "#b30426",
+          "--color-red-700": "#92001f",
+          "--color-red-800": "#730019",
+          "--color-red-900": "#580113",
+          "--color-success-50": "#e8fcf5",
+          "--color-success-100": "#bef6e3",
+          "--color-success-200": "#8bebd0",
+          "--color-success-300": "#44cbac",
+          "--color-success-400": "#0ea184",
+          "--color-success-500": "#007f66",
+          "--color-success-600": "#006450",
+          "--color-success-700": "#085040",
+          "--color-success-800": "#0d3e31",
+          "--color-success-900": "#0f2d25",
+          "--color-teal-50": "#e7fbfb",
+          "--color-teal-100": "#bbf4f3",
+          "--color-teal-200": "#8be9e8",
+          "--color-teal-300": "#3cc8cb",
+          "--color-teal-400": "#019ea5",
+          "--color-teal-500": "#007c85",
+          "--color-teal-600": "#00626b",
+          "--color-teal-700": "#0a4e57",
+          "--color-teal-800": "#103b44",
+          "--color-teal-900": "#102c33",
+          "--color-warning-50": "#fff6e7",
+          "--color-warning-100": "#ffe6bd",
+          "--color-warning-200": "#fdd291",
+          "--color-warning-300": "#ffa037",
+          "--color-warning-400": "#e26e00",
+          "--color-warning-500": "#ba5200",
+          "--color-warning-600": "#953d00",
+          "--color-warning-700": "#7a2f00",
+          "--color-warning-800": "#612300",
+          "--color-warning-900": "#491901",
+          "--color-yellow-50": "#fdf8d2",
+          "--color-yellow-100": "#faec79",
+          "--color-yellow-200": "#f8d904",
+          "--color-yellow-300": "#d7b300",
+          "--color-yellow-400": "#ae8a00",
+          "--color-yellow-500": "#8b6b00",
+          "--color-yellow-600": "#705300",
+          "--color-yellow-700": "#5b4300",
+          "--color-yellow-800": "#483300",
+          "--color-yellow-900": "#362500",
+          "--color-body-bg": "var(--color-white)",
+          "--color-subtle-bg": "var(--color-gray-50)",
+          "--color-body-text": "var(--color-blackAlpha-900)",
+          "--color-subtle-text": "var(--color-blackAlpha-500)",
+          "--color-placeholder-color": "var(--color-blackAlpha-400)",
+          "--color-inverse-text": "var(--color-white)",
+          "--color-border-color": "var(--color-blackAlpha-200)",
+          "--color-border-color-a11y": "var(--color-blackAlpha-400)",
+          "--color-primary-fg": "var(--color-primary-600)",
+          "--color-danger-fg": "var(--color-danger-600)",
+          "--color-warning-fg": "var(--color-warning-600)",
+          "--color-success-fg": "var(--color-success-600)",
+          "--color-info-fg": "var(--color-info-600)",
+          "--color-neutral-fg": "var(--color-blackAlpha-600)",
+          "--color-primary-bg": "var(--color-primary-100)",
+          "--color-danger-bg": "var(--color-danger-100)",
+          "--color-warning-bg": "var(--color-warning-100)",
+          "--color-success-bg": "var(--color-success-100)",
+          "--color-info-bg": "var(--color-info-100)",
+          "--color-neutral-bg": "var(--color-blackAlpha-100)",
+          "--color-primary-bg-active": "var(--color-primary-200)",
+          "--color-danger-bg-active": "var(--color-danger-200)",
+          "--color-warning-bg-active": "var(--color-warning-200)",
+          "--color-success-bg-active": "var(--color-success-200)",
+          "--color-info-bg-active": "var(--color-info-200)",
+          "--color-neutral-bg-active": "var(--color-blackAlpha-200)",
+          "--color-gray": "var(--color-gray-500)",
+          "--color-red": "var(--color-red-500)",
+          "--color-orange": "var(--color-orange-500)",
+          "--color-yellow": "var(--color-yellow-500)",
+          "--color-green": "var(--color-green-500)",
+          "--color-teal": "var(--color-teal-500)",
+          "--color-cyan": "var(--color-cyan-500)",
+          "--color-blue": "var(--color-blue-500)",
+          "--color-purple": "var(--color-purple-500)",
+          "--color-pink": "var(--color-pink-500)",
+          "--color-neutral": "var(--color-blackAlpha-500)",
+          "--color-neutral-50": "var(--color-blackAlpha-50)",
+          "--color-neutral-100": "var(--color-blackAlpha-100)",
+          "--color-neutral-200": "var(--color-blackAlpha-200)",
+          "--color-neutral-300": "var(--color-blackAlpha-300)",
+          "--color-neutral-400": "var(--color-blackAlpha-400)",
+          "--color-neutral-500": "var(--color-blackAlpha-500)",
+          "--color-neutral-600": "var(--color-blackAlpha-600)",
+          "--color-neutral-700": "var(--color-blackAlpha-700)",
+          "--color-neutral-800": "var(--color-blackAlpha-800)",
+          "--color-neutral-900": "var(--color-blackAlpha-900)",
+          "--rounded-none": "0",
+          "--rounded-sm": "0.125rem",
+          "--rounded-base": "0.25rem",
+          "--rounded-md": "0.375rem",
+          "--rounded-lg": "0.5rem",
+          "--rounded-xl": "0.75rem",
+          "--rounded-2xl": "1rem",
+          "--rounded-3xl": "1.5rem",
+          "--rounded-full": "624.938rem",
+          "--breakpoint-base": "0rem",
+          "--breakpoint-sm": "30rem",
+          "--breakpoint-md": "48rem",
+          "--breakpoint-lg": "62rem",
+          "--breakpoint-xl": "80rem",
+          "--breakpoint-2xl": "96rem",
+          "--text-3xs": "0.625rem",
+          "--text-2xs": "0.6875rem",
+          "--text-xs": "0.75rem",
+          "--text-sm": "0.8125rem",
+          "--text-base": "0.875rem",
+          "--text-md": "0.875rem",
+          "--text-lg": "1rem",
+          "--text-xl": "1.125rem",
+          "--text-2xl": "1.25rem",
+          "--text-3xl": "1.5rem",
+          "--text-4xl": "1.875rem",
+          "--text-5xl": "2.25rem",
+          "--text-6xl": "3rem",
+          "--text-7xl": "3.75rem",
+          "--text-8xl": "4.5rem",
+          "--text-9xl": "6rem",
+          "--shadow-none": "none",
+          "--shadow-xs": "0 0 0 1px rgba(0, 0, 0, 0.05)",
+          "--shadow-sm": "0 1px 2px 0 rgba(0, 0, 0, 0.05)",
+          "--shadow-base": "0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06)",
+          "--shadow-md": "0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)",
+          "--shadow-lg": "0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)",
+          "--shadow-xl": "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)",
+          "--shadow-2xl": "0 25px 50px -12px rgba(0, 0, 0, 0.25)",
+          "--shadow-outline": "0 0 0 3px rgba(110, 63, 255, 0.6)",
+          "--shadow-inner": "inset 0 2px 4px 0 rgba(0, 0, 0, 0.06)",
+          "--shadow-dark-lg": "rgba(0, 0, 0, 0.1) 0px 0px 0px 1px, rgba(0, 0, 0, 0.2) 0px 5px 10px, rgba(0, 0, 0, 0.4) 0px 15px 40px",
+          "--radius-sm": "calc(var(--radius) - 4px)",
+          "--radius-md": "calc(var(--radius) - 2px)",
+          "--radius-lg": "var(--radius)",
+          "--radius-xl": "calc(var(--radius) + 4px)",
+          "--color-background": "var(--background)",
+          "--color-foreground": "var(--foreground)",
+          "--color-card": "var(--card)",
+          "--color-card-foreground": "var(--card-foreground)",
+          "--color-popover": "var(--popover)",
+          "--color-popover-foreground": "var(--popover-foreground)",
+          "--color-primary": "var(--primary)",
+          "--color-primary-foreground": "var(--primary-foreground)",
+          "--color-primary-background": "var(--primary-background)",
+          "--color-secondary": "var(--secondary)",
+          "--color-secondary-foreground": "var(--secondary-foreground)",
+          "--color-muted": "var(--muted)",
+          "--color-muted-foreground": "var(--muted-foreground)",
+          "--color-accent": "var(--accent)",
+          "--color-accent-foreground": "var(--accent-foreground)",
+          "--color-destructive": "var(--destructive)",
+          "--color-border": "var(--border)",
+          "--color-input": "var(--input)",
+          "--color-ring": "var(--ring)",
+          "--color-chart-1": "var(--chart-1)",
+          "--color-chart-2": "var(--chart-2)",
+          "--color-chart-3": "var(--chart-3)",
+          "--color-chart-4": "var(--chart-4)",
+          "--color-chart-5": "var(--chart-5)",
+          "--color-sidebar": "var(--sidebar)",
+          "--color-sidebar-foreground": "var(--sidebar-foreground)",
+          "--color-sidebar-primary": "var(--sidebar-primary)",
+          "--color-sidebar-primary-foreground": "var(--sidebar-primary-foreground)",
+          "--color-sidebar-accent": "var(--sidebar-accent)",
+          "--color-sidebar-accent-foreground": "var(--sidebar-accent-foreground)",
+          "--color-sidebar-border": "var(--sidebar-border)",
+          "--color-sidebar-ring": "var(--sidebar-ring)"
         }
       },
+      "css": {
+        ":root": {
+          "--radius": "0.625rem",
+          "--background": "var(--color-white)",
+          "--foreground": "var(--color-blackAlpha-900)",
+          "--card": "var(--color-white)",
+          "--card-foreground": "var(--color-blackAlpha-900)",
+          "--popover": "var(--color-white)",
+          "--popover-foreground": "var(--color-blackAlpha-900)",
+          "--primary": "var(--color-primary-500)",
+          "--primary-foreground": "var(--color-white)",
+          "--primary-background": "var(--color-primary-100)",
+          "--secondary": "var(--color-gray-50)",
+          "--secondary-foreground": "var(--color-blackAlpha-900)",
+          "--muted": "var(--color-gray-50)",
+          "--muted-foreground": "var(--color-blackAlpha-500)",
+          "--accent": "var(--color-gray-50)",
+          "--accent-foreground": "var(--color-blackAlpha-900)",
+          "--destructive": "var(--color-danger-500)",
+          "--border": "var(--color-blackAlpha-200)",
+          "--input": "var(--color-blackAlpha-400)",
+          "--ring": "#6987f9",
+          "--chart-1": "#4E41CC",
+          "--chart-2": "#0FB5AE",
+          "--chart-3": "#F08910",
+          "--chart-4": "#33C5E8",
+          "--chart-5": "#E055E2",
+          "--sidebar": "oklch(0.985 0 0)",
+          "--sidebar-foreground": "oklch(0.145 0 0)",
+          "--sidebar-primary": "oklch(0.205 0 0)",
+          "--sidebar-primary-foreground": "oklch(0.985 0 0)",
+          "--sidebar-accent": "oklch(0.97 0 0)",
+          "--sidebar-accent-foreground": "oklch(0.205 0 0)",
+          "--sidebar-border": "oklch(0.922 0 0)",
+          "--sidebar-ring": "oklch(0.708 0 0)"
+        },
+        ".dark": {}
+      },
       "files": [
-        {
-          "path": "src/app/globals.css",
-          "type": "registry:style",
-          "target": "app/globals.css"
-        },
-        {
-          "path": "src/app/colors.css",
-          "type": "registry:style",
-          "target": "app/colors.css"
-        },
-        {
-          "path": "src/app/shadows.css",
-          "type": "registry:style",
-          "target": "app/shadows.css"
-        },
-        {
-          "path": "src/app/borderRadius.css",
-          "type": "registry:style",
-          "target": "app/borderRadius.css"
-        },
-        {
-          "path": "src/app/typography.css",
-          "type": "registry:style",
-          "target": "app/typography.css"
-        },
-        {
-          "path": "src/app/breakpoints.css",
-          "type": "registry:style",
-          "target": "app/breakpoints.css"
-        },
         {
           "path": "postcss.config.mjs",
           "type": "registry:file",
@@ -168,7 +407,7 @@
         "https://blok-shadcn.vercel.app/r/toggle.json",
         "https://blok-shadcn.vercel.app/r/toggle-group.json",
         "https://blok-shadcn.vercel.app/r/tooltip.json",
-        "https://blok-shadcn.vercel.app/r/input.json" 
+        "https://blok-shadcn.vercel.app/r/input.json"
       ]
     },
     {
@@ -186,8 +425,7 @@
       "files": [
         {
           "path": "src/components/ui/accordion.tsx",
-          "type": "registry:ui",
-          "target": "src/components/ui/accordion.tsx"
+          "type": "registry:ui"
         },
         {
           "path": "src/lib/icon.tsx",
@@ -211,8 +449,7 @@
       "files": [
         {
           "path": "src/components/ui/alert-dialog.tsx",
-          "type": "registry:ui",
-          "target": "src/components/ui/alert-dialog.tsx"
+          "type": "registry:ui"
         }
       ]
     },
@@ -231,8 +468,7 @@
       "files": [
         {
           "path": "src/components/ui/alert.tsx",
-          "type": "registry:ui",
-          "target": "src/components/ui/alert.tsx"
+          "type": "registry:ui"
         },
         {
           "path": "src/lib/icon.tsx",
@@ -254,8 +490,7 @@
       "files": [
         {
           "path": "src/components/ui/aspect-ratio.tsx",
-          "type": "registry:ui",
-          "target": "src/components/ui/aspect-ratio.tsx"
+          "type": "registry:ui"
         }
       ]
     },
@@ -273,8 +508,7 @@
       "files": [
         {
           "path": "src/components/ui/avatar.tsx",
-          "type": "registry:ui",
-          "target": "src/components/ui/avatar.tsx"
+          "type": "registry:ui"
         }
       ]
     },
@@ -293,8 +527,7 @@
       "files": [
         {
           "path": "src/components/ui/badge.tsx",
-          "type": "registry:ui",
-          "target": "src/components/ui/badge.tsx"
+          "type": "registry:ui"
         }
       ]
     },
@@ -313,8 +546,7 @@
       "files": [
         {
           "path": "src/components/ui/breadcrumb.tsx",
-          "type": "registry:ui",
-          "target": "src/components/ui/breadcrumb.tsx"
+          "type": "registry:ui"
         },
         {
           "path": "src/lib/icon.tsx",
@@ -337,8 +569,7 @@
       "files": [
         {
           "path": "src/components/ui/button.tsx",
-          "type": "registry:ui",
-          "target": "src/components/ui/button.tsx"
+          "type": "registry:ui"
         }
       ]
     },
@@ -358,8 +589,7 @@
       "files": [
         {
           "path": "src/components/ui/calendar.tsx",
-          "type": "registry:ui",
-          "target": "src/components/ui/calendar.tsx"
+          "type": "registry:ui"
         }
       ]
     },
@@ -377,8 +607,7 @@
       "files": [
         {
           "path": "src/components/ui/card.tsx",
-          "type": "registry:ui",
-          "target": "src/components/ui/card.tsx"
+          "type": "registry:ui"
         }
       ]
     },
@@ -398,8 +627,7 @@
       "files": [
         {
           "path": "src/components/ui/carousel.tsx",
-          "type": "registry:ui",
-          "target": "src/components/ui/carousel.tsx"
+          "type": "registry:ui"
         },
         {
           "path": "src/lib/icon.tsx",
@@ -441,8 +669,7 @@
       "files": [
         {
           "path": "src/components/ui/checkbox.tsx",
-          "type": "registry:ui",
-          "target": "src/components/ui/checkbox.tsx"
+          "type": "registry:ui"
         },
         {
           "path": "src/lib/icon.tsx",
@@ -464,8 +691,7 @@
       "files": [
         {
           "path": "src/components/ui/collapsible.tsx",
-          "type": "registry:ui",
-          "target": "src/components/ui/collapsible.tsx"
+          "type": "registry:ui"
         }
       ]
     },
@@ -483,13 +709,12 @@
         "https://blok-shadcn.vercel.app/r/avatar.json",
         "https://blok-shadcn.vercel.app/r/button.json",
         "https://blok-shadcn.vercel.app/r/command.json",
-        "https://blok-shadcn.vercel.app/r/popover.json"        
+        "https://blok-shadcn.vercel.app/r/popover.json"
       ],
       "files": [
         {
           "path": "src/components/ui/combobox.tsx",
-          "type": "registry:ui",
-          "target": "src/components/ui/combobox.tsx"
+          "type": "registry:ui"
         },
         {
           "path": "src/lib/icon.tsx",
@@ -513,8 +738,7 @@
       "files": [
         {
           "path": "src/components/ui/command.tsx",
-          "type": "registry:ui",
-          "target": "src/components/ui/command.tsx"
+          "type": "registry:ui"
         },
         {
           "path": "src/lib/icon.tsx",
@@ -537,8 +761,7 @@
       "files": [
         {
           "path": "src/components/ui/context-menu.tsx",
-          "type": "registry:ui",
-          "target": "src/components/ui/context-menu.tsx"
+          "type": "registry:ui"
         },
         {
           "path": "src/lib/icon.tsx",
@@ -560,13 +783,12 @@
         "https://blok-shadcn.vercel.app/r/theme.json",
         "https://blok-shadcn.vercel.app/r/calendar.json",
         "https://blok-shadcn.vercel.app/r/button.json",
-        "https://blok-shadcn.vercel.app/r/popover.json"        
+        "https://blok-shadcn.vercel.app/r/popover.json"
       ],
       "files": [
         {
           "path": "src/components/ui/date-picker.tsx",
-          "type": "registry:ui",
-          "target": "src/components/ui/date-picker.tsx"
+          "type": "registry:ui"
         },
         {
           "path": "src/lib/icon.tsx",
@@ -590,8 +812,7 @@
       "files": [
         {
           "path": "src/components/ui/dialog.tsx",
-          "type": "registry:ui",
-          "target": "src/components/ui/dialog.tsx"
+          "type": "registry:ui"
         },
         {
           "path": "src/lib/icon.tsx",
@@ -608,14 +829,13 @@
         "vaul"
       ],
       "registryDependencies": [
-        "http://blok-shadcn.vercel.app/r/button.json",
-        "http://blok-shadcn.vercel.app/r/theme.json"
+        "https://blok-shadcn.vercel.app/r/button.json",
+        "https://blok-shadcn.vercel.app/r/theme.json"
       ],
       "files": [
         {
           "path": "src/components/ui/drawer.tsx",
-          "type": "registry:ui",
-          "target": "src/components/ui/drawer.tsx"
+          "type": "registry:ui"
         }
       ]
     },
@@ -634,8 +854,7 @@
       "files": [
         {
           "path": "src/components/ui/dropdown-menu.tsx",
-          "type": "registry:ui",
-          "target": "src/components/ui/dropdown-menu.tsx"
+          "type": "registry:ui"
         },
         {
           "path": "src/lib/icon.tsx",
@@ -654,8 +873,7 @@
       "files": [
         {
           "path": "src/components/ui/input.tsx",
-          "type": "registry:ui",
-          "target": "src/components/ui/input.tsx"
+          "type": "registry:ui"
         }
       ]
     },
@@ -674,8 +892,7 @@
       "files": [
         {
           "path": "src/components/ui/inputOtp.tsx",
-          "type": "registry:ui",
-          "target": "src/components/ui/inputOtp.tsx"
+          "type": "registry:ui"
         },
         {
           "path": "src/lib/icon.tsx",
@@ -697,8 +914,7 @@
       "files": [
         {
           "path": "src/components/ui/label.tsx",
-          "type": "registry:ui",
-          "target": "src/components/ui/label.tsx"
+          "type": "registry:ui"
         }
       ]
     },
@@ -718,8 +934,7 @@
       "files": [
         {
           "path": "src/components/ui/navigation-menu.tsx",
-          "type": "registry:ui",
-          "target": "src/components/ui/navigation-menu.tsx"
+          "type": "registry:ui"
         },
         {
           "path": "src/lib/icon.tsx",
@@ -743,8 +958,7 @@
       "files": [
         {
           "path": "src/components/ui/pagination.tsx",
-          "type": "registry:ui",
-          "target": "src/components/ui/pagination.tsx"
+          "type": "registry:ui"
         },
         {
           "path": "src/lib/icon.tsx",
@@ -766,8 +980,7 @@
       "files": [
         {
           "path": "src/components/ui/progress.tsx",
-          "type": "registry:ui",
-          "target": "src/components/ui/progress.tsx"
+          "type": "registry:ui"
         }
       ]
     },
@@ -786,8 +999,7 @@
       "files": [
         {
           "path": "src/components/ui/radio-group.tsx",
-          "type": "registry:ui",
-          "target": "src/components/ui/radio-group.tsx"
+          "type": "registry:ui"
         },
         {
           "path": "src/lib/icon.tsx",
@@ -810,8 +1022,7 @@
       "files": [
         {
           "path": "src/components/ui/resizable.tsx",
-          "type": "registry:ui",
-          "target": "src/components/ui/resizable.tsx"
+          "type": "registry:ui"
         },
         {
           "path": "src/lib/icon.tsx",
@@ -833,8 +1044,7 @@
       "files": [
         {
           "path": "src/components/ui/scroll-area.tsx",
-          "type": "registry:ui",
-          "target": "src/components/ui/scroll-area.tsx"
+          "type": "registry:ui"
         }
       ]
     },
@@ -875,8 +1085,7 @@
       "files": [
         {
           "path": "src/components/ui/separator.tsx",
-          "type": "registry:ui",
-          "target": "src/components/ui/separator.tsx"
+          "type": "registry:ui"
         }
       ]
     },
@@ -890,14 +1099,13 @@
         "@mdi/js"
       ],
       "registryDependencies": [
-        "http://blok-shadcn.vercel.app/r/button.json",
-        "http://blok-shadcn.vercel.app/r/theme.json"
+        "https://blok-shadcn.vercel.app/r/button.json",
+        "https://blok-shadcn.vercel.app/r/theme.json"
       ],
       "files": [
         {
           "path": "src/components/ui/sheet.tsx",
-          "type": "registry:ui",
-          "target": "src/components/ui/sheet.tsx"
+          "type": "registry:ui"
         },
         {
           "path": "src/lib/icon.tsx",
@@ -926,8 +1134,7 @@
       "files": [
         {
           "path": "src/components/ui/sidebar.tsx",
-          "type": "registry:ui",
-          "target": "src/components/ui/sidebar.tsx"
+          "type": "registry:ui"
         },
         {
           "path": "src/lib/icon.tsx",
@@ -946,8 +1153,7 @@
       "files": [
         {
           "path": "src/components/ui/skeleton.tsx",
-          "type": "registry:ui",
-          "target": "src/components/ui/skeleton.tsx"
+          "type": "registry:ui"
         }
       ]
     },
@@ -965,8 +1171,7 @@
       "files": [
         {
           "path": "src/components/ui/slider.tsx",
-          "type": "registry:ui",
-          "target": "src/components/ui/slider.tsx"
+          "type": "registry:ui"
         }
       ]
     },
@@ -986,8 +1191,7 @@
       "files": [
         {
           "path": "src/components/ui/sonner.tsx",
-          "type": "registry:ui",
-          "target": "src/components/ui/sonner.tsx"
+          "type": "registry:ui"
         },
         {
           "path": "src/lib/icon.tsx",
@@ -1006,8 +1210,7 @@
       "files": [
         {
           "path": "src/components/ui/spinner.tsx",
-          "type": "registry:ui",
-          "target": "src/components/ui/spinner.tsx"
+          "type": "registry:ui"
         }
       ]
     },
@@ -1027,8 +1230,7 @@
       "files": [
         {
           "path": "src/components/ui/switch.tsx",
-          "type": "registry:ui",
-          "target": "src/components/ui/switch.tsx"
+          "type": "registry:ui"
         }
       ]
     },
@@ -1043,8 +1245,7 @@
       "files": [
         {
           "path": "src/components/ui/table.tsx",
-          "type": "registry:ui",
-          "target": "src/components/ui/table.tsx"
+          "type": "registry:ui"
         }
       ]
     },
@@ -1063,8 +1264,7 @@
       "files": [
         {
           "path": "src/components/ui/tabs.tsx",
-          "type": "registry:ui",
-          "target": "src/components/ui/tabs.tsx"
+          "type": "registry:ui"
         }
       ]
     },
@@ -1122,8 +1322,7 @@
       "files": [
         {
           "path": "src/components/ui/tooltip.tsx",
-          "type": "registry:ui",
-          "target": "src/components/ui/tooltip.tsx"
+          "type": "registry:ui"
         }
       ]
     },
@@ -1132,7 +1331,9 @@
       "type": "registry:ui",
       "title": "Toggle",
       "description": "A two-state button that can be either on or off.",
-      "registryDependencies": ["https://blok-shadcn.vercel.app/r/theme.json"],
+      "registryDependencies": [
+        "https://blok-shadcn.vercel.app/r/theme.json"
+      ],
       "dependencies": [
         "@radix-ui/react-toggle",
         "@mdi/js",
@@ -1166,8 +1367,7 @@
       "files": [
         {
           "path": "src/components/ui/top-bar.tsx",
-          "type": "registry:ui",
-          "target": "src/components/ui/top-bar.tsx"
+          "type": "registry:ui"
         },
         {
           "path": "src/lib/icon.tsx",
@@ -1180,8 +1380,12 @@
       "type": "registry:ui",
       "title": "Popover",
       "description": "Displays rich content in a portal, triggered by a button.",
-      "registryDependencies": ["https://blok-shadcn.vercel.app/r/theme.json"],
-      "dependencies": ["@radix-ui/react-popover"],
+      "registryDependencies": [
+        "https://blok-shadcn.vercel.app/r/theme.json"
+      ],
+      "dependencies": [
+        "@radix-ui/react-popover"
+      ],
       "files": [
         {
           "path": "src/components/ui/popover.tsx",
@@ -1194,13 +1398,16 @@
       "type": "registry:ui",
       "title": "Hover Card",
       "description": "For sighted users to preview content available behind a link.",
-      "registryDependencies": ["https://blok-shadcn.vercel.app/r/theme.json"],
-      "dependencies": ["@radix-ui/react-hover-card"],
+      "registryDependencies": [
+        "https://blok-shadcn.vercel.app/r/theme.json"
+      ],
+      "dependencies": [
+        "@radix-ui/react-hover-card"
+      ],
       "files": [
         {
           "path": "src/components/ui/hover-card.tsx",
-          "type": "registry:ui",
-          "target": "src/components/ui/hover-card.tsx"
+          "type": "registry:ui"
         }
       ]
     }

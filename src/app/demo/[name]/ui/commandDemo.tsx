@@ -37,7 +37,7 @@ const CommandDemo = () => {
 
   return (
     <div>
-      <div className="flex rounded-t-md bg-white">
+      <div className="flex rounded-t-md bg-body-bg">
         <>
           <p className="text-muted-foreground text-sm">
             Press{" "}

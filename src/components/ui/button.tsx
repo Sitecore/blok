@@ -33,11 +33,11 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        default: "bg-primary text-primary-foreground hover:bg-primary-600",
+        default: "bg-primary text-primary-foreground hover:bg-primary-600 active:bg-primary-700",
         outline:
-          "border bg-backgrounds hover:bg-neutral-100 hover:text-accent-foreground dark:bg-input/30 dark:border-input dark:hover:bg-input/50",
+          "border bg-backgrounds hover:bg-neutral-bg hover:text-accent-foreground dark:bg-input/30 dark:border-input dark:hover:bg-input/50",
         ghost:
-          "hover:bg-neutral-100 hover:text-accent-foreground dark:hover:bg-accent/50",
+          "bg-transparent hover:bg-neutral-bg active:bg-neutral-bg-active",
         link: "text-primary underline-offset-4 hover:underline",
       },
       size: {
@@ -65,77 +65,77 @@ const buttonVariants = cva(
         variant: "default",
         colorScheme: "primary",
         class:
-          "bg-primary text-white hover:bg-primary-600 active:bg-primary-700",
+          "bg-primary text-inverse-text hover:bg-primary-hover active:bg-primary-active",
       },
       {
         variant: "default",
         colorScheme: "success",
         class:
-          "bg-success text-white hover:bg-success-600 active:bg-success-700",
+          "bg-success text-inverse-text hover:bg-success-hover active:bg-success-active",
       },
       {
         variant: "default",
         colorScheme: "danger",
-        class: "bg-danger text-white hover:bg-danger-600 active:bg-danger-700",
+        class: "bg-danger text-inverse-text hover:bg-danger-hover active:bg-danger-active",
       },
       {
         variant: "default",
         colorScheme: "neutral",
         class:
-          "bg-neutral text-white hover:bg-neutral-600 active:bg-neutral-700",
+          "bg-neutral text-inverse-text hover:bg-neutral-hover active:bg-neutral-active",
       },
       {
         variant: "default",
         colorScheme: "ai",
-        class: "ai-500 text-white hover:ai-600 active:ai-700",
+        class: "ai-500 text-inverse-text hover:ai-600 active:ai-700",
       },
       {
         variant: "outline",
         colorScheme: "primary",
         class:
-          "border text-primary-600 hover:bg-primary-100 hover:text-primary-600 active:bg-primary-200",
+          "border text-primary-fg hover:bg-primary-bg hover:text-primary-fg active:bg-primary-bg-active",
       },
       {
         variant: "outline",
         colorScheme: "success",
         class:
-          "border text-success-600 hover:bg-success-100 hover:text-success-600 active:bg-success-200",
+          "border text-success-fg hover:bg-success-bg hover:text-success-fg active:bg-success-bg-active",
       },
       {
         variant: "outline",
         colorScheme: "danger",
         class:
-          "border text-danger-600 hover:bg-danger-100 hover:text-danger-600 active:bg-danger-200",
+          "border text-danger-fg hover:bg-danger-bg hover:text-danger-fg active:bg-danger-bg-active",
       },
       {
         variant: "outline",
         colorScheme: "neutral",
         class:
-          "border text-neutral-600 hover:bg-neutral-100 hover:text-neutral-600 active:bg-neutral-200",
+          "border text-neutral-fg hover:bg-neutral-bg hover:text-neutral-fg active:bg-neutral-bg-active",
       },
       {
         variant: "ghost",
         colorScheme: "primary",
         class:
-          "text-primary-600 hover:bg-primary-100 hover:text-primary-600 active:bg-primary-200",
+          "text-primary-fg hover:bg-primary-bg hover:text-primary-fg active:bg-primary-bg-active",
       },
       {
         variant: "ghost",
         colorScheme: "success",
         class:
-          "text-success-600 hover:bg-success-100 hover:text-success-600 active:bg-success-200",
+          "text-success-fg hover:bg-success-bg hover:text-success-fg active:bg-success-bg-active",
       },
       {
         variant: "ghost",
         colorScheme: "danger",
         class:
-          "text-danger-600 hover:bg-danger-100 hover:text-danger-600 active:bg-danger-200",
+          "text-danger-fg hover:bg-danger-bg hover:text-danger-fg active:bg-danger-bg-active",
       },
       {
         variant: "ghost",
         colorScheme: "neutral",
         class:
-          "text-neutral-600 hover:bg-neutral-100 hover:text-neutral-600 active:bg-neutral-200",
+          "text-neutral-fg hover:bg-neutral-bg hover:text-neutral-fg active:bg-neutral-bg-active",
       },
       {
         variant: "link",

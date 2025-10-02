@@ -119,10 +119,10 @@ const BreakpointsDemo = ({ content }: Props) => {
             <tr style={{ borderBottom: "2px solid #ccc" }}>
               <th style={{ padding: "0.8rem", textAlign: "left" }}>Token</th>
               <th style={{ padding: "0.8rem", textAlign: "left" }}>Device</th>
-              <th style={{ padding: "0.8rem", textAlign: "center" }}>
+              <th style={{ padding: "0.8rem", textAlign: "left" }}>
                 Value (rem)
               </th>
-              <th style={{ padding: "0.8rem", textAlign: "center" }}>
+              <th style={{ padding: "0.8rem", textAlign: "left" }}>
                 Value (px)
               </th>
             </tr>
@@ -152,8 +152,8 @@ const BreakpointsDemo = ({ content }: Props) => {
                       style={{
                         fontFamily: "monospace",
                         fontSize: "0.9rem",
-                        color: "#555",
                       }}
+                      className="text-muted-foreground"
                     >
                       {value}
                     </span>
@@ -163,8 +163,8 @@ const BreakpointsDemo = ({ content }: Props) => {
                       style={{
                         fontFamily: "monospace",
                         fontSize: "0.9rem",
-                        color: "#555",
                       }}
+                      className="text-muted-foreground"
                     >
                       {pxValue}px
                     </span>

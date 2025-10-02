@@ -35,13 +35,13 @@ function Spinner({
   const SpinnerElement = (
     <div className="text-center">
       <div className={spinnerClasses} data-testid="spinner" {...props} />
-      {message && <p className="mt-6 text-sm text-gray-600">{message}</p>}
+      {message && <p className="mt-6 text-sm text-subtle-text">{message}</p>}
     </div>
   )
 
   if (fullscreen) {
     return (
-      <div className="fixed inset-0 z-50 flex items-center justify-center bg-white/90">
+      <div className="fixed inset-0 z-50 flex items-center justify-center bg-body-bg/90">
         {SpinnerElement}
       </div>
     )
@@ -49,7 +49,7 @@ function Spinner({
 
   if (withOverlay) {
     return (
-      <div className="flex h-full w-full items-center justify-center bg-white/90">
+      <div className="flex h-full w-full items-center justify-center bg-body-bg/90">
         {SpinnerElement}
       </div>
     )

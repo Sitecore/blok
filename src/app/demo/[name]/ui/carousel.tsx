@@ -18,9 +18,9 @@ export const carousel = {
             {Array.from({ length: 5 }).map((_, index) => (
               <CarouselItem key={index}>
                 <div className="p-1">
-                  <Card className="bg-gray-50 border-gray-50">
+                  <Card className="bg-subtle-bg border-subtle-bg">
                     <CardContent className="flex aspect-square items-center justify-center p-6">
-                      <span className="text-4xl font-semibold text-gray-700">{index + 1}</span>
+                      <span className="text-4xl font-semibold text-body-text">{index + 1}</span>
                     </CardContent>
                   </Card>
                 </div>
@@ -46,9 +46,9 @@ export const carousel = {
             {Array.from({ length: 5 }).map((_, index) => (
               <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
                 <div className="p-1">
-                  <Card className="bg-gray-50 border-gray-50">
+                  <Card className="bg-subtle-bg border-subtle-bg">
                     <CardContent className="flex aspect-square items-center justify-center p-6">
-                      <span className="text-3xl font-semibold text-gray-700">{index + 1}</span>
+                      <span className="text-3xl font-semibold text-body-text">{index + 1}</span>
                     </CardContent>
                   </Card>
                 </div>
@@ -69,9 +69,9 @@ export const carousel = {
             {Array.from({ length: 5 }).map((_, index) => (
               <CarouselItem key={index} className="pl-1 md:basis-1/2">
                 <div className="p-1">
-                  <Card className="bg-gray-50 border-gray-50">
+                  <Card className="bg-subtle-bg border-subtle-bg">
                     <CardContent className="flex aspect-square items-center justify-center p-6">
-                      <span className="text-2xl font-semibold text-gray-700">{index + 1}</span>
+                      <span className="text-2xl font-semibold text-body-text">{index + 1}</span>
                     </CardContent>
                   </Card>
                 </div>
