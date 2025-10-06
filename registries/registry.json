@@ -349,13 +349,7 @@
         },
         ".dark": {}
       },
-      "files": [
-        {
-          "path": "postcss.config.mjs",
-          "type": "registry:file",
-          "target": "postcss.config.mjs"
-        }
-      ]
+      "files": []
     },
     {
       "name": "blok-components",
