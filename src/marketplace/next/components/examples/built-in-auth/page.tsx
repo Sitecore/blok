@@ -1,6 +1,6 @@
 "use client";
 
-import { ApplicationContext } from "@/components/examples/build-in-auth/application-context";
+import { ApplicationContext } from "@/components/examples/built-in-auth/application-context";
 
 function Examples() {
   return (
@@ -10,7 +10,7 @@ function Examples() {
           Marketplace SDK Demo
         </h1>
         <p className="text-muted-foreground">
-          Marketplace SDK with build-in authentication
+          Marketplace SDK with built-in authentication
         </p>
       </div>
 
