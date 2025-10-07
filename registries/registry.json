@@ -352,124 +352,6 @@
         ":root": {
 
 
-          ".text-3xs": {
-            "font-size": "var(--text-3xs)"
-          },
-          ".text-2xs": {
-            "font-size": "var(--text-2xs)"
-          },
-          ".text-xs": {
-            "font-size": "var(--text-xs)"
-          },
-          ".text-sm": {
-            "font-size": "var(--text-sm)"
-          },
-          ".text-base": {
-            "font-size": "var(--text-base)"
-          },
-          ".text-md": {
-            "font-size": "var(--text-md)"
-          },
-          ".text-lg": {
-            "font-size": "var(--text-lg)"
-          },
-          ".text-xl": {
-            "font-size": "var(--text-xl)"
-          },
-          ".text-2xl": {
-            "font-size": "var(--text-2xl)"
-          },
-          ".text-3xl": {
-            "font-size": "var(--text-3xl)"
-          },
-          ".text-4xl": {
-            "font-size": "var(--text-4xl)"
-          },
-          ".text-5xl": {
-            "font-size": "var(--text-5xl)"
-          },
-          ".text-6xl": {
-            "font-size": "var(--text-6xl)"
-          },
-          ".text-7xl": {
-            "font-size": "var(--text-7xl)"
-          },
-          ".text-8xl": {
-            "font-size": "var(--text-8xl)"
-          },
-          ".text-9xl": {
-            "font-size": "var(--text-9xl)"
-          },
-
-
-
-          ".shadow-none": {
-            "box-shadow": "var(--shadow-none)"
-          },
-          ".shadow-xs": {
-            "box-shadow": "var(--shadow-xs)"
-          },
-          ".shadow-sm": {
-            "box-shadow": "var(--shadow-sm)"
-          },
-          ".shadow-base": {
-            "box-shadow": "var(--shadow-base)"
-          },
-          ".shadow-md": {
-            "box-shadow": "var(--shadow-md)"
-          },
-          ".shadow-lg": {
-            "box-shadow": "var(--shadow-lg)"
-          },
-          ".shadow-xl": {
-            "box-shadow": "var(--shadow-xl)"
-          },
-          ".shadow-2xl": {
-            "box-shadow": "var(--shadow-2xl)"
-          },
-          ".shadow-outline": {
-            "box-shadow": "var(--shadow-outline)"
-          },
-          ".shadow-inner": {
-            "box-shadow": "var(--shadow-inner)"
-          },
-          ".shadow-dark-lg": {
-            "box-shadow": "var(--shadow-dark-lg)"
-          },
-
-
-
-
-          ".rounded-none": {
-            "border-radius": "var(--rounded-none)"
-          },
-          ".rounded-sm": {
-            "border-radius": "var(--rounded-sm)"
-          },
-          ".rounded-base": {
-            "border-radius": "var(--rounded-base)"
-          },
-          ".rounded-md": {
-            "border-radius": "var(--rounded-md)"
-          },
-          ".rounded-lg": {
-            "border-radius": "var(--rounded-lg)"
-          },
-          ".rounded-xl": {
-            "border-radius": "var(--rounded-xl)"
-          },
-          ".rounded-2xl": {
-            "border-radius": "var(--rounded-2xl)"
-          },
-          ".rounded-3xl": {
-            "border-radius": "var(--rounded-3xl)"
-          },
-          ".rounded-full": {
-            "border-radius": "var(--rounded-full)"
-          },
-
-
-
           "--color-body-bg": "var(--color-white)",
           "--color-subtle-bg": "var(--color-gray-50)",
           "--color-body-text": "var(--color-blackAlpha-900)",
@@ -952,6 +834,10 @@
         {
           "path": "src/components/ui/calendar.tsx",
           "type": "registry:ui"
+        },
+        {
+          "path": "src/lib/icon.tsx",
+          "type": "registry:lib"  
         }
       ]
     },
@@ -1627,6 +1513,10 @@
         {
           "path": "src/components/ui/tabs.tsx",
           "type": "registry:ui"
+        },
+        {
+          "path": "src/lib/icon.tsx",
+          "type": "registry:lib"  
         }
       ]
     },
