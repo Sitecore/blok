@@ -38,6 +38,7 @@ const badgeVariants = cva(
   }
 )
 
+// testing badge component is here
 function Badge({
   className,
   variant,
