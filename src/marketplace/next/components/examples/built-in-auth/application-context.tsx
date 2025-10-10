@@ -25,7 +25,7 @@ export const ApplicationContext = () => {
               Application Context
             </CardTitle>
             <Badge colorScheme="primary">Client-side</Badge>
-            <Badge colorScheme={"success"}>SDK Build-in Auth</Badge>
+            <Badge colorScheme={"success"}>SDK Built-in Auth</Badge>
           </div>
           {isExpanded ? (
             <ChevronDown className="h-4 w-4 transition-transform" />

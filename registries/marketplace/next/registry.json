@@ -23,9 +23,9 @@
           "target": "components/providers/marketplace.tsx"
         },
         {
-          "path": "src/marketplace/next/components/examples/build-in-auth/application-context.tsx",
+          "path": "src/marketplace/next/components/examples/built-in-auth/application-context.tsx",
           "type": "registry:component",
-          "target": "components/examples/build-in-auth/application-context.tsx"
+          "target": "components/examples/built-in-auth/application-context.tsx"
         },
         {
           "path": "src/marketplace/next/layouts/layout.tsx",
@@ -33,7 +33,7 @@
           "target": "app/layout.tsx"
         },
         {
-          "path": "src/marketplace/next/components/examples/build-in-auth/page.tsx",
+          "path": "src/marketplace/next/components/examples/built-in-auth/page.tsx",
           "type": "registry:page",
           "target": "app/page.tsx"
         }
@@ -101,12 +101,12 @@
           "target": "components/providers/marketplace.tsx"
         },
         {
-          "path": "src/marketplace/next/components/examples/build-in-auth/with-xmc/list-languages.tsx",
+          "path": "src/marketplace/next/components/examples/built-in-auth/with-xmc/list-languages.tsx",
           "type": "registry:component",
-          "target": "components/examples/build-in-auth/with-xmc/list-languages.tsx"
+          "target": "components/examples/built-in-auth/with-xmc/list-languages.tsx"
         },
         {
-          "path": "src/marketplace/next/components/examples/build-in-auth/with-xmc/page.tsx",
+          "path": "src/marketplace/next/components/examples/built-in-auth/with-xmc/page.tsx",
           "type": "registry:page",
           "target": "app/page.tsx"
         }

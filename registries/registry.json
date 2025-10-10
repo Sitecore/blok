@@ -349,13 +349,7 @@
         },
         ".dark": {}
       },
-      "files": [
-        {
-          "path": "postcss.config.mjs",
-          "type": "registry:file",
-          "target": "postcss.config.mjs"
-        }
-      ]
+      "files": []
     },
     {
       "name": "blok-components",
@@ -590,6 +584,10 @@
         {
           "path": "src/components/ui/calendar.tsx",
           "type": "registry:ui"
+        },
+        {
+          "path": "src/lib/icon.tsx",
+          "type": "registry:lib"  
         }
       ]
     },
@@ -1265,6 +1263,10 @@
         {
           "path": "src/components/ui/tabs.tsx",
           "type": "registry:ui"
+        },
+        {
+          "path": "src/lib/icon.tsx",
+          "type": "registry:lib"  
         }
       ]
     },

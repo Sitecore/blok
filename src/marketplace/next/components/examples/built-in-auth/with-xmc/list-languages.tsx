@@ -63,7 +63,7 @@ export const ListLanguagesFromClientSdk = () => {
         <CardTitle className="flex items-center gap-2">
           Client SDK Example
           <Badge colorScheme={"primary"}>Client-side</Badge>
-          <Badge colorScheme={"success"}>SDK Build-in Auth</Badge>
+          <Badge colorScheme={"success"}>SDK Built-in Auth</Badge>
         </CardTitle>
         <CardDescription>
           Fetch languages using Sitecore Marketplace SDK from client component

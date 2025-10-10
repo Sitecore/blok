@@ -1,7 +1,7 @@
 "use client";
 
-import { ApplicationContext } from "@/components/examples/build-in-auth/application-context";
-import { ListLanguagesFromClientSdk } from "@/components/examples/build-in-auth/with-xmc/list-languages";
+import { ApplicationContext } from "@/components/examples/built-in-auth/application-context";
+import { ListLanguagesFromClientSdk } from "@/components/examples/built-in-auth/with-xmc/list-languages";
 import { ListLanguagesFromApiRoute } from "@/components/examples/custom-auth/with-api-route/list-languages";
 import { ListLanguagesFromServerAction } from "@/components/examples/custom-auth/with-server-action/list-languages";
 import { Separator } from "@/components/ui/separator";
@@ -24,7 +24,7 @@ function ServerSideExamples() {
       <Separator />
 
       <div className="space-y-6">
-        <h2 className="text-2xl font-semibold">Build-in Auth Examples</h2>
+        <h2 className="text-2xl font-semibold">Built-in Auth Examples</h2>
         <div className="grid gap-6">
           <ListLanguagesFromClientSdk />
         </div>
