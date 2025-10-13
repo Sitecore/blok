@@ -31,7 +31,10 @@ export function WarningSonner() {
 
 export function ErrorSonner() {
   return (
-    <Button variant="outline" onClick={() => toast.error("There was an error")}>
+    <Button 
+      variant="outline"
+      onClick={() => toast.error("There was an error")}
+    >
       Error Toast
     </Button>
   );
@@ -43,7 +46,12 @@ export function ActionSonner() {
       variant="link"
       onClick={() =>
         toast("Toast with an Action", {
-          description: `A description with some more information ${<a href="#">link</a>}`,
+          description: (
+            <span>
+              A description with some more information.{' '}
+              <a href="#" className="text-primary">link</a>
+            </span>
+          ),
           icon: <Icon path={mdiInformation} className="text-body-text" />,
           action: {
             label: "Action",
@@ -53,6 +61,35 @@ export function ActionSonner() {
       }
     >
       Action Toast
+    </Button>
+  );
+}
+
+export function CustomToastSonner() {
+  return (
+    <Button 
+      variant="outline" 
+      onClick={() => toast.custom((t) => (
+        <div className="w-full p-4 bg-info-bg rounded-md shadow flex flex-col space-y-2">
+          <div>
+            <p className="font-medium text-gray-900 dark:text-white">Form submitted</p>
+            <p className="text-sm text-gray-500 dark:text-gray-400">
+              Your form was submitted successfully.
+            </p>
+          </div>
+          <div className="self-start">
+            <Button
+              onClick={() => {
+                toast.dismiss(t);
+                console.log("Undo clicked");
+              }}
+            >
+              Undo
+            </Button>
+          </div>
+        </div>
+      ))}>
+      Custom Toast
     </Button>
   );
 }
