@@ -21,17 +21,17 @@ const Toaster = ({ ...props }: ToasterProps) => {
       expand={true}
       toastOptions={{
         classNames: {
-          toast: "!border-none",
+          toast: "!border-none bg-transparent",
           icon: "!self-start !mt-0.5",
           success: "!bg-success-bg",
           error: "!bg-danger-bg",
           info: "!bg-info-bg",
           warning: "!bg-warning-bg",
           default: "!bg-info-bg",
+          actionButton: "!bg-primary !text-primary-foreground !hover:bg-primary-600 !active:bg-primary-700 !rounded-4xl",
           title: "text-sm !text-body-text !font-normal",
           description: "text-sm !text-body-text",
-          closeButton:
-            "!absolute !top-3 !right-0 !left-auto !bg-transparent !border-none",
+          closeButton: "!absolute !top-3 !right-0 !left-auto !bg-transparent !border-none",
         },
       }}
       {...props}
