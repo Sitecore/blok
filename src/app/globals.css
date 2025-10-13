@@ -25,6 +25,7 @@
   --inverse: var(--color-white);
   --border: var(--color-blackAlpha-200);
   --border-a11y: var(--color-blackAlpha-400);
+  --input: var(--color-blackAlpha-400);
   
   /* Foreground tokens */
   --primary-foreground: var(--color-primary-600);
@@ -109,6 +110,7 @@
   --inverse: var(--color-blackAlpha-900);
   --border: var(--color-whiteAlpha-200);
   --border-a11y: var(--color-whiteAlpha-400);
+  --input: var(--color-whiteAlpha-500);
   
   /* Foreground tokens */
   --primary-foreground: var(--color-primary-200);
