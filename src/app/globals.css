@@ -36,8 +36,8 @@
   --neutral-foreground: var(--color-blackAlpha-600);
   
   /* Background tokens */
-  --primary-background: var(--color-primary-100);
   --destructive-background: var(--color-danger-100);
+  --primary-background: var(--color-primary-100);
   --warning-background: var(--color-warning-100);
   --success-background: var(--color-success-100);
   --info-background: var(--color-info-100);
@@ -212,10 +212,10 @@
    
    /* Semantic background tokens */
    --color-primary-bg: var(--primary-background);
-   --color-danger-bg: var(--destructive-background);
    --color-warning-bg: var(--warning-background);
    --color-success-bg: var(--success-background);
    --color-info-bg: var(--info-background);
+   --color-danger-bg: var(--destructive-background);
    --color-neutral-bg: var(--neutral-background);
    
    /* Semantic active background tokens */
@@ -283,6 +283,7 @@
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
+  --color-sonner-error:var(--destructive-background);
 }
 
 @layer base {

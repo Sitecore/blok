@@ -303,6 +303,7 @@
           "--color-sidebar-accent-foreground": "var(--sidebar-accent-foreground)",
           "--color-sidebar-border": "var(--sidebar-border)",
           "--color-sidebar-ring": "var(--sidebar-ring)",
+          "--color-sonner-error": "var(--destructive-background)",
           "--radius": "0.625rem"
         }
       },
@@ -512,6 +513,7 @@
         "https://blok-shadcn.vercel.app/r/separator.json",
         "https://blok-shadcn.vercel.app/r/sheet.json",
         "https://blok-shadcn.vercel.app/r/skeleton.json",
+        "https://blok-shadcn.vercel.app/r/sonner.json",
         "https://blok-shadcn.vercel.app/r/switch.json",
         "https://blok-shadcn.vercel.app/r/table.json",
         "https://blok-shadcn.vercel.app/r/tabs.json",
