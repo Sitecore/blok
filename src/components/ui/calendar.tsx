@@ -219,7 +219,7 @@ function CalendarDayButton({
           !modifiers.range_start &&
           !modifiers.range_end &&
           !modifiers.range_middle &&
-          "bg-primary-500 text-primary-foreground hover:bg-primary-500 rounded-md",
+          "bg-primary-500 text-inverse-text rounded-l-md hover:bg-primary-600 hover:text-inverse-text",
         modifiers.range_start &&
           "bg-primary-500 text-inverse-text rounded-l-md hover:bg-primary-600 hover:text-inverse-text",
         modifiers.range_middle &&
