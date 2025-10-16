@@ -39,7 +39,7 @@ export default function TokensPage() {
             </Link>
           </Button>
 
-          <h1 className="font-bold text-3xl tracking-tight">Design Tokens</h1>
+          <h2 className="font-bold text-3xl tracking-tight">Design Tokens</h2>
           <p className="mt-1 text-muted-foreground">
             A comprehensive overview of all color tokens used in the design
             system

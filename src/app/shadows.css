@@ -1,4 +1,4 @@
-@theme {
+:root {
   --shadow-none: none;
   --shadow-xs: 0 0 0 1px rgba(0, 0, 0, 0.05);
   --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
@@ -40,6 +40,20 @@
     rgba(255, 255, 255, 0.1) 0px 0px 0px 1px,
     rgba(255, 255, 255, 0.2) 0px 5px 10px,
     rgba(255, 255, 255, 0.4) 0px 15px 40px;
+}
+
+@theme {
+  --shadow-none: var(--shadow-none);
+  --shadow-xs: var(--shadow-xs);
+  --shadow-sm: var(--shadow-sm);
+  --shadow-base: var(--shadow-base);
+  --shadow-md: var(--shadow-md);
+  --shadow-lg: var(--shadow-lg);
+  --shadow-xl: var(--shadow-xl);
+  --shadow-2xl: var(--shadow-2xl);
+  --shadow-outline: var(--shadow-outline);
+  --shadow-inner: var(--shadow-inner);
+  --shadow-dark-lg: var(--shadow-dark-lg);
 }
 
 @layer utilities {

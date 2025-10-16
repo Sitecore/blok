@@ -16,119 +16,74 @@
 :root {
   --radius: 0.625rem;
   
-  /* Semantic token mappings (light mode - default) */
-  --color-body-bg: var(--color-white);
-  --color-subtle-bg: var(--color-gray-50);
-  --color-body-text: var(--color-blackAlpha-900);
-  --color-subtle-text: var(--color-blackAlpha-500);
-  --color-placeholder-color: var(--color-blackAlpha-400);
-  --color-inverse-text: var(--color-white);
-  --color-border-color: var(--color-blackAlpha-200);
-  --color-border-color-a11y: var(--color-blackAlpha-400);
+  /* Core semantic tokens (light mode - default) */
+  --background: var(--color-white);
+  --muted: var(--color-gray-50);
+  --foreground: var(--color-blackAlpha-900);
+  --muted-foreground: var(--color-blackAlpha-500);
+  --placeholder: var(--color-blackAlpha-400);
+  --inverse: var(--color-white);
+  --border: var(--color-blackAlpha-200);
+  --border-a11y: var(--color-blackAlpha-400);
+  --input: var(--color-blackAlpha-400);
   
-  /* Semantic foreground tokens */
-  --color-primary-fg: var(--color-primary-600);
-  --color-danger-fg: var(--color-danger-600);
-  --color-warning-fg: var(--color-warning-600);
-  --color-success-fg: var(--color-success-600);
-  --color-info-fg: var(--color-info-600);
-  --color-neutral-fg: var(--color-blackAlpha-600);
+  /* Foreground tokens */
+  --primary-foreground: var(--color-primary-600);
+  --destructive-foreground: var(--color-danger-600);
+  --warning-foreground: var(--color-warning-600);
+  --success-foreground: var(--color-success-600);
+  --info-foreground: var(--color-info-600);
+  --neutral-foreground: var(--color-blackAlpha-600);
   
-  /* Semantic background tokens */
-  --color-primary-bg: var(--color-primary-100);
-  --color-danger-bg: var(--color-danger-100);
-  --color-warning-bg: var(--color-warning-100);
-  --color-success-bg: var(--color-success-100);
-  --color-info-bg: var(--color-info-100);
-  --color-neutral-bg: var(--color-blackAlpha-100);
+  /* Background tokens */
+  --destructive-background: var(--color-danger-100);
+  --primary-background: var(--color-primary-100);
+  --warning-background: var(--color-warning-100);
+  --success-background: var(--color-success-100);
+  --info-background: var(--color-info-100);
+  --neutral-background: var(--color-blackAlpha-100);
   
-  /* Semantic active background tokens */
-  --color-primary-bg-active: var(--color-primary-200);
-  --color-danger-bg-active: var(--color-danger-200);
-  --color-warning-bg-active: var(--color-warning-200);
-  --color-success-bg-active: var(--color-success-200);
-  --color-info-bg-active: var(--color-info-200);
-  --color-neutral-bg-active: var(--color-blackAlpha-200);
+  /* Active background tokens */
+  --primary-background-active: var(--color-primary-200);
+  --destructive-background-active: var(--color-danger-200);
+  --warning-background-active: var(--color-warning-200);
+  --success-background-active: var(--color-success-200);
+  --info-background-active: var(--color-info-200);
+  --neutral-background-active: var(--color-blackAlpha-200);
   
-  /* Semantic color tokens */
-  --color-primary: var(--color-primary-500);
-  --color-danger: var(--color-danger-500);
-  --color-success: var(--color-success-500);
-  --color-warning: var(--color-warning-500);
-  --color-info: var(--color-info-500);
-  --color-neutral: var(--color-blackAlpha-500);
+  /* Color tokens */
+  --primary: var(--color-primary-500);
+  --destructive: var(--color-danger-500);
+  --success: var(--color-success-500);
+  --warning: var(--color-warning-500);
+  --info: var(--color-info-500);
+  --neutral: var(--color-blackAlpha-500);
   
   /* Button hover colors (light mode) */
-  --color-primary-hover: var(--color-primary-600);
-  --color-danger-hover: var(--color-danger-600);
-  --color-success-hover: var(--color-success-600);
-  --color-warning-hover: var(--color-warning-600);
-  --color-info-hover: var(--color-info-600);
-  --color-neutral-hover: var(--color-neutral-600);
+  --primary-hover: var(--color-primary-600);
+  --destructive-hover: var(--color-danger-600);
+  --success-hover: var(--color-success-600);
+  --warning-hover: var(--color-warning-600);
+  --info-hover: var(--color-info-600);
+  --neutral-hover: var(--color-neutral-600);
   
   /* Button active colors (light mode) */
-  --color-primary-active: var(--color-primary-700);
-  --color-danger-active: var(--color-danger-700);
-  --color-success-active: var(--color-success-700);
-  --color-warning-active: var(--color-warning-700);
-  --color-info-active: var(--color-info-700);
-  --color-neutral-active: var(--color-neutral-700);
-  
-  /* Extended color tokens */
-  --color-gray: var(--color-gray-500);
-  --color-red: var(--color-red-500);
-  --color-orange: var(--color-orange-500);
-  --color-yellow: var(--color-yellow-500);
-  --color-green: var(--color-green-500);
-  --color-teal: var(--color-teal-500);
-  --color-cyan: var(--color-cyan-500);
-  --color-blue: var(--color-blue-500);
-  --color-purple: var(--color-purple-500);
-  --color-pink: var(--color-pink-500);
-  
-  /* Neutral scale tokens */
-  --color-neutral-50: var(--color-blackAlpha-50);
-  --color-neutral-100: var(--color-blackAlpha-100);
-  --color-neutral-200: var(--color-blackAlpha-200);
-  --color-neutral-300: var(--color-blackAlpha-300);
-  --color-neutral-400: var(--color-blackAlpha-400);
-  --color-neutral-500: var(--color-blackAlpha-500);
-  --color-neutral-600: var(--color-blackAlpha-600);
-  --color-neutral-700: var(--color-blackAlpha-700);
-  --color-neutral-800: var(--color-blackAlpha-800);
-  --color-neutral-900: var(--color-blackAlpha-900);
-  
-  /* Neutral color scale tokens */
-  --color-neutral-color-50: var(--color-blackAlpha-50);
-  --color-neutral-color-100: var(--color-blackAlpha-100);
-  --color-neutral-color-200: var(--color-blackAlpha-200);
-  --color-neutral-color-300: var(--color-blackAlpha-300);
-  --color-neutral-color-400: var(--color-blackAlpha-400);
-  --color-neutral-color-500: var(--color-blackAlpha-500);
-  --color-neutral-color-600: var(--color-blackAlpha-600);
-  --color-neutral-color-700: var(--color-blackAlpha-700);
-  --color-neutral-color-800: var(--color-blackAlpha-800);
-  --color-neutral-color-900: var(--color-blackAlpha-900);
+  --primary-active: var(--color-primary-700);
+  --destructive-active: var(--color-danger-700);
+  --success-active: var(--color-success-700);
+  --warning-active: var(--color-warning-700);
+  --info-active: var(--color-info-700);
+  --neutral-active: var(--color-neutral-700);
   
   /* Shadcn/ui compatible mappings */
-  --background: var(--color-body-bg);
-  --foreground: var(--color-body-text);
-  --card: var(--color-body-bg);
-  --card-foreground: var(--color-body-text);
-  --popover: var(--color-body-bg);
-  --popover-foreground: var(--color-body-text);
-  --primary: var(--color-primary-fg);
-  --primary-foreground: var(--color-inverse-text);
-  --primary-background: var(--color-primary-bg);
-  --secondary: var(--color-subtle-bg);
-  --secondary-foreground: var(--color-body-text);
-  --muted: var(--color-subtle-bg);
-  --muted-foreground: var(--color-subtle-text);
-  --accent: var(--color-subtle-bg);
-  --accent-foreground: var(--color-body-text);
-  --destructive: var(--color-danger-fg);
-  --border: var(--color-border-color);
-  --input: var(--color-placeholder-color);
+  --card: var(--background);
+  --card-foreground: var(--foreground);
+  --popover: var(--background);
+  --popover-foreground: var(--foreground);
+  --secondary: var(--muted);
+  --secondary-foreground: var(--foreground);
+  --accent: var(--muted);
+  --accent-foreground: var(--foreground);
   --ring: #6987f9;
   --chart-1: #4E41CC;
   --chart-2: #0FB5AE; 
@@ -146,119 +101,75 @@
 }
 
 .dark {
-  /* Semantic token mappings (dark mode) */
-  --color-body-bg: var(--color-gray-800);
-  --color-subtle-bg: var(--color-gray-900);
-  --color-body-text: var(--color-white);
-  --color-subtle-text: var(--color-whiteAlpha-600);
-  --color-placeholder-color: var(--color-whiteAlpha-500);
-  --color-inverse-text: var(--color-blackAlpha-900);
-  --color-border-color: var(--color-whiteAlpha-200);
-  --color-border-color-a11y: var(--color-whiteAlpha-400);
+  /* Core semantic tokens (dark mode) */
+  --background: var(--color-gray-800);
+  --muted: var(--color-gray-900);
+  --foreground: var(--color-white);
+  --muted-foreground: var(--color-whiteAlpha-600);
+  --placeholder: var(--color-whiteAlpha-500);
+  --inverse: var(--color-blackAlpha-900);
+  --border: var(--color-whiteAlpha-200);
+  --border-a11y: var(--color-whiteAlpha-400);
+  --input: var(--color-whiteAlpha-500);
   
-  /* Semantic foreground tokens */
-  --color-primary-fg: var(--color-primary-200);
-  --color-danger-fg: var(--color-danger-200);
-  --color-warning-fg: var(--color-warning-200);
-  --color-success-fg: var(--color-success-200);
-  --color-info-fg: var(--color-info-200);
-  --color-neutral-fg: var(--color-whiteAlpha-700);
+  /* Foreground tokens */
+  --primary-foreground: var(--color-primary-200);
+  --destructive-foreground: var(--color-danger-200);
+  --warning-foreground: var(--color-warning-200);
+  --success-foreground: var(--color-success-200);
+  --info-foreground: var(--color-info-200);
+  --neutral-foreground: var(--color-whiteAlpha-700);
   
-  /* Semantic background tokens */
-  --color-primary-bg: rgba(217, 212, 255, 0.12);
-  --color-danger-bg: rgba(255, 204, 200, 0.12);
-  --color-warning-bg: rgba(253, 210, 145, 0.12);
-  --color-success-bg: rgba(139, 235, 208, 0.12);
-  --color-info-bg: rgba(217, 212, 255, 0.12);
-  --color-neutral-bg: var(--color-whiteAlpha-100);
+  /* Background tokens */
+  --primary-background: rgba(217, 212, 255, 0.12);
+  --destructive-background: rgba(255, 204, 200, 0.12);
+  --warning-background: rgba(253, 210, 145, 0.12);
+  --success-background: rgba(139, 235, 208, 0.12);
+  --info-background: rgba(217, 212, 255, 0.12);
+  --neutral-background: var(--color-whiteAlpha-100);
   
-  /* Semantic active background tokens */
-  --color-primary-bg-active: rgba(217, 212, 255, 0.24);
-  --color-danger-bg-active: rgba(255, 204, 200, 0.24);
-  --color-warning-bg-active: rgba(253, 210, 145, 0.24);
-  --color-success-bg-active: rgba(139, 235, 208, 0.24);
-  --color-info-bg-active: rgba(217, 212, 255, 0.24);
-  --color-neutral-bg-active: var(--color-whiteAlpha-300);
+  /* Active background tokens */
+  --primary-background-active: rgba(217, 212, 255, 0.24);
+  --destructive-background-active: rgba(255, 204, 200, 0.24);
+  --warning-background-active: rgba(253, 210, 145, 0.24);
+  --success-background-active: rgba(139, 235, 208, 0.24);
+  --info-background-active: rgba(217, 212, 255, 0.24);
+  --neutral-background-active: var(--color-whiteAlpha-300);
   
-  /* Semantic color tokens */
-  --color-primary: var(--color-primary-200);
-  --color-danger: var(--color-danger-200);
-  --color-success: var(--color-success-200);
-  --color-warning: var(--color-warning-200);
-  --color-info: var(--color-info-200);
-  --color-neutral: var(--color-whiteAlpha-600);
+  /* Color tokens */
+  --primary: var(--color-primary-200);
+  --destructive: var(--color-danger-200);
+  --success: var(--color-success-200);
+  --warning: var(--color-warning-200);
+  --info: var(--color-info-200);
+  --neutral: var(--color-whiteAlpha-600);
   
   /* Button hover colors (dark mode) */
-  --color-primary-hover: var(--color-primary-300);
-  --color-danger-hover: var(--color-danger-300);
-  --color-success-hover: var(--color-success-300);
-  --color-warning-hover: var(--color-warning-300);
-  --color-info-hover: var(--color-info-300);
-  --color-neutral-hover: var(--color-neutral-300);
+  --primary-hover: var(--color-primary-300);
+  --destructive-hover: var(--color-danger-300);
+  --success-hover: var(--color-success-300);
+  --warning-hover: var(--color-warning-300);
+  --info-hover: var(--color-info-300);
+  --neutral-hover: var(--color-neutral-300);
   
   /* Button active colors (dark mode) */
-  --color-primary-active: var(--color-primary-400);
-  --color-danger-active: var(--color-danger-400);
-  --color-success-active: var(--color-success-400);
-  --color-warning-active: var(--color-warning-400);
-  --color-info-active: var(--color-info-400);
-  --color-neutral-active: var(--color-neutral-400);
+  --primary-active: var(--color-primary-400);
+  --destructive-active: var(--color-danger-400);
+  --success-active: var(--color-success-400);
+  --warning-active: var(--color-warning-400);
+  --info-active: var(--color-info-400);
+  --neutral-active: var(--color-neutral-400);
   
-  /* Extended color tokens */
-  --color-gray: var(--color-gray-200);
-  --color-red: var(--color-red-200);
-  --color-orange: var(--color-orange-200);
-  --color-yellow: var(--color-yellow-200);
-  --color-green: var(--color-green-200);
-  --color-teal: var(--color-teal-200);
-  --color-cyan: var(--color-cyan-200);
-  --color-blue: var(--color-blue-200);
-  --color-purple: var(--color-purple-200);
-  --color-pink: var(--color-pink-200);
-  
-  /* Neutral scale tokens */
-  --color-neutral-50: var(--color-whiteAlpha-900);
-  --color-neutral-100: var(--color-whiteAlpha-800);
-  --color-neutral-200: var(--color-whiteAlpha-700);
-  --color-neutral-300: var(--color-whiteAlpha-600);
-  --color-neutral-400: var(--color-whiteAlpha-500);
-  --color-neutral-500: var(--color-whiteAlpha-400);
-  --color-neutral-600: var(--color-whiteAlpha-300);
-  --color-neutral-700: var(--color-whiteAlpha-200);
-  --color-neutral-800: var(--color-whiteAlpha-100);
-  --color-neutral-900: var(--color-whiteAlpha-50);
-  
-  /* Neutral color scale tokens */
-  --color-neutral-color-50: var(--color-whiteAlpha-100);
-  --color-neutral-color-100: var(--color-whiteAlpha-200);
-  --color-neutral-color-200: var(--color-whiteAlpha-300);
-  --color-neutral-color-300: var(--color-whiteAlpha-400);
-  --color-neutral-color-400: var(--color-whiteAlpha-500);
-  --color-neutral-color-500: var(--color-whiteAlpha-600);
-  --color-neutral-color-600: var(--color-whiteAlpha-700);
-  --color-neutral-color-700: var(--color-whiteAlpha-800);
-  --color-neutral-color-800: var(--color-whiteAlpha-900);
-  --color-neutral-color-900: var(--color-white);
   
   /* Shadcn/ui compatible mappings */
-  --background: var(--color-body-bg);
-  --foreground: var(--color-body-text);
-  --card: var(--color-body-bg);
-  --card-foreground: var(--color-body-text);
-  --popover: var(--color-body-bg);
-  --popover-foreground: var(--color-body-text);
-  --primary: var(--color-primary-fg);
-  --primary-foreground: var(--color-inverse-text);
-  --primary-background: var(--color-primary-bg);
-  --secondary: var(--color-subtle-bg);
-  --secondary-foreground: var(--color-body-text);
-  --muted: var(--color-subtle-bg);
-  --muted-foreground: var(--color-subtle-text);
-  --accent: var(--color-subtle-bg);
-  --accent-foreground: var(--color-body-text);
-  --destructive: var(--color-danger-fg);
-  --border: var(--color-border-color);
-  --input: var(--color-placeholder-color);
+  --card: var(--background);
+  --card-foreground: var(--foreground);
+  --popover: var(--background);
+  --popover-foreground: var(--foreground);
+  --secondary: var(--muted);
+  --secondary-foreground: var(--foreground);
+  --accent: var(--muted);
+  --accent-foreground: var(--foreground);
   --ring: #6987f9;
   --chart-1: var(--color-purple-500);
   --chart-2: var(--color-blue-500);
@@ -280,6 +191,64 @@
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
+
+   /* Semantic token mappings for Tailwind */
+   --color-body-bg: var(--background);
+   --color-subtle-bg: var(--muted);
+   --color-body-text: var(--foreground);
+   --color-subtle-text: var(--muted-foreground);
+   --color-placeholder-color: var(--placeholder);
+   --color-inverse-text: var(--inverse);
+   --color-border-color: var(--border);
+   --color-border-color-a11y: var(--border-a11y);
+   
+   /* Semantic foreground tokens */
+   --color-primary-fg: var(--primary-foreground);
+   --color-danger-fg: var(--destructive-foreground);
+   --color-warning-fg: var(--warning-foreground);
+   --color-success-fg: var(--success-foreground);
+   --color-info-fg: var(--info-foreground);
+   --color-neutral-fg: var(--neutral-foreground);
+   
+   /* Semantic background tokens */
+   --color-primary-bg: var(--primary-background);
+   --color-warning-bg: var(--warning-background);
+   --color-success-bg: var(--success-background);
+   --color-info-bg: var(--info-background);
+   --color-danger-bg: var(--destructive-background);
+   --color-neutral-bg: var(--neutral-background);
+   
+   /* Semantic active background tokens */
+   --color-primary-bg-active: var(--primary-background-active);
+   --color-danger-bg-active: var(--destructive-background-active);
+   --color-warning-bg-active: var(--warning-background-active);
+   --color-success-bg-active: var(--success-background-active);
+   --color-info-bg-active: var(--info-background-active);
+   --color-neutral-bg-active: var(--neutral-background-active);
+   
+   /* Semantic color tokens */
+   --color-primary: var(--primary);
+   --color-danger: var(--destructive);
+   --color-success: var(--success);
+   --color-warning: var(--warning);
+   --color-info: var(--info);
+   --color-neutral: var(--neutral);
+   
+   /* Button hover colors */
+   --color-primary-hover: var(--primary-hover);
+   --color-danger-hover: var(--destructive-hover);
+   --color-success-hover: var(--success-hover);
+   --color-warning-hover: var(--warning-hover);
+   --color-info-hover: var(--info-hover);
+   --color-neutral-hover: var(--neutral-hover);
+   
+   /* Button active colors */
+   --color-primary-active: var(--primary-active);
+   --color-danger-active: var(--destructive-active);
+   --color-success-active: var(--success-active);
+   --color-warning-active: var(--warning-active);
+   --color-info-active: var(--info-active);
+   --color-neutral-active: var(--neutral-active);
   
   /* Shadcn/ui compatible mappings */
   --color-background: var(--background);
@@ -299,7 +268,7 @@
   --color-accent-foreground: var(--accent-foreground);
   --color-destructive: var(--destructive);
   --color-border: var(--border);
-  --color-input: var(--input);
+  --color-input: var(--placeholder);
   --color-ring: var(--ring);
   --color-chart-1: var(--chart-1);
   --color-chart-2: var(--chart-2);
@@ -314,6 +283,7 @@
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
+  --color-sonner-error:var(--destructive-background);
 }
 
 @layer base {

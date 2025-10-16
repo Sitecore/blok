@@ -24,7 +24,7 @@ const Toaster = ({ ...props }: ToasterProps) => {
           toast: "!border-none",
           icon: "!self-start !mt-0.5",
           success: "!bg-success-bg",
-          error: "!bg-danger-bg",
+          error: "!bg-sonner-error",
           info: "!bg-info-bg",
           warning: "!bg-warning-bg",
           default: "!bg-info-bg",

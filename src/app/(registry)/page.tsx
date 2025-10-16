@@ -43,9 +43,9 @@ export default function Home() {
       </div>
       <div className="px-6">
         <div className="flex flex-col space-y-2 mt-4 p-5 md:mt-2 md:px-10">
-          <h1 className="font-bold text-3xl tracking-tight md:text-4xl">
+          <h2 className="font-bold text-3xl tracking-tight md:text-4xl">
             Add registry
-          </h1>
+          </h2>
           <p>
             Start by adding all Blok components from the registry to your
             codebase.
@@ -54,9 +54,9 @@ export default function Home() {
           <Codeblocks code={InstallationCode} showLineNumbers={false} />
         </div>
         <div className="flex flex-col space-y-2 mt-4 p-5 md:mt-2 md:px-10">
-          <h1 className="font-bold text-3xl tracking-tight md:text-4xl">
+          <h2 className="font-bold text-3xl tracking-tight md:text-4xl">
             Add component to page
-          </h1>
+          </h2>
           <p>
             The command above will add the components to your project. You can
             then import component onto pages like this.
@@ -65,7 +65,7 @@ export default function Home() {
           <Codeblocks code={sampleButtonCode} />
         </div>
         <div className="flex flex-col space-y-2 mt-4 p-5 md:mt-2 md:px-10">
-          <h1 className="font-bold text-3xl tracking-tight md:text-4xl">MCP</h1>
+          <h2 className="font-bold text-3xl tracking-tight md:text-4xl">MCP</h2>
           <p className="pt-2">
             Integrate this registry with AI IDEs using Model Context Protocol
             (MCP) using the following configuration. This utilizes this
