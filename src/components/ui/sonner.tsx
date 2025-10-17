@@ -21,7 +21,7 @@ const Toaster = ({ ...props }: ToasterProps) => {
       expand={true}
       toastOptions={{
         classNames: {
-          toast: "!border-none bg-transparent",
+          toast: "!border-none",
           icon: "!self-start !mt-0.5",
           success: "!bg-success-bg",
           error: "!bg-danger-bg",
