@@ -16,7 +16,7 @@ export const sonner = {
     Warning: <WarningSonner />,
     Error: <ErrorSonner />,
     Action: <ActionSonner />,
-    ActionError: <CustomToastSonner />,
+    Custom: <CustomToastSonner />,
     Closable: <ClosableSonner />,
   },
 };

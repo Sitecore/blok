@@ -70,7 +70,7 @@ export function CustomToastSonner() {
     <Button 
       variant="outline" 
       onClick={() => toast.custom((t) => (
-        <div className="w-full p-4 bg-info-bg rounded-md shadow flex flex-col space-y-2">
+        <div className="w-96 p-4 bg-info-bg rounded-xl shadow flex flex-col space-y-2">
           <div>
             <p className="font-medium text-gray-900 dark:text-white">Form submitted</p>
             <p className="text-sm text-gray-500 dark:text-gray-400">
@@ -79,6 +79,7 @@ export function CustomToastSonner() {
           </div>
           <div className="self-start">
             <Button
+            size="xs"
               onClick={() => {
                 toast.dismiss(t);
                 console.log("Undo clicked");
