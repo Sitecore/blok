@@ -137,6 +137,7 @@ function UserCombobox({ users, selectedUserId }: UserComboboxProps) {
               <Avatar className="size-5">
                 <AvatarImage
                   src={`https://github.com/${selectedUser.username}.png`}
+                  alt={`${selectedUser.username} avatar`}
                 />
                 <AvatarFallback>{selectedUser.username[0]}</AvatarFallback>
               </Avatar>
@@ -165,7 +166,8 @@ function UserCombobox({ users, selectedUserId }: UserComboboxProps) {
                 >
                   <Avatar className="size-5">
                     <AvatarImage
-                      src={`https://github.com/${user.username}.png`}
+                      src={`https://github.com/${user.username}.pngg`}
+                      alt={`${user.username} avatar`}
                     />
                     <AvatarFallback>{user.username[0]}</AvatarFallback>
                   </Avatar>
