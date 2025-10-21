@@ -8,9 +8,9 @@
     "start": "next start",
     "lint": "biome check",
     "lint:fix": "biome check --write",
-    "registry_core:build": "npx shadcn@latest build ./registries/registry.json --output ./public/r && cp ./registries/registry.json public/r/registry.json",
-    "registry_marketplace_next:build": "npx shadcn@latest build ./registries/marketplace/next/registry.json --output ./public/r/marketplace/next && cp ./registries/marketplace/next/registry.json public/r/marketplace/next/registry.json",
-    "registry_marketplace_react:build": "npx shadcn@latest build ./registries/marketplace/react/registry.json --output ./public/r/marketplace/react && cp ./registries/marketplace/react/registry.json public/r/marketplace/react/registry.json",
+    "registry_core:build": "npx tsx scripts/build-registry.ts registries/registry-config.ts",
+    "registry_marketplace_next:build": "npx tsx scripts/build-registry.ts registries/marketplace/next/registry-config.ts",
+    "registry_marketplace_react:build": "npx tsx scripts/build-registry.ts registries/marketplace/react/registry-config.ts",
     "registry:build": "npm run registry_core:build && npm run registry_marketplace_next:build && npm run registry_marketplace_react:build"
   },
   "dependencies": {
