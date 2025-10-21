@@ -24,6 +24,7 @@ export function BrandHeader() {
             variant="ghost"
             size="icon"
             className="hidden size-8 md:flex"
+            aria-label="Toggle sidebar"
             onClick={toggleSidebar}
           >
             {isCollapsed ? (
@@ -37,6 +38,7 @@ export function BrandHeader() {
             variant="ghost"
             size="icon"
             className="size-8 md:hidden"
+            aria-label="Toggle sidebar"
             onClick={toggleSidebar}
           >
             <Menu className="size-4" />

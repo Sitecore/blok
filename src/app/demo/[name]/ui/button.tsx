@@ -31,16 +31,16 @@ export const button = {
     ),
     IconSizing: (
       <div className="flex flex-wrap items-center gap-3">
-        <Button size="icon-lg">
+        <Button size="icon-lg" aria-label="Information">
           <Icon path={mdiInformationOutline} />
         </Button>
-        <Button size="icon">
+        <Button size="icon" aria-label="Information">
           <Icon path={mdiInformationOutline} />
         </Button>
-        <Button size="icon-sm">
+        <Button size="icon-sm" aria-label="Information">
           <Icon path={mdiInformationOutline} />
         </Button>
-        <Button size="icon-xs">
+        <Button size="icon-xs" aria-label="Information">
           <Icon path={mdiInformationOutline} />
         </Button>
       </div>
@@ -107,16 +107,16 @@ export const button = {
     // Icon with Different Colors
     IconColors: (
       <div className="flex flex-wrap items-center gap-3">
-        <Button size="icon" colorScheme="primary">
+        <Button size="icon" colorScheme="primary" aria-label="Information">
           <Icon path={mdiInformationOutline} />
         </Button>
-        <Button size="icon" colorScheme="success">
+        <Button size="icon" colorScheme="success" aria-label="Information">
           <Icon path={mdiInformationOutline} />
         </Button>
-        <Button size="icon" colorScheme="danger">
+        <Button size="icon" colorScheme="danger" aria-label="Information">
           <Icon path={mdiInformationOutline} />
         </Button>
-        <Button size="icon" colorScheme="neutral">
+        <Button size="icon" colorScheme="neutral" aria-label="Information">
           <Icon path={mdiInformationOutline} />
         </Button>
       </div>
