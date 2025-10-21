@@ -100,6 +100,7 @@ function CommandInput({
           variant="ghost"
           size="icon"
           colorScheme="neutral"
+          aria-label="Clear search"
           className="absolute top-1/2 right-4 -translate-y-1/2 text-subtle-text hover:text-body-text focus:outline-none"
         >
           <Icon path={mdiClose} size={1} />
