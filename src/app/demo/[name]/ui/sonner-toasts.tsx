@@ -52,7 +52,7 @@ export function ActionSonner() {
               <a href="#" className="text-primary">link</a>
             </span>
           ),
-          icon: <Icon path={mdiInformation} className="text-body-text" />,
+          icon: <Icon path={mdiInformation} className="size-5 text-info" />,
           action: {
             label: "Action",
             onClick: () => console.log("Action!"),
@@ -70,19 +70,18 @@ export function CustomToastSonner() {
     <Button 
       variant="outline" 
       onClick={() => toast.custom((t) => (
-        <div className="w-96 p-4 bg-info-bg rounded-xl shadow flex flex-col space-y-2">
-          <div>
-            <p className="font-medium text-gray-900 dark:text-white">Form submitted</p>
-            <p className="text-sm text-gray-500 dark:text-gray-400">
-              Your form was submitted successfully.
+        <div className="w-96 p-4 bg-info-bg rounded-xl shadow flex items-start space-x-2">
+          <Icon path={mdiInformation} className="mt-1 size-5 text-body-text" />
+          <div className="flex-1 flex flex-col space-y-2">
+            <p className="text-sm">
+              Thing created: Lorem ipsum dolor sit amet consectetur adipisicing elit.
             </p>
-          </div>
-          <div className="self-start">
             <Button
-            size="xs"
+              size="xs"
+              variant="link"
+              className="self-start px-0"
               onClick={() => {
                 toast.dismiss(t);
-                console.log("Undo clicked");
               }}
             >
               Undo
