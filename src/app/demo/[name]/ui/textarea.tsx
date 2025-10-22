@@ -8,7 +8,7 @@ export const textarea = {
     Basic: (
       <div className="grid gap-2 m-2">
         <Label htmlFor="basic-textarea">Message</Label>
-        <Textarea id="basic-textarea" placeholder="Type your message here." />
+        <Textarea id="basic-textarea" aria-label="Message" placeholder="Type your message here." />
       </div>
     ),
     
@@ -16,7 +16,7 @@ export const textarea = {
     Invalid: (
       <div className="grid gap-2 m-2">
         <Label htmlFor="invalid-textarea">Message</Label>
-        <Textarea id="invalid-textarea" placeholder="Type your message here." aria-invalid="true" />
+        <Textarea id="invalid-textarea" placeholder="Type your message here." aria-label="Message" aria-invalid="true" />
       </div>
     ),
     
