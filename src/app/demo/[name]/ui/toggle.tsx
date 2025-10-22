@@ -18,10 +18,10 @@ export const toggle = {
         <Toggle aria-label="Toggle underline" variant="square">
           <Icon path={mdiFormatUnderline} size={1.1} />
         </Toggle>
-        <Toggle aria-label="Toggle italic" variant="square" disabled>
+        <Toggle variant="square" disabled>
           Disabled
         </Toggle>
-        <Toggle variant="square" aria-label="Toggle italic">
+        <Toggle variant="square" aria-label="Toggle italic italic">
           <Icon path={mdiFormatItalic} size={1.1} />
           Italic
         </Toggle>
@@ -42,10 +42,10 @@ export const toggle = {
         <Toggle aria-label="Toggle underline" variant="rounded">
           <Icon path={mdiFormatUnderline} size={1.1} />
         </Toggle>
-        <Toggle aria-label="Toggle italic" variant="rounded" disabled>
+        <Toggle variant="rounded" disabled>
           Disabled
         </Toggle>
-        <Toggle variant="rounded" aria-label="Toggle italic">
+        <Toggle variant="rounded" aria-label="Toggle italic italic">
           <Icon path={mdiFormatItalic} size={1.1} />
           Italic
         </Toggle>
