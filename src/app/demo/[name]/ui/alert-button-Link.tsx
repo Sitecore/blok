@@ -10,10 +10,9 @@ export function ButtonLinkAlert({
 }) {
   return (
     <Alert variant={variantProp}>
-      <AlertTitle>Closable Alert</AlertTitle>
+      <AlertTitle>Button link {variantProp} Alert</AlertTitle>
       <AlertDescription>
-        This is a primary alert with a title and description and even a close
-        button.
+        This is a button linked alert with a title and description.
         <Button size="sm" variant="link" className="p-0">
           Click
         </Button>
