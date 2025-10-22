@@ -32,6 +32,7 @@ function Switch({
     <SwitchPrimitive.Root
       data-slot="switch"
       className={cn(switchVariants({ variant, className }))}
+      aria-label={props['aria-label'] || props['aria-labelledby'] ? undefined : 'Toggle switch'}
       {...props}
     >
       <SwitchPrimitive.Thumb

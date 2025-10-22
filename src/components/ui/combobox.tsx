@@ -67,6 +67,7 @@ function FrameworkCombobox({ frameworks }: FrameworkComboboxProps) {
           colorScheme="neutral"
           role="combobox"
           aria-expanded={open}
+          aria-label="Select framework"
           className={cn(
             "w-full justify-between md:max-w-[200px] rounded-md",
             open && "ring-primary ring-[2px]"
@@ -127,6 +128,7 @@ function UserCombobox({ users, selectedUserId }: UserComboboxProps) {
           colorScheme="neutral"
           role="combobox"
           aria-expanded={open}
+          aria-label="Select user"
           className={cn(
             "w-full justify-between px-2 md:max-w-[200px] rounded-md",
             open && "ring-primary ring-[2px]"
@@ -137,6 +139,7 @@ function UserCombobox({ users, selectedUserId }: UserComboboxProps) {
               <Avatar className="size-5">
                 <AvatarImage
                   src={`https://github.com/${selectedUser.username}.png`}
+                  alt={`${selectedUser.username} avatar`}
                 />
                 <AvatarFallback>{selectedUser.username[0]}</AvatarFallback>
               </Avatar>
@@ -165,7 +168,8 @@ function UserCombobox({ users, selectedUserId }: UserComboboxProps) {
                 >
                   <Avatar className="size-5">
                     <AvatarImage
-                      src={`https://github.com/${user.username}.png`}
+                      src={`https://github.com/${user.username}.pngg`}
+                      alt={`${user.username} avatar`}
                     />
                     <AvatarFallback>{user.username[0]}</AvatarFallback>
                   </Avatar>
@@ -181,7 +185,7 @@ function UserCombobox({ users, selectedUserId }: UserComboboxProps) {
             </CommandGroup>
           </CommandList>
           <div className="absolute bottom-0 left-0 right-0 border-x border-b bg-background p-2 rounded-b-md z-10">
-            <Button variant="ghost" size="sm" colorScheme="primary">
+            <Button variant="ghost" size="sm" colorScheme="primary" aria-label="Create new user">
               <Icon path={mdiPlus} size={0.9} className="" />
               Create user
             </Button>
@@ -218,6 +222,7 @@ function TimezoneCombobox({
         <Button
           variant="outline"
           colorScheme="neutral"
+          aria-label="Select timezone"
           className={cn(
             "h-12 w-full justify-between px-2.5 md:max-w-[200px] rounded-md",
             open && "ring-primary ring-[2px]"
@@ -271,7 +276,7 @@ function TimezoneCombobox({
             ))}
           </CommandList>
           <div className="absolute bottom-0 left-0 right-0 border-x border-b bg-background p-2 rounded-b-md z-10">
-            <Button variant="ghost" size="sm" colorScheme="primary">
+            <Button variant="ghost" size="sm" colorScheme="primary" aria-label="Create new timezone">
               <Icon path={mdiPlus} size={0.9} className="" />
               Create timezone
             </Button>
@@ -296,6 +301,7 @@ function ComboboxWithCheckbox({ frameworks }: FrameworkComboboxProps) {
           colorScheme="neutral"
           role="combobox"
           aria-expanded={open}
+          aria-label="Select frameworks (multi-select)"
           className={cn(
             "w-fit min-w-[280px] justify-between rounded-md",
             open && "ring-primary ring-[2px]"

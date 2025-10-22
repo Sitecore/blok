@@ -201,15 +201,16 @@ function CalendarDayButton({
       ref={ref}
       variant="ghost"
       size="icon"
+      aria-label={`Select ${day.date.toLocaleDateString()}`}
       data-day={day.date.toLocaleDateString()}
       data-selected={modifiers.selected ? "true" : "false"}
       data-range-start={modifiers.range_start}
       data-range-end={modifiers.range_end}
       data-range-middle={modifiers.range_middle}
-      aria-selected={modifiers.selected || undefined}
+      aria-pressed={modifiers.selected || false}
       className={cn(
         buttonVariants({ variant: "ghost", colorScheme: "neutral" }),
-        "hover:rounded-md size-8 p-0 font-normal border border-solid border-transparent rounded-md text-body-text transition-none", 
+        "hover:rounded-md size-8 p-0 font-normal border border-solid border-transparent rounded-md text-body-text transition-none",
         !modifiers.selected &&
           !modifiers.range_start &&
           !modifiers.range_end &&

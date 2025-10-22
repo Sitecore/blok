@@ -286,6 +286,8 @@
           "--color-destructive": "var(--destructive)",
           "--color-success": "var(--success)",
           "--color-danger": "var(--destructive)",
+          "--color-warning": "var(--warning)",
+          "--color-info": "var(--info)",
           "--color-neutral": "var(--neutral)",
           "--color-border": "var(--border)",
           "--color-input": "var(--input)",

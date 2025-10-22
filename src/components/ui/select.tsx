@@ -150,6 +150,7 @@ function SelectScrollUpButton({
         "flex cursor-default items-center justify-center py-1",
         className
       )}
+      aria-label="Scroll up"
       {...props}
     >
       <Icon path={mdiChevronDown} className="size-6" />
@@ -168,6 +169,7 @@ function SelectScrollDownButton({
         "flex cursor-default items-center justify-center py-1",
         className
       )}
+      aria-label="Scroll down"
       {...props}
     >
       <Icon path={mdiChevronDown} className="size-6" />

@@ -328,7 +328,7 @@ function DropdownMenuIconColor() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="ghost" colorScheme="neutral" size="icon">
+        <Button variant="ghost" colorScheme="neutral" size="icon" aria-label="Toggle menu">
           <Icon path={mdiDotsHorizontal} size={0.8} />
           <span className="sr-only">Toggle menu</span>
         </Button>
