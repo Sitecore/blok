@@ -87,7 +87,7 @@ export function BarMixedChartComponent() {
               cursor={false}
               content={<ChartTooltipContent hideLabel />}
             />
-            <Bar dataKey="visitors" layout="vertical" radius={5} />
+            <Bar dataKey="visitors" layout="vertical" radius={5} aria-label="Browser visitors distribution" />
           </BarChart>
         </ChartContainer>
       </CardContent>
