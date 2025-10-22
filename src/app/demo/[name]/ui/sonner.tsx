@@ -1,5 +1,6 @@
 import {
   ActionSonner,
+  CustomToastSonner,
   ClosableSonner,
   ErrorSonner,
   Sonner,
@@ -15,6 +16,7 @@ export const sonner = {
     Warning: <WarningSonner />,
     Error: <ErrorSonner />,
     Action: <ActionSonner />,
+    // Custom: <CustomToastSonner />,
     Closable: <ClosableSonner />,
   },
 };
