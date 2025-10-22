@@ -6,15 +6,17 @@ export const textarea = {
   components: {
     // Basic textarea
     Basic: (
-      <div className="m-2">
-        <Textarea placeholder="Type your message here." />
+      <div className="grid gap-2 m-2">
+        <Label htmlFor="basic-textarea">Message</Label>
+        <Textarea id="basic-textarea" placeholder="Type your message here." />
       </div>
     ),
     
     // Invalid state
     Invalid: (
-      <div className="m-2">
-        <Textarea placeholder="Type your message here." aria-invalid="true" />
+      <div className="grid gap-2 m-2">
+        <Label htmlFor="invalid-textarea">Message</Label>
+        <Textarea id="invalid-textarea" placeholder="Type your message here." aria-invalid="true" />
       </div>
     ),
     
