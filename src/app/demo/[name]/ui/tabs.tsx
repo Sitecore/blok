@@ -83,6 +83,24 @@ export const tabs = {
             Settings
           </TabsTrigger>
         </TabsList>
+        <TabsContent value="home">
+          <Card>
+            <CardHeader>
+              <CardTitle>Home</CardTitle>
+              <CardDescription>Welcome to your home dashboard.</CardDescription>
+            </CardHeader>
+          </Card>
+        </TabsContent>
+        <TabsContent value="settings">
+          <Card>
+            <CardHeader>
+              <CardTitle>Settings</CardTitle>
+              <CardDescription>
+                Manage your application settings.
+              </CardDescription>
+            </CardHeader>
+          </Card>
+        </TabsContent>
       </Tabs>
     ),
     SoftRoundedVariant: (
@@ -95,6 +113,24 @@ export const tabs = {
             Settings
           </TabsTrigger>
         </TabsList>
+        <TabsContent value="home">
+          <Card>
+            <CardHeader>
+              <CardTitle>Home</CardTitle>
+              <CardDescription>Welcome to your home dashboard.</CardDescription>
+            </CardHeader>
+          </Card>
+        </TabsContent>
+        <TabsContent value="settings">
+          <Card>
+            <CardHeader>
+              <CardTitle>Settings</CardTitle>
+              <CardDescription>
+                Manage your application settings.
+              </CardDescription>
+            </CardHeader>
+          </Card>
+        </TabsContent>
       </Tabs>
     ),
     WithIcons: (
@@ -109,6 +145,22 @@ export const tabs = {
             Code
           </TabsTrigger>
         </TabsList>
+        <TabsContent value="preview">
+          <Card>
+            <CardHeader>
+              <CardTitle>Preview</CardTitle>
+              <CardDescription>Preview your content here.</CardDescription>
+            </CardHeader>
+          </Card>
+        </TabsContent>
+        <TabsContent value="code">
+          <Card>
+            <CardHeader>
+              <CardTitle>Code</CardTitle>
+              <CardDescription>View the source code.</CardDescription>
+            </CardHeader>
+          </Card>
+        </TabsContent>
       </Tabs>
     ),
   },
