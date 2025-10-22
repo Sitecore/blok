@@ -50,6 +50,7 @@ function Carousel({
   plugins,
   className,
   children,
+  "aria-label": ariaLabel,
   ...props
 }: React.ComponentProps<"div"> & CarouselProps) {
   const [carouselRef, api] = useEmblaCarousel(
@@ -124,6 +125,7 @@ function Carousel({
         className={cn("relative", className)}
         role="region"
         aria-roledescription="carousel"
+        aria-label={ariaLabel || "Image carousel with navigation controls"}
         data-slot="carousel"
         {...props}
       >
@@ -162,7 +164,7 @@ function CarouselContent({ className, ...props }: React.ComponentProps<"div">) {
       data-slot="carousel-content"
       tabIndex={0}
       role="region"
-      aria-label="Carousel content"
+      aria-label="Carousel slides container"
       onKeyDown={handleKeyDown}
     >
       <div
