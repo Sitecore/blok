@@ -40,6 +40,7 @@ export function Codeblocks({ code, showLineNumbers = true }: CodeblocksProps) {
             setHasCopied(true);
           }}
           className="shadow-none"
+          aria-label={hasCopied ? "Code copied to clipboard" : "Copy code to clipboard"}
         >
           {hasCopied ? (
             <Check />

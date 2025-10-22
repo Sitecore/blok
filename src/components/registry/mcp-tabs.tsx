@@ -79,6 +79,7 @@ export function MCPTabs({ rootUrl }: { rootUrl: string }) {
               setHasCopied(true);
             }}
             className="shadow-none"
+            aria-label={hasCopied ? "MCP configuration copied to clipboard" : "Copy MCP configuration to clipboard"}
           >
             {hasCopied ? (
               <Check />
