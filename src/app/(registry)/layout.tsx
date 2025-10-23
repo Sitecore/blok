@@ -16,7 +16,7 @@ export default function RegistryLayout({
     <SidebarProvider>
       <MobileSidebarTrigger />
       <RegistrySidebar />
-      <main className="flex w-full justify-center bg-subtle-bg">{children}</main>
+      <main id="main-content" className="flex w-full justify-center bg-subtle-bg">{children}</main>
       <Toaster />
     </SidebarProvider>
   );
