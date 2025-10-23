@@ -6,13 +6,13 @@ export const checkbox = {
   components: {
     Default: (
       <div className="flex items-center gap-3 p-4">
-        <Checkbox id="terms" />
+        <Checkbox id="terms" aria-label="Accept terms and conditions" />
         <Label htmlFor="terms">Accept terms and conditions</Label>
       </div>
     ),
     WithDescriptionCheckBox: (
       <div className="flex items-start gap-3 p-4">
-        <Checkbox id="terms-2" defaultChecked />
+        <Checkbox id="terms-2" defaultChecked aria-label="Accept terms and conditions" />
         <div className="grid gap-2">
           <Label htmlFor="terms-2">Accept terms and conditions</Label>
           <p className="text-muted-foreground text-sm">
@@ -23,7 +23,7 @@ export const checkbox = {
     ),
     DisabledCheckBox: (
       <div className="flex items-start gap-3 p-4">
-        <Checkbox id="toggle" disabled />
+        <Checkbox id="toggle" disabled aria-label="Disabled notifications" />
         <Label htmlFor="toggle">Disabled notifications</Label>
       </div>
     ),
@@ -32,6 +32,7 @@ export const checkbox = {
         <Checkbox
           id="toggle-2"
           defaultChecked
+          aria-label="Enable notifications"
           className="data-[state=checked]:border-info-fg data-[state=checked]:bg-info-fg data-[state=checked]:text-inverse-text dark:data-[state=checked]:border-info-fg dark:data-[state=checked]:bg-info-fg"
         />
         <div className="grid gap-1.5 font-normal">
