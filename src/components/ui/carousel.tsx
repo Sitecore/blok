@@ -134,36 +134,13 @@ function Carousel({
 }
 
 function CarouselContent({ className, ...props }: React.ComponentProps<"div">) {
-  const { carouselRef, orientation, scrollPrev, scrollNext } = useCarousel();
-
-  const handleKeyDown = React.useCallback(
-    (event: React.KeyboardEvent<HTMLDivElement>) => {
-      if (event.key === "ArrowLeft" && orientation === "horizontal") {
-        event.preventDefault();
-        scrollPrev();
-      } else if (event.key === "ArrowRight" && orientation === "horizontal") {
-        event.preventDefault();
-        scrollNext();
-      } else if (event.key === "ArrowUp" && orientation === "vertical") {
-        event.preventDefault();
-        scrollPrev();
-      } else if (event.key === "ArrowDown" && orientation === "vertical") {
-        event.preventDefault();
-        scrollNext();
-      }
-    },
-    [scrollPrev, scrollNext, orientation]
-  );
+  const { carouselRef, orientation } = useCarousel();
 
   return (
     <div
       ref={carouselRef}
       className="overflow-hidden"
       data-slot="carousel-content"
-      tabIndex={0}
-      role="region"
-      onKeyDown={handleKeyDown}
-      {...props}
     >
       <div
         className={cn(
@@ -171,6 +148,7 @@ function CarouselContent({ className, ...props }: React.ComponentProps<"div">) {
           orientation === "horizontal" ? "-ml-4" : "-mt-4 flex-col",
           className
         )}
+        {...props}
       />
     </div>
   );
@@ -184,9 +162,8 @@ function CarouselItem({ className, ...props }: React.ComponentProps<"div">) {
       role="group"
       aria-roledescription="slide"
       data-slot="carousel-item"
-      tabIndex={0}
       className={cn(
-        "min-w-0 shrink-0 grow-0 basis-full focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2",
+        "min-w-0 shrink-0 grow-0 basis-full",
         orientation === "horizontal" ? "pl-4" : "pt-4",
         className
       )}
