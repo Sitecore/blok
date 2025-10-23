@@ -50,6 +50,9 @@ import { progress } from "@/app/demo/[name]/ui/progress";
 import { command } from "@/app/demo/[name]/ui/command";
 import { combobox } from "@/app/demo/[name]/ui/combobox";
 import { spinner } from "@/app/demo/[name]/ui/spinner";
+import { pinnedSite } from "@/app/demo/[name]/ui/pinned-site";
+import { allSite } from "@/app/demo/[name]/ui/all-site";
+import { siteCard } from "@/app/demo/[name]/ui/site-card";
 
 interface Demo {
   name: string; // this must match the `/registries/registry.json` name
@@ -107,6 +110,9 @@ export const demos: { [name: string]: Demo } = {
   toggle,
   topbar,
   pagination,
+  "pinned-site":pinnedSite,
+  "all-site":allSite,
   popover,
   "hover-card": hoverCard,
+  "site-card": siteCard,
 };
