@@ -73,6 +73,36 @@ export function parseCssVariablesByTheme(
   return { default: defaultColors, dark: darkColors };
 }
 
+function resolveColorReferences(
+  colors: Record<string, string>,
+  allColors: Record<string, string>,
+): Record<string, string> {
+  const resolved: Record<string, string> = {};
+
+  const resolveValues = (value: string, seen = new Set<string>()): string => {
+    const varMatch = value.match(/^var\(--([a-zA-Z0-9\-]+)\)$/);
+
+    if (varMatch) {
+      const refKey = varMatch[1];
+
+      if (seen.has(refKey)) return value;
+
+      const refValue = allColors[refKey];
+      if (!refValue) return value;
+
+      return resolveValues(refValue, new Set([...seen, refKey]));
+    }
+
+    return value;
+  };
+
+  for (const [key, value] of Object.entries(colors)) {
+    resolved[key] = resolveValues(value);
+  }
+
+  return resolved;
+}
+
 export function formatColorValue(value: string): string {
   const varMatch = value.match(/^var\(--color-([a-zA-Z0-9\-]+)\)$/);
   if (varMatch) {
