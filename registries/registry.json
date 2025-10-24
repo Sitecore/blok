@@ -1086,6 +1086,69 @@
         }
       ]
     },
+     {
+      "name": "site-card",
+      "type": "registry:ui",
+      "title": "Site Card",
+      "description": "Pagination with page navigation, next and previous links.",
+      "registryDependencies": [
+        "https://blok-shadcn.vercel.app/r/theme.json",
+        "https://blok-shadcn.vercel.app/r/button.json",
+        "https://blok-shadcn.vercel.app/r/label.json",
+        "https://blok-shadcn.vercel.app/r/input.json",
+        "https://blok-shadcn.vercel.app/r/card.json",
+        "https://blok-shadcn.vercel.app/r/dropdown-menu.json",
+        "https://blok-shadcn.vercel.app/r/dialog.json"
+      ],
+      "dependencies": [
+        "lucide-react"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui/site-card.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "all-site",
+      "type": "registry:ui",
+      "title": "All Site Section",
+      "description": "Pagination with page navigation, next and previous links.",
+      "registryDependencies": [
+        "https://blok-shadcn.vercel.app/r/theme.json",
+        "https://blok-shadcn.vercel.app/r/site-card.json"
+      ],
+      "dependencies": [
+        "lucide-react"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui/all-sites-section.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "pinned-site",
+      "type": "registry:ui",
+      "title": "Pinned Site Section",
+      "description": "Pagination with page navigation, next and previous links.",
+      "registryDependencies": [
+        "https://blok-shadcn.vercel.app/r/theme.json",
+        "https://blok-shadcn.vercel.app/r/all-site.json",
+        "https://blok-shadcn.vercel.app/r/site-card.json"
+      ],
+      "dependencies": [
+        "lucide-react"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui/pinned-sites-section.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
     {
       "name": "progress",
       "type": "registry:ui",
