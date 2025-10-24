@@ -1,6 +1,6 @@
 'use client'
 
-import { formatColorValue, parseCssVariablesByTheme } from "@/lib/token-utils";
+import { formatColorValue, parseCssVariablesByTheme, resolveVariableValue } from "@/lib/token-utils";
 import { useEffect, useState } from "react";
 
 type Props = {
@@ -10,12 +10,19 @@ type Props = {
 const ColorsDemo = ({ content }: Props) => {
   const [defaultColors, setDefaultColors] = useState<Record<string, string>>({});
   const [darkColors, setDarkColors] = useState<Record<string, string>>({});
+
+  const [defaultVars, setDefaultVars] = useState<Record<string, string>>({});
+  const [darkVars, setDarkVars] = useState<Record<string, string>>({});
+
   const [isDarkTheme, setIsDarkTheme] = useState<boolean>(false);
 
   useEffect(() => {
-    const { default: parsedDefault, dark: parsedDark } = parseCssVariablesByTheme(content, "--color-");
+    const { default: parsedDefault, dark: parsedDark, defaultVars, darkVars } = parseCssVariablesByTheme(content);
+    
     setDefaultColors(parsedDefault);
     setDarkColors(parsedDark);
+    setDefaultVars(defaultVars);
+    setDarkVars(darkVars);
 
     // Detect theme based on <html class="dark">
     const observer = new MutationObserver(() => {
@@ -49,10 +56,15 @@ const ColorsDemo = ({ content }: Props) => {
         </thead>
         <tbody>
           {allKeys.map((key) => {
+            // get the default and dark values for the display color
             const defaultValue = defaultColors[key];
             const darkValue = darkColors[key] || defaultValue;
 
             const bgColor = isDarkTheme ? darkValue : defaultValue;
+
+            // resolve the variable values
+            const { light, dark } = resolveVariableValue(defaultValue, defaultVars, darkVars);
+
             return (
               <tr key={key} style={{ borderBottom: "1px solid #eee" }}>
                 <td style={{ padding: "0.8rem" }}>{key}</td>
@@ -76,7 +88,7 @@ const ColorsDemo = ({ content }: Props) => {
                     }}
                     className="text-muted-foreground"
                   >
-                    {formatColorValue(defaultValue)}
+                    {formatColorValue(light)}
                   </span>
                 </td>
                 <td style={{ padding: "0.8rem" }}>
@@ -87,7 +99,7 @@ const ColorsDemo = ({ content }: Props) => {
                     }}
                     className="text-muted-foreground"
                   >
-                    {formatColorValue(darkValue)}
+                    {formatColorValue(dark)}
                   </span>
                 </td>
               </tr>
