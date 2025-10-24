@@ -92,7 +92,9 @@ export function SiteCard<T extends SiteData>({
       }`}
       onClick={handleCardClick}
     >
-      <CardContent className="p-0 flex-1 min-h-0">
+      <CardContent className={`p-0 flex-1 min-h-0 transition-all duration-200 ease-in-out ${
+        site.collectionName ? 'group-hover:flex-[0.6]' : ''
+      }`}>
         <div className="relative w-full h-full bg-muted">
           <Image
             src={site.thumbnail.url}
@@ -111,7 +113,11 @@ export function SiteCard<T extends SiteData>({
         </div>
       </CardContent>
       <CardFooter className={`relative flex-col px-4 border-t overflow-hidden transition-[height,padding-top,padding-bottom,justify-content,gap] duration-200 ease-in-out ${
-        isDropdownOpen ? 'h-[102px] pt-3 pb-3 items-start justify-start gap-2' : 'h-[68px] pt-3 pb-3 items-start justify-center gap-0 group-hover:h-[102px] group-hover:justify-start group-hover:gap-2'
+        isDropdownOpen 
+          ? 'h-[102px] pt-3 pb-3 items-start justify-start gap-2' 
+          : site.collectionName 
+            ? 'h-[68px] pt-3 pb-3 items-start justify-center gap-0 group-hover:h-[102px] group-hover:justify-start group-hover:gap-2 group-hover:flex-[0.4]'
+            : 'h-[68px] pt-3 pb-3 items-start justify-center gap-0 group-hover:h-[102px] group-hover:justify-start group-hover:gap-2'
       }`}>
         {/* Site Title */}
         <div className="w-full space-y-0.5">
@@ -137,7 +143,7 @@ export function SiteCard<T extends SiteData>({
           {footerButtons.map((button, index) => (
             <Button
               key={index}
-              variant="outline"
+              variant="ghost"
               size="sm"
               className="flex-1 justify-center gap-1.5 h-8"
               onClick={(e) => {
