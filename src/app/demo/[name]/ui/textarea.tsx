@@ -8,7 +8,7 @@ export const textarea = {
     Basic: (
       <div className="grid gap-2 m-2">
         <Label htmlFor="basic-textarea">Message</Label>
-        <Textarea id="basic-textarea" placeholder="Type your message here." />
+        <Textarea id="basic-textarea" placeholder="Type your message here." aria-labelledby="label-basic-textarea"/>
       </div>
     ),
     
@@ -16,7 +16,7 @@ export const textarea = {
     Invalid: (
       <div className="grid gap-2 m-2">
         <Label htmlFor="invalid-textarea">Message</Label>
-        <Textarea id="invalid-textarea" placeholder="Type your message here." aria-invalid="true" />
+        <Textarea id="invalid-textarea" placeholder="Type your message here." aria-invalid="true" aria-labelledby="label-invalid-textarea"/>
       </div>
     ),
     
@@ -28,6 +28,7 @@ export const textarea = {
           id="textarea-demo-message"
           placeholder="Type your message here."
           rows={6}
+          aria-labelledby="label-textarea-demo-message"
         />
       </div>
     ),
@@ -42,6 +43,7 @@ export const textarea = {
           id="textarea-demo-message-2"
           placeholder="Type your message here."
           rows={6}
+          aria-labelledby="label-textarea-demo-message-2"
         />
         <div className="text-muted-foreground text-sm">
           Type your message and press enter to send.
@@ -55,6 +57,7 @@ export const textarea = {
         <Label htmlFor="textarea-demo-disabled">Disabled Textarea</Label>
         <Textarea
           id="textarea-demo-disabled"
+          aria-labelledby="disabled-label"
           placeholder="Type your message here."
           disabled
         />
