@@ -40,6 +40,7 @@ export function Codeblocks({ code, showLineNumbers = true }: CodeblocksProps) {
             setHasCopied(true);
           }}
           className="shadow-none"
+          aria-label={hasCopied ? "Code copied to clipboard" : "Copy code to clipboard"}
         >
           {hasCopied ? (
             <Check />
@@ -65,7 +66,7 @@ export function Codeblocks({ code, showLineNumbers = true }: CodeblocksProps) {
         )}
 
         <pre className="flex-1 overflow-x-auto p-2">
-          <code className="relative bg-transparent font-mono text-sm text-muted-foreground leading-none">
+          <code className="relative bg-transparent font-mono text-sm text-muted-foreground leading-none whitespace-pre-wrap break-words">
             {code}
           </code>
         </pre>

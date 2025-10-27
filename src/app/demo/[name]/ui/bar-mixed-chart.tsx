@@ -70,6 +70,7 @@ export function BarMixedChartComponent() {
             margin={{
               left: 0,
             }}
+            aria-label="Vertical bar chart showing browser usage distribution by visitors"
           >
             <YAxis
               dataKey="browser"

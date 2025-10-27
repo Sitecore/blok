@@ -68,7 +68,7 @@ export function PieChartComponent() {
           config={chartConfig}
           className="mx-auto aspect-square max-h-[250px]"
         >
-          <PieChart>
+          <PieChart aria-label="Pie chart showing browser usage distribution with total visitors">
             <ChartTooltip
               cursor={false}
               content={<ChartTooltipContent hideLabel />}
