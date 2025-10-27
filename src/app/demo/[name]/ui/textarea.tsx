@@ -29,7 +29,6 @@ export const textarea = {
           placeholder="Type your message here."
           aria-label="Message"
           rows={6}
-          aria-labelledby="label-textarea-demo-message"
         />
       </div>
     ),
@@ -45,7 +44,6 @@ export const textarea = {
           placeholder="Type your message here."
           aria-label="Message"
           rows={6}
-          aria-labelledby="label-textarea-demo-message-2"
         />
         <div className="text-muted-foreground text-sm">
           Type your message and press enter to send.
@@ -59,7 +57,6 @@ export const textarea = {
         <Label htmlFor="textarea-demo-disabled">Disabled Textarea</Label>
         <Textarea
           id="textarea-demo-disabled"
-          aria-labelledby="disabled-label"
           placeholder="Type your message here."
           aria-label="Disabled Textarea"
           disabled
