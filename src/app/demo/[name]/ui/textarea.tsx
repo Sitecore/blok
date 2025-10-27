@@ -8,7 +8,7 @@ export const textarea = {
     Basic: (
       <div className="grid gap-2 m-2">
         <Label htmlFor="basic-textarea">Message</Label>
-        <Textarea id="basic-textarea" placeholder="Type your message here." aria-labelledby="label-basic-textarea"/>
+        <Textarea id="basic-textarea" aria-label="Message" placeholder="Type your message here." />
       </div>
     ),
     
@@ -16,7 +16,7 @@ export const textarea = {
     Invalid: (
       <div className="grid gap-2 m-2">
         <Label htmlFor="invalid-textarea">Message</Label>
-        <Textarea id="invalid-textarea" placeholder="Type your message here." aria-invalid="true" aria-labelledby="label-invalid-textarea"/>
+        <Textarea id="invalid-textarea" placeholder="Type your message here." aria-label="Message" aria-invalid="true" />
       </div>
     ),
     
@@ -27,6 +27,7 @@ export const textarea = {
         <Textarea
           id="textarea-demo-message"
           placeholder="Type your message here."
+          aria-label="Message"
           rows={6}
           aria-labelledby="label-textarea-demo-message"
         />
@@ -42,6 +43,7 @@ export const textarea = {
         <Textarea
           id="textarea-demo-message-2"
           placeholder="Type your message here."
+          aria-label="Message"
           rows={6}
           aria-labelledby="label-textarea-demo-message-2"
         />
@@ -59,6 +61,7 @@ export const textarea = {
           id="textarea-demo-disabled"
           aria-labelledby="disabled-label"
           placeholder="Type your message here."
+          aria-label="Disabled Textarea"
           disabled
         />
       </div>
@@ -71,6 +74,7 @@ export const textarea = {
         <Textarea
           id="small-textarea"
           placeholder="Small textarea"
+          aria-label="Small textarea"
           rows={3}
           className="min-h-[60px]"
         />
@@ -84,6 +88,7 @@ export const textarea = {
         <Textarea
           id="large-textarea"
           placeholder="Large textarea"
+          aria-label="Large textarea"
           rows={8}
           className="min-h-[160px]"
         />
@@ -97,6 +102,7 @@ export const textarea = {
         <Textarea
           id="textarea-with-value"
           defaultValue="This textarea comes with some pre-filled content. You can edit this text or add more content as needed."
+          aria-label="Pre-filled Textarea"
           rows={4}
         />
       </div>

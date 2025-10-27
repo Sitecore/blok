@@ -66,8 +66,8 @@ export function BarChartComponent() {
               cursor={false}
               content={<ChartTooltipContent indicator="dashed" />}
             />
-            <Bar dataKey="desktop" fill="var(--color-desktop)" radius={4} aria-label="Desktop visitors" />
-            <Bar dataKey="mobile" fill="var(--color-mobile)" radius={4} aria-label="Mobile visitors" />
+            <Bar dataKey="desktop" fill="var(--color-desktop)" radius={4} />
+            <Bar dataKey="mobile" fill="var(--color-mobile)" radius={4} />
           </BarChart>
         </ChartContainer>
       </CardContent>

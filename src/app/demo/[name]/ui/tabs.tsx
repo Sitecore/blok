@@ -83,6 +83,12 @@ export const tabs = {
             Settings
           </TabsTrigger>
         </TabsList>
+        <TabsContent value="home">
+          <p>Home content</p>
+        </TabsContent>
+        <TabsContent value="settings">
+          <p>Settings content</p>
+        </TabsContent>
       </Tabs>
     ),
     SoftRoundedVariant: (
@@ -95,6 +101,12 @@ export const tabs = {
             Settings
           </TabsTrigger>
         </TabsList>
+        <TabsContent value="home">
+          <p>Home content</p>
+        </TabsContent>
+        <TabsContent value="settings">
+          <p>Settings content</p>
+        </TabsContent>
       </Tabs>
     ),
     WithIcons: (
@@ -109,6 +121,12 @@ export const tabs = {
             Code
           </TabsTrigger>
         </TabsList>
+        <TabsContent value="preview">
+          <p>Preview content</p>
+        </TabsContent>
+        <TabsContent value="code">
+          <p>Code content</p>
+        </TabsContent>
       </Tabs>
     ),
   },

@@ -73,7 +73,6 @@ export function LineChartComponent() {
               stroke="var(--color-desktop)"
               strokeWidth={2}
               dot={false}
-              aria-label="Desktop visitors trend"
             />
             <Line
               dataKey="mobile"
@@ -81,7 +80,6 @@ export function LineChartComponent() {
               stroke="var(--color-mobile)"
               strokeWidth={2}
               dot={false}
-              aria-label="Mobile visitors trend"
             />
           </LineChart>
         </ChartContainer>

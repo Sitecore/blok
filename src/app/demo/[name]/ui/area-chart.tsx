@@ -74,7 +74,6 @@ export function AreaChartComponent() {
               fill="var(--color-desktop)"
               fillOpacity={0.4}
               stroke="var(--color-desktop)"
-              aria-label="Desktop visitors trend"
             />
           </AreaChart>
         </ChartContainer>

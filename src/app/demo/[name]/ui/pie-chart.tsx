@@ -79,7 +79,6 @@ export function PieChartComponent() {
               nameKey="browser"
               innerRadius={60}
               strokeWidth={5}
-              aria-label="Browser usage distribution"
             >
               <Label
                 content={({ viewBox }) => {
