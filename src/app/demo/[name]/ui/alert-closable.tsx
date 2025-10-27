@@ -23,6 +23,7 @@ export function ClosableAlert({
         variant="ghost"
         className="absolute top-2.5 right-3 h-6 shadow-none dark:hover:bg-accent-foreground/10"
         onClick={() => setIsOpen(false)}
+        aria-label="Close alert"
       >
         ✕
       </Button>

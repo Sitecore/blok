@@ -90,7 +90,7 @@ export function BrandHeader() {
         </div>
 
         <div className="flex gap-2 md:hidden">
-          <Button variant="ghost" size="sm" className="text-foreground">
+          <Button variant="ghost" size="sm" className="text-foreground" aria-label="Search">
             <Search className="h-5 w-5" />
           </Button>
           <Avatar className="size-8">

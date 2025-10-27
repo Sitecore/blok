@@ -81,6 +81,7 @@ function CommandInput({
         value={value}
         onValueChange={setValue}
         data-slot="command-input"
+        aria-label={props['aria-label'] || 'Search commands'}
         className={cn(
           "file:text-foreground placeholder:text-muted-foreground selection:bg-primary selection:text-inverse-text dark:bg-input/30 flex h-8 w-full min-w-0 rounded-sm border bg-body-bg py-1 pr-10 pl-9 text-base transition-[color,box-shadow] outline-none file:inline-flex file:h-7 file:border-0 file:bg-transparent file:text-sm file:font-medium disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 md:text-sm",
           "aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive",

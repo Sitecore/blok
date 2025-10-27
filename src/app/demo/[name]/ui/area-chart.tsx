@@ -54,6 +54,7 @@ export function AreaChartComponent() {
               left: 12,
               right: 12,
             }}
+            aria-label="Area chart showing desktop visitors from January to June 2024"
           >
             <CartesianGrid vertical={false} />
             <XAxis

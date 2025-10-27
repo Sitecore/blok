@@ -13,6 +13,7 @@ function Progress({
   return (
     <ProgressPrimitive.Root
       data-slot="progress"
+      aria-label={`Progress: ${value}%` || "Progress"}
       className={cn(
         "relative h-2 w-full overflow-hidden rounded-full bg-primary/20",
         className,

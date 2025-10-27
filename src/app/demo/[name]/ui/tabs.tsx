@@ -34,11 +34,11 @@ export const tabs = {
             <CardContent className="grid gap-6">
               <div className="grid gap-3">
                 <Label htmlFor="tabs-demo-name">Name</Label>
-                <Input id="tabs-demo-name" defaultValue="Pedro Duarte" />
+                <Input id="tabs-demo-name" defaultValue="Pedro Duarte" autoComplete="name" />
               </div>
               <div className="grid gap-3">
                 <Label htmlFor="tabs-demo-username">Username</Label>
-                <Input id="tabs-demo-username" defaultValue="@peduarte" />
+                <Input id="tabs-demo-username" defaultValue="@peduarte" autoComplete="username" />
               </div>
             </CardContent>
             <CardFooter>
@@ -57,11 +57,11 @@ export const tabs = {
             <CardContent className="grid gap-6">
               <div className="grid gap-3">
                 <Label htmlFor="tabs-demo-current">Current password</Label>
-                <Input id="tabs-demo-current" type="password" />
+                <Input id="tabs-demo-current" type="password" autoComplete="current-password" />
               </div>
               <div className="grid gap-3">
                 <Label htmlFor="tabs-demo-new">New password</Label>
-                <Input id="tabs-demo-new" type="password" />
+                <Input id="tabs-demo-new" type="password" autoComplete="new-password" />
               </div>
             </CardContent>
             <CardFooter>
@@ -84,22 +84,10 @@ export const tabs = {
           </TabsTrigger>
         </TabsList>
         <TabsContent value="home">
-          <Card>
-            <CardHeader>
-              <CardTitle>Home</CardTitle>
-              <CardDescription>Welcome to your home dashboard.</CardDescription>
-            </CardHeader>
-          </Card>
+          <p>Home content</p>
         </TabsContent>
         <TabsContent value="settings">
-          <Card>
-            <CardHeader>
-              <CardTitle>Settings</CardTitle>
-              <CardDescription>
-                Manage your application settings.
-              </CardDescription>
-            </CardHeader>
-          </Card>
+          <p>Settings content</p>
         </TabsContent>
       </Tabs>
     ),
@@ -114,22 +102,10 @@ export const tabs = {
           </TabsTrigger>
         </TabsList>
         <TabsContent value="home">
-          <Card>
-            <CardHeader>
-              <CardTitle>Home</CardTitle>
-              <CardDescription>Welcome to your home dashboard.</CardDescription>
-            </CardHeader>
-          </Card>
+          <p>Home content</p>
         </TabsContent>
         <TabsContent value="settings">
-          <Card>
-            <CardHeader>
-              <CardTitle>Settings</CardTitle>
-              <CardDescription>
-                Manage your application settings.
-              </CardDescription>
-            </CardHeader>
-          </Card>
+          <p>Settings content</p>
         </TabsContent>
       </Tabs>
     ),
@@ -146,20 +122,10 @@ export const tabs = {
           </TabsTrigger>
         </TabsList>
         <TabsContent value="preview">
-          <Card>
-            <CardHeader>
-              <CardTitle>Preview</CardTitle>
-              <CardDescription>Preview your content here.</CardDescription>
-            </CardHeader>
-          </Card>
+          <p>Preview content</p>
         </TabsContent>
         <TabsContent value="code">
-          <Card>
-            <CardHeader>
-              <CardTitle>Code</CardTitle>
-              <CardDescription>View the source code.</CardDescription>
-            </CardHeader>
-          </Card>
+          <p>Code content</p>
         </TabsContent>
       </Tabs>
     ),
