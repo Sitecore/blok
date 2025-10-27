@@ -1146,6 +1146,10 @@
         {
           "path": "src/components/ui/pinned-sites-section.tsx",
           "type": "registry:ui"
+        },
+        {
+          "path": "src/lib/empty-pin.svg",
+          "type": "registry:lib"
         }
       ]
     },

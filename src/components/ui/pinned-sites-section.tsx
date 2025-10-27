@@ -2,6 +2,7 @@
 
 import { SiteCard } from "@/components/ui/site-card";
 import Image from "next/image";
+import EmptyPin from "@/lib/empty-pin.svg"
 
 interface SiteData {
   id: string;
@@ -82,7 +83,7 @@ export function PinnedSitesSection<T extends SiteData>({
           <div className="flex flex-col items-center justify-center py-12 px-6">
             <div className="w-16 h-16 rounded-full bg-muted flex items-center justify-center mb-4">
               <Image
-                src="/empty-pin.svg"
+                src={EmptyPin}
                 alt="Pin icon"
                 width={80}
                 height={80}
