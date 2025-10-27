@@ -20,7 +20,7 @@ export const select = {
   components: {
     Default: (
       <Select>
-        <SelectTrigger className="w-[180px]">
+        <SelectTrigger className="w-[180px]" aria-label="Select a fruit">
           <SelectValue placeholder="Select a fruit" />
         </SelectTrigger>
         <SelectContent>
@@ -39,7 +39,7 @@ export const select = {
     ),
     largeList: (
       <Select>
-        <SelectTrigger className="w-[180px]">
+        <SelectTrigger className="w-[180px]" aria-label="Select from large list">
           <SelectValue placeholder="Large List" />
         </SelectTrigger>
         <SelectContent>
@@ -53,7 +53,7 @@ export const select = {
     ),
     withIcon: (
       <Select>
-        <SelectTrigger className="w-[180px]">
+        <SelectTrigger className="w-[180px]" aria-label="Select chart type">
           <SelectValue
             placeholder={
               <>
@@ -88,7 +88,7 @@ export const select = {
     ),
     disabled: (
       <Select disabled>
-        <SelectTrigger className="w-[180px]">
+        <SelectTrigger className="w-[180px]" aria-label="Disabled select">
           <SelectValue placeholder="Disabled" />
         </SelectTrigger>
         <SelectContent>

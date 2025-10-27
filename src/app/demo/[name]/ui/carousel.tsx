@@ -13,7 +13,7 @@ export const carousel = {
     // Default Carousel
     Default: (
       <div className="w-full max-w-sm mx-auto">
-        <Carousel className="w-full">
+        <Carousel className="w-full" aria-label="Number cards carousel with 5 slides">
           <CarouselContent>
             {Array.from({ length: 5 }).map((_, index) => (
               <CarouselItem key={index}>
@@ -38,6 +38,7 @@ export const carousel = {
       <div className="w-full max-w-sm mx-auto">
         <Carousel
           className="w-full"
+          aria-label="Responsive cards carousel with start alignment"
           opts={{
             align: "start",
           }}
@@ -64,7 +65,7 @@ export const carousel = {
     // Carousel with negative margin + half-width items
     NegativeMargin: (
       <div className="w-full max-w-sm mx-auto">
-        <Carousel className="w-full">
+        <Carousel className="w-full" aria-label="Half-width cards carousel with negative margin">
           <CarouselContent className="-ml-1">
             {Array.from({ length: 5 }).map((_, index) => (
               <CarouselItem key={index} className="pl-1 md:basis-1/2">

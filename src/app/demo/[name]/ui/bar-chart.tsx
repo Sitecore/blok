@@ -49,7 +49,11 @@ export function BarChartComponent() {
       </CardHeader>
       <CardContent>
         <ChartContainer config={chartConfig}>
-          <BarChart accessibilityLayer data={chartData}>
+          <BarChart 
+            accessibilityLayer 
+            data={chartData}
+            aria-label="Bar chart showing desktop and mobile visitors from January to June 2024"
+          >
             <CartesianGrid vertical={false} />
             <XAxis
               dataKey="month"

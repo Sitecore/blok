@@ -90,22 +90,24 @@ export function RegistrySidebar() {
     <Sidebar collapsible="icon">
       <SidebarHeader className="border-b">
         <div className="flex items-center justify-between px-2 py-2">
-          <Link href="/" className="flex min-w-0 items-center gap-2">
+          <div className="flex min-w-0 items-center gap-2">
             <RegistryLogo />
-          </Link>
+          </div>
 
           <Button
             variant="ghost"
             className="md:hidden"
             onClick={() => setOpenMobile(false)}
+            aria-label="Close sidebar"
           >
             <X />
           </Button>
         </div>
         <div className="px-2 py-2 opacity-100 transition-all duration-200">
-          <div className="relative">
+          <div className="relative" role="search">
             <Search className="absolute top-2.5 left-2.5 size-4 text-muted-foreground" />
             <Input
+              aria-label="Search"
               type="search"
               placeholder="Search..."
               className="pl-8"
