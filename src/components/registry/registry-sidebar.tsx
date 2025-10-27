@@ -107,6 +107,7 @@ export function RegistrySidebar() {
           <div className="relative" role="search">
             <Search className="absolute top-2.5 left-2.5 size-4 text-muted-foreground" />
             <Input
+              aria-label="Search"
               type="search"
               placeholder="Search..."
               className="pl-8"
