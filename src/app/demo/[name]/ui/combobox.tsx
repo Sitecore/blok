@@ -4,6 +4,7 @@ import {
   TimezoneCombobox,
   UserCombobox,
 } from "@/components/ui/combobox";
+import { Label } from "@/components/ui/label";
 
 const frameworks = [
   {
@@ -81,26 +82,38 @@ export const combobox = {
   name: "combobox",
   components: {
     FrameworkCombobox: (
-      <div className="p-1">
-        <FrameworkCombobox frameworks={[...frameworks]} />
+      <div className="space-y-2 p-1">
+        <Label htmlFor="framework-combobox" id="framework-label">Select Framework</Label>
+        <div aria-labelledby="framework-label">
+          <FrameworkCombobox frameworks={[...frameworks]} />
+        </div>
       </div>
     ),
     UserCombobox: (
-      <div className="p-1">
-        <UserCombobox users={[...users]} selectedUserId={users[0].id} />
+      <div className="space-y-2 p-1">
+        <Label htmlFor="user-combobox" id="user-label">Select User</Label>
+        <div aria-labelledby="user-label">
+          <UserCombobox users={[...users]} selectedUserId={users[0].id} />
+        </div>
       </div>
     ),
     TimezoneCombobox: (
-      <div className="p-1">
-        <TimezoneCombobox
-          timezones={[...timezones]}
-          selectedTimezone={timezones[0].timezones[0]}
-        />
+      <div className="space-y-2 p-1">
+        <Label htmlFor="timezone-combobox" id="timezone-label">Select Timezone</Label>
+        <div aria-labelledby="timezone-label">
+          <TimezoneCombobox
+            timezones={[...timezones]}
+            selectedTimezone={timezones[0].timezones[0]}
+          />
+        </div>
       </div>
     ),
     ComboboxWithCheckbox: (
-      <div className="p-1">
-        <ComboboxWithCheckbox frameworks={[...frameworks]} />
+      <div className="space-y-2 p-1">
+        <Label htmlFor="frameworks-combobox" id="frameworks-label">Select Frameworks (Multi-select)</Label>
+        <div aria-labelledby="frameworks-label">
+          <ComboboxWithCheckbox frameworks={[...frameworks]} />
+        </div>
       </div>
     ),
   },
