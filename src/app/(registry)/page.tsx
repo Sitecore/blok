@@ -240,7 +240,7 @@ export default function MyComponent() {
           />
         </div>
 
-        <div className="flex flex-col space-y-2 mt-4 p-5 md:mt-2 md:px-10">
+        <div className="flex flex-col space-y-2 mt-4 mb-10 p-5 md:mt-2 md:px-10">
           <h2 className="font-bold text-3xl tracking-tight md:text-4xl">
             Step 4: Run your application
           </h2>
