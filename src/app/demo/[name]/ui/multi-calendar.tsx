@@ -19,6 +19,8 @@ export function MultiCalendar({numberOfMonths = 1}: {numberOfMonths?: number}) {
       onSelect={setDateRange}
       numberOfMonths={numberOfMonths}
       className="rounded-lg border shadow-sm"
+      captionLayout="dropdown"
+
     />
   );
 }

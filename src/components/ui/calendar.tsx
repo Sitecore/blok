@@ -12,6 +12,7 @@ import {
 
 import { Button, buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { ChevronDownIcon } from "lucide-react";
 
 function Calendar({
   className,
@@ -68,17 +69,17 @@ function Calendar({
           "flex items-center justify-center h-(--cell-size) w-full px-(--cell-size)",
           defaultClassNames.month_caption,
         ),
-        dropdowns: cn(
+       dropdowns: cn(
           "w-full flex items-center text-sm font-medium justify-center h-(--cell-size) gap-1.5",
-          defaultClassNames.dropdowns,
+          defaultClassNames.dropdowns
         ),
         dropdown_root: cn(
-          "relative has-focus:border-ring border border-input shadow-xs has-focus:ring-ring/50 has-focus:ring-[3px] rounded-md",
-          defaultClassNames.dropdown_root,
+          "relative has-focus:border-ring border px-2 border-input shadow-xs has-focus:ring-ring/50 has-focus:ring-[3px] rounded-md",
+          defaultClassNames.dropdown_root
         ),
         dropdown: cn(
-          "absolute bg-popover inset-0 opacity-0",
-          defaultClassNames.dropdown,
+          "absolute bg-popover inset-0 opacity-0 pl-4 scrollbar-hidden flex justify-center items-center w-full ",
+          defaultClassNames.dropdown
         ),
         caption_label: cn(
           "select-none font-medium",
@@ -159,12 +160,8 @@ function Calendar({
             );
           }
           return (
-            <Icon
-              path={mdiChevronDown}
-              size={0.9}
-              className={cn("text-neutral size-4", className)}
-              {...props}
-            />
+              <ChevronDownIcon className={cn("size-4", className)} {...props} />
+
           );
         },
         DayButton: CalendarDayButton,
