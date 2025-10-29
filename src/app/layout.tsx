@@ -1,10 +1,7 @@
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Montserrat } from "next/font/google";
 import type { ReactNode } from "react";
-
-import { cn } from "@/lib/utils";
 
 import "@/app/globals.css";
 import { Toaster } from "@/components/ui/sonner";
@@ -15,21 +12,6 @@ export const metadata: Metadata = {
   icons: [{ rel: "icon", url: "/favicon.svg", type: "image/svg+xml" }],
 };
 
-const GeistSans = Geist({
-  subsets: ["latin"],
-  variable: "--font-sans",
-});
-
-const GeistMono = Geist_Mono({
-  subsets: ["latin"],
-  variable: "--font-mono",
-});
-
-const MontserratSerif = Montserrat({
-  subsets: ["latin"],
-  variable: "--font-serif",
-});
-
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -38,12 +20,8 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={cn(
-        GeistSans.variable,
-        GeistMono.variable,
-        MontserratSerif.variable,
-        "bg-subtle-bg text-foreground",
-      )}
+      style={{ fontFamily: "'Segoe UI', 'Inter', system-ui" }}
+      className="bg-subtle-bg text-foreground"
     >
       <meta
         name="robots"
