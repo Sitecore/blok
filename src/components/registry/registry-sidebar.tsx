@@ -45,6 +45,7 @@ const blockItems = getBlocks();
 export const gettingStartedItems = [
   { title: "Home", path: "/" },
   { title: "Design Tokens", path: "/tokens" },
+  { title: "MCP Server", path: "/mcp" },
 ];
 
 export function MobileSidebarTrigger() {

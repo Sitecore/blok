@@ -1,4 +1,3 @@
-import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
@@ -18,10 +17,8 @@ export const card = {
           <CardDescription>Style: flat, Elevation: none</CardDescription>
         </CardHeader>
         <CardContent>
-          <p>This is a default card with flat style and no elevation.</p>
         </CardContent>
         <CardFooter>
-          <Button variant="outline">Action</Button>
         </CardFooter>
       </Card>
     ),
@@ -33,10 +30,8 @@ export const card = {
           <CardDescription>Style: outline, Elevation: none</CardDescription>
         </CardHeader>
         <CardContent>
-          <p>This card demonstrates the none elevation variant with outline style.</p>
         </CardContent>
         <CardFooter>
-          <Button variant="outline">Action</Button>
         </CardFooter>
       </Card>
     ),
@@ -47,10 +42,8 @@ export const card = {
           <CardDescription>Style: outline, Elevation: xs</CardDescription>
         </CardHeader>
         <CardContent>
-          <p>This card demonstrates the xs elevation variant with outline style.</p>
         </CardContent>
         <CardFooter>
-          <Button variant="outline">Action</Button>
         </CardFooter>
       </Card>
     ),
@@ -61,10 +54,8 @@ export const card = {
           <CardDescription>Style: outline, Elevation: sm</CardDescription>
         </CardHeader>
         <CardContent>
-          <p>This card demonstrates the sm elevation variant with outline style.</p>
         </CardContent>
         <CardFooter>
-          <Button variant="outline">Action</Button>
         </CardFooter>
       </Card>
     ),
@@ -75,10 +66,8 @@ export const card = {
           <CardDescription>Style: outline, Elevation: base</CardDescription>
         </CardHeader>
         <CardContent>
-          <p>This card demonstrates the base elevation variant with outline style.</p>
         </CardContent>
         <CardFooter>
-          <Button variant="outline">Action</Button>
         </CardFooter>
       </Card>
     ),
@@ -89,10 +78,8 @@ export const card = {
           <CardDescription>Style: outline, Elevation: md</CardDescription>
         </CardHeader>
         <CardContent>
-          <p>This card demonstrates the md elevation variant with outline style.</p>
         </CardContent>
         <CardFooter>
-          <Button variant="outline">Action</Button>
         </CardFooter>
       </Card>
     ),
@@ -103,10 +90,8 @@ export const card = {
           <CardDescription>Style: outline, Elevation: lg</CardDescription>
         </CardHeader>
         <CardContent>
-          <p>This card demonstrates the lg elevation variant with outline style.</p>
         </CardContent>
         <CardFooter>
-          <Button variant="outline">Action</Button>
         </CardFooter>
       </Card>
     ),
@@ -119,10 +104,8 @@ export const card = {
           <CardDescription>Style: flat, Elevation: base</CardDescription>
         </CardHeader>
         <CardContent>
-          <p>This card demonstrates the flat style variant with base elevation.</p>
         </CardContent>
         <CardFooter>
-          <Button variant="outline">Action</Button>
         </CardFooter>
       </Card>
     ),
@@ -133,10 +116,8 @@ export const card = {
           <CardDescription>Style: outline, Elevation: base</CardDescription>
         </CardHeader>
         <CardContent>
-          <p>This card demonstrates the outline style variant with base elevation.</p>
         </CardContent>
         <CardFooter>
-          <Button variant="outline">Action</Button>
         </CardFooter>
       </Card>
     ),
@@ -147,10 +128,8 @@ export const card = {
           <CardDescription>Style: filled, Elevation: base</CardDescription>
         </CardHeader>
         <CardContent>
-          <p>This card demonstrates the filled style variant with base elevation.</p>
         </CardContent>
         <CardFooter>
-          <Button variant="outline">Action</Button>
         </CardFooter>
       </Card>
     ),
@@ -165,10 +144,8 @@ export const card = {
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <p>This card demonstrates the sm padding variant with outline style and md elevation.</p>
         </CardContent>
         <CardFooter>
-          <Button variant="outline">Action</Button>
         </CardFooter>
       </Card>
     ),
@@ -181,10 +158,8 @@ export const card = {
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <p>This card demonstrates the md padding variant with outline style and md elevation.</p>
         </CardContent>
         <CardFooter>
-          <Button variant="outline">Action</Button>
         </CardFooter>
       </Card>
     ),
@@ -197,10 +172,8 @@ export const card = {
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <p>This card demonstrates the lg padding variant with outline style and md elevation.</p>
         </CardContent>
         <CardFooter>
-          <Button variant="outline">Action</Button>
         </CardFooter>
       </Card>
     ),

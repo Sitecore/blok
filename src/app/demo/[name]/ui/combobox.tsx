@@ -30,16 +30,20 @@ const frameworks = [
 const users = [
   {
     id: "1",
-    username: "shadcn",
+    username: "ChristianHahn",
   },
   {
     id: "2",
-    username: "leerob",
+    username: "ThomasKelly",
   },
   {
     id: "3",
-    username: "evilrabbit",
+    username: "FrankGrinaert",
   },
+  {
+    id: "4",
+    username: "SpyridonMisichronis",
+  }
 ] as const;
 const timezones = [
   {

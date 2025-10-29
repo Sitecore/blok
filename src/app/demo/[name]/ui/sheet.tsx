@@ -74,11 +74,11 @@ export const sheet = {
                         <div className="grid flex-1 auto-rows-min gap-6 px-4">
                             <div className="grid gap-3">
                                 <Label htmlFor="sheet-demo-name">Name</Label>
-                                <Input id="sheet-demo-name" defaultValue="Pedro Duarte" />
+                                <Input id="sheet-demo-name" defaultValue="Liz" />
                             </div>
                             <div className="grid gap-3">
                                 <Label htmlFor="sheet-demo-username">Username</Label>
-                                <Input id="sheet-demo-username" defaultValue="@peduarte" />
+                                <Input id="sheet-demo-username" defaultValue="@liz" />
                             </div>
                         </div>
                         <SheetFooter>
