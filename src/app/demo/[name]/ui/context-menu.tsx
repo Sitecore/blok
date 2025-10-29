@@ -53,12 +53,12 @@ export const contextMenu = {
           </ContextMenuCheckboxItem>
           <ContextMenuCheckboxItem>Show Full URLs</ContextMenuCheckboxItem>
           <ContextMenuSeparator />
-          <ContextMenuRadioGroup value="pedro">
+          <ContextMenuRadioGroup value="people">
             <ContextMenuLabel inset>People</ContextMenuLabel>
-            <ContextMenuRadioItem value="pedro">
-              Pedro Duarte
+            <ContextMenuRadioItem value="thomas">
+              Thomas Kelly
             </ContextMenuRadioItem>
-            <ContextMenuRadioItem value="colm">Colm Tuite</ContextMenuRadioItem>
+            <ContextMenuRadioItem value="chris">Christian Hahn</ContextMenuRadioItem>
           </ContextMenuRadioGroup>
         </ContextMenuContent>
       </ContextMenu>

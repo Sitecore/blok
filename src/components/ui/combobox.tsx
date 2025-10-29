@@ -138,7 +138,7 @@ function UserCombobox({ users, selectedUserId }: UserComboboxProps) {
             <div className="flex items-center gap-2">
               <Avatar className="size-5">
                 <AvatarImage
-                  src={`https://github.com/${selectedUser.username}.png`}
+                  src={`/${selectedUser.username}.png`}
                   alt={`${selectedUser.username} avatar`}
                 />
                 <AvatarFallback>{selectedUser.username[0]}</AvatarFallback>

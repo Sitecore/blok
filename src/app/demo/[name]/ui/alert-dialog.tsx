@@ -19,21 +19,20 @@ export const alertDialog = {
         <div className="flex items-center justify-center rounded-t-md bg-body-bg p-25">
           <AlertDialog>
             <AlertDialogTrigger asChild>
-              <Button variant="outline" colorScheme="neutral">
-                Show Dialog
+              <Button variant="default" colorScheme="danger">
+                Open Alert Dialog
               </Button>
             </AlertDialogTrigger>
             <AlertDialogContent>
               <AlertDialogHeader>
-                <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
+                <AlertDialogTitle>Discard Changes?</AlertDialogTitle>
                 <AlertDialogDescription>
-                  This action cannot be undone. This will permanently delete
-                  your account and remove your data from our servers.
+                  Discard unsaved changes and close?
                 </AlertDialogDescription>
               </AlertDialogHeader>
               <AlertDialogFooter>
-                <AlertDialogCancel>Cancel</AlertDialogCancel>
-                <AlertDialogAction>Delete</AlertDialogAction>
+                <AlertDialogCancel>Keep editing</AlertDialogCancel>
+                <AlertDialogAction>Discard</AlertDialogAction>
               </AlertDialogFooter>
             </AlertDialogContent>
           </AlertDialog>
