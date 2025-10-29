@@ -9,10 +9,10 @@ export const separator = {
           <div className="">
             <div className="flex flex-col gap-1">
               <div className="text-sm leading-none font-medium">
-                Tailwind CSS
+                Blok
               </div>
               <div className="text-muted-foreground text-sm">
-                A utility-first CSS framework.
+                The Sitecore design system.
               </div>
             </div>
             <Separator className="my-4" />
