@@ -30,11 +30,11 @@ export const dialog = {
           <div className="grid gap-4">
             <div className="grid gap-3">
               <Label htmlFor="name-1">Name</Label>
-              <Input id="name-1" name="name" defaultValue="Pedro Duarte" />
+              <Input id="name-1" name="name" defaultValue="Liz" />
             </div>
             <div className="grid gap-3">
               <Label htmlFor="username-1">Username</Label>
-              <Input id="name-1" name="username" defaultValue="@peduarte" />
+              <Input id="name-1" name="username" defaultValue="@liz" />
             </div>
           </div>
           <DialogFooter>

@@ -14,6 +14,11 @@ import BreakpointsDemo from "./components/breakpoint-theme";
 let cssPath = path.join(process.cwd(), "src", "app", "colors.css");
 const colorsContent = fs.readFileSync(cssPath, "utf-8");
 
+cssPath = path.join(process.cwd(), "src", "app", "globals.css");
+const globalsContent = fs.readFileSync(cssPath, "utf-8");
+
+const combinedColorsContent = `${colorsContent}\n${globalsContent}`;
+
 cssPath = path.join(process.cwd(), "src", "app", "typography.css");
 const typographyContent = fs.readFileSync(cssPath, "utf-8");
 
@@ -50,7 +55,7 @@ export default function TokensPage() {
             <BorderRadiusDemo content={borderRadiusContent} />
           </ComponentWrapper>
           <ComponentWrapper name="colors">
-            <ColorsDemo content={colorsContent} />
+            <ColorsDemo content={combinedColorsContent} />
           </ComponentWrapper>
           <ComponentWrapper name="shadows">
             <ShadowDemo content={shadowsContent} />
