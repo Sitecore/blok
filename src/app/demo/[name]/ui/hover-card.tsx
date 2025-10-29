@@ -14,18 +14,18 @@ export const hoverCard = {
     Default: (
       <HoverCard>
         <HoverCardTrigger asChild>
-          <Button variant="link">@nextjs</Button>
+          <Button variant="link">@blok</Button>
         </HoverCardTrigger>
         <HoverCardContent className="w-80" side="right">
-          <div className="flex justify-between gap-4">
+          <div className="flex space-x-5">
             <Avatar>
-              <AvatarImage src="https://github.com/vercel.png" />
+              <AvatarImage src="/favicon.svg" />
               <AvatarFallback>VC</AvatarFallback>
             </Avatar>
             <div className="flex flex-col gap-1">
-              <h4 className="text-sm font-semibold text-foreground">@nextjs</h4>
+              <h4 className="text-sm font-semibold text-foreground">Blok</h4>
               <p className="text-sm text-muted-foreground">
-                The React Framework – created and maintained by @vercel.
+                The Sitecore design system
               </p>
               <div className="mt-1 flex items-center gap-2">
                 <Icon
@@ -33,7 +33,7 @@ export const hoverCard = {
                   className="text-muted-foreground size-5"
                 />
                 <span className="text-muted-foreground text-xs">
-                  Joined December 2021
+                  Created October 2025
                 </span>
               </div>
             </div>
