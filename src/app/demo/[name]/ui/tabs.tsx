@@ -34,11 +34,11 @@ export const tabs = {
             <CardContent className="grid gap-6">
               <div className="grid gap-3">
                 <Label htmlFor="tabs-demo-name">Name</Label>
-                <Input id="tabs-demo-name" defaultValue="Pedro Duarte" autoComplete="name" />
+                <Input id="tabs-demo-name" defaultValue="Liz" autoComplete="name" />
               </div>
               <div className="grid gap-3">
                 <Label htmlFor="tabs-demo-username">Username</Label>
-                <Input id="tabs-demo-username" defaultValue="@peduarte" autoComplete="username" />
+                <Input id="tabs-demo-username" defaultValue="@liz" autoComplete="username" />
               </div>
             </CardContent>
             <CardFooter>
