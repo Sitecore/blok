@@ -40,19 +40,19 @@ export const avatar = {
         *:data-[slot=avatar]:size-12 *:data-[slot=avatar]:ring-2 *:data-[slot=avatar]:grayscale 
         *:data-[slot=avatar]:transition-all *:data-[slot=avatar]:duration-300 *:data-[slot=avatar]:ease-in-out">
         <Avatar>
-          <AvatarImage src="https://avatars.githubusercontent.com/u/105914467" alt="Robert Watt" />
-          <AvatarFallback>CN</AvatarFallback>
+          <AvatarImage src="https://cloudfront-us-east-1.images.arcpublishing.com/opb/UODRDCE3KTLWUWUHHRETSAXL7U.jpg" alt="Spongebob" />
+          <AvatarFallback>SB</AvatarFallback>
         </Avatar>
         <Avatar>
-          <AvatarImage src="https://avatars.githubusercontent.com/u/136078144" alt="Charalampos Vitoros" />
-          <AvatarFallback>CV</AvatarFallback>
+          <AvatarImage src="/patrick-star.png" alt="patrick star" />
+          <AvatarFallback>PS</AvatarFallback>
         </Avatar>
         <Avatar>
           <AvatarImage
-            src="https://avatars.githubusercontent.com/u/105914470"
-            alt="Eric Sitarz"
+            src="/squidward.jpg"
+            alt="Squidward"
           />
-          <AvatarFallback>ES</AvatarFallback>
+          <AvatarFallback>ST</AvatarFallback>
         </Avatar>
       </div>
     )
