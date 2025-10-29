@@ -78,7 +78,7 @@ function Calendar({
           defaultClassNames.dropdown_root
         ),
         dropdown: cn(
-          "absolute bg-popover inset-0 opacity-0 pl-4 scrollbar-hidden flex justify-center items-center w-full ",
+          "absolute bg-popover inset-0 opacity-0 pl-4 scrollbar-hidden w-full flex justify-center items-center  ",
           defaultClassNames.dropdown
         ),
         caption_label: cn(
