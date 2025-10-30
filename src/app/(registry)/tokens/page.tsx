@@ -37,13 +37,6 @@ export default function TokensPage() {
     <div className="@container grid flex-1 p-4">
       <div className="container p-5 md:p-10">
         <div className="mb-8">
-          <Button variant="ghost" size="sm" asChild className="mb-4">
-            <Link href="/">
-              <ArrowLeft className="mr-2 size-4" />
-              Back to Home
-            </Link>
-          </Button>
-
           <h2 className="font-bold text-3xl tracking-tight">Design Tokens</h2>
           <p className="mt-1 text-muted-foreground">
             A comprehensive overview of all color tokens used in the design
