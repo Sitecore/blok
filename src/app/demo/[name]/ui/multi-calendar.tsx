@@ -46,7 +46,7 @@ export function CustomDropdown({
             key={String(v)}
             value={String(v)}
             disabled={disabled}
-            className="cursor-pointer px-3 py-1.5 text-sm flex items-center justify-center"
+            className="cursor-pointer px-3 py-1.5 text-sm"
           >
             {label}
           </SelectItem>
