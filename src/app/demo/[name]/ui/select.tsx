@@ -20,19 +20,18 @@ export const select = {
   components: {
     Default: (
       <Select>
-        <SelectTrigger className="w-[180px]" aria-label="Select a fruit">
-          <SelectValue placeholder="Select a fruit" />
+        <SelectTrigger className="w-[180px]" aria-label="Select a product">
+          <SelectValue placeholder="Select a product" />
         </SelectTrigger>
         <SelectContent>
           <SelectGroup>
-            <SelectLabel>Fruits</SelectLabel>
-            <SelectItem value="apple">Apple</SelectItem>
-            <SelectItem value="banana">Banana</SelectItem>
-            <SelectItem value="blueberry">Blueberry</SelectItem>
-            <SelectItem value="grapes" disabled>
-              Grapes
+            <SelectLabel>Products</SelectLabel>
+            <SelectItem value="XMCloud">XM Cloud</SelectItem>
+            <SelectItem value="contentHub">Content Hub</SelectItem>
+            <SelectItem value="CDP">CDP</SelectItem>
+            <SelectItem value="Blok" disabled>
+              Blok
             </SelectItem>
-            <SelectItem value="pineapple">Pineapple</SelectItem>
           </SelectGroup>
         </SelectContent>
       </Select>

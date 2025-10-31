@@ -43,6 +43,10 @@ const users = [
   {
     id: "4",
     username: "SpyridonMisichronis",
+  },
+  {
+    id: "5",
+    username: "LasithGunaratne",
   }
 ] as const;
 const timezones = [

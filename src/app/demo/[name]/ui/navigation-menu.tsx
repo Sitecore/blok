@@ -73,13 +73,13 @@ export const navigationMenu = {
                     Beautifully designed components built with Tailwind CSS.
                   </p>
                 </ListItem>
-                <ListItem href="/docs" title="Build better products faster">
+                <ListItem href="#" title="Build better products faster">
                   Blok is a Sitecore's product design system: the ui framework and style guide we use to build great apps. It's publicly available, so that anyone can easily build software in the Sitecore product design language.
                 </ListItem>
-                <ListItem href="/docs/installation" title="Installation">
+                <ListItem href="#" title="Installation">
                   How to install dependencies and structure your app.
                 </ListItem>
-                <ListItem href="/docs/primitives/typography" title="Typography">
+                <ListItem href="#" title="Typography">
                   Styles for headings, paragraphs, lists...etc
                 </ListItem>
               </ul>
@@ -94,7 +94,7 @@ export const navigationMenu = {
                   <ListItem
                     key={component.title}
                     title={component.title}
-                    href={component.href}
+                    href="#"
                   >
                     {component.description}
                   </ListItem>
@@ -108,7 +108,7 @@ export const navigationMenu = {
               asChild
               className={navigationMenuTriggerStyle()}
             >
-              <Link href="/docs">Documentation</Link>
+              <Link href="#">Documentation</Link>
             </NavigationMenuLink>
           </NavigationMenuItem>
         </NavigationMenuList>
@@ -122,7 +122,7 @@ export const navigationMenu = {
               asChild
               className={navigationMenuTriggerStyle()}
             >
-              <Link href="/docs">Documentation</Link>
+              <Link href="#">Documentation</Link>
             </NavigationMenuLink>
           </NavigationMenuItem>
 
