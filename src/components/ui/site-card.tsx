@@ -13,7 +13,6 @@ import {
   MoreVertical,
   PinOff,
 } from "lucide-react";
-import Image from "next/image";
 
 interface SiteData {
   id: string;
@@ -96,19 +95,16 @@ export function SiteCard<T extends SiteData>({
         site.collectionName ? 'group-hover:flex-[0.6]' : ''
       }`}>
         <div className="relative w-full h-full bg-muted">
-          <Image
-            src={site.thumbnail.url}
-            alt={site.name}
-            fill
-            className="object-cover"
-            sizes="320px"
-            draggable={false}
-            onError={(e) => {
-              const target = e.target as HTMLImageElement;
-              target.src =
-                "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='320' height='160'%3E%3Crect width='320' height='160' fill='%23f0f0f0'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' fill='%23999' font-family='sans-serif' font-size='16'%3ENo Image%3C/text%3E%3C/svg%3E";
-            }}
-          />
+        <img
+          src={site.thumbnail.url}
+          alt={site.name}
+          className="absolute inset-0 w-full h-full object-cover"
+          draggable={false}
+          onError={(e) => {
+            const target = e.target as HTMLImageElement;
+            target.src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='320' height='160'%3E%3Crect width='320' height='160' fill='%23f0f0f0'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' fill='%23999' font-family='sans-serif' font-size='16'%3ENo Image%3C/text%3E%3C/svg%3E";
+          }}
+        />
       
         </div>
       </CardContent>

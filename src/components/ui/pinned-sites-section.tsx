@@ -1,8 +1,19 @@
 "use client";
 
 import { SiteCard } from "@/components/ui/site-card";
-import Image from "next/image";
-import EmptyPin from "@/lib/empty-pin.svg"
+import EmptyPin from "@/lib/empty-pin.svg";
+
+
+const getSvgUrl = (svg: unknown): string => {
+  if (typeof svg === "string") {
+    return svg;
+  }
+  if (svg && typeof svg === "object") {
+    const svgObj = svg as Record<string, unknown>;
+    return (svgObj.src as string) || (svgObj.default as string) || String(svg);
+  }
+  return String(svg || "");
+};
 
 interface SiteData {
   id: string;
@@ -43,7 +54,7 @@ interface PinnedSitesProps<T extends SiteData> {
   getDropdownActions?: (site: T) => DropdownAction[];
 }
 
-export function PinnedSitesSection<T extends SiteData>({ 
+export function PinnedSitesSection<T extends SiteData>({
   allSites = [],
   pinnedSiteIds = [],
   onUnpin,
@@ -68,9 +79,9 @@ export function PinnedSitesSection<T extends SiteData>({
             <div className="flex gap-4 pb-4">
               {pinnedSites.map((site) => (
                 <div key={site.id} >
-                  <SiteCard 
-                    site={site} 
-                    onUnpin={onUnpin} 
+                  <SiteCard
+                    site={site}
+                    onUnpin={onUnpin}
                     showDropdownMenu={!!getDropdownActions}
                     footerButtons={getFooterButtons(site)}
                     dropdownActions={getDropdownActions?.(site) || []}
@@ -82,8 +93,8 @@ export function PinnedSitesSection<T extends SiteData>({
         ) : (
           <div className="flex flex-col items-center justify-center py-12 px-6">
             <div className="w-16 h-16 rounded-full bg-muted flex items-center justify-center mb-4">
-              <Image
-                src={EmptyPin}
+              <img
+                src={getSvgUrl(EmptyPin)}
                 alt="Pin icon"
                 width={80}
                 height={80}
