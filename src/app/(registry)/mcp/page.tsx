@@ -130,6 +130,12 @@ args = ["shadcn@latest", "mcp"]`} />
                                 <li>Add the button, dialog and card components to my project.</li>
                                 <li>Create a contact form using components from the shadcn registry.</li>
                             </ul>
+
+                            <Alert variant="primary" className="mt-4">
+                                <AlertDescription className="inline">
+                                    The <code className="inline text-sm tabular-nums bg-muted px-1 rounded">shadcn</code> CLI cannot automatically update <code className="inline text-sm tabular-nums bg-muted px-1 rounded">~/.codex/config.toml</code>. You'll need to add the configuration manually for Codex.
+                                </AlertDescription>
+                            </Alert>
                         </TabsContent>
                     </Tabs>
                 </div>
