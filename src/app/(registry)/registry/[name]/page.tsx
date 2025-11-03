@@ -45,7 +45,7 @@ export default async function RegistryItemPage({
 
       <ComponentCard
         component={component}
-        baseUrl={process.env.VERCEL_PROJECT_PRODUCTION_URL ?? ""}
+        baseUrl={process.env.NEXT_PUBLIC_REGISTRY_URL ?? ""}
         prompt={getPrompt()}
       />
     </div>
