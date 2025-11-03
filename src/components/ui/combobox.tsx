@@ -222,7 +222,6 @@ function TimezoneCombobox({
         <Button
           variant="outline"
           colorScheme="neutral"
-          aria-label="Select timezone"
           className={cn(
             "h-12 w-full justify-between px-2.5 md:max-w-[200px] rounded-md",
             open && "ring-primary ring-[2px]"
