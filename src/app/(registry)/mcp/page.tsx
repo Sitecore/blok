@@ -71,10 +71,10 @@ export default function MCPPage() {
                     </p>
                     <Tabs defaultValue="claude">
                         <TabsList>
-                            <TabsTrigger value="claude">Claude Code</TabsTrigger>
-                            <TabsTrigger value="cursor">Cursor</TabsTrigger>
-                            <TabsTrigger value="vscode">VS Code</TabsTrigger>
-                            <TabsTrigger value="codex">Codex</TabsTrigger>
+                            <TabsTrigger value="claude" className="whitespace-normal">Claude Code</TabsTrigger>
+                            <TabsTrigger value="cursor" className="whitespace-normal">Cursor</TabsTrigger>
+                            <TabsTrigger value="vscode" className="whitespace-normal">VS Code</TabsTrigger>
+                            <TabsTrigger value="codex" className="whitespace-normal">Codex</TabsTrigger>
                         </TabsList>
                         <TabsContent value="claude" className="space-y-2">
                             <p>To initialize an MCP project for Claude using the shadCN CLI, run the following command:</p>
