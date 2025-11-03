@@ -188,13 +188,23 @@ export default function Home() {
             Step 2: Install Blok components
           </h2>
           <p className="pt-2">
-            Install the Blok component registry to get access to all components:
+            You can now start adding the Blok components to your project.
           </p>
           <Codeblocks 
-            code="npx shadcn@latest add https://blok-shadcn.vercel.app/r/blok-components.json" 
+            code="npx shadcn@latest add https://blok-shadcn.vercel.app/r/button.json" 
             showLineNumbers={false} 
           />
-          <p className="pt-2">
+          <Alert variant="primary" className="items-start mt-4">
+            <AlertDescription className="flex flex-col gap-3">
+              <div className="flex items-center gap-1">
+                Alternatively, you can install the Blok component registry to get access to all components.
+              </div>
+              
+              <Codeblocks 
+                code="npx shadcn@latest add https://blok-shadcn.vercel.app/r/blok-components.json" 
+                showLineNumbers={false} 
+              />
+              <p className="pt-2">
             This command will install a comprehensive set of components including:
           </p>
           <ul className="list-disc list-inside space-y-2 text-muted-foreground">
@@ -203,17 +213,9 @@ export default function Home() {
             <li>Layout components (Navigation, Breadcrumbs, etc.)</li>
             <li>Form components (Select, Checkbox, Radio, etc.)</li>
           </ul>
-          <Alert variant="primary" className="items-start mt-4">
-            <AlertDescription className="flex flex-col gap-3">
-              <div className="flex items-center gap-1">
-                Alternatively, you can install blok components individually by including the path to that component in your command. For example, the following command will install a button component:
-              </div>
-              <Codeblocks 
-                code="npx shadcn@latest add https://blok-shadcn.vercel.app/r/button.json" 
-                showLineNumbers={false} 
-              />
             </AlertDescription>
           </Alert>
+          
         </div>
 
         <div className="flex flex-col space-y-2 mt-4 p-5 md:mt-2 md:px-10">

@@ -56,9 +56,9 @@ export const contextMenu = {
           <ContextMenuRadioGroup value="people">
             <ContextMenuLabel inset>People</ContextMenuLabel>
             <ContextMenuRadioItem value="thomas">
-              Thomas Kelly
+              Sarantis Fakaris
             </ContextMenuRadioItem>
-            <ContextMenuRadioItem value="chris">Christian Hahn</ContextMenuRadioItem>
+            <ContextMenuRadioItem value="chris">Gent Gashi</ContextMenuRadioItem>
           </ContextMenuRadioGroup>
         </ContextMenuContent>
       </ContextMenu>

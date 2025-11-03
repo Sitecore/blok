@@ -43,6 +43,7 @@ function DatePickerSimple() {
           selected={date}
           onSelect={setDate}
           initialFocus
+          captionLayout="dropdown"
         />
       </PopoverContent>
     </Popover>
@@ -94,6 +95,7 @@ function DatePickerWithRange() {
           selected={date}
           onSelect={setDate}
           numberOfMonths={2}
+          captionLayout="dropdown"
         />
       </PopoverContent>
     </Popover>

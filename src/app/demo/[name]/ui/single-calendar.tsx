@@ -16,6 +16,8 @@ export function SingleCalendar() {
       selected={date}
       onSelect={setDate}
       className="rounded-lg border shadow-sm"
+      captionLayout="dropdown"
+
     />
   );
 }
