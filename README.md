@@ -114,8 +114,8 @@ blok/
 Create a `.env.local` file in your project root:
 
 ```env
-# Registry URL
-REGISTRY_URL=your_registry_url
+# Registry URL (for user-facing component copy commands)
+NEXT_PUBLIC_REGISTRY_URL=your_registry_url
 ```
 
 ## Usage

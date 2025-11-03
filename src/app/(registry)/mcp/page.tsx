@@ -5,7 +5,7 @@ import Link from "next/link";
 
 const BlockRegistryCode = `{
   "registries": {
-    "@blok": "https://${process.env.REGISTRY_URL}/r/{name}.json"
+    "@blok": "https://${process.env.NEXT_PUBLIC_REGISTRY_URL}/r/{name}.json"
   }
 }`
 
