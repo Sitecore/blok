@@ -114,8 +114,8 @@ blok/
 Create a `.env.local` file in your project root:
 
 ```env
-# Vercel Project URL
-VERCEL_PROJECT_PRODUCTION_URL=your_vercel_project_url
+# Vercel Registry URL
+VERCEL_REGISTRY_URL=your_vercel_registry_url
 ```
 
 ## Usage
