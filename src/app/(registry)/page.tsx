@@ -191,7 +191,7 @@ export default function Home() {
             You can now start adding the Blok components to your project.
           </p>
           <Codeblocks 
-            code="npx shadcn@latest add https://blok-shadcn.vercel.app/r/button.json" 
+            code={`npx shadcn@latest add https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}/r/button.json`}
             showLineNumbers={false} 
           />
           <Alert variant="primary" className="items-start mt-4">
@@ -201,7 +201,7 @@ export default function Home() {
               </div>
               
               <Codeblocks 
-                code="npx shadcn@latest add https://blok-shadcn.vercel.app/r/blok-components.json" 
+                code={`npx shadcn@latest add https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}/r/blok-components.json`}
                 showLineNumbers={false} 
               />
               <p className="pt-2">
