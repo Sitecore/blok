@@ -70,9 +70,9 @@ export function PieChartComponent() {
         >
           <PieChart 
             role="img"
-            aria-label="Pie chart showing browser usage distribution with total visitors"
+            aria-labelledby="chartTitle"
           >
-            <title>Pie chart showing browser usage distribution with total visitors</title>
+            <title id="chartTitle">Pie chart showing browser usage distribution with total visitors</title>
             <ChartTooltip
               cursor={false}
               content={<ChartTooltipContent hideLabel />}
