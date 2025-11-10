@@ -916,6 +916,33 @@
         }
       ]
     },
+     {
+      "name": "time-picker",
+      "type": "registry:ui",
+      "title": "Time Picker",
+      "description": "Displays the path to the current resource using a hierarchy of links.",
+      "dependencies": [
+        "date-fns",
+        "@mdi/js",
+        "react-day-picker"
+      ],
+      "registryDependencies": [
+        "https://blok-shadcn.vercel.app/r/theme.json",
+        "https://blok-shadcn.vercel.app/r/calendar.json",
+        "https://blok-shadcn.vercel.app/r/button.json",
+        "https://blok-shadcn.vercel.app/r/popover.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui/time-picker.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "src/lib/icon.tsx",
+          "type": "registry:lib"  
+        }
+      ]
+    },
     {
       "name": "dialog",
       "type": "registry:ui",
