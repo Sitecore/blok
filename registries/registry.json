@@ -1590,7 +1590,7 @@
       "title": "Hover Card",
       "description": "For sighted users to preview content available behind a link.",
       "registryDependencies": [
-        "http://localhost:3000/r/theme.json"
+        "https://blok-shadcn.vercel.app/r/theme.json"
       ],
       "dependencies": [
         "@radix-ui/react-hover-card"
