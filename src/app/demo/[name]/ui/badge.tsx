@@ -7,24 +7,24 @@ export const badge = {
   name: "badge",
   components: {
     // Sizes
-    SizeSm: <Badge size="sm">Size sm</Badge>,
-    SizeMd: <Badge size="md">Size md</Badge>,
-    SizeLg: <Badge size="lg">Size lg</Badge>,
+    SizeSm: (<Badge size="sm">Size sm</Badge>),
+    SizeMd: (<Badge size="md">Size md</Badge>),
+    SizeLg: (<Badge size="lg">Size lg</Badge>),
 
     // Default (neutral + colorSchemes)
-    DefaultNeutral: <Badge>Default Neutral</Badge>,
-    DefaultPrimary: <Badge colorScheme="primary">Default Primary</Badge>,
-    DefaultDanger: <Badge colorScheme="danger">Default Danger</Badge>,
-    DefaultSuccess: <Badge colorScheme="success">Default Success</Badge>,
-    DefaultWarning: <Badge colorScheme="warning">Default Warning</Badge>,
-    DefaultYellow: <Badge colorScheme="yellow">Default Yellow</Badge>,
-    DefaultTeal: <Badge colorScheme="teal">Default Teal</Badge>,
-    DefaultCyan: <Badge colorScheme="cyan">Default Cyan</Badge>,
-    DefaultBlue: <Badge colorScheme="blue">Default Blue</Badge>,
-    DefaultPink: <Badge colorScheme="pink">Default Pink</Badge>,
+    DefaultNeutral: (<Badge>Default Neutral</Badge>),
+    DefaultPrimary: (<Badge colorScheme="primary">Default Primary</Badge>),
+    DefaultDanger: (<Badge colorScheme="danger">Default Danger</Badge>),
+    DefaultSuccess: (<Badge colorScheme="success">Default Success</Badge>),
+    DefaultWarning: (<Badge colorScheme="warning">Default Warning</Badge>),
+    DefaultYellow: (<Badge colorScheme="yellow">Default Yellow</Badge>),
+    DefaultTeal: (<Badge colorScheme="teal">Default Teal</Badge>),
+    DefaultCyan: (<Badge colorScheme="cyan">Default Cyan</Badge>),
+    DefaultBlue: (<Badge colorScheme="blue">Default Blue</Badge>),
+    DefaultPink: (<Badge colorScheme="pink">Default Pink</Badge>),
 
     // Bold variants
-    BoldNeutral: <Badge variant="bold">Bold Neutral</Badge>,
+    BoldNeutral: (<Badge variant="bold">Bold Neutral</Badge>),
     BoldPrimary: (
       <Badge variant="bold" colorScheme="primary">
         Bold Primary
