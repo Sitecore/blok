@@ -2,12 +2,6 @@ import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs"
 import { CodeBlock } from "@/components/code-block";
 import { ReactNode } from "react";
 
-const code = `import { Button } from "@/components/ui/button"
-
-export function Example() {
-  return <Button variant="outline">Click me</Button>
-}`
-
 interface DemoTabProps {
     code: string;
     component: ReactNode;
