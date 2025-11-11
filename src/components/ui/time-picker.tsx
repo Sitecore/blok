@@ -83,12 +83,12 @@ export function TimePicker({
             !time && "text-muted-foreground"
           )}
         >
+          {time ? formatTime(time) : <span>{placeholder}</span>}
           <Icon
             path={mdiClockOutline}
             size={1}
             className="text-muted-foreground"
           />
-          {time ? formatTime(time) : <span>{placeholder}</span>}
         </Button>
       </PopoverTrigger>
       <PopoverContent className="w-auto p-4" align="start">
@@ -104,7 +104,7 @@ export function TimePicker({
               <SelectTrigger className="w-[70px]">
                 <SelectValue />
               </SelectTrigger>
-              <SelectContent className="max-h-[200px]">
+              <SelectContent className="p-0 min-w-20">
                 {hours.map((hour) => (
                   <SelectItem key={hour.value} value={hour.value}>
                     {hour.label}
@@ -127,7 +127,7 @@ export function TimePicker({
               <SelectTrigger className="w-[70px]">
                 <SelectValue />
               </SelectTrigger>
-              <SelectContent className="max-h-[200px]">
+              <SelectContent className="p-0 min-w-20 max-h-[400px]">
                 {minutes.map((minute) => (
                   <SelectItem key={minute.value} value={minute.value}>
                     {minute.label}
@@ -174,11 +174,7 @@ export function TimePicker({
           >
             Clear
           </Button>
-          <Button
-            size="sm"
-            className="flex-1"
-            onClick={() => setIsOpen(false)}
-          >
+          <Button size="sm" className="flex-1" onClick={() => setIsOpen(false)}>
             Done
           </Button>
         </div>
@@ -186,4 +182,3 @@ export function TimePicker({
     </Popover>
   );
 }
-
