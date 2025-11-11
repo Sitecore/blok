@@ -11,6 +11,7 @@ import {
   SelectContent,
   SelectItem,
 } from "@/components/ui/select";
+import { format } from "date-fns";
 
 export function CustomDropdown({
   options = [],
@@ -72,6 +73,13 @@ export function MultiCalendar({numberOfMonths = 1}: {numberOfMonths?: number}) {
       className="rounded-lg border shadow-sm"
       captionLayout="dropdown"
       components={{ Dropdown: CustomDropdown }}
+      labels={{
+              labelDayButton: (day) => {
+                const visible = format(day, "d");
+                const longLabel = format(day, "PPPP");
+                return `${visible} – ${longLabel}`;
+              },
+            }}
     />
   );
 }
