@@ -35,6 +35,7 @@ export function CustomDropdown({
       <SelectTrigger
         id={id}
         size="sm"
+        aria-label={value ? undefined : "Select an option"}
         className="z-50 px-3 text-sm [&_svg:not([class*='text-'])]:text-accent-foreground bg-transparent dark:bg-transparent dark:hover:bg-transparent"
       >
         <SelectValue />
