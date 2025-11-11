@@ -1,6 +1,6 @@
-import { DrawerDefault } from "./drawer-default";
-import { DrawerScrollableContent } from "./drawer-scrollable";
-import { DrawerDirections } from "./drawer-direction";
+import { DrawerDefault } from "@/app/demo/[name]/ui/drawer-default";
+import { DrawerScrollableContent } from "@/app/demo/[name]/ui/drawer-scrollable";
+import { DrawerDirections } from "@/app/demo/[name]/ui/drawer-direction";
 
 
 export const drawer = {
