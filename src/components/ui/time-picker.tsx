@@ -147,7 +147,7 @@ export function TimePicker({
                 handleTimeChange("period", val as "AM" | "PM")
               }
             >
-              <SelectTrigger className="w-[70px]">
+              <SelectTrigger className="w-[75px]">
                 <SelectValue />
               </SelectTrigger>
               <SelectContent>
