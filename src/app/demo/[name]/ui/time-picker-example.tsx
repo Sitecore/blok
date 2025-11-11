@@ -9,6 +9,12 @@ export function TimePickerExample() {
     period?: "AM" | "PM";
   }>();
 
+  React.useEffect(() => {
+    if (time) {
+      console.log("Time:", time);
+    }
+  }, [time]);
+
   return <TimePicker value={time} onChange={setTime} />;
 }
 
