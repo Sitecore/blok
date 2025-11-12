@@ -54,6 +54,8 @@ import { pinnedSite } from "@/app/demo/[name]/ui/pinned-site";
 import { allSite } from "@/app/demo/[name]/ui/all-site";
 import { siteCard } from "@/app/demo/[name]/ui/site-card";
 import { timePicker } from "@/app/demo/[name]/ui/time-picker";
+import { draggable } from "@/app/demo/[name]/ui/draggable";
+
 
 interface Demo {
   name: string; // this must match the `/registries/registry.json` name
@@ -85,6 +87,7 @@ export const demos: { [name: string]: Demo } = {
   "date-picker": datePicker,
   drawer,
   "dropdown-menu": dropdownMenu,
+  draggable,
   input,
   inputOtp,
   label,

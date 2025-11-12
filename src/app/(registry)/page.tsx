@@ -145,12 +145,12 @@ export default function Home() {
             </Card>
           </div>
 
-          <Alert variant="primary" className="items-center">
-            <AlertDescription className="flex items-center gap-1">
+          <Alert variant="primary" className="items-start">
+            <AlertDescription className="flex items-col gap-1">
               <strong>Tip:</strong> This installation process is similar to{" "}
               <a 
                 href="https://ui.shadcn.com/docs/installation" 
-                className="underline hover:no-underline"
+                className="underline hover:no-underline break-words"
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -196,15 +196,16 @@ export default function Home() {
           />
           <Alert variant="primary" className="items-start mt-4">
             <AlertDescription className="flex flex-col gap-3">
-              <div className="flex items-center gap-1">
+              <div className="flex items-col gap-1">
                 Alternatively, you can install the Blok component registry to get access to all components.
               </div>
-              
-              <Codeblocks 
-                code={`npx shadcn@latest add https://${process.env.NEXT_PUBLIC_REGISTRY_URL}/r/blok-components.json`}
-                showLineNumbers={false} 
-              />
-              <p className="pt-2">
+              <div className="max-w-full overflow-x-auto">
+                <Codeblocks 
+                  code={`npx shadcn@latest add https://${process.env.NEXT_PUBLIC_REGISTRY_URL}/r/blok-components.json`}
+                  showLineNumbers={false} 
+                />
+              </div>
+              <p className="pt-2 max-w-full">
             This command will install a comprehensive set of components including:
           </p>
           <ul className="list-disc list-inside space-y-2 text-muted-foreground">
