@@ -920,15 +920,13 @@
       "name": "time-picker",
       "type": "registry:ui",
       "title": "Time Picker",
-      "description": "Displays the path to the current resource using a hierarchy of links.",
+      "description": "A component that allows you to select the time",
       "dependencies": [
-        "date-fns",
-        "@mdi/js",
-        "react-day-picker"
+        "@mdi/js"
       ],
       "registryDependencies": [
         "https://blok-shadcn.vercel.app/r/theme.json",
-        "https://blok-shadcn.vercel.app/r/calendar.json",
+        "https://blok-shadcn.vercel.app/r/select.json",
         "https://blok-shadcn.vercel.app/r/button.json",
         "https://blok-shadcn.vercel.app/r/popover.json"
       ],
