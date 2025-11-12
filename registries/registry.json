@@ -941,6 +941,48 @@
       ]
     },
     {
+      "name": "draggable",
+      "type": "registry:ui",
+      "title": "Draggable",
+      "description": "Drag and drop components. Includes draggable, droppable, and sortable functionality.",
+      "registryDependencies": [
+        "https://blok-shadcn.vercel.app/r/theme.json"
+      ],
+      "dependencies": [
+        "@dnd-kit/dom"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui/drag-drop-context.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "src/components/ui/draggable.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "src/components/ui/droppable.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "src/components/ui/sortable.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "src/lib/use-drag-drop-manager.ts",
+          "type": "registry:lib"
+        },
+        {
+          "path": "src/lib/use-sortable.ts",
+          "type": "registry:lib"
+        },
+        {
+          "path": "src/lib/drag-drop-utils.ts",
+          "type": "registry:lib"
+        }
+      ]
+    },
+    {
       "name": "drawer",
       "type": "registry:ui",
       "title": "Drawer",
