@@ -71,6 +71,7 @@ export function PieChartComponent() {
           <PieChart 
             role="img"
             aria-labelledby="chartTitle"
+            tabIndex={0}
           >
             <title id="chartTitle">Pie chart showing browser usage distribution with total visitors</title>
             <ChartTooltip
@@ -119,7 +120,7 @@ export function PieChartComponent() {
       </CardContent>
       <CardFooter className="flex-col gap-2 text-sm">
         <div className="flex items-center gap-2 font-medium leading-none">
-          Trending up by 5.2% this month <TrendingUp className="h-4 w-4" />
+          Trending up by 5.2% this month <TrendingUp className="h-4 w-4" aria-hidden="true" />
         </div>
         <div className="text-muted-foreground leading-none">
           Showing total visitors for the last 6 months

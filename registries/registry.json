@@ -916,6 +916,31 @@
         }
       ]
     },
+     {
+      "name": "time-picker",
+      "type": "registry:ui",
+      "title": "Time Picker",
+      "description": "A component that allows you to select the time",
+      "dependencies": [
+        "@mdi/js"
+      ],
+      "registryDependencies": [
+        "https://blok-shadcn.vercel.app/r/theme.json",
+        "https://blok-shadcn.vercel.app/r/select.json",
+        "https://blok-shadcn.vercel.app/r/button.json",
+        "https://blok-shadcn.vercel.app/r/popover.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui/time-picker.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "src/lib/icon.tsx",
+          "type": "registry:lib"  
+        }
+      ]
+    },
     {
       "name": "dialog",
       "type": "registry:ui",
@@ -937,6 +962,48 @@
         {
           "path": "src/lib/icon.tsx",
           "type": "registry:lib"  
+        }
+      ]
+    },
+    {
+      "name": "draggable",
+      "type": "registry:ui",
+      "title": "Draggable",
+      "description": "Drag and drop components. Includes draggable, droppable, and sortable functionality.",
+      "registryDependencies": [
+        "https://blok-shadcn.vercel.app/r/theme.json"
+      ],
+      "dependencies": [
+        "@dnd-kit/dom"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui/drag-drop-context.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "src/components/ui/draggable.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "src/components/ui/droppable.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "src/components/ui/sortable.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "src/lib/use-drag-drop-manager.ts",
+          "type": "registry:lib"
+        },
+        {
+          "path": "src/lib/use-sortable.ts",
+          "type": "registry:lib"
+        },
+        {
+          "path": "src/lib/drag-drop-utils.ts",
+          "type": "registry:lib"
         }
       ]
     },
