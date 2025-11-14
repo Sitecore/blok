@@ -3,7 +3,7 @@
 import { Check, Copy } from "lucide-react";
 import { useState } from "react";
 
-import { OpenInV0Button } from "@/components/registry/open-in-v0";
+import { OpenInV0Button } from "@/components/docsite/open-in-v0";
 import { Button } from "@/components/ui/button";
 import {
   Card,

@@ -3,7 +3,7 @@
 import { Check, ClipboardIcon } from "lucide-react";
 import { useEffect, useState } from "react";
 
-import { AddToCursor } from "@/components/registry/add-to-cursor";
+import { AddToCursor } from "@/components/docsite/add-to-cursor";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import Icon from "@mdi/react";

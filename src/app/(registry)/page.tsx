@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { Codeblocks } from "@/components/registry/code-block";
+import { Codeblocks } from "@/components/docsite/code-block";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Alert, AlertDescription } from "@/components/ui/alert";

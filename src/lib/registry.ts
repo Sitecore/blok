@@ -35,7 +35,8 @@ export function getRegistryItem(name: string): Component {
 export function getBlocks() {
   return getRegistryItems()
     .filter((component) =>
-      component.type === "registry:block" || component.type === "registry:component"
+      (component.type === "registry:block" || component.type === "registry:component") &&
+      component.name !== "blok-components"
     )
     .sort((a, b) => a.title.localeCompare(b.title));
 }

@@ -2,7 +2,7 @@ import { ArrowLeft } from "lucide-react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
-import { ComponentCard } from "@/components/registry/component-card";
+import { ComponentCard } from "@/components/docsite/component-card";
 import { Button } from "@/components/ui/button";
 import { getRegistryItem, getRegistryItems } from "@/lib/registry";
 import { getPrompt } from "@/lib/utils";
