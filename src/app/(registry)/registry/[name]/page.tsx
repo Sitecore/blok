@@ -3,7 +3,9 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 
 import { ComponentCard } from "@/components/docsite/component-card";
+import { RightSidebar } from "@/components/docsite/right-sidebar";
 import { Button } from "@/components/ui/button";
+import { getRightSidebarMetadata } from "@/lib/right-sidebar-metadata";
 import { getRegistryItem, getRegistryItems } from "@/lib/registry";
 import { getPrompt } from "@/lib/utils";
 
@@ -27,26 +29,39 @@ export default async function RegistryItemPage({
     notFound();
   }
 
+  // Get component-specific metadata for sidebar
+  const metadata = getRightSidebarMetadata(name);
+
   return (
-    <div className="container p-5 md:p-10">
-      <div className="mb-6 flex flex-wrap gap-4 items-center justify-between">
-        <div>
-          <Button variant="ghost" size="sm" asChild className="mb-4">
-            <Link href="/">
-              <ArrowLeft className="mr-2 size-4" />
-              Back to Home
-            </Link>
-          </Button>
-          <h2 className="font-bold text-3xl tracking-tight">
-            {component.title}
-          </h2>
+    <div className="flex w-full">
+      <div className="flex-1 min-w-0">
+        <div className="container p-5 md:p-10">
+          <div className="mb-6 flex flex-wrap gap-4 items-center justify-between">
+            <div>
+              <Button variant="ghost" size="sm" asChild className="mb-4">
+                <Link href="/">
+                  <ArrowLeft className="mr-2 size-4" />
+                  Back to Home
+                </Link>
+              </Button>
+              <h2 className="font-bold text-3xl tracking-tight">
+                {component.title}
+              </h2>
+            </div>
+          </div>
+          
+
+          <ComponentCard
+            component={component}
+            baseUrl={process.env.NEXT_PUBLIC_REGISTRY_URL ?? ""}
+            prompt={getPrompt()}
+          />
         </div>
       </div>
-
-      <ComponentCard
-        component={component}
-        baseUrl={process.env.NEXT_PUBLIC_REGISTRY_URL ?? ""}
-        prompt={getPrompt()}
+      
+      <RightSidebar
+        links={metadata.links}
+        sections={metadata.sections}
       />
     </div>
   );
