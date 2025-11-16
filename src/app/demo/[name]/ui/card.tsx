@@ -6,6 +6,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { BriefsTrackerCard } from "./briefs-tracker-card";
 
 export const card = {
   name: "card",
@@ -177,5 +178,6 @@ export const card = {
         </CardFooter>
       </Card>
     ),
+    StyledCard: <BriefsTrackerCard />
   },
 };
