@@ -14,7 +14,7 @@ const navigationItems: StackNavigationElement[] = [
     icon: <Icon path={mdiHome} />,
   },
   {
-    name: "Dashboard",
+    name: "User Management",
     path: "/dashboard",
     icon: <Icon path={mdiViewDashboard} />,
   },
@@ -33,11 +33,15 @@ const navigationItems: StackNavigationElement[] = [
 const StackNavigationExample = () => {
 
   return (
-    <div>
+    <div className="flex flex-col gap-10">
       <StackNavigation
         items={navigationItems}
         footer={<>V1.0</>}
-        className="h-[50vh]"
+        orientation="horizontal"
+      />
+       <StackNavigation
+        items={navigationItems}
+        footer={<>V1.0</>}
       />
     </div>
   );
