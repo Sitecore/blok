@@ -25,7 +25,7 @@ export function ComponentGrid({
 }: ComponentGridProps) {
   return (
     <div
-      className={`grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 ${
+      className={`grid grid-cols-1 sm:grid-cols-[repeat(auto-fill,minmax(224px,224px))] gap-y-6 gap-x-6 justify-items-start ${
         className || ""
       }`}
     >
