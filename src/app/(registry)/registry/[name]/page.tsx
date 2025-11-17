@@ -33,20 +33,22 @@ export default async function RegistryItemPage({
   const metadata = getRightSidebarMetadata(name);
 
   return (
-    <div className="container p-5 md:p-10">
-      <div className="mb-6 flex flex-wrap gap-4 items-center justify-between">
-        <div>
-          <Button variant="ghost" size="sm" asChild className="mb-4">
-            <Link href="/">
-              <ArrowLeft className="mr-2 size-4" />
-              Back to Home
-            </Link>
-          </Button>
-          <h2 className="font-bold text-3xl tracking-tight break-words">
-            {component.title}
-          </h2>
-        </div>
-      </div>
+    <div className="flex w-full">
+      <div className="flex-1 min-w-0">
+        <div className="container p-5 md:p-10">
+          <div className="mb-6 flex flex-wrap gap-4 items-center justify-between">
+            <div>
+              <Button variant="ghost" size="sm" asChild className="mb-4">
+                <Link href="/">
+                  <ArrowLeft className="mr-2 size-4" />
+                  Back to Home
+                </Link>
+              </Button>
+              <h2 className="font-bold text-3xl tracking-tight">
+                {component.title}
+              </h2>
+            </div>
+          </div>
 
           <ComponentCard
             component={component}
@@ -55,11 +57,8 @@ export default async function RegistryItemPage({
           />
         </div>
       </div>
-      
-      <RightSidebar
-        links={metadata.links}
-        sections={metadata.sections}
-      />
+
+      <RightSidebar links={metadata.links} sections={metadata.sections} />
     </div>
   );
 }
