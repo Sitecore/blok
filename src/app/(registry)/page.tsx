@@ -172,7 +172,7 @@ export default function Home() {
             Run the shadcn/ui initialization command in your project's root
             folder:
           </p>
-          <Codeblocks code="npx shadcn@latest init" showLineNumbers={false} />
+          <Codeblocks code="npx shadcn@latest init" showLineNumbers={false} bgColor="bg-body-bg" />
           <p>
             During initialization, choose a base color when prompted. The CLI
             will then:
@@ -207,6 +207,7 @@ export default function Home() {
             You can now start adding the Blok components to your project.
           </p>
           <Codeblocks
+            bgColor="bg-body-bg"
             code={`npx shadcn@latest add https://${process.env.NEXT_PUBLIC_REGISTRY_URL}/r/button.json`}
             showLineNumbers={false}
           />
@@ -220,6 +221,7 @@ export default function Home() {
                 <Codeblocks
                   code={`npx shadcn@latest add https://${process.env.NEXT_PUBLIC_REGISTRY_URL}/r/blok-components.json`}
                   showLineNumbers={false}
+                  bgColor="bg-body-bg"
                 />
               </div>
               <p className="max-w-full">
@@ -252,6 +254,7 @@ export default function Home() {
             alias:
           </p>
           <Codeblocks
+            bgColor="bg-body-bg"
             code={`import { Button } from "@/components/ui/button"
 
 export default function MyComponent() {
@@ -273,7 +276,7 @@ export default function MyComponent() {
             Step 4: Run your application
           </h2>
           <p>Start the development server:</p>
-          <Codeblocks code="npm run dev" showLineNumbers={false} />
+          <Codeblocks code="npm run dev" showLineNumbers={false} bgColor="bg-body-bg" />
           <p className="text-muted-foreground">
             Your application is now running with functional BlokCN components.
           </p>

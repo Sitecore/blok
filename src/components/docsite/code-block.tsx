@@ -14,9 +14,10 @@ export async function copyToClipboard(value: string) {
 export interface CodeblocksProps {
   code: string;
   showLineNumbers?: boolean;
+  bgColor?: string;
 }
 
-export function Codeblocks({ code, showLineNumbers = true }: CodeblocksProps) {
+export function Codeblocks({ code, showLineNumbers = true, bgColor = "bg-subtle-bg" }: CodeblocksProps) {
   const [hasCopied, setHasCopied] = useState(false);
 
   const codeLines = code.split("\n");
@@ -54,7 +55,7 @@ export function Codeblocks({ code, showLineNumbers = true }: CodeblocksProps) {
         </Button>
       </div>
 
-      <div className="mt-16 sm:mt-0 flex rounded-lg border bg-subtle-bg">
+      <div className={`mt-16 sm:mt-0 flex rounded-lg border ${bgColor}`}>
         {showLineNumbers && (
           <div className="flex flex-col items-center justify-start py-2 px-2 text-sm text-muted-foreground gap-y-1">
             {codeLines.map((_, index) => (
