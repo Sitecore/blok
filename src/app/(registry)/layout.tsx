@@ -24,7 +24,7 @@ export default function RegistryLayout({
             <RegistrySidebar />
             <SidebarInset className="flex flex-col">
               <MobileSidebarTrigger />
-              <main id="main-content" className="flex flex-1 w-full justify-center bg-sidebar">{children}</main>
+              <main id="main-content" className="flex flex-1 w-full justify-center">{children}</main>
             </SidebarInset>
           </SidebarProvider>
         </div>
