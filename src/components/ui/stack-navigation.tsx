@@ -26,14 +26,9 @@ export interface StackNavigationProps {
   width?: string;
   header?: ReactNode;
   footer?: ReactNode;
-  orientation?: "vertical" | "horizontal"; // NEW
+  orientation?: "vertical" | "horizontal";
 }
 
-/* ------------------------------------------------
-   Default item (Vertical untouched, Horizontal added)
-   Note: horizontal item size is compact so it won't
-   force the bar height.
--------------------------------------------------- */
 function DefaultNavItem({
   item,
   orientation = "vertical",
@@ -49,14 +44,14 @@ function DefaultNavItem({
   return (
     <div
       className={cn(
-        // --------- VERTICAL (UNCHANGED) ---------
+        // ---------VERTICAL--------------
         !isHorizontal &&
           cn(
             "flex flex-col items-center justify-center overflow-hidden",
-            "w-14 h-14 min-w-14 min-h-14",
+            "h-14 min-w-14 min-h-14",
             "p-1.5 gap-1",
             "rounded-md transition-colors",
-            "text-md text-neutral-fg font-normal",
+            "text-3xs text-neutral-fg font-normal",
             "hover:bg-sidebar-accent cursor-pointer",
             "relative opacity-100",
             isActive &&
@@ -64,13 +59,11 @@ function DefaultNavItem({
             item.className
           ),
 
-        // --------- HORIZONTAL (ADDED) ---------
-        // Note: item itself does NOT have a large fixed height
-        // so it won't force the container height.
+        // --------- HORIZONTAL ---------
         isHorizontal &&
           cn(
             "flex flex-col items-center justify-center",
-            "min-w-14 w-fit h-14 p-2 gap-1 rounded-md cursor-pointer overflow-hidden",
+            "min-w-14 w-fit h-14 p-1.5 gap-1 rounded-md cursor-pointer overflow-hidden",
             "text-neutral-fg hover:bg-sidebar-accent transition-colors",
             isActive &&
               "bg-primary-bg text-primary-fg hover:bg-primary-bg hover:text-primary-fg font-semibold",
@@ -84,7 +77,6 @@ function DefaultNavItem({
         aria-hidden="true"
         className={cn(
           "shrink-0 flex items-center justify-center",
-          // keep icon size same as vertical
           "w-[22px] h-[22px]"
         )}
       >
@@ -94,18 +86,15 @@ function DefaultNavItem({
       {/* Text below icon */}
       <span
         className={cn(
-          // unchanged vertical text style
           !isHorizontal &&
-            "text-center overflow-hidden text-ellipsis whitespace-nowrap w-full block text-sm leading-[150%] tracking-normal",
-          // horizontal text is smaller and centered below icon
-          isHorizontal && "text-xs text-center whitespace-nowrap leading-tight"
+            "text-3xs text-center overflow-hidden text-ellipsis whitespace-nowrap w-full block leading-[150%] tracking-normal",
+          isHorizontal && "text-3xs text-center whitespace-nowrap leading-tight"
         )}
         title={item.name}
       >
         {item.name}
       </span>
 
-      {/* Badge: keep only for vertical so it doesn't overlap horizontal layout */}
       {!isHorizontal && item.badge && (
         <div className="absolute top-1 right-1">{item.badge}</div>
       )}
@@ -113,9 +102,6 @@ function DefaultNavItem({
   );
 }
 
-/* ------------------------------------------------
-   Divider
--------------------------------------------------- */
 function DefaultDivider({
   divider,
   orientation = "vertical",
@@ -127,16 +113,9 @@ function DefaultDivider({
     return <div className={cn("w-px h-6 bg-border opacity-100", divider.className)} />;
   }
 
-  // Vertical (unchanged)
   return <div className={cn("w-14 h-px opacity-100 bg-border", divider.className)} />;
 }
 
-/* ------------------------------------------------
-   MAIN COMPONENT
-   - Horizontal container uses a fixed height h-[120px]
-     (arbitrary value). Change `120px` to whatever you
-     want. Using Tailwind arbitrary value ensures it works.
--------------------------------------------------- */
 export function StackNavigation({
   items,
   renderItem,
@@ -153,43 +132,35 @@ export function StackNavigation({
   return (
     <aside
       className={cn(
-        // VERTICAL ORIGINAL (unchanged)
         !isHorizontal &&
           cn(
             width,
-            "bg-sidebar text-sidebar-foreground min-h-full flex flex-col opacity-100",
+            "bg-sidebar p-1.5 text-sidebar-foreground min-h-full flex flex-col opacity-100",
             className
           ),
-
-        // HORIZONTAL NEW:
-        // Use an explicit arbitrary height value (120px) so it definitely applies.
-        // The bar is a horizontal scrollable container; items are centered vertically.
         isHorizontal &&
           cn(
-            "w-full h-20 bg-sidebar text-sidebar-foreground",
-            "flex flex-row items-center px-2 overflow-x-auto",
+            "w-full p-1.5 bg-sidebar text-sidebar-foreground",
+            "flex flex-row items-center p-1.5 overflow-x-auto",
             className
           )
       )}
     >
-      {/* Header only for vertical - unchanged */}
+      {/* HEADER */}
       {!isHorizontal && header && (
         <div className="shrink-0 flex w-full justify-center">{header}</div>
       )}
 
       <div
         className={cn(
-          // vertical: original scroll behavior
-          !isHorizontal && "py-6 px-2 flex-1 overflow-auto",
-          // horizontal: let nav be horizontally scrollable; vertically centered
+          !isHorizontal && " flex-1 overflow-auto",
           isHorizontal && "flex-1 overflow-x-auto"
         )}
       >
         <nav
           className={cn(
             !isHorizontal && "flex flex-col gap-1",
-            // horizontal: row, centered vertically inside the fixed-height bar
-            isHorizontal && "flex flex-row items-center justify-center gap-3 h-full",
+            isHorizontal && "flex flex-row items-center justify-center gap-1 h-full",
             navClassName
           )}
         >
@@ -222,7 +193,7 @@ export function StackNavigation({
 
       {/* Footer only for vertical */}
       {!isHorizontal && footer && (
-        <div className="shrink-0 flex justify-center overflow-hidden mx-2 py-2 text-xs text-neutral-fg">
+        <div className="shrink-0 flex justify-center overflow-hidden mx-2 py-1.5 text-3xs text-neutral-fg">
           {footer}
         </div>
       )}

@@ -5,28 +5,33 @@ import {
   StackNavigationElement
 } from "@/components/ui/stack-navigation";
 import { Icon } from "@/lib/icon";
-import { mdiAccount, mdiCog, mdiHome, mdiViewDashboard } from "@mdi/js";
+import { mdiAccount, mdiAccountMultipleOutline, mdiArchiveOutline, mdiCog, mdiCogOutline, mdiFileOutline, mdiHome, mdiHomeVariantOutline, mdiViewDashboard } from "@mdi/js";
 
 const navigationItems: StackNavigationElement[] = [
   {
     name: "Home",
     path: "/demo/stack-navigation",
-    icon: <Icon path={mdiHome} />,
+    icon: <Icon path={mdiHomeVariantOutline} />,
   },
   {
-    name: "User Management",
-    path: "/dashboard",
-    icon: <Icon path={mdiViewDashboard} />,
+    name: "User management",
+    path: "/user",
+    icon: <Icon path={mdiAccountMultipleOutline} />,
   },
   {
-    name: "Account",
-    path: "/account",
-    icon: <Icon path={mdiAccount} />,
+    name: "Documents",
+    path: "/documents",
+    icon: <Icon path={mdiFileOutline} />,
+  },
+  {
+    name: "Archive",
+    path: "/archive",
+    icon: <Icon path={mdiArchiveOutline} />,
   },
   {
     name: "Settings",
     path: "/settings",
-    icon: <Icon path={mdiCog} />,
+    icon: <Icon path={mdiCogOutline} />,
   },
 ];
 
@@ -42,6 +47,7 @@ const StackNavigationExample = () => {
        <StackNavigation
         items={navigationItems}
         footer={<>V1.0</>}
+        className="h-[50vh]"
       />
     </div>
   );
