@@ -5,88 +5,95 @@ import { mdiClose } from "@mdi/js"
 
 export const badge = {
   name: "badge",
+  defaultComponent: (
+    <Badge>Badge</Badge>
+  ),
+  usage: [
+    `import { Badge } from "@/components/ui/badge"`,
+    `<Badge>Badge</Badge>`
+  ],
   components: {
     // Sizes
-    SizeSm: <Badge size="sm">Size sm</Badge>,
-    SizeMd: <Badge size="md">Size md</Badge>,
-    SizeLg: <Badge size="lg">Size lg</Badge>,
+    "Size Small": <Badge size="sm">Size sm</Badge>,
+    "Size Medium": <Badge size="md">Size md</Badge>,
+    "Size Large": <Badge size="lg">Size lg</Badge>,
 
     // Default (neutral + colorSchemes)
-    DefaultNeutral: <Badge>Default Neutral</Badge>,
-    DefaultPrimary: <Badge colorScheme="primary">Default Primary</Badge>,
-    DefaultDanger: <Badge colorScheme="danger">Default Danger</Badge>,
-    DefaultSuccess: <Badge colorScheme="success">Default Success</Badge>,
-    DefaultWarning: <Badge colorScheme="warning">Default Warning</Badge>,
-    DefaultYellow: <Badge colorScheme="yellow">Default Yellow</Badge>,
-    DefaultTeal: <Badge colorScheme="teal">Default Teal</Badge>,
-    DefaultCyan: <Badge colorScheme="cyan">Default Cyan</Badge>,
-    DefaultBlue: <Badge colorScheme="blue">Default Blue</Badge>,
-    DefaultPink: <Badge colorScheme="pink">Default Pink</Badge>,
+    "Default Neutral": <Badge>Default Neutral</Badge>,
+    "Default Primary": <Badge colorScheme="primary">Default Primary</Badge>,
+    "Default Danger": <Badge colorScheme="danger">Default Danger</Badge>,
+    "Default Success": <Badge colorScheme="success">Default Success</Badge>,
+    "Default Warning": <Badge colorScheme="warning">Default Warning</Badge>,
+    "Default Yellow": <Badge colorScheme="yellow">Default Yellow</Badge>,
+    "Default Teal": <Badge colorScheme="teal">Default Teal</Badge>,
+    "Default Cyan": <Badge colorScheme="cyan">Default Cyan</Badge>,
+    "Default Blue": <Badge colorScheme="blue">Default Blue</Badge>,
+    "Default Pink": <Badge colorScheme="pink">Default Pink</Badge>,
 
     // Bold variants
-    BoldNeutral: <Badge variant="bold">Bold Neutral</Badge>,
-    BoldPrimary: (
+    "Bold Neutral": <Badge variant="bold">Bold Neutral</Badge>,
+    "Bold Primary": (
       <Badge variant="bold" colorScheme="primary">
         Bold Primary
       </Badge>
     ),
-    BoldDanger: (
+    "Bold Danger": (
       <Badge variant="bold" colorScheme="danger">
         Bold Danger
       </Badge>
     ),
-    BoldSuccess: (
+    "Bold Success": (
       <Badge variant="bold" colorScheme="success">
         Bold Success
       </Badge>
     ),
-    BoldWarning: (
+    "Bold Warning": (
       <Badge variant="bold" colorScheme="warning">
         Bold Warning
       </Badge>
     ),
-    BoldYellow: (
+    "Bold Yellow": (
       <Badge variant="bold" colorScheme="yellow">
         Bold Yellow
       </Badge>
     ),
-    BoldTeal: (
+    "Bold Teal": (
       <Badge variant="bold" colorScheme="teal">
         Bold Teal
       </Badge>
     ),
-    BoldCyan: (
+    "Bold Cyan": (
       <Badge variant="bold" colorScheme="cyan">
         Bold Cyan
       </Badge>
     ),
-    BoldBlue: (
+    "Bold Blue": (
       <Badge variant="bold" colorScheme="blue">
         Bold Blue
       </Badge>
     ),
-    BoldPink: (
+    "Bold Pink": (
       <Badge variant="bold" colorScheme="pink">
         Bold Pink
       </Badge>
     ),
 
     // Default links
-    DefaultLink: (
+    "Default Link": (
       <Badge asChild>
         <a href="#">
           Default Link <ArrowRightIcon className="size-3" />
         </a>
       </Badge>
     ),
-    DefaultLinkPrimary: (
+    "Default Link Primary": (
       <Badge asChild colorScheme="primary">
         <a href="#">
           Default Link <ArrowRightIcon className="size-3" />
         </a>
       </Badge>
     ),
-    DefaultLinkDanger: (
+    "Default Link Danger": (
       <Badge asChild colorScheme="danger">
         <a href="#">
           Default Link <ArrowRightIcon className="size-3" />
@@ -95,21 +102,21 @@ export const badge = {
     ),
 
     // Bold links
-    BoldLink: (
+    "Bold Link": (
       <Badge asChild variant="bold">
         <a href="#">
           Bold Link <ArrowRightIcon className="size-3" />
         </a>
       </Badge>
     ),
-    BoldLinkPrimary: (
+    "Bold Link Primary": (
       <Badge asChild variant="bold" colorScheme="primary">
         <a href="#">
           Bold Link <ArrowRightIcon className="size-3" />
         </a>
       </Badge>
     ),
-    BoldLinkDanger: (
+    "Bold Link Danger": (
       <Badge asChild variant="bold" colorScheme="danger">
         <a href="#">
           Bold Link <ArrowRightIcon className="size-3" />
@@ -118,61 +125,61 @@ export const badge = {
     ),
 
     // Closable badges
-    ClosableNeutral: (
+    "Closable Neutral": (
       <Badge>
         Closable Neutral <Icon path={mdiClose} className="size-3" />
       </Badge>
     ),
-    ClosablePrimary: (
+    "Closable Primary": (
       <Badge colorScheme="primary">
         Closable Primary <Icon path={mdiClose} className="size-3" />
       </Badge>
     ),
-    ClosableDanger: (
+    "Closable Danger": (
       <Badge colorScheme="danger">
         Closable Danger <Icon path={mdiClose} className="size-3" />
       </Badge>
     ),
-    ClosableSuccess: (
+    "Closable Success": (
       <Badge colorScheme="success">
         Closable Success <Icon path={mdiClose} className="size-3" />
       </Badge>
     ),
-    ClosableWarning: (
+    "Closable Warning": (
       <Badge colorScheme="warning">
         Closable Warning <Icon path={mdiClose} className="size-3" />
       </Badge>
     ),
 
     // Closable bold badges
-    ClosableBoldNeutral: (
+    "Closable Bold Neutral": (
       <Badge variant="bold">
         Closable Bold <Icon path={mdiClose} className="size-3" />
       </Badge>
     ),
-    ClosableBoldPrimary: (
+    "Closable Bold Primary": (
       <Badge variant="bold" colorScheme="primary">
         Closable Bold Primary <Icon path={mdiClose} className="size-3" />
       </Badge>
     ),
-    ClosableBoldDanger: (
+    "Closable Bold Danger": (
       <Badge variant="bold" colorScheme="danger">
         Closable Bold Danger <Icon path={mdiClose} className="size-3" />
       </Badge>
     ),
 
     // Closable with different sizes
-    ClosableSmall: (
+    "Closable Small": (
       <Badge size="sm" colorScheme="blue">
         Small <Icon path={mdiClose} className="size-3" />
       </Badge>
     ),
-    ClosableMedium: (
+    "Closable Medium": (
       <Badge size="md" colorScheme="teal">
         Medium <Icon path={mdiClose} className="size-3" />
       </Badge>
     ),
-    ClosableLarge: (
+    "Closable Large": (
       <Badge size="lg" colorScheme="pink">
         Large <Icon path={mdiClose} className="size-3" />
       </Badge>
