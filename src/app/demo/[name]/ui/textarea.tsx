@@ -3,15 +3,17 @@ import { Textarea } from "@/components/ui/textarea";
 
 export const textarea = {
   name: "textarea",
-  components: {
-    // Basic textarea
-    Basic: (
-      <div className="grid gap-2 m-2">
-        <Label htmlFor="basic-textarea">Message</Label>
-        <Textarea id="basic-textarea" aria-label="Message" placeholder="Type your message here." />
-      </div>
-    ),
-    
+  defaultComponent: (
+    <div className="grid gap-2 m-2">
+      <Label htmlFor="basic-textarea">Message</Label>
+      <Textarea id="basic-textarea" aria-label="Message" placeholder="Type your message here." />
+    </div>
+  ),
+  usage: [
+    `import { Textarea } from "@/components/ui/textarea";`,
+    `<Textarea />`,
+  ],
+  components: {    
     // Invalid state
     Invalid: (
       <div className="grid gap-2 m-2">
@@ -21,7 +23,7 @@ export const textarea = {
     ),
     
     // With label
-    WithLabel: (
+    "With Label": (
       <div className="grid gap-3 m-2">
         <Label htmlFor="textarea-demo-message">Message</Label>
         <Textarea
@@ -34,7 +36,7 @@ export const textarea = {
     ),
     
     // With label and description
-    WithLabelAndDescription: (
+    "With Label and Description": (
       <div className="grid gap-3 m-2">
         <Label htmlFor="textarea-demo-message-2">
           Message
@@ -93,7 +95,7 @@ export const textarea = {
     ),
     
     // With default value
-    WithDefaultValue: (
+    "With Default Value": (
       <div className="grid gap-3 m-2">
         <Label htmlFor="textarea-with-value">Pre-filled Textarea</Label>
         <Textarea
