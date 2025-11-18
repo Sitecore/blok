@@ -92,7 +92,7 @@ export function RegistrySidebar() {
       collapsible="icon" 
       className="[&>div[data-slot='sidebar-inner']]:bg-subtle-bg [&>div[data-mobile='true']]:bg-subtle-bg"
     >
-      <SidebarHeader className="mb-2 pt-5">
+      <SidebarHeader className="mb-3 pt-5">
         <div className="flex items-center justify-between px-2 py-2">
 
           <Button
