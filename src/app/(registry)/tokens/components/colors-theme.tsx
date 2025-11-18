@@ -39,19 +39,28 @@ const ColorsDemo = ({ content }: Props) => {
   }, [content]);
 
   // Filter to only show base color tokens
-  // Base colors: Direct color values (hex, rgba, etc.) - NOT var() references
+  // Base colors: Direct color values (hex, rgba, rgb, transparent) - NOT var() references
   const allKeys = Object.keys(defaultColors)
     .filter((key) => {
       const value = defaultColors[key];
       
       // Only include base colors:
       // 1. Must start with "color-"
-      // 2. Value must NOT be a var() reference (direct color values only)
-      // 3. Must be <= "yellow-900" (for display limit)
+      // 2. Value must be a direct color value:
+      //    - Hex colors (starts with #)
+      //    - rgba/rgb colors (starts with rgba( or rgb()
+      //    - transparent
+      const trimmedValue = value.trim();
+      const isDirectColor = 
+        trimmedValue.startsWith("#") ||
+        trimmedValue.startsWith("rgba(") ||
+        trimmedValue.startsWith("rgb(") ||
+        trimmedValue === "transparent";
+      
       return (
         key.startsWith("color-") &&
-        !value.startsWith("var(") &&
-        key <= "color-yellow-900"
+        isDirectColor &&
+        !trimmedValue.startsWith("var(")
       );
     });
 
