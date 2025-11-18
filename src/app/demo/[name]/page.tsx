@@ -41,7 +41,7 @@ export default async function DemoPage({
       <div className="flex min-h-[100vh] w-full flex-col gap-12 bg-body-bg">
         <div className="flex flex-col">
           {/* <DemoTab code={demoCodes.default} component={componentDemo(defaultComponent)} /> */}
-          <div className="relative rounded-lg overflow-hidden">
+          <div className="relative rounded-lg overflow-hidden min-h-[200px] py-8 bg-subtle-bg flex items-center justify-center">
             <Renderer>{defaultComponent}</Renderer>
           </div>
         </div>
@@ -74,7 +74,7 @@ export default async function DemoPage({
                     code={demoCodes[key]} 
                     component={componentDemo(node)} 
                   /> */}
-                  <div className="relative rounded-lg overflow-hidden">
+                  <div className="relative rounded-lg overflow-hidden min-h-[200px] py-8 bg-subtle-bg flex items-center justify-center">
                     <Renderer>{node}</Renderer>
                   </div>
                 </div>
