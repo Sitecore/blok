@@ -31,7 +31,7 @@ export default function RegistryLayout({
             
             <SidebarInset className="flex flex-col">
               <MobileSidebarTrigger />
-              <main id="main-content" className="flex flex-1 w-full justify-center xl:pr-[250px]">
+              <main id="main-content" className="flex flex-1 w-full justify-center">
                 {children}
               </main>
               <DynamicRightSidebar />
