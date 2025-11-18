@@ -6,7 +6,7 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useMemo } from "react";
+import React, { useMemo } from "react";
 
 import { RegistryLogo } from "@/components/docsite/registry-logo";
 import { Button } from "@/components/ui/button";
@@ -25,6 +25,9 @@ import { themingItems, graphicsItems } from "@/config/nav";
 
 const componentItems = getComponents();
 const blockItems = getBlocks();
+
+// Sidebar width configuration
+export const REGISTRY_SIDEBAR_WIDTH = "13rem";
 
 export function MobileSidebarTrigger() {
   const pathname = usePathname();
@@ -85,7 +88,10 @@ export function RegistrySidebar() {
   }
 
   return (
-    <Sidebar collapsible="icon" className="[&>div[data-slot='sidebar-inner']]:bg-subtle-bg [&>div[data-mobile='true']]:bg-subtle-bg">
+    <Sidebar 
+      collapsible="icon" 
+      className="[&>div[data-slot='sidebar-inner']]:bg-subtle-bg [&>div[data-mobile='true']]:bg-subtle-bg"
+    >
       <SidebarHeader className="mb-2 pt-5">
         <div className="flex items-center justify-between px-2 py-2">
 
