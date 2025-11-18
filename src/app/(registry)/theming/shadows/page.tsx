@@ -1,9 +1,5 @@
-import { RightSidebar } from "@/components/layout/right-sidebar";
-import { getRightSidebarMetadata } from "@/lib/right-sidebar-metadata";
 
 export default function ShadowsPage() {
-  const metadata = getRightSidebarMetadata("theming-shadows");
-
   return (
     <div className="flex w-full">
       <div className="flex-1 min-w-0">
@@ -13,11 +9,6 @@ export default function ShadowsPage() {
           </div>
         </div>
       </div>
-      
-      <RightSidebar
-        sections={metadata.sections}
-        links={metadata.links}
-      />
     </div>
   );
 }

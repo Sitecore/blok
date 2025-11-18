@@ -3,9 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 
 import { ComponentCard } from "@/components/docsite/component-card";
-import { RightSidebar } from "@/components/layout/right-sidebar";
 import { Button } from "@/components/ui/button";
-import { getRightSidebarMetadata } from "@/lib/right-sidebar-metadata";
 import { getRegistryItem, getRegistryItems } from "@/lib/registry";
 import { getPrompt } from "@/lib/utils";
 
@@ -28,9 +26,6 @@ export default async function RegistryItemPage({
   if (!component) {
     notFound();
   }
-
-  // Get component-specific metadata for sidebar
-  const metadata = getRightSidebarMetadata(name);
 
   return (
     <div className="flex w-full">
@@ -57,8 +52,6 @@ export default async function RegistryItemPage({
           />
         </div>
       </div>
-
-      <RightSidebar links={metadata.links} sections={metadata.sections} />
     </div>
   );
 }

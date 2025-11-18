@@ -1,8 +1,5 @@
-import { RightSidebar } from "@/components/layout/right-sidebar";
-import { getRightSidebarMetadata } from "@/lib/right-sidebar-metadata";
 
 export default function EmptyStatesPage() {
-  const metadata = getRightSidebarMetadata("graphics-empty-states");
 
   return (
     <div className="flex w-full">
@@ -13,11 +10,6 @@ export default function EmptyStatesPage() {
           </div>
         </div>
       </div>
-      
-      <RightSidebar
-        sections={metadata.sections}
-        links={metadata.links}
-      />
     </div>
   );
 }

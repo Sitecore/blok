@@ -7,6 +7,7 @@ import {
 } from "@/components/layout/registry-sidebar";
 import { Toaster } from "@/components/ui/sonner";
 import TopBar from "@/components/layout/topbar";
+import { DynamicRightSidebar } from "@/components/layout/dynamic-right-sidebar";
 
 export default function RegistryLayout({
   children,
@@ -24,7 +25,10 @@ export default function RegistryLayout({
             <RegistrySidebar />
             <SidebarInset className="flex flex-col">
               <MobileSidebarTrigger />
-              <main id="main-content" className="flex flex-1 w-full justify-center">{children}</main>
+              <main id="main-content" className="flex flex-1 w-full justify-center xl:pr-[250px]">
+                {children}
+              </main>
+              <DynamicRightSidebar />
             </SidebarInset>
           </SidebarProvider>
         </div>
