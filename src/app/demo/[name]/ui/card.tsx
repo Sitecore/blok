@@ -24,7 +24,7 @@ export const card = {
   ),
   usage: [
     `import {\n  Card,\n  CardContent,\n  CardDescription,\n  CardFooter,\n  CardHeader,\n  CardTitle,\n} from "@/components/ui/card"`,
-    `<Card style="flat" elevation="none" padding="lg" className="w-[400px]">\n  <CardHeader>\n    <CardTitle>Default Card</CardTitle>\n    <CardDescription>Style: flat, Elevation: none</CardDescription>\n  </CardHeader>\n  <CardContent>\n  </CardContent>\n  <CardFooter>\n  </CardFooter>\n</Card>`
+    `<Card>\n  <CardHeader>\n    <CardTitle>Card Title</CardTitle>\n    <CardDescription>Card Description</CardDescription>\n  </CardHeader>\n  <CardContent>\n    <p>Card Content</p>\n  </CardContent>\n  <CardFooter>\n    <p>Card Footer</p>\n  </CardFooter>\n</Card>`
   ],
   components: {
     // Elevation Variants
