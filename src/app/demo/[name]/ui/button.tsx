@@ -4,7 +4,7 @@ import { Icon } from "@/lib/icon";
 
 export const button = {
   name: "button",
-  defaultComponent: (<Button variant="default">Default</Button>),
+  defaultComponent: (<Button variant="default">Click me</Button>),
   usage: [
     `import { Button } from "@/components/ui/button"`,
     `<Button variant=’default’ colorScheme=’default’ size=’default’>Click me</Button>`
