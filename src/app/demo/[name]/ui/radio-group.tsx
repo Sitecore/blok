@@ -19,22 +19,24 @@ const plans = [
 
 export const radioGroup = {
   name: "radio-group",
-  components: {
-    Default: (
-      <RadioGroup defaultValue="comfortable">
-        <div className="flex items-center gap-3">
-          <RadioGroupItem value="default" id="r1" aria-label="Default option" />
-          <Label htmlFor="r1">Admin</Label>
-        </div>
-        <div className="flex items-center gap-3">
-          <RadioGroupItem value="comfortable" id="r2" aria-label="Comfortable option" />
-          <Label htmlFor="r2">Write</Label>
-        </div>
-        <div className="flex items-center gap-3">
-          <RadioGroupItem value="compact" id="r3" aria-label="Compact option" />
-          <Label htmlFor="r3">Read</Label>
-        </div>
-      </RadioGroup>
-    )
-  },
+  defaultComponent: (
+    <RadioGroup defaultValue="comfortable">
+      <div className="flex items-center gap-3">
+        <RadioGroupItem value="default" id="r1" aria-label="Default option" />
+        <Label htmlFor="r1">Admin</Label>
+      </div>
+      <div className="flex items-center gap-3">
+        <RadioGroupItem value="comfortable" id="r2" aria-label="Comfortable option" />
+        <Label htmlFor="r2">Write</Label>
+      </div>
+      <div className="flex items-center gap-3">
+        <RadioGroupItem value="compact" id="r3" aria-label="Compact option" />
+        <Label htmlFor="r3">Read</Label>
+      </div>
+    </RadioGroup>
+  ),
+  usage: [
+    `import {\n  RadioGroup,\n  RadioGroupItem,\n} from "@/components/ui/radio-group";`,
+    `<RadioGroup defaultValue="comfortable">\n <div className="flex items-center gap-3">\n  <RadioGroupItem value="default" id="r1" aria-label="Default option" />\n  <Label htmlFor="r1">Admin</Label>\n </div>\n</RadioGroup>`,
+  ],
 };
