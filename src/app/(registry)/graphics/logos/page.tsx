@@ -252,7 +252,6 @@ const logosData = [
 ];
 
 export default function LogosPage() {
-  const metadata = getRightSidebarMetadata("graphics-logos");
 
   return (
     <div className="flex w-full">
@@ -388,8 +387,6 @@ export default function LogosPage() {
           </div>
         </div>
       </div>
-
-      <RightSidebar sections={metadata.sections} links={metadata.links} />
     </div>
   );
 }
