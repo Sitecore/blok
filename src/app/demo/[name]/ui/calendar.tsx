@@ -3,9 +3,15 @@ import { SingleCalendar } from "@/app/demo/[name]/ui/single-calendar";
 
 export const calendar = {
   name: "calendar",
+  defaultComponent: (
+    <SingleCalendar />
+  ),
+  usage: [
+    `import { SingleCalendar } from "@/app/demo/[name]/ui/single-calendar"`,
+    `<SingleCalendar />`
+  ],
   components: {
-    Default: <SingleCalendar />,
-    TwoMonths: <MultiCalendar numberOfMonths={2} />,
-    ThreeMonths: <MultiCalendar numberOfMonths={3} />,
+    "Two Months": <MultiCalendar numberOfMonths={2} />,
+    "Three Months": <MultiCalendar numberOfMonths={3} />,
   },
 };
