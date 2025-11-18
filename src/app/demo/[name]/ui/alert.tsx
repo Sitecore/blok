@@ -50,6 +50,6 @@ export const alert = {
       </Alert>
     ),
     Closable: <ClosableAlert variantProp="primary" />,
-    BtnLink: <ButtonLinkAlert variantProp="primary" />,
+    "With Button Link": <ButtonLinkAlert variantProp="primary" />,
   },
 };
