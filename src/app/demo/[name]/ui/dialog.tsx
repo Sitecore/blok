@@ -14,38 +14,42 @@ import { Label } from "@/components/ui/label";
 
 export const dialog = {
   name: "dialog",
-  components: {
-    Default: (
-      <Dialog>
-        <DialogTrigger asChild>
-          <Button variant="outline">Edit Profile</Button>
-        </DialogTrigger>
-        <DialogContent className="sm:max-w-[425px]">
-          <DialogHeader>
-            <DialogTitle>Edit profile</DialogTitle>
-            <DialogDescription>
-              Make changes to your profile here. Click save when you're done.
-            </DialogDescription>
-          </DialogHeader>
-          <div className="grid gap-4">
-            <div className="grid gap-3">
-              <Label htmlFor="name-1">Name</Label>
-              <Input id="name-1" name="name" defaultValue="Liz" />
-            </div>
-            <div className="grid gap-3">
-              <Label htmlFor="username-1">Username</Label>
-              <Input id="name-1" name="username" defaultValue="@liz" />
-            </div>
+  defaultComponent: (
+    <Dialog>
+      <DialogTrigger asChild>
+        <Button variant="outline">Edit Profile</Button>
+      </DialogTrigger>
+      <DialogContent className="sm:max-w-[425px]">
+        <DialogHeader>
+          <DialogTitle>Edit profile</DialogTitle>
+          <DialogDescription>
+            Make changes to your profile here. Click save when you're done.
+          </DialogDescription>
+        </DialogHeader>
+        <div className="grid gap-4">
+          <div className="grid gap-3">
+            <Label htmlFor="name-1">Name</Label>
+            <Input id="name-1" name="name" defaultValue="Liz" />
           </div>
-          <DialogFooter>
-            <DialogClose asChild>
-              <Button variant="ghost" colorScheme="neutral">Cancel</Button>
-            </DialogClose>
-            <Button type="submit">Save changes</Button>
-          </DialogFooter>
-        </DialogContent>
-      </Dialog>
-    ),
+          <div className="grid gap-3">
+            <Label htmlFor="username-1">Username</Label>
+            <Input id="name-1" name="username" defaultValue="@liz" />
+          </div>
+        </div>
+        <DialogFooter>
+          <DialogClose asChild>
+            <Button variant="ghost" colorScheme="neutral">Cancel</Button>
+          </DialogClose>
+          <Button type="submit">Save changes</Button>
+        </DialogFooter>
+      </DialogContent>
+    </Dialog>
+  ),
+  usage: [
+    `import {\n  Dialog,\n  DialogContent,\n  DialogDescription,\n  DialogFooter,\n  DialogHeader,\n  DialogTitle,\n  DialogTrigger,\n} from "@/components/ui/dialog";`,
+    `<Dialog>\n  <DialogTrigger asChild>\n    <Button variant="outline">Edit Profile</Button>\n  </DialogTrigger>\n  <DialogContent className="sm:max-w-[425px]">\n    <DialogHeader>\n      <DialogTitle>Edit profile</DialogTitle>\n      <DialogDescription>\n        Make changes to your profile here. Click save when you're done.\n      </DialogDescription>\n    </DialogHeader>\n    <div className="grid gap-4">\n      <div className="grid gap-3">\n        <Label htmlFor="name-1">Name</Label>\n        <Input id="name-1" name="name" defaultValue="Liz" />\n      </div>\n      <div className="grid gap-3">\n        <Label htmlFor="username-1">Username</Label>\n        <Input id="name-1" name="username" defaultValue="@liz" />\n      </div>\n    </div>\n    <DialogFooter>\n      <DialogClose asChild>\n        <Button variant="ghost" colorScheme="neutral">Cancel</Button>\n      </DialogClose>\n      <Button type="submit">Save changes</Button>\n    </DialogFooter>\n  </DialogContent>\n</Dialog>`,
+  ],
+  components: {
     Scrollable: (
       <Dialog>
         <DialogTrigger asChild>
@@ -77,7 +81,7 @@ export const dialog = {
         </DialogContent>
       </Dialog>
     ),
-    StickyFooter: (
+    "Sticky Footer": (
       <Dialog>
         <DialogTrigger asChild>
           <Button variant="outline">Sticky Footer</Button>
