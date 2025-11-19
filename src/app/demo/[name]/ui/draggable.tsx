@@ -8,8 +8,8 @@ export const draggable = {
     <BasicDragDrop />
   ),
   usage: [
-    `import {\n  DragDropProvider,\n  useDragDropContext,\n} from "@/components/ui/drag-drop-context";\nimport { Draggable } from "@/components/ui/draggable";\nimport { Droppable } from "@/components/ui/droppable";`,
-    `<DragDropProvider>\n  <DragDropDemo />\n</DragDropProvider>`,
+    `import { DragDropProvider } from "@/components/ui/drag-drop-context";\nimport { Draggable } from "@/components/ui/draggable";`,
+    `<DragDropProvider>\n <Draggable id="draggable-demo">\n  <div>\n   <p className="text-white">Draggable</p>\n  </div>\n </Draggable>\n</DragDropProvider>`,
   ],
   components: {
     "Basic Drag and Drop": <BasicDragDrop />,
