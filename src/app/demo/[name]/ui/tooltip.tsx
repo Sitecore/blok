@@ -21,7 +21,7 @@ export const tooltip = {
     </TooltipProvider>
   ),
   usage: [
-    `import { TooltipProvider, Tooltip, TooltipTrigger, TooltipContent } from "@/components/ui/tooltip";`,
+    `import {\n  TooltipProvider,\n  Tooltip,\n  TooltipTrigger,\n  TooltipContent\n} from "@/components/ui/tooltip";`,
     `<TooltipProvider>\n <Tooltip>\n   <TooltipTrigger asChild>\n    <Button variant="outline">Hover</Button>\n   </TooltipTrigger>\n   <TooltipContent side="bottom">Add to library</TooltipContent>\n  </Tooltip>\n</TooltipProvider>`,
   ],
 };
