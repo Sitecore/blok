@@ -7,7 +7,7 @@ type Props = {
   content: string;
 };
 
-const ColorsDemo = ({ content }: Props) => {
+const SemanticTokensDemo = ({ content }: Props) => {
   const [defaultColors, setDefaultColors] = useState<Record<string, string>>({});
   const [darkColors, setDarkColors] = useState<Record<string, string>>({});
 
@@ -38,31 +38,54 @@ const ColorsDemo = ({ content }: Props) => {
     return () => observer.disconnect();
   }, [content]);
 
-  // Filter to only show base color tokens
-  // Base colors: Direct color values (hex, rgba, rgb, transparent) - NOT var() references
-  const allKeys = Object.keys(defaultColors)
-    .filter((key) => {
-      const value = defaultColors[key];
+  // Extract semantic tokens from the @theme inline block
+  // These are tokens that start with --color- and reference other variables
+  const extractSemanticTokens = (): Record<string, string> => {
+    const lines = content.split("\n");
+    const semanticTokens: Record<string, string> = {};
+    let inThemeBlock = false;
+    
+    // Base color patterns to exclude (direct color values, not semantic)
+    const baseColorPattern = /^color-(blue|red|green|yellow|purple|pink|orange|cyan|teal|gray|blackAlpha|whiteAlpha|danger|success|warning|info|primary|neutral)-\d+$/;
+
+    for (let i = 0; i < lines.length; i++) {
+      const line = lines[i].trim();
       
-      // Only include base colors:
-      // 1. Must start with "color-"
-      // 2. Value must be a direct color value:
-      //    - Hex colors (starts with #)
-      //    - rgba/rgb colors (starts with rgba( or rgb()
-      //    - transparent
-      const trimmedValue = value.trim();
-      const isDirectColor = 
-        trimmedValue.startsWith("#") ||
-        trimmedValue.startsWith("rgba(") ||
-        trimmedValue.startsWith("rgb(") ||
-        trimmedValue === "transparent";
-      
-      return (
-        key.startsWith("color-") &&
-        isDirectColor &&
-        !trimmedValue.startsWith("var(")
-      );
-    });
+      // Check if we're entering the @theme inline block
+      if (line.includes("@theme inline")) {
+        inThemeBlock = true;
+        continue;
+      }
+
+      // Check if we're leaving a block
+      if (line === "}" || line === "};" || line.startsWith("}")) {
+        if (inThemeBlock) {
+          inThemeBlock = false;
+        }
+        continue;
+      }
+
+      // Only process lines within @theme block that start with --color-
+      if (inThemeBlock && line.startsWith("--color-") && !line.startsWith("/*")) {
+        const colonIndex = line.indexOf(":");
+        if (colonIndex > 0) {
+          const key = line.substring(0, colonIndex).trim().replace(/^--/, "");
+          const value = line.substring(colonIndex + 1).trim().replace(/;.*$/, "").trim();
+          
+          // Only include tokens that reference other variables (semantic tokens)
+          // Exclude base color tokens (those with direct hex/rgba/oklch values or numbered color tokens)
+          if (value.startsWith("var(") && !baseColorPattern.test(key)) {
+            semanticTokens[key] = value;
+          }
+        }
+      }
+    }
+
+    return semanticTokens;
+  };
+
+  const semanticTokens = extractSemanticTokens();
+  const allKeys = Object.keys(semanticTokens).sort();
 
   return (
     <div style={{ width: "100%", overflowX: "auto" }}>
@@ -79,14 +102,21 @@ const ColorsDemo = ({ content }: Props) => {
         </thead>
         <tbody>
           {allKeys.map((key) => {
-            // get the default and dark values for the display color
-            const defaultValue = defaultColors[key];
-            const darkValue = darkColors[key] || defaultValue;
+            // Get the semantic token value (which references another variable)
+            const semanticValue = semanticTokens[key];
+            
+            // Resolve the referenced variable to get the actual color value
+            // Merge defaultColors and defaultVars for resolution, same for dark
+            const allDefaultVars = { ...defaultVars, ...defaultColors };
+            const allDarkVars = { ...darkVars, ...darkColors };
+            const { light, dark } = resolveVariableValue(semanticValue, allDefaultVars, allDarkVars);
+            
+            // Get the display color based on current theme
+            const bgColor = isDarkTheme ? dark : light;
 
-            const bgColor = isDarkTheme ? darkValue : defaultValue;
-
-            // resolve the variable values
-            const { light, dark } = resolveVariableValue(defaultValue, defaultVars, darkVars);
+            // Format the value for display
+            const formattedLight = formatColorValue(light);
+            const formattedDark = formatColorValue(dark);
 
             return (
               <tr key={key} style={{ borderBottom: "1px solid #eee" }}>
@@ -111,7 +141,7 @@ const ColorsDemo = ({ content }: Props) => {
                     }}
                     className="text-muted-foreground"
                   >
-                    {formatColorValue(light)}
+                    {formattedLight}
                   </span>
                 </td>
                 <td style={{ padding: "0.8rem" }}>
@@ -122,7 +152,7 @@ const ColorsDemo = ({ content }: Props) => {
                     }}
                     className="text-muted-foreground"
                   >
-                    {formatColorValue(dark)}
+                    {formattedDark}
                   </span>
                 </td>
               </tr>
@@ -134,4 +164,5 @@ const ColorsDemo = ({ content }: Props) => {
   );
 };
 
-export default ColorsDemo;
+export default SemanticTokensDemo;
+

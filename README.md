@@ -126,8 +126,8 @@ To use Blok in your development workflow:
 
 1. **Install the theme and components**
    ```bash
-   npx shadcn@latest add https://blok-shadcn.vercel.app/r/theme.json
-   npx shadcn@latest add https://blok-shadcn.vercel.app/r/button.json
+   npx shadcn@latest add https://blok.sitecore.com/r/theme.json
+   npx shadcn@latest add https://blok.sitecore.com/r/button.json
    ```
 
 2. **Import and use components in your code**
