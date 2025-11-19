@@ -7,7 +7,7 @@ export const spinner = {
   ),
   usage: [
     `import { Spinner } from "@/components/ui/spinner";`,
-    `<Spinner size="md" />`,
+    `<Spinner />`,
   ],
   components: {
     "With Text Spinner":<div className="flex items-start justify-center w-28"> <Spinner size="md" message="Loading..." /></div>,
