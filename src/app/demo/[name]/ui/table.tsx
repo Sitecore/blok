@@ -46,7 +46,7 @@ export const table = {
             <TableHead className="w-[100px]">Feature</TableHead>
             <TableHead>Description</TableHead>
             <TableHead>Benefit</TableHead>
-            <TableHead className="text-right">Use Case</TableHead>
+            <TableHead className="text-left">Use case</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
@@ -55,7 +55,7 @@ export const table = {
               <TableCell className="font-medium">{item.feature}</TableCell>
               <TableCell>{item.description}</TableCell>
               <TableCell>{item.benefit}</TableCell>
-              <TableCell className="text-right">{item.useCase}</TableCell>
+              <TableCell className="text-left">{item.useCase}</TableCell>
             </TableRow>
           ))}
         </TableBody>
