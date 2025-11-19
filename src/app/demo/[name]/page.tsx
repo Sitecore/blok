@@ -22,12 +22,6 @@ export default async function DemoPage({
 }) {
   const { name } = await params;
 
-  const component = getRegistryItem(name);
-
-  if (!component) {
-    notFound();
-  }
-
   const { components } = demos[name];
 
   const filePath = path.join(process.cwd(), `src/app/demo/[name]/ui/${name}.tsx`);
