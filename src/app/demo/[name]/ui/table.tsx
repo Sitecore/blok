@@ -43,19 +43,19 @@ export const table = {
       <Table>
         <TableHeader>
           <TableRow>
-            <TableHead className="w-[100px]">Feature</TableHead>
-            <TableHead>Description</TableHead>
-            <TableHead>Benefit</TableHead>
-            <TableHead className="text-left">Use case</TableHead>
+            <TableHead className="w-[150px]">Feature</TableHead>
+            <TableHead className="w-[300px]">Description</TableHead>
+            <TableHead className="w-[250px]">Benefit</TableHead>
+            <TableHead className="text-left w-[300px]">Use case</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
           {featureTable.map((item, index) => (
             <TableRow key={index}>
-              <TableCell className="font-medium">{item.feature}</TableCell>
-              <TableCell>{item.description}</TableCell>
-              <TableCell>{item.benefit}</TableCell>
-              <TableCell className="text-left">{item.useCase}</TableCell>
+              <TableCell className="font-medium break-words whitespace-normal">{item.feature}</TableCell>
+              <TableCell className="break-words whitespace-normal">{item.description}</TableCell>
+              <TableCell className="break-words whitespace-normal">{item.benefit}</TableCell>
+              <TableCell className="text-left break-words whitespace-normal">{item.useCase}</TableCell>
             </TableRow>
           ))}
         </TableBody>
@@ -63,3 +63,4 @@ export const table = {
     ),
   },
 };
+ 
