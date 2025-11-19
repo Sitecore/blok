@@ -1474,7 +1474,7 @@
       "title": "Stack Navigation",
       "description": "A collection of links for navigating websites.",
       "registryDependencies": [
-        "https://blok-shadcn.vercel.app/r/theme.json"
+        "https://blok.sitecore.com/r/theme.json"
       ],
       "files": [
         {
