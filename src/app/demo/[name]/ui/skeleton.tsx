@@ -14,7 +14,7 @@ export const skeleton = {
   ),
   usage: [
     `import { Skeleton } from "@/components/ui/skeleton";`,
-    `<Skeleton className="size-10 shrink-0 rounded-full" />`,
+    `<Skeleton className="size-10" />`,
   ],
   components: {
     "Card List": (
