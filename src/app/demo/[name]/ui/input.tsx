@@ -3,9 +3,19 @@ import { Label } from "@/components/ui/label";
 
 export const input = {
   name: "input",
+  defaultComponent: (
+    <div className="grid gap-2 w-75 ml-2">
+      <Label htmlFor="input">Name</Label>
+      <Input type="text" id="input" placeholder="Enter your name" aria-label="Name" />
+    </div>
+  ),
+  usage: [
+    `import { Input } from "@/components/ui/input";`,
+    `<Input />`,
+  ],
   components: {
     Email: (
-      <div className="grid gap-2 w-75 ml-2 mt-2">
+      <div className="grid gap-2 w-75 ml-2">
         <Label htmlFor="email-input">Email</Label>
         <Input type="email" id="email-input" placeholder="Enter your email" aria-label="Email" autoComplete="email" />
       </div>

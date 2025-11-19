@@ -17,26 +17,30 @@ import {
 
 export const select = {
   name: "select",
+  defaultComponent: (
+    <Select>
+      <SelectTrigger className="w-[180px]" aria-label="Select a product">
+        <SelectValue placeholder="Select a product" />
+      </SelectTrigger>
+      <SelectContent>
+        <SelectGroup>
+          <SelectLabel>Products</SelectLabel>
+          <SelectItem value="XMCloud">XM Cloud</SelectItem>
+          <SelectItem value="contentHub">Content Hub</SelectItem>
+          <SelectItem value="CDP">CDP</SelectItem>
+          <SelectItem value="Blok" disabled>
+            Blok
+          </SelectItem>
+        </SelectGroup>
+      </SelectContent>
+    </Select>
+  ),
+  usage: [
+    `import {\n  Select,\n  SelectTrigger,\n  SelectValue,\n  SelectContent,\n  SelectGroup,\n  SelectItem,\n  SelectLabel,\n} from "@/components/ui/select";`,
+    `<Select>\n <SelectTrigger className="w-[180px]">\n  <SelectValue placeholder="Select a product" />\n </SelectTrigger>\n <SelectContent>\n  <SelectGroup>\n   <SelectLabel>Products</SelectLabel>\n   <SelectItem value="XMCloud">XM Cloud</SelectItem>\n   <SelectItem value="contentHub">Content Hub</SelectItem>\n   <SelectItem value="CDP">CDP</SelectItem>\n   <SelectItem value="Blok" disabled>Blok</SelectItem>\n  </SelectGroup>\n </SelectContent>\n</Select>`,
+  ],
   components: {
-    Default: (
-      <Select>
-        <SelectTrigger className="w-[180px]" aria-label="Select a product">
-          <SelectValue placeholder="Select a product" />
-        </SelectTrigger>
-        <SelectContent>
-          <SelectGroup>
-            <SelectLabel>Products</SelectLabel>
-            <SelectItem value="XMCloud">XM Cloud</SelectItem>
-            <SelectItem value="contentHub">Content Hub</SelectItem>
-            <SelectItem value="CDP">CDP</SelectItem>
-            <SelectItem value="Blok" disabled>
-              Blok
-            </SelectItem>
-          </SelectGroup>
-        </SelectContent>
-      </Select>
-    ),
-    largeList: (
+    "Large List": (
       <Select>
         <SelectTrigger className="w-[180px]" aria-label="Select from large list">
           <SelectValue placeholder="Large List" />
@@ -50,7 +54,7 @@ export const select = {
         </SelectContent>
       </Select>
     ),
-    withIcon: (
+    "With Icon": (
       <Select>
         <SelectTrigger className="w-[180px]" aria-label="Select chart type">
           <SelectValue
@@ -85,7 +89,7 @@ export const select = {
         </SelectContent>
       </Select>
     ),
-    disabled: (
+    Disabled: (
       <Select disabled>
         <SelectTrigger className="w-[180px]" aria-label="Disabled select">
           <SelectValue placeholder="Disabled" />

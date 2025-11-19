@@ -4,6 +4,11 @@ import { Icon } from "@/lib/icon";
 
 export const button = {
   name: "button",
+  defaultComponent: (<Button variant="default">Click me</Button>),
+  usage: [
+    `import { Button } from "@/components/ui/button"`,
+    `<Button variant=’default’ colorScheme=’default’ size=’default’>Click me</Button>`
+  ],
   components: {
     Variants: (
       <div className="flex flex-wrap items-center gap-3">
@@ -21,7 +26,7 @@ export const button = {
         <Button size="xs">Solid xs</Button>
       </div>
     ),
-    ColorSchemes: (
+    "Color Schemes": (
       <div className="flex flex-wrap items-center gap-3">
         <Button colorScheme="primary">Default</Button>
         <Button colorScheme="neutral">Secondary</Button>
@@ -29,7 +34,7 @@ export const button = {
         <Button colorScheme="danger">Danger</Button>
       </div>
     ),
-    IconSizing: (
+    "Icon Sizing": (
       <div className="flex flex-wrap items-center gap-3">
         <Button size="icon-lg" aria-label="Help and support">
           <Icon path={mdiInformationOutline} />
@@ -47,7 +52,7 @@ export const button = {
     ),
     
     // Icon with Text
-    IconWithText: (
+    "Icon with Text": (
       <div className="flex flex-wrap items-center gap-3">
         <Button>
           <Icon path={mdiInformationOutline} className="mr-2" />
@@ -73,7 +78,7 @@ export const button = {
     ),
     
     // Disabled States
-    DisabledStates: (
+    "Disabled States": (
       <div className="flex flex-wrap items-center gap-3">
         <Button disabled>Disabled Default</Button>
         <Button disabled colorScheme="success">Disabled Success</Button>
@@ -85,7 +90,7 @@ export const button = {
     ),
     
     // Success Color Scheme
-    SuccessColorScheme: (
+    "Success Color Scheme": (
       <div className="flex flex-wrap items-center gap-3">
         <Button colorScheme="success">Normal Success</Button>
         <Button colorScheme="success" disabled>Disabled Success</Button>
@@ -95,7 +100,7 @@ export const button = {
     ),
     
     // Danger Color Scheme
-    DangerColorScheme: (
+    "Danger Color Scheme": (
       <div className="flex flex-wrap items-center gap-3">
         <Button colorScheme="danger">Normal Danger</Button>
         <Button colorScheme="danger" disabled>Disabled Danger</Button>
@@ -105,7 +110,7 @@ export const button = {
     ),
     
     // Icon with Different Colors
-    IconColors: (
+    "Icon Colors": (
       <div className="flex flex-wrap items-center gap-3">
         <Button size="icon" colorScheme="primary" aria-label="Contact support">
           <Icon path={mdiInformationOutline} />
@@ -123,7 +128,7 @@ export const button = {
     ),
     
     // Size Variations
-    SizeVariations: (
+    "Size Variations": (
       <div className="flex flex-wrap items-center gap-3">
         <Button size="lg">Large Button</Button>
         <Button size="default">Default Button</Button>
@@ -133,7 +138,7 @@ export const button = {
     ),
     
     // Color Scheme Variations
-    ColorSchemeVariations: (
+    "Color Scheme Variations": (
       <div className="flex flex-wrap items-center gap-3">
         <Button colorScheme="primary">Primary</Button>
         <Button colorScheme="success">Success</Button>

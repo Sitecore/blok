@@ -16,8 +16,40 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 export const tabs = {
   name: "tabs",
+  defaultComponent: (
+    <Tabs defaultValue="account" className="w-[400px]">
+      <TabsList>
+        <TabsTrigger value="account">Account</TabsTrigger>
+        <TabsTrigger value="password">Password</TabsTrigger>
+      </TabsList>
+      <TabsContent value="account">
+        <Card>
+          <CardHeader>
+            <CardTitle>Account</CardTitle>
+            <CardDescription>
+              Make changes to your account here. Click save when you&apos;re done.
+            </CardDescription>
+          </CardHeader>
+        </Card>
+      </TabsContent>
+      <TabsContent value="password">
+        <Card>
+          <CardHeader>
+            <CardTitle>Password</CardTitle>
+            <CardDescription>
+              Change your password here. After saving, you'll be logged out.
+            </CardDescription>
+          </CardHeader>
+        </Card>
+      </TabsContent>
+    </Tabs>
+  ),
+  usage: [
+    `import {\n Tabs,\n TabsContent,\n TabsList,\n TabsTrigger\n} from "@/components/ui/tabs";`,
+    `<Tabs defaultValue="account" className="max-w-[400px]">\n <TabsList>\n  <TabsTrigger value="account">Account</TabsTrigger>\n  <TabsTrigger value="password">Password</TabsTrigger>\n </TabsList>\n <TabsContent value="account">Make changes to your account here.</TabsContent>\n <TabsContent value="password">Change your password here.</TabsContent>\n</Tabs>`,
+  ],
   components: {
-    LineVariant: (
+    "Line Variant": (
       <Tabs defaultValue="account" className="max-w-[400px]">
         <TabsList>
           <TabsTrigger value="account">Account</TabsTrigger>
@@ -71,7 +103,7 @@ export const tabs = {
         </TabsContent>
       </Tabs>
     ),
-    LineVariantWithIcons: (
+    "Line Variant with Icons": (
       <Tabs defaultValue="home">
         <TabsList>
           <TabsTrigger value="home">
@@ -91,7 +123,7 @@ export const tabs = {
         </TabsContent>
       </Tabs>
     ),
-    SoftRoundedVariant: (
+    "Soft Rounded Variant": (
       <Tabs defaultValue="home">
         <TabsList variant="soft-rounded">
           <TabsTrigger value="home" variant="soft-rounded">
@@ -109,7 +141,7 @@ export const tabs = {
         </TabsContent>
       </Tabs>
     ),
-    WithIcons: (
+    "With Icons": (
       <Tabs defaultValue="preview">
         <TabsList variant="soft-rounded">
           <TabsTrigger value="preview" variant="soft-rounded">

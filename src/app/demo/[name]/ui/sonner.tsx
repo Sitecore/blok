@@ -10,6 +10,13 @@ import {
 
 export const sonner = {
   name: "sonner",
+  defaultComponent: (
+    <Sonner />
+  ),
+  usage: [
+    `import { Sonner } from "@/components/ui/sonner";`,
+    `<Sonner />`,
+  ],
   components: {
     Default: <Sonner />,
     Success: <SuccessfulSonner />,

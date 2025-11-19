@@ -4,39 +4,41 @@ import { Icon } from "@/lib/icon";
 
 export const sidebar = {
   name: "sidebar",
-  components: {
-    Default: (
-      <div className="flex h-[350px] w-full">
-        <SidebarProvider>
-          <Sidebar className="w-64 px-2 py-6">
-            <SidebarHeader>
-              <div className="py-1.5 text-sm font-semibold uppercase text-subtle-text">Navigation</div>
-            </SidebarHeader>
-            <SidebarContent>
-              <SidebarMenu>
-                <SidebarMenuItem>
-                  <SidebarMenuButton isActive>
-                    <Icon path={mdiHome} />
-                    <span>Home</span>
-                  </SidebarMenuButton>
-                </SidebarMenuItem>
-                <SidebarMenuItem>
-                  <SidebarMenuButton>
-                    <Icon path={mdiAccount} />
-                    <span>Profile</span>
-                  </SidebarMenuButton>
-                </SidebarMenuItem>
-                <SidebarMenuItem>
-                  <SidebarMenuButton>
-                    <Icon path={mdiCog} />
-                    <span>Settings</span>
-                  </SidebarMenuButton>
-                </SidebarMenuItem>
-              </SidebarMenu>
-            </SidebarContent>
-          </Sidebar>
-        </SidebarProvider>
-      </div>
-    ),
-  },
+  defaultComponent: (
+    <div className="flex h-[350px] w-full">
+      <SidebarProvider>
+        <Sidebar className="w-64 px-2 py-6">
+          <SidebarHeader>
+            <div className="py-1.5 text-sm font-semibold uppercase text-subtle-text">Navigation</div>
+          </SidebarHeader>
+          <SidebarContent>
+            <SidebarMenu>
+              <SidebarMenuItem>
+                <SidebarMenuButton isActive>
+                  <Icon path={mdiHome} />
+                  <span>Home</span>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+              <SidebarMenuItem>
+                <SidebarMenuButton>
+                  <Icon path={mdiAccount} />
+                  <span>Profile</span>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+              <SidebarMenuItem>
+                <SidebarMenuButton>
+                  <Icon path={mdiCog} />
+                  <span>Settings</span>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+            </SidebarMenu>
+          </SidebarContent>
+        </Sidebar>
+      </SidebarProvider>
+    </div>
+  ),
+  usage: [
+    `import {\n  Sidebar,\n  SidebarContent,\n  SidebarHeader,\n  SidebarMenu,\n  SidebarMenuItem,\n  SidebarMenuButton,\n  SidebarProvider,\n} from "@/components/ui/sidebar";`,
+    `<Sidebar>\n <SidebarHeader />\n <SidebarContent>\n  <SidebarGroup />\n  <SidebarGroup />\n </SidebarContent>\n <SidebarFooter />\n</Sidebar>`,
+  ],
 };

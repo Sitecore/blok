@@ -3,14 +3,18 @@ import { Label } from "@/components/ui/label";
 
 export const checkbox = {
   name: "checkbox",
+  defaultComponent: (
+    <div className="flex items-center gap-3 p-4">
+      <Checkbox id="terms" aria-label="Accept terms and conditions" />
+      <Label htmlFor="terms">Accept terms and conditions</Label>
+    </div>
+  ),
+  usage: [
+    `import { Checkbox } from "@/components/ui/checkbox"`,
+    `<Checkbox id="terms" aria-label="Accept terms and conditions" />`,
+  ],
   components: {
-    Default: (
-      <div className="flex items-center gap-3 p-4">
-        <Checkbox id="terms" aria-label="Accept terms and conditions" />
-        <Label htmlFor="terms">Accept terms and conditions</Label>
-      </div>
-    ),
-    WithDescriptionCheckBox: (
+    "With Description": (
       <div className="flex items-start gap-3 p-4">
         <Checkbox id="terms-2" defaultChecked aria-label="Accept terms and conditions" />
         <div className="grid gap-2">
@@ -21,13 +25,13 @@ export const checkbox = {
         </div>
       </div>
     ),
-    DisabledCheckBox: (
+    "Disabled": (
       <div className="flex items-start gap-3 p-4">
         <Checkbox id="toggle" disabled aria-label="Disabled notifications" />
         <Label htmlFor="toggle">Disabled notifications</Label>
       </div>
     ),
-    EnabledLabelCheckBox: (
+    "Enabled Label": (
       <Label className="hover:bg-accent/50 flex items-start gap-3 rounded-lg border p-3 has-[[aria-checked=true]]:border-info-fg has-[[aria-checked=true]]:bg-info-bg dark:has-[[aria-checked=true]]:border-info-fg dark:has-[[aria-checked=true]]:bg-info-bg">
         <Checkbox
           id="toggle-2"
@@ -45,6 +49,5 @@ export const checkbox = {
         </div>
       </Label>
     )
-
   },
 };
