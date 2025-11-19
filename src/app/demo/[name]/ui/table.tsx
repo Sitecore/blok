@@ -9,48 +9,30 @@ import {
   TableRow,
 } from "@/components/ui/table";
 
-const invoices = [
+export const featureTable = [
   {
-    invoice: "INV001",
-    paymentStatus: "Paid",
-    totalAmount: "$250.00",
-    paymentMethod: "Credit Card",
+    feature: "Personalization",
+    description: "Deliver tailored experiences based on user behavior and preferences.",
+    benefit: "Increase engagement and conversion rates.",
+    useCase: "Personalized product recommendations on e-commerce sites.",
   },
   {
-    invoice: "INV002",
-    paymentStatus: "Pending",
-    totalAmount: "$150.00",
-    paymentMethod: "PayPal",
+    feature: "Composable DXP",
+    description: "Modular architecture for flexibility and scalability.",
+    benefit: "Faster innovation and reduced time-to-market.",
+    useCase: "Launching new microsites without disrupting existing systems.",
   },
   {
-    invoice: "INV003",
-    paymentStatus: "Unpaid",
-    totalAmount: "$350.00",
-    paymentMethod: "Bank Transfer",
+    feature: "Content Management",
+    description: "Centralized platform for creating and managing digital content.",
+    benefit: "Consistent brand messaging across channels.",
+    useCase: "Managing global campaigns with localized content.",
   },
   {
-    invoice: "INV004",
-    paymentStatus: "Paid",
-    totalAmount: "$450.00",
-    paymentMethod: "Credit Card",
-  },
-  {
-    invoice: "INV005",
-    paymentStatus: "Paid",
-    totalAmount: "$550.00",
-    paymentMethod: "PayPal",
-  },
-  {
-    invoice: "INV006",
-    paymentStatus: "Pending",
-    totalAmount: "$200.00",
-    paymentMethod: "Bank Transfer",
-  },
-  {
-    invoice: "INV007",
-    paymentStatus: "Unpaid",
-    totalAmount: "$300.00",
-    paymentMethod: "Credit Card",
+    feature: "AI-Powered Insights",
+    description: "Predictive analytics and automated recommendations.",
+    benefit: "Smarter decisions and optimized campaigns.",
+    useCase: "Using AI to optimize ad spend and predict customer churn.",
   },
 ];
 
@@ -61,21 +43,19 @@ export const table = {
       <Table>
         <TableHeader>
           <TableRow>
-            <TableHead className="w-[100px]">Invoice</TableHead>
-            <TableHead>Status</TableHead>
-            <TableHead>Method</TableHead>
-            <TableHead className="text-right">Amount</TableHead>
+            <TableHead className="w-[150px]">Feature</TableHead>
+            <TableHead className="w-[300px]">Description</TableHead>
+            <TableHead className="w-[250px]">Benefit</TableHead>
+            <TableHead className="text-left w-[300px]">Use case</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
-          {invoices.map((invoice) => (
-            <TableRow key={invoice.invoice}>
-              <TableCell className="font-medium">{invoice.invoice}</TableCell>
-              <TableCell>{invoice.paymentStatus}</TableCell>
-              <TableCell>{invoice.paymentMethod}</TableCell>
-              <TableCell className="text-right">
-                {invoice.totalAmount}
-              </TableCell>
+          {featureTable.map((item, index) => (
+            <TableRow key={index}>
+              <TableCell className="font-medium break-words whitespace-normal">{item.feature}</TableCell>
+              <TableCell className="break-words whitespace-normal">{item.description}</TableCell>
+              <TableCell className="break-words whitespace-normal">{item.benefit}</TableCell>
+              <TableCell className="text-left break-words whitespace-normal">{item.useCase}</TableCell>
             </TableRow>
           ))}
         </TableBody>
@@ -83,3 +63,4 @@ export const table = {
     ),
   },
 };
+ 

@@ -1,7 +1,7 @@
 {
     "$schema": "https://ui.shadcn.com/schema/registry.json",
     "name": "sitecore marketplace",
-    "homepage": "https://blok-shadcn.vercel.app",
+    "homepage": "https://blok.sitecore.com",
     "items": [
       {
         "name": "quickstart",
@@ -33,7 +33,7 @@
             "@sitecore-marketplace-sdk/xmc"
         ],
         "registryDependencies":[
-            "https://blok-shadcn.vercel.app/r/marketplace/react/quickstart.json"
+            "https://blok.sitecore.com/r/marketplace/react/quickstart.json"
         ],
         "files": [
             {
