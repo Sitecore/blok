@@ -38,7 +38,7 @@ export function MobileSidebarTrigger() {
     if (pathname === "/" || pathname.startsWith("/resources") || pathname.startsWith("/mcp")) {
       return false;
     }
-    return pathname.startsWith("/components") || 
+    return pathname.startsWith("/primitives") || 
            pathname.startsWith("/bloks") || 
            pathname.startsWith("/theming") || 
            pathname.startsWith("/graphics") ||
@@ -67,7 +67,7 @@ export function RegistrySidebar() {
     if (pathname === "/" || pathname.startsWith("/resources") || pathname.startsWith("/mcp")) {
       return null; // No sidebar for homepage, resources, or mcp
     }
-    if (pathname.startsWith("/components") || pathname.startsWith("/registry")) {
+    if (pathname.startsWith("/primitives") || pathname.startsWith("/registry")) {
       return "components";
     }
     if (pathname.startsWith("/bloks")) {

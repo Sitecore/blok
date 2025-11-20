@@ -1,10 +1,10 @@
 // navigation items for the site
 export const navItems = [
-  { name: "Components", href: "/components" },
+  { name: "Primitives", href: "/primitives" },
   { name: "Bloks", href: "/bloks" },
   { name: "Theming", href: "/theming" },
   { name: "Graphics", href: "/graphics" },
-  { name: "Resources", href: "/resources" }
+  { name: "Resources", href: "/resources" },
 ];
 
 // Theming items for sidebar
@@ -51,4 +51,3 @@ export const searchableItems = [
     description: "Blok MCP Server configuration and setup"
   },
 ];
-

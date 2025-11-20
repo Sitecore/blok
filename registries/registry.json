@@ -1155,7 +1155,7 @@
     },
      {
       "name": "site-card",
-      "type": "registry:ui",
+      "type": "registry:block",
       "title": "Site Card",
       "description": "Pagination with page navigation, next and previous links.",
       "registryDependencies": [
@@ -1179,7 +1179,7 @@
     },
     {
       "name": "all-site",
-      "type": "registry:ui",
+      "type": "registry:block",
       "title": "All Site Section",
       "description": "Pagination with page navigation, next and previous links.",
       "registryDependencies": [
@@ -1198,7 +1198,7 @@
     },
     {
       "name": "pinned-site",
-      "type": "registry:ui",
+      "type": "registry:block",
       "title": "Pinned Site Section",
       "description": "Pagination with page navigation, next and previous links.",
       "registryDependencies": [
