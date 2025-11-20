@@ -2,9 +2,73 @@
 
 import { formatColorValue, parseCssVariablesByTheme, resolveVariableValue } from "@/lib/token-utils";
 import { useEffect, useState } from "react";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
+import { Check } from "lucide-react";
 
 type Props = {
   content: string;
+};
+
+// Helper function to copy text to clipboard
+async function copyToClipboard(value: string) {
+  await navigator.clipboard.writeText(value);
+}
+
+// Calculate contrast ratio between two colors
+const getContrastRatio = (color1: string, color2: string = '#FFFFFF'): number | undefined => {
+  if (!color1 || color1.includes('rgba(') || color1.includes('rgb(') || !color1.startsWith('#')) {
+    return undefined;
+  }
+
+  // Helper function to calculate the luminance of a color
+  function getLuminance(color: string): number {
+    const hex = color.replace(/^#/, '');
+    
+    // Check if hex is valid
+    if (hex.length !== 6) {
+      return NaN;
+    }
+    
+    const r = parseInt(hex.slice(0, 2), 16) / 255;
+    const g = parseInt(hex.slice(2, 4), 16) / 255;
+    const b = parseInt(hex.slice(4, 6), 16) / 255;
+
+    // Check for NaN values
+    if (isNaN(r) || isNaN(g) || isNaN(b)) {
+      return NaN;
+    }
+
+    const gammaCorrectedR = r <= 0.04045 ? r / 12.92 : Math.pow((r + 0.055) / 1.055, 2.4);
+    const gammaCorrectedG = g <= 0.04045 ? g / 12.92 : Math.pow((g + 0.055) / 1.055, 2.4);
+    const gammaCorrectedB = b <= 0.04045 ? b / 12.92 : Math.pow((b + 0.055) / 1.055, 2.4);
+
+    return 0.2126 * gammaCorrectedR + 0.7152 * gammaCorrectedG + 0.0722 * gammaCorrectedB;
+  }
+
+  const luminance1 = getLuminance(color1);
+  const luminance2 = getLuminance(color2);
+
+  // Check if luminance calculations are valid
+  if (isNaN(luminance1) || isNaN(luminance2)) {
+    return undefined;
+  }
+
+  const brighter = Math.max(luminance1, luminance2);
+  const darker = Math.min(luminance1, luminance2);
+
+  return (brighter + 0.05) / (darker + 0.05);
 };
 
 export function ColorsClient({ content }: Props) {
@@ -15,6 +79,7 @@ export function ColorsClient({ content }: Props) {
   const [darkVars, setDarkVars] = useState<Record<string, string>>({});
 
   const [isDarkTheme, setIsDarkTheme] = useState<boolean>(false);
+  const [copiedToken, setCopiedToken] = useState<string | null>(null);
 
   useEffect(() => {
     const { default: parsedDefault, dark: parsedDark, defaultVars, darkVars } = parseCssVariablesByTheme(content);
@@ -38,6 +103,12 @@ export function ColorsClient({ content }: Props) {
     return () => observer.disconnect();
   }, [content]);
 
+  const handleCopy = async (token: string) => {
+    await copyToClipboard(token);
+    setCopiedToken(token);
+    setTimeout(() => setCopiedToken(null), 2000);
+  };
+
   // Filter to only show base color tokens
   const allKeys = Object.keys(defaultColors)
     .filter((key) => {
@@ -57,69 +128,80 @@ export function ColorsClient({ content }: Props) {
     });
 
   return (
-    <div style={{ width: "100%", overflowX: "auto" }}>
-      <table
-        style={{ width: "100%", borderCollapse: "collapse", marginTop: "1rem" }}
-      >
-        <thead>
-          <tr style={{ borderBottom: "2px solid #ccc" }}>
-            <th style={{ padding: "0.8rem", textAlign: "left" }}>Name</th>
-            <th style={{ padding: "0.8rem", textAlign: "center" }}>Color</th>
-            <th style={{ padding: "0.8rem", textAlign: "left" }}>Value (Default)</th>
-            <th style={{ padding: "0.8rem", textAlign: "left" }}>Value (Dark)</th>
-          </tr>
-        </thead>
-        <tbody>
+    <div className="overflow-x-auto">
+      <Table>
+        <TableHeader>
+          <TableRow>
+            <TableHead className="px-4 min-w-[200px]">Example</TableHead>
+            <TableHead className="px-4">Token</TableHead>
+            <TableHead className="px-4">Value (Default)</TableHead>
+            <TableHead className="px-4">Value (Dark)</TableHead>
+            <TableHead className="px-4 text-right">Contrast against bg</TableHead>
+          </TableRow>
+        </TableHeader>
+        <TableBody>
           {allKeys.map((key) => {
             const defaultValue = defaultColors[key];
             const darkValue = darkColors[key] || defaultValue;
-
             const bgColor = isDarkTheme ? darkValue : defaultValue;
-
             const { light, dark } = resolveVariableValue(defaultValue, defaultVars, darkVars);
+            
+            const formattedLight = formatColorValue(light);
+            const formattedDark = formatColorValue(dark);
+            const contrastRatio = getContrastRatio(light);
+            const bgForContrast = isDarkTheme ? '000000' : 'FFFFFF';
 
             return (
-              <tr key={key} style={{ borderBottom: "1px solid #eee" }}>
-                <td style={{ padding: "0.8rem" }}>{key}</td>
-                <td style={{ padding: "0.8rem", textAlign: "center" }}>
+              <TableRow key={key}>
+                <TableCell className="px-4 py-3 min-w-[200px]">
                   <div
-                    style={{
-                      width: "40px",
-                      height: "20px",
-                      borderRadius: "4px",
-                      border: "1px solid #ddd",
-                      margin: "0 auto",
-                      backgroundColor: bgColor,
-                    }}
-                  ></div>
-                </td>
-                <td style={{ padding: "0.8rem" }}>
-                  <span
-                    style={{
-                      fontFamily: "monospace",
-                      fontSize: "0.9rem",
-                    }}
-                    className="text-muted-foreground"
-                  >
-                    {formatColorValue(light)}
-                  </span>
-                </td>
-                <td style={{ padding: "0.8rem" }}>
-                  <span
-                    style={{
-                      fontFamily: "monospace",
-                      fontSize: "0.9rem",
-                    }}
-                    className="text-muted-foreground"
-                  >
-                    {formatColorValue(dark)}
-                  </span>
-                </td>
-              </tr>
+                    className="h-8 w-full max-w-[180px] rounded-md border shadow-inner"
+                    style={{ backgroundColor: bgColor }}
+                  />
+                </TableCell>
+                <TableCell className="px-4 py-3">
+                  <Tooltip>
+                    <TooltipTrigger asChild>
+                      <code
+                        onClick={() => handleCopy(key)}
+                        className="relative cursor-pointer rounded bg-muted px-[0.3rem] py-[0.2rem] font-mono text-sm"
+                      >
+                        {key}
+                        {copiedToken === key && (
+                          <Check className="ml-1 inline-block h-3 w-3" />
+                        )}
+                      </code>
+                    </TooltipTrigger>
+                    <TooltipContent>
+                      <p>Copy to clipboard</p>
+                    </TooltipContent>
+                  </Tooltip>
+                </TableCell>
+                <TableCell className="px-4 py-3">
+                  <code className="font-mono text-sm">{formattedLight}</code>
+                </TableCell>
+                <TableCell className="px-4 py-3">
+                  <code className="font-mono text-sm">{formattedDark}</code>
+                </TableCell>
+                <TableCell className="px-4 py-3 text-right">
+                  {contrastRatio && !isNaN(contrastRatio) && (
+                    <a
+                      href={`https://webaim.org/resources/contrastchecker/?fcolor=${formattedLight.replace('#', '')}&bcolor=${bgForContrast}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={`font-mono text-sm underline ${
+                        contrastRatio >= 4.5 ? 'text-green-600 dark:text-green-400' : 'text-red-600 dark:text-red-400'
+                      }`}
+                    >
+                      {contrastRatio.toFixed(2)}
+                    </a>
+                  )}
+                </TableCell>
+              </TableRow>
             );
           })}
-        </tbody>
-      </table>
+        </TableBody>
+      </Table>
     </div>
   );
 }

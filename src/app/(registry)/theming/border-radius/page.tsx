@@ -1,102 +1,83 @@
 import fs from "fs";
 import path from "path";
 import { convertCssVariablesToObject } from "@/lib/token-utils";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
 
 const cssPath = path.join(process.cwd(), "src", "app", "borderRadius.css");
 const borderRadiusContent = fs.readFileSync(cssPath, "utf-8");
 
 const NOTES: Record<string, string> = {
-  md: "The most common rounded. Used on many elements, such as inputs, cards, tags, and more.",
-  lg: "The preferred larger rounded. Used on modals and large panels.",
-  full: "Used for circular elements, such as avatars and buttons.",
+  md: "The most common radius. Used on many elements, such as inputs, cards, tags, and more.",
+  lg: "The preferred larger radius. Used on modals and large panels.",
+  full: "Used for buttons.",
 };
 
 export default function BorderRadiusPage() {
-  const borderRadiuses = convertCssVariablesToObject(borderRadiusContent, "--rounded-");
+  const borderRadiuses = convertCssVariablesToObject(
+    borderRadiusContent,
+    "--rounded-"
+  );
 
   return (
-    <div className="flex w-full">
-      <div className="flex-1 min-w-0">
-        <div className="container p-5 md:p-10">
-          <div className="mb-8">
-            <h1 className="font-bold text-4xl tracking-tight">Border Radius</h1>
-            <p className="mt-1 text-muted-foreground">
-              Border radius tokens used throughout the design system
-            </p>
-          </div>
-          <div style={{ width: "100%", overflowX: "auto" }}>
-            <table
-              style={{
-                width: "100%",
-                borderCollapse: "collapse",
-                marginTop: "1rem",
-              }}
-            >
-              <thead>
-                <tr style={{ borderBottom: "2px solid #ccc" }}>
-                  <th style={{ padding: "0.8rem", textAlign: "left" }}>Example</th>
-                  <th style={{ padding: "0.8rem", textAlign: "left" }}>Token</th>
-                  <th style={{ padding: "0.8rem", textAlign: "left" }}>
-                    Value (rem)
-                  </th>
-                  <th style={{ padding: "0.8rem", textAlign: "left" }}>
-                    Value (px)
-                  </th>
-                  <th style={{ padding: "0.8rem", textAlign: "left" }}>Notes</th>
-                </tr>
-              </thead>
-              <tbody>
-                {Object.entries(borderRadiuses).map(([key, value]) => {
-                  const pxValue = parseFloat(value) * 16;
+    <div className="container p-5 md:p-10 xl:pr-[250px]">
+      <div className="mb-8">
+        <h1 className="font-bold text-4xl tracking-tight mb-2">
+          Border radius
+        </h1>
+      </div>
+      <div className="overflow-x-auto">
+        <Table>
+          <TableHeader>
+            <TableRow>
+              <TableHead className="px-4">Example</TableHead>
+              <TableHead className="px-4">Token</TableHead>
+              <TableHead className="px-4">Value</TableHead>
+              <TableHead className="px-4">PX</TableHead>
+              <TableHead className="px-4">Notes</TableHead>
+            </TableRow>
+          </TableHeader>
+          <TableBody>
+            {Object.entries(borderRadiuses).map(([key, value]) => {
+              const pxValue = parseFloat(value) * 16;
 
-                  return (
-                    <tr key={key} style={{ borderBottom: "1px solid #eee" }}>
-                      <td style={{ padding: "0.8rem" }}>
-                        <div
-                          className={`h-16 w-16 bg-pink-200 rounded-${key}`}
-                        ></div>
-                      </td>
-                      <td style={{ padding: "0.8rem" }}>{key}</td>
-                      <td style={{ padding: "0.8rem" }}>
-                        <span
-                          style={{
-                            fontFamily: "monospace",
-                            fontSize: "0.9rem",
-                          }}
-                          className="text-muted-foreground"
-                        >
-                          {value}
-                        </span>
-                      </td>
-                      <td style={{ padding: "0.8rem" }}>
-                        <span
-                          style={{
-                            fontFamily: "monospace",
-                            fontSize: "0.9rem",
-                          }}
-                          className="text-muted-foreground"
-                        >
-                          {pxValue}px
-                        </span>
-                      </td>
-                      <td style={{ padding: "0.8rem" }}>
-                        <span
-                          style={{
-                            fontFamily: "monospace",
-                            fontSize: "0.9rem",
-                          }}
-                          className="text-muted-foreground"
-                        >
-                          {NOTES[key] ?? ""}
-                        </span>
-                      </td>
-                    </tr>
-                  );
-                })}
-              </tbody>
-            </table>
-          </div>
-        </div>
+              return (
+                <TableRow key={key}>
+                  <TableCell className="px-4 py-3">
+                    <div
+                      className="h-16 w-16 min-w-16 bg-pink-200"
+                      style={{ borderRadius: value }}
+                    />
+                  </TableCell>
+                  <TableCell className="px-4 py-3">
+                    <code className="rounded bg-muted px-[0.3rem] py-[0.2rem] font-mono text-sm">
+                      {key}
+                    </code>
+                  </TableCell>
+                  <TableCell className="px-4 py-3">
+                    <code className="font-mono text-sm">{value}</code>
+                  </TableCell>
+                  <TableCell className="px-4 py-3">
+                    <code className="font-mono text-sm">
+                      {isNaN(pxValue) ? value : `${pxValue}px`}
+                    </code>
+                  </TableCell>
+                  <TableCell className="px-4 py-3">
+                    <span className="text-sm text-muted-foreground">
+                      {NOTES[key] || ""}
+                    </span>
+                  </TableCell>
+                </TableRow>
+              );
+            })}
+          </TableBody>
+        </Table>
       </div>
     </div>
   );

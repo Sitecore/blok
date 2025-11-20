@@ -2,10 +2,29 @@
 
 import { formatColorValue, parseCssVariablesByTheme, resolveVariableValue } from "@/lib/token-utils";
 import { useEffect, useState } from "react";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
+import { Check } from "lucide-react";
 
 type Props = {
   content: string;
 };
+
+// Helper function to copy text to clipboard
+async function copyToClipboard(value: string) {
+  await navigator.clipboard.writeText(value);
+}
 
 export function SemanticTokensClient({ content }: Props) {
   const [defaultColors, setDefaultColors] = useState<Record<string, string>>({});
@@ -15,6 +34,7 @@ export function SemanticTokensClient({ content }: Props) {
   const [darkVars, setDarkVars] = useState<Record<string, string>>({});
 
   const [isDarkTheme, setIsDarkTheme] = useState<boolean>(false);
+  const [copiedToken, setCopiedToken] = useState<string | null>(null);
 
   useEffect(() => {
     const { default: parsedDefault, dark: parsedDark, defaultVars, darkVars } = parseCssVariablesByTheme(content);
@@ -37,6 +57,12 @@ export function SemanticTokensClient({ content }: Props) {
 
     return () => observer.disconnect();
   }, [content]);
+
+  const handleCopy = async (token: string) => {
+    await copyToClipboard(token);
+    setCopiedToken(token);
+    setTimeout(() => setCopiedToken(null), 2000);
+  };
 
   // Extract semantic tokens from the @theme inline block
   const extractSemanticTokens = (): Record<string, string> => {
@@ -81,19 +107,17 @@ export function SemanticTokensClient({ content }: Props) {
   const allKeys = Object.keys(semanticTokens).sort();
 
   return (
-    <div style={{ width: "100%", overflowX: "auto" }}>
-      <table
-        style={{ width: "100%", borderCollapse: "collapse", marginTop: "1rem" }}
-      >
-        <thead>
-          <tr style={{ borderBottom: "2px solid #ccc" }}>
-            <th style={{ padding: "0.8rem", textAlign: "left" }}>Name</th>
-            <th style={{ padding: "0.8rem", textAlign: "center" }}>Color</th>
-            <th style={{ padding: "0.8rem", textAlign: "left" }}>Value (Default)</th>
-            <th style={{ padding: "0.8rem", textAlign: "left" }}>Value (Dark)</th>
-          </tr>
-        </thead>
-        <tbody>
+    <div className="overflow-x-auto">
+      <Table>
+        <TableHeader>
+          <TableRow>
+            <TableHead className="px-4 min-w-[200px]">Example</TableHead>
+            <TableHead className="px-4">Token</TableHead>
+            <TableHead className="px-4">Value (Default)</TableHead>
+            <TableHead className="px-4">Value (Dark)</TableHead>
+          </TableRow>
+        </TableHeader>
+        <TableBody>
           {allKeys.map((key) => {
             const semanticValue = semanticTokens[key];
             
@@ -107,47 +131,42 @@ export function SemanticTokensClient({ content }: Props) {
             const formattedDark = formatColorValue(dark);
 
             return (
-              <tr key={key} style={{ borderBottom: "1px solid #eee" }}>
-                <td style={{ padding: "0.8rem" }}>{key}</td>
-                <td style={{ padding: "0.8rem", textAlign: "center" }}>
+              <TableRow key={key}>
+                <TableCell className="px-4 py-3 min-w-[200px]">
                   <div
-                    style={{
-                      width: "40px",
-                      height: "20px",
-                      borderRadius: "4px",
-                      border: "1px solid #ddd",
-                      margin: "0 auto",
-                      backgroundColor: bgColor,
-                    }}
-                  ></div>
-                </td>
-                <td style={{ padding: "0.8rem" }}>
-                  <span
-                    style={{
-                      fontFamily: "monospace",
-                      fontSize: "0.9rem",
-                    }}
-                    className="text-muted-foreground"
-                  >
-                    {formattedLight}
-                  </span>
-                </td>
-                <td style={{ padding: "0.8rem" }}>
-                  <span
-                    style={{
-                      fontFamily: "monospace",
-                      fontSize: "0.9rem",
-                    }}
-                    className="text-muted-foreground"
-                  >
-                    {formattedDark}
-                  </span>
-                </td>
-              </tr>
+                    className="h-8 w-full max-w-[180px] rounded-md border shadow-inner"
+                    style={{ backgroundColor: bgColor }}
+                  />
+                </TableCell>
+                <TableCell className="px-4 py-3">
+                  <Tooltip>
+                    <TooltipTrigger asChild>
+                      <code
+                        onClick={() => handleCopy(key)}
+                        className="relative cursor-pointer rounded bg-muted px-[0.3rem] py-[0.2rem] font-mono text-sm"
+                      >
+                        {key}
+                        {copiedToken === key && (
+                          <Check className="ml-1 inline-block h-3 w-3" />
+                        )}
+                      </code>
+                    </TooltipTrigger>
+                    <TooltipContent>
+                      <p>Copy to clipboard</p>
+                    </TooltipContent>
+                  </Tooltip>
+                </TableCell>
+                <TableCell className="px-4 py-3">
+                  <code className="font-mono text-sm">{formattedLight}</code>
+                </TableCell>
+                <TableCell className="px-4 py-3">
+                  <code className="font-mono text-sm">{formattedDark}</code>
+                </TableCell>
+              </TableRow>
             );
           })}
-        </tbody>
-      </table>
+        </TableBody>
+      </Table>
     </div>
   );
 }

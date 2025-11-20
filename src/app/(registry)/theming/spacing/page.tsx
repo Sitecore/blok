@@ -1,8 +1,31 @@
+"use client";
+
+import { useState } from "react";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
+import { Check } from "lucide-react";
+
 type SpacingData = {
   name: string;
   spacing: string;
   pixels: string;
 };
+
+// Helper function to copy text to clipboard
+async function copyToClipboard(value: string) {
+  await navigator.clipboard.writeText(value);
+}
 
 const SPACING_DATA: SpacingData[] = [
   { name: "0", spacing: "0px", pixels: "0px" },
@@ -43,86 +66,82 @@ const SPACING_DATA: SpacingData[] = [
 ];
 
 export default function SpacingPage() {
+  const [copiedToken, setCopiedToken] = useState<string | null>(null);
+
   const getPixelValue = (pixels: string): number => {
     return parseInt(pixels.replace("px", ""), 10);
   };
 
-  return (
-    <div className="flex w-full">
-      <div className="flex-1 min-w-0">
-        <div className="container p-5 md:p-10">
-          <div className="mb-8">
-            <h1 className="font-bold text-4xl tracking-tight">Spacing</h1>
-            <p className="mt-1 text-muted-foreground">
-              Spacing tokens for consistent layout and component spacing
-            </p>
-          </div>
-          <div style={{ width: "100%", overflowX: "auto" }}>
-            <table
-              style={{
-                width: "100%",
-                borderCollapse: "collapse",
-                marginTop: "1rem",
-              }}
-            >
-              <thead>
-                <tr style={{ borderBottom: "2px solid #ccc" }}>
-                  <th style={{ padding: "0.8rem", textAlign: "left" }}>Name</th>
-                  <th style={{ padding: "0.8rem", textAlign: "left" }}>Spacing</th>
-                  <th style={{ padding: "0.8rem", textAlign: "left" }}>Pixels</th>
-                  <th style={{ padding: "0.8rem", textAlign: "left", minWidth: "400px" }}>Preview</th>
-                </tr>
-              </thead>
-              <tbody>
-                {SPACING_DATA.map((item) => {
-                  const pixelValue = getPixelValue(item.pixels);
-                  const previewWidth = pixelValue;
+  const handleCopy = async (token: string) => {
+    await copyToClipboard(token);
+    setCopiedToken(token);
+    setTimeout(() => setCopiedToken(null), 2000);
+  };
 
-                  return (
-                    <tr key={item.name} style={{ borderBottom: "1px solid #eee" }}>
-                      <td style={{ padding: "0.8rem" }}>{item.name}</td>
-                      <td style={{ padding: "0.8rem" }}>
-                        <span
-                          style={{
-                            fontFamily: "monospace",
-                            fontSize: "0.9rem",
-                          }}
-                          className="text-muted-foreground"
+  return (
+    <div className="container p-5 md:p-10 xl:pr-[250px]">
+      <div className="mb-8">
+        <h1 className="font-bold text-4xl tracking-tight mb-2">Spacing</h1>
+      </div>
+      <div className="overflow-x-auto">
+        <Table>
+          <TableHeader>
+            <TableRow>
+              <TableHead className="px-4">Token</TableHead>
+              <TableHead className="px-4">Value</TableHead>
+              <TableHead className="px-4">PX</TableHead>
+              <TableHead className="px-4 min-w-[400px]">Example</TableHead>
+            </TableRow>
+          </TableHeader>
+          <TableBody>
+            {SPACING_DATA.map((item) => {
+              const pixelValue = getPixelValue(item.pixels);
+              const previewWidth = pixelValue;
+
+              return (
+                <TableRow key={item.name}>
+                  <TableCell className="px-4 py-3">
+                    <Tooltip>
+                      <TooltipTrigger asChild>
+                        <code
+                          onClick={() => handleCopy(item.name)}
+                          className="relative cursor-pointer rounded bg-muted px-[0.3rem] py-[0.2rem] font-mono text-sm"
                         >
-                          {item.spacing}
-                        </span>
-                      </td>
-                      <td style={{ padding: "0.8rem" }}>
-                        <span
-                          style={{
-                            fontFamily: "monospace",
-                            fontSize: "0.9rem",
-                          }}
-                          className="text-muted-foreground"
-                        >
-                          {item.pixels}
-                        </span>
-                      </td>
-                      <td style={{ padding: "0.8rem" }}>
-                        <div
-                          className="bg-primary"
-                          style={{
-                            width: `${previewWidth}px`,
-                            height: "20px",
-                            borderRadius: "4px",
-                            minWidth: pixelValue === 0 ? "1px" : undefined,
-                            border: pixelValue === 0 ? "1px dashed #ccc" : undefined,
-                          }}
-                          title={`${item.pixels} preview`}
-                        />
-                      </td>
-                    </tr>
-                  );
-                })}
-              </tbody>
-            </table>
-          </div>
-        </div>
+                          {item.name}
+                          {copiedToken === item.name && (
+                            <Check className="ml-1 inline-block h-3 w-3" />
+                          )}
+                        </code>
+                      </TooltipTrigger>
+                      <TooltipContent>
+                        <p>Copy to clipboard</p>
+                      </TooltipContent>
+                    </Tooltip>
+                  </TableCell>
+                  <TableCell className="px-4 py-3">
+                    <code className="font-mono text-sm">{item.spacing}</code>
+                  </TableCell>
+                  <TableCell className="px-4 py-3">
+                    <code className="font-mono text-sm">{item.pixels}</code>
+                  </TableCell>
+                  <TableCell className="px-4 py-3">
+                    <div
+                      className="bg-primary"
+                      style={{
+                        width: `${previewWidth}px`,
+                        height: "20px",
+                        borderRadius: "4px",
+                        minWidth: pixelValue === 0 ? "1px" : undefined,
+                        border: pixelValue === 0 ? "1px dashed #ccc" : undefined,
+                      }}
+                      title={`${item.pixels} preview`}
+                    />
+                  </TableCell>
+                </TableRow>
+              );
+            })}
+          </TableBody>
+        </Table>
       </div>
     </div>
   );

@@ -1,6 +1,15 @@
 import fs from "fs";
 import path from "path";
 import { convertCssVariablesToObject } from "@/lib/token-utils";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
+import { Card, CardContent } from "@/components/ui/card";
 
 const cssPath = path.join(process.cwd(), "src", "app", "shadows.css");
 const shadowsContent = fs.readFileSync(cssPath, "utf-8");
@@ -17,72 +26,51 @@ export default function ShadowsPage() {
   const shadows = convertCssVariablesToObject(shadowsContent, "--shadow-");
 
   return (
-    <div className="flex w-full">
-      <div className="flex-1 min-w-0">
-        <div className="container p-5 md:p-10">
-          <div className="mb-8">
-            <h1 className="font-bold text-4xl tracking-tight">Shadows</h1>
-            <p className="mt-1 text-muted-foreground">
-              Shadow tokens for depth and elevation effects
-            </p>
-          </div>
-          <div style={{ width: "100%" }}>
-            <table
-              style={{
-                width: "100%",
-                borderCollapse: "collapse",
-                marginTop: "1rem",
-              }}
-            >
-              <thead>
-                <tr style={{ borderBottom: "2px solid #ccc" }}>
-                  <th style={{ padding: "0.8rem", textAlign: "left" }}>Example</th>
-                  <th style={{ padding: "0.8rem", textAlign: "left" }}>Token</th>
-                  <th style={{ padding: "0.8rem", textAlign: "left" }}>Value</th>
-                  <th style={{ padding: "0.8rem", textAlign: "left" }}>Notes</th>
-                </tr>
-              </thead>
-              <tbody>
-                {Object.entries(shadows).map(([key, value]) => {
-                  return (
-                    <tr key={key} style={{ borderBottom: "1px solid #eee" }}>
-                      <td style={{ padding: "0.8rem" }}>
-                        <div
-                          className={`h-16 w-16 rounded-md bg-body-bg shadow-${key}`}
-                        ></div>
-                      </td>
-                      <td style={{ padding: "0.8rem" }}>{key}</td>
-                      <td style={{ padding: "0.8rem" }}>
-                        <span
-                          style={{
-                            fontFamily: "monospace",
-                            fontSize: "0.9rem",
-                          }}
-                          className="text-muted-foreground"
-                        >
-                          {value}
-                        </span>
-                      </td>
-
-                      <td style={{ padding: "0.8rem" }}>
-                        <span
-                          style={{
-                            fontFamily: "monospace",
-                            fontSize: "0.9rem",
-                          }}
-                          className="text-muted-foreground"
-                        >
-                          {NOTES[key] ?? ""}
-                        </span>
-                      </td>
-                    </tr>
-                  );
-                })}
-              </tbody>
-            </table>
-          </div>
-        </div>
+    <div className="container p-5 md:p-10 xl:pr-[250px]">
+      <div className="mb-8">
+        <h1 className="font-bold text-4xl tracking-tight mb-2">Shadows</h1>
       </div>
+      <Card style="filled">
+        <CardContent className="overflow-x-auto p-0">
+          <Table>
+            <TableHeader>
+              <TableRow>
+                <TableHead className="px-4">Example</TableHead>
+                <TableHead className="px-4">Token</TableHead>
+                <TableHead className="px-4">Value</TableHead>
+                <TableHead className="px-4">Notes</TableHead>
+              </TableRow>
+            </TableHeader>
+            <TableBody>
+              {Object.entries(shadows).map(([key, value]) => {
+                return (
+                  <TableRow key={key}>
+                    <TableCell className="px-4 py-3">
+                      <div
+                        className="h-16 w-16 min-w-16 rounded-md bg-background"
+                        style={{ boxShadow: value }}
+                      />
+                    </TableCell>
+                    <TableCell className="px-4 py-3">
+                      <code className="rounded bg-muted px-[0.3rem] py-[0.2rem] font-mono text-sm">
+                        {key}
+                      </code>
+                    </TableCell>
+                    <TableCell className="px-4 py-3">
+                      <code className="font-mono text-sm">{value}</code>
+                    </TableCell>
+                    <TableCell className="px-4 py-3">
+                      <span className="text-sm text-muted-foreground">
+                        {NOTES[key] || ""}
+                      </span>
+                    </TableCell>
+                  </TableRow>
+                );
+              })}
+            </TableBody>
+          </Table>
+        </CardContent>
+      </Card>
     </div>
   );
 }

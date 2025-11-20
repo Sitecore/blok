@@ -2,10 +2,29 @@
 
 import { useEffect, useState } from "react";
 import { convertCssVariablesToObject } from "@/lib/token-utils";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
+import { Check } from "lucide-react";
 
 type Props = {
   content: string;
 };
+
+// Helper function to copy text to clipboard
+async function copyToClipboard(value: string) {
+  await navigator.clipboard.writeText(value);
+}
 
 // Helper function to get the current breakpoint name
 const getCurrentBreakpoint = (
@@ -47,13 +66,15 @@ export function BreakpointsClient({ content }: Props) {
   const [currentBreakpointName, setCurrentBreakpointName] = useState<
     string | null
   >(null);
+  const [copiedToken, setCopiedToken] = useState<string | null>(null);
 
   const deviceMap: { [key: string]: string } = {
-    sm: "Small Phone",
-    md: "Tablet (Portrait)",
-    lg: "Tablet (Landscape)",
+    base: "",
+    sm: "Phone",
+    md: "Tablet (portrait)",
+    lg: "Tablet (landscape)",
     xl: "Desktop",
-    "2xl": "Large Desktop",
+    "2xl": "Desktop (large)",
   };
 
   useEffect(() => {
@@ -80,11 +101,19 @@ export function BreakpointsClient({ content }: Props) {
     };
   }, [filteredBreakpoints]);
 
-  return (
-    <div style={{ width: "100%", overflowX: "auto" }}>
-      <p className="text-xl font-semibold">Window width: {windowWidth}px</p>
+  const handleCopy = async (token: string) => {
+    await copyToClipboard(token);
+    setCopiedToken(token);
+    setTimeout(() => setCopiedToken(null), 2000);
+  };
 
-      <div className="flex flex-row items-center gap-2 text-lg">
+  return (
+    <div className="w-full">
+      <div className="mb-6">
+        <p className="text-xl font-semibold">Window width: {windowWidth}px</p>
+      </div>
+
+      <div className="flex flex-row items-center gap-2 text-lg mb-6">
         <p className="font-semibold">Active breakpoint:</p>
         {Object.entries(filteredBreakpoints).map(([key]) => {
           const isActive = currentBreakpointName === key;
@@ -103,65 +132,60 @@ export function BreakpointsClient({ content }: Props) {
         )}
       </div>
 
-      <div style={{ width: "100%", overflowX: "auto" }}>
-        <table
-          style={{
-            width: "100%",
-            borderCollapse: "collapse",
-            marginTop: "1rem",
-          }}
-        >
-          <thead>
-            <tr style={{ borderBottom: "2px solid #ccc" }}>
-              <th style={{ padding: "0.8rem", textAlign: "left" }}>Token</th>
-              <th style={{ padding: "0.8rem", textAlign: "left" }}>Device</th>
-              <th style={{ padding: "0.8rem", textAlign: "left" }}>
-                Value (rem)
-              </th>
-              <th style={{ padding: "0.8rem", textAlign: "left" }}>
-                Value (px)
-              </th>
-            </tr>
-          </thead>
-          <tbody>
+      <div className="overflow-x-auto">
+        <Table>
+          <TableHeader>
+            <TableRow>
+              <TableHead className="px-4">Token</TableHead>
+              <TableHead className="px-4">Device</TableHead>
+              <TableHead className="px-4">Value (rem)</TableHead>
+              <TableHead className="px-4">Value (px)</TableHead>
+            </TableRow>
+          </TableHeader>
+          <TableBody>
             {Object.entries(filteredBreakpoints).map(([key, value]) => {
               const pxValue = parseFloat(value) * 16;
 
               return (
-                <tr key={key} style={{ borderBottom: "1px solid #eee" }}>
-                  <td style={{ padding: "0.8rem" }}>
-                    {key}
-                  </td>
-                  <td style={{ padding: "0.8rem" }}>
-                    {deviceMap[key] || "N/A"}
-                  </td>
-                  <td style={{ padding: "0.8rem" }}>
-                    <span
-                      style={{
-                        fontFamily: "monospace",
-                        fontSize: "0.9rem",
-                      }}
-                      className="text-muted-foreground"
-                    >
+                <TableRow key={key}>
+                  <TableCell className="px-4 py-3">
+                    <Tooltip>
+                      <TooltipTrigger asChild>
+                        <code
+                          onClick={() => handleCopy(key)}
+                          className="relative cursor-pointer rounded bg-muted px-[0.3rem] py-[0.2rem] font-mono text-sm"
+                        >
+                          {key}
+                          {copiedToken === key && (
+                            <Check className="ml-1 inline-block h-3 w-3" />
+                          )}
+                        </code>
+                      </TooltipTrigger>
+                      <TooltipContent>
+                        <p>Copy to clipboard</p>
+                      </TooltipContent>
+                    </Tooltip>
+                  </TableCell>
+                  <TableCell className="px-4 py-3">
+                    <span className="text-sm">
+                      {deviceMap[key] || "N/A"}
+                    </span>
+                  </TableCell>
+                  <TableCell className="px-4 py-3">
+                    <code className="font-mono text-sm">
                       {value}
-                    </span>
-                  </td>
-                  <td style={{ padding: "0.8rem" }}>
-                    <span
-                      style={{
-                        fontFamily: "monospace",
-                        fontSize: "0.9rem",
-                      }}
-                      className="text-muted-foreground"
-                    >
+                    </code>
+                  </TableCell>
+                  <TableCell className="px-4 py-3">
+                    <code className="font-mono text-sm">
                       {pxValue}px
-                    </span>
-                  </td>
-                </tr>
+                    </code>
+                  </TableCell>
+                </TableRow>
               );
             })}
-          </tbody>
-        </table>
+          </TableBody>
+        </Table>
       </div>
     </div>
   );

@@ -7,18 +7,13 @@ const breakpoints = fs.readFileSync(cssPath, "utf-8");
 
 export default function BreakpointsPage() {
   return (
-    <div className="flex w-full">
-      <div className="flex-1 min-w-0">
-        <div className="container p-5 md:p-10">
+    <div className="container p-5 md:p-10  xl:pr-[250px]">
           <div className="mb-8">
-            <h1 className="font-bold text-4xl tracking-tight">Breakpoints</h1>
-            <p className="mt-1 text-muted-foreground">
-              Responsive breakpoint tokens for different screen sizes
-            </p>
+            <h1 className="font-bold text-4xl tracking-tight mb-2">
+              Breakpoints
+            </h1>
           </div>
           <BreakpointsClient content={breakpoints} />
-        </div>
-      </div>
     </div>
   );
 }

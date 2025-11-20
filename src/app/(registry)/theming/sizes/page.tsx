@@ -1,8 +1,31 @@
+"use client";
+
+import { useState } from "react";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
+import { Check } from "lucide-react";
+
 type SizeData = {
   token: string;
   value: string;
   pixels: string;
 };
+
+// Helper function to copy text to clipboard
+async function copyToClipboard(value: string) {
+  await navigator.clipboard.writeText(value);
+}
 
 const SIZES_DATA: SizeData[] = [
   // Fixed sizes
@@ -79,72 +102,59 @@ const SIZES_DATA: SizeData[] = [
 ];
 
 export default function SizesPage() {
+  const [copiedToken, setCopiedToken] = useState<string | null>(null);
+
+  const handleCopy = async (token: string) => {
+    await copyToClipboard(token);
+    setCopiedToken(token);
+    setTimeout(() => setCopiedToken(null), 2000);
+  };
+
   return (
-    <div className="flex w-full">
-      <div className="flex-1 min-w-0">
-        <div className="container p-5 md:p-10">
-          <div className="mb-8">
-            <h1 className="font-bold text-4xl tracking-tight">Sizes</h1>
-            <p className="mt-1 text-muted-foreground">
-              Size tokens for consistent component dimensions
-            </p>
-          </div>
-          <div style={{ width: "100%", overflowX: "auto" }}>
-            <table
-              style={{
-                width: "100%",
-                borderCollapse: "collapse",
-                marginTop: "1rem",
-              }}
-            >
-              <thead>
-                <tr style={{ borderBottom: "2px solid #ccc" }}>
-                  <th style={{ padding: "0.8rem", textAlign: "left" }}>Token</th>
-                  <th style={{ padding: "0.8rem", textAlign: "left" }}>Value</th>
-                  <th style={{ padding: "0.8rem", textAlign: "left" }}>PX</th>
-                </tr>
-              </thead>
-              <tbody>
-                {SIZES_DATA.map((item) => (
-                  <tr key={item.token} style={{ borderBottom: "1px solid #eee" }}>
-                    <td style={{ padding: "0.8rem" }}>
-                      <span
-                        style={{
-                          fontFamily: "monospace",
-                          fontSize: "0.9rem",
-                        }}
+    <div className="container p-5 md:p-10 xl:pr-[250px]">
+      <div className="mb-8">
+        <h1 className="font-bold text-4xl tracking-tight mb-2">Sizes</h1>
+      </div>
+      <div className="overflow-x-auto">
+        <Table>
+          <TableHeader>
+            <TableRow>
+              <TableHead className="px-4">Token</TableHead>
+              <TableHead className="px-4">Value</TableHead>
+              <TableHead className="px-4">PX</TableHead>
+            </TableRow>
+          </TableHeader>
+          <TableBody>
+            {SIZES_DATA.map((item) => (
+              <TableRow key={item.token}>
+                <TableCell className="px-4 py-3">
+                  <Tooltip>
+                    <TooltipTrigger asChild>
+                      <code
+                        onClick={() => handleCopy(item.token)}
+                        className="relative cursor-pointer rounded bg-muted px-[0.3rem] py-[0.2rem] font-mono text-sm"
                       >
                         {item.token}
-                      </span>
-                    </td>
-                    <td style={{ padding: "0.8rem" }}>
-                      <span
-                        style={{
-                          fontFamily: "monospace",
-                          fontSize: "0.9rem",
-                        }}
-                        className="text-muted-foreground"
-                      >
-                        {item.value}
-                      </span>
-                    </td>
-                    <td style={{ padding: "0.8rem" }}>
-                      <span
-                        style={{
-                          fontFamily: "monospace",
-                          fontSize: "0.9rem",
-                        }}
-                        className="text-muted-foreground"
-                      >
-                        {item.pixels}
-                      </span>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </div>
+                        {copiedToken === item.token && (
+                          <Check className="ml-1 inline-block h-3 w-3" />
+                        )}
+                      </code>
+                    </TooltipTrigger>
+                    <TooltipContent>
+                      <p>Copy to clipboard</p>
+                    </TooltipContent>
+                  </Tooltip>
+                </TableCell>
+                <TableCell className="px-4 py-3">
+                  <code className="font-mono text-sm">{item.value}</code>
+                </TableCell>
+                <TableCell className="px-4 py-3">
+                  <code className="font-mono text-sm">{item.pixels}</code>
+                </TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
       </div>
     </div>
   );
