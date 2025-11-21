@@ -1522,6 +1522,10 @@
         {
           "path": "src/components/ui/stack-navigation.tsx",
           "type": "registry:ui"
+        },
+        {
+          "path": "src/lib/icon.tsx",
+          "type": "registry:lib"  
         }
       ]
     },
