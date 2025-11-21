@@ -20,7 +20,7 @@ import {
   SidebarMenuItem,
   useSidebar,
 } from "@/components/docsite/docsite-sidebar";
-import { getBlocks, getComponents } from "@/lib/registry";
+import { getBlocks, getComponents, getRegistryItem } from "@/lib/registry";
 import { themingItems, graphicsItems } from "@/config/nav";
 
 const componentItems = getComponents();
@@ -38,11 +38,13 @@ export function MobileSidebarTrigger() {
     if (pathname === "/" || pathname.startsWith("/resources") || pathname.startsWith("/mcp")) {
       return false;
     }
-    return pathname.startsWith("/primitives") || 
-           pathname.startsWith("/bloks") || 
-           pathname.startsWith("/theming") || 
-           pathname.startsWith("/graphics") ||
-           pathname.startsWith("/registry");
+    return (
+      pathname.startsWith("/primitives") ||
+      pathname.startsWith("/bloks") ||
+      pathname.startsWith("/theming") ||
+      pathname.startsWith("/graphics") ||
+      pathname.startsWith("/registry")
+    );
   }, [pathname]);
 
   if (!shouldShowSidebar) {
@@ -67,11 +69,35 @@ export function RegistrySidebar() {
     if (pathname === "/" || pathname.startsWith("/resources") || pathname.startsWith("/mcp")) {
       return null; // No sidebar for homepage, resources, or mcp
     }
-    if (pathname.startsWith("/primitives") || pathname.startsWith("/registry")) {
+    if (pathname.startsWith("/primitives")) {
       return "components";
     }
     if (pathname.startsWith("/bloks")) {
       return "blocks";
+    }
+    if (pathname.startsWith("/registry")) {
+     
+      const segments = pathname.split("/").filter(Boolean);
+      const itemName = segments[segments.length - 1];
+
+      if (itemName) {
+        try {
+          const item = getRegistryItem(itemName);
+
+          if (
+            item.type === "registry:block" ||
+            item.type === "registry:component"
+          ) {
+            return "blocks";
+          } else if (item.type === "registry:ui") {
+            return "components";
+          }
+        } catch (error) {
+
+          return "components";
+        }
+      }
+      return "components"; // Default fallback
     }
     if (pathname.startsWith("/theming")) {
       return "theming";
@@ -88,8 +114,8 @@ export function RegistrySidebar() {
   }
 
   return (
-    <Sidebar 
-      collapsible="icon" 
+    <Sidebar
+      collapsible="icon"
       className="[&>div[data-slot='sidebar-inner']]:bg-subtle-bg [&>div[data-mobile='true']]:bg-subtle-bg"
     >
       <SidebarHeader className="mb-3 pt-5">
