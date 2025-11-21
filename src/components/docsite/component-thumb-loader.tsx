@@ -24,6 +24,8 @@ import DatePickerThumb from "@/components/component-thumbs/date-picker";
 import DraggableThumb from "@/components/component-thumbs/draggable";
 import DrawerThumb from "@/components/component-thumbs/drawer";
 import DropdownMenuThumb from "@/components/component-thumbs/dropdown-menu";
+import EmptyStateThumb from "@/components/component-thumbs/empty-state";
+import ErrorStateThumb from "@/components/component-thumbs/error-state";
 import HoverCardThumb from "@/components/component-thumbs/hover-card";
 import InputThumb from "@/components/component-thumbs/input";
 import NavigationMenuThumb from "@/components/component-thumbs/navigation-menu";
@@ -81,6 +83,8 @@ const componentThumbnails: Record<
   draggable: DraggableThumb,
   drawer: DrawerThumb,
   "dropdown-menu": DropdownMenuThumb,
+  "empty-states": EmptyStateThumb,
+  "error-states": ErrorStateThumb,
   "hover-card": HoverCardThumb,
   input: InputThumb,
   inputOtp: PinInputThumb,
