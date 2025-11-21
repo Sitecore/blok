@@ -27,11 +27,12 @@ interface ErrorStatesProps
   extends React.ComponentProps<"div">,
     VariantProps<typeof errorStatesVariants> {
   title?: string;
-  description?: string;
+  description?: React.ReactNode;
   errorCode?: string;
   imageSrc?: string;
   imageAlt?: string;
   actions?: React.ReactNode;
+  knowledgeBaseUrl?: string;
 }
 
 const errorStateConfig = {
@@ -39,7 +40,20 @@ const errorStateConfig = {
     imageSrc: "https://delivery-sitecore.sitecorecontenthub.cloud/api/public/content/spot-alert",
     imageAlt: "alert",
     defaultTitle: "Something went wrong",
-    defaultDescription: "(Customizable text) Please try again. If the issue persists, try visiting the Knowledge Base for assistance.",
+    getDefaultDescription: (knowledgeBaseUrl?: string) => (
+      <>
+        (Customizable text) Please try again. If the issue persists, try visiting the{" "}
+        <a
+          href={knowledgeBaseUrl || "#"}
+          className="text-primary hover:underline"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Knowledge Base
+        </a>{" "}
+        for assistance.
+      </>
+    ),
   },
   "400": {
     imageSrc: "https://delivery-sitecore.sitecorecontenthub.cloud/api/public/content/spot-alert-circle",
@@ -94,11 +108,16 @@ function ErrorStates({
   imageSrc,
   imageAlt,
   actions,
+  knowledgeBaseUrl,
   ...props
 }: ErrorStatesProps) {
   const config = errorStateConfig[variant || "generic"];
   const finalTitle = title || config.defaultTitle;
-  const finalDescription = description || config.defaultDescription;
+  const finalDescription =
+    description ||
+    ("getDefaultDescription" in config
+      ? config.getDefaultDescription(knowledgeBaseUrl)
+      : config.defaultDescription);
   const finalErrorCode = errorCode || ("defaultErrorCode" in config ? config.defaultErrorCode : undefined);
   const finalImageSrc = imageSrc || config.imageSrc;
   const finalImageAlt = imageAlt || config.imageAlt;
