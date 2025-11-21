@@ -97,7 +97,7 @@ export function RegistrySidebar() {
           return "components";
         }
       }
-      return "components"; // Default fallback
+      return "components"; 
     }
     if (pathname.startsWith("/theming")) {
       return "theming";
