@@ -1,0 +1,83 @@
+---
+title: Introduction
+description: Welcome to Blok - A beautiful component library built with React and Tailwind CSS
+icon: BookOpen
+---
+
+import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
+
+# Welcome to Blok
+
+Blok is a collection of beautifully designed, accessible, and customizable React components built with Tailwind CSS.
+
+## Features
+
+- 🎨 **Beautiful Design** - Modern, clean, and professional components
+- ♿ **Accessible** - Built with accessibility in mind using Radix UI primitives
+- 🎨 **Customizable** - Easily customize colors, sizes, and styles
+- 📦 **Easy to Install** - Simple CLI installation process
+- 🔧 **TypeScript** - Full TypeScript support
+- 🌙 **Dark Mode** - Built-in dark mode support
+
+## Quick Start
+
+<Steps>
+
+### Install the CLI
+
+```bash
+npx shadcn@latest init
+```
+
+### Add a component
+
+```bash
+npx shadcn@latest add button
+```
+
+### Use in your app
+
+```tsx
+import { Button } from "@/components/ui/button";
+
+export default function App() {
+  return <Button>Click me</Button>;
+}
+```
+
+</Steps>
+
+## Component Categories
+
+<div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3 mt-8">
+  <Card className="p-6">
+    <h3 className="font-semibold text-lg mb-2">UI Components</h3>
+    <p className="text-sm text-muted-foreground">
+      Buttons, inputs, cards, and more essential UI elements
+    </p>
+  </Card>
+  <Card className="p-6">
+    <h3 className="font-semibold text-lg mb-2">Form Components</h3>
+    <p className="text-sm text-muted-foreground">
+      Form inputs, selects, checkboxes, and validation
+    </p>
+  </Card>
+  <Card className="p-6">
+    <h3 className="font-semibold text-lg mb-2">Layout Components</h3>
+    <p className="text-sm text-muted-foreground">
+      Sidebars, navigation, and layout utilities
+    </p>
+  </Card>
+</div>
+
+## Why Blok?
+
+Blok provides production-ready components that you can copy and paste into your apps. It's not a component library that you install as a dependency. You own the code.
+
+Each component is:
+- **Fully customizable** - Modify the code to fit your needs
+- **Accessible** - Built with ARIA patterns and keyboard navigation
+- **Responsive** - Works on all screen sizes
+- **Well documented** - Clear examples and API documentation
+

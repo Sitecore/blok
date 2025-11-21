@@ -1,0 +1,169 @@
+---
+title: Installation
+description: How to install and set up Blok components in your project
+icon: Download
+---
+
+# Installation
+
+Get started with Blok components in your React project.
+
+## Requirements
+
+- Node.js 18.0 or later
+- React 18.0 or later
+- Tailwind CSS 3.0 or later
+
+## CLI Installation
+
+The easiest way to add components to your project is using the Blok CLI.
+
+<Steps>
+
+### Install dependencies
+
+First, make sure you have the required dependencies:
+
+```bash
+npm install react react-dom
+npm install -D tailwindcss postcss autoprefixer
+npx tailwindcss init -p
+```
+
+### Configure Tailwind CSS
+
+Add the following to your `tailwind.config.js`:
+
+```js title="tailwind.config.js" {3-6}
+/** @type {import('tailwindcss').Config} */
+module.exports = {
+  content: [
+    "./app/**/*.{js,ts,jsx,tsx,mdx}",
+    "./components/**/*.{js,ts,jsx,tsx,mdx}",
+  ],
+  theme: {
+    extend: {},
+  },
+  plugins: [],
+}
+```
+
+### Add global styles
+
+Create a `globals.css` file and add the Tailwind directives:
+
+```css title="app/globals.css"
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+    --primary: 222.2 47.4% 11.2%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 222.2 84% 4.9%;
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
+  }
+}
+```
+
+### Initialize the CLI
+
+Run the init command to set up your project:
+
+```bash
+npx blok-ui@latest init
+```
+
+This will:
+- Create a `components.json` file
+- Set up your import aliases
+- Configure your project structure
+
+### Add a component
+
+Now you can add any component:
+
+```bash
+npx blok-ui@latest add button
+```
+
+</Steps>
+
+## Manual Installation
+
+You can also manually copy component code into your project.
+
+### Install dependencies
+
+Install the required dependencies for the components you want to use:
+
+```bash
+npm install @radix-ui/react-slot class-variance-authority clsx tailwind-merge
+```
+
+### Add utility functions
+
+Create a `lib/utils.ts` file:
+
+```ts title="lib/utils.ts"
+import { clsx, type ClassValue } from "clsx"
+import { twMerge } from "tailwind-merge"
+
+export function cn(...inputs: ClassValue[]) {
+  return twMerge(clsx(inputs))
+}
+```
+
+### Copy component code
+
+Copy the component code from the documentation page and paste it into your project.
+
+<Callout type="info">
+  Each component page includes installation instructions and the full source code.
+</Callout>
+
+## Next Steps
+
+- Browse the [Components](/docs/components) section
+- Check out [Examples](/docs/examples)
+- Learn about [Theming](/docs/theming)
+

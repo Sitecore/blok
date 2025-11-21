@@ -1,0 +1,352 @@
+---
+title: Button
+description: Displays a button or a component that looks like a button.
+---
+
+import { Button } from "@/components/ui/button";
+import { Tabs, Tab } from "fumadocs-ui/components/tabs";
+
+# Button
+
+Displays a button or a component that looks like a button.
+
+<div className="my-8 flex gap-3">
+  <Button>Default</Button>
+  <Button variant="secondary">Secondary</Button>
+  <Button variant="destructive">Destructive</Button>
+  <Button variant="outline">Outline</Button>
+  <Button variant="ghost">Ghost</Button>
+</div>
+
+## Installation
+
+<Tabs items={["CLI", "Manual"]}>
+<Tab value="CLI">
+
+```bash
+npx blok-ui@latest add button
+```
+
+</Tab>
+<Tab value="Manual">
+
+<Steps>
+
+### Install dependencies
+
+```bash
+npm install @radix-ui/react-slot class-variance-authority
+```
+
+### Copy the component code
+
+Create `components/ui/button.tsx`:
+
+```tsx title="components/ui/button.tsx"
+import * as React from "react"
+import { Slot } from "@radix-ui/react-slot"
+import { cva, type VariantProps } from "class-variance-authority"
+
+import { cn } from "@/lib/utils"
+
+const buttonVariants = cva(
+  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
+  {
+    variants: {
+      variant: {
+        default: "bg-primary text-primary-foreground hover:bg-primary/90",
+        destructive:
+          "bg-destructive text-destructive-foreground hover:bg-destructive/90",
+        outline:
+          "border border-input bg-background hover:bg-accent hover:text-accent-foreground",
+        secondary:
+          "bg-secondary text-secondary-foreground hover:bg-secondary/80",
+        ghost: "hover:bg-accent hover:text-accent-foreground",
+        link: "text-primary underline-offset-4 hover:underline",
+      },
+      size: {
+        default: "h-10 px-4 py-2",
+        sm: "h-9 rounded-md px-3",
+        lg: "h-11 rounded-md px-8",
+        icon: "h-10 w-10",
+      },
+    },
+    defaultVariants: {
+      variant: "default",
+      size: "default",
+    },
+  }
+)
+
+export interface ButtonProps
+  extends React.ButtonHTMLAttributes<HTMLButtonElement>,
+    VariantProps<typeof buttonVariants> {
+  asChild?: boolean
+}
+
+const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
+  ({ className, variant, size, asChild = false, ...props }, ref) => {
+    const Comp = asChild ? Slot : "button"
+    return (
+      <Comp
+        className={cn(buttonVariants({ variant, size, className }))}
+        ref={ref}
+        {...props}
+      />
+    )
+  }
+)
+Button.displayName = "Button"
+
+export { Button, buttonVariants }
+```
+
+</Steps>
+
+</Tab>
+</Tabs>
+
+## Usage
+
+```tsx
+import { Button } from "@/components/ui/button"
+
+export default function MyComponent() {
+  return <Button>Click me</Button>
+}
+```
+
+## Examples
+
+### Default
+
+The default button style.
+
+<div className="my-6">
+  <Button>Default Button</Button>
+</div>
+
+```tsx
+<Button>Default Button</Button>
+```
+
+### Secondary
+
+Use the `secondary` variant for secondary actions.
+
+<div className="my-6">
+  <Button variant="secondary">Secondary Button</Button>
+</div>
+
+```tsx
+<Button variant="secondary">Secondary Button</Button>
+```
+
+### Destructive
+
+Use the `destructive` variant for actions that are destructive or permanent.
+
+<div className="my-6">
+  <Button variant="destructive">Delete Account</Button>
+</div>
+
+```tsx
+<Button variant="destructive">Delete Account</Button>
+```
+
+### Outline
+
+Use the `outline` variant for a more subtle button.
+
+<div className="my-6">
+  <Button variant="outline">Outline Button</Button>
+</div>
+
+```tsx
+<Button variant="outline">Outline Button</Button>
+```
+
+### Ghost
+
+Use the `ghost` variant for a button with no background until hovered.
+
+<div className="my-6">
+  <Button variant="ghost">Ghost Button</Button>
+</div>
+
+```tsx
+<Button variant="ghost">Ghost Button</Button>
+```
+
+### Link
+
+Use the `link` variant for a button that looks like a link.
+
+<div className="my-6">
+  <Button variant="link">Link Button</Button>
+</div>
+
+```tsx
+<Button variant="link">Link Button</Button>
+```
+
+### With Icon
+
+Buttons can contain icons.
+
+<div className="my-6 flex gap-3">
+  <Button>
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M5 12h14"/>
+      <path d="m12 5 7 7-7 7"/>
+    </svg>
+    Next
+  </Button>
+</div>
+
+```tsx
+import { ArrowRight } from "lucide-react"
+
+<Button>
+  <ArrowRight />
+  Next
+</Button>
+```
+
+### Loading State
+
+Show a loading state by disabling the button and adding a spinner.
+
+<div className="my-6">
+  <Button disabled>
+    <svg className="animate-spin" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M21 12a9 9 0 1 1-6.219-8.56"/>
+    </svg>
+    Please wait
+  </Button>
+</div>
+
+```tsx
+<Button disabled>
+  <Loader2 className="animate-spin" />
+  Please wait
+</Button>
+```
+
+### Sizes
+
+Buttons come in three sizes: `sm`, `default`, and `lg`.
+
+<div className="my-6 flex items-center gap-3">
+  <Button size="sm">Small</Button>
+  <Button size="default">Default</Button>
+  <Button size="lg">Large</Button>
+</div>
+
+```tsx
+<Button size="sm">Small</Button>
+<Button size="default">Default</Button>
+<Button size="lg">Large</Button>
+```
+
+### Icon Button
+
+Use the `icon` size variant for square icon-only buttons.
+
+<div className="my-6 flex gap-3">
+  <Button size="icon" variant="outline">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/>
+      <polyline points="10 17 15 12 10 7"/>
+      <line x1="15" x2="3" y1="12" y2="12"/>
+    </svg>
+  </Button>
+</div>
+
+```tsx
+import { LogIn } from "lucide-react"
+
+<Button size="icon" variant="outline">
+  <LogIn />
+</Button>
+```
+
+### As Child
+
+Use the `asChild` prop to change the underlying element rendered. This is useful when you want to use the button styles on a link or other element.
+
+```tsx
+import Link from "next/link"
+
+<Button asChild>
+  <Link href="/login">Login</Link>
+</Button>
+```
+
+## API Reference
+
+### Props
+
+<div className="my-6">
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `variant` | `"default" \| "destructive" \| "outline" \| "secondary" \| "ghost" \| "link"` | `"default"` | The visual style variant of the button |
+| `size` | `"default" \| "sm" \| "lg" \| "icon"` | `"default"` | The size of the button |
+| `asChild` | `boolean` | `false` | Change the default rendered element for the one passed as a child |
+
+</div>
+
+
+
+## Accessibility
+
+### Keyboard Navigation
+
+- **Space** or **Enter**: Activates the button
+- **Tab**: Moves focus to the next focusable element
+- **Shift + Tab**: Moves focus to the previous focusable element
+
+### ARIA
+
+The button component:
+- Uses semantic `<button>` element by default
+- Has proper focus management
+- Supports `disabled` state
+- Works with screen readers
+
+
+
+## Best Practices
+
+1. **Use descriptive text**: Button labels should clearly describe the action that will occur
+2. **Consistent variants**: Use the same variant for similar actions across your app
+3. **Loading states**: Always show feedback when an action is in progress
+4. **Disabled state**: Only disable buttons when necessary and provide clear feedback why
+5. **Icon usage**: Use icons to enhance understanding, not replace clear text
+
+## Examples in the Wild
+
+<div className="grid gap-4 md:grid-cols-2 mt-6">
+  <div className="p-4 border rounded-lg">
+    <h4 className="font-semibold mb-3">Form Submission</h4>
+    <div className="flex gap-2">
+      <Button variant="outline">Cancel</Button>
+      <Button>Submit</Button>
+    </div>
+  </div>
+  <div className="p-4 border rounded-lg">
+    <h4 className="font-semibold mb-3">Destructive Action</h4>
+    <div className="flex gap-2">
+      <Button variant="outline">Keep</Button>
+      <Button variant="destructive">Delete</Button>
+    </div>
+  </div>
+</div>
+
+## Related Components
+
+- [Link Button](/docs/components/link-button) - A button that navigates to a different page
+- [Icon Button](/docs/components/icon-button) - A button with only an icon
+- [Button Group](/docs/components/button-group) - Group multiple buttons together
+
