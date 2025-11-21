@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import * as React from "react";
 import { cn } from "@/lib/utils";
 
 export interface StackNavigationItem {
@@ -136,7 +137,16 @@ export function StackNavigation({
   pathname: providedPathname,
 }: StackNavigationProps) {
   // Use provided pathname or fall back to window.location.pathname
-  const pathname = providedPathname ?? (typeof window !== "undefined" ? window.location.pathname : "");
+  const [clientPathname, setClientPathname] = React.useState("");
+
+  React.useEffect(() => {
+    // Only set pathname on client side to avoid hydration mismatch
+    if (typeof window !== "undefined" && !providedPathname) {
+      setClientPathname(window.location.pathname);
+    }
+  }, [providedPathname]);
+
+  const pathname = providedPathname ?? clientPathname;
   const isHorizontal = orientation === "horizontal";
 
   return (
@@ -210,3 +220,4 @@ export function StackNavigation({
     </aside>
   );
 }
+ 
