@@ -15,7 +15,8 @@
     "paths": {
       "@/*": ["./src/*"],
       "@/registry": ["./registries/registry.json"],
-      "@/lib/*": ["./src/lib/*"]
+      "@/lib/*": ["./src/lib/*"],
+       "fumadocs-mdx:collections/*": ["./.source/*"]
     },
     "plugins": [
       {
