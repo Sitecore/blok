@@ -16,8 +16,8 @@ const borderRadiusContent = fs.readFileSync(cssPath, "utf-8");
 
 const NOTES: Record<string, string> = {
   md: "The most common radius. Used on many elements, such as inputs, cards, tags, and more.",
-  lg: "The preferred larger radius. Used on modals and large panels.",
-  full: "Used for buttons.",
+  lg: "The preferred larger rounded. Used on modals and large panels.",
+  full: "Used for circular elements, such as avatars and buttons.",
 };
 
 export default function BorderRadiusPage() {

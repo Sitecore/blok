@@ -59,11 +59,11 @@ export function BreakpointsClient({ content }: Props) {
 
   const deviceMap: { [key: string]: string } = {
     base: "",
-    sm: "Phone",
+    sm: "Small Phone",
     md: "Tablet (portrait)",
     lg: "Tablet (landscape)",
     xl: "Desktop",
-    "2xl": "Desktop (large)",
+    "2xl": "Large Desktop",
   };
 
   useEffect(() => {
@@ -92,19 +92,19 @@ export function BreakpointsClient({ content }: Props) {
 
   return (
     <div className="w-full">
-      <div className="mb-6">
-        <p className="text-xl font-semibold">Window width: {windowWidth}px</p>
+      <div className="mb-2">
+        <p className="text-lg font-semibold">Window width: {windowWidth}px</p>
       </div>
 
-      <div className="flex flex-row items-center gap-2 text-lg mb-6">
-        <p className="font-semibold">Active breakpoint:</p>
+      <div className="flex flex-row items-center gap-2 text-lg mb-10 font-semibold">
+        <p>Active breakpoint:</p>
         {Object.entries(filteredBreakpoints).map(([key]) => {
           const isActive = currentBreakpointName === key;
 
           return (
             <div
               key={key}
-              className={isActive ? "block font-semibold" : "hidden"}
+              className={isActive ? "block" : "hidden"}
             >
               {key} - {deviceMap[key] || "N/A"}
             </div>
