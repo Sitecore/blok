@@ -17,7 +17,7 @@
 
 :root {
   --radius: 0.625rem;
-  
+  --font-ui: "Segoe UI", Inter, system-ui;
   /* Core semantic tokens (light mode - default) */
   --background: var(--color-white);
   --muted: var(--color-gray-50);
@@ -295,6 +295,9 @@
   body {
     @apply bg-background text-foreground;
   }
+}
+html, body {
+  font-family: var(--font-ui);
 }
 
 .scrollbar-hidden {

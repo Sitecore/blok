@@ -9,7 +9,6 @@ import {
 import { Toaster } from "@/components/ui/sonner";
 import TopBar from "@/components/layout/topbar";
 import { DynamicRightSidebar } from "@/components/layout/dynamic-right-sidebar";
-import { RootProvider } from 'fumadocs-ui/provider/next';
 
 export default function RegistryLayout({
   children,
@@ -32,9 +31,9 @@ export default function RegistryLayout({
             
             <SidebarInset className="flex flex-col">
               <MobileSidebarTrigger />
-                
-                <RootProvider>{children}</RootProvider>
-
+              <main id="main-content" className="flex flex-1 w-full justify-center">
+                {children}
+              </main>
               <DynamicRightSidebar />
             </SidebarInset>
           </SidebarProvider>
