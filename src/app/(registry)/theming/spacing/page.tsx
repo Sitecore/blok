@@ -1,6 +1,5 @@
 "use client";
 
-import { useState } from "react";
 import {
   Table,
   TableBody,
@@ -9,23 +8,13 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
-import { Check } from "lucide-react";
+import { CopyableToken } from "@/components/docsite/copyable-token";
 
 type SpacingData = {
   name: string;
   spacing: string;
   pixels: string;
 };
-
-// Helper function to copy text to clipboard
-async function copyToClipboard(value: string) {
-  await navigator.clipboard.writeText(value);
-}
 
 const SPACING_DATA: SpacingData[] = [
   { name: "0", spacing: "0px", pixels: "0px" },
@@ -66,16 +55,8 @@ const SPACING_DATA: SpacingData[] = [
 ];
 
 export default function SpacingPage() {
-  const [copiedToken, setCopiedToken] = useState<string | null>(null);
-
   const getPixelValue = (pixels: string): number => {
     return parseInt(pixels.replace("px", ""), 10);
-  };
-
-  const handleCopy = async (token: string) => {
-    await copyToClipboard(token);
-    setCopiedToken(token);
-    setTimeout(() => setCopiedToken(null), 2000);
   };
 
   return (
@@ -101,22 +82,7 @@ export default function SpacingPage() {
               return (
                 <TableRow key={item.name}>
                   <TableCell className="px-4 py-3">
-                    <Tooltip>
-                      <TooltipTrigger asChild>
-                        <code
-                          onClick={() => handleCopy(item.name)}
-                          className="relative cursor-pointer rounded bg-muted px-[0.3rem] py-[0.2rem] font-mono text-sm"
-                        >
-                          {item.name}
-                          {copiedToken === item.name && (
-                            <Check className="ml-1 inline-block h-3 w-3" />
-                          )}
-                        </code>
-                      </TooltipTrigger>
-                      <TooltipContent>
-                        <p>Copy to clipboard</p>
-                      </TooltipContent>
-                    </Tooltip>
+                    <CopyableToken token={item.name} />
                   </TableCell>
                   <TableCell className="px-4 py-3">
                     <code className="font-mono text-sm">{item.spacing}</code>

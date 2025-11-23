@@ -1,6 +1,5 @@
 "use client";
 
-import { useState } from "react";
 import {
   Table,
   TableBody,
@@ -9,23 +8,13 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
-import { Check } from "lucide-react";
+import { CopyableToken } from "@/components/docsite/copyable-token";
 
 type SizeData = {
   token: string;
   value: string;
   pixels: string;
 };
-
-// Helper function to copy text to clipboard
-async function copyToClipboard(value: string) {
-  await navigator.clipboard.writeText(value);
-}
 
 const SIZES_DATA: SizeData[] = [
   // Fixed sizes
@@ -102,14 +91,6 @@ const SIZES_DATA: SizeData[] = [
 ];
 
 export default function SizesPage() {
-  const [copiedToken, setCopiedToken] = useState<string | null>(null);
-
-  const handleCopy = async (token: string) => {
-    await copyToClipboard(token);
-    setCopiedToken(token);
-    setTimeout(() => setCopiedToken(null), 2000);
-  };
-
   return (
     <div className="container p-5 md:p-10 xl:pr-[250px]">
       <div className="mb-8">
@@ -128,22 +109,7 @@ export default function SizesPage() {
             {SIZES_DATA.map((item) => (
               <TableRow key={item.token}>
                 <TableCell className="px-4 py-3">
-                  <Tooltip>
-                    <TooltipTrigger asChild>
-                      <code
-                        onClick={() => handleCopy(item.token)}
-                        className="relative cursor-pointer rounded bg-muted px-[0.3rem] py-[0.2rem] font-mono text-sm"
-                      >
-                        {item.token}
-                        {copiedToken === item.token && (
-                          <Check className="ml-1 inline-block h-3 w-3" />
-                        )}
-                      </code>
-                    </TooltipTrigger>
-                    <TooltipContent>
-                      <p>Copy to clipboard</p>
-                    </TooltipContent>
-                  </Tooltip>
+                  <CopyableToken token={item.token} />
                 </TableCell>
                 <TableCell className="px-4 py-3">
                   <code className="font-mono text-sm">{item.value}</code>

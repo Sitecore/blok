@@ -10,21 +10,11 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
-import { Check } from "lucide-react";
+import { CopyableToken } from "@/components/docsite/copyable-token";
 
 type Props = {
   content: string;
 };
-
-// Helper function to copy text to clipboard
-async function copyToClipboard(value: string) {
-  await navigator.clipboard.writeText(value);
-}
 
 export function SemanticTokensClient({ content }: Props) {
   const [defaultColors, setDefaultColors] = useState<Record<string, string>>({});
@@ -34,7 +24,6 @@ export function SemanticTokensClient({ content }: Props) {
   const [darkVars, setDarkVars] = useState<Record<string, string>>({});
 
   const [isDarkTheme, setIsDarkTheme] = useState<boolean>(false);
-  const [copiedToken, setCopiedToken] = useState<string | null>(null);
 
   useEffect(() => {
     const { default: parsedDefault, dark: parsedDark, defaultVars, darkVars } = parseCssVariablesByTheme(content);
@@ -57,12 +46,6 @@ export function SemanticTokensClient({ content }: Props) {
 
     return () => observer.disconnect();
   }, [content]);
-
-  const handleCopy = async (token: string) => {
-    await copyToClipboard(token);
-    setCopiedToken(token);
-    setTimeout(() => setCopiedToken(null), 2000);
-  };
 
   // Extract semantic tokens from the @theme inline block
   const extractSemanticTokens = (): Record<string, string> => {
@@ -139,22 +122,7 @@ export function SemanticTokensClient({ content }: Props) {
                   />
                 </TableCell>
                 <TableCell className="px-4 py-3">
-                  <Tooltip>
-                    <TooltipTrigger asChild>
-                      <code
-                        onClick={() => handleCopy(key)}
-                        className="relative cursor-pointer rounded bg-muted px-[0.3rem] py-[0.2rem] font-mono text-sm"
-                      >
-                        {key}
-                        {copiedToken === key && (
-                          <Check className="ml-1 inline-block h-3 w-3" />
-                        )}
-                      </code>
-                    </TooltipTrigger>
-                    <TooltipContent>
-                      <p>Copy to clipboard</p>
-                    </TooltipContent>
-                  </Tooltip>
+                  <CopyableToken token={key} />
                 </TableCell>
                 <TableCell className="px-4 py-3">
                   <code className="font-mono text-sm">{formattedLight}</code>

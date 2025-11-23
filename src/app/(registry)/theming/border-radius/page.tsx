@@ -9,6 +9,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { CopyableToken } from "@/components/docsite/copyable-token";
 
 const cssPath = path.join(process.cwd(), "src", "app", "borderRadius.css");
 const borderRadiusContent = fs.readFileSync(cssPath, "utf-8");
@@ -56,9 +57,7 @@ export default function BorderRadiusPage() {
                     />
                   </TableCell>
                   <TableCell className="px-4 py-3">
-                    <code className="rounded bg-muted px-[0.3rem] py-[0.2rem] font-mono text-sm">
-                      {key}
-                    </code>
+                    <CopyableToken token={key} />
                   </TableCell>
                   <TableCell className="px-4 py-3">
                     <code className="font-mono text-sm">{value}</code>

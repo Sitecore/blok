@@ -10,21 +10,11 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
-import { Check } from "lucide-react";
+import { CopyableToken } from "@/components/docsite/copyable-token";
 
 type Props = {
   content: string;
 };
-
-// Helper function to copy text to clipboard
-async function copyToClipboard(value: string) {
-  await navigator.clipboard.writeText(value);
-}
 
 // Helper function to get the current breakpoint name
 const getCurrentBreakpoint = (
@@ -66,7 +56,6 @@ export function BreakpointsClient({ content }: Props) {
   const [currentBreakpointName, setCurrentBreakpointName] = useState<
     string | null
   >(null);
-  const [copiedToken, setCopiedToken] = useState<string | null>(null);
 
   const deviceMap: { [key: string]: string } = {
     base: "",
@@ -100,12 +89,6 @@ export function BreakpointsClient({ content }: Props) {
       }
     };
   }, [filteredBreakpoints]);
-
-  const handleCopy = async (token: string) => {
-    await copyToClipboard(token);
-    setCopiedToken(token);
-    setTimeout(() => setCopiedToken(null), 2000);
-  };
 
   return (
     <div className="w-full">
@@ -149,22 +132,7 @@ export function BreakpointsClient({ content }: Props) {
               return (
                 <TableRow key={key}>
                   <TableCell className="px-4 py-3">
-                    <Tooltip>
-                      <TooltipTrigger asChild>
-                        <code
-                          onClick={() => handleCopy(key)}
-                          className="relative cursor-pointer rounded bg-muted px-[0.3rem] py-[0.2rem] font-mono text-sm"
-                        >
-                          {key}
-                          {copiedToken === key && (
-                            <Check className="ml-1 inline-block h-3 w-3" />
-                          )}
-                        </code>
-                      </TooltipTrigger>
-                      <TooltipContent>
-                        <p>Copy to clipboard</p>
-                      </TooltipContent>
-                    </Tooltip>
+                    <CopyableToken token={key} />
                   </TableCell>
                   <TableCell className="px-4 py-3">
                     <span className="text-sm">
