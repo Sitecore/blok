@@ -10,6 +10,9 @@ import { ComponentWrapper } from "./component-wrapper";
 import ShadowDemo from "./components/shadow-theme";
 import TypographyDemo from "./components/typography-theme";
 import BreakpointsDemo from "./components/breakpoint-theme";
+import SemanticTokensDemo from "./components/semanticTokens-theme";
+import SpacingDemo from "./components/spacing-theme";
+import SizesDemo from "./components/sizes-theme";
 
 let cssPath = path.join(process.cwd(), "src", "app", "colors.css");
 const colorsContent = fs.readFileSync(cssPath, "utf-8");
@@ -50,6 +53,9 @@ export default function TokensPage() {
           <ComponentWrapper name="colors">
             <ColorsDemo content={combinedColorsContent} />
           </ComponentWrapper>
+          <ComponentWrapper name="semantic-tokens">
+            <SemanticTokensDemo content={globalsContent} />
+          </ComponentWrapper>
           <ComponentWrapper name="shadows">
             <ShadowDemo content={shadowsContent} />
           </ComponentWrapper>
@@ -58,6 +64,12 @@ export default function TokensPage() {
           </ComponentWrapper>
              <ComponentWrapper name="breakpoints">
             <BreakpointsDemo content={breakpoints} />
+          </ComponentWrapper>
+          <ComponentWrapper name="spacing">
+            <SpacingDemo />
+          </ComponentWrapper>
+          <ComponentWrapper name="sizes">
+            <SizesDemo />
           </ComponentWrapper>
         </div>
       </div>

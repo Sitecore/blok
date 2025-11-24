@@ -1,7 +1,7 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry.json",
   "name": "Sitecore Marketplace",
-  "homepage": "https://blok-shadcn.vercel.app",
+  "homepage": "https://blok.sitecore.com",
   "items": [
     {
       "name": "quickstart",
@@ -12,9 +12,9 @@
         "@sitecore-marketplace-sdk/client"
       ],
       "registryDependencies": [
-        "https://blok-shadcn.vercel.app/r/badge.json",
-        "https://blok-shadcn.vercel.app/r/card.json",
-        "https://blok-shadcn.vercel.app/r/collapsible.json"
+        "https://blok.sitecore.com/r/badge.json",
+        "https://blok.sitecore.com/r/card.json",
+        "https://blok.sitecore.com/r/collapsible.json"
       ],
       "files": [
         {
@@ -48,7 +48,7 @@
         "@auth0/auth0-react"
       ],
       "registryDependencies": [
-        "https://blok-shadcn.vercel.app/r/marketplace/next/quickstart.json"
+        "https://blok.sitecore.com/r/marketplace/next/quickstart.json"
       ],
       "files": [
         {
@@ -88,11 +88,11 @@
         "@sitecore-marketplace-sdk/xmc"
       ],
       "registryDependencies": [
-        "https://blok-shadcn.vercel.app/r/marketplace/next/quickstart.json",
-        "https://blok-shadcn.vercel.app/r/button.json",
-        "https://blok-shadcn.vercel.app/r/alert.json",
-        "https://blok-shadcn.vercel.app/r/skeleton.json",
-        "https://blok-shadcn.vercel.app/r/separator.json"
+        "https://blok.sitecore.com/r/marketplace/next/quickstart.json",
+        "https://blok.sitecore.com/r/button.json",
+        "https://blok.sitecore.com/r/alert.json",
+        "https://blok.sitecore.com/r/skeleton.json",
+        "https://blok.sitecore.com/r/separator.json"
       ],
       "files": [
         {
@@ -118,8 +118,8 @@
       "title": "Quickstart for Next.js with full-stack XMC APIs examples",
       "description": "A quickstart for next.js Sitecore marketplace apps with full-stack XMC API examples",
       "registryDependencies": [
-        "https://blok-shadcn.vercel.app/r/marketplace/next/quickstart-with-custom-auth.json",
-        "https://blok-shadcn.vercel.app/r/marketplace/next/quickstart-with-client-side-xmc.json"
+        "https://blok.sitecore.com/r/marketplace/next/quickstart-with-custom-auth.json",
+        "https://blok.sitecore.com/r/marketplace/next/quickstart-with-client-side-xmc.json"
       ],
       "files": [
         {

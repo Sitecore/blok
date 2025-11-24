@@ -1,7 +1,7 @@
 blank_issues_enabled: false
 contact_links:
   - name: Documentation
-    url: https://blok-shadcn.vercel.app
+    url: https://blok.sitecore.com
     about: Check out our documentation for guides and examples
   - name: Bug Reports
     url: https://github.com/Sitecore/blok/issues/new?template=bug_report.yml

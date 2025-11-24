@@ -55,6 +55,7 @@ import { allSite } from "@/app/demo/[name]/ui/all-site";
 import { siteCard } from "@/app/demo/[name]/ui/site-card";
 import { timePicker } from "@/app/demo/[name]/ui/time-picker";
 import { draggable } from "@/app/demo/[name]/ui/draggable";
+import { stackNavigation } from "@/app/demo/[name]/ui/stack-navigation";
 
 
 interface Demo {
@@ -114,6 +115,7 @@ export const demos: { [name: string]: Demo } = {
   sonner,
   spinner,
   switch: switchComponent,
+  "stack-navigation":stackNavigation,
   table,
   tabs,
   textarea,
