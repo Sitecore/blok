@@ -889,24 +889,6 @@
         }
       ]
     },
-     {
-      "name": "data-table",
-      "type": "registry:ui",
-      "title": "Data Table",
-      "description": "Powerful table and datagrids built using TanStack Table.",
-      "dependencies": [
-        "@tanstack/react-table"
-      ],
-      "registryDependencies": [
-        "https://blok.sitecore.com/r/theme.json"
-      ],
-      "files": [
-        {
-          "path": "src/components/ui/table.tsx",
-          "type": "registry:ui"
-        }
-      ]
-    },
     {
       "name": "date-picker",
       "type": "registry:ui",
@@ -1526,6 +1508,9 @@
       "type": "registry:ui",
       "title": "Table",
       "description": "A responsive table component.",
+      "dependencies": [
+        "@tanstack/react-table"
+      ],
       "registryDependencies": [
         "https://blok.sitecore.com/r/theme.json"
       ],

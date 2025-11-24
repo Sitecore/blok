@@ -56,7 +56,6 @@ import { siteCard } from "@/app/demo/[name]/ui/site-card";
 import { timePicker } from "@/app/demo/[name]/ui/time-picker";
 import { draggable } from "@/app/demo/[name]/ui/draggable";
 import { stackNavigation } from "@/app/demo/[name]/ui/stack-navigation";
-import { dataTable } from "@/app/demo/[name]/ui/data-table";
 
 interface Demo {
   name: string; // this must match the `/registries/registry.json` name
@@ -85,7 +84,6 @@ export const demos: { [name: string]: Demo } = {
   "context-menu": contextMenu,
   command,
   dialog,
-  "data-table":dataTable,
   "date-picker": datePicker,
   drawer,
   "dropdown-menu": dropdownMenu,

@@ -106,7 +106,7 @@ export const columns: ColumnDef<Product_Data>[] = [
   { accessorKey: "Unique_views", header: "Unique views" },
 ];
 
-export function DataTableDemo() {
+export function TableDemo() {
   const [sorting, setSorting] = React.useState<SortingState>([]);
   const [rowSelection, setRowSelection] = React.useState({});
 
