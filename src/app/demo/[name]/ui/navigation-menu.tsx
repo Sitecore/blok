@@ -13,8 +13,21 @@ import {
   mdiHelpCircleOutline,
 } from "@mdi/js";
 import { Icon } from "@/lib/icon";
-import Link from "next/link";
 import type React from "react";
+
+// Framework-agnostic Link component - simple anchor tag for demo purposes
+function Link({
+  href,
+  children,
+  className,
+  ...props
+}: React.AnchorHTMLAttributes<HTMLAnchorElement> & { href: string }) {
+  return (
+    <a href={href} className={className} {...props}>
+      {children}
+    </a>
+  );
+}
 
 const components: { title: string; href: string; description: string }[] = [
   {
