@@ -1,7 +1,5 @@
 "use client";
 
-import { RightSidebar } from "@/components/layout/right-sidebar";
-import { getRightSidebarMetadata } from "@/lib/right-sidebar-metadata";
 import { copyToClipboard } from "@/components/docsite/code-block";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import {
@@ -19,7 +17,6 @@ import {
 } from "@/components/ui/tooltip";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import Image from "next/image";
 
 const logosData = [
   {
@@ -274,7 +271,7 @@ export default function LogosPage() {
               Product Design usage guidelines
             </a>
             <a
-              href="/foundations/favicons"
+              href="/graphics/favicons"
               className="text-primary hover:text-primary/80 no-underline text-sm"
             >
               Favicons

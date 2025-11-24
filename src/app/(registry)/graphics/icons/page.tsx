@@ -1,10 +1,6 @@
 "use client";
-
-import { RightSidebar } from "@/components/layout/right-sidebar";
-import { getRightSidebarMetadata } from "@/lib/right-sidebar-metadata";
 import { Icon } from "@/lib/icon";
 import { copyToClipboard } from "@/components/docsite/code-block";
-import { Alert, AlertDescription } from "@/components/ui/alert";
 import {
   Table,
   TableBody,
@@ -648,7 +644,9 @@ export default function IconsPage() {
       </div>
 
       <div className="flex flex-col gap-6 mb-12">
-        <Alert variant="primary">
+
+      {/* TODO: Add alert with link to Icon component */}
+        {/* <Alert variant="primary">
           <AlertDescription className="flex flex-row">
             To learn how to implement these icons, see{" "}
             <a
@@ -658,7 +656,7 @@ export default function IconsPage() {
               Icon component
             </a>
           </AlertDescription>
-        </Alert>
+        </Alert> */}
 
         <h2 className="text-2xl font-semibold">General icons</h2>
 
@@ -748,15 +746,16 @@ export default function IconsPage() {
 
         <p className="text-muted-foreground max-w-[65ch]">
           Used when a logo needs to be rendered as a single path inside an{" "}
-          <a
+          {/* TODO: Add link to Icon component */}
+          {/* <a
             href="/components/icon"
             className="text-primary hover:text-primary/80 no-underline"
-          >
+          > */}
             Icon
-          </a>
+          {/* </a> */}
           . For the regular full-color logo images, see{" "}
           <a
-            href="/foundations/logos"
+            href="/graphics/logos"
             className="text-primary hover:text-primary/80 no-underline"
           >
             Logos
