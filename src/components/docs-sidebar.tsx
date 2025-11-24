@@ -1,243 +1,247 @@
 "use client"
 
-import * as React from "react"
-import Link from "next/link"
-import { usePathname } from "next/navigation"
-import { 
-  ChevronDown,
-  FileText, 
-  Folder, 
-  FolderOpen,
-  Home,
-  BookOpen,
-  Layers,
-  Settings,
-  Zap,
-  Search
-} from "lucide-react"
-
 import type { source } from "@/lib/source"
-import { Input } from "@/components/ui/input"
-import { cn } from "@/lib/utils"
+import { Button } from "@/components/ui/button";
+import { ScrollArea } from "@/components/ui/scroll-area";
+import {
+  Sidebar,
+  SidebarContent,
+  SidebarHeader,
+  SidebarMenu,
+  SidebarMenuButton,
+  SidebarMenuItem,
+  useSidebar,
+} from "@/components/docsite/docsite-sidebar";
+import { getBlocks, getComponents } from "@/lib/registry";
+import { themingItems, graphicsItems } from "@/config/nav";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import React, { useMemo } from "react";
+import {
+  Menu,
+  X,
+} from "lucide-react";
 
-// Icon mapping for different sections
-const SECTION_ICONS: Record<string, React.ElementType> = {
-  "Get Started": Home,
-  "Components": Layers,
-  "Directory": Folder,
-  "MCP Server": Settings,
-  "Forms": FileText,
-  "Changelog": BookOpen,
-}
+const componentItems = getComponents();
+const blockItems = getBlocks();
 
-type TreeNode = {
-  type: "folder" | "separator" | "page"
-  name: string
-  url?: string
-  children?: TreeNode[]
-  external?: boolean
-}
+// Sidebar width configuration
+export const REGISTRY_SIDEBAR_WIDTH = "13rem";
 
-interface SidebarItemProps {
-  item: TreeNode
-  level?: number
-  pathname: string
-}
+export function MobileSidebarTrigger() {
+  const pathname = usePathname();
+  const { setOpenMobile } = useSidebar();
 
-function SidebarItem({ item, level = 0, pathname }: SidebarItemProps) {
-  const [isOpen, setIsOpen] = React.useState(() => {
-    // Auto-expand if current path is in this section
-    if (item.type === "folder" && item.url) {
-      return pathname.startsWith(item.url)
+  // Only show mobile trigger if sidebar should be visible
+  const shouldShowSidebar = useMemo(() => {
+    if (pathname === "/" || pathname.startsWith("/resources") || pathname.startsWith("/mcp")) {
+      return false;
     }
-    return false
-  })
+    return pathname.startsWith("/docs") ||
+           pathname.startsWith("/primitives") || 
+           pathname.startsWith("/bloks") || 
+           pathname.startsWith("/theming") || 
+           pathname.startsWith("/graphics") ||
+           pathname.startsWith("/registry");
+  }, [pathname]);
 
-  React.useEffect(() => {
-    // Keep section open if navigating within it
-    if (item.type === "folder" && item.url && pathname.startsWith(item.url)) {
-      setIsOpen(true)
-    }
-  }, [pathname, item.type, item.url])
-
-  if (item.type === "separator") {
-    return (
-      <div className="my-2 h-px bg-border" />
-    )
+  if (!shouldShowSidebar) {
+    return null;
   }
-
-  if (item.type === "folder") {
-    const Icon = SECTION_ICONS[item.name] || Folder
-    const OpenIcon = FolderOpen
-    const hasChildren = item.children && item.children.length > 0
-    const isActive = item.url ? pathname.startsWith(item.url) : false
-
-    return (
-      <div className="mb-1">
-        <button
-          onClick={() => setIsOpen(!isOpen)}
-          className={cn(
-            "group relative flex w-full items-center justify-between rounded-md px-3 py-2 text-sm font-medium transition-all duration-200",
-            "hover:bg-accent hover:text-accent-foreground",
-            isActive && "bg-accent text-accent-foreground",
-            level > 0 && "ml-4"
-          )}
-        >
-          <div className="flex items-center gap-2">
-            {isOpen ? (
-              <OpenIcon className="h-4 w-4 text-primary" />
-            ) : (
-              <Icon className="h-4 w-4" />
-            )}
-            <span className="truncate">{item.name}</span>
-          </div>
-          {hasChildren && (
-            <ChevronDown 
-              className={cn(
-                "h-4 w-4 shrink-0 transition-transform duration-200",
-                isOpen && "rotate-180"
-              )} 
-            />
-          )}
-        </button>
-        
-        {hasChildren && isOpen && item.children && (
-          <div className={cn(
-            "ml-4 mt-1 space-y-0.5 border-l-2 border-muted pl-3 animate-in slide-in-from-top-2 duration-200"
-          )}>
-            {item.children.map((child: TreeNode) => (
-              <SidebarItem
-                key={child.url || child.name}
-                item={child}
-                level={level + 1}
-                pathname={pathname}
-              />
-            ))}
-          </div>
-        )}
-      </div>
-    )
-  }
-
-  // Page/Link item
-  const isActive = item.url === pathname
-  const Icon = FileText
 
   return (
-    <Link
-      href={item.url || "#"}
-      className={cn(
-        "group relative flex w-full items-center gap-2 rounded-md px-3 py-1.5 text-sm transition-all duration-200",
-        "hover:bg-accent hover:text-accent-foreground",
-        isActive 
-          ? "bg-primary/10 text-primary font-medium border-l-2 border-primary pl-[10px]" 
-          : "text-muted-foreground hover:text-foreground",
-        level > 0 && "ml-2"
-      )}
-    >
-      <Icon className="h-3.5 w-3.5 shrink-0" />
-      <span className="flex-1 truncate">{item.name}</span>
-      {isActive && (
-        <div className="h-1.5 w-1.5 shrink-0 rounded-full bg-primary animate-pulse" />
-      )}
-    </Link>
-  )
+    <div className="absolute top-8 right-4 md:hidden">
+      <Button aria-label="Open menu" onClick={() => setOpenMobile(true)}>
+        <Menu className="size-5" />
+      </Button>
+    </div>
+  );
 }
 
 export function DocsSidebar({
   tree,
 }: { tree: typeof source.pageTree }) {
-  const pathname = usePathname()
-  const [searchQuery, setSearchQuery] = React.useState("")
-  const [filteredTree, setFilteredTree] = React.useState<TreeNode[]>(tree as unknown as TreeNode[])
 
-  // Filter tree based on search query
-  React.useEffect(() => {
-    if (!searchQuery.trim()) {
-      setFilteredTree(tree as unknown as TreeNode[])
-      return
+
+  const pathname = usePathname();
+  const { setOpenMobile } = useSidebar();
+
+  // Determine which sidebar content to show based on pathname
+  const sidebarType = useMemo(() => {
+    if (pathname === "/" || pathname.startsWith("/resources") || pathname.startsWith("/mcp")) {
+      return null; // No sidebar for homepage, resources, or mcp
     }
-
-    const filterNodes = (nodes: TreeNode[]): TreeNode[] => {
-      return nodes.reduce((acc: TreeNode[], node) => {
-        if (node.type === "separator") return acc
-
-        const matchesSearch = node.name
-          .toLowerCase()
-          .includes(searchQuery.toLowerCase())
-
-        if (node.type === "folder") {
-          const filteredChildren = node.children 
-            ? filterNodes(node.children) 
-            : []
-
-          if (matchesSearch || filteredChildren.length > 0) {
-            acc.push({
-              ...node,
-              children: filteredChildren,
-            })
-          }
-        } else if (matchesSearch) {
-          acc.push(node)
-        }
-
-        return acc
-      }, [])
+    if (pathname.startsWith("/docs")) {
+      return "docs";
     }
+    if (pathname.startsWith("/primitives") || pathname.startsWith("/registry")) {
+      return "components";
+    }
+    if (pathname.startsWith("/bloks")) {
+      return "blocks";
+    }
+    if (pathname.startsWith("/theming")) {
+      return "theming";
+    }
+    if (pathname.startsWith("/graphics")) {
+      return "graphics";
+    }
+    return null;
+  }, [pathname]);
 
-    setFilteredTree(filterNodes(tree as unknown as TreeNode[]))
-  }, [searchQuery, tree])
+  // Don't render sidebar if sidebarType is null
+  if (!sidebarType) {
+    return null;
+  }
 
   return (
-    <aside className="sticky top-0 z-30 hidden h-screen w-72 shrink-0 border-r bg-background lg:block">
-      <div className="flex h-full flex-col overflow-y-auto overflow-x-hidden px-4 py-6 scrollbar-thin">
-        {/* Search Bar */}
-        <div className="mb-6">
-          <div className="relative">
-            <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
-            <Input
-              type="search"
-              placeholder="Search documentation..."
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              className="pl-9 h-10 bg-muted/50 border-muted-foreground/20 focus-visible:ring-primary/50"
-            />
-          </div>
-        </div>
+    <Sidebar 
+      collapsible="icon" 
+      className="[&>div[data-slot='sidebar-inner']]:bg-subtle-bg [&>div[data-mobile='true']]:bg-subtle-bg"
+    >
+      <SidebarHeader className="mb-3 pt-5">
+        <div className="flex items-center justify-between px-2 py-2">
 
-        {/* Navigation Tree */}
-        <div className="flex-1 space-y-4">
-          <div>
-            <div className="mb-2 flex items-center gap-2 px-2 text-xs font-semibold uppercase tracking-wider text-muted-foreground">
-              <BookOpen className="h-4 w-4" />
-              Documentation
-            </div>
-            <nav className="space-y-1">
-              {filteredTree.length > 0 ? (
-                filteredTree.map((item: TreeNode) => (
-                  <SidebarItem
-                    key={item.url || item.name}
-                    item={item}
-                    pathname={pathname}
-                  />
-                ))
-              ) : (
-                <div className="px-2 py-4 text-center text-sm text-muted-foreground">
-                  No results found for &ldquo;{searchQuery}&rdquo;
-                </div>
-              )}
-            </nav>
-          </div>
+          <Button
+            variant="ghost"
+            className="md:hidden"
+            onClick={() => setOpenMobile(false)}
+            aria-label="Close sidebar"
+          >
+            <X />
+          </Button>
         </div>
-        
-        {/* Footer Info */}
-        <div className="mt-auto border-t pt-4">
-          <div className="flex items-center gap-2 px-2 py-2 text-xs text-muted-foreground">
-            <Zap className="h-3 w-3" />
-            <span>Press <kbd className="rounded border bg-muted px-1.5 py-0.5 text-xs">Ctrl+K</kbd> for quick search</span>
-          </div>
-        </div>
-      </div>
-    </aside>
-  )
+      </SidebarHeader>
+
+      <SidebarContent className="ml-4">
+        <ScrollArea className="h-full w-full pr-2">
+          <SidebarMenu >
+            {sidebarType === "docs" &&
+              (tree.children || []).map((node) => {
+                // Handle folder nodes
+                if (node.type === 'folder' && node.children) {
+                  return (
+                    <div key={String(node.name)}>
+                      <div className="px-2 py-2 text-sm font-semibold text-muted-foreground">
+                        {node.name}
+                      </div>
+                      {node.children.filter((child) => child.type === 'page').map((child) => (
+                        <SidebarMenuItem key={child.url}>
+                          <SidebarMenuButton
+                            asChild
+                            isActive={pathname === child.url}
+                            className="hover:bg-gray-100 hover:dark:bg-gray-700 hover:text-foreground data-[active=true]:text-primary data-[active=true]:bg-primary-background"
+                          >
+                            <Link
+                              onClick={() => setOpenMobile(false)}
+                              href={child.url}
+                            >
+                              {child.name}
+                            </Link>
+                          </SidebarMenuButton>
+                        </SidebarMenuItem>
+                      ))}
+                    </div>
+                  );
+                }
+                
+                // Handle page nodes at root level
+                if (node.type === 'page') {
+                  return (
+                    <SidebarMenuItem key={node.url}>
+                      <SidebarMenuButton
+                        asChild
+                        isActive={pathname === node.url}
+                        className="hover:bg-gray-100 hover:dark:bg-gray-700 hover:text-foreground data-[active=true]:text-primary data-[active=true]:bg-primary-background"
+                      >
+                        <Link
+                          onClick={() => setOpenMobile(false)}
+                          href={node.url}
+                        >
+                          {node.name}
+                        </Link>
+                      </SidebarMenuButton>
+                    </SidebarMenuItem>
+                  );
+                }
+                
+                return null;
+              })}
+
+            {sidebarType === "components" &&
+              componentItems.map((item) => (
+                <SidebarMenuItem key={item.name}>
+                  <SidebarMenuButton
+                    asChild
+                    isActive={pathname === `/registry/${item.name}`}
+                    className="hover:bg-gray-100 hover:dark:bg-gray-700 hover:text-foreground data-[active=true]:text-primary data-[active=true]:bg-primary-background"
+                  >
+                    <Link
+                      onClick={() => setOpenMobile(false)}
+                      href={`/registry/${item.name}`}
+                    >
+                      {item.title}
+                    </Link>
+                  </SidebarMenuButton>
+                </SidebarMenuItem>
+              ))}
+
+            {sidebarType === "blocks" &&
+              blockItems.map((item) => (
+                <SidebarMenuItem key={item.name}>
+                  <SidebarMenuButton
+                    asChild
+                    isActive={pathname === `/registry/${item.name}`}
+                    className="hover:bg-muted hover:text-foreground data-[active=true]:text-primary data-[active=true]:bg-primary-background"
+                  >
+                    <Link
+                      onClick={() => setOpenMobile(false)}
+                      href={`/registry/${item.name}`}
+                    >
+                      {item.title}
+                    </Link>
+                  </SidebarMenuButton>
+                </SidebarMenuItem>
+              ))}
+
+            {sidebarType === "theming" &&
+              themingItems.map((item) => (
+                <SidebarMenuItem key={item.path}>
+                  <SidebarMenuButton
+                    asChild
+                    isActive={pathname === item.path}
+                    className="hover:bg-muted hover:text-foreground data-[active=true]:text-primary data-[active=true]:bg-primary-background"
+                  >
+                    <Link
+                      onClick={() => setOpenMobile(false)}
+                      href={item.path}
+                    >
+                      {item.title}
+                    </Link>
+                  </SidebarMenuButton>
+                </SidebarMenuItem>
+              ))}
+
+            {sidebarType === "graphics" &&
+              graphicsItems.map((item) => (
+                <SidebarMenuItem key={item.path}>
+                  <SidebarMenuButton
+                    asChild
+                    isActive={pathname === item.path}
+                    className="hover:bg-muted hover:text-foreground data-[active=true]:text-primary data-[active=true]:bg-primary-background"
+                  >
+                    <Link
+                      onClick={() => setOpenMobile(false)}
+                      href={item.path}
+                    >
+                      {item.title}
+                    </Link>
+                  </SidebarMenuButton>
+                </SidebarMenuItem>
+              ))}
+          </SidebarMenu>
+        </ScrollArea>
+      </SidebarContent>
+    </Sidebar>
+  );
 }

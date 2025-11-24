@@ -92,17 +92,6 @@ export function DocsRightSidebar({ toc = [] }: DocsRightSidebarProps) {
           })}
         </nav>
 
-        {/* Footer */}
-        <div className="mt-auto border-t border-green-400 pt-6">
-          <div className="rounded-lg bg-green-700 p-4">
-            <p className="text-lg font-bold text-white">
-              💡 Quick Tip
-            </p>
-            <p className="mt-2 text-base font-bold text-green-100">
-              Click any heading to jump directly to that section
-            </p>
-          </div>
-        </div>
       </div>
     </aside>
   )
