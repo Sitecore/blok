@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
+import * as React from "react";
 import { cn } from "@/lib/utils";
-import { usePathname } from "next/navigation";
 
 export interface StackNavigationItem {
   name: string;
@@ -27,16 +27,24 @@ export interface StackNavigationProps {
   header?: ReactNode;
   footer?: ReactNode;
   orientation?: "vertical" | "horizontal";
+  /**
+   * For framework-specific routers, user can pass the pathname from their hooks:
+   * - TanStack Router: `useLocation().pathname`
+   * - React Router: `useLocation().pathname`
+   * - Next.js: `usePathname()`
+   */
+  pathname?: string;
 }
 
 function DefaultNavItem({
   item,
   orientation = "vertical",
+  pathname,
 }: {
   item: StackNavigationItem;
   orientation?: "vertical" | "horizontal";
+  pathname: string;
 }) {
-  const pathname = usePathname();
   const isActive = pathname === item.path;
 
   const isHorizontal = orientation === "horizontal";
@@ -126,7 +134,19 @@ export function StackNavigation({
   header,
   footer,
   orientation = "vertical",
+  pathname: providedPathname,
 }: StackNavigationProps) {
+  // Use provided pathname or fall back to window.location.pathname
+  const [clientPathname, setClientPathname] = React.useState("");
+
+  React.useEffect(() => {
+    // Only set pathname on client side to avoid hydration mismatch
+    if (typeof window !== "undefined" && !providedPathname) {
+      setClientPathname(window.location.pathname);
+    }
+  }, [providedPathname]);
+
+  const pathname = providedPathname ?? clientPathname;
   const isHorizontal = orientation === "horizontal";
 
   return (
@@ -183,7 +203,7 @@ export function StackNavigation({
                 {renderItem ? (
                   renderItem(navItem)
                 ) : (
-                  <DefaultNavItem item={navItem} orientation={orientation} />
+                  <DefaultNavItem item={navItem} orientation={orientation} pathname={pathname} />
                 )}
               </div>
             );
@@ -200,3 +220,4 @@ export function StackNavigation({
     </aside>
   );
 }
+ 
