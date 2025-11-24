@@ -43,7 +43,7 @@ const grapicsCategories = [
     href: "/graphics/logos",
     preview: (
       <div className="w-full h-full flex items-center justify-center p-4">
-        <LogosThumb className="w-full h-auto max-h-full" />
+        <LogosThumb />
       </div>
     ),
   },
