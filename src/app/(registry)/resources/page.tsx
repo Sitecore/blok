@@ -32,7 +32,7 @@ const guidelinesItems = [
   {
     name: "documentation-style",
     title: "Documentation style",
-    href: "https://writing.sitecore.com",
+    href: "https://writing.sitecore.com/style-guide/index.html",
     preview: (
       <div className="w-full h-full flex items-center justify-center p-4">
         <WritingUITextThumb />
