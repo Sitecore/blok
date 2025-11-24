@@ -644,7 +644,7 @@ export default function IconsPage() {
   return (
     <div className="container p-5 md:p-10  xl:pr-[250px]">
       <div className="mb-8">
-        <h1 className="font-bold text-4xl tracking-tight">Icons</h1>
+        <h1 className="font-semibold text-4xl tracking-tight">Icons</h1>
       </div>
 
       <div className="flex flex-col gap-6 mb-12">
@@ -660,7 +660,7 @@ export default function IconsPage() {
           </AlertDescription>
         </Alert>
 
-        <h2 className="text-2xl font-bold">General icons</h2>
+        <h2 className="text-2xl font-semibold">General icons</h2>
 
         <p className="text-muted-foreground max-w-[65ch]">
           All the icons are from the{" "}
@@ -744,7 +744,7 @@ export default function IconsPage() {
           </Table>
         </div>
 
-        <h2 className="text-2xl font-bold">Logo icons</h2>
+        <h2 className="text-2xl font-semibold">Logo icons</h2>
 
         <p className="text-muted-foreground max-w-[65ch]">
           Used when a logo needs to be rendered as a single path inside an{" "}

@@ -1,11 +1,19 @@
 "use client";
 
 import { useEffect, useState } from "react";
-
 import { convertCssVariablesToObject } from "@/lib/token-utils";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
+import { CopyableToken } from "@/components/docsite/copyable-token";
 
 type Props = {
-  content: string; // The CSS content containing your @theme breakpoints
+  content: string;
 };
 
 // Helper function to get the current breakpoint name
@@ -37,7 +45,7 @@ const getCurrentBreakpoint = (
   return activeBreakpoint;
 };
 
-const BreakpointsDemo = ({ content }: Props) => {
+export function BreakpointsClient({ content }: Props) {
   const rawBreakpoints = convertCssVariablesToObject(content, "--breakpoint-");
 
   const filteredBreakpoints = Object.fromEntries(
@@ -49,15 +57,13 @@ const BreakpointsDemo = ({ content }: Props) => {
     string | null
   >(null);
 
-  // Define a mapping for device names.
-  // You'll need to update these based on your actual breakpoint names.
   const deviceMap: { [key: string]: string } = {
-    sm: "Small Phone",
-    md: "Tablet (Portrait)",
-    lg: "Tablet (Landscape)",
+    base: "",
+    sm: "Phone",
+    md: "Tablet (portrait)",
+    lg: "Tablet (landscape)",
     xl: "Desktop",
-    "2xl": "Large Desktop",
-    // Add any other custom breakpoints you have
+    "2xl": "Desktop (large)",
   };
 
   useEffect(() => {
@@ -85,10 +91,12 @@ const BreakpointsDemo = ({ content }: Props) => {
   }, [filteredBreakpoints]);
 
   return (
-    <div style={{ width: "100%", overflowX: "auto" }}>
-      <p className="text-xl font-semibold">Window width: {windowWidth}px</p>
+    <div className="w-full">
+      <div className="mb-6">
+        <p className="text-xl font-semibold">Window width: {windowWidth}px</p>
+      </div>
 
-      <div className="flex flex-row items-center gap-2 text-lg">
+      <div className="flex flex-row items-center gap-2 text-lg mb-6">
         <p className="font-semibold">Active breakpoint:</p>
         {Object.entries(filteredBreakpoints).map(([key]) => {
           const isActive = currentBreakpointName === key;
@@ -107,76 +115,47 @@ const BreakpointsDemo = ({ content }: Props) => {
         )}
       </div>
 
-      <div style={{ width: "100%", overflowX: "auto" }}>
-        <table
-          style={{
-            width: "100%",
-            borderCollapse: "collapse",
-            marginTop: "1rem",
-          }}
-        >
-          <thead>
-            <tr style={{ borderBottom: "2px solid #ccc" }}>
-              <th style={{ padding: "0.8rem", textAlign: "left" }}>Token</th>
-              <th style={{ padding: "0.8rem", textAlign: "left" }}>Device</th>
-              <th style={{ padding: "0.8rem", textAlign: "left" }}>
-                Value (rem)
-              </th>
-              <th style={{ padding: "0.8rem", textAlign: "left" }}>
-                Value (px)
-              </th>
-            </tr>
-          </thead>
-          <tbody>
+      <div className="overflow-x-auto">
+        <Table>
+          <TableHeader>
+            <TableRow>
+              <TableHead className="px-4">Token</TableHead>
+              <TableHead className="px-4">Device</TableHead>
+              <TableHead className="px-4">Value (rem)</TableHead>
+              <TableHead className="px-4">Value (px)</TableHead>
+            </TableRow>
+          </TableHeader>
+          <TableBody>
             {Object.entries(filteredBreakpoints).map(([key, value]) => {
-              //   const isActiveRow = currentBreakpointName === key
               const pxValue = parseFloat(value) * 16;
 
               return (
-                <tr key={key} style={{ borderBottom: "1px solid #eee" }}>
-                  <td
-                    style={{ padding: "0.8rem" }}
-                    // className={isActiveRow ? "font-bold" : "font-normal"}
-                  >
-                    {key}
-                  </td>
-                  <td
-                    style={{ padding: "0.8rem" }}
-                    // className={isActiveRow ? "font-bold" : "font-normal"}
-                  >
-                    {deviceMap[key] || "N/A"}
-                    {/* Display device name, or 'N/A' if not mapped */}
-                  </td>
-                  <td style={{ padding: "0.8rem" }}>
-                    <span
-                      style={{
-                        fontFamily: "monospace",
-                        fontSize: "0.9rem",
-                      }}
-                      className="text-muted-foreground"
-                    >
+                <TableRow key={key}>
+                  <TableCell className="px-4 py-3">
+                    <CopyableToken token={key} />
+                  </TableCell>
+                  <TableCell className="px-4 py-3">
+                    <span className="text-sm">
+                      {deviceMap[key] || "N/A"}
+                    </span>
+                  </TableCell>
+                  <TableCell className="px-4 py-3">
+                    <code className="font-mono text-sm">
                       {value}
-                    </span>
-                  </td>
-                  <td style={{ padding: "0.8rem" }}>
-                    <span
-                      style={{
-                        fontFamily: "monospace",
-                        fontSize: "0.9rem",
-                      }}
-                      className="text-muted-foreground"
-                    >
+                    </code>
+                  </TableCell>
+                  <TableCell className="px-4 py-3">
+                    <code className="font-mono text-sm">
                       {pxValue}px
-                    </span>
-                  </td>
-                </tr>
+                    </code>
+                  </TableCell>
+                </TableRow>
               );
             })}
-          </tbody>
-        </table>
+          </TableBody>
+        </Table>
       </div>
     </div>
   );
-};
+}
 
-export default BreakpointsDemo;

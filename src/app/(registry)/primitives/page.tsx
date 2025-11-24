@@ -27,7 +27,7 @@ export default function ComponentsPage() {
   return (
     <div className="container p-5 md:p-10">
       <div className="mb-8">
-        <h1 className="font-bold text-4xl tracking-tight">Primitives </h1>
+        <h1 className="font-semibold text-4xl tracking-tight">Primitives </h1>
         <p className="text-muted-foreground max-w-full sm:max-w-md md:max-w-lg lg:max-w-xl my-10">
           Here you can find all of the primitive components available in the
           library. The library contains a series of components from Blok v1, and

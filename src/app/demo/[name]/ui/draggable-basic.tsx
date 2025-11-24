@@ -59,7 +59,7 @@ function DragDropDemo() {
     <div ref={appRef} className="p-6 space-y-6">
       <div className="space-y-2">
         <div className="flex items-center gap-2">
-          <h3 className="text-2xl font-bold tracking-tight">Basic Drag & Drop</h3>
+          <h3 className="text-2xl font-semibold tracking-tight">Basic Drag & Drop</h3>
         </div>
         <p className="text-sm text-muted-foreground">
           Drag the button from the source area to the drop zone. The element will move between containers.

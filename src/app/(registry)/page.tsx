@@ -18,7 +18,7 @@ export default function Home() {
     <main className="w-full bg-subtle-bg">
       <div className="bg-body-bg px-32">
         <div className="flex flex-col space-y-5 p-5 md:p-10">
-          <h1 className="font-bold text-5xl">Build better products faster</h1>
+          <h1 className="font-semibold text-5xl">Build better products faster</h1>
           <p className="text-muted-foreground w-full text-lg">
             Blok is Sitecore's product design system: the UI framework and style
             guide we use to build great apps. <br /> It's publicly available, so
@@ -44,7 +44,7 @@ export default function Home() {
 
       <div className="px-32">
         <div className="flex flex-col space-y-3 p-5 md:pt-10 md:px-10">
-          <h2 className="font-bold text-3xl tracking-tight md:text-4xl">
+          <h2 className="font-semibold text-3xl tracking-tight md:text-4xl">
             Prerequisites
           </h2>
           <p className="text-muted-foreground">
@@ -183,7 +183,7 @@ export default function Home() {
         </div>
 
         <div id="step-1" className="flex flex-col space-y-3 p-5 md:pt-10 md:px-10 scroll-mt-20">
-          <h2 className="font-bold text-3xl tracking-tight md:text-4xl">
+          <h2 className="font-semibold text-3xl tracking-tight md:text-4xl">
             Step 1: Initialize shadcn/ui
           </h2>
           <p>
@@ -222,7 +222,7 @@ export default function Home() {
         </div>
 
         <div className="flex flex-col space-y-3 p-5 md:pt-10 md:px-10">
-          <h2 className="font-bold text-3xl tracking-tight md:text-4xl">
+          <h2 className="font-semibold text-3xl tracking-tight md:text-4xl">
             Step 2: Install Blok components
           </h2>
           <p>You can now start adding the Blok components to your project.</p>
@@ -259,7 +259,7 @@ export default function Home() {
         </div>
 
         <div className="flex flex-col space-y-3 p-5 md:pt-10 md:px-10">
-          <h2 className="font-bold text-3xl tracking-tight md:text-4xl">
+          <h2 className="font-semibold text-3xl tracking-tight md:text-4xl">
             Step 3: Test your setup
           </h2>
           <p>
@@ -292,7 +292,7 @@ export default function MyComponent() {
         </div>
 
         <div className="flex flex-col space-y-3 mb-10 p-5 md:pt-10 md:px-10 md:pb-10">
-          <h2 className="font-bold text-3xl tracking-tight md:text-4xl">
+          <h2 className="font-semibold text-3xl tracking-tight md:text-4xl">
             Step 4: Run your application
           </h2>
           <p>Start the development server:</p>

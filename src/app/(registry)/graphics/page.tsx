@@ -52,7 +52,7 @@ export default function GraphicsPage() {
   return (
     <div className="container p-5 md:p-10">
       <div className="mb-8">
-        <h1 className="font-bold text-4xl tracking-tight">Graphics</h1>
+        <h1 className="font-semibold text-4xl tracking-tight">Graphics</h1>
         <p className="text-muted-foreground max-w-full sm:max-w-md md:max-w-lg lg:max-w-xl my-10">
           Graphics contains visual graphics, icons, logos and states to provide
           fun, and richer experiences aligned with Blok styling.
