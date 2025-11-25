@@ -96,6 +96,7 @@ export const demos: { [name: string]: Demo } = {
   "dropdown-menu": dropdownMenu,
   "empty-states": emptyStates,
   "error-states": errorStates,
+  "hover-card": hoverCard,
   input,
   inputOtp,
   label,
