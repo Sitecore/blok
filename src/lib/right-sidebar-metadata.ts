@@ -5,6 +5,15 @@ export interface RightSidebarMetadata {
   sections?: TocSection[];
 }
 
+// Default links for component pages
+export const defaultComponentLinks: RightSidebarLinks = {
+    shadcn: "https://ui.shadcn.com/docs/components/",
+      rules: "#",
+      figma: "#",
+      confluence: "#",
+      v1Docs: "https://blok.sitecore.com",
+};
+
 // Default sections for component pages
 export const defaultComponentSections: TocSection[] = [
   { id: "preview", title: "Preview" },
@@ -17,7 +26,7 @@ export const rightSidebarMetadata: Record<string, RightSidebarMetadata> = {
   // ===== COMPONENT-SPECIFIC METADATA =====
   accordion: {
     links: {
-      shadcn: "https://ui.shadcn.com/docs/components/accordion",
+      shadcn: "https://ui.shadcn.com/docs/components/alert",
       rules: "#",
       figma: "#",
       confluence: "#",
@@ -150,10 +159,17 @@ export const rightSidebarMetadata: Record<string, RightSidebarMetadata> = {
 export function getRightSidebarMetadata(key: string): RightSidebarMetadata {
   const metadata = rightSidebarMetadata[key];
   
+  // Get the links and replace {$componentName} placeholder with the actual key
+  const links = metadata?.links || defaultComponentLinks;
+  const processedLinks = { ...links };
+  
+  // Replace {$componentName} in shadcn link if it exists
+  if (processedLinks.shadcn && typeof processedLinks.shadcn === 'string') {
+    processedLinks.shadcn = processedLinks.shadcn.replace('{$componentName}', key);
+  }
+  
   return {
-    links: metadata?.links || {
-      v1Docs: "https://blok.sitecore.com",
-    },
+    links: processedLinks,
     sections: metadata?.sections || defaultComponentSections,
   };
 }
