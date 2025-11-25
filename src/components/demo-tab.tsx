@@ -19,7 +19,7 @@ export default function DemoTab({ code, component, defaultTab = "demo" }: DemoTa
                 {component}
             </TabsContent>
 
-            <TabsContent value="code">
+            <TabsContent value="code" className="min-h-[200px]">
                 <CodeBlock code={code} />
             </TabsContent>
         </Tabs>
