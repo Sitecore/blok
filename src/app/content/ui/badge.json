@@ -1,0 +1,82 @@
+{
+    "SizeSm": "import { Badge } from \"@/components/ui/badge\";\n\nexport default function SizeSmDemo() {\n  return (\n    <Badge size=\"sm\">Size sm</Badge>\n  );\n}",
+
+    "SizeMd": "import { Badge } from \"@/components/ui/badge\";\n\nexport default function SizeMdDemo() {\n  return (\n    <Badge size=\"md\">Size md</Badge>\n  );\n}",
+
+    "SizeLg": "import { Badge } from \"@/components/ui/badge\";\n\nexport default function SizeLgDemo() {\n  return (\n    <Badge size=\"lg\">Size lg</Badge>\n  );\n}",
+
+    "DefaultNeutral": "import { Badge } from \"@/components/ui/badge\";\n\nexport default function DefaultNeutralDemo() {\n  return (\n    <Badge>Default Neutral</Badge>\n  );\n}",
+
+    "DefaultPrimary": "import { Badge } from \"@/components/ui/badge\";\n\nexport default function DefaultPrimaryDemo() {\n  return (\n    <Badge colorScheme=\"primary\">Default Primary</Badge>\n  );\n}",
+
+    "DefaultDanger": "import { Badge } from \"@/components/ui/badge\";\n\nexport default function DefaultDangerDemo() {\n  return (\n    <Badge colorScheme=\"danger\">Default Danger</Badge>\n  );\n}",
+
+    "DefaultSuccess": "import { Badge } from \"@/components/ui/badge\";\n\nexport default function DefaultSuccessDemo() {\n  return (\n    <Badge colorScheme=\"success\">Default Success</Badge>\n  );\n}",
+
+    "DefaultWarning": "import { Badge } from \"@/components/ui/badge\";\n\nexport default function DefaultWarningDemo() {\n  return (\n    <Badge colorScheme=\"warning\">Default Warning</Badge>\n  );\n}",
+
+    "DefaultYellow": "import { Badge } from \"@/components/ui/badge\";\n\nexport default function DefaultYellowDemo() {\n  return (\n    <Badge colorScheme=\"yellow\">Default Yellow</Badge>\n  );\n}",
+
+    "DefaultTeal": "import { Badge } from \"@/components/ui/badge\";\n\nexport default function DefaultTealDemo() {\n  return (\n    <Badge colorScheme=\"teal\">Default Teal</Badge>\n  );\n}",
+
+    "DefaultCyan": "import { Badge } from \"@/components/ui/badge\";\n\nexport default function DefaultCyanDemo() {\n  return (\n    <Badge colorScheme=\"cyan\">Default Cyan</Badge>\n  );\n}",
+
+    "DefaultBlue": "import { Badge } from \"@/components/ui/badge\";\n\nexport default function DefaultBlueDemo() {\n  return (\n    <Badge colorScheme=\"blue\">Default Blue</Badge>\n  );\n}",
+
+    "DefaultPink": "import { Badge } from \"@/components/ui/badge\";\n\nexport default function DefaultPinkDemo() {\n  return (\n    <Badge colorScheme=\"pink\">Default Pink</Badge>\n  );\n}",
+
+    "BoldNeutral": "import { Badge } from \"@/components/ui/badge\";\n\nexport default function BoldNeutralDemo() {\n  return (\n    <Badge variant=\"bold\">Bold Neutral</Badge>\n  );\n}",
+
+    "BoldPrimary": "import { Badge } from \"@/components/ui/badge\";\n\nexport default function BoldPrimaryDemo() {\n  return (\n    <Badge variant=\"bold\" colorScheme=\"primary\">\n      Bold Primary\n    </Badge>\n  );\n}",
+
+    "BoldDanger": "import { Badge } from \"@/components/ui/badge\";\n\nexport default function BoldDangerDemo() {\n  return (\n    <Badge variant=\"bold\" colorScheme=\"danger\">\n      Bold Danger\n    </Badge>\n  );\n}",
+
+    "BoldSuccess": "import { Badge } from \"@/components/ui/badge\";\n\nexport default function BoldSuccessDemo() {\n  return (\n    <Badge variant=\"bold\" colorScheme=\"success\">\n      Bold Success\n    </Badge>\n  );\n}",
+
+    "BoldWarning": "import { Badge } from \"@/components/ui/badge\";\n\nexport default function BoldWarningDemo() {\n  return (\n    <Badge variant=\"bold\" colorScheme=\"warning\">\n      Bold Warning\n    </Badge>\n  );\n}",
+
+    "BoldYellow": "import { Badge } from \"@/components/ui/badge\";\n\nexport default function BoldYellowDemo() {\n  return (\n    <Badge variant=\"bold\" colorScheme=\"yellow\">\n      Bold Yellow\n    </Badge>\n  );\n}",
+
+    "BoldTeal": "import { Badge } from \"@/components/ui/badge\";\n\nexport default function BoldTealDemo() {\n  return (\n    <Badge variant=\"bold\" colorScheme=\"teal\">\n      Bold Teal\n    </Badge>\n  );\n}",
+
+    "BoldCyan": "import { Badge } from \"@/components/ui/badge\";\n\nexport default function BoldCyanDemo() {\n  return (\n    <Badge variant=\"bold\" colorScheme=\"cyan\">\n      Bold Cyan\n    </Badge>\n  );\n}",
+
+    "BoldBlue": "import { Badge } from \"@/components/ui/badge\";\n\nexport default function BoldBlueDemo() {\n  return (\n    <Badge variant=\"bold\" colorScheme=\"blue\">\n      Bold Blue\n    </Badge>\n  );\n}",
+
+    "BoldPink": "import { Badge } from \"@/components/ui/badge\";\n\nexport default function BoldPinkDemo() {\n  return (\n    <Badge variant=\"bold\" colorScheme=\"pink\">\n      Bold Pink\n    </Badge>\n  );\n}",
+
+    "DefaultLink": "import { Badge } from \"@/components/ui/badge\";\nimport { ArrowRightIcon } from \"lucide-react\";\n\nexport default function DefaultLinkDemo() {\n  return (\n    <Badge asChild>\n      <a href=\"#\">\n        Default Link <ArrowRightIcon className=\"size-3\" />\n      </a>\n    </Badge>\n  );\n}",
+
+    "DefaultLinkPrimary": "import { Badge } from \"@/components/ui/badge\";\nimport { ArrowRightIcon } from \"lucide-react\";\n\nexport default function DefaultLinkPrimaryDemo() {\n  return (\n    <Badge asChild colorScheme=\"primary\">\n      <a href=\"#\">\n        Default Link <ArrowRightIcon className=\"size-3\" />\n      </a>\n    </Badge>\n  );\n}",
+
+    "DefaultLinkDanger": "import { Badge } from \"@/components/ui/badge\";\nimport { ArrowRightIcon } from \"lucide-react\";\n\nexport default function DefaultLinkDangerDemo() {\n  return (\n    <Badge asChild colorScheme=\"danger\">\n      <a href=\"#\">\n        Default Link <ArrowRightIcon className=\"size-3\" />\n      </a>\n    </Badge>\n  );\n}",
+
+    "BoldLink": "import { Badge } from \"@/components/ui/badge\";\nimport { ArrowRightIcon } from \"lucide-react\";\n\nexport default function BoldLinkDemo() {\n  return (\n    <Badge asChild variant=\"bold\">\n      <a href=\"#\">\n        Bold Link <ArrowRightIcon className=\"size-3\" />\n      </a>\n    </Badge>\n  );\n}",
+
+    "BoldLinkPrimary": "import { Badge } from \"@/components/ui/badge\";\nimport { ArrowRightIcon } from \"lucide-react\";\n\nexport default function BoldLinkPrimaryDemo() {\n  return (\n    <Badge asChild variant=\"bold\" colorScheme=\"primary\">\n      <a href=\"#\">\n        Bold Link <ArrowRightIcon className=\"size-3\" />\n      </a>\n    </Badge>\n  );\n}",
+
+    "BoldLinkDanger": "import { Badge } from \"@/components/ui/badge\";\nimport { ArrowRightIcon } from \"lucide-react\";\n\nexport default function BoldLinkDangerDemo() {\n  return (\n    <Badge asChild variant=\"bold\" colorScheme=\"danger\">\n      <a href=\"#\">\n        Bold Link <ArrowRightIcon className=\"size-3\" />\n      </a>\n    </Badge>\n  );\n}",
+
+    "ClosableNeutral": "import { Badge } from \"@/components/ui/badge\";\nimport Icon from \"@mdi/react\";\nimport { mdiClose } from \"@mdi/js\";\n\nexport default function ClosableNeutralDemo() {\n  return (\n    <Badge>\n      Closable Neutral <Icon path={mdiClose} className=\"size-3\" />\n    </Badge>\n  );\n}",
+
+    "ClosablePrimary": "import { Badge } from \"@/components/ui/badge\";\nimport Icon from \"@mdi/react\";\nimport { mdiClose } from \"@mdi/js\";\n\nexport default function ClosablePrimaryDemo() {\n  return (\n    <Badge colorScheme=\"primary\">\n      Closable Primary <Icon path={mdiClose} className=\"size-3\" />\n    </Badge>\n  );\n}",
+
+    "ClosableDanger": "import { Badge } from \"@/components/ui/badge\";\nimport Icon from \"@mdi/react\";\nimport { mdiClose } from \"@mdi/js\";\n\nexport default function ClosableDangerDemo() {\n  return (\n    <Badge colorScheme=\"danger\">\n      Closable Danger <Icon path={mdiClose} className=\"size-3\" />\n    </Badge>\n  );\n}",
+
+    "ClosableSuccess": "import { Badge } from \"@/components/ui/badge\";\nimport Icon from \"@mdi/react\";\nimport { mdiClose } from \"@mdi/js\";\n\nexport default function ClosableSuccessDemo() {\n  return (\n    <Badge colorScheme=\"success\">\n      Closable Success <Icon path={mdiClose} className=\"size-3\" />\n    </Badge>\n  );\n}",
+
+    "ClosableWarning": "import { Badge } from \"@/components/ui/badge\";\nimport Icon from \"@mdi/react\";\nimport { mdiClose } from \"@mdi/js\";\n\nexport default function ClosableWarningDemo() {\n  return (\n    <Badge colorScheme=\"warning\">\n      Closable Warning <Icon path={mdiClose} className=\"size-3\" />\n    </Badge>\n  );\n}",
+
+    "ClosableBoldNeutral": "import { Badge } from \"@/components/ui/badge\";\nimport Icon from \"@mdi/react\";\nimport { mdiClose } from \"@mdi/js\";\n\nexport default function ClosableBoldNeutralDemo() {\n  return (\n    <Badge variant=\"bold\">\n      Closable Bold <Icon path={mdiClose} className=\"size-3\" />\n    </Badge>\n  );\n}",
+
+    "ClosableBoldPrimary": "import { Badge } from \"@/components/ui/badge\";\nimport Icon from \"@mdi/react\";\nimport { mdiClose } from \"@mdi/js\";\n\nexport default function ClosableBoldPrimaryDemo() {\n  return (\n    <Badge variant=\"bold\" colorScheme=\"primary\">\n      Closable Bold Primary <Icon path={mdiClose} className=\"size-3\" />\n    </Badge>\n  );\n}",
+
+    "ClosableBoldDanger": "import { Badge } from \"@/components/ui/badge\";\nimport Icon from \"@mdi/react\";\nimport { mdiClose } from \"@mdi/js\";\n\nexport default function ClosableBoldDangerDemo() {\n  return (\n    <Badge variant=\"bold\" colorScheme=\"danger\">\n      Closable Bold Danger <Icon path={mdiClose} className=\"size-3\" />\n    </Badge>\n  );\n}",
+
+    "ClosableSmall": "import { Badge } from \"@/components/ui/badge\";\nimport Icon from \"@mdi/react\";\nimport { mdiClose } from \"@mdi/js\";\n\nexport default function ClosableSmallDemo() {\n  return (\n    <Badge size=\"sm\" colorScheme=\"blue\">\n      Small <Icon path={mdiClose} className=\"size-3\" />\n    </Badge>\n  );\n}",
+
+    "ClosableMedium": "import { Badge } from \"@/components/ui/badge\";\nimport Icon from \"@mdi/react\";\nimport { mdiClose } from \"@mdi/js\";\n\nexport default function ClosableMediumDemo() {\n  return (\n    <Badge size=\"md\" colorScheme=\"teal\">\n      Medium <Icon path={mdiClose} className=\"size-3\" />\n    </Badge>\n  );\n}",
+
+    "ClosableLarge": "import { Badge } from \"@/components/ui/badge\";\nimport Icon from \"@mdi/react\";\nimport { mdiClose } from \"@mdi/js\";\n\nexport default function ClosableLargeDemo() {\n  return (\n    <Badge size=\"lg\" colorScheme=\"pink\">\n      Large <Icon path={mdiClose} className=\"size-3\" />\n    </Badge>\n  );\n}"
+}
+
