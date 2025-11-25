@@ -802,89 +802,37 @@ export const rightSidebarMetadata: Record<string, RightSidebarMetadata> = {
   },
 
   // ===== BLOK-SPECIFIC METADATA =====
+  "all-site": {
+     links: {
 
+    },
+  },
+  "pinned-site": {
+    links: {
+
+    },
+  },
+    "site-card": {
+    links: {
+      
+    },
+  },
   // ===== THEMING-SPECIFIC METADATA =====
 
-  "theming-colors": {
-    links: {
-      documentation: "https://blok.sitecore.com/theming/colors",
-      figma: "#",
-    },
-  },
-  "theming-typography": {
-    links: {
-      documentation: "https://blok.sitecore.com/theming/typography",
-      figma: "#",
-    },
-  },
-  "theming-spacing": {
-    links: {
-      documentation: "https://blok.sitecore.com/theming/spacing",
-      figma: "#",
-    },
-  },
-  "theming-sizes": {
-    links: {
-      documentation: "https://blok.sitecore.com/theming/sizes",
-      figma: "#",
-    },
-  },
-  "theming-shadows": {
-    links: {
-      documentation: "https://blok.sitecore.com/theming/shadows",
-      figma: "#",
-    },
-  },
-  "theming-border-radius": {
-    links: {
-      documentation: "https://blok.sitecore.com/theming/border-radius",
-      figma: "#",
-    },
-  },
-  "theming-breakpoints": {
-    links: {
-      documentation: "https://blok.sitecore.com/theming/breakpoints",
-      figma: "#",
-    },
-  },
-  "theming-semantic-tokens": {
-    links: {
-      documentation: "https://blok.sitecore.com/theming/semantic-tokens",
-      figma: "#",
-    },
-  },
+  // "theming-colors": {
+  //   links: {
+  //     documentation: "https://blok.sitecore.com/theming/colors",
+  //     figma: "#",
+  //   },
+  // },
 
   // ===== GRAPHICS-SPECIFIC METADATA =====
-  "graphics-animations": {
-    links: {
-      figma: "#",
-    },
-  },
-  "graphics-empty-states": {
-    links: {
-      figma: "#",
-    },
-  },
-  "graphics-error-states": {
-    links: {
-      figma: "#",
-    },
-  },
-  "graphics-icons": {
-    links: {
-      figma: "#",
-    },
-  },
-  "graphics-illustrations": {
-    links: {
-      figma: "#",
-    },
-  },
-  "graphics-logos": {
-    links: {
-      figma: "#",
-    },
-  },
+  // "graphics-animations": {
+  //   links: {
+  //     figma: "#",
+  //   },
+  // },
+
 };
 
 

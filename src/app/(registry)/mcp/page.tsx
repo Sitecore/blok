@@ -59,7 +59,7 @@ export default function MCPPage() {
                     <p className="mt-2">
                         Add the following to your <code className="inline text-sm tabular-nums bg-muted px-1 rounded">components.json</code> to configure the Blok registry:
                     </p>
-                    <Codeblocks showLineNumbers={true} code={BlockRegistryCode} bgColor="bg-body-bg" />
+                    <Codeblocks showLineNumbers={true} code={BlockRegistryCode} />
                 </div>
 
                 <div className="flex flex-col space-y-3 p-5 md:pt-10 md:px-10">
@@ -79,7 +79,7 @@ export default function MCPPage() {
                         </TabsList>
                         <TabsContent value="claude" className="space-y-2">
                             <p>To initialize an MCP project for Claude using the shadCN CLI, run the following command:</p>
-                            <Codeblocks showLineNumbers={false} code={`npx shadcn@latest mcp init --client claude`} bgColor="bg-body-bg" />    
+                            <Codeblocks showLineNumbers={false} code={`npx shadcn@latest mcp init --client claude`}/>    
 
                             <p className="mt-2">You can then test that your installation has been successful by trying prompts, for example:</p>
                             <ul className="list-disc list-inside space-y-2 text-muted-foreground">
@@ -96,7 +96,7 @@ export default function MCPPage() {
                         </TabsContent>
                         <TabsContent value="cursor" className="space-y-2">
                             <p>To initialize an MCP project for Cursor using the shadCN CLI, run the following command:</p>
-                            <Codeblocks showLineNumbers={false} code={`npx shadcn@latest mcp init --client cursor`} bgColor="bg-body-bg" />
+                            <Codeblocks showLineNumbers={false} code={`npx shadcn@latest mcp init --client cursor`}/>
 
                             <p className="mt-2">You can then test that your installation has been successful by trying prompts, for example:</p>
                             <ul className="list-disc list-inside space-y-2 text-muted-foreground">
@@ -107,7 +107,7 @@ export default function MCPPage() {
                         </TabsContent>
                         <TabsContent value="vscode" className="space-y-2">
                             <p>To initialize an MCP project for VS Code using the shadCN CLI, run the following command:</p>
-                            <Codeblocks showLineNumbers={false} code={`npx shadcn@latest mcp init --client vscode`} bgColor="bg-body-bg" />
+                            <Codeblocks showLineNumbers={false} code={`npx shadcn@latest mcp init --client vscode`}/>
 
                             <p className="mt-2">You can then test that your installation has been successful by trying prompts, for example:</p>
                             <ul className="list-disc list-inside space-y-2 text-muted-foreground">
@@ -118,12 +118,12 @@ export default function MCPPage() {
                         </TabsContent>
                         <TabsContent value="codex" className="space-y-2">
                             <p>To initialize an MCP project for Codex using the shadCN CLI, run the following command:</p>
-                            <Codeblocks showLineNumbers={false} code={`npx shadcn@latest mcp init --client codex`} bgColor="bg-body-bg" />
+                            <Codeblocks showLineNumbers={false} code={`npx shadcn@latest mcp init --client codex`}/>
                             
                             <p className="mt-2">Then, add the following configuration to <code className="inline text-sm tabular-nums bg-muted px-1 rounded">~/.codex/config.toml</code>:</p>
                             <Codeblocks showLineNumbers={false} code={`[mcp_servers.shadcn]
 command = "npx"
-args = ["shadcn@latest", "mcp"]`} bgColor="bg-body-bg" />
+args = ["shadcn@latest", "mcp"]`} />
 
                             <p className="mt-2">You can then test that your installation has been successful by trying prompts, for example:</p>
                             <ul className="list-disc list-inside space-y-2 text-muted-foreground">
@@ -146,7 +146,7 @@ args = ["shadcn@latest", "mcp"]`} bgColor="bg-body-bg" />
                     <p>
                         To configure MCP in Cursor, add the shadcn server to your project's <code className="inline text-sm tabular-nums bg-muted px-1 rounded">.cursor/mcp.json</code> configuration file:
                     </p>
-                    <Codeblocks code={CursorConfigurationCode} showLineNumbers={true} bgColor="bg-body-bg" />
+                    <Codeblocks code={CursorConfigurationCode} showLineNumbers={true}/>
 
                     <p className="mt-2">After adding the configuration, enable the shadcn MCP server in Cursor Settings.</p>
                     <p className="mt-2">Once enabled, you should see a green dot next to the shadcn server in the MCP server list and a list of available tools.</p>
