@@ -10,6 +10,7 @@ import {
   SelectContent,
   SelectItem,
 } from "@/components/ui/select";
+import { format } from "date-fns";
 
 export function CustomDropdown({
   options = [],
@@ -34,6 +35,7 @@ export function CustomDropdown({
       <SelectTrigger
         id={id}
         size="sm"
+        aria-label={value ? undefined : "Select an option"}
         className="z-50 px-3 text-sm [&_svg:not([class*='text-'])]:text-accent-foreground bg-transparent dark:bg-transparent dark:hover:bg-transparent"
       >
         <SelectValue />
@@ -69,6 +71,13 @@ export function SingleCalendar() {
       className="rounded-lg border shadow-sm"
       captionLayout="dropdown"
       components={{ Dropdown: CustomDropdown }}
+      labels={{
+        labelDayButton: (day) => {
+          const visible = format(day, "d");
+          const longLabel = format(day, "PPPP");
+          return `${visible} – ${longLabel}`;
+        },
+      }}
     />
   );
 }

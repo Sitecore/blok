@@ -18,6 +18,8 @@ import { contextMenu } from "@/app/demo/[name]/ui/context-menu";
 import { datePicker } from "@/app/demo/[name]/ui/date-picker";
 import { dialog } from "@/app/demo/[name]/ui/dialog";
 import { drawer } from "@/app/demo/[name]/ui/drawer";
+import { emptyStates } from "@/app/demo/[name]/ui/empty-states";
+import { errorStates } from "@/app/demo/[name]/ui/error-states";
 import { dropdownMenu } from "@/app/demo/[name]/ui/dropdown-menu";
 import { input } from "@/app/demo/[name]/ui/input";
 import { inputOtp } from "@/app/demo/[name]/ui/inputOtp";
@@ -53,9 +55,15 @@ import { spinner } from "@/app/demo/[name]/ui/spinner";
 import { pinnedSite } from "@/app/demo/[name]/ui/pinned-site";
 import { allSite } from "@/app/demo/[name]/ui/all-site";
 import { siteCard } from "@/app/demo/[name]/ui/site-card";
+import { timePicker } from "@/app/demo/[name]/ui/time-picker";
+import { draggable } from "@/app/demo/[name]/ui/draggable";
+import { stackNavigation } from "@/app/demo/[name]/ui/stack-navigation";
+
 
 interface Demo {
   name: string; // this must match the `/registries/registry.json` name
+  defaultComponent: ReactNode | ReactElement;
+  usage?: string[];
   components?: {
     [name: string]: ReactNode | ReactElement;
   };
@@ -64,8 +72,9 @@ interface Demo {
 export const demos: { [name: string]: Demo } = {
   // ui
   accordion,
-  "alert-dialog": alertDialog,
   alert,
+  "alert-dialog": alertDialog,
+  "all-site": allSite,
   "aspect-ratio": aspectRatio,
   avatar,
   badge,
@@ -78,41 +87,45 @@ export const demos: { [name: string]: Demo } = {
   checkbox,
   collapsible,
   combobox,
-  "context-menu": contextMenu,
   command,
-  dialog,
+  "context-menu": contextMenu,
   "date-picker": datePicker,
+  dialog,
+  draggable,
   drawer,
   "dropdown-menu": dropdownMenu,
+  "empty-states": emptyStates,
+  "error-states": errorStates,
+  "hover-card": hoverCard,
   input,
   inputOtp,
   label,
   // "menu-bar": menuBar,
   "navigation-menu": navigationMenu,
+  pagination,
+  "pinned-site": pinnedSite,
+  popover,
   progress,
-  "scroll-area": scrollArea,
   "radio-group": radioGroup,
   resizable,
+  "scroll-area": scrollArea,
   select,
   separator,
   sheet,
   sidebar,
+  "site-card": siteCard,
   skeleton,
   slider,
+  sonner,
   spinner,
   switch: switchComponent,
-  sonner,
+  "stack-navigation":stackNavigation,
   table,
   tabs,
   textarea,
+  "time-picker": timePicker,
+  toggle,
   "toggle-group": toggleGroup,
   tooltip,
-  toggle,
   topbar,
-  pagination,
-  "pinned-site":pinnedSite,
-  "all-site":allSite,
-  popover,
-  "hover-card": hoverCard,
-  "site-card": siteCard,
 };

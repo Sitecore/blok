@@ -1,0 +1,22 @@
+import * as React from "react";
+
+interface shadowsThumbProps {
+  className?: string;
+}
+
+const ShadowsThumb = ({ className }: shadowsThumbProps) => (
+  <svg
+    width="59"
+    height="59"
+    viewBox="0 0 59 59"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      d="M7.375 7.375H44.25V44.25H7.375V7.375ZM46.7083 46.7083H51.625V51.625H46.7083V46.7083ZM46.7083 39.3333H51.625V44.25H46.7083V39.3333ZM46.7083 31.9583H51.625V36.875H46.7083V31.9583ZM46.7083 24.5833H51.625V29.5H46.7083V24.5833ZM46.7083 17.2083H51.625V22.125H46.7083V17.2083ZM39.3333 46.7083H44.25V51.625H39.3333V46.7083ZM31.9583 46.7083H36.875V51.625H31.9583V46.7083ZM24.5833 46.7083H29.5V51.625H24.5833V46.7083ZM17.2083 46.7083H22.125V51.625H17.2083V46.7083Z"
+      fill="#6E3FFF"
+    />
+  </svg>
+);
+
+export default ShadowsThumb;

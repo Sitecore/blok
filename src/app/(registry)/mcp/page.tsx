@@ -1,4 +1,4 @@
-import { Codeblocks } from "@/components/registry/code-block";
+import { Codeblocks } from "@/components/docsite/code-block";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import Link from "next/link";
@@ -10,6 +10,7 @@ const BlockRegistryCode = `{
 }`
 
 const CursorConfigurationCode = `{
+
   "mcpServers": {
     "shadcn": {
       "command": "npx",
@@ -20,9 +21,9 @@ const CursorConfigurationCode = `{
 
 export default function MCPPage() {
     return (
-        <main className="w-full">
-            <div className="p-6">
-                <div className="flex flex-col space-y-5 mt-4 p-5 md:mt-8 md:p-10">
+        <main className="w-full bg-subtle-bg">
+            <div className="px-32">
+                <div className="flex flex-col space-y-5 p-5 md:p-10">
                     <h1 className="font-bold text-4xl tracking-tight md:text-4xl">
                         Blok MCP Server
                     </h1>
@@ -47,8 +48,8 @@ export default function MCPPage() {
                     </Alert>
                 </div>
             </div>
-            <div className="px-6">
-                <div className="flex flex-col space-y-2 mt-4 p-5 md:mt-2 md:px-10">
+            <div className="px-32">
+                <div className="flex flex-col space-y-3 p-5 md:pt-10 md:px-10">
                     <h2 className="font-bold text-3xl tracking-tight md:text-4xl">
                         Before You Start
                     </h2>
@@ -58,10 +59,10 @@ export default function MCPPage() {
                     <p className="mt-2">
                         Add the following to your <code className="inline text-sm tabular-nums bg-muted px-1 rounded">components.json</code> to configure the Blok registry:
                     </p>
-                    <Codeblocks showLineNumbers={true} code={BlockRegistryCode} />
+                    <Codeblocks showLineNumbers={true} code={BlockRegistryCode} bgColor="bg-body-bg" />
                 </div>
 
-                <div className="flex flex-col space-y-2 mt-4 p-5 md:mt-2 md:px-10">
+                <div className="flex flex-col space-y-3 p-5 md:pt-10 md:px-10">
                     <h2 className="font-bold text-3xl tracking-tight md:text-4xl">
                         Quick Start
                     </h2>
@@ -78,7 +79,7 @@ export default function MCPPage() {
                         </TabsList>
                         <TabsContent value="claude" className="space-y-2">
                             <p>To initialize an MCP project for Claude using the shadCN CLI, run the following command:</p>
-                            <Codeblocks showLineNumbers={false} code={`npx shadcn@latest mcp init --client claude`} />    
+                            <Codeblocks showLineNumbers={false} code={`npx shadcn@latest mcp init --client claude`} bgColor="bg-body-bg" />    
 
                             <p className="mt-2">You can then test that your installation has been successful by trying prompts, for example:</p>
                             <ul className="list-disc list-inside space-y-2 text-muted-foreground">
@@ -95,7 +96,7 @@ export default function MCPPage() {
                         </TabsContent>
                         <TabsContent value="cursor" className="space-y-2">
                             <p>To initialize an MCP project for Cursor using the shadCN CLI, run the following command:</p>
-                            <Codeblocks showLineNumbers={false} code={`npx shadcn@latest mcp init --client cursor`} />
+                            <Codeblocks showLineNumbers={false} code={`npx shadcn@latest mcp init --client cursor`} bgColor="bg-body-bg" />
 
                             <p className="mt-2">You can then test that your installation has been successful by trying prompts, for example:</p>
                             <ul className="list-disc list-inside space-y-2 text-muted-foreground">
@@ -106,7 +107,7 @@ export default function MCPPage() {
                         </TabsContent>
                         <TabsContent value="vscode" className="space-y-2">
                             <p>To initialize an MCP project for VS Code using the shadCN CLI, run the following command:</p>
-                            <Codeblocks showLineNumbers={false} code={`npx shadcn@latest mcp init --client vscode`} />
+                            <Codeblocks showLineNumbers={false} code={`npx shadcn@latest mcp init --client vscode`} bgColor="bg-body-bg" />
 
                             <p className="mt-2">You can then test that your installation has been successful by trying prompts, for example:</p>
                             <ul className="list-disc list-inside space-y-2 text-muted-foreground">
@@ -117,12 +118,12 @@ export default function MCPPage() {
                         </TabsContent>
                         <TabsContent value="codex" className="space-y-2">
                             <p>To initialize an MCP project for Codex using the shadCN CLI, run the following command:</p>
-                            <Codeblocks showLineNumbers={false} code={`npx shadcn@latest mcp init --client codex`} />
+                            <Codeblocks showLineNumbers={false} code={`npx shadcn@latest mcp init --client codex`} bgColor="bg-body-bg" />
                             
                             <p className="mt-2">Then, add the following configuration to <code className="inline text-sm tabular-nums bg-muted px-1 rounded">~/.codex/config.toml</code>:</p>
                             <Codeblocks showLineNumbers={false} code={`[mcp_servers.shadcn]
 command = "npx"
-args = ["shadcn@latest", "mcp"]`} />
+args = ["shadcn@latest", "mcp"]`} bgColor="bg-body-bg" />
 
                             <p className="mt-2">You can then test that your installation has been successful by trying prompts, for example:</p>
                             <ul className="list-disc list-inside space-y-2 text-muted-foreground">
@@ -140,19 +141,19 @@ args = ["shadcn@latest", "mcp"]`} />
                     </Tabs>
                 </div>
 
-                <div className="flex flex-col space-y-2 mt-4 p-5 md:mt-2 md:px-10">
+                <div className="flex flex-col space-y-3 p-5 md:pt-10 md:px-10">
                     <h2 id="configuration" className="font-bold text-3xl tracking-tight md:text-4xl">Configure MCP in Cursor</h2>
                     <p>
                         To configure MCP in Cursor, add the shadcn server to your project's <code className="inline text-sm tabular-nums bg-muted px-1 rounded">.cursor/mcp.json</code> configuration file:
                     </p>
-                    <Codeblocks code={CursorConfigurationCode} showLineNumbers={true} />
+                    <Codeblocks code={CursorConfigurationCode} showLineNumbers={true} bgColor="bg-body-bg" />
 
                     <p className="mt-2">After adding the configuration, enable the shadcn MCP server in Cursor Settings.</p>
                     <p className="mt-2">Once enabled, you should see a green dot next to the shadcn server in the MCP server list and a list of available tools.</p>
                     <p className="mt-2">See the <Link href="https://docs.cursor.com/en/context/mcp#using-mcp-json" target="_blank" className="underline hover:no-underline" rel="noopener noreferrer">Cursor MCP documentation</Link> for more details.</p> 
                 </div>
 
-                <div className="flex flex-col space-y-2 mt-4 p-5 md:mt-2 md:px-10">
+                <div className="flex flex-col space-y-3 p-5 md:pt-10 md:px-10">
                     <h2 className="font-bold text-3xl tracking-tight md:text-4xl">Example Prompts</h2>
                     <p>Once the MCP server is configured, you can interact with the Blok registry with natural language, for example:</p>
 
@@ -166,7 +167,7 @@ args = ["shadcn@latest", "mcp"]`} />
                     </ul>
                 </div>
 
-                <div className="flex flex-col space-y-2 mt-4 mb-10 p-5 md:mt-2 md:px-10">
+                <div className="flex flex-col space-y-3 mb-10 p-5 md:pt-10 md:px-10 md:pb-10">
                     <h2 className="font-bold text-3xl tracking-tight md:text-4xl">Troubleshooting</h2>
 
                     <h3 className="mt-4 font-bold text-2xl tracking-tight md:text-3xl">MCP Not Responding</h3>

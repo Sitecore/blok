@@ -9,32 +9,35 @@ import {
 
 export const carousel = {
   name: "carousel",
+  defaultComponent: (
+    <div className="w-full max-w-sm mx-auto">
+      <Carousel className="w-full" aria-label="Number cards carousel with 5 slides">
+        <CarouselContent>
+          {Array.from({ length: 5 }).map((_, index) => (
+            <CarouselItem key={index}>
+              <div className="p-1">
+                <Card className="bg-subtle-bg border-subtle-bg">
+                  <CardContent className="flex aspect-square items-center justify-center p-6">
+                    <span className="text-4xl font-semibold text-body-text">{index + 1}</span>
+                  </CardContent>
+                </Card>
+              </div>
+            </CarouselItem>
+          ))}
+        </CarouselContent>
+        <CarouselPrevious/>
+        <CarouselNext/>
+      </Carousel>
+    </div>
+  ),
+  usage: [
+    `import {\n  Carousel,\n  CarouselContent,\n  CarouselItem,\n  CarouselNext,\n  CarouselPrevious,\n} from "@/components/ui/carousel"`,
+    `<Carousel>\n <CarouselContent>\n  <CarouselItem>...</CarouselItem>\n  <CarouselItem>...</CarouselItem>\n  <CarouselItem>...</CarouselItem>\n </CarouselContent>\n <CarouselPrevious />\n <CarouselNext />\n</Carousel>`
+  ],
   components: {
-    // Default Carousel
-    Default: (
-      <div className="w-full max-w-sm mx-auto">
-        <Carousel className="w-full" aria-label="Number cards carousel with 5 slides">
-          <CarouselContent>
-            {Array.from({ length: 5 }).map((_, index) => (
-              <CarouselItem key={index}>
-                <div className="p-1">
-                  <Card className="bg-subtle-bg border-subtle-bg">
-                    <CardContent className="flex aspect-square items-center justify-center p-6">
-                      <span className="text-4xl font-semibold text-body-text">{index + 1}</span>
-                    </CardContent>
-                  </Card>
-                </div>
-              </CarouselItem>
-            ))}
-          </CarouselContent>
-          <CarouselPrevious/>
-          <CarouselNext/>
-        </Carousel>
-      </div>
-    ),
 
     // Start-aligned Carousel
-    StartAligned: (
+    "Start Aligned": (
       <div className="w-full max-w-sm mx-auto">
         <Carousel
           className="w-full"
@@ -63,7 +66,7 @@ export const carousel = {
     ),
 
     // Carousel with negative margin + half-width items
-    NegativeMargin: (
+    "Negative Margin": (
       <div className="w-full max-w-sm mx-auto">
         <Carousel className="w-full" aria-label="Half-width cards carousel with negative margin">
           <CarouselContent className="-ml-1">

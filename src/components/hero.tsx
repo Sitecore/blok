@@ -24,7 +24,7 @@ export function Hero({
           <Badge className="mb-4">
             Coming soon
           </Badge>
-          <h1 className="font-bold text-4xl tracking-tight sm:text-5xl md:text-6xl">
+          <h1 className="font-semibold text-4xl tracking-tight sm:text-5xl md:text-6xl">
             {title}
           </h1>
           <p className="mt-6 text-xl">{description}</p>

@@ -1,0 +1,22 @@
+import * as React from "react";
+
+interface IllustrationsThumbProps {
+  className?: string;
+}
+
+const IllustrationsThumb = ({ className }: IllustrationsThumbProps) => (
+  <svg
+    width="59"
+    height="59"
+    viewBox="0 0 59 59"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      d="M20.8958 7.375C24.4818 7.375 27.9209 8.79951 30.4565 11.3352C32.9922 13.8708 34.4167 17.3099 34.4167 20.8958C34.4167 24.1654 33.2612 27.1646 31.3192 29.5H51.625V51.625H29.5V31.3192C27.1646 33.2612 24.1654 34.4167 20.8958 34.4167C17.3099 34.4167 13.8708 32.9922 11.3352 30.4565C8.79951 27.9209 7.375 24.4818 7.375 20.8958C7.375 17.3099 8.79951 13.8708 11.3352 11.3352C13.8708 8.79951 17.3099 7.375 20.8958 7.375Z"
+      fill="#6E3FFF"
+    />
+  </svg>
+);
+
+export default IllustrationsThumb;

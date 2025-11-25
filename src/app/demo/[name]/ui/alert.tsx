@@ -4,6 +4,18 @@ import { ButtonLinkAlert } from "@/app/demo/[name]/ui/alert-button-Link";
 
 export const alert = {
   name: "alert",
+  defaultComponent: (
+    <Alert>
+      <AlertTitle>Alert</AlertTitle>
+      <AlertDescription>
+        This is an example of an alert with a title and description.
+      </AlertDescription>
+    </Alert>
+  ),
+  usage: [
+    `import {\n  Alert,\n  AlertDescription,\n  AlertTitle,\n} from "@/components/ui/alert"`,
+    `<Alert>\n  <AlertTitle>Alert</AlertTitle>\n  <AlertDescription>\n    This is an example of an alert with a title and description.\n  </AlertDescription>\n</Alert>`
+  ],
   components: {
     Primary: (
       <Alert variant="primary">
@@ -37,11 +49,7 @@ export const alert = {
         </AlertDescription>
       </Alert>
     ),
-    Closable: (
-      <ClosableAlert variantProp="primary" />
-    ),
-    BtnLink: (
-      <ButtonLinkAlert variantProp="primary" />
-    ),
+    Closable: <ClosableAlert variantProp="primary" />,
+    "With Button Link": <ButtonLinkAlert variantProp="primary" />,
   },
 };
