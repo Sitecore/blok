@@ -1554,6 +1554,9 @@
       "type": "registry:ui",
       "title": "Table",
       "description": "A responsive table component.",
+      "dependencies": [
+        "@tanstack/react-table"
+      ],
       "registryDependencies": [
         "https://blok.sitecore.com/r/theme.json"
       ],

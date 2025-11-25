@@ -8,6 +8,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { TableDemo } from "@/app/demo/[name]/ui/table-demo";
 
 export const featureTable = [
   {
@@ -61,6 +62,7 @@ export const table = {
         </TableBody>
       </Table>
     ),
+    DataTable:<div className="pt-16"> <TableDemo /></div>,
   },
 };
  
