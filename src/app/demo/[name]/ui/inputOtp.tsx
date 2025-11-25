@@ -3,25 +3,29 @@ import { InputOTP, InputOTPGroup, InputOTPSeparator, InputOTPSlot } from "@/comp
 
 export const inputOtp = {
   name: "inputOtp",
+  defaultComponent: (
+    <div className="grid gap-2 p-5">
+      <Label htmlFor="simple">Simple</Label>
+      <InputOTP id="simple" maxLength={6}>
+        <InputOTPGroup>
+          <InputOTPSlot index={0} />
+          <InputOTPSlot index={1} />
+          <InputOTPSlot index={2} />
+        </InputOTPGroup>
+        <InputOTPSeparator />
+        <InputOTPGroup>
+          <InputOTPSlot index={3} />
+          <InputOTPSlot index={4} />
+          <InputOTPSlot index={5} />
+        </InputOTPGroup>
+      </InputOTP>
+    </div>
+  ),
+  usage: [
+    `import {\n  InputOTP,\n  InputOTPGroup,\n  InputOTPSeparator,\n  InputOTPSlot,\n} from "@/components/ui/inputOtp";`,
+    `<InputOTP id="simple" maxLength={6}>\n  <InputOTPGroup>\n    <InputOTPSlot index={0} />\n    <InputOTPSlot index={1} />\n    <InputOTPSlot index={2} />\n  </InputOTPGroup>\n  <InputOTPSeparator />\n  <InputOTPGroup>\n    <InputOTPSlot index={3} />\n    <InputOTPSlot index={4} />\n    <InputOTPSlot index={5} />\n  </InputOTPGroup>\n</InputOTP>`,
+  ],
   components: {
-    Default: (
-      <div className="grid gap-2 p-5">
-        <Label htmlFor="simple">Simple</Label>
-        <InputOTP id="simple" maxLength={6}>
-          <InputOTPGroup>
-            <InputOTPSlot index={0} />
-            <InputOTPSlot index={1} />
-            <InputOTPSlot index={2} />
-          </InputOTPGroup>
-          <InputOTPSeparator />
-          <InputOTPGroup>
-            <InputOTPSlot index={3} />
-            <InputOTPSlot index={4} />
-            <InputOTPSlot index={5} />
-          </InputOTPGroup>
-        </InputOTP>
-      </div>
-    ),
     Pattern: (
       <div className="grid gap-2 p-5">
         <Label htmlFor="digits-only">Digits Only</Label>
@@ -38,7 +42,7 @@ export const inputOtp = {
       </div>
     ),
     // With Spacing
-    WithSpacing: (
+    "With Spacing": (
       <div className="grid gap-2 p-5">
         <Label htmlFor="with-spacing">With Spacing</Label>
         <InputOTP id="with-spacing" maxLength={6}>
@@ -51,7 +55,6 @@ export const inputOtp = {
         </InputOTP>
       </div>
     ),
-    
   },
 };
  

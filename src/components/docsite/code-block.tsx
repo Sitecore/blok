@@ -6,18 +6,34 @@ import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { mdiClipboardOutline } from "@mdi/js";
 import Icon from "@mdi/react";
+import { cva } from "class-variance-authority";
 
 export async function copyToClipboard(value: string) {
   await navigator.clipboard.writeText(value);
 }
 
 export interface CodeblocksProps {
+  variant?: "outline" | "filled";
   code: string;
   showLineNumbers?: boolean;
-  bgColor?: string;
 }
 
-export function Codeblocks({ code, showLineNumbers = true, bgColor = "bg-subtle-bg" }: CodeblocksProps) {
+const codeBlockVariants = cva(
+  "mt-16 sm:mt-0 flex rounded-lg",
+  {
+    variants: {
+      variant: {
+        outline: "border bg-body-bg text-muted-foreground",
+        filled: "bg-subtle-bg text-body-text border-none",
+      },
+    },
+    defaultVariants: {
+      variant: "outline",
+    },
+  }
+)
+
+export function Codeblocks({ variant, code, showLineNumbers = true }: CodeblocksProps) {
   const [hasCopied, setHasCopied] = useState(false);
 
   const codeLines = code.split("\n");
@@ -55,9 +71,9 @@ export function Codeblocks({ code, showLineNumbers = true, bgColor = "bg-subtle-
         </Button>
       </div>
 
-      <div className={`mt-16 sm:mt-0 flex rounded-lg border ${bgColor}`}>
+      <div className={codeBlockVariants({ variant })}>
         {showLineNumbers && (
-          <div className="flex flex-col items-center justify-start py-2 px-2 text-sm text-muted-foreground gap-y-1">
+          <div className="flex flex-col items-center justify-start py-2 px-2 text-sm gap-y-1">
             {codeLines.map((_, index) => (
               <span key={index} className="w-6 text-center py-1 leading-none">
                 {index + 1}
@@ -67,7 +83,7 @@ export function Codeblocks({ code, showLineNumbers = true, bgColor = "bg-subtle-
         )}
 
         <pre className="flex-1 overflow-x-auto p-2">
-          <code className="relative bg-transparent font-mono text-sm text-muted-foreground leading-none whitespace-pre-wrap break-words">
+          <code className="relative bg-transparent font-mono text-sm leading-none whitespace-pre-wrap break-words">
             {code}
           </code>
         </pre>

@@ -42,7 +42,7 @@ const chartConfig = {
 
 export function BarChartComponent() {
   return (
-    <Card style="outline">
+    <Card style="outline" className="w-4xl">
       <CardHeader>
         <CardTitle>Bar Chart - Multiple</CardTitle>
         <CardDescription>January - June 2024</CardDescription>

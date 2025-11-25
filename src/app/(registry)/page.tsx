@@ -193,7 +193,6 @@ export default function Home() {
           <Codeblocks
             code="npx shadcn@latest init"
             showLineNumbers={false}
-            bgColor="bg-body-bg"
           />
           <p>
             During initialization, choose a base color when prompted. The CLI
@@ -227,7 +226,6 @@ export default function Home() {
           </h2>
           <p>You can now start adding the Blok components to your project.</p>
           <Codeblocks
-            bgColor="bg-body-bg"
             code={`npx shadcn@latest add https://${process.env.NEXT_PUBLIC_REGISTRY_URL}/r/button.json`}
             showLineNumbers={false}
           />
@@ -241,7 +239,6 @@ export default function Home() {
                 <Codeblocks
                   code={`npx shadcn@latest add https://${process.env.NEXT_PUBLIC_REGISTRY_URL}/r/blok-components.json`}
                   showLineNumbers={false}
-                  bgColor="bg-body-bg"
                 />
               </div>
               <p className="max-w-full">
@@ -274,7 +271,6 @@ export default function Home() {
             alias:
           </p>
           <Codeblocks
-            bgColor="bg-body-bg"
             code={`import { Button } from "@/components/ui/button"
 
 export default function MyComponent() {
@@ -299,7 +295,6 @@ export default function MyComponent() {
           <Codeblocks
             code="npm run dev"
             showLineNumbers={false}
-            bgColor="bg-body-bg"
           />
           <p className="text-muted-foreground">
             Your application is now running with functional BlokCN components.

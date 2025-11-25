@@ -2,6 +2,15 @@ import { ErrorStates } from "@/components/ui/error-states";
 
 export const errorStates = {
   name: "error-states",
+  defaultComponent: (
+    <div className="h-[400px]">
+      <ErrorStates variant="generic" />
+    </div>
+  ),
+  usage: [
+    `import { ErrorStates } from "@/components/ui/error-states";`,
+    `<ErrorStates variant="generic" />`,
+  ],
   components: {
     Generic: (
       <div className="h-[400px]">
