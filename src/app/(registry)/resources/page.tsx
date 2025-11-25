@@ -4,7 +4,6 @@ import { ComponentGridCard } from "@/components/docsite/component-grid-card";
 import CodeGuidelineThumb from "@/components/component-thumbs/code-guideline";
 import WritingUITextThumb from "@/components/component-thumbs/writing-ui-text";
 import BlokFoundationsThumb from "@/components/component-thumbs/blok-foundations";
-import FaviconsThumb from "@/components/component-thumbs/favicons";
 import ShadcnMcpThumb from "@/components/component-thumbs/shadcn-mcp";
 import LogosThumb from "@/components/component-thumbs/logos";
 
@@ -103,9 +102,9 @@ const resourcesItems = [
     ),
   },
   {
-    name: "shadcn-mcp",
-    title: "Shadcn MCP",
-    href: "#",
+    name: "mcp",
+    title: "MCP",
+    href: "/mcp",
     preview: (
       <div className="w-full h-full flex items-center justify-center p-4">
         <ShadcnMcpThumb />

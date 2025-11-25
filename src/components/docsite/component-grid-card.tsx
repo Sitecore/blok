@@ -60,6 +60,22 @@ export function ComponentGridCard({
   );
 
   if (href) {
+    // Check if href is an external URL
+    const isExternal = href.startsWith("http://") || href.startsWith("https://");
+    
+    if (isExternal) {
+      return (
+        <a
+          href={href}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="block h-full"
+        >
+          {content}
+        </a>
+      );
+    }
+    
     return (
       <Link href={href} className="block h-full">
         {content}

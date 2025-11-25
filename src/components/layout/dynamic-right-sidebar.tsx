@@ -4,7 +4,7 @@ import { usePathname } from "next/navigation";
 import { RightSidebar } from "./right-sidebar";
 import { getRightSidebarMetadata } from "@/lib/right-sidebar-metadata";
 
-const HIDDEN_SIDEBAR_PATHS = ["/","/primitives", "/bloks", "/theming", "/graphics", "/resources"];
+const HIDDEN_SIDEBAR_PATHS = ["/","/primitives", "/bloks", "/theming", "/graphics", "/resources","/mcp"];
 
 export function DynamicRightSidebar() {
   const pathname = usePathname();
