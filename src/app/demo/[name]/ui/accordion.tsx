@@ -8,7 +8,7 @@ import {
 export const accordion = {
   name: "accordion",
   components: {
-    Accordion: (
+    Default: (
       <Accordion type="single" collapsible className="w-full">
         <AccordionItem value="item-1">
           <AccordionTrigger>Why do developers prefer dark mode?</AccordionTrigger>
