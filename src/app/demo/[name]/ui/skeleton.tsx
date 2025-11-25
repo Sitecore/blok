@@ -3,18 +3,22 @@ import { Skeleton } from "@/components/ui/skeleton";
 
 export const skeleton = {
   name: "skeleton",
-  components: {
-    Default: (
-      <div className="flex items-center gap-4">
-        <Skeleton className="size-10 shrink-0 rounded-full" />
-        <div className="grid gap-2">
-          <Skeleton className="h-4 w-[150px]" />
-          <Skeleton className="h-4 w-[100px]" />
-        </div>
+  defaultComponent: (
+    <div className="flex items-center gap-4 bg-body-bg p-4">
+      <Skeleton className="size-10 shrink-0 rounded-full" />
+      <div className="grid gap-2">
+        <Skeleton className="h-4 w-[150px]" />
+        <Skeleton className="h-4 w-[100px]" />
       </div>
-    ),
-    CardList: (
-      <div className="flex w-full flex-wrap items-start gap-4">
+    </div>
+  ),
+  usage: [
+    `import { Skeleton } from "@/components/ui/skeleton";`,
+    `<Skeleton className="size-10" />`,
+  ],
+  components: {
+    "Card List": (
+      <div className="flex w-md flex-wrap items-start gap-4">
         {Array.from({ length: 2 }).map((_, index) => (
           <Card key={index} className="w-full @md:w-auto @md:min-w-sm">
             <CardHeader>

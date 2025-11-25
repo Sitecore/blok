@@ -56,7 +56,7 @@ const chartConfig = {
 
 export function BarMixedChartComponent() {
   return (
-    <Card style="outline">
+    <Card style="outline" className="w-4xl">
       <CardHeader>
         <CardTitle>Bar Chart - Mixed</CardTitle>
         <CardDescription>January - June 2024</CardDescription>

@@ -28,22 +28,24 @@ export default async function RegistryItemPage({
   }
 
   return (
-    <div className="flex w-full">
-      <div className="flex-1 min-w-0">
-        <div className="container p-5 md:p-10">
-          <div className="mb-6 flex flex-wrap gap-4 items-center justify-between">
-            <div>
-              <Button variant="ghost" size="sm" asChild className="mb-4">
-                <Link href="/">
-                  <ArrowLeft className="mr-2 size-4" />
-                  Back to Home
-                </Link>
-              </Button>
-              <h2 className="font-semibold text-3xl tracking-tight">
-                {component.title}
-              </h2>
-            </div>
+    <div className="w-full bg-body-bg px-5 pb-10 md:px-10">
+      <div className="flex items-center justify-between">
+        <div>
+          {/* <Button variant="ghost" size="sm" asChild className="mb-4">
+            <Link href="/">
+              <ArrowLeft className="mr-2 size-4" />
+              Back to Home
+            </Link>
+          </Button> */}
+
+          <div className="py-10 flex flex-col gap-6">
+            <h2 className="font-semibold text-5xl tracking-tight">
+              {component.title}
+            </h2>
+            <p className="text-lg text-subtle-text">{component.description}</p>
           </div>
+        </div>
+      </div>
 
           <ComponentCard
             component={component}
@@ -51,7 +53,5 @@ export default async function RegistryItemPage({
             prompt={getPrompt()}
           />
         </div>
-      </div>
-    </div>
   );
 }
