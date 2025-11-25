@@ -18,8 +18,16 @@ export default async function DemoPage({
   const { name } = await params;
 
   const { components } = demos[name];
+  if (!components) {
+    notFound();
+  }
 
-  const codeMap = await import(`@/app/content/ui/${name}.json`) as unknown as Record<string, string>;
+  let codeMap: Record<string, string> = {};
+  try {
+    codeMap = await import(`@/app/content/ui/${name}.json`) as unknown as Record<string, string>;
+  } catch (error) {
+    codeMap = {};
+  }
 
   return (
       <div className="flex min-h-[100vh] w-full flex-col gap-12 bg-body-bg">
