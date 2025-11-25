@@ -115,48 +115,50 @@ const resourcesItems = [
 
 export default function ResourcesPage() {
   return (
-    <div className="container p-5 md:p-10">
-      <div className="mb-8">
-        <h1 className="font-semibold text-4xl tracking-tight">Resources</h1>
-        <p className="mt-2 text-muted-foreground">
-          Additional resources, documentation, and helpful links for the Blok
-          design system.
-        </p>
-      </div>
-
-      {/* Guidelines Section */}
-      <div className="mb-12">
-        <h2 className="text-2xl font-semibold tracking-tight text-foreground mb-6">
-          Guidelines
-        </h2>
-        <div className="grid grid-cols-1 sm:grid-cols-[repeat(auto-fill,minmax(224px,224px))] gap-y-6 gap-x-6 justify-items-start">
-          {guidelinesItems.map((item) => (
-            <ComponentGridCard
-              key={item.name}
-              name={item.name}
-              title={item.title}
-              href={item.href}
-              preview={item.preview}
-            />
-          ))}
+    <div className="w-full p-5 md:p-10 ">
+      <div className="px-32">
+        <div className="mb-8 ">
+          <h1 className="font-semibold text-4xl tracking-tight">Resources</h1>
+          <p className="mt-2 text-muted-foreground">
+            Additional resources, documentation, and helpful links for the Blok
+            design system.
+          </p>
         </div>
-      </div>
 
-      {/* Resources Section */}
-      <div>
-        <h2 className="text-2xl font-semibold tracking-tight text-foreground mb-6">
-          Resources
-        </h2>
-        <div className="grid grid-cols-1 sm:grid-cols-[repeat(auto-fill,minmax(224px,224px))] gap-y-6 gap-x-6 justify-items-start">
-          {resourcesItems.map((item) => (
-            <ComponentGridCard
-              key={item.name}
-              name={item.name}
-              title={item.title}
-              href={item.href}
-              preview={item.preview}
-            />
-          ))}
+        {/* Guidelines Section */}
+        <div className="mb-12">
+          <h2 className="text-2xl font-semibold tracking-tight text-foreground mb-6">
+            Guidelines
+          </h2>
+          <div className="grid grid-cols-1 sm:grid-cols-[repeat(auto-fill,minmax(224px,224px))] gap-y-6 gap-x-6 justify-items-start">
+            {guidelinesItems.map((item) => (
+              <ComponentGridCard
+                key={item.name}
+                name={item.name}
+                title={item.title}
+                href={item.href}
+                preview={item.preview}
+              />
+            ))}
+          </div>
+        </div>
+
+        {/* Resources Section */}
+        <div>
+          <h2 className="text-2xl font-semibold tracking-tight text-foreground mb-6">
+            Resources
+          </h2>
+          <div className="grid grid-cols-1 sm:grid-cols-[repeat(auto-fill,minmax(224px,224px))] gap-y-6 gap-x-6 justify-items-start">
+            {resourcesItems.map((item) => (
+              <ComponentGridCard
+                key={item.name}
+                name={item.name}
+                title={item.title}
+                href={item.href}
+                preview={item.preview}
+              />
+            ))}
+          </div>
         </div>
       </div>
     </div>
