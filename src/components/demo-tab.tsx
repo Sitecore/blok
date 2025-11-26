@@ -5,17 +5,17 @@ import { ReactNode } from "react";
 interface DemoTabProps {
     code: string;
     component: ReactNode;
-    defaultTab?: "demo" | "code";
+    defaultTab?: "preview" | "code";
 }
 
-export default function DemoTab({ code, component, defaultTab = "demo" }: DemoTabProps) {
+export default function DemoTab({ code, component, defaultTab = "preview" }: DemoTabProps) {
     return (
         <Tabs defaultValue={defaultTab}>
             <TabsList>
-                <TabsTrigger value="demo">Demo</TabsTrigger>
+                <TabsTrigger value="preview">Preview</TabsTrigger>
                 <TabsTrigger value="code">Code</TabsTrigger>
             </TabsList>
-            <TabsContent value="demo" className="min-h-[200px] py-8 bg-subtle-bg flex items-center justify-center">
+            <TabsContent value="preview" className="min-h-[200px] p-8 bg-subtle-bg flex items-center justify-center">
                 {component}
             </TabsContent>
 
