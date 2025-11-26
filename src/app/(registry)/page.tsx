@@ -66,7 +66,7 @@ export default function Home() {
               </CardHeader>
               <CardContent className="pt-2">
                 <CardDescription className="mb-2">
-                  <code className="bg-muted px-1 rounded text-xs">
+                  <code className="bg-muted px-1 rounded text-xs" dir="ltr">
                     node --version
                   </code>
                 </CardDescription>
@@ -106,7 +106,7 @@ export default function Home() {
               </CardHeader>
               <CardContent className="pt-2">
                 <CardDescription className="mb-2">
-                  <code className="bg-muted px-1 rounded text-xs">
+                  <code className="bg-muted px-1 rounded text-xs" dir="ltr">
                     npm --version
                   </code>
                 </CardDescription>
@@ -204,7 +204,7 @@ export default function Home() {
             </li>
             <li>
               Create a{" "}
-              <code className="inline text-sm tabular-nums bg-muted px-1 rounded">
+              <code className="inline text-sm tabular-nums bg-muted px-1 rounded" dir="ltr">
                 components.json
               </code>{" "}
               configuration file.
@@ -212,7 +212,7 @@ export default function Home() {
             <li>Update your CSS with the necessary CSS variables.</li>
             <li>
               Create{" "}
-              <code className="inline text-sm tabular-nums bg-muted px-1 rounded">
+              <code className="inline text-sm tabular-nums bg-muted px-1 rounded" dir="ltr">
                 src/lib/utils.js
               </code>{" "}
               with utility functions.
@@ -261,11 +261,11 @@ export default function Home() {
           </h2>
           <p>
             Update your{" "}
-            <code className="inline text-sm tabular-nums bg-muted px-1 rounded">
+            <code className="inline text-sm tabular-nums bg-muted px-1 rounded" dir="ltr">
               src/App.jsx
             </code>{" "}
             to test the installation. Components are imported with the{" "}
-            <code className="inline text-sm tabular-nums bg-muted px-1 rounded">
+            <code className="inline text-sm tabular-nums bg-muted px-1 rounded" dir="ltr">
               @/
             </code>{" "}
             alias:
