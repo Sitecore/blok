@@ -1,6 +1,4 @@
-/**
- * List of RTL language codes
- */
+// List of RTL language codes
 const RTL_LANGUAGES = [
   "ar", // Arabic
   "he", // Hebrew
@@ -13,25 +11,22 @@ const RTL_LANGUAGES = [
   "sd", // Sindhi
 ] as const;
 
-/**
- * Determines if a language code is RTL
- */
+
+// Determines if a language code is RTL
 export function isRTL(language: string): boolean {
   // Normalize language code ("en-US" -> "en")
   const langCode = language.toLowerCase().split("-")[0];
   return RTL_LANGUAGES.includes(langCode as typeof RTL_LANGUAGES[number]);
 }
 
-/**
- * Gets the direction based on language code
- */
+
+// Gets the direction based on language code
 export function getDirectionFromLanguage(language: string): "ltr" | "rtl" {
   return isRTL(language) ? "rtl" : "ltr";
 }
 
-/**
- * Gets the browser's preferred language
- */
+
+//Gets the browser's preferred language
 export function getBrowserLanguage(): string {
   if (typeof window === "undefined") return "en";
   
