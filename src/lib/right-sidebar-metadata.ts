@@ -800,7 +800,7 @@ export const rightSidebarMetadata: Record<string, RightSidebarMetadata> = {
   },
   topbar: {
     links: {
-      figma: "https://www.figma.com/design/x0CUbrC5Kjcuk64VPCnbgz/Blok-Components?m=auto&node-id=7069-16463&t=NScvPldB3fxBBWL8-1"
+      figma: "https://www.figma.com/design/x0CUbrC5Kjcuk64VPCnbgz/Blok-Components?m=auto&node-id=6748-14480&t=NScvPldB3fxBBWL8-1"
     },
   },
 
