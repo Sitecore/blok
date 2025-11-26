@@ -12,7 +12,7 @@ const combinedColorsContent = `${colorsContent}\n${globalsContent}`;
 
 export default function ColorsPage() {
   return (
-    <div className="container p-5 md:p-10 xl:pr-[250px]">
+    <div className="container p-5 md:p-10">
       <div className="mb-8">
         <h1 className="font-semibold text-4xl tracking-tight mb-2">Colors</h1>
       </div>

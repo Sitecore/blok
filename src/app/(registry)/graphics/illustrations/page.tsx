@@ -329,7 +329,7 @@ const illustrationsData = [
 
 export default function IllustrationsPage() {
   return (
-    <div className="container p-5 md:p-10  xl:pr-[250px]">
+    <div className="container p-5 md:p-10">
       <div className="mb-8">
         <h1 className="font-semibold text-4xl tracking-tight">Illustrations</h1>
       </div>
