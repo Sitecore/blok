@@ -71,12 +71,14 @@ export function RightSidebar({
     if (element) {
       const offset = 80;
       const elementPosition = element.getBoundingClientRect().top;
-      const offsetPosition = elementPosition + window.pageYOffset - offset;
+      const offsetPosition = elementPosition + window.scrollY - offset;
 
       window.scrollTo({
         top: offsetPosition,
         behavior: "smooth",
       });
+    } else {
+      console.warn(`Element with id "${id}" not found on the page`);
     }
   };
 
@@ -85,7 +87,7 @@ export function RightSidebar({
   if (!hasContent) return null;
 
   return (
-    <aside className="hidden xl:block xl:fixed xl:right-0 xl:h-[calc(100vh-48px)] xl:w-[250px] xl:overflow-y-auto p-10 space-y-8 bg-background">
+    <aside className="hidden xl:block xl:sticky xl:top-12 xl:h-[calc(100vh-48px)] xl:w-[250px] xl:overflow-y-auto xl:flex-shrink-0 p-10 space-y-8 bg-transparent">
         {/* Links Section */}
         {links && Object.keys(links).length > 0 && (
           <div className="space-y-2.5">
