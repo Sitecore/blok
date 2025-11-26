@@ -35,15 +35,16 @@ const navigationItems: StackNavigationElement[] = [
   },
 ];
 
-const StackNavigationExample = () => {
+const StackNavigationHorizontal = () => {
 
   return (
     <div>
-       <StackNavigation
+      <StackNavigation
         items={navigationItems}
+        orientation="horizontal"
       />
     </div>
   );
 };
 
-export default StackNavigationExample;
+export default StackNavigationHorizontal;

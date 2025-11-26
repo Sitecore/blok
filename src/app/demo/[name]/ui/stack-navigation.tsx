@@ -1,4 +1,5 @@
 import StackNavigationExample from "./stack-navigation-example";
+import StackNavigationHorizontal from "./stack-navigation-horizontal";
 
 export const stackNavigation = {
   name: "stack-navigation",
@@ -10,8 +11,9 @@ export const stackNavigation = {
     `<StackNavigationExample/>`,
   ],
   components: {
-    Default: (
-      <StackNavigationExample/>
-    ),
+    Horizontal: (
+      <StackNavigationHorizontal/>
+    )
   },
+
 };

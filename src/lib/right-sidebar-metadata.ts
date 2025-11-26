@@ -212,7 +212,6 @@ export const rightSidebarMetadata: Record<string, RightSidebarMetadata> = {
     sections: [
       { id: "preview", title: "Preview" },
       { id: "installation", title: "Installation" },
-      { id: "usage", title: "Usage" },
       {
         id: "examples",
         title: "Examples",
@@ -321,7 +320,6 @@ export const rightSidebarMetadata: Record<string, RightSidebarMetadata> = {
   },
   draggable: {
     links: {
-      shadcn: "https://ui.shadcn.com/docs/components/draggable",
     },
     sections: [
       { id: "preview", title: "Preview" },
@@ -410,12 +408,12 @@ export const rightSidebarMetadata: Record<string, RightSidebarMetadata> = {
         title: "Examples",
         children: [
           { id: "generic", title: "Generic" },
-          { id: "bad-request", title: "Bad Request (400)" },
-          { id: "unauthorized", title: "Unauthorized (401)" },
-          { id: "forbidden", title: "Forbidden (403)" },
-          { id: "page-not-found", title: "Page Not Found (404)" },
-          { id: "internal-server-error", title: "Internal Server Error (500)" },
-          { id: "service-unavailable", title: "Service Unavailable (503)" },
+          { id: "bad-request-(400)", title: "Bad Request (400)" },
+          { id: "unauthorized-(401)", title: "Unauthorized (401)" },
+          { id: "forbidden-(403)", title: "Forbidden (403)" },
+          { id: "page-not-found-(404)", title: "Page Not Found (404)" },
+          { id: "internal-server-error-(500)", title: "Internal Server Error (500)" },
+          { id: "service-unavailable-(503)", title: "Service Unavailable (503)" },
         ],
       },
     ],
@@ -599,18 +597,6 @@ export const rightSidebarMetadata: Record<string, RightSidebarMetadata> = {
       shadcn: "https://ui.shadcn.com/docs/components/sidebar",
       figma: "https://www.figma.com/design/x0CUbrC5Kjcuk64VPCnbgz/Blok-Components?m=auto&node-id=6990-12387&t=NScvPldB3fxBBWL8-1"
     },
-    sections: [
-      { id: "preview", title: "Preview" },
-      { id: "installation", title: "Installation" },
-      { id: "usage", title: "Usage" },
-      {
-        id: "examples",
-        title: "Examples",
-        children: [
-          { id: "card-list", title: "Card List" },
-        ],
-      },
-    ],
   },
   skeleton: {
     links: {
@@ -680,7 +666,19 @@ export const rightSidebarMetadata: Record<string, RightSidebarMetadata> = {
   "stack-navigation": {
     links:{
       figma: "https://www.figma.com/design/x0CUbrC5Kjcuk64VPCnbgz/Blok-Components?m=auto&node-id=10256-14999&t=NScvPldB3fxBBWL8-1"
-    }
+    },
+        sections: [
+      { id: "preview", title: "Preview" },
+      { id: "installation", title: "Installation" },
+      { id: "usage", title: "Usage" },
+      {
+        id: "examples",
+        title: "Examples",
+        children: [
+          { id: "horizontal", title: "Horizontal" },
+        ],
+      },
+    ],
   },
   switch: {
     links: {
@@ -711,12 +709,12 @@ export const rightSidebarMetadata: Record<string, RightSidebarMetadata> = {
   tabs: {
     links: {
       shadcn: "https://ui.shadcn.com/docs/components/tabs",
-      figma: "https://www.figma.com/design/x0CUbrC5Kjcuk64VPCnbgz/Blok-Components?m=auto&node-id=6748-14476&t=NScvPldB3fxBBWL8-1"
+      figma: "https://www.figma.com/design/x0CUbrC5Kjcuk64VPCnbgz/Blok-Components?m=auto&node-id=6748-14482&t=NScvPldB3fxBBWL8-1"
     },
     sections: [
       { id: "preview", title: "Preview" },
       { id: "installation", title: "Installation" },
-      { id: "usage", title: "Usage" },
+      { id: "usage", title: "Usage" }, 
       {
         id: "examples",
         title: "Examples",
@@ -797,6 +795,11 @@ export const rightSidebarMetadata: Record<string, RightSidebarMetadata> = {
   tooltip: {
     links: {
       shadcn: "https://ui.shadcn.com/docs/components/tooltip",
+      figma: "https://www.figma.com/design/x0CUbrC5Kjcuk64VPCnbgz/Blok-Components?m=auto&node-id=7069-16463&t=NScvPldB3fxBBWL8-1"
+    },
+  },
+  topbar: {
+    links: {
       figma: "https://www.figma.com/design/x0CUbrC5Kjcuk64VPCnbgz/Blok-Components?m=auto&node-id=7069-16463&t=NScvPldB3fxBBWL8-1"
     },
   },
