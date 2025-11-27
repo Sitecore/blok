@@ -46,13 +46,13 @@ export default function TypographyPage() {
     <div className="container p-5 md:p-10">
       
       <div className="mb-12">
-        <h1 className="font-semibold text-4xl tracking-tight mb-2">
+        <h1 className="font-semibold text-4xl mb-2">
           Typography
         </h1>
       </div>
 
       <div className="flex flex-col gap-6 mb-12">
-        <h2 className="font-semibold text-2xl tracking-tight">Fonts</h2>
+        <h2 className="font-semibold text-2xl ">Fonts</h2>
         <Alert variant="primary">
           <AlertDescription>
             <p>
@@ -100,7 +100,7 @@ export default function TypographyPage() {
       </div>
 
       <div className="flex flex-col gap-6 mb-12">
-        <h2 className="font-semibold text-2xl tracking-tight">
+        <h2 className="font-semibold text-2xl">
           Font Weights
         </h2>
         <div className="overflow-x-auto">
@@ -132,7 +132,7 @@ export default function TypographyPage() {
       </div>
 
       <div className="flex flex-col gap-6 mb-12">
-        <h2 className="font-semibold text-2xl tracking-tight">
+        <h2 className="font-semibold text-2xl ">
           Font Sizes
         </h2>
         <div className="overflow-x-auto">

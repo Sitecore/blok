@@ -45,7 +45,7 @@ export default function MCPPage() {
                             </BreadcrumbItem>
                         </BreadcrumbList>
                     </Breadcrumb>
-                    <h1 className="font-semibold text-4xl tracking-tight md:text-4xl mt-10">
+                    <h1 className="font-semibold text-4xl md:text-4xl mt-10">
                         Blok MCP Server
                     </h1>
                     <p className="d w-full ">
@@ -71,7 +71,7 @@ export default function MCPPage() {
             </div>
             <div className="px-32 max-w-[1250px] mx-auto">
                 <div className="flex flex-col space-y-3 p-5 md:pt-10 md:px-10">
-                    <h2 className="font-semibold text-3xl tracking-tight md:text-4xl">
+                    <h2 className="font-semibold text-3xl md:text-4xl">
                         Before You Start
                     </h2>
                     <p>
@@ -84,7 +84,7 @@ export default function MCPPage() {
                 </div>
 
                 <div className="flex flex-col space-y-3 p-5 md:pt-10 md:px-10">
-                    <h2 className="font-semibold text-3xl tracking-tight md:text-4xl">
+                    <h2 className="font-semibold text-3xl  md:text-4xl">
                         Quick Start
                     </h2>
                     <p>
@@ -163,7 +163,7 @@ args = ["shadcn@latest", "mcp"]`} variant="outline" />
                 </div>
 
                 <div className="flex flex-col space-y-3 p-5 md:pt-10 md:px-10">
-                    <h2 id="configuration" className="font-semibold text-3xl tracking-tight md:text-4xl">Configure MCP in Cursor</h2>
+                    <h2 id="configuration" className="font-semibold text-3xl md:text-4xl">Configure MCP in Cursor</h2>
                     <p>
                         To configure MCP in Cursor, add the shadcn server to your project's <code className="inline text-sm tabular-nums bg-muted px-1 rounded">.cursor/mcp.json</code> configuration file:
                     </p>
@@ -175,7 +175,7 @@ args = ["shadcn@latest", "mcp"]`} variant="outline" />
                 </div>
 
                 <div className="flex flex-col space-y-3 p-5 md:pt-10 md:px-10">
-                    <h2 className="font-semibold text-3xl tracking-tight md:text-4xl">Example Prompts</h2>
+                    <h2 className="font-semibold text-3xl md:text-4xl">Example Prompts</h2>
                     <p>Once the MCP server is configured, you can interact with the Blok registry with natural language, for example:</p>
 
                     <ul className="list-disc list-inside space-y-2">
@@ -189,9 +189,9 @@ args = ["shadcn@latest", "mcp"]`} variant="outline" />
                 </div>
 
                 <div className="flex flex-col space-y-3 mb-10 p-5 md:pt-10 md:px-10 md:pb-10">
-                    <h2 className="font-semibold text-3xl tracking-tight md:text-4xl">Troubleshooting</h2>
+                    <h2 className="font-semibold text-3xl md:text-4xl">Troubleshooting</h2>
 
-                    <h3 className="mt-4 font-semibold text-2xl tracking-tight md:text-3xl">MCP Not Responding</h3>
+                    <h3 className="mt-4 font-semibold text-2xl md:text-3xl">MCP Not Responding</h3>
                     <p>If the MCP server isn't responding to prompts:</p>
                     <ol className="list-decimal list-inside space-y-2 ">
                         <li>Verify the MCP server is properly configured and enabled in Cursor Settings.</li>
@@ -199,7 +199,7 @@ args = ["shadcn@latest", "mcp"]`} variant="outline" />
                         <li>In Cursor, view logs by clicking View, then click Output, and select <code className="inline text-sm tabular-nums bg-muted px-1 rounded">MCP: project-*</code> in the dropdown.</li>
                     </ol>
 
-                    <h3 className="mt-4 font-semibold text-2xl tracking-tight md:text-3xl">Registry Access Issues</h3>
+                    <h3 className="mt-4 font-semibold text-2xl md:text-3xl">Registry Access Issues</h3>
                     <p>If components aren't loading from the Blok registry:</p>
                     <ol className="list-decimal list-inside space-y-2 ">
                         <li>Verify the <code className="inline text-sm tabular-nums bg-muted px-1 rounded">@blok</code> registry URL is correct</li>
@@ -208,7 +208,7 @@ args = ["shadcn@latest", "mcp"]`} variant="outline" />
                         <li>Ensure namespace syntax is correct (<code className="inline text-sm tabular-nums bg-muted px-1 rounded">@blok/component-name</code>)</li>
                     </ol>
 
-                    <h3 className="mt-4 font-semibold text-2xl tracking-tight md:text-3xl">No Tools or Prompts</h3>
+                    <h3 className="mt-4 font-semibold text-2xl md:text-3xl">No Tools or Prompts</h3>
                     <p>If you see the <code className="inline text-sm tabular-nums bg-muted px-1 rounded">No tools or prompts</code> message:</p>
                     <ol className="list-decimal list-inside space-y-2">
                         <li>Run <code className="inline text-sm tabular-nums bg-muted px-1 rounded">npx clear-npx-cache</code></li>

@@ -118,7 +118,7 @@ export default function ResourcesPage() {
     <div className="w-full p-5 md:p-10 ">
       <div className="max-w-[1250px] mx-auto">
         <div className="mb-8 ">
-          <h1 className="font-semibold text-4xl tracking-tight">Resources</h1>
+          <h1 className="font-semibold text-4xl">Resources</h1>
           <p className="mt-2 text-muted-foreground">
             Additional resources, documentation, and helpful links for the Blok
             design system.
@@ -127,7 +127,7 @@ export default function ResourcesPage() {
 
         {/* Guidelines Section */}
         <div className="mb-12">
-          <h2 className="text-2xl font-semibold tracking-tight text-foreground mb-6">
+          <h2 className="text-2xl font-semibold  text-foreground mb-6">
             Guidelines
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-[repeat(auto-fill,minmax(224px,224px))] gap-y-6 gap-x-6 justify-items-start">
@@ -145,7 +145,7 @@ export default function ResourcesPage() {
 
         {/* Resources Section */}
         <div>
-          <h2 className="text-2xl font-semibold tracking-tight text-foreground mb-6">
+          <h2 className="text-2xl font-semibold text-foreground mb-6">
             Resources
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-[repeat(auto-fill,minmax(224px,224px))] gap-y-6 gap-x-6 justify-items-start">

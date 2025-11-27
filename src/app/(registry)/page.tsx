@@ -13,6 +13,7 @@ import {
 import { Badge } from "@/components/ui/badge";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import Link from "next/link";
+import Image from "next/image";
 import Icon from "@mdi/react";
 import { mdiOpenInNew } from "@mdi/js";
 
@@ -20,13 +21,16 @@ export default function Home() {
   return (
     <main className="w-full bg-subtle-bg">
       <div className="bg-body-bg px-32 flex justify-center">
-        <div className="flex flex-col space-y-5 py-10 md:py-20 w-full max-w-[1250px]">
+        <div className="flex flex-col space-y-12 py-20 md:py-30 w-full max-w-[1250px]">
+          <div className="flex flex-col space-y-6">
+          <Image src="/logo-blok.svg" alt="Blok" width={300} height={300} />
           <h1 className="font-semibold text-5xl">Build better products faster</h1>
           <p className="text-muted-foreground w-full text-lg">
             Blok is Sitecore's design system. It is used for created industry leading martech applications.<br /> Now, it's publicly available, so
             that anyone can easily build software in the Sitecore product design
             language.
           </p>
+          </div>
           <div className="flex space-x-4">
             <Button 
               size="lg"
@@ -45,8 +49,8 @@ export default function Home() {
       </div>
 
       <div className="px-32 w-full flex items-center flex-col">
-        <div className="flex flex-col space-y-3 py-10 md:pt-20  w-full max-w-[1250px]">
-          <h2 className="font-semibold text-3xl tracking-tight md:text-4xl">
+        <div className="flex flex-col space-y-3 py-20 md:pt-30  w-full max-w-[1250px]">
+          <h2 className="font-semibold text-3xl md:text-4xl">
             Prerequisites
           </h2>
           <p className="">
@@ -180,7 +184,7 @@ export default function Home() {
         </div>
 
         <div id="step-1" className="flex flex-col space-y-3 py-10 md:pt-10 scroll-mt-20 w-full max-w-[1250px]">
-          <h2 className="font-semibold text-3xl tracking-tight md:text-4xl">
+          <h2 className="font-semibold text-3xl md:text-4xl">
             Step 1: Initialize shadcn/ui
           </h2>
           <p>
@@ -218,7 +222,7 @@ export default function Home() {
         </div>
 
         <div className="flex flex-col space-y-3 py-10 md:pt-10 w-full max-w-[1250px]">
-          <h2 className="font-semibold text-3xl tracking-tight md:text-4xl">
+          <h2 className="font-semibold text-3xl md:text-4xl">
             Step 2: Install Blok components
           </h2>
           <p>You can now start adding the Blok components to your project.</p>
@@ -253,7 +257,7 @@ export default function Home() {
         </div>
 
         <div className="flex flex-col space-y-3 py-10 md:pt-10 w-full max-w-[1250px]">
-          <h2 className="font-semibold text-3xl tracking-tight md:text-4xl">
+          <h2 className="font-semibold text-3xl  md:text-4xl">
             Step 3: Test your setup
           </h2>
           <p>
@@ -287,7 +291,7 @@ export default function MyComponent() {
         </div>
 
         <div className="flex flex-col space-y-3 mb-10 py-10 md:pt-10 md:pb-10 w-full max-w-[1250px]">
-          <h2 className="font-semibold text-3xl tracking-tight md:text-4xl">
+          <h2 className="font-semibold text-3xl md:text-4xl">
             Step 4: Run your application
           </h2>
           <p>Start the development server:</p>
