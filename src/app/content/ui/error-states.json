@@ -1,0 +1,18 @@
+{
+    "Default": "import { ErrorStates } from \"@/components/ui/error-states\";\n\nexport default function DefaultDemo() {\n  return (\n    <div className=\"h-[400px]\">\n      <ErrorStates variant=\"generic\" />\n    </div>\n  );\n}",
+
+    "Generic": "import { ErrorStates } from \"@/components/ui/error-states\";\n\nexport default function GenericDemo() {\n  return (\n    <div className=\"h-[400px]\">\n      <ErrorStates variant=\"generic\" />\n    </div>\n  );\n}",
+
+    "Bad Request (400)": "import { ErrorStates } from \"@/components/ui/error-states\";\n\nexport default function BadRequest400Demo() {\n  return (\n    <div className=\"h-[400px]\">\n      <ErrorStates variant=\"400\" />\n    </div>\n  );\n}",
+
+    "Unauthorized (401)": "import { ErrorStates } from \"@/components/ui/error-states\";\n\nexport default function Unauthorized401Demo() {\n  return (\n    <div className=\"h-[400px]\">\n      <ErrorStates variant=\"401\" />\n    </div>\n  );\n}",
+
+    "Forbidden (403)": "import { ErrorStates } from \"@/components/ui/error-states\";\n\nexport default function Forbidden403Demo() {\n  return (\n    <div className=\"h-[400px]\">\n      <ErrorStates variant=\"403\" />\n    </div>\n  );\n}",
+
+    "Page Not Found (404)": "import { ErrorStates } from \"@/components/ui/error-states\";\n\nexport default function PageNotFound404Demo() {\n  return (\n    <div className=\"h-[400px]\">\n      <ErrorStates variant=\"404\" />\n    </div>\n  );\n}",
+
+    "Internal Server Error (500)": "import { ErrorStates } from \"@/components/ui/error-states\";\n\nexport default function InternalServerError500Demo() {\n  return (\n    <div className=\"h-[400px]\">\n      <ErrorStates variant=\"500\" />\n    </div>\n  );\n}",
+
+    "Service Unavailable (503)": "import { ErrorStates } from \"@/components/ui/error-states\";\n\nexport default function ServiceUnavailable503Demo() {\n  return (\n    <div className=\"h-[400px]\">\n      <ErrorStates variant=\"503\" />\n    </div>\n  );\n}"
+}
+

@@ -1,0 +1,27 @@
+import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs"
+import { CodeBlock } from "@/components/code-block";
+import { ReactNode } from "react";
+
+interface DemoTabProps {
+    code: string;
+    component: ReactNode;
+    defaultTab?: "preview" | "code";
+}
+
+export default function DemoTab({ code, component, defaultTab = "preview" }: DemoTabProps) {
+    return (
+        <Tabs defaultValue={defaultTab}>
+            <TabsList>
+                <TabsTrigger value="preview">Preview</TabsTrigger>
+                <TabsTrigger value="code">Code</TabsTrigger>
+            </TabsList>
+            <TabsContent value="preview" className="min-h-[200px] p-8 bg-subtle-bg flex items-center justify-center">
+                {component}
+            </TabsContent>
+
+            <TabsContent value="code" className="min-h-[200px]">
+                <CodeBlock code={code} />
+            </TabsContent>
+        </Tabs>
+    );
+}

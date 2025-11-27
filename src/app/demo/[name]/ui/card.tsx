@@ -7,11 +7,16 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { BriefsTrackerCard } from "./briefs-tracker-card";
+import { cn } from "@/lib/utils";
+
+const elevationVariants = ["none", "xs", "sm", "base", "md", "lg"];
+const styleVariants = ["flat", "outline", "filled"];
+const paddingVariants = ["sm", "md", "lg"];
 
 export const card = {
   name: "card",
   defaultComponent: (
-    <Card style="flat" elevation="none" padding="lg" className="w-[400px]">
+    <Card style="flat" elevation="none" padding="lg" className="w-[400px] p-8">
       <CardHeader>
         <CardTitle>Default Card</CardTitle>
         <CardDescription>Style: flat, Elevation: none</CardDescription>
@@ -28,160 +33,51 @@ export const card = {
   ],
   components: {
     // Elevation Variants
-    "Elevation None": (
-      <Card style="outline" elevation="none" padding="lg" className="w-[400px]">
-        <CardHeader>
-          <CardTitle>none Elevation</CardTitle>
-          <CardDescription>Style: outline, Elevation: none</CardDescription>
-        </CardHeader>
-        <CardContent>
-        </CardContent>
-        <CardFooter>
-        </CardFooter>
-      </Card>
-    ),
-    "Elevation Xs": (
-      <Card style="outline" elevation="xs" padding="lg" className="w-[400px]">
-        <CardHeader>
-          <CardTitle>xs Elevation</CardTitle>
-          <CardDescription>Style: outline, Elevation: xs</CardDescription>
-        </CardHeader>
-        <CardContent>
-        </CardContent>
-        <CardFooter>
-        </CardFooter>
-      </Card>
-    ),
-    "Elevation Sm": (
-      <Card style="outline" elevation="sm" padding="lg" className="w-[400px]">
-        <CardHeader>
-          <CardTitle>sm Elevation</CardTitle>
-          <CardDescription>Style: outline, Elevation: sm</CardDescription>
-        </CardHeader>
-        <CardContent>
-        </CardContent>
-        <CardFooter>
-        </CardFooter>
-      </Card>
-    ),
-    "Elevation Base": (
-      <Card style="outline" elevation="base" padding="lg" className="w-[400px]">
-        <CardHeader>
-          <CardTitle>base Elevation</CardTitle>
-          <CardDescription>Style: outline, Elevation: base</CardDescription>
-        </CardHeader>
-        <CardContent>
-        </CardContent>
-        <CardFooter>
-        </CardFooter>
-      </Card>
-    ),
-    "Elevation Md": (
-      <Card style="outline" elevation="md" padding="lg" className="w-[400px]">
-        <CardHeader>
-          <CardTitle>md Elevation</CardTitle>
-          <CardDescription>Style: outline, Elevation: md</CardDescription>
-        </CardHeader>
-        <CardContent>
-        </CardContent>
-        <CardFooter>
-        </CardFooter>
-      </Card>
-    ),
-    "Elevation Lg": (
-      <Card style="outline" elevation="lg" padding="lg" className="w-[400px]">
-        <CardHeader>
-          <CardTitle>lg Elevation</CardTitle>
-          <CardDescription>Style: outline, Elevation: lg</CardDescription>
-        </CardHeader>
-        <CardContent>
-        </CardContent>
-        <CardFooter>
-        </CardFooter>
-      </Card>
+    "Elevation": (
+      <div className="grid grid-cols-3 gap-4 p-8">
+        {elevationVariants.map((variant) => (
+          <Card key={variant} style="outline" elevation={variant as "none" | "xs" | "sm" | "base" | "md" | "lg"} padding="lg" className="w-[400px]">
+            <CardHeader>
+              <CardTitle>{variant} Elevation</CardTitle>
+              <CardDescription>Style: outline, Elevation: {variant}</CardDescription>
+            </CardHeader>
+            <CardContent>
+            </CardContent>
+            <CardFooter>
+            </CardFooter>
+          </Card>
+        ))}
+      </div>
     ),
 
     // Style Variants
-    "Style Flat": (
-      <Card style="flat" elevation="base" padding="lg" className="w-[400px]">
-        <CardHeader>
-          <CardTitle>flat Style</CardTitle>
-          <CardDescription>Style: flat, Elevation: base</CardDescription>
-        </CardHeader>
-        <CardContent>
-        </CardContent>
-        <CardFooter>
-        </CardFooter>
-      </Card>
-    ),
-    "Style Outline": (
-      <Card style="outline" elevation="base" padding="lg" className="w-[400px]">
-        <CardHeader>
-          <CardTitle>outline Style</CardTitle>
-          <CardDescription>Style: outline, Elevation: base</CardDescription>
-        </CardHeader>
-        <CardContent>
-        </CardContent>
-        <CardFooter>
-        </CardFooter>
-      </Card>
-    ),
-    "Style Filled": (
-      <Card style="filled" elevation="base" padding="lg" className="w-[400px]">
-        <CardHeader>
-          <CardTitle>filled Style</CardTitle>
-          <CardDescription>Style: filled, Elevation: base</CardDescription>
-        </CardHeader>
-        <CardContent>
-        </CardContent>
-        <CardFooter>
-        </CardFooter>
-      </Card>
+    "Style": (
+      <div className="flex flex-wrap items-center gap-3 p-8">
+        {styleVariants.map((variant) => (
+          <div key={variant} className={cn("p-4", variant === "filled" && "bg-body-bg rounded-lg" )}>
+            <Card style={variant as "flat" | "outline" | "filled"} elevation="base" padding="lg" className="w-[300px]">
+              <CardHeader>
+                <CardTitle>{variant} Style</CardTitle>
+              </CardHeader>
+            </Card>
+          </div>
+        ))}
+      </div>
     ),
 
     // Padding Variants
-    "Padding Sm": (
-      <Card style="outline" elevation="md" padding="sm" className="w-[400px]">
-        <CardHeader>
-          <CardTitle>Padding: sm</CardTitle>
-          <CardDescription>
-            Style: outline, Elevation: md, Padding: sm
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
-        </CardContent>
-        <CardFooter>
-        </CardFooter>
-      </Card>
+    "Padding": (
+      <div className="flex flex-wrap items-center gap-3 p-8">
+        {paddingVariants.map((variant) => (
+          <Card key={variant} style="outline" elevation="md" padding={variant as "sm" | "md" | "lg"} className="w-[400px]">
+            <CardHeader>
+              <CardTitle>Padding: {variant}</CardTitle>
+            </CardHeader>
+          </Card>
+        ))}
+      </div>
     ),
-    "Padding Md": (
-      <Card style="outline" elevation="md" padding="md" className="w-[400px]">
-        <CardHeader>
-          <CardTitle>Padding: md</CardTitle>
-          <CardDescription>
-            Style: outline, Elevation: md, Padding: md
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
-        </CardContent>
-        <CardFooter>
-        </CardFooter>
-      </Card>
-    ),
-    "Padding Lg": (
-      <Card style="outline" elevation="md" padding="lg" className="w-[400px]">
-        <CardHeader>
-          <CardTitle>Padding: lg</CardTitle>
-          <CardDescription>
-            Style: outline, Elevation: md, Padding: lg
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
-        </CardContent>
-        <CardFooter>
-        </CardFooter>
-      </Card>
-    ),
+    
     "Styled Card": <BriefsTrackerCard />
   },
 };

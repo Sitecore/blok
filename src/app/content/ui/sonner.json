@@ -1,0 +1,14 @@
+{
+    "Default": "\"use client\";\n\nimport { toast } from \"sonner\";\nimport { Button } from \"@/components/ui/button\";\n\nexport default function DefaultDemo() {\n  return <Button onClick={() => toast.info(\"Toast\")}>Normal Toast</Button>;\n}",
+
+    "Success": "\"use client\";\n\nimport { toast } from \"sonner\";\nimport { Button } from \"@/components/ui/button\";\n\nexport default function SuccessDemo() {\n  return (\n    <Button variant=\"outline\" onClick={() => toast.success(\"Successful\")}>\n      Successful Toast\n    </Button>\n  );\n}",
+
+    "Warning": "\"use client\";\n\nimport { toast } from \"sonner\";\nimport { Button } from \"@/components/ui/button\";\n\nexport default function WarningDemo() {\n  return (\n    <Button\n      variant=\"outline\"\n      onClick={() => toast.warning(\"This is a warning\")}\n    >\n      Warning Toast\n    </Button>\n  );\n}",
+
+    "Error": "\"use client\";\n\nimport { toast } from \"sonner\";\nimport { Button } from \"@/components/ui/button\";\n\nexport default function ErrorDemo() {\n  return (\n    <Button \n      variant=\"outline\"\n      onClick={() => toast.error(\"There was an error\")}\n    >\n      Error Toast\n    </Button>\n  );\n}",
+
+    "Action": "\"use client\";\n\nimport { toast } from \"sonner\";\nimport { Button } from \"@/components/ui/button\";\nimport { mdiInformation } from \"@mdi/js\";\nimport Icon from \"@mdi/react\";\n\nexport default function ActionDemo() {\n  return (\n    <Button\n      variant=\"link\"\n      onClick={() =>\n        toast(\"Toast with an Action\", {\n          description: (\n            <span>\n              A description with some more information.{\" \"}\n              <a href=\"#\" className=\"text-primary\">link</a>\n            </span>\n          ),\n          icon: <Icon path={mdiInformation} className=\"size-5 text-info\" />,\n          action: {\n            label: \"Action\",\n            onClick: () => console.log(\"Action!\"),\n          },\n        })\n      }\n    >\n      Action Toast\n    </Button>\n  );\n}",
+
+    "Closable": "\"use client\";\n\nimport { toast } from \"sonner\";\nimport { Button } from \"@/components/ui/button\";\n\nexport default function ClosableDemo() {\n  return (\n    <Button\n      variant=\"outline\"\n      onClick={() =>\n        toast(\"This toast is closable\", {\n          closeButton: true,\n        })\n      }\n    >\n      Closable Toast\n    </Button>\n  );\n}"
+}
+

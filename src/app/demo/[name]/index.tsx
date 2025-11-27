@@ -42,7 +42,7 @@ import { textarea } from "@/app/demo/[name]/ui/textarea";
 import { toggleGroup } from "@/app/demo/[name]/ui/toggle-group";
 import { tooltip } from "@/app/demo/[name]/ui/tooltip";
 import { toggle } from "@/app/demo/[name]/ui/toggle";
-import { topbar } from "@/app/demo/[name]/ui/top-bar";
+import { topbar } from "@/app/demo/[name]/ui/topbar";
 import { pagination } from "@/app/demo/[name]/ui/pagination";
 import { scrollArea } from "@/app/demo/[name]/ui/scroll-area";
 import { popover } from "@/app/demo/[name]/ui/popover";

@@ -1,6 +1,6 @@
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { ClosableAlert } from "@/app/demo/[name]/ui/alert-closable";
-import { ButtonLinkAlert } from "./alert-button-Link";
+import { ButtonLinkAlert } from "@/app/demo/[name]/ui/alert-button-Link";
 
 export const alert = {
   name: "alert",

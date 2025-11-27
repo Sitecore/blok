@@ -53,54 +53,11 @@ export default async function RegistryItemPage({
           </div>
         </div>
       </div>
-
-      <div className="flex flex-col gap-12">
-        {/* Preview Section */}
-        <div id="preview" className="flex flex-col">
-          <div className="relative rounded-lg overflow-hidden min-h-[200px] p-8 bg-subtle-bg flex items-center justify-center">
-            {demoData && <Renderer>{demoData.defaultComponent}</Renderer>}
-          </div>
-        </div>
-
-        {/* Installation Section */}
-        <div id="installation" className="flex flex-col gap-3">
-          <h2 className="font-semibold text-3xl tracking-tight">Installation</h2>
-          <InstallationCodeBlock registryUrl={registryUrl} />
-        </div>
-
-        {/* Usage Section */}
-        {demoData?.usage && (
-          <div id="usage" className="flex flex-col gap-3">
-            <h2 className="font-semibold text-3xl tracking-tight">Usage</h2>
-            {demoData.usage.map((code: string, index: number) => (
-              <Codeblocks key={index} variant="filled" code={code} showLineNumbers={false} />
-            ))}
-          </div>
-        )}
-
-        {/* Examples Section */}
-        {demoData?.components && (
-          <div id="examples" className="flex flex-col gap-9">
-            <div className="flex flex-col gap-6">
-              <h2 className="font-semibold text-3xl tracking-tight">Examples</h2>
-              <p className="text-sm text-muted-foreground">The following are examples of our {name} classes.</p>
-            </div>
-
-            {Object.entries(demoData.components).map(([key, node], index: number) => {
-              // Convert key to kebab-case for ID (e.g., "Color scheme" -> "color-scheme")
-              const sectionId = key.toLowerCase().replace(/\s+/g, '-');
-              return (
-                <div key={index} id={sectionId} className="flex flex-col gap-6">
-                  <h3 className="font-semibold text-xl tracking-tight">{key}</h3>
-                  <div className="relative rounded-lg overflow-hidden min-h-[200px] p-8 bg-subtle-bg flex items-center justify-center">
-                    <Renderer>{node}</Renderer>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-        )}
-      </div>
+      <ComponentCard
+        component={component}
+        baseUrl={process.env.NEXT_PUBLIC_REGISTRY_URL ?? ""}
+        prompt={getPrompt()}
+      />
     </div>
   );
 }

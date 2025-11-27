@@ -10,7 +10,7 @@ import {
 export const carousel = {
   name: "carousel",
   defaultComponent: (
-    <div className="w-full max-w-sm mx-auto">
+    <div className="w-full max-w-sm mx-auto px-20">
       <Carousel className="w-full" aria-label="Number cards carousel with 5 slides">
         <CarouselContent>
           {Array.from({ length: 5 }).map((_, index) => (
@@ -38,7 +38,7 @@ export const carousel = {
 
     // Start-aligned Carousel
     "Start Aligned": (
-      <div className="w-full max-w-sm mx-auto">
+      <div className="w-full max-w-sm mx-auto px-20">
         <Carousel
           className="w-full"
           aria-label="Responsive cards carousel with start alignment"
@@ -67,7 +67,7 @@ export const carousel = {
 
     // Carousel with negative margin + half-width items
     "Negative Margin": (
-      <div className="w-full max-w-sm mx-auto">
+      <div className="w-full max-w-sm mx-auto px-20">
         <Carousel className="w-full" aria-label="Half-width cards carousel with negative margin">
           <CarouselContent className="-ml-1">
             {Array.from({ length: 5 }).map((_, index) => (

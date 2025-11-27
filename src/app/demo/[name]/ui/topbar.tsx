@@ -1,12 +1,10 @@
 import Topbar from "@/components/ui/top-bar";
-import MinimalLayout from "../blocks/minimal-layout";
+import MinimalLayout from "@/app/demo/[name]/blocks/minimal-layout";
 
 export const topbar = {
   name: "topbar",
   defaultComponent: (
-    <MinimalLayout>
-      <Topbar />
-    </MinimalLayout>
+    <Topbar />
   ),
   usage: [
     `import Topbar from "@/components/ui/top-bar";`,
