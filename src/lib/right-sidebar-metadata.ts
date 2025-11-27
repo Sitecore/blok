@@ -707,6 +707,18 @@ export const rightSidebarMetadata: Record<string, RightSidebarMetadata> = {
       shadcn: "https://ui.shadcn.com/docs/components/table",
       figma: "https://www.figma.com/design/x0CUbrC5Kjcuk64VPCnbgz/Blok-Components?m=auto&node-id=6748-14476&t=NScvPldB3fxBBWL8-1"
     },
+    sections: [
+      { id: "preview", title: "Preview" },
+      { id: "installation", title: "Installation" },
+      { id: "usage", title: "Usage" },
+      {
+        id: "examples",
+        title: "Examples",
+        children: [
+          { id: "data-table", title: "Data table" },
+        ],
+      },
+    ],
   },
   tabs: {
     links: {

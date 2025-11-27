@@ -18,7 +18,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { ArrowDown, ArrowUp } from "lucide-react"
+import { ArrowDown, ArrowUp } from "lucide-react";
 
 export type Product_Data = {
   id: number;
@@ -94,8 +94,8 @@ export const columns: ColumnDef<Product_Data>[] = [
             isPositive ? "text-green-500" : isNegative ? "text-red-500" : ""
           }`}
         >
-          {isPositive && <ArrowUp size={11}/>}
-          {isNegative && <ArrowDown size={11}/>}
+          {isPositive && <ArrowUp size={11} />}
+          {isNegative && <ArrowDown size={11} />}
           {cleanValue}
         </span>
       );
@@ -131,13 +131,16 @@ export function TableDemo() {
           {table.getHeaderGroups().map((headerGroup) => (
             <TableRow key={headerGroup.id}>
               {headerGroup.headers.map((header) => (
-                <TableHead key={header.id}>
-                  {header.isPlaceholder
-                    ? null
-                    : flexRender(
-                        header.column.columnDef.header,
-                        header.getContext()
-                      )}
+                <TableHead
+                  key={header.id}
+                  className={`py-4 ${
+                    header.column.id === "Keyword" ? "font-semibold" : ""
+                  }`}
+                >
+                  {flexRender(
+                    header.column.columnDef.header,
+                    header.getContext()
+                  )}
                 </TableHead>
               ))}
             </TableRow>
@@ -152,7 +155,12 @@ export function TableDemo() {
                 data-state={row.getIsSelected() && "selected"}
               >
                 {row.getVisibleCells().map((cell) => (
-                  <TableCell key={cell.id}>
+                  <TableCell
+                    key={cell.id}
+                    className={`py-4 ${
+                      cell.column.id === "Keyword" ? "font-semibold" : ""
+                    }`}
+                  >
                     {flexRender(cell.column.columnDef.cell, cell.getContext())}
                   </TableCell>
                 ))}
