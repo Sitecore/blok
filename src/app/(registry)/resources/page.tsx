@@ -5,6 +5,7 @@ import CodeGuidelineThumb from "@/components/component-thumbs/code-guideline";
 import WritingUITextThumb from "@/components/component-thumbs/writing-ui-text";
 import BlokFoundationsThumb from "@/components/component-thumbs/blok-foundations";
 import ShadcnMcpThumb from "@/components/component-thumbs/shadcn-mcp";
+import RtlThumb from "@/components/component-thumbs/rtl";
 import LogosThumb from "@/components/component-thumbs/logos";
 
 const guidelinesItems = [
@@ -108,6 +109,16 @@ const resourcesItems = [
     preview: (
       <div className="w-full h-full flex items-center justify-center p-4">
         <ShadcnMcpThumb />
+      </div>
+    ),
+  },
+  {
+    name: "rtl",
+    title: "RTL Support",
+    href: "/rtl",
+    preview: (
+      <div className="w-full h-full flex items-center justify-center p-4">
+        <RtlThumb />
       </div>
     ),
   },

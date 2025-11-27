@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
 import Icon from '@mdi/react';
 import { mdiOpenInNew } from '@mdi/js';
+import { useDirection } from "@radix-ui/react-direction";
 
 export interface TocSection {
   id: string;
@@ -36,6 +37,7 @@ export function RightSidebar({
   children,
 }: RightSidebarProps) {
   const [activeId, setActiveId] = useState<string>("");
+  const direction = useDirection();
 
   useEffect(() => {
     if (sections.length === 0) return;
@@ -87,7 +89,14 @@ export function RightSidebar({
   if (!hasContent) return null;
 
   return (
-    <aside className="hidden xl:block xl:sticky xl:top-12 xl:h-[calc(100vh-48px)] xl:w-[250px] xl:overflow-y-auto xl:flex-shrink-0 p-10 space-y-8 bg-transparent">
+    <aside
+  className={cn(
+    "hidden xl:block xl:h-[calc(100vh-48px)] xl:w-[250px] xl:overflow-y-auto p-10 space-y-8",
+    "xl:fixed bg-background",
+    "xl:top-12 xl:shrink-0 bg-transparent",
+    direction === "rtl" ? "xl:left-0" : "xl:right-0"
+  )}
+>
         {/* Links Section */}
         {links && Object.keys(links).length > 0 && (
           <div className="space-y-2.5">
@@ -195,7 +204,8 @@ export function RightSidebar({
                     type="button"
                     onClick={() => scrollToSection(section.id)}
                     className={cn(
-                      "block w-full text-left text-xs transition-colors hover:text-foreground",
+                      "block w-full text-xs transition-colors hover:text-foreground",
+                      direction === "rtl" ? "text-right" : "text-left",
                       activeId === section.id
                         ? "text-foreground font-medium"
                         : "text-muted-foreground"
@@ -204,14 +214,15 @@ export function RightSidebar({
                     {section.title}
                   </button>
                   {section.children && (
-                    <ul className="mt-2 space-y-2 pl-4">
+                    <ul className={cn("mt-2 space-y-2", direction === "rtl" ? "pr-4" : "pl-4")}>
                       {section.children.map((child) => (
                         <li key={child.id}>
                           <button
                             type="button"
                             onClick={() => scrollToSection(child.id)}
                             className={cn(
-                              "block w-full text-left text-xs transition-colors hover:text-foreground",
+                              "block w-full text-xs transition-colors hover:text-foreground",
+                              direction === "rtl" ? "text-right" : "text-left",
                               activeId === child.id
                                 ? "text-foreground font-medium"
                                 : "text-muted-foreground"
