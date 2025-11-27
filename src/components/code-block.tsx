@@ -61,7 +61,7 @@ export function CodeBlock({ code, lang = "tsx", showLineNumbers = true }: CodeBl
     }
 
     return (
-        <ScrollArea className="relative rounded-md bg-muted overflow-y-auto max-h-[400px]">
+        <ScrollArea className="relative rounded-md bg-muted overflow-y-auto max-h-[400px] scrollbar-hidden-bg">
             <Button
                 variant="ghost"
                 colorScheme="neutral"

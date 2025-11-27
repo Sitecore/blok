@@ -303,3 +303,17 @@
 .scrollbar-hidden::-webkit-scrollbar {
   display: none;
 }
+
+/* Scrollbar with hidden background: Chrome, Safari, Edge */
+.scrollbar-hidden-bg {
+  scrollbar-color: rgba(150,150,150,0.5) transparent;
+}
+
+.scrollbar-hidden-bg::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.scrollbar-hidden-bg::-webkit-scrollbar-thumb {
+  background-color: rgba(150, 150, 150, 0.5);
+  border-radius: 4px;
+}
