@@ -2,9 +2,9 @@ import { notFound } from "next/navigation";
 import { demos } from "@/app/demo/[name]/index";
 import { Renderer } from "@/app/demo/[name]/renderer";
 import InstallationCodeBlock from "@/components/docsite/installation-code-block";
-import { Codeblocks } from "@/components/docsite/code-block";
 import { ReactNode } from "react";
 import DemoTab from "@/components/demo-tab";
+import { CodeBlock } from "@/components/code-block";
 
 export async function generateStaticParams() {
   return Object.keys(demos).map((name) => ({
@@ -54,7 +54,7 @@ export default async function DemoPage({
           <div id="usage" className="flex flex-col gap-3">
             <h2 className="font-semibold text-3xl tracking-tight">Usage</h2>
             {usage.map((code: string, index: number) => (
-              <Codeblocks key={index} variant="filled" code={code} showLineNumbers={false} />
+              <CodeBlock key={index} code={code} />
             ))}
           </div>
         )}
