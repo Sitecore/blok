@@ -9,10 +9,10 @@ export const navItems = [
 
 // Theming items for sidebar
 export const themingItems = [
-  { title: "Border Radius", path: "/theming/border-radius" },
+  { title: "Border radius", path: "/theming/border-radius" },
   { title: "Breakpoints", path: "/theming/breakpoints" },
   { title: "Colors", path: "/theming/colors" },
-  { title: "Semantic Tokens", path: "/theming/semantic-tokens" },
+  { title: "Semantic tokens", path: "/theming/semantic-tokens" },
   { title: "Shadows", path: "/theming/shadows" },
   { title: "Sizes", path: "/theming/sizes" },
   { title: "Spacing", path: "/theming/spacing" },

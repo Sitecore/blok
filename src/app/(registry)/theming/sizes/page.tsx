@@ -94,7 +94,7 @@ export default function SizesPage() {
   return (
     <div className="container p-5 md:p-10">
       <div className="mb-8">
-        <h1 className="font-semibold text-4xl tracking-tight mb-2">Sizes</h1>
+        <h1 className="font-semibold text-4xl mb-2">Sizes</h1>
       </div>
       <div className="overflow-x-auto">
         <Table>

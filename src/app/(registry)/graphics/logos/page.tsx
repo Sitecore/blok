@@ -245,7 +245,7 @@ export default function LogosPage() {
   return (
     <div className="container p-5 md:p-10">
       <div className="mb-8">
-        <h1 className="font-semibold text-4xl tracking-tight">Logos</h1>
+        <h1 className="font-semibold text-4xl ">Logos</h1>
       </div>
 
       <div className="flex flex-col gap-6 mb-12">

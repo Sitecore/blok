@@ -1,9 +1,8 @@
 "use client"
 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Codeblocks } from "./code-block";
 import { Button } from "../ui/button";
-import { Check, Copy } from "lucide-react";
+import { Check } from "lucide-react";
 import { useState } from "react";
 import { mdiClipboardOutline } from "@mdi/js";
 import Icon from "@mdi/react";
@@ -39,7 +38,7 @@ export default function InstallationCodeBlock({ registryUrl }: InstallationCodeB
     }
 
     return (
-        <div className="rounded-lg bg-subtle-bg p-2">
+        <div className="rounded-lg bg-subtle-bg p-4">
             <Tabs defaultValue="pnpm" onValueChange={setActiveTab}>
                 <div className="flex items-center justify-between">
                     <TabsList variant="soft-rounded">
@@ -52,9 +51,8 @@ export default function InstallationCodeBlock({ registryUrl }: InstallationCodeB
                     <Button
                         onClick={copyToClipboard}
                         variant="ghost"
-                        size="icon-lg"
-                        className="p-4"
-                        aria-label="Copy installation command to clipboard"
+                        size="icon-sm"
+                        aria-label={copied ? "Code copied to clipboard" : "Copy code to clipboard"}
                     >
                         {copied ? (
                           <Check className="size-4" />
@@ -62,23 +60,23 @@ export default function InstallationCodeBlock({ registryUrl }: InstallationCodeB
                             <Icon
                                 className="text-muted-foreground"
                                 path={mdiClipboardOutline}
-                                size={1}
+                                size={0.8}
                             />
                         )}
                     </Button>
                 </div>
 
-                <TabsContent value="pnpm" className="px-4">
-                    <span className="text-sm">{pnpmCommand}</span>
+                <TabsContent value="pnpm" className="mt-2 mb-0 pb-2">
+                    <code className="font-mono text-md text-body-text pl-1">{pnpmCommand}</code>
                 </TabsContent>
-                <TabsContent value="npm" className="px-4">
-                    <span className="text-sm">{npxCommand}</span>
+                <TabsContent value="npm" className="mt-2 mb-0 pb-2">
+                    <code className="font-mono text-md text-body-text pl-1">{npxCommand}</code>
                 </TabsContent>
-                <TabsContent value="yarn" className="px-4">
-                    <span className="text-sm">{yarnCommand}</span>
+                <TabsContent value="yarn" className="mt-2 mb-0 pb-2">
+                    <code className="font-mono text-md text-body-text pl-1">{yarnCommand}</code>
                 </TabsContent>
-                <TabsContent value="bun" className="px-4">
-                    <span className="text-sm">{bunCommand}</span>
+                <TabsContent value="bun" className="mt-2 mb-0 pb-2">
+                    <code className="font-mono text-md text-body-text pl-1">{bunCommand}</code>
                 </TabsContent>
             </Tabs>
         </div>

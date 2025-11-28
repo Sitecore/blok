@@ -9,7 +9,7 @@ export default function SemanticTokensPage() {
   return (
     <div className="container p-5 md:p-10">
       <div className="mb-8">
-        <h1 className="font-semibold text-4xl tracking-tight mb-2">
+        <h1 className="font-semibold text-4xl mb-2">
           Semantic tokens
         </h1>
       </div>

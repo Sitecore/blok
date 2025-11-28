@@ -46,7 +46,7 @@ export default async function RegistryItemPage({
           </Button> */}
 
           <div className="py-10 flex flex-col gap-6">
-            <h2 className="font-semibold text-4xl tracking-tight">
+            <h2 className="font-semibold text-4xl">
               {component.title}
             </h2>
             <p className="text-lg text-subtle-text">{component.description}</p>
