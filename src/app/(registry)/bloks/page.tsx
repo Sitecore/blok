@@ -16,7 +16,7 @@ export default function BlocksPage() {
         </p>
         <ComponentGrid
           components={blocks}
-          getHref={(block) => `/registry/${block.name}`}
+          getHref={(block) => `/bloks/${block.name}`}
         />
       </div>
     </div>

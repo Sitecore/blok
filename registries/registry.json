@@ -547,7 +547,7 @@
         },
         {
           "path": "src/lib/icon.tsx",
-          "type": "registry:lib"  
+          "type": "registry:lib"
         }
       ]
     },
@@ -590,7 +590,7 @@
         },
         {
           "path": "src/lib/icon.tsx",
-          "type": "registry:lib"  
+          "type": "registry:lib"
         }
       ]
     },
@@ -668,7 +668,7 @@
         },
         {
           "path": "src/lib/icon.tsx",
-          "type": "registry:lib"  
+          "type": "registry:lib"
         }
       ]
     },
@@ -711,7 +711,7 @@
         },
         {
           "path": "src/lib/icon.tsx",
-          "type": "registry:lib"  
+          "type": "registry:lib"
         }
       ]
     },
@@ -753,7 +753,7 @@
         },
         {
           "path": "src/lib/icon.tsx",
-          "type": "registry:lib"  
+          "type": "registry:lib"
         }
       ]
     },
@@ -795,7 +795,7 @@
         },
         {
           "path": "src/lib/icon.tsx",
-          "type": "registry:lib"  
+          "type": "registry:lib"
         }
       ]
     },
@@ -840,7 +840,7 @@
         },
         {
           "path": "src/lib/icon.tsx",
-          "type": "registry:lib"  
+          "type": "registry:lib"
         }
       ]
     },
@@ -864,7 +864,7 @@
         },
         {
           "path": "src/lib/icon.tsx",
-          "type": "registry:lib"  
+          "type": "registry:lib"
         }
       ]
     },
@@ -887,7 +887,7 @@
         },
         {
           "path": "src/lib/icon.tsx",
-          "type": "registry:lib"  
+          "type": "registry:lib"
         }
       ]
     },
@@ -914,11 +914,11 @@
         },
         {
           "path": "src/lib/icon.tsx",
-          "type": "registry:lib"  
+          "type": "registry:lib"
         }
       ]
     },
-     {
+    {
       "name": "time-picker",
       "type": "registry:ui",
       "title": "Time Picker",
@@ -939,7 +939,7 @@
         },
         {
           "path": "src/lib/icon.tsx",
-          "type": "registry:lib"  
+          "type": "registry:lib"
         }
       ]
     },
@@ -963,7 +963,7 @@
         },
         {
           "path": "src/lib/icon.tsx",
-          "type": "registry:lib"  
+          "type": "registry:lib"
         }
       ]
     },
@@ -1047,7 +1047,7 @@
         },
         {
           "path": "src/lib/icon.tsx",
-          "type": "registry:lib"  
+          "type": "registry:lib"
         }
       ]
     },
@@ -1125,7 +1125,7 @@
         },
         {
           "path": "src/lib/icon.tsx",
-          "type": "registry:lib"  
+          "type": "registry:lib"
         }
       ]
     },
@@ -1167,7 +1167,7 @@
         },
         {
           "path": "src/lib/icon.tsx",
-          "type": "registry:lib"  
+          "type": "registry:lib"
         }
       ]
     },
@@ -1191,11 +1191,11 @@
         },
         {
           "path": "src/lib/icon.tsx",
-          "type": "registry:lib"  
+          "type": "registry:lib"
         }
       ]
     },
-     {
+    {
       "name": "site-card",
       "type": "registry:block",
       "title": "Site Card",
@@ -1214,7 +1214,7 @@
       ],
       "files": [
         {
-          "path": "src/components/ui/site-card.tsx",
+          "path": "src/components/bloks/site-card.tsx",
           "type": "registry:ui"
         }
       ]
@@ -1233,7 +1233,7 @@
       ],
       "files": [
         {
-          "path": "src/components/ui/all-sites-section.tsx",
+          "path": "src/components/bloks/all-sites-section.tsx",
           "type": "registry:ui"
         }
       ]
@@ -1253,7 +1253,7 @@
       ],
       "files": [
         {
-          "path": "src/components/ui/pinned-sites-section.tsx",
+          "path": "src/components/bloks/pinned-sites-section.tsx",
           "type": "registry:ui"
         },
         {
@@ -1299,7 +1299,7 @@
         },
         {
           "path": "src/lib/icon.tsx",
-          "type": "registry:lib"  
+          "type": "registry:lib"
         }
       ]
     },
@@ -1322,7 +1322,7 @@
         },
         {
           "path": "src/lib/icon.tsx",
-          "type": "registry:lib"  
+          "type": "registry:lib"
         }
       ]
     },
@@ -1363,7 +1363,7 @@
         },
         {
           "path": "src/lib/icon.tsx",
-          "type": "registry:lib"  
+          "type": "registry:lib"
         }
       ]
     },
@@ -1405,7 +1405,7 @@
         },
         {
           "path": "src/lib/icon.tsx",
-          "type": "registry:lib"  
+          "type": "registry:lib"
         }
       ]
     },
@@ -1434,7 +1434,7 @@
         },
         {
           "path": "src/lib/icon.tsx",
-          "type": "registry:lib"  
+          "type": "registry:lib"
         }
       ]
     },
@@ -1491,7 +1491,7 @@
         },
         {
           "path": "src/lib/icon.tsx",
-          "type": "registry:lib"  
+          "type": "registry:lib"
         }
       ]
     },
@@ -1525,7 +1525,7 @@
         },
         {
           "path": "src/lib/icon.tsx",
-          "type": "registry:lib"  
+          "type": "registry:lib"
         }
       ]
     },
@@ -1586,7 +1586,7 @@
         },
         {
           "path": "src/lib/icon.tsx",
-          "type": "registry:lib"  
+          "type": "registry:lib"
         }
       ]
     },
@@ -1626,7 +1626,7 @@
         },
         {
           "path": "src/lib/icon.tsx",
-          "type": "registry:lib"  
+          "type": "registry:lib"
         }
       ]
     },
@@ -1668,7 +1668,7 @@
         },
         {
           "path": "src/lib/icon.tsx",
-          "type": "registry:lib"  
+          "type": "registry:lib"
         }
       ]
     },
@@ -1693,7 +1693,7 @@
         },
         {
           "path": "src/lib/icon.tsx",
-          "type": "registry:lib"  
+          "type": "registry:lib"
         }
       ]
     },
