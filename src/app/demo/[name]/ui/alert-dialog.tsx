@@ -17,12 +17,12 @@ export const alertDialog = {
     <AlertDialog>
       <AlertDialogTrigger asChild>
         <Button variant="default" colorScheme="danger">
-          Open Alert Dialog
+          Open alert dialog
         </Button>
       </AlertDialogTrigger>
       <AlertDialogContent>
         <AlertDialogHeader>
-          <AlertDialogTitle>Discard Changes?</AlertDialogTitle>
+          <AlertDialogTitle>Discard changes</AlertDialogTitle>
           <AlertDialogDescription>
             Discard unsaved changes and close?
           </AlertDialogDescription>

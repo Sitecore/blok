@@ -10,7 +10,7 @@ const alertVariants = cva(
   {
     variants: {
       variant: {
-        default: "bg-card text-card-foreground [&>svg]:text-card-foreground",
+        default: "bg-primary-bg [&>svg]:text-primary-500 dark:[&>svg]:text-primary-200",
         primary: "bg-primary-bg [&>svg]:text-primary-500 dark:[&>svg]:text-primary-200",
         danger: "bg-danger-bg [&>svg]:text-danger-500 dark:[&>svg]:text-danger-200",
         warning: "bg-warning-bg [&>svg]:text-warning-500 dark:[&>svg]:text-warning-200",

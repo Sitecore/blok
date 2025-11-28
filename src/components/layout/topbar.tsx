@@ -32,6 +32,7 @@ import {
 } from "@/components/ui/navigation-menu"
 import { appConfig } from "@/config/config"
 import registry from '@/registry'
+import { getRegistryItem } from "@/lib/registry"
 
 interface SearchResult {
   name: string
@@ -322,9 +323,34 @@ export default function TopBar() {
               {navItems.map((item) => {
                 const normalizedPathname = pathname.replace(/\/$/, "") || "/"
                 const normalizedHref = item.href.replace(/\/$/, "") || "/"
-                const isActive = normalizedPathname === normalizedHref || 
+                let isActive = normalizedPathname === normalizedHref || 
                                  (normalizedHref !== "/" && normalizedPathname.startsWith(normalizedHref + "/")) ||
                                  clickedHref === item.href
+                
+                // Special handling for registry pages
+                if (pathname.startsWith("/registry/")) {
+                  const segments = pathname.split("/").filter(Boolean);
+                  const itemName = segments[segments.length - 1];
+                  
+                  if (itemName) {
+                    try {
+                      const registryItem = getRegistryItem(itemName);
+                      
+                      // If this is a UI component and we're checking "Primitives"
+                      if (item.name === "Primitives" && registryItem.type === "registry:ui") {
+                        isActive = true;
+                      }
+                      // If this is a block/component and we're checking "Bloks"
+                      else if (item.name === "Bloks" && 
+                               (registryItem.type === "registry:block" || registryItem.type === "registry:component")) {
+                        isActive = true;
+                      }
+                    } catch (error) {
+                      // If registry item not found, fall back to default behavior
+                    }
+                  }
+                }
+                
                 return (
                   <NavigationMenuItem key={item.name}>
                     <Link 
@@ -354,9 +380,34 @@ export default function TopBar() {
                 {navItems.map((item) => {
                   const normalizedPathname = pathname.replace(/\/$/, "") || "/"
                   const normalizedHref = item.href.replace(/\/$/, "") || "/"
-                  const isActive = normalizedPathname === normalizedHref || 
+                  let isActive = normalizedPathname === normalizedHref || 
                                    (normalizedHref !== "/" && normalizedPathname.startsWith(normalizedHref + "/")) ||
                                    clickedHref === item.href
+                  
+                  // Special handling for registry pages
+                  if (pathname.startsWith("/registry/")) {
+                    const segments = pathname.split("/").filter(Boolean);
+                    const itemName = segments[segments.length - 1];
+                    
+                    if (itemName) {
+                      try {
+                        const registryItem = getRegistryItem(itemName);
+                        
+                        // If this is a UI component and we're checking "Primitives"
+                        if (item.name === "Primitives" && registryItem.type === "registry:ui") {
+                          isActive = true;
+                        }
+                        // If this is a block/component and we're checking "Bloks"
+                        else if (item.name === "Bloks" && 
+                                 (registryItem.type === "registry:block" || registryItem.type === "registry:component")) {
+                          isActive = true;
+                        }
+                      } catch (error) {
+                        // If registry item not found, fall back to default behavior
+                      }
+                    }
+                  }
+                  
                   return (
                     <DropdownMenuItem asChild key={item.name}>
                       <Link 

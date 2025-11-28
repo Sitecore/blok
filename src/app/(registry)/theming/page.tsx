@@ -98,7 +98,7 @@ export default function ThemingPage() {
     <div className="container p-5 md:p-10">
       <div className="mb-8">
         <h1 className="font-semibold text-4xl">Theming</h1>
-        <p className="text-muted-foreground max-w-full sm:max-w-md md:max-w-lg lg:max-w-xl my-10">
+        <p className="text-muted-foreground max-w-full sm:max-w-2xl md:max-w-3xl lg:max-w-4xl my-10">
           Theming contains basic tokens and variables to be used when creating
           UIs or components using Blok, to achieve a Blok style.
         </p>

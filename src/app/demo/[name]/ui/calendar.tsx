@@ -13,6 +13,5 @@ export const calendar = {
   components: {
     "Single": <SingleCalendar />,
     "Two Months": <MultiCalendar numberOfMonths={2} />,
-    "Three Months": <MultiCalendar numberOfMonths={3} />,
   },
 };
