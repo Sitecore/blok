@@ -52,7 +52,7 @@ export default function InstallationCodeBlock({ registryUrl }: InstallationCodeB
                     <Button
                         onClick={copyToClipboard}
                         variant="ghost"
-                        size="icon-lg"
+                        size="icon-sm"
                         className="p-4"
                         aria-label="Copy installation command to clipboard"
                     >

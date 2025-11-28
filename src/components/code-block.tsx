@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Icon } from "@/lib/icon";
 import { mdiClipboardOutline } from "@mdi/js";
+import { Check } from "lucide-react";
 import { useState, useEffect } from "react";
 import * as shiki from "shiki";
 
@@ -64,12 +65,20 @@ export function CodeBlock({ code, lang = "tsx", showLineNumbers = true }: CodeBl
         <ScrollArea className="relative rounded-md bg-muted overflow-y-auto max-h-[400px] scrollbar-hidden-bg">
             <Button
                 variant="ghost"
-                colorScheme="neutral"
                 size="icon-sm"
                 onClick={copyToClipboard}
-                className="absolute top-2 right-2 text-xs text-zinc-400 hover:text-white flex items-center gap-1"
+                aria-label="Copy code to clipboard"
+                className="absolute top-2 right-2 p-4"
             >
-                <Icon path={mdiClipboardOutline} />
+                {copied ? (
+                    <Check className="size-4" />
+                ) : (
+                    <Icon
+                        className="text-muted-foreground"
+                        path={mdiClipboardOutline}
+                        size={1}
+                    />
+                )}
             </Button>
             <div
                 className="text-sm overflow-x-auto p-4"
