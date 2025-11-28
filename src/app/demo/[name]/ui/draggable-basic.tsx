@@ -59,7 +59,7 @@ function DragDropDemo() {
     <div ref={appRef} className="p-6 space-y-6">
       <div className="space-y-2">
         <div className="flex items-center gap-2">
-          <h3 className="text-2xl font-semibold tracking-tight">Basic Drag & Drop</h3>
+          <h3 className="text-2xl font-semibold">Basic Drag & Drop</h3>
         </div>
         <p className="text-sm text-muted-foreground">
           Drag the button from the source area to the drop zone. The element will move between containers.
@@ -69,7 +69,7 @@ function DragDropDemo() {
       <div className="flex flex-col md:flex-row gap-6 items-start">
         {/* Source Area */}
         <div className="flex-shrink-0">
-          <div className="mb-3 text-xs font-medium text-muted-foreground uppercase tracking-wide">
+          <div className="mb-3 text-xs font-medium text-muted-foreground uppercase">
             Source
           </div>
           <Card className="w-64 p-4 bg-gradient-to-br from-background to-muted/30 border-2 border-dashed border-muted">
@@ -101,7 +101,7 @@ function DragDropDemo() {
 
         {/* Drop Zone */}
         <div className="flex-1 min-w-0">
-          <div className="mb-3 text-xs font-medium text-muted-foreground uppercase tracking-wide">
+          <div className="mb-3 text-xs font-medium text-muted-foreground uppercase ">
             Drop Zone
           </div>
           <Droppable

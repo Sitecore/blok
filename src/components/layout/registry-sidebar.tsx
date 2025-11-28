@@ -132,8 +132,8 @@ export function RegistrySidebar() {
         </div>
       </SidebarHeader>
 
-      <SidebarContent className="ml-4">
-        <ScrollArea className="h-full w-full pr-2">
+      <SidebarContent className="ml-4 py-4">
+        <ScrollArea className="h-full w-full pr-4">
           <SidebarMenu >
             {sidebarType === "components" &&
               componentItems.map((item) => (
@@ -141,7 +141,7 @@ export function RegistrySidebar() {
                   <SidebarMenuButton
                     asChild
                     isActive={pathname === `/registry/${item.name}`}
-                    className="hover:bg-gray-100 hover:dark:bg-gray-700 hover:text-foreground data-[active=true]:text-primary data-[active=true]:bg-primary-background"
+                    className="h-10 font-medium text-md text-neutral-fg hover:bg-gray-100 hover:dark:bg-gray-700 data-[active=true]:text-primary-fg data-[active=true]:bg-primary-background"
                   >
                     <Link
                       onClick={() => setOpenMobile(false)}
@@ -159,7 +159,7 @@ export function RegistrySidebar() {
                   <SidebarMenuButton
                     asChild
                     isActive={pathname === `/registry/${item.name}`}
-                    className="hover:bg-muted hover:text-foreground data-[active=true]:text-primary data-[active=true]:bg-primary-background"
+                    className="h-10 font-medium text-md text-neutral-fg hover:bg-gray-100 hover:dark:bg-gray-700 data-[active=true]:text-primary-fg data-[active=true]:bg-primary-background"
                   >
                     <Link
                       onClick={() => setOpenMobile(false)}
@@ -177,7 +177,7 @@ export function RegistrySidebar() {
                   <SidebarMenuButton
                     asChild
                     isActive={pathname === item.path}
-                    className="hover:bg-muted hover:text-foreground data-[active=true]:text-primary data-[active=true]:bg-primary-background"
+                    className="h-10 font-medium text-md text-neutral-fg hover:bg-gray-100 hover:dark:bg-gray-700 data-[active=true]:text-primary-fg data-[active=true]:bg-primary-background"
                   >
                     <Link
                       onClick={() => setOpenMobile(false)}
@@ -195,7 +195,7 @@ export function RegistrySidebar() {
                   <SidebarMenuButton
                     asChild
                     isActive={pathname === item.path}
-                    className="hover:bg-muted hover:text-foreground data-[active=true]:text-primary data-[active=true]:bg-primary-background"
+                    className="h-10 font-medium text-md text-neutral-fg hover:bg-gray-100 hover:dark:bg-gray-700 data-[active=true]:text-primary-fg data-[active=true]:bg-primary-background"
                   >
                     <Link
                       onClick={() => setOpenMobile(false)}

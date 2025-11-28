@@ -20,7 +20,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      style={{ fontFamily: "'Segoe UI', 'Inter', system-ui" }}
+      style={{ fontFamily: "'Inter', 'Segoe UI', system-ui" }}
       className="bg-subtle-bg text-foreground"
     >
       <meta

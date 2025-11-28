@@ -640,7 +640,7 @@ export default function IconsPage() {
   return (
     <div className="container p-5 md:p-10">
       <div className="mb-8">
-        <h1 className="font-semibold text-4xl tracking-tight">Icons</h1>
+        <h1 className="font-semibold text-4xl ">Icons</h1>
       </div>
 
       <div className="flex flex-col gap-6 mb-12">

@@ -6,8 +6,8 @@
     {
       "name": "theme",
       "type": "registry:theme",
-      "title": "Blokcn Theme",
-      "description": "A custom Blokcn theme providing reusable UI components styled with Tailwind CSS and shadcn/ui variables, designed for consistency and efficiency across projects.",
+      "title": "Blok theme",
+      "description": "A custom Blok theme providing reusable UI components styled with Tailwind CSS and shadcn/ui variables, designed for consistency and efficiency across projects.",
       "cssVars": {
         "theme": {
           "--color-transparent": "transparent",
@@ -475,8 +475,8 @@
     {
       "name": "blok-components",
       "type": "registry:component",
-      "title": "All Components",
-      "description": "This installs all components from the Blokcn registry",
+      "title": "All components",
+      "description": "This installs all components from the Blok registry",
       "registryDependencies": [
         "https://blok.sitecore.com/r/theme.json",
         "https://blok.sitecore.com/r/accordion.json",
@@ -554,7 +554,7 @@
     {
       "name": "alert-dialog",
       "type": "registry:ui",
-      "title": "Alert Dialog",
+      "title": "Alert dialog",
       "description": "A modal dialog that interrupts the user with important content and expects a response.",
       "dependencies": [
         "@radix-ui/react-alert-dialog",
@@ -575,7 +575,7 @@
       "name": "alert",
       "type": "registry:ui",
       "title": "Alert",
-      "description": "Displays Alert Variants.",
+      "description": "Displays important information after an action.",
       "dependencies": [
         "@mdi/js",
         "class-variance-authority"
@@ -597,7 +597,7 @@
     {
       "name": "aspect-ratio",
       "type": "registry:ui",
-      "title": "Aspect Ratio",
+      "title": "Aspect ratio",
       "description": "Displays content within a desired ratio.",
       "registryDependencies": [
         "https://blok.sitecore.com/r/theme.json"
@@ -761,7 +761,7 @@
       "name": "chart",
       "type": "registry:ui",
       "title": "Chart",
-      "description": "Beautiful charts. Built using Recharts. Copy and paste into your apps.",
+      "description": "Beautiful charts. Built using Recharts.",
       "registryDependencies": [
         "https://blok.sitecore.com/r/theme.json"
       ],
@@ -821,7 +821,7 @@
       "name": "combobox",
       "type": "registry:ui",
       "title": "Combobox",
-      "description": "Autocomplete input and command palette with a list of suggestions.",
+      "description": "Select a value from a list of options.",
       "dependencies": [
         "@mdi/js",
         "lucide-react"
@@ -871,8 +871,8 @@
     {
       "name": "context-menu",
       "type": "registry:ui",
-      "title": "Context Menu",
-      "description": "Displays a menu to the user — such as a set of actions or functions — triggered by a button.",
+      "title": "Context menu",
+      "description": "Displays a menu to the user, such as a set of actions or functions, triggered by a button.",
       "registryDependencies": [
         "https://blok.sitecore.com/r/theme.json"
       ],
@@ -894,8 +894,8 @@
     {
       "name": "date-picker",
       "type": "registry:ui",
-      "title": "Date Picker",
-      "description": "Displays the path to the current resource using a hierarchy of links.",
+      "title": "Date picker",
+      "description": "A date field component that allows users to enter and edit date.",
       "dependencies": [
         "date-fns",
         "@mdi/js",
@@ -921,7 +921,7 @@
      {
       "name": "time-picker",
       "type": "registry:ui",
-      "title": "Time Picker",
+      "title": "Time picker",
       "description": "A component that allows you to select the time",
       "dependencies": [
         "@mdi/js"
@@ -1013,7 +1013,7 @@
       "name": "drawer",
       "type": "registry:ui",
       "title": "Drawer",
-      "description": "A modal dialog that interrupts the user with important content.",
+      "description": "A side panel containing content or editable fields.",
       "dependencies": [
         "vaul"
       ],
@@ -1054,7 +1054,7 @@
     {
       "name": "error-states",
       "type": "registry:ui",
-      "title": "Error States",
+      "title": "Error states",
       "description": "Displays error state variants for different HTTP error codes and generic errors.",
       "dependencies": [
         "class-variance-authority",
@@ -1074,7 +1074,7 @@
     {
       "name": "empty-states",
       "type": "registry:ui",
-      "title": "Empty States",
+      "title": "Empty states",
       "description": "Displays empty state variants for no search results, nothing created, and error scenarios.",
       "dependencies": [
         "class-variance-authority",
@@ -1150,7 +1150,7 @@
     {
       "name": "navigation-menu",
       "type": "registry:ui",
-      "title": "Navigation Menu",
+      "title": "Navigation menu",
       "description": "A collection of links for navigating websites.",
       "registryDependencies": [
         "https://blok.sitecore.com/r/theme.json"
@@ -1198,8 +1198,8 @@
      {
       "name": "site-card",
       "type": "registry:block",
-      "title": "Site Card",
-      "description": "Pagination with page navigation, next and previous links.",
+      "title": "Site card",
+      "description": "Pre-made card for displaying site information within SitecoreAI.",
       "registryDependencies": [
         "https://blok.sitecore.com/r/theme.json",
         "https://blok.sitecore.com/r/button.json",
@@ -1222,8 +1222,8 @@
     {
       "name": "all-site",
       "type": "registry:block",
-      "title": "All Site Section",
-      "description": "Pagination with page navigation, next and previous links.",
+      "title": "All site section",
+      "description": "All user sites shown within SitecoreAI.",
       "registryDependencies": [
         "https://blok.sitecore.com/r/theme.json",
         "https://blok.sitecore.com/r/site-card.json"
@@ -1241,8 +1241,8 @@
     {
       "name": "pinned-site",
       "type": "registry:block",
-      "title": "Pinned Site Section",
-      "description": "Pagination with page navigation, next and previous links.",
+      "title": "Pinned site section",
+      "description": "Pinned sites shown within SitecoreAI.",
       "registryDependencies": [
         "https://blok.sitecore.com/r/theme.json",
         "https://blok.sitecore.com/r/all-site.json",
@@ -1283,7 +1283,7 @@
     {
       "name": "radio-group",
       "type": "registry:ui",
-      "title": "Radio Group",
+      "title": "Radio group",
       "description": "A set of checkable buttons—known as radio buttons—where no more than one of the buttons can be checked at a time.",
       "registryDependencies": [
         "https://blok.sitecore.com/r/theme.json"
@@ -1329,7 +1329,7 @@
     {
       "name": "scroll-area",
       "type": "registry:ui",
-      "title": "Scroll Area",
+      "title": "Scroll area",
       "description": "Augments native scroll functionality for custom, cross-browser styling.",
       "registryDependencies": [
         "https://blok.sitecore.com/r/theme.json"
@@ -1389,7 +1389,7 @@
       "name": "sheet",
       "type": "registry:ui",
       "title": "Sheet",
-      "description": "Visually or semantically separates content.",
+      "description": "A side panel containing content or editable fields.",
       "dependencies": [
         "@radix-ui/react-dialog",
         "@mdi/js"
@@ -1499,7 +1499,7 @@
       "name": "spinner",
       "type": "registry:ui",
       "title": "Spinner",
-      "description": "An opinionated toast component for React.",
+      "description": "A spinner component for loading states.",
       "registryDependencies": [
         "https://blok.sitecore.com/r/theme.json"
       ],
@@ -1513,7 +1513,7 @@
     {
       "name": "stack-navigation",
       "type": "registry:ui",
-      "title": "Stack Navigation",
+      "title": "Stack navigation",
       "description": "A collection of links for navigating websites.",
       "registryDependencies": [
         "https://blok.sitecore.com/r/theme.json"
@@ -1594,7 +1594,7 @@
       "name": "textarea",
       "type": "registry:ui",
       "title": "Textarea",
-      "description": "A textarea component for multi-line text input with various states and configurations.",
+      "description": "A textarea component for multi-line text input.",
       "registryDependencies": [
         "https://blok.sitecore.com/r/theme.json"
       ],
@@ -1608,8 +1608,8 @@
     {
       "name": "toggle-group",
       "type": "registry:ui",
-      "title": "Toggle Group",
-      "description": "A popup that displays information related to an element when the element receives keyboard focus or the mouse hovers over it.",
+      "title": "Toggle group",
+      "description": "A group of toggle buttons.",
       "registryDependencies": [
         "https://blok.sitecore.com/r/theme.json",
         "https://blok.sitecore.com/r/toggle.json"
@@ -1676,7 +1676,7 @@
       "name": "topbar",
       "type": "registry:ui",
       "title": "Topbar",
-      "description": "A topbar application with your brand themed components",
+      "description": "An application top bar for page navigation",
       "registryDependencies": [
         "https://blok.sitecore.com/r/theme.json",
         "https://blok.sitecore.com/r/avatar.json",
@@ -1701,7 +1701,7 @@
       "name": "popover",
       "type": "registry:ui",
       "title": "Popover",
-      "description": "Displays rich content in a portal, triggered by a button.",
+      "description": "Displays content in an overlay, triggered by a button.",
       "registryDependencies": [
         "https://blok.sitecore.com/r/theme.json"
       ],
@@ -1718,7 +1718,7 @@
     {
       "name": "hover-card",
       "type": "registry:ui",
-      "title": "Hover Card",
+      "title": "Hover card",
       "description": "For sighted users to preview content available behind a link.",
       "registryDependencies": [
         "https://blok.sitecore.com/r/theme.json"

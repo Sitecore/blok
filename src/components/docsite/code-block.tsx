@@ -23,7 +23,7 @@ const codeBlockVariants = cva(
   {
     variants: {
       variant: {
-        outline: "border bg-body-bg text-muted-foreground",
+        outline: "border bg-body-bg text-body-text",
         filled: "bg-subtle-bg text-body-text border-none",
       },
     },
@@ -50,22 +50,21 @@ export function Codeblocks({ variant, code, showLineNumbers = true }: Codeblocks
     <div className="relative">
       <div className="absolute top-1 right-3 flex gap-2">
         <Button
-          size="sm"
+          size="icon-sm"
           variant="ghost"
           onClick={() => {
             copyToClipboard(code);
             setHasCopied(true);
           }}
-          className="shadow-none"
           aria-label={hasCopied ? "Code copied to clipboard" : "Copy code to clipboard"}
         >
           {hasCopied ? (
-            <Check />
+            <Check className="size-4" />
           ) : (
             <Icon
               className="text-muted-foreground"
               path={mdiClipboardOutline}
-              size={1}
+              size={0.8}
             />
           )}
         </Button>
@@ -73,7 +72,7 @@ export function Codeblocks({ variant, code, showLineNumbers = true }: Codeblocks
 
       <div className={codeBlockVariants({ variant })}>
         {showLineNumbers && (
-          <div className="flex flex-col items-center justify-start py-2 px-2 text-sm gap-y-1">
+          <div className="flex flex-col items-center justify-start py-2 px-2 text-md gap-y-1">
             {codeLines.map((_, index) => (
               <span key={index} className="w-6 text-center py-1 leading-none">
                 {index + 1}
@@ -83,7 +82,7 @@ export function Codeblocks({ variant, code, showLineNumbers = true }: Codeblocks
         )}
 
         <pre className="flex-1 overflow-x-auto p-2">
-          <code className="relative bg-transparent font-mono text-sm leading-none whitespace-pre-wrap break-words">
+          <code className="relative bg-transparent font-mono text-md leading-none whitespace-pre-wrap break-words">
             {code}
           </code>
         </pre>

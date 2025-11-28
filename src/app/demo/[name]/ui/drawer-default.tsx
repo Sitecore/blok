@@ -90,7 +90,7 @@ export function DrawerDefault() {
                                 <span className="sr-only">Decrease</span>
                             </Button>
                             <div className="flex-1 text-center">
-                                <div className="text-7xl font-bold tracking-tighter">
+                                <div className="text-7xl font-bold">
                                     {goal}
                                 </div>
                                 <div className="text-muted-foreground text-[0.70rem] uppercase">

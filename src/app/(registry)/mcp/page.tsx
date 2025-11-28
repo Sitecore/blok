@@ -1,5 +1,13 @@
 import { Codeblocks } from "@/components/docsite/code-block";
 import { Alert, AlertDescription } from "@/components/ui/alert";
+import {
+    Breadcrumb,
+    BreadcrumbItem,
+    BreadcrumbLink,
+    BreadcrumbList,
+    BreadcrumbPage,
+    BreadcrumbSeparator,
+} from "@/components/ui/breadcrumb";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import Link from "next/link";
 
@@ -24,11 +32,24 @@ export default function MCPPage() {
         <main className="w-full">
             <div className="px-32 max-w-[1250px] mx-auto">
                 <div className="flex flex-col space-y-5 p-5 md:p-10">
-                    <h1 className="font-semibold text-4xl tracking-tight md:text-4xl">
+                    <Breadcrumb>
+                        <BreadcrumbList>
+                            <BreadcrumbItem>
+                                <BreadcrumbLink asChild>
+                                    <Link href="/resources">Resources</Link>
+                                </BreadcrumbLink>
+                            </BreadcrumbItem>
+                            <BreadcrumbSeparator />
+                            <BreadcrumbItem>
+                                <BreadcrumbPage>MCP</BreadcrumbPage>
+                            </BreadcrumbItem>
+                        </BreadcrumbList>
+                    </Breadcrumb>
+                    <h1 className="font-semibold text-4xl md:text-4xl mt-10">
                         Blok MCP Server
                     </h1>
                     <p className="d w-full ">
-                        <Link href="https://modelcontextprotocol.io" className="underline hover:no-underline" rel="noopener noreferrer">The MCP Server</Link> is an open protocol that enables AI assistants to securely connect to external data sources and tools. With the shadcn MCP server, your AI assistant can:
+                        <Link href="https://modelcontextprotocol.io" className=" hover:underline text-primary-fg font-semibold" rel="noopener noreferrer">The MCP Server</Link> is an open protocol that enables AI assistants to securely connect to external data sources and tools. With the shadcn MCP server, your AI assistant can:
                     </p>
                     <ul className="list-disc list-inside space-y-2 ">
                         <li>List all available components from the Blok registry</li>
@@ -41,16 +62,16 @@ export default function MCPPage() {
                         For example, you can ask your AI assistant to <em>"build a landing page using components from the Blok registry."</em>
                     </p>
                     <Alert variant="primary">
-                        <AlertDescription className="inline">
+                        <AlertDescription className="inline text-lg">
                             For complete shadcn MCP documentation, see the{" "}
-                            <Link href="https://ui.shadcn.com/docs/mcp" target="_blank" className="underline hover:no-underline" rel="noopener noreferrer">official shadcn MCP guide</Link>.
+                            <Link href="https://ui.shadcn.com/docs/mcp" target="_blank" className="hover:underline" rel="noopener noreferrer text-primary-fg font-semibold">official shadcn MCP guide</Link>.
                         </AlertDescription>
                     </Alert>
                 </div>
             </div>
             <div className="px-32 max-w-[1250px] mx-auto">
                 <div className="flex flex-col space-y-3 p-5 md:pt-10 md:px-10">
-                    <h2 className="font-semibold text-3xl tracking-tight md:text-4xl">
+                    <h2 className="font-semibold text-3xl md:text-4xl">
                         Before You Start
                     </h2>
                     <p>
@@ -63,12 +84,12 @@ export default function MCPPage() {
                 </div>
 
                 <div className="flex flex-col space-y-3 p-5 md:pt-10 md:px-10">
-                    <h2 className="font-semibold text-3xl tracking-tight md:text-4xl">
+                    <h2 className="font-semibold text-3xl  md:text-4xl">
                         Quick Start
                     </h2>
                     <p>
                         Select your MCP client and follow the instructions to configure the shadcn MCP server. If you'd like to do it manually, see the {" "}
-                        <Link href="#configuration" className="underline hover:no-underline">Configuration</Link> section.
+                        <Link href="#configuration" className="hover:underline text-primary-fg font-semibold">Configuration</Link> section.
                     </p>
                     <Tabs defaultValue="claude">
                         <TabsList className="flex flex-wrap">
@@ -89,7 +110,7 @@ export default function MCPPage() {
                             </ul>
 
                             <Alert variant="primary" className="mt-4">
-                                <AlertDescription className="inline">
+                                <AlertDescription className="inline text-lg">
                                     You can use <code className="inline text-sm tabular-nums bg-muted px-1 rounded">/mcp</code> command in Claude Code to debug the MCP server.
                                 </AlertDescription>
                             </Alert>
@@ -142,7 +163,7 @@ args = ["shadcn@latest", "mcp"]`} variant="outline" />
                 </div>
 
                 <div className="flex flex-col space-y-3 p-5 md:pt-10 md:px-10">
-                    <h2 id="configuration" className="font-semibold text-3xl tracking-tight md:text-4xl">Configure MCP in Cursor</h2>
+                    <h2 id="configuration" className="font-semibold text-3xl md:text-4xl">Configure MCP in Cursor</h2>
                     <p>
                         To configure MCP in Cursor, add the shadcn server to your project's <code className="inline text-sm tabular-nums bg-muted px-1 rounded">.cursor/mcp.json</code> configuration file:
                     </p>
@@ -150,11 +171,11 @@ args = ["shadcn@latest", "mcp"]`} variant="outline" />
 
                     <p className="mt-2">After adding the configuration, enable the shadcn MCP server in Cursor Settings.</p>
                     <p className="mt-2">Once enabled, you should see a green dot next to the shadcn server in the MCP server list and a list of available tools.</p>
-                    <p className="mt-2">See the <Link href="https://docs.cursor.com/en/context/mcp#using-mcp-json" target="_blank" className="underline hover:no-underline" rel="noopener noreferrer">Cursor MCP documentation</Link> for more details.</p> 
+                    <p className="mt-2">See the <Link href="https://docs.cursor.com/en/context/mcp#using-mcp-json" target="_blank" className="hover:underline text-primary-fg font-semibold" rel="noopener noreferrer">Cursor MCP documentation</Link> for more details.</p> 
                 </div>
 
                 <div className="flex flex-col space-y-3 p-5 md:pt-10 md:px-10">
-                    <h2 className="font-semibold text-3xl tracking-tight md:text-4xl">Example Prompts</h2>
+                    <h2 className="font-semibold text-3xl md:text-4xl">Example Prompts</h2>
                     <p>Once the MCP server is configured, you can interact with the Blok registry with natural language, for example:</p>
 
                     <ul className="list-disc list-inside space-y-2">
@@ -168,9 +189,9 @@ args = ["shadcn@latest", "mcp"]`} variant="outline" />
                 </div>
 
                 <div className="flex flex-col space-y-3 mb-10 p-5 md:pt-10 md:px-10 md:pb-10">
-                    <h2 className="font-semibold text-3xl tracking-tight md:text-4xl">Troubleshooting</h2>
+                    <h2 className="font-semibold text-3xl md:text-4xl">Troubleshooting</h2>
 
-                    <h3 className="mt-4 font-semibold text-2xl tracking-tight md:text-3xl">MCP Not Responding</h3>
+                    <h3 className="mt-4 font-semibold text-2xl md:text-3xl">MCP Not Responding</h3>
                     <p>If the MCP server isn't responding to prompts:</p>
                     <ol className="list-decimal list-inside space-y-2 ">
                         <li>Verify the MCP server is properly configured and enabled in Cursor Settings.</li>
@@ -178,7 +199,7 @@ args = ["shadcn@latest", "mcp"]`} variant="outline" />
                         <li>In Cursor, view logs by clicking View, then click Output, and select <code className="inline text-sm tabular-nums bg-muted px-1 rounded">MCP: project-*</code> in the dropdown.</li>
                     </ol>
 
-                    <h3 className="mt-4 font-semibold text-2xl tracking-tight md:text-3xl">Registry Access Issues</h3>
+                    <h3 className="mt-4 font-semibold text-2xl md:text-3xl">Registry Access Issues</h3>
                     <p>If components aren't loading from the Blok registry:</p>
                     <ol className="list-decimal list-inside space-y-2 ">
                         <li>Verify the <code className="inline text-sm tabular-nums bg-muted px-1 rounded">@blok</code> registry URL is correct</li>
@@ -187,7 +208,7 @@ args = ["shadcn@latest", "mcp"]`} variant="outline" />
                         <li>Ensure namespace syntax is correct (<code className="inline text-sm tabular-nums bg-muted px-1 rounded">@blok/component-name</code>)</li>
                     </ol>
 
-                    <h3 className="mt-4 font-semibold text-2xl tracking-tight md:text-3xl">No Tools or Prompts</h3>
+                    <h3 className="mt-4 font-semibold text-2xl md:text-3xl">No Tools or Prompts</h3>
                     <p>If you see the <code className="inline text-sm tabular-nums bg-muted px-1 rounded">No tools or prompts</code> message:</p>
                     <ol className="list-decimal list-inside space-y-2">
                         <li>Run <code className="inline text-sm tabular-nums bg-muted px-1 rounded">npx clear-npx-cache</code></li>
