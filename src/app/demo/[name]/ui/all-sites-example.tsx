@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { AllSitesSection } from "@/components/ui/all-sites-section";
+import { AllSitesSection } from "@/components/bloks/all-sites-section";
 import {
   Dialog,
   DialogClose,
@@ -249,13 +249,12 @@ const mockAllSites: SiteFavoritesResponse[] = [
   ...mockPinnedSites,
 ];
 
-
 const initialPinnedSiteIds = mockPinnedSites.map((site) => site.id);
 
 export function AllSitesExample() {
   const [pinnedSiteIds, setPinnedSiteIds] =
     useState<string[]>(initialPinnedSiteIds);
-  
+
   // Dialog states
   const [renameDialogOpen, setRenameDialogOpen] = useState(false);
   const [duplicateDialogOpen, setDuplicateDialogOpen] = useState(false);
@@ -291,11 +290,11 @@ export function AllSitesExample() {
   // Handlers for page builder action
   const handlePageBuilder = (site: SiteFavoritesResponse) => {
     console.log(`Opening page builder for site: ${site.displayName} (${site.id})`);
-    
+
     // TODO: Add your navigation logic here
     // Example with Next.js router:
     // router.push(`/collection/${site.collectionId}/sites/${site.id}/page-builder`);
-    
+
     // Or with window.location:
     // window.location.href = `/collection/${site.collectionId}/sites/${site.id}/page-builder`;
   };
@@ -303,7 +302,7 @@ export function AllSitesExample() {
   // Handlers for dashboard action
   const handleDashboard = (site: SiteFavoritesResponse) => {
     console.log(`Opening dashboard for site: ${site.displayName} (${site.id})`);
-    
+
     // TODO: Add your navigation logic here
     // Example with Next.js router:
     // router.push(`/collection/${site.collectionId}/sites/${site.id}/dashboard`);
@@ -312,7 +311,7 @@ export function AllSitesExample() {
   // Handlers for settings action
   const handleSettings = (site: SiteFavoritesResponse) => {
     console.log(`Opening settings for site: ${site.displayName} (${site.id})`);
-    
+
     // TODO: Add your navigation logic here
     // Example with Next.js router:
     // router.push(`/collection/${site.collectionId}/sites/${site.id}/settings`);
@@ -328,13 +327,13 @@ export function AllSitesExample() {
   const handleRenameSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     console.log(`Renaming site ${currentSiteId} to: ${newSiteName}`);
-    
+
     // TODO: Add your API call here
     // await fetch(`/api/sites/${currentSiteId}`, {
     //   method: 'PATCH',
     //   body: JSON.stringify({ displayName: newSiteName }),
     // });
-    
+
     setRenameDialogOpen(false);
   };
 
@@ -348,13 +347,13 @@ export function AllSitesExample() {
   const handleDuplicateSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     console.log(`Duplicating site ${currentSiteId} as: ${duplicateSiteName}`);
-    
+
     // TODO: Add your API call here
     // await fetch(`/api/sites/${currentSiteId}/duplicate`, {
     //   method: 'POST',
     //   body: JSON.stringify({ displayName: duplicateSiteName }),
     // });
-    
+
     setDuplicateDialogOpen(false);
   };
 

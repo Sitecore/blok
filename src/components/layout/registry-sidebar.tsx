@@ -76,7 +76,6 @@ export function RegistrySidebar() {
       return "blocks";
     }
     if (pathname.startsWith("/registry")) {
-     
       const segments = pathname.split("/").filter(Boolean);
       const itemName = segments[segments.length - 1];
 
@@ -93,11 +92,10 @@ export function RegistrySidebar() {
             return "components";
           }
         } catch (error) {
-
           return "components";
         }
       }
-      return "components"; 
+      return "components";
     }
     if (pathname.startsWith("/theming")) {
       return "theming";
@@ -120,7 +118,6 @@ export function RegistrySidebar() {
     >
       <SidebarHeader className="mb-3 pt-5">
         <div className="flex items-center justify-between px-2 py-2">
-
           <Button
             variant="ghost"
             className="md:hidden"
@@ -140,12 +137,12 @@ export function RegistrySidebar() {
                 <SidebarMenuItem key={item.name}>
                   <SidebarMenuButton
                     asChild
-                    isActive={pathname === `/registry/${item.name}`}
+                    isActive={pathname === `/primitives/${item.name}`}
                     className="h-10 font-medium text-md text-neutral-fg hover:bg-gray-100 hover:dark:bg-gray-700 data-[active=true]:text-primary-fg data-[active=true]:bg-primary-background"
                   >
                     <Link
                       onClick={() => setOpenMobile(false)}
-                      href={`/registry/${item.name}`}
+                      href={`/primitives/${item.name}`}
                     >
                       {item.title}
                     </Link>
@@ -158,12 +155,12 @@ export function RegistrySidebar() {
                 <SidebarMenuItem key={item.name}>
                   <SidebarMenuButton
                     asChild
-                    isActive={pathname === `/registry/${item.name}`}
+                    isActive={pathname === `/bloks/${item.name}`}
                     className="h-10 font-medium text-md text-neutral-fg hover:bg-gray-100 hover:dark:bg-gray-700 data-[active=true]:text-primary-fg data-[active=true]:bg-primary-background"
                   >
                     <Link
                       onClick={() => setOpenMobile(false)}
-                      href={`/registry/${item.name}`}
+                      href={`/bloks/${item.name}`}
                     >
                       {item.title}
                     </Link>

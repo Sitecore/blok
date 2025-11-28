@@ -1,6 +1,6 @@
 "use client";
 
-import { SiteCard } from "@/components/ui/site-card";
+import { SiteCard } from "@/components/bloks/site-card";
 
 interface SiteData {
   id: string;
@@ -40,7 +40,7 @@ interface AllSitesProps<T extends SiteData> {
   getDropdownActions?: (site: T, isPinned: boolean) => DropdownAction[];
 }
 
-export function AllSitesSection<T extends SiteData>({ 
+export function AllSitesSection<T extends SiteData>({
   allSites = [],
   pinnedSiteIds = [],
   getFooterButtons,
@@ -80,3 +80,5 @@ export function AllSitesSection<T extends SiteData>({
     </div>
   );
 }
+
+

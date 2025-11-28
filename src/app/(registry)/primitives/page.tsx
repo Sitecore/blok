@@ -41,7 +41,7 @@ export default function ComponentsPage() {
               </h2>
               <ComponentGrid
                 components={components}
-                getHref={(component) => `/registry/${component.name}`}
+                getHref={(component) => `/primitives/${component.name}`}
               />
             </div>
           ))}

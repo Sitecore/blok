@@ -1,8 +1,7 @@
 "use client";
 
-import { SiteCard } from "@/components/ui/site-card";
+import { SiteCard } from "@/components/bloks/site-card";
 import EmptyPin from "@/lib/empty-pin.svg";
-
 
 const getSvgUrl = (svg: unknown): string => {
   if (typeof svg === "string") {
@@ -78,7 +77,7 @@ export function PinnedSitesSection<T extends SiteData>({
           <div className="overflow-x-auto -mx-6 px-6">
             <div className="flex gap-4 pb-4">
               {pinnedSites.map((site) => (
-                <div key={site.id} >
+                <div key={site.id}>
                   <SiteCard
                     site={site}
                     onUnpin={onUnpin}
@@ -105,7 +104,8 @@ export function PinnedSitesSection<T extends SiteData>({
               Keep what matters close
             </h3>
             <p className="text-sm text-muted-foreground text-center mb-4">
-              Pin the sites you work on most to keep them front and center, making it easier to switch, manage, and stay productive
+              Pin the sites you work on most to keep them front and center,
+              making it easier to switch, manage, and stay productive
             </p>
             <button className="text-sm font-semibold text-primary hover:underline">
               Start pinning sites
@@ -116,3 +116,5 @@ export function PinnedSitesSection<T extends SiteData>({
     </div>
   );
 }
+
+
