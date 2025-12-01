@@ -13,9 +13,9 @@ import {
 import { Badge } from "@/components/ui/badge";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import Link from "next/link";
-import Image from "next/image";
 import Icon from "@mdi/react";
 import { mdiOpenInNew } from "@mdi/js";
+import { externalLinks } from "@/config/links";
 
 export default function Home() {
   return (
@@ -23,20 +23,38 @@ export default function Home() {
       <div className="bg-body-bg px-32 flex justify-center">
         <div className="flex flex-col space-y-12 py-20 md:py-30 w-full max-w-[1250px]">
           <div className="flex flex-col space-y-6">
-          <Image src="/logo-blok.svg" alt="Blok" width={300} height={300} />
-          <h1 className="font-semibold text-5xl">Build better products faster</h1>
-          <p className="text-muted-foreground w-full text-lg">
-            Blok is Sitecore's design system. It is used for created industry leading martech applications.<br /> Now, it's publicly available, so
-            that anyone can easily build software in the Sitecore product design
-            language.
-          </p>
+            <>
+              <img
+                src={externalLinks?.Block_Logo || ""}
+                alt="Blok"
+                width={300}
+                height={300}
+                className="dark:hidden" // Hide in dark mode
+              />
+              <img
+                src={externalLinks?.Block_Logo_Dark || ""}
+                alt="Blok"
+                width={300}
+                height={300}
+                className="hidden dark:block" // Show only in dark mode
+              />
+            </>
+            <h1 className="font-semibold text-5xl">
+              Build better products faster
+            </h1>
+            <p className="text-muted-foreground w-full text-lg">
+              Blok is Sitecore's design system. It is used for created industry
+              leading martech applications.
+              <br /> Now, it's publicly available, so that anyone can easily
+              build software in the Sitecore product design language.
+            </p>
           </div>
           <div className="flex space-x-4">
-            <Button 
+            <Button
               size="lg"
               onClick={() => {
-                const element = document.getElementById('step-1');
-                element?.scrollIntoView({ behavior: 'smooth' });
+                const element = document.getElementById("step-1");
+                element?.scrollIntoView({ behavior: "smooth" });
               }}
             >
               Get started
@@ -50,9 +68,7 @@ export default function Home() {
 
       <div className="px-32 w-full flex items-center flex-col">
         <div className="flex flex-col space-y-3 py-20 md:pt-30  w-full max-w-[1250px]">
-          <h2 className="font-semibold text-3xl md:text-4xl">
-            Prerequisites
-          </h2>
+          <h2 className="font-semibold text-3xl md:text-4xl">Prerequisites</h2>
           <p className="">
             Make sure you have the following tools installed before proceeding:
           </p>
@@ -67,7 +83,9 @@ export default function Home() {
                   >
                     1
                   </Badge>
-                  <CardTitle className="text-lg font-semibold">Node.js 16+</CardTitle>
+                  <CardTitle className="text-lg font-semibold">
+                    Node.js 16+
+                  </CardTitle>
                 </div>
               </CardHeader>
               <CardContent className="pt-2">
@@ -104,12 +122,14 @@ export default function Home() {
                   >
                     2
                   </Badge>
-                  <CardTitle className="text-lg font-semibold">npm 10+</CardTitle>
+                  <CardTitle className="text-lg font-semibold">
+                    npm 10+
+                  </CardTitle>
                 </div>
               </CardHeader>
               <CardContent className="pt-2">
-              <CardDescription className="mb-4">
-              <code className="bg-muted px-1 rounded text-xs">
+                <CardDescription className="mb-4">
+                  <code className="bg-muted px-1 rounded text-xs">
                     npm --version
                   </code>
                 </CardDescription>
@@ -141,12 +161,14 @@ export default function Home() {
                   >
                     3
                   </Badge>
-                  <CardTitle className="text-lg font-semibold">TailwindCSS</CardTitle>
+                  <CardTitle className="text-lg font-semibold">
+                    TailwindCSS
+                  </CardTitle>
                 </div>
               </CardHeader>
               <CardContent className="pt-2">
-              <CardDescription className="mb-4">
-              Installed & configured
+                <CardDescription className="mb-4">
+                  Installed & configured
                 </CardDescription>
                 <Button
                   variant="outline"
@@ -169,7 +191,8 @@ export default function Home() {
 
           <Alert variant="primary" className="flex align-center items-center">
             <AlertDescription className="flex items-col gap-1 text-lg">
-              <span className="font-semibold">Tip:</span> This installation process is similar to{" "}
+              <span className="font-semibold">Tip:</span> This installation
+              process is similar to{" "}
               <a
                 href="https://ui.shadcn.com/docs/installation"
                 className="hover:underline break-words text-primary-fg font-semibold"
@@ -183,7 +206,10 @@ export default function Home() {
           </Alert>
         </div>
 
-        <div id="step-1" className="flex flex-col space-y-3 py-10 md:pt-10 scroll-mt-20 w-full max-w-[1250px]">
+        <div
+          id="step-1"
+          className="flex flex-col space-y-3 py-10 md:pt-10 scroll-mt-20 w-full max-w-[1250px]"
+        >
           <h2 className="font-semibold text-3xl md:text-4xl">
             Step 1: Initialize shadcn/ui
           </h2>
@@ -191,10 +217,7 @@ export default function Home() {
             Run the shadcn/ui initialization command in your project's root
             folder:
           </p>
-          <Codeblocks
-            code="npx shadcn@latest init"
-            showLineNumbers={false}
-          />
+          <Codeblocks code="npx shadcn@latest init" showLineNumbers={false} />
           <p>
             During initialization, choose a base color when prompted. The CLI
             will then:
@@ -295,10 +318,7 @@ export default function MyComponent() {
             Step 4: Run your application
           </h2>
           <p>Start the development server:</p>
-          <Codeblocks
-            code="npm run dev"
-            showLineNumbers={false}
-          />
+          <Codeblocks code="npm run dev" showLineNumbers={false} />
           <p className="">
             Your application is now running with functional Blok components.
           </p>
