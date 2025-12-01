@@ -69,7 +69,7 @@ export function CodeBlock({ code, lang = "tsx", showLineNumbers = true, classNam
                 variant="ghost"
                 size="icon-sm"
                 onClick={copyToClipboard}
-                className="absolute top-2 right-2"
+                className="absolute top-2 right-2 p-4"
                 aria-label={copied ? "Code copied to clipboard" : "Copy code to clipboard"}
             >
                 {copied ? (
