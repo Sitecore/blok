@@ -36,7 +36,7 @@ export default async function DemoPage({
   }
 
   return (
-      <div className="flex min-h-[100vh] w-full flex-col gap-12 bg-body-bg">
+      <div className="flex min-h-screen w-full flex-col gap-12 bg-body-bg">
         <div className="flex flex-col">
           <DemoTab
             key={name} 
