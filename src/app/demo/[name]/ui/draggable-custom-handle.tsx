@@ -24,7 +24,7 @@ export function CustomHandleDemo() {
     <DragDropProvider>
       <div className="p-6 space-y-6">
         <div>
-          <h3 className="text-2xl font-bold tracking-tight">Custom Drag Handle</h3>
+          <h3 className="text-2xl font-semibold ">Custom Drag Handle</h3>
         </div>
 
         <div className="max-w-2xl space-y-2">

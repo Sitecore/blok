@@ -8,6 +8,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { TableDemo } from "@/app/demo/[name]/ui/table-demo";
 
 export const featureTable = [
   {
@@ -38,29 +39,34 @@ export const featureTable = [
 
 export const table = {
   name: "table",
-  components: {
-    Default: (
-      <Table>
-        <TableHeader>
-          <TableRow>
-            <TableHead className="w-[150px]">Feature</TableHead>
-            <TableHead className="w-[300px]">Description</TableHead>
-            <TableHead className="w-[250px]">Benefit</TableHead>
-            <TableHead className="text-left w-[300px]">Use case</TableHead>
+  defaultComponent: (
+    <Table>
+      <TableHeader>
+        <TableRow>
+          <TableHead className="w-[150px]">Feature</TableHead>
+          <TableHead className="w-[300px]">Description</TableHead>
+          <TableHead className="w-[250px]">Benefit</TableHead>
+          <TableHead className="text-left w-[300px]">Use case</TableHead>
+        </TableRow>
+      </TableHeader>
+      <TableBody>
+        {featureTable.map((item, index) => (
+          <TableRow key={index}>
+            <TableCell className="font-medium break-words whitespace-normal">{item.feature}</TableCell>
+            <TableCell className="break-words whitespace-normal">{item.description}</TableCell>
+            <TableCell className="break-words whitespace-normal">{item.benefit}</TableCell>
+            <TableCell className="text-left break-words whitespace-normal">{item.useCase}</TableCell>
           </TableRow>
-        </TableHeader>
-        <TableBody>
-          {featureTable.map((item, index) => (
-            <TableRow key={index}>
-              <TableCell className="font-medium break-words whitespace-normal">{item.feature}</TableCell>
-              <TableCell className="break-words whitespace-normal">{item.description}</TableCell>
-              <TableCell className="break-words whitespace-normal">{item.benefit}</TableCell>
-              <TableCell className="text-left break-words whitespace-normal">{item.useCase}</TableCell>
-            </TableRow>
-          ))}
-        </TableBody>
-      </Table>
-    ),
-  },
+        ))}
+      </TableBody>
+    </Table>
+  ),
+  usage: [
+    `import {\n Table,\n TableHeader,\n TableBody,\n TableRow,\n TableCell,\n TableHead\n} from "@/components/ui/table";`,
+    `<Table>\n <TableCaption>A list of your recent invoices.</TableCaption>\n <TableHeader>\n  <TableRow>\n   <TableHead className="w-[100px]">Invoice</TableHead>\n   <TableHead>Status</TableHead>\n   <TableHead>Method</TableHead>\n   <TableHead className="text-right">Amount</TableHead>\n  </TableRow>\n </TableHeader>\n <TableBody>\n  <TableRow>\n   <TableCell className="font-medium">INV001</TableCell>\n   <TableCell>Paid</TableCell>\n   <TableCell>Credit Card</TableCell>\n   <TableCell className="text-right">$250.00</TableCell>\n  </TableRow>\n </TableBody>\n</Table>`,
+  ],
+  components: {
+    "Data table": ( <TableDemo />)
+  }
 };
  

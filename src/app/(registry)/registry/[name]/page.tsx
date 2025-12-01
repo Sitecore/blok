@@ -2,10 +2,14 @@ import { ArrowLeft } from "lucide-react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
-import { ComponentCard } from "@/components/registry/component-card";
+import { ComponentCard } from "@/components/docsite/component-card";
 import { Button } from "@/components/ui/button";
 import { getRegistryItem, getRegistryItems } from "@/lib/registry";
 import { getPrompt } from "@/lib/utils";
+import { demos } from "@/app/demo/[name]/index";
+import { Renderer } from "@/app/demo/[name]/renderer";
+import InstallationCodeBlock from "@/components/docsite/installation-code-block";
+import { Codeblocks } from "@/components/docsite/code-block";
 
 export async function generateStaticParams() {
   const components = getRegistryItems();
@@ -27,22 +31,28 @@ export default async function RegistryItemPage({
     notFound();
   }
 
+  const demoData = demos[name];
+  const registryUrl = `https://${process.env.NEXT_PUBLIC_REGISTRY_URL ?? ""}/r/${name}.json`;
+
   return (
-    <div className="container p-5 md:p-10">
-      <div className="mb-6 flex flex-wrap gap-4 items-center justify-between">
+    <div className="w-full max-w-[1250px] mx-auto bg-body-bg pb-10 px-5 md:px-10">
+      <div className="flex items-center justify-between">
         <div>
-          <Button variant="ghost" size="sm" asChild className="mb-4">
+          {/* <Button variant="ghost" size="sm" asChild className="mb-4">
             <Link href="/">
               <ArrowLeft className="mr-2 size-4" />
               Back to Home
             </Link>
-          </Button>
-          <h2 className="font-bold text-3xl tracking-tight break-words">
-            {component.title}
-          </h2>
+          </Button> */}
+
+          <div className="py-10 flex flex-col gap-6">
+            <h2 className="font-semibold text-4xl">
+              {component.title}
+            </h2>
+            <p className="text-lg text-subtle-text">{component.description}</p>
+          </div>
         </div>
       </div>
-
       <ComponentCard
         component={component}
         baseUrl={process.env.NEXT_PUBLIC_REGISTRY_URL ?? ""}

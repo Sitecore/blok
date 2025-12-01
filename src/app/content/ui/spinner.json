@@ -1,0 +1,6 @@
+{
+    "Default": "import { Spinner } from \"@/components/ui/spinner\";\n\nexport default function DefaultDemo() {\n  return (\n    <div className=\"flex items-start justify-center w-28\">\n      <Spinner size=\"md\" />\n    </div>\n  );\n}",
+
+    "With Text Spinner": "import { Spinner } from \"@/components/ui/spinner\";\n\nexport default function WithTextSpinnerDemo() {\n  return (\n    <div className=\"flex items-start justify-center w-28\">\n      <Spinner size=\"md\" message=\"Loading...\" />\n    </div>\n  );\n}"
+}
+

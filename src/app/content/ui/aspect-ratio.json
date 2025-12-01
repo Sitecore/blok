@@ -1,0 +1,4 @@
+{
+    "Default": "import { AspectRatio } from \"@/components/ui/aspect-ratio\";\n\nexport default function DefaultDemo() {\n  return (\n    <AspectRatio\n      ratio={16 / 9}\n      className=\"bg-muted rounded-lg border border-border flex items-center justify-center\"\n    >\n      <p className=\"text-center text-sm text-muted-foreground\">16:9</p>\n    </AspectRatio>\n  );\n}"
+}
+

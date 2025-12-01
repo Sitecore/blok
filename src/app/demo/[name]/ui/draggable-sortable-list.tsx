@@ -215,7 +215,7 @@ export function SortableListDemo() {
     <DragDropProvider>
       <div className="p-6 space-y-6">
         <div>
-          <h3 className="text-2xl font-bold tracking-tight">Sortable List</h3>
+          <h3 className="text-2xl font-semibold">Sortable List</h3>
         </div>
 
         <div className="max-w-2xl">

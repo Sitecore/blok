@@ -40,7 +40,7 @@ const errorStateConfig = {
     imageSrc: "https://delivery-sitecore.sitecorecontenthub.cloud/api/public/content/spot-alert",
     imageAlt: "alert",
     defaultTitle: "Something went wrong",
-    getDefaultDescription: (knowledgeBaseUrl?: string) => (
+    defaultDescription: (knowledgeBaseUrl?: string) => (
       <>
         (Customizable text) Please try again. If the issue persists, try visiting the{" "}
         <a
@@ -115,8 +115,8 @@ function ErrorStates({
   const finalTitle = title || config.defaultTitle;
   const finalDescription =
     description ||
-    ("getDefaultDescription" in config
-      ? config.getDefaultDescription(knowledgeBaseUrl)
+    (typeof config.defaultDescription === "function"
+      ? config.defaultDescription(knowledgeBaseUrl)
       : config.defaultDescription);
   const finalErrorCode = errorCode || ("defaultErrorCode" in config ? config.defaultErrorCode : undefined);
   const finalImageSrc = imageSrc || config.imageSrc;

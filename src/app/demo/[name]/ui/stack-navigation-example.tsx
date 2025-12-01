@@ -38,11 +38,7 @@ const navigationItems: StackNavigationElement[] = [
 const StackNavigationExample = () => {
 
   return (
-    <div className="flex flex-col gap-10 p-2">
-      <StackNavigation
-        items={navigationItems}
-        orientation="horizontal"
-      />
+    <div>
        <StackNavigation
         items={navigationItems}
       />

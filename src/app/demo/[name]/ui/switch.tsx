@@ -3,6 +3,16 @@ import { Switch } from "@/components/ui/switch";
 
 export const switchComponent = {
   name: "switch",
+  defaultComponent: (
+    <div className="flex items-center gap-2">
+      <Switch id="switch-demo-airplane-mode" aria-label="Toggle airplane mode" />
+      <Label htmlFor="switch-demo-airplane-mode">Example</Label>
+    </div>
+  ),
+  usage: [
+    `import { Switch } from "@/components/ui/switch";`,
+    `<Switch />`,
+  ],
   components: {
     Primary: (
       <div className="flex items-center gap-2">

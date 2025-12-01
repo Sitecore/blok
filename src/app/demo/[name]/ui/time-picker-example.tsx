@@ -15,6 +15,10 @@ export function TimePickerExample() {
     }
   }, [time]);
 
-  return <TimePicker value={time} onChange={setTime} />;
+  return (
+    <div className="p-2">
+      <TimePicker value={time} onChange={setTime} />
+    </div>
+  );
 }
 

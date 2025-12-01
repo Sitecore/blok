@@ -1,0 +1,4 @@
+{
+    "Default": "import React, { type ReactNode } from \"react\";\nimport Topbar from \"@/components/ui/top-bar\";\n\nfunction MinimalLayout({\n  children,\n}: Readonly<{\n  children: ReactNode;\n}>) {\n  return (\n    <main className=\"mt-16 flex w-full justify-center\">\n      <div className=\"container\">{children}</div>\n    </main>\n  );\n}\n\nexport default function DefaultDemo() {\n  return (\n    <MinimalLayout>\n      <Topbar />\n    </MinimalLayout>\n  );\n}"
+}
+

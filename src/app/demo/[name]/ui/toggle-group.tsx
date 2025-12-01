@@ -4,8 +4,8 @@ import { mdiFormatBold, mdiFormatItalic, mdiFormatUnderline } from "@mdi/js";
 
 export const toggleGroup = {
   name: "toggle-group",
-  components: {
-    square: (
+  defaultComponent: (
+    <div className="p-2">
       <ToggleGroup
         type="multiple"
         variant="square"
@@ -29,8 +29,41 @@ export const toggleGroup = {
           <Icon path={mdiFormatUnderline} size={1.1} />
         </ToggleGroupItem>
       </ToggleGroup>
+    </div>
+  ),
+  usage: [
+    `import {\n ToggleGroup,\n ToggleGroupItem\n} from "@/components/ui/toggle-group";`,
+    `<ToggleGroup>\n <ToggleGroupItem>\n  <Icon path={mdiFormatBold} />\n </ToggleGroupItem>\n</ToggleGroup>`,
+  ],
+  components: {
+    "Square Variant": (
+      <div className="p-2">
+        <ToggleGroup
+          type="multiple"
+          variant="square"
+          className="p-0.5 gap-0.5 border border-border-color bg-transparent"
+        >
+          <ToggleGroupItem value="bold" aria-label="Toggle bold" className="w-10">
+            <Icon path={mdiFormatBold} size={1.1} />
+          </ToggleGroupItem>
+          <ToggleGroupItem
+            value="italic"
+            aria-label="Toggle italic"
+            className="w-10"
+          >
+            <Icon path={mdiFormatItalic} size={1.1} />
+          </ToggleGroupItem>
+          <ToggleGroupItem
+            value="strikethrough"
+            aria-label="Toggle strikethrough"
+            className="w-10"
+          >
+            <Icon path={mdiFormatUnderline} size={1.1} />
+          </ToggleGroupItem>
+        </ToggleGroup>
+      </div>
     ),
-    rounded: (
+    "Rounded Variant": (
       <ToggleGroup
         variant="rounded"
         type="single"

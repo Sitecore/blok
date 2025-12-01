@@ -2,6 +2,15 @@ import { EmptyStates } from "@/components/ui/empty-states";
 
 export const emptyStates = {
   name: "empty-states",
+  defaultComponent: (
+    <div className="h-[300px]">
+      <EmptyStates variant="no-search-results" />
+    </div>
+  ),
+  usage: [
+    `import { EmptyStates } from "@/components/ui/empty-states";`,
+    `<EmptyStates variant="no-search-results" />`,
+  ],
   components: {
     "No Search Results": (
       <div className="h-[300px]">

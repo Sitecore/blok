@@ -38,7 +38,7 @@ const chartConfig = {
 
 export function AreaChartComponent() {
   return (
-    <Card style="outline">
+    <Card style="outline" className="w-4xl">
       <CardHeader>
         <CardTitle>Area Chart</CardTitle>
         <CardDescription>

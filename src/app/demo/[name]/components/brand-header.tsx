@@ -1,5 +1,5 @@
 import { BrandHeader } from "@/components/brand-header";
-import { SidebarProvider } from "@/components/registry/docsite-sidebar";
+import { SidebarProvider } from "@/components/docsite/docsite-sidebar";
 
 export const brandHeader = {
   name: "brand-header",
