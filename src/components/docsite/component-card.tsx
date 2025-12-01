@@ -1,12 +1,15 @@
-"use client";
-
 import type { Component } from "@/lib/registry";
+import dynamic from "next/dynamic";
 
 interface ComponentCardProps {
   component: Component;
   baseUrl: string;
   prompt: string;
 }
+
+const DemoWrapper = dynamic(() => import("@/components/demo-wrapper"), {
+  ssr: true,
+});
 
 export function ComponentCard({
   component,
@@ -17,13 +20,14 @@ export function ComponentCard({
   return (
     <section>
       <div id="starting-kit">
-        <div className="h-[800px] w-full overflow-hidden">
-          <iframe
+        <div className="w-full overflow-hidden">
+          <DemoWrapper name={component.name} />
+          {/* <iframe
             id="iframe"
             src={`/demo/${component.name}`}
             className="h-full w-full"
             title="Page Preview"
-          />
+          /> */}
         </div>
       </div>
     </section>
