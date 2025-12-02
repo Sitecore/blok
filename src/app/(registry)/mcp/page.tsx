@@ -1,3 +1,4 @@
+import { CodeBlock } from "@/components/code-block";
 import { Codeblocks } from "@/components/docsite/code-block";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import {
@@ -18,7 +19,6 @@ const BlockRegistryCode = `{
 }`
 
 const CursorConfigurationCode = `{
-
   "mcpServers": {
     "shadcn": {
       "command": "npx",
@@ -80,7 +80,12 @@ export default function MCPPage() {
                     <p className="mt-2">
                         Add the following to your <code className="inline text-sm tabular-nums bg-muted px-1 rounded">components.json</code> to configure the Blok registry:
                     </p>
-                    <Codeblocks showLineNumbers={true} code={BlockRegistryCode} variant="outline" />
+                    <CodeBlock
+                        code={BlockRegistryCode}
+                        lang="tsx"
+                        showLineNumbers={true}
+                        className="bg-body-bg border"
+                    />
                 </div>
 
                 <div className="flex flex-col space-y-3 p-5 md:pt-10 md:px-10">
@@ -142,10 +147,13 @@ export default function MCPPage() {
                             <Codeblocks showLineNumbers={false} code={`npx shadcn@latest mcp init --client codex`} variant="outline" />
                             
                             <p className="mt-2">Then, add the following configuration to <code className="inline text-sm tabular-nums bg-muted px-1 rounded">~/.codex/config.toml</code>:</p>
-                            <Codeblocks showLineNumbers={false} code={`[mcp_servers.shadcn]
+                        <CodeBlock
+            code={`[mcp_servers.shadcn]
 command = "npx"
-args = ["shadcn@latest", "mcp"]`} variant="outline" />
-
+args = ["shadcn@latest", "mcp"]`}
+            lang="tsx"
+            showLineNumbers={false}
+            className="bg-body-bg border"/>
                             <p className="mt-2">You can then test that your installation has been successful by trying prompts, for example:</p>
                             <ul className="list-disc list-inside space-y-2">
                                 <li>Show me all available components in the shadcn registry.</li>
@@ -167,7 +175,12 @@ args = ["shadcn@latest", "mcp"]`} variant="outline" />
                     <p>
                         To configure MCP in Cursor, add the shadcn server to your project's <code className="inline text-sm tabular-nums bg-muted px-1 rounded">.cursor/mcp.json</code> configuration file:
                     </p>
-                    <Codeblocks code={CursorConfigurationCode} showLineNumbers={true} variant="outline" />
+                    <CodeBlock
+                        code={CursorConfigurationCode}
+                        lang="tsx"
+                        showLineNumbers={true}
+                        className="bg-body-bg border"
+                    />
 
                     <p className="mt-2">After adding the configuration, enable the shadcn MCP server in Cursor Settings.</p>
                     <p className="mt-2">Once enabled, you should see a green dot next to the shadcn server in the MCP server list and a list of available tools.</p>
