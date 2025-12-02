@@ -147,10 +147,13 @@ export default function MCPPage() {
                             <Codeblocks showLineNumbers={false} code={`npx shadcn@latest mcp init --client codex`} variant="outline" />
                             
                             <p className="mt-2">Then, add the following configuration to <code className="inline text-sm tabular-nums bg-muted px-1 rounded">~/.codex/config.toml</code>:</p>
-                            <Codeblocks showLineNumbers={false} code={`[mcp_servers.shadcn]
+                        <CodeBlock
+            code={`[mcp_servers.shadcn]
 command = "npx"
-args = ["shadcn@latest", "mcp"]`} variant="outline" />
-
+args = ["shadcn@latest", "mcp"]`}
+            lang="tsx"
+            showLineNumbers={false}
+            className="bg-body-bg border"/>
                             <p className="mt-2">You can then test that your installation has been successful by trying prompts, for example:</p>
                             <ul className="list-disc list-inside space-y-2">
                                 <li>Show me all available components in the shadcn registry.</li>
