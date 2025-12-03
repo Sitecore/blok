@@ -1,6 +1,7 @@
 import { cn } from "@/lib/utils";
-import Icon from "@mdi/react";
+import * as React from "react";
 import { cva, type VariantProps } from "class-variance-authority";
+import { SVGProps } from "react";
 
 const iconVariants = cva("", {
     variants: {
@@ -86,23 +87,28 @@ const iconVariants = cva("", {
     }
 })
 
-type IconsProps = {
-    path: React.ComponentProps<typeof Icon>["path"],
+type IconsProps = SVGProps<SVGSVGElement> & {
+    path: string,
+    title?: string,
+    fill?: string,
     className?: string,
-} & VariantProps<typeof iconVariants> & 
-React.ComponentProps<typeof Icon>
+} & VariantProps<typeof iconVariants>
 
-function Icons({ 
+function Icon({ 
     path,
+    title,
     variant,
     size,
     colorScheme,
     className,
+    fill = "currentColor",
     ...props
 }: IconsProps) {
     return (
-        <Icon 
-            path={path} 
+        <svg
+            transform={`scale(${size})`}
+            viewBox="0 0 24 24"
+            aria-label={title}
             className={cn(
                 iconVariants({
                     variant,
@@ -112,8 +118,10 @@ function Icons({
                 className,
             )}
             {...props}
-        />
+        >
+            <path d={path} fill={fill} />
+        </svg>
     )
 }
 
-export { Icons, iconVariants }
+export { Icon, iconVariants }
