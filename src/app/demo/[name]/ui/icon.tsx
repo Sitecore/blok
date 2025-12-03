@@ -3,12 +3,6 @@ import { Icon } from "@/components/ui/icon";
 import { mdiInformationOutline } from "@mdi/js";
 import Link from "next/link";
 
-export default function IconDemo() {
-  return (
-    <Icon path={mdiInformationOutline} variant="default" />
-  );
-}
-
 export const icon = {
   name: "icon",
   preInformation: (
