@@ -1,0 +1,10 @@
+{
+    "Default": "import { Icon } from \"@/components/ui/icon\";\nimport { mdiInformationOutline } from \"@mdi/js\";\n\nexport default function DefaultDemo() {\n  return (\n    <Icon path={mdiInformationOutline} variant=\"default\" />\n  );\n}",
+
+    "Variants": "import { Icon } from \"@/components/ui/icon\";\nimport { mdiInformationOutline } from \"@mdi/js\";\n\nexport default function VariantsDemo() {\n  return (\n    <div className=\"flex items-center justify-center gap-4\">\n      <Icon path={mdiInformationOutline} variant=\"default\" />\n      <Icon path={mdiInformationOutline} variant=\"filled\" />\n    </div>\n  );\n}",
+
+    "Sizing": "import { Icon } from \"@/components/ui/icon\";\nimport { mdiInformationOutline } from \"@mdi/js\";\n\nexport default function SizingDemo() {\n  return (\n    <div className=\"flex items-center justify-center gap-4\">\n      <Icon path={mdiInformationOutline} size=\"sm\" />\n      <Icon path={mdiInformationOutline} size=\"md\" />\n      <Icon path={mdiInformationOutline} size=\"default\" />\n      <Icon path={mdiInformationOutline} size=\"lg\" />\n    </div>\n  );\n}",
+
+    "Color Schemes": "import { Icon } from \"@/components/ui/icon\";\nimport { mdiInformationOutline } from \"@mdi/js\";\n\nexport default function ColorSchemesDemo() {\n  return (\n    <div className=\"flex items-center justify-center gap-4\">\n      <Icon path={mdiInformationOutline} colorScheme=\"neutral\" />\n      <Icon path={mdiInformationOutline} colorScheme=\"danger\" />\n      <Icon path={mdiInformationOutline} colorScheme=\"warning\" />\n      <Icon path={mdiInformationOutline} colorScheme=\"yellow\" />\n      <Icon path={mdiInformationOutline} colorScheme=\"success\" />\n      <Icon path={mdiInformationOutline} colorScheme=\"teal\" />\n      <Icon path={mdiInformationOutline} colorScheme=\"cyan\" />\n      <Icon path={mdiInformationOutline} colorScheme=\"primary\" />\n      <Icon path={mdiInformationOutline} colorScheme=\"blue\" />\n      <Icon path={mdiInformationOutline} colorScheme=\"pink\" />\n    </div>\n  );\n}"
+}
+

@@ -21,6 +21,7 @@ import { drawer } from "@/app/demo/[name]/ui/drawer";
 import { emptyStates } from "@/app/demo/[name]/ui/empty-states";
 import { errorStates } from "@/app/demo/[name]/ui/error-states";
 import { dropdownMenu } from "@/app/demo/[name]/ui/dropdown-menu";
+import { icon } from "@/app/demo/[name]/ui/icon";
 import { input } from "@/app/demo/[name]/ui/input";
 import { inputOtp } from "@/app/demo/[name]/ui/inputOtp";
 import { label } from "@/app/demo/[name]/ui/label";
@@ -62,6 +63,7 @@ import { stackNavigation } from "@/app/demo/[name]/ui/stack-navigation";
 
 interface Demo {
   name: string; // this must match the `/registries/registry.json` name
+  preInformation?: ReactNode | ReactElement;
   defaultComponent: ReactNode | ReactElement;
   usage?: string[];
   components?: {
@@ -97,6 +99,7 @@ export const demos: { [name: string]: Demo } = {
   "empty-states": emptyStates,
   "error-states": errorStates,
   "hover-card": hoverCard,
+  icon,
   input,
   inputOtp,
   label,
