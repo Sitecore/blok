@@ -71,19 +71,28 @@ export function CodeBlock({ code, lang = "tsx", showLineNumbers = true, classNam
       )}
       style={{ width: "100%", maxWidth: "100%" }}
     >
-      <Button
-        variant="ghost"
-        size="icon-sm"
-        onClick={copyToClipboard}
-                className="absolute top-2 right-2 p-4"
-                aria-label={copied ? "Code copied to clipboard" : "Copy code to clipboard"}
-      >
-        {copied ? (
-          <Check className="size-4" />
-        ) : (
-          <Icon path={mdiClipboardOutline} className="text-muted-foreground" />
-        )}
-      </Button>
+      <div className="sticky top-0 h-0 z-10">
+        <div className="absolute top-2 right-2">
+          <Button
+            variant="ghost"
+            size="icon-sm"
+            onClick={copyToClipboard}
+            className="p-4 bg-muted backdrop-blur-sm "
+            aria-label={
+              copied ? "Code copied to clipboard" : "Copy code to clipboard"
+            }
+          >
+            {copied ? (
+              <Check className="size-4" />
+            ) : (
+              <Icon
+                path={mdiClipboardOutline}
+                className="text-muted-foreground"
+              />
+            )}
+          </Button>
+        </div>
+      </div>
       <div
         className="text-md overflow-x-auto p-4"
         style={{ minWidth: 0, width: "100%" }}
