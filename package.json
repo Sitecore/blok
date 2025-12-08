@@ -11,7 +11,8 @@
     "registry_core:build": "npx tsx scripts/build-registry.ts registries/registry-config.ts",
     "registry_marketplace_next:build": "npx tsx scripts/build-registry.ts registries/marketplace/next/registry-config.ts",
     "registry_marketplace_react:build": "npx tsx scripts/build-registry.ts registries/marketplace/react/registry-config.ts",
-    "registry:build": "npm run registry_core:build && npm run registry_marketplace_next:build && npm run registry_marketplace_react:build"
+    "registry:build": "npm run registry_core:build && npm run registry_marketplace_next:build && npm run registry_marketplace_react:build",
+    "test:generate": "npx tsx scripts/generate-json-from-tsx.ts src/app/demo/[name]/ui/button.tsx src/app/content/ui/button.json"
   },
   "dependencies": {
     "@dnd-kit/dom": "^0.1.21",
