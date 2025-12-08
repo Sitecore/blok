@@ -12,7 +12,7 @@
     "registry_marketplace_next:build": "npx tsx scripts/build-registry.ts registries/marketplace/next/registry-config.ts",
     "registry_marketplace_react:build": "npx tsx scripts/build-registry.ts registries/marketplace/react/registry-config.ts",
     "registry:build": "npm run registry_core:build && npm run registry_marketplace_next:build && npm run registry_marketplace_react:build",
-    "test:generate": "npx tsx scripts/generate-json-from-tsx.ts src/app/demo/[name]/index.tsx src/app/content/ui"
+    "registry:generate_code": "npx tsx scripts/generate-json.ts src/app/demo/[name]/index.tsx src/app/content/ui"
   },
   "dependencies": {
     "@dnd-kit/dom": "^0.1.21",

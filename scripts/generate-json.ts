@@ -4,8 +4,8 @@ import * as ts from "typescript";
 
 interface ComponentImportInfo {
   identifier: string;
-  importPath: string; // e.g., "@/app/demo/[name]/ui/area-chart"
-  filePath: string; // e.g., "src/app/demo/[name]/ui/area-chart.tsx"
+  importPath: string;
+  filePath: string;
 }
 
 interface ComponentData {
@@ -37,7 +37,7 @@ interface ImportInfo {
 
 function parseImportsFromAST(sourceFile: ts.SourceFile): { importMap: Map<string, string>, demoComponentImports: Map<string, ComponentImportInfo> } {
   const importMap = new Map<string, string>();
-  const demoComponentImports = new Map<string, ComponentImportInfo>(); // identifier -> import info
+  const demoComponentImports = new Map<string, ComponentImportInfo>();
   
   function visit(node: ts.Node) {
     if (ts.isImportDeclaration(node)) {
@@ -51,13 +51,12 @@ function parseImportsFromAST(sourceFile: ts.SourceFile): { importMap: Map<string
         // Check if this is an import from /app/demo/[name]/
         const isDemoImport = modulePath.includes('/app/demo/[name]/');
         
-        // Handle default import: import A from "path"
+        // Handle default import
         if (node.importClause?.name) {
           const identifier = node.importClause.name.text;
           importMap.set(identifier, importStatement);
           
           if (isDemoImport) {
-            // Resolve the file path: convert @/app/demo/[name]/ui/area-chart to src/app/demo/[name]/ui/area-chart.tsx
             let filePath = modulePath;
             if (filePath.startsWith('@/')) {
               filePath = filePath.replace('@/', 'src/');
@@ -76,11 +75,11 @@ function parseImportsFromAST(sourceFile: ts.SourceFile): { importMap: Map<string
           }
         }
         
-        // Handle named imports: import { A, B, C as D } from "path"
+        // Handle named imports
         if (node.importClause?.namedBindings && ts.isNamedImports(node.importClause.namedBindings)) {
           node.importClause.namedBindings.elements.forEach(element => {
             const name = element.name.text;
-            // Map the name (which could be an alias) to the import statement
+            // Map the name to the import statement
             importMap.set(name, importStatement);
             
             if (isDemoImport) {
@@ -110,7 +109,7 @@ function parseImportsFromAST(sourceFile: ts.SourceFile): { importMap: Map<string
           });
         }
         
-        // Handle namespace import: import * as A from "path"
+        // Handle namespace import
         if (node.importClause?.namedBindings && ts.isNamespaceImport(node.importClause.namedBindings)) {
           const namespaceName = node.importClause.namedBindings.name.text;
           importMap.set(namespaceName, importStatement);
@@ -137,19 +136,18 @@ function findUsedIdentifiers(jsxContent: string): Set<string> {
   
   // Remove comments and strings to avoid false matches
   let cleanContent = jsxContent;
-  // Remove JSX comments: {/* ... */}
+  // Remove JSX comments
   cleanContent = cleanContent.replace(/{\/\*[\s\S]*?\*\/}/g, '');
   // Remove string literals in attributes to avoid matching identifiers in strings
   cleanContent = cleanContent.replace(/=["'][^"']*["']/g, '');
   
-  // Find JSX component names: <ComponentName
+  // Find JSX component names
   const jsxComponentRegex = /<(\w+)(?:\s|>|\/)/g;
   let match;
   const componentNames = new Set<string>();
   while ((match = jsxComponentRegex.exec(cleanContent)) !== null) {
     const componentName = match[1];
-    // Only exclude if it's actually a lowercase HTML element (React components are PascalCase)
-    // HTML elements are lowercase, React components start with uppercase
+    // Only exclude if it's actually a lowercase HTML element
     const isLowercase = componentName[0] === componentName[0].toLowerCase();
     if (!isLowercase || !htmlElements.has(componentName)) {
       componentNames.add(componentName);
@@ -157,7 +155,7 @@ function findUsedIdentifiers(jsxContent: string): Set<string> {
     }
   }
   
-  // Find identifiers used as prop values: path={identifier} or prop={identifier}
+  // Find identifiers used as prop values
   // This catches cases like path={mdiInformationOutline}
   const propValueRegex = /(\w+)\s*=\s*{(\w+)}/g;
   while ((match = propValueRegex.exec(cleanContent)) !== null) {
@@ -169,12 +167,12 @@ function findUsedIdentifiers(jsxContent: string): Set<string> {
     }
   }
   
-  // Find standalone identifiers in JSX expressions: {identifier}
-  // But be more careful - only include if they're not part of a component name we already found
+  // Find standalone identifiers in JSX expressions
+  // Only includes if they're not part of a component name that is already found
   const standaloneIdentifierRegex = /{(\w+)}/g;
   while ((match = standaloneIdentifierRegex.exec(cleanContent)) !== null) {
     const identifier = match[1];
-    // Skip common React/JSX keywords, HTML element names, and component names we already found
+    // Skip common React/JSX keywords, HTML element names, and component names that are already found
     if (!['true', 'false', 'null', 'undefined'].includes(identifier) && 
         !htmlElements.has(identifier.toLowerCase()) &&
         !componentNames.has(identifier)) {
@@ -186,22 +184,20 @@ function findUsedIdentifiers(jsxContent: string): Set<string> {
 }
 
 function jsxToString(node: ts.Node, sourceFile: ts.SourceFile): string {
-  // Use getFullText() with positions to preserve exact formatting including indentation
   const fullText = sourceFile.getFullText();
   const start = node.getStart(sourceFile);
   const end = node.getEnd();
   
-  // Extract the text, preserving all formatting
+  // Extract the text, preserving all formatting including indentation
   let text = fullText.substring(start, end);
   
-  // Normalize line endings to \n (do this before trimming to preserve structure)
+  // Normalize line endings to \n
   text = text.replace(/\r\n/g, "\n").replace(/\r/g, "\n");
   
   // Remove leading/trailing whitespace but preserve internal formatting
-  // Only trim the very start and end, not per-line
   text = text.replace(/^\s+/, "").replace(/\s+$/, "");
   
-  // If it's wrapped in parentheses, remove them
+  // If it's wrapped in parentheses, removes the parentheses
   if (text.startsWith("(") && text.endsWith(")")) {
     text = text.slice(1, -1);
     text = text.replace(/^\s+/, "").replace(/\s+$/, "");
@@ -211,7 +207,7 @@ function jsxToString(node: ts.Node, sourceFile: ts.SourceFile): string {
 }
 
 function extractComponentName(key: string): string {
-  // Convert "Icon with Text" to "IconWithTextDemo"
+  // Converts "Icon with Text" to "IconWithTextDemo"
   return key
     .split(/\s+/)
     .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
@@ -233,7 +229,7 @@ function extractDemoComponentCode(filePath: string, componentName: string): { im
       ts.ScriptKind.TSX
     );
     
-    // Extract imports
+    // Extracts imports
     const imports: string[] = [];
     const importMap = new Map<string, string>();
     
@@ -244,7 +240,7 @@ function extractDemoComponentCode(filePath: string, componentName: string): { im
         
         const moduleSpecifier = node.moduleSpecifier;
         if (ts.isStringLiteral(moduleSpecifier)) {
-          // Skip imports from /app/demo/[name]/ to avoid circular dependencies
+          // Skips imports from /app/demo/[name]/ to avoid circular dependencies
           if (!moduleSpecifier.text.includes('/app/demo/[name]/')) {
             if (node.importClause?.name) {
               importMap.set(node.importClause.name.text, importText);
@@ -265,12 +261,12 @@ function extractDemoComponentCode(filePath: string, componentName: string): { im
     
     visitImports(sourceFile);
     
-    // Find the exported component function
+    // Finds the exported component function
     let componentCode = "";
     let foundComponent = false;
     
     function visitComponent(node: ts.Node) {
-      // Look for: export function ComponentName() or export const ComponentName = ...
+      // Looks for: export function ComponentName() or export const ComponentName = ...
       if (ts.isFunctionDeclaration(node) && node.name) {
         if (node.modifiers?.some(m => m.kind === ts.SyntaxKind.ExportKeyword) &&
             node.name.text === componentName) {
@@ -318,23 +314,23 @@ function generateComponentCode(
   // Content should already have normalized line endings from jsxToString
   let content = jsxContent;
   
-  // Remove wrapping parentheses if present (but preserve internal formatting)
+  // Removes wrapping parentheses if present (but preserves internal formatting)
   if (content.startsWith("(") && content.endsWith(")")) {
-    // Remove outer parentheses but keep internal content as-is
+    // Removes outer parentheses
     content = content.slice(1, -1);
-    // Trim only leading/trailing whitespace, not per-line
+    // Trims only leading/trailing whitespace
     content = content.replace(/^\s+/, "").replace(/\s+$/, "");
   }
   
   // Directly find identifiers that are actually used in the JSX
-  // Only look for component tags and prop values - be very strict
+  // Only looks for component tags and prop values
   const verifiedIdentifiers = new Set<string>();
-  const demoComponentsToInline = new Map<string, ComponentImportInfo>(); // component name -> import info
+  const demoComponentsToInline = new Map<string, ComponentImportInfo>();
   
-  // Remove comments first to avoid false matches
+  // Removes comments first to avoid false matches
   let cleanContent = content.replace(/{\/\*[\s\S]*?\*\/}/g, '');
   
-  // Find component tags: <ComponentName (must be PascalCase)
+  // Finds component tags: <ComponentName (must be PascalCase)
   const componentTagRegex = /<([A-Z][a-zA-Z0-9]*)(?:\s|>|\/)/g;
   let match;
   const foundComponents = new Set<string>();
@@ -342,39 +338,37 @@ function generateComponentCode(
     const compName = match[1];
     foundComponents.add(compName);
     
-    // Check if this is a demo component that needs to be inlined
+    // Checks if this is a demo component that needs to be inlined
     if (demoComponentImports && demoComponentImports.has(compName)) {
       const compInfo = demoComponentImports.get(compName)!;
       demoComponentsToInline.set(compName, compInfo);
-      // Don't add to verifiedIdentifiers - we'll inline the component code instead
-      // Also don't add to finalIdentifiers later
+      // Doesn't add to verifiedIdentifiers - we'll inline the component code instead
+      // Also doesn't add to finalIdentifiers later
     } else {
       verifiedIdentifiers.add(compName);
     }
   }
   
-  // Find identifiers in prop values: prop={identifier}
+  // Finds identifiers in prop values: prop={identifier}
   const propValueRegex = /(\w+)\s*=\s*{([a-zA-Z_$][a-zA-Z0-9_$]*)\s*}/g;
   while ((match = propValueRegex.exec(cleanContent)) !== null) {
     const propName = match[1];
     const value = match[2];
-    // Only include for specific prop names that typically use imported identifiers
+    // Only includes for specific prop names that typically use imported identifiers
     if (['path', 'value', 'defaultValue', 'icon', 'src'].includes(propName)) {
       verifiedIdentifiers.add(value);
     }
   }
   
-  // Find standalone identifiers in JSX expressions: {identifier}
-  // But exclude common keywords, HTML elements, and components we already found
+  // Finds standalone identifiers in JSX expressions
   const htmlElements = new Set(['div', 'span', 'p', 'a', 'button', 'input', 'label', 'form', 'ul', 'ol', 'li']);
   const standaloneRegex = /{\s*([a-zA-Z_$][a-zA-Z0-9_$]*)\s*}/g;
   while ((match = standaloneRegex.exec(cleanContent)) !== null) {
     const identifier = match[1];
-    // Skip keywords, HTML elements, and components we already found as tags
+    // Skips keywords, HTML elements, and components that are already found as tags
     if (!['true', 'false', 'null', 'undefined'].includes(identifier) &&
         !htmlElements.has(identifier.toLowerCase()) &&
         !foundComponents.has(identifier)) {
-      // Only add if it's in the importMap (meaning it's actually imported)
       if (importMap.has(identifier)) {
         verifiedIdentifiers.add(identifier);
       }
@@ -891,8 +885,7 @@ function extractComponentImports(indexFilePath: string): Array<{ name: string; i
   
   if (demosMatch) {
     const demosContent = demosMatch[1];
-    // Extract key-value pairs like: "hover-card": hoverCard, or button,
-    // Handle both quoted keys and shorthand properties
+    // Extract key-value pairs like: "hover-card": hoverCard, or button
     const lines = demosContent.split('\n');
     const keyMap = new Map<string, string>(); // importName -> exportKey
     
@@ -910,19 +903,16 @@ function extractComponentImports(indexFilePath: string): Array<{ name: string; i
       const shorthandMatch = trimmed.match(/^(\w+),?$/);
       
       if (quotedKeyMatch) {
-        // "hover-card": hoverCard
         const exportKey = quotedKeyMatch[1];
         const importName = quotedKeyMatch[2];
         keyMap.set(importName, exportKey);
       } else if (unquotedKeyMatch) {
-        // switch: switchComponent,
         const exportKey = unquotedKeyMatch[1];
         const importName = unquotedKeyMatch[2];
         keyMap.set(importName, exportKey);
       } else if (shorthandMatch) {
-        // button,
         const importName = shorthandMatch[1];
-        keyMap.set(importName, importName); // Use import name as key
+        keyMap.set(importName, importName);
       }
     }
     
@@ -968,7 +958,7 @@ function generateAllComponents(indexFilePath: string, outputDir: string): void {
   let errorCount = 0;
   
   for (const component of components) {
-    // Resolve the TSX file path - component.importPath is relative to src
+    // Resolve the TSX file path
     const tsxFilePath = resolve(process.cwd(), component.importPath + ".tsx");
     const outputPath = join(outputBaseDir, `${component.key}.json`);
     
@@ -982,11 +972,11 @@ function generateAllComponents(indexFilePath: string, outputDir: string): void {
     try {
       generateJSON(tsxFilePath, outputPath);
       successCount++;
-      console.log(""); // Empty line for readability
+      console.log("");
     } catch (error) {
       console.error(`❌ Error processing ${component.key}:`, error);
       errorCount++;
-      console.log(""); // Empty line for readability
+      console.log("");
     }
   }
   
@@ -1008,10 +998,8 @@ if (require.main === module) {
     process.exit(1);
   }
   
-  // If a specific component file is provided, process just that one
-  // Otherwise, process all components from index.tsx
+  // If a specific component file is provided, processes just that one
   if (process.argv[2] && process.argv[2].endsWith('.tsx') && process.argv[2].includes('/ui/')) {
-    // Single component mode
     const tsxFile = process.argv[2];
     const outputFile = process.argv[3] || tsxFile.replace('/ui/', '/content/ui/').replace('.tsx', '.json');
     
