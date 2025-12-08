@@ -13,7 +13,7 @@ export const icon = {
   name: "icon",
   preInformation: (
     <Alert>
-      <span className="inline">Looking for the right icon to use? See <Link href="graphics/icons" target="_blank" className="text-primary hover:text-primary/80 no-underline"> icons</Link>.</span>
+      <span className="inline">Looking for the right icon to use? See <Link href="/graphics/icons" target="_blank" className="text-primary hover:text-primary/80 no-underline"> icons</Link>.</span>
     </Alert>
   ),
   defaultComponent: (
