@@ -3,6 +3,7 @@ import { testAccordian } from './test-Components/test-Accordion';
 import { testPrimaryAlert, testClosablePrimaryAlert, testPrimaryAlertLink } from './test-Components/test-Alert';
 import { testOpenAlertDialog, testKeepEditing, testDiscard } from './test-Components/test-Alert_Dialog';
 import { testPrimaryORDefaultButton, testGhostButton, testDisabledButtons, testIcononlyVariant, testLinkVariant, testOutlineButton, testSizeVariant } from './test-Components/test-Button';
+import { testAspectRatio } from './test-Components/test-Aspect_Ratio';
 
 
 test.describe('UI BLOK QA Automation', () => {
@@ -36,6 +37,10 @@ test.describe('UI BLOK QA Automation', () => {
     await testDisabledButtons(page);
     await testIcononlyVariant(page);
     await testSizeVariant(page);
+  });
+
+  test('test_Aspect_Ratio', async ({ page }) => {
+    await testAspectRatio(page);
   });
 
   test('close', async ({ page }) => {
