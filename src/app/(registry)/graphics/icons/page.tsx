@@ -666,7 +666,7 @@ export default function IconsPage() {
             href="https://pictogrammers.com/library/mdi/"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-primary hover:text-primary/80 no-underline"
+            className="text-primary hover:text-primary/80 hover:underline"
           >
             Material Design Icons
           </a>{" "}
@@ -717,7 +717,7 @@ export default function IconsPage() {
                       href={`https://pictogrammers.com/library/mdi/icon/${mdi}`}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-primary hover:text-primary/80 no-underline text-sm transition-colors"
+                      className="text-primary hover:text-primary/80 hover:underline text-sm transition-colors"
                     >
                       {mdi}
                     </a>
@@ -756,7 +756,7 @@ export default function IconsPage() {
           . For the regular full-color logo images, see{" "}
           <a
             href="/graphics/logos"
-            className="text-primary hover:text-primary/80 no-underline"
+            className="text-primary hover:text-primary/80 hover:underline"
           >
             Logos
           </a>
