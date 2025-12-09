@@ -59,7 +59,7 @@ function DefaultNavItem({
             "h-14 min-w-14 min-h-14",
             "p-1.5 gap-1",
             "rounded-md transition-colors",
-            "text-3xs text-neutral-fg font-semibold",
+            "text-3xs text-neutral-fg font-medium",
             "hover:bg-sidebar-accent cursor-pointer",
             "relative opacity-100",
             isActive &&
