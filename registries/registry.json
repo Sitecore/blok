@@ -1262,6 +1262,28 @@
       ]
     },
     {
+      "name": "filter-section",
+      "type": "registry:block",
+      "title": "Filter section",
+      "description": "A horizontal filter bar with search input, multi-select dropdowns with checkboxes, single-select dropdowns, and toggle buttons.",
+      "registryDependencies": [
+        "https://blok.sitecore.com/r/theme.json",
+        "https://blok.sitecore.com/r/input.json",
+        "https://blok.sitecore.com/r/button.json",
+        "https://blok.sitecore.com/r/popover.json",
+        "https://blok.sitecore.com/r/command.json"
+      ],
+      "dependencies": [
+        "lucide-react"
+      ],
+      "files": [
+        {
+          "path": "src/components/bloks/filter-section.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
       "name": "progress",
       "type": "registry:ui",
       "title": "Progress",

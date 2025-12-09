@@ -58,6 +58,7 @@ import { siteCard } from "@/app/demo/[name]/ui/site-card";
 import { timePicker } from "@/app/demo/[name]/ui/time-picker";
 import { draggable } from "@/app/demo/[name]/ui/draggable";
 import { stackNavigation } from "@/app/demo/[name]/ui/stack-navigation";
+import { filterSection } from "@/app/demo/[name]/ui/filter-section";
 
 
 interface Demo {
@@ -120,6 +121,7 @@ export const demos: { [name: string]: Demo } = {
   spinner,
   switch: switchComponent,
   "stack-navigation":stackNavigation,
+  "filter-section": filterSection,
   table,
   tabs,
   textarea,
