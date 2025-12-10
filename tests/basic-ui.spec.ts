@@ -7,6 +7,7 @@ import { testAspectRatio } from './test-Components/test-Aspect_Ratio';
 import { testAvatar, testFallbackAvatar, testInteractiveAvatar, testLargeAvatar } from './test-Components/test-Avatar';
 import { testBadge, testBadgeBold, testBadgeClosable, testBadgeColor, testBadgeLink, testBadgeSize } from './test-Components/test-Badge';
 import { testBreadcrumb, testBreadcrumbItemLinks } from './test-Components/test-BreadCrumb';
+import { testSingleCalendar } from './test-Components/test-Calendar';
 
 
 test.describe('UI BLOK QA Automation', () => {
@@ -65,6 +66,10 @@ test.describe('UI BLOK QA Automation', () => {
   test('test_Breadcrumb', async ({ page }) => {
     await testBreadcrumb(page);
     await testBreadcrumbItemLinks(page);
+  });
+
+  test('test_Calendar', async ({ page }) => {
+    await testSingleCalendar(page);
   });
 
   test('close', async ({ page }) => {
