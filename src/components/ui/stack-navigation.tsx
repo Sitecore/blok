@@ -59,11 +59,11 @@ function DefaultNavItem({
             "h-14 min-w-14 min-h-14",
             "p-1.5 gap-1",
             "rounded-md transition-colors",
-            "text-3xs text-neutral-fg font-semibold",
+            "text-3xs text-neutral-fg font-medium",
             "hover:bg-sidebar-accent cursor-pointer",
             "relative opacity-100",
             isActive &&
-              "bg-primary-bg text-primary-fg hover:bg-primary-bg hover:text-primary-fg font-semibold",
+              "bg-primary-bg text-primary-fg hover:bg-primary-bg hover:text-primary-fg font-medium",
             item.className
           ),
 
@@ -72,9 +72,9 @@ function DefaultNavItem({
           cn(
             "flex flex-col items-center justify-center",
             "min-w-14 w-fit h-14 p-1.5 gap-1 rounded-md cursor-pointer overflow-hidden",
-            "text-neutral-fg hover:bg-sidebar-accent transition-colors font-semibold",
+            "text-neutral-fg hover:bg-sidebar-accent transition-colors font-medium",
             isActive &&
-              "bg-primary-bg text-primary-fg hover:bg-primary-bg hover:text-primary-fg font-semibold",
+              "bg-primary-bg text-primary-fg hover:bg-primary-bg hover:text-primary-fg font-medium",
             item.className
           )
       )}
