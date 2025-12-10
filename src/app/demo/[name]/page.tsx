@@ -24,7 +24,7 @@ export default async function DemoPage({
   if (!name || !demos[name]) {
     notFound();
   }
-  const { preInformation, defaultComponent, usage, components } = demos[name];
+  const { defaultComponent, usage, components } = demos[name];
 
   const registryUrl = `https://${baseUrl}/r/${name}.json`;
 
@@ -37,12 +37,6 @@ export default async function DemoPage({
 
   return (
       <div className="flex min-h-screen w-full flex-col gap-12 bg-body-bg">
-        {preInformation && (
-          <div id="pre-information" className="flex flex-col gap-3">
-            {preInformation}
-          </div>
-        )}
-
         <div className="flex flex-col">
           <DemoTab
             id="preview"

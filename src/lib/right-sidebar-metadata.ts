@@ -413,25 +413,6 @@ export const rightSidebarMetadata: Record<string, RightSidebarMetadata> = {
       shadcn: "https://ui.shadcn.com/docs/components/hover-card",
     },
   },
-  icon: {
-    links: {
-      shadcn: "https://ui.shadcn.com/docs/components/icon",
-    },
-    sections: [
-      { id: "preview", title: "Preview" },
-      { id: "installation", title: "Installation" },
-      { id: "usage", title: "Usage" },
-      {
-        id: "examples",
-        title: "Examples",
-        children: [
-          { id: "variants", title: "Variants" },
-          { id: "sizing", title: "Sizing" },
-          { id: "color-schemes", title: "Color Schemes" },
-        ],
-      },
-    ],
-  },
   input: {
     links: {
       shadcn: "https://ui.shadcn.com/docs/components/input",
