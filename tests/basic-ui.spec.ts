@@ -6,6 +6,7 @@ import { testPrimaryORDefaultButton, testGhostButton, testDisabledButtons, testI
 import { testAspectRatio } from './test-Components/test-Aspect_Ratio';
 import { testAvatar, testFallbackAvatar, testInteractiveAvatar, testLargeAvatar } from './test-Components/test-Avatar';
 import { testBadge, testBadgeBold, testBadgeClosable, testBadgeColor, testBadgeLink, testBadgeSize } from './test-Components/test-Badge';
+import { testBreadcrumb, testBreadcrumbItemLinks } from './test-Components/test-BreadCrumb';
 
 
 test.describe('UI BLOK QA Automation', () => {
@@ -59,6 +60,11 @@ test.describe('UI BLOK QA Automation', () => {
     await testBadgeBold(page);
     await testBadgeLink(page);
     await testBadgeClosable(page);
+  });
+
+  test('test_Breadcrumb', async ({ page }) => {
+    await testBreadcrumb(page);
+    await testBreadcrumbItemLinks(page);
   });
 
   test('close', async ({ page }) => {
