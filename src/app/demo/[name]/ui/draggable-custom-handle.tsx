@@ -34,6 +34,7 @@ export function CustomHandleDemo() {
               <Sortable
                 key={item.id}
                 id={item.id}
+                aria-label={`Drag ${item.name}`}
                 index={index}
                 handle={handleRef as React.RefObject<HTMLElement>}
               >

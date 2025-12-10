@@ -84,6 +84,7 @@ export function PieChartComponent() {
               nameKey="browser"
               innerRadius={60}
               strokeWidth={5}
+              aria-label="Pie chart showing browser usage distribution with total visitors"
             >
               <Label
                 content={({ viewBox }) => {
@@ -119,10 +120,10 @@ export function PieChartComponent() {
         </ChartContainer>
       </CardContent>
       <CardFooter className="flex-col gap-2 text-sm">
-        <div className="flex items-center gap-2 font-medium leading-none">
+        <div className="flex items-center gap-2 font-medium leading-none wrap-break-word">
           Trending up by 5.2% this month <TrendingUp className="h-4 w-4" aria-hidden="true" />
         </div>
-        <div className="text-muted-foreground leading-none">
+        <div className="text-muted-foreground leading-none wrap-break-word">
           Showing total visitors for the last 6 months
         </div>
       </CardFooter>

@@ -45,7 +45,7 @@ export const textarea = {
           aria-label="Message"
           rows={6}
         />
-        <div className="text-muted-foreground text-sm">
+        <div className="text-muted-foreground text-sm wrap-break-words">
           Type your message and press enter to send.
         </div>
       </div>

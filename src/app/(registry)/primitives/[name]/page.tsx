@@ -30,8 +30,8 @@ export default async function PrimitiveItemPage({
       <div className="flex items-center justify-between">
         <div>
           <div className="py-10 flex flex-col gap-6">
-            <h2 className="font-semibold text-4xl ">{component.title}</h2>
-            <p className="text-lg text-subtle-text">{component.description}</p>
+            <h2 className="font-semibold text-4xl wrap-break-words">{component.title}</h2>
+            <p className="text-lg text-subtle-text wrap-break-words">{component.description}</p>
           </div>
         </div>
       </div>

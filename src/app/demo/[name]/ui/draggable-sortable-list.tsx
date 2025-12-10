@@ -182,6 +182,7 @@ function SortableListContent() {
           <div
             key={item.id}
             ref={elementRef}
+            aria-label={`Drag ${item.name}`}
             data-sortable-id={item.id}
             data-sortable-index={index}
             data-dragging={state.isDragging}

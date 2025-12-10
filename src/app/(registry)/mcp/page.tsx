@@ -30,7 +30,7 @@ const CursorConfigurationCode = `{
 export default function MCPPage() {
     return (
         <main className="w-full">
-            <div className="px-32 max-w-[1250px] mx-auto">
+            <div className="px-4 sm:px-8 md:px-32 max-w-[1250px] mx-auto">
                 <div className="flex flex-col space-y-5 p-5 md:p-10">
                     <Breadcrumb>
                         <BreadcrumbList>
@@ -49,7 +49,7 @@ export default function MCPPage() {
                         Blok MCP Server
                     </h1>
                     <p className="d w-full ">
-                        <Link href="https://modelcontextprotocol.io" className=" hover:underline text-primary-fg font-semibold" rel="noopener noreferrer">The MCP Server</Link> is an open protocol that enables AI assistants to securely connect to external data sources and tools. With the shadcn MCP server, your AI assistant can:
+                        <Link href="https://modelcontextprotocol.io" className="text-primary hover:text-primary/80 hover:underline" rel="noopener noreferrer">The MCP Server</Link> is an open protocol that enables AI assistants to securely connect to external data sources and tools. With the shadcn MCP server, your AI assistant can:
                     </p>
                     <ul className="list-disc list-inside space-y-2 ">
                         <li>List all available components from the Blok registry</li>
@@ -64,12 +64,12 @@ export default function MCPPage() {
                     <Alert variant="primary">
                         <AlertDescription className="inline text-lg">
                             For complete shadcn MCP documentation, see the{" "}
-                            <Link href="https://ui.shadcn.com/docs/mcp" target="_blank" className="hover:underline" rel="noopener noreferrer text-primary-fg font-semibold">official shadcn MCP guide</Link>.
+                            <Link href="https://ui.shadcn.com/docs/mcp" target="_blank" className="text-primary hover:text-primary/80 hover:underline" rel="noopener noreferrer text-primary-fg font-semibold">official shadcn MCP guide</Link>.
                         </AlertDescription>
                     </Alert>
                 </div>
             </div>
-            <div className="px-32 max-w-[1250px] mx-auto">
+            <div className="px-4 sm:px-8 md:px-32 max-w-[1250px] mx-auto">
                 <div className="flex flex-col space-y-3 p-5 md:pt-10 md:px-10">
                     <h2 className="font-semibold text-3xl md:text-4xl">
                         Before You Start
@@ -94,7 +94,7 @@ export default function MCPPage() {
                     </h2>
                     <p>
                         Select your MCP client and follow the instructions to configure the shadcn MCP server. If you'd like to do it manually, see the {" "}
-                        <Link href="#configuration" className="hover:underline text-primary-fg font-semibold">Configuration</Link> section.
+                        <Link href="#configuration" className="text-primary hover:text-primary/80 hover:underline">Configuration</Link> section.
                     </p>
                     <Tabs defaultValue="claude">
                         <TabsList className="flex flex-wrap">
@@ -184,7 +184,7 @@ args = ["shadcn@latest", "mcp"]`}
 
                     <p className="mt-2">After adding the configuration, enable the shadcn MCP server in Cursor Settings.</p>
                     <p className="mt-2">Once enabled, you should see a green dot next to the shadcn server in the MCP server list and a list of available tools.</p>
-                    <p className="mt-2">See the <Link href="https://docs.cursor.com/en/context/mcp#using-mcp-json" target="_blank" className="hover:underline text-primary-fg font-semibold" rel="noopener noreferrer">Cursor MCP documentation</Link> for more details.</p> 
+                    <p className="mt-2">See the <Link href="https://docs.cursor.com/en/context/mcp#using-mcp-json" target="_blank" className="text-primary hover:text-primary/80 hover:underline" rel="noopener noreferrer">Cursor MCP documentation</Link> for more details.</p> 
                 </div>
 
                 <div className="flex flex-col space-y-3 p-5 md:pt-10 md:px-10">

@@ -26,7 +26,7 @@ export const tabs = {
         <Card>
           <CardHeader>
             <CardTitle>Account</CardTitle>
-            <CardDescription>
+            <CardDescription className="wrap-break-words">
               Make changes to your account here. Click save when you&apos;re done.
             </CardDescription>
           </CardHeader>
@@ -59,7 +59,7 @@ export const tabs = {
           <Card>
             <CardHeader>
               <CardTitle>Account</CardTitle>
-              <CardDescription>
+              <CardDescription className="wrap-break-words">
                 Make changes to your account here. Click save when you're done.
               </CardDescription>
             </CardHeader>

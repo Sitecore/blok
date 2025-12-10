@@ -307,7 +307,7 @@ export default function LogosPage() {
                   <TableCell className="px-4 py-3 min-w-[200px]">
                     <Tooltip>
                       <TooltipTrigger asChild>
-                        <div
+                        <button
                           onClick={() =>
                             copyToClipboard(
                               `https://delivery-sitecore.sitecorecontenthub.cloud/api/public/content/${filename}`
@@ -320,7 +320,7 @@ export default function LogosPage() {
                             alt={brand}
                             className="h-7 object-contain object-left"
                           />
-                        </div>
+                        </button>
                       </TooltipTrigger>
                       <TooltipContent>Copy URL</TooltipContent>
                     </Tooltip>
@@ -328,7 +328,7 @@ export default function LogosPage() {
                   <TableCell className="px-4 py-3 min-w-[200px]">
                     <Tooltip>
                       <TooltipTrigger asChild>
-                        <div
+                        <button
                           onClick={() =>
                             copyToClipboard(
                               `https://delivery-sitecore.sitecorecontenthub.cloud/api/public/content/${filename}-dark`
@@ -341,7 +341,7 @@ export default function LogosPage() {
                             alt={`${brand} Dark`}
                             className="h-7 object-contain object-left"
                           />
-                        </div>
+                        </button>
                       </TooltipTrigger>
                       <TooltipContent>Copy URL</TooltipContent>
                     </Tooltip>

@@ -63,7 +63,7 @@ export const toggle = {
       </div>
     ),
     Rounded: (
-      <div className="flex flex-wrap items-center gap-6">
+      <div className="flex flex-wrap gap-6">
         <Toggle aria-label="Toggle bold" variant="rounded">
           <Icon path={mdiFormatBold} size={1.1} />
         </Toggle>

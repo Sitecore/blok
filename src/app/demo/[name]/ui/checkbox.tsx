@@ -6,7 +6,7 @@ export const checkbox = {
   defaultComponent: (
     <div className="flex items-center gap-3 p-4">
       <Checkbox id="terms" aria-label="Accept terms and conditions" />
-      <Label htmlFor="terms">Accept terms and conditions</Label>
+      <Label htmlFor="terms" className="wrap-break-word">Accept terms and conditions</Label>
     </div>
   ),
   usage: [
@@ -18,7 +18,7 @@ export const checkbox = {
       <div className="flex items-start gap-3 p-4">
         <Checkbox id="terms-2" defaultChecked aria-label="Accept terms and conditions" />
         <div className="grid gap-2">
-          <Label htmlFor="terms-2">Accept terms and conditions</Label>
+          <Label htmlFor="terms-2" className="wrap-break-word">Accept terms and conditions</Label>
           <p className="text-muted-foreground text-sm">
             By clicking this checkbox, you agree to the terms and conditions.
           </p>
@@ -28,7 +28,7 @@ export const checkbox = {
     "Disabled": (
       <div className="flex items-start gap-3 p-4">
         <Checkbox id="toggle" disabled aria-label="Disabled notifications" />
-        <Label htmlFor="toggle">Disabled notifications</Label>
+        <Label htmlFor="toggle" className="wrap-break-word">Disabled notifications</Label>
       </div>
     ),
     "Enabled Label": (

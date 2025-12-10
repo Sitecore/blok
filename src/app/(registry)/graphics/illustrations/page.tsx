@@ -365,7 +365,7 @@ export default function IllustrationsPage() {
                   <TableCell className="px-4 min-w-[120px]">
                     <Tooltip>
                       <TooltipTrigger asChild>
-                        <div
+                        <button
                           onClick={() =>
                             copyToClipboard(
                               `https://delivery-sitecore.sitecorecontenthub.cloud/api/public/content/spot-${name}`
@@ -378,7 +378,7 @@ export default function IllustrationsPage() {
                             alt={name}
                             className="max-w-[64px] h-auto object-contain"
                           />
-                        </div>
+                        </button>
                       </TooltipTrigger>
                       <TooltipContent>Copy URL</TooltipContent>
                     </Tooltip>
@@ -386,7 +386,7 @@ export default function IllustrationsPage() {
                   <TableCell className="px-4 min-w-[120px]">
                     <Tooltip>
                       <TooltipTrigger asChild>
-                        <div
+                        <button
                           onClick={() =>
                             copyToClipboard(
                               `https://delivery-sitecore.sitecorecontenthub.cloud/api/public/content/spot-${name}-neutral`
@@ -399,7 +399,7 @@ export default function IllustrationsPage() {
                             alt={`${name} neutral`}
                             className="max-w-[64px] h-auto object-contain"
                           />
-                        </div>
+                        </button>
                       </TooltipTrigger>
                       <TooltipContent>Copy URL</TooltipContent>
                     </Tooltip>

@@ -63,12 +63,12 @@ export const scrollArea = {
       <ScrollArea className="w-full max-w-96 rounded-md border p-4">
         <div className="flex gap-4">
           {works.map((artwork) => (
-            <figure key={artwork.artist} className="shrink-0">
+            <figure key={artwork.artist} className="shrink-0 w-full max-w-[300px]">
               <div className="overflow-hidden rounded-md">
                 <img
                   src={artwork.art}
                   alt={`Photo by ${artwork.artist}`}
-                  className="aspect-3/4 w-[300px] h-[400px] object-cover"
+                  className="aspect-3/4 w-full max-w-[300px] h-[400px] object-cover"
                 />
               </div>
             </figure>
