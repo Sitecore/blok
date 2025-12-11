@@ -6,45 +6,37 @@ import WritingUITextThumb from "@/components/component-thumbs/writing-ui-text";
 import BlokFoundationsThumb from "@/components/component-thumbs/blok-foundations";
 import ShadcnMcpThumb from "@/components/component-thumbs/shadcn-mcp";
 import LogosThumb from "@/components/component-thumbs/logos";
+import { Badge } from "@/components/ui/badge";
+import ContributionGuide from "@/components/component-thumbs/contribution-guide";
 
 const guidelinesItems = [
   {
-    name: "code-guideline",
-    title: "Code guideline",
-    href: "https://sitecore.atlassian.net/wiki/x/UQOh3g",
+    name: "mcp",
+    title: "MCP",
+    href: "/mcp",
     preview: (
       <div className="w-full h-full flex items-center justify-center p-4">
-        <CodeGuidelineThumb />
+        <ShadcnMcpThumb />
       </div>
     ),
   },
   {
-    name: "writing-ui-text",
-    title: "Writing UI text",
-    href: "https://sitecore.atlassian.net/wiki/spaces/SDS/pages/3736404151",
-    preview: (
-      <div className="w-full h-full flex items-center justify-center p-4">
-        <WritingUITextThumb />
-      </div>
-    ),
-  },
-  {
-    name: "documentation-style",
-    title: "Documentation style",
-    href: "https://writing.sitecore.com/style-guide/index.html",
-    preview: (
-      <div className="w-full h-full flex items-center justify-center p-4">
-        <WritingUITextThumb />
-      </div>
-    ),
-  },
-  {
-    name: "sitecore-terminology",
-    title: "Sitecore terminology",
-    href: "https://sitecore.atlassian.net/wiki/spaces/SCPEDIA/pages/4235329557",
+    name: "sitecore-brand-portal",
+    title: "Sitecore brand portal",
+    href: "https://www.sitecore.com/company/brand-guidelines",
     preview: (
       <div className="w-full h-full flex items-center justify-center p-4">
         <LogosThumb />
+      </div>
+    ),
+  },
+  {
+    name: "contribtuion-guide",
+    title: "Contribution Guide",
+    href: "https://github.com/Sitecore/blok?tab=contributing-ov-file#readme",
+    preview: (
+      <div className="w-full h-full flex items-center justify-center p-4">
+        <ContributionGuide />
       </div>
     ),
   },
@@ -92,22 +84,42 @@ const resourcesItems = [
     ),
   },
   {
-    name: "sitecore-brand-portal",
-    title: "Sitecore brand portal",
-    href: "https://www.sitecore.com/company/brand-guidelines",
+    name: "code-guideline",
+    title: "Code guideline",
+    href: "https://sitecore.atlassian.net/wiki/x/UQOh3g",
     preview: (
       <div className="w-full h-full flex items-center justify-center p-4">
-        <LogosThumb />
+        <CodeGuidelineThumb />
       </div>
     ),
   },
   {
-    name: "mcp",
-    title: "MCP",
-    href: "/mcp",
+    name: "writing-ui-text",
+    title: "Writing UI text",
+    href: "https://sitecore.atlassian.net/wiki/spaces/SDS/pages/3736404151",
     preview: (
       <div className="w-full h-full flex items-center justify-center p-4">
-        <ShadcnMcpThumb />
+        <WritingUITextThumb />
+      </div>
+    ),
+  },
+  {
+    name: "documentation-style",
+    title: "Documentation style",
+    href: "https://writing.sitecore.com/style-guide/index.html",
+    preview: (
+      <div className="w-full h-full flex items-center justify-center p-4">
+        <WritingUITextThumb />
+      </div>
+    ),
+  },
+  {
+    name: "sitecore-terminology",
+    title: "Sitecore terminology",
+    href: "https://sitecore.atlassian.net/wiki/spaces/SCPEDIA/pages/4235329557",
+    preview: (
+      <div className="w-full h-full flex items-center justify-center p-4">
+        <LogosThumb />
       </div>
     ),
   },
@@ -128,7 +140,10 @@ export default function ResourcesPage() {
         {/* Guidelines Section */}
         <div className="mb-12">
           <h2 className="text-2xl font-semibold  text-foreground mb-6">
-            Guidelines
+            Public guidelines{" "}
+            <Badge size="sm" variant="bold">
+              MORE COMING SOON
+            </Badge>
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-[repeat(auto-fill,minmax(224px,224px))] gap-y-6 gap-x-6 justify-items-start">
             {guidelinesItems.map((item) => (
@@ -146,7 +161,7 @@ export default function ResourcesPage() {
         {/* Resources Section */}
         <div>
           <h2 className="text-2xl font-semibold text-foreground mb-6">
-            Resources
+            Private internal resources
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-[repeat(auto-fill,minmax(224px,224px))] gap-y-6 gap-x-6 justify-items-start">
             {resourcesItems.map((item) => (

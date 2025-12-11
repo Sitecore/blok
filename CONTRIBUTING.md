@@ -1,10 +1,10 @@
-# Contributing to Blok CN
+# Contributing to Blok
 
-Welcome to Blok CN, a powerful and flexible UI library designed to help developers build beautiful and accessible interfaces. We encourage contributions from the community to improve, expand, and maintain this project. Whether you are fixing bugs, suggesting new features, improving documentation, or submitting code, your efforts are highly valued.
+Welcome to Blok, a powerful and flexible UI library designed to help developers build beautiful and accessible interfaces. We encourage contributions from the community to improve, expand, and maintain this project. Whether you are fixing bugs, suggesting new features, improving documentation, or submitting code, your efforts are highly valued.
 
 ## How to Contribute
 
-There are many ways to contribute to Blok CN:
+There are many ways to contribute to Blok:
 
 - Report bugs or issues you encounter.
 - Suggest new features or improvements.
@@ -19,7 +19,7 @@ Our community is committed to maintaining a respectful, professional, and inclus
 
 Contributing code follows these steps:
 
-1. Fork the Blok CN repository to your own GitHub account.
+1. Fork the Blok repository to your own GitHub account.
 2. Create a new branch named descriptively for your change (e.g., `fix-button-alignment` or `add-tooltip-component`).
 3. Make your changes in the branch with clear, focused commits.
 4. Follow the commit message guidelines to write meaningful commit messages.
@@ -38,7 +38,7 @@ To keep our history clear and consistent, follow these best practices when writi
 
 ## Communication and Community Guidelines
 
-We strive to maintain a welcoming, inclusive, and collaborative community around Blok CN. To promote positive interactions and effective collaboration, please observe the following guidelines:
+We strive to maintain a welcoming, inclusive, and collaborative community around Blok. To promote positive interactions and effective collaboration, please observe the following guidelines:
 
 - Communicate respectfully and courteously in all project-related discussions, including issues, pull requests, forums, and chat channels.
 - Be open to feedback and differing viewpoints, and respond thoughtfully and constructively.
@@ -68,4 +68,4 @@ After you submit a pull request:
 
 ## Acknowledgement
 
-Thank you for contributing to Blok CN. Your work helps build a stronger, more robust library for the entire community. We appreciate your time, skill, and passion.
+Thank you for contributing to Blok. Your work helps build a stronger, more robust library for the entire community. We appreciate your time, skill, and passion.

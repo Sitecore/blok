@@ -4,6 +4,7 @@ import { cn } from "@/lib/utils"
 
 interface SpinnerProps extends React.HTMLAttributes<HTMLDivElement> {
   size?: "xs" | "sm" | "md" | "lg" | "xl"
+  variant?: "default" | "circular"
   message?: string
   withOverlay?: boolean
   fullscreen?: boolean
@@ -19,6 +20,7 @@ const sizeClasses = {
 
 function Spinner({
   size = "md",
+  variant = "default",
   className,
   message,
   withOverlay = false,
@@ -26,8 +28,9 @@ function Spinner({
   ...props
 }: SpinnerProps) {
   const spinnerClasses = cn(
-    "inline-block rounded-full animate-spin border-4",
+    "inline-block rounded-full border-4",
     "border-t-purple-600 border-r-purple-600 border-b-gray-200 border-l-gray-200",
+    variant === "circular" && "animate-spin",
     sizeClasses[size],
     className
   )

@@ -319,6 +319,7 @@ export const rightSidebarMetadata: Record<string, RightSidebarMetadata> = {
   },
   draggable: {
     links: {
+      documentation: "https://docs.dndkit.com/",
     },
     sections: [
       { id: "preview", title: "Preview" },
@@ -331,6 +332,7 @@ export const rightSidebarMetadata: Record<string, RightSidebarMetadata> = {
           { id: "basic-drag-and-drop", title: "Basic Drag and Drop" },
           { id: "sortable-list", title: "Sortable List" },
           { id: "custom-handle", title: "Custom Handle" },
+          { id: "drag,-drop-&-sort", title: "Drag, Drop & Sort" },
         ],
       },
     ],
@@ -679,6 +681,7 @@ export const rightSidebarMetadata: Record<string, RightSidebarMetadata> = {
         id: "examples",
         title: "Examples",
         children: [
+          { id: "variants", title: "Variants" },
           { id: "with-text-spinner", title: "With Text Spinner" },
         ],
       },
