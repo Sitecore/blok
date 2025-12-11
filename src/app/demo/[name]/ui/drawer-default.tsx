@@ -68,7 +68,7 @@ export function DrawerDefault() {
     return (
         <Drawer>
             <DrawerTrigger asChild>
-                <Button variant="outline" colorScheme="neutral">Open Drawer</Button>
+                <Button variant="default">Open Drawer</Button>
             </DrawerTrigger>
             <DrawerContent>
                 <div className="mx-auto w-full max-w-sm">

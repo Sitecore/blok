@@ -58,8 +58,7 @@ export function DrawerDirections() {
         <Drawer key={direction} direction={direction}>
           <DrawerTrigger asChild>
             <Button
-              variant="outline"
-              colorScheme="neutral"
+              variant="default"
               className="capitalize"
             >
               {direction}
