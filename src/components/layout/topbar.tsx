@@ -372,7 +372,7 @@ export default function TopBar() {
           <div className="lg:hidden">
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <Button variant="ghost" size="icon">
+                <Button variant="ghost" size="icon" aria-label="Open navigation menu">
                   <Icon path={mdiMenu} size={1} />
                 </Button>
               </DropdownMenuTrigger>
@@ -546,12 +546,13 @@ export default function TopBar() {
               href={externalLinks?.Block_github || ""}
               target="_blank"
               rel="noopener noreferrer"
+              aria-label="View GitHub repository"
             >
               <Icon path={mdiGithub} size={1} />
             </a>
           </Button>
 
-          <Button variant="ghost" size="icon" onClick={toggleDarkMode} className="hover:bg-muted active:bg-muted">
+          <Button variant="ghost" size="icon" onClick={toggleDarkMode} className="hover:bg-muted active:bg-muted" aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}>
             <Icon path={mdiCircleHalfFull} size={1} />
           </Button>
         </div>

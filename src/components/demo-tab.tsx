@@ -15,7 +15,7 @@ export default function DemoTab({ id, code, component, defaultTab = "preview" }:
             <TabsList className="w-full rounded-none justify-start">
                 <TabsTrigger value="preview">Preview</TabsTrigger>
                 <TabsTrigger value="code">Code</TabsTrigger>
-                <TabsTrigger value="" className="w-full pointer-events-none"></TabsTrigger>
+                <TabsTrigger value="" className="w-full pointer-events-none" aria-hidden="true" tabIndex={-1}></TabsTrigger>
 
             </TabsList>
             <TabsContent value="preview" className="min-h-[200px] p-8 bg-subtle-bg flex items-center justify-center rounded-b-md">
