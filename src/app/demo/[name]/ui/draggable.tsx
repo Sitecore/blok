@@ -1,6 +1,7 @@
 import { BasicDragDrop } from "./draggable-basic";
 import { SortableListDemo } from "./draggable-sortable-list";
 import { CustomHandleDemo } from "./draggable-custom-handle";
+import { DragDropSortableDemo } from "./draggable-sortable-drop";
 
 export const draggable = {
   name: "draggable",
@@ -8,12 +9,33 @@ export const draggable = {
     <BasicDragDrop />
   ),
   usage: [
-    `import { DragDropProvider } from "@/components/ui/drag-drop-context";\nimport { Draggable } from "@/components/ui/draggable";`,
-    `<DragDropProvider>\n <Draggable id="draggable-demo">\n  <div>\n   <p className="text-white">Draggable</p>\n  </div>\n </Draggable>\n</DragDropProvider>`,
+    `import { DndContext, DragEndEvent } from "@/components/ui/dnd-context";
+import { Draggable } from "@/components/ui/draggable";
+import { Droppable } from "@/components/ui/droppable";`,
+    `function App() {
+  const handleDragEnd = (event: DragEndEvent) => {
+    const { active, over } = event;
+    if (over) {
+      console.log(\`Dropped \${active.id} over \${over.id}\`);
+    }
+  };
+
+  return (
+    <DndContext onDragEnd={handleDragEnd}>
+      <Draggable id="draggable-1">
+        <div>Drag me</div>
+      </Draggable>
+      <Droppable id="droppable-1">
+        <div>Drop here</div>
+      </Droppable>
+    </DndContext>
+  );
+}`,
   ],
   components: {
     "Basic Drag and Drop": <BasicDragDrop />,
     "Sortable List": <SortableListDemo />,
-    "Custom Handle": <CustomHandleDemo />
+    "Custom Handle": <CustomHandleDemo />,
+    "Drag, Drop & Sort": <DragDropSortableDemo />
   },
 };
