@@ -55,7 +55,7 @@ export function DragOverlay({
       {...props}
     >
       {children ? (
-        <div className={cn("cursor-grabbing shadow-lg", className)}>
+        <div className={cn("cursor-grabbing", className)}>
           {children}
         </div>
       ) : null}

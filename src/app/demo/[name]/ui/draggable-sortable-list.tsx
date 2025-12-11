@@ -93,7 +93,7 @@ export function SortableListDemo() {
       {/* Drag Overlay for smooth animations */}
       <DragOverlay>
         {activeItem && activeIndex >= 0 ? (
-          <Card className={cn(cardColors[activeIndex % cardColors.length], "shadow-lg")}>
+          <Card className={cn(cardColors[activeIndex % cardColors.length], "shadow-sm")}>
             <CardContent className="p-2.5">
               <div className="flex items-center gap-2">
                 <span className="flex-shrink-0 w-5 h-5 rounded-full bg-card flex items-center justify-center text-[10px] font-semibold text-foreground">

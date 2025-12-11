@@ -252,7 +252,7 @@ export function DragDropSortableDemo() {
       {/* Drag Overlay */}
       <DragOverlay>
         {activeItem ? (
-          <Card className={cn(getCardColor(activeItem.id), "shadow-lg")}>
+          <Card className={cn(getCardColor(activeItem.id), "shadow-sm")}>
             <CardContent className="p-2.5">
               <div className="flex items-center gap-2">
                 {activeIndexInFavorites >= 0 && (
