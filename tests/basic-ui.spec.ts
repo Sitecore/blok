@@ -8,6 +8,7 @@ import { testAvatar, testFallbackAvatar, testInteractiveAvatar, testLargeAvatar 
 import { testBadge, testBadgeBold, testBadgeClosable, testBadgeColor, testBadgeLink, testBadgeSize } from './test-Components/test-Badge';
 import { testBreadcrumb, testBreadcrumbItemLinks } from './test-Components/test-BreadCrumb';
 import { testSingleCalendar } from './test-Components/test-Calendar';
+import { testCardElevation, testCardPadding, testCardStyle, testDefaultCard } from './test-Components/test-Card';
 
 
 test.describe('UI BLOK QA Automation', () => {
@@ -70,6 +71,13 @@ test.describe('UI BLOK QA Automation', () => {
 
   test('test_Calendar', async ({ page }) => {
     await testSingleCalendar(page);
+  });
+
+  test('test_Card', async ({ page }) => {
+    await testDefaultCard(page);
+    await testCardElevation(page);
+    await testCardStyle(page);
+    await testCardPadding(page);
   });
 
   test('close', async ({ page }) => {
