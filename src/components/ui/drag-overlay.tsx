@@ -3,6 +3,7 @@
 import * as React from "react";
 import { DragOverlay as DndKitDragOverlay, type DragOverlayProps as DndKitDragOverlayProps } from "@dnd-kit/core";
 import { cn } from "@/lib/utils";
+import { useDndMounted } from "./dnd-context";
 
 export interface DragOverlayProps extends DndKitDragOverlayProps {
   /** Additional class names for the overlay wrapper */
@@ -41,6 +42,13 @@ export function DragOverlay({
   },
   ...props
 }: DragOverlayProps) {
+  const isMounted = useDndMounted();
+
+  // Don't render on server
+  if (!isMounted) {
+    return null;
+  }
+
   return (
     <DndKitDragOverlay
       dropAnimation={dropAnimation}

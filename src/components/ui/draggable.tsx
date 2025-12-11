@@ -4,6 +4,7 @@ import * as React from "react";
 import { useDraggable, type UniqueIdentifier } from "@dnd-kit/core";
 import { CSS } from "@dnd-kit/utilities";
 import { cn } from "@/lib/utils";
+import { useDndMounted } from "./dnd-context";
 
 export interface DraggableProps extends Omit<React.HTMLAttributes<HTMLDivElement>, "id"> {
   /** Unique identifier for this draggable item */
@@ -17,7 +18,7 @@ export interface DraggableProps extends Omit<React.HTMLAttributes<HTMLDivElement
   children: React.ReactNode;
 }
 
-export function Draggable({
+function DraggableInner({
   id,
   disabled = false,
   data,
@@ -61,6 +62,40 @@ export function Draggable({
     >
       {children}
     </Component>
+  );
+}
+
+export function Draggable({
+  children,
+  className,
+  as: Component = "div",
+  id,
+  disabled,
+  data,
+  ...props
+}: DraggableProps) {
+  const isMounted = useDndMounted();
+
+  // Render static version on server
+  if (!isMounted) {
+    return (
+      <Component className={className} {...props}>
+        {children}
+      </Component>
+    );
+  }
+
+  return (
+    <DraggableInner
+      className={className}
+      as={Component}
+      id={id}
+      disabled={disabled}
+      data={data}
+      {...props}
+    >
+      {children}
+    </DraggableInner>
   );
 }
 

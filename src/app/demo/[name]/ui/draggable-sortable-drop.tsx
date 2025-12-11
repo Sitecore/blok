@@ -4,7 +4,6 @@ import * as React from "react";
 import {
   DndContext,
   DragEndEvent,
-  DragOverEvent,
   DragStartEvent,
   SortableContainer,
   arrayMove,
@@ -81,47 +80,8 @@ export function DragDropSortableDemo() {
     setActiveItem(fromSource || fromFavorites || null);
   };
 
-  const handleDragOver = (event: DragOverEvent) => {
-    const { active, over } = event;
-    if (!over) return;
-
-    const activeId = active.id as string;
-    const overId = over.id as string;
-
-    // Check if dragging from source to favorites
-    const isFromSource = sourceCards.some((c) => c.id === activeId);
-    const isFromFavorites = favoriteCards.some((c) => c.id === activeId);
-    const isOverFavorites = overId === "favorites-drop" || favoriteCards.some((c) => c.id === overId);
-    const isOverSource = overId === "source-drop" || sourceCards.some((c) => c.id === overId);
-
-    // Move from source to favorites
-    if (isFromSource && isOverFavorites) {
-      const cardToMove = sourceCards.find((c) => c.id === activeId);
-      if (cardToMove && !favoriteCards.some((c) => c.id === activeId)) {
-        setSourceCards((prev) => prev.filter((c) => c.id !== activeId));
-        
-        const overIndex = favoriteCards.findIndex((c) => c.id === overId);
-        if (overIndex >= 0) {
-          setFavoriteCards((prev) => {
-            const newItems = [...prev];
-            newItems.splice(overIndex, 0, cardToMove);
-            return newItems;
-          });
-        } else {
-          setFavoriteCards((prev) => [...prev, cardToMove]);
-        }
-      }
-    }
-
-    // Move from favorites back to source
-    if (isFromFavorites && isOverSource) {
-      const cardToMove = favoriteCards.find((c) => c.id === activeId);
-      if (cardToMove && !sourceCards.some((c) => c.id === activeId)) {
-        setFavoriteCards((prev) => prev.filter((c) => c.id !== activeId));
-        setSourceCards((prev) => [...prev, cardToMove]);
-      }
-    }
-  };
+  // Note: We intentionally don't modify state in handleDragOver to avoid infinite re-renders.
+  // All item transfers are handled in handleDragEnd.
 
   const handleDragEnd = (event: DragEndEvent) => {
     const { active, over } = event;
@@ -133,36 +93,50 @@ export function DragDropSortableDemo() {
     const activeId = active.id as string;
     const overId = over.id as string;
 
-    // Handle sorting within favorites
-    const isActiveInFavorites = favoriteCards.some((c) => c.id === activeId);
+    const isFromSource = sourceCards.some((c) => c.id === activeId);
+    const isFromFavorites = favoriteCards.some((c) => c.id === activeId);
     const isOverInFavorites = favoriteCards.some((c) => c.id === overId);
+    const isOverInSource = sourceCards.some((c) => c.id === overId);
 
-    if (isActiveInFavorites && isOverInFavorites && activeId !== overId) {
+    // Handle sorting within favorites
+    if (isFromFavorites && isOverInFavorites && activeId !== overId) {
       setFavoriteCards((prev) => {
         const oldIndex = prev.findIndex((c) => c.id === activeId);
         const newIndex = prev.findIndex((c) => c.id === overId);
         return arrayMove(prev, oldIndex, newIndex);
       });
+      return;
     }
 
-    // Handle dropping from source to empty favorites list
-    const isFromSource = sourceCards.some((c) => c.id === activeId);
-    if (isFromSource && overId === "favorites-drop") {
+    // Handle dropping from source to favorites (either container or item)
+    if (isFromSource && (overId === "favorites-drop" || isOverInFavorites)) {
       const cardToMove = sourceCards.find((c) => c.id === activeId);
       if (cardToMove) {
         setSourceCards((prev) => prev.filter((c) => c.id !== activeId));
-        setFavoriteCards((prev) => [...prev, cardToMove]);
+        if (isOverInFavorites) {
+          // Insert at the position of the item we're hovering over
+          const overIndex = favoriteCards.findIndex((c) => c.id === overId);
+          setFavoriteCards((prev) => {
+            const newItems = [...prev];
+            newItems.splice(overIndex, 0, cardToMove);
+            return newItems;
+          });
+        } else {
+          // Append to the end
+          setFavoriteCards((prev) => [...prev, cardToMove]);
+        }
       }
+      return;
     }
 
-    // Handle dropping from favorites to source
-    const isFromFavorites = favoriteCards.some((c) => c.id === activeId);
-    if (isFromFavorites && overId === "source-drop") {
+    // Handle dropping from favorites to source (either container or item)
+    if (isFromFavorites && (overId === "source-drop" || isOverInSource)) {
       const cardToMove = favoriteCards.find((c) => c.id === activeId);
       if (cardToMove) {
         setFavoriteCards((prev) => prev.filter((c) => c.id !== activeId));
         setSourceCards((prev) => [...prev, cardToMove]);
       }
+      return;
     }
   };
 
@@ -180,7 +154,6 @@ export function DragDropSortableDemo() {
     <DndContext
       collisionDetection={closestCorners}
       onDragStart={handleDragStart}
-      onDragOver={handleDragOver}
       onDragEnd={handleDragEnd}
       onDragCancel={handleDragCancel}
     >

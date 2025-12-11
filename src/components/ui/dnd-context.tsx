@@ -24,6 +24,13 @@ import {
   type SortingStrategy,
 } from "@dnd-kit/sortable";
 
+// Context to track if DndContext is mounted (client-side only)
+const DndMountedContext = React.createContext(false);
+
+export function useDndMounted() {
+  return React.useContext(DndMountedContext);
+}
+
 export interface DndContextProps {
   children: React.ReactNode;
   onDragStart?: (event: DragStartEvent) => void;
@@ -43,6 +50,13 @@ export function DndContext({
   onDragCancel,
   collisionDetection = closestCenter,
 }: DndContextProps) {
+  // Prevent hydration mismatch by only rendering DndKit on client
+  const [isMounted, setIsMounted] = React.useState(false);
+  
+  React.useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
   const sensors = useSensors(
     useSensor(PointerSensor, {
       activationConstraint: {
@@ -54,18 +68,29 @@ export function DndContext({
     })
   );
 
+  // Render children with mounted context but without DndKit on server
+  if (!isMounted) {
+    return (
+      <DndMountedContext.Provider value={false}>
+        {children}
+      </DndMountedContext.Provider>
+    );
+  }
+
   return (
-    <DndKitContext
-      sensors={sensors}
-      collisionDetection={collisionDetection}
-      onDragStart={onDragStart}
-      onDragMove={onDragMove}
-      onDragOver={onDragOver}
-      onDragEnd={onDragEnd}
-      onDragCancel={onDragCancel}
-    >
-      {children}
-    </DndKitContext>
+    <DndMountedContext.Provider value={true}>
+      <DndKitContext
+        sensors={sensors}
+        collisionDetection={collisionDetection}
+        onDragStart={onDragStart}
+        onDragMove={onDragMove}
+        onDragOver={onDragOver}
+        onDragEnd={onDragEnd}
+        onDragCancel={onDragCancel}
+      >
+        {children}
+      </DndKitContext>
+    </DndMountedContext.Provider>
   );
 }
 
@@ -80,12 +105,19 @@ export function SortableContainer({
   items,
   strategy = "vertical",
 }: SortableContainerProps) {
+  const isMounted = useDndMounted();
+
   const sortingStrategy: SortingStrategy =
     strategy === "horizontal"
       ? horizontalListSortingStrategy
       : strategy === "grid"
         ? rectSortingStrategy
         : verticalListSortingStrategy;
+
+  // Render children without SortableContext on server
+  if (!isMounted) {
+    return <>{children}</>;
+  }
 
   return (
     <SortableContext items={items} strategy={sortingStrategy}>

@@ -5,15 +5,25 @@ import { useSortable, type AnimateLayoutChanges, defaultAnimateLayoutChanges } f
 import { CSS } from "@dnd-kit/utilities";
 import type { UniqueIdentifier } from "@dnd-kit/core";
 import { cn } from "@/lib/utils";
+import { useDndMounted } from "./dnd-context";
 
 // Context for passing sortable props to handles
 interface SortableContextValue {
   listeners: ReturnType<typeof useSortable>["listeners"];
   attributes: ReturnType<typeof useSortable>["attributes"];
   isDragging: boolean;
+  isMounted: boolean;
 }
 
-const SortableItemContext = React.createContext<SortableContextValue | null>(null);
+// Default context value for server-side rendering
+const defaultContextValue: SortableContextValue = {
+  listeners: undefined,
+  attributes: {} as ReturnType<typeof useSortable>["attributes"],
+  isDragging: false,
+  isMounted: false,
+};
+
+const SortableItemContext = React.createContext<SortableContextValue>(defaultContextValue);
 
 export interface SortableItemProps extends Omit<React.HTMLAttributes<HTMLElement>, "id"> {
   /** Unique identifier for this sortable item */
@@ -32,7 +42,7 @@ export interface SortableItemProps extends Omit<React.HTMLAttributes<HTMLElement
 const animateLayoutChanges: AnimateLayoutChanges = (args) => 
   defaultAnimateLayoutChanges({ ...args, wasDragging: true });
 
-export function SortableItem({
+function SortableItemInner({
   id,
   disabled = false,
   data,
@@ -67,7 +77,7 @@ export function SortableItem({
 
   // Context value for child handles
   const contextValue = React.useMemo(
-    () => ({ listeners, attributes, isDragging }),
+    () => ({ listeners, attributes, isDragging, isMounted: true }),
     [listeners, attributes, isDragging]
   );
 
@@ -98,6 +108,44 @@ export function SortableItem({
   );
 }
 
+export function SortableItem({
+  children,
+  className,
+  as: Component = "div",
+  id,
+  disabled,
+  data,
+  withHandle,
+  ...props
+}: SortableItemProps) {
+  const isMounted = useDndMounted();
+
+  // Render static version on server with default context
+  if (!isMounted) {
+    return (
+      <SortableItemContext.Provider value={defaultContextValue}>
+        <Component className={className} {...props}>
+          {children}
+        </Component>
+      </SortableItemContext.Provider>
+    );
+  }
+
+  return (
+    <SortableItemInner
+      className={className}
+      as={Component}
+      id={id}
+      disabled={disabled}
+      data={data}
+      withHandle={withHandle}
+      {...props}
+    >
+      {children}
+    </SortableItemInner>
+  );
+}
+
 /**
  * Hook to get sortable listeners and attributes for a custom drag handle.
  * Must be used within a SortableItem with withHandle={true}.
@@ -119,11 +167,7 @@ export function SortableItem({
  * ```
  */
 export function useSortableItemContext() {
-  const context = React.useContext(SortableItemContext);
-  if (!context) {
-    throw new Error("useSortableItemContext must be used within a SortableItem");
-  }
-  return context;
+  return React.useContext(SortableItemContext);
 }
 
 export interface SortableHandleProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -141,7 +185,19 @@ export function SortableHandle({
   as: Component = "div",
   ...props
 }: SortableHandleProps) {
-  const { listeners, attributes, isDragging } = useSortableItemContext();
+  const { listeners, attributes, isDragging, isMounted } = useSortableItemContext();
+
+  // Render static version when not mounted
+  if (!isMounted) {
+    return (
+      <Component
+        className={cn("cursor-grab touch-none", className)}
+        {...props}
+      >
+        {children}
+      </Component>
+    );
+  }
 
   return (
     <Component

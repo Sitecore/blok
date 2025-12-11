@@ -3,6 +3,7 @@
 import * as React from "react";
 import { useDroppable, type UniqueIdentifier } from "@dnd-kit/core";
 import { cn } from "@/lib/utils";
+import { useDndMounted } from "./dnd-context";
 
 export interface DroppableProps extends Omit<React.HTMLAttributes<HTMLDivElement>, "id"> {
   /** Unique identifier for this droppable area */
@@ -16,7 +17,7 @@ export interface DroppableProps extends Omit<React.HTMLAttributes<HTMLDivElement
   children: React.ReactNode;
 }
 
-export function Droppable({
+function DroppableInner({
   id,
   disabled = false,
   data,
@@ -47,6 +48,40 @@ export function Droppable({
     >
       {children}
     </Component>
+  );
+}
+
+export function Droppable({
+  children,
+  className,
+  as: Component = "div",
+  id,
+  disabled,
+  data,
+  ...props
+}: DroppableProps) {
+  const isMounted = useDndMounted();
+
+  // Render static version on server
+  if (!isMounted) {
+    return (
+      <Component className={className} {...props}>
+        {children}
+      </Component>
+    );
+  }
+
+  return (
+    <DroppableInner
+      className={className}
+      as={Component}
+      id={id}
+      disabled={disabled}
+      data={data}
+      {...props}
+    >
+      {children}
+    </DroppableInner>
   );
 }
 
