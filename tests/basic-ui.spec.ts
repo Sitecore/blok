@@ -9,6 +9,7 @@ import { testBadge, testBadgeBold, testBadgeClosable, testBadgeColor, testBadgeL
 import { testBreadcrumb, testBreadcrumbItemLinks } from './test-Components/test-BreadCrumb';
 import { testSingleCalendar } from './test-Components/test-Calendar';
 import { testCardElevation, testCardPadding, testCardStyle, testDefaultCard } from './test-Components/test-Card';
+import { testDefaultCarousel } from './test-Components/test-Carousel';
 
 
 test.describe('UI BLOK QA Automation', () => {
@@ -78,6 +79,10 @@ test.describe('UI BLOK QA Automation', () => {
     await testCardElevation(page);
     await testCardStyle(page);
     await testCardPadding(page);
+  });
+
+  test('test_Carousel', async ({ page }) => {
+    await testDefaultCarousel(page);
   });
 
   test('close', async ({ page }) => {

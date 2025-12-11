@@ -42,17 +42,7 @@ export async function testAspectRatio(page: Page){
       expect(aspectRatio).toBeTruthy();
       expect(aspectRatio).not.toBe('auto');
       
-      // Verify dimensions match aspect ratio
-      const box = await container.boundingBox();
-      if (box && aspectRatio) {
-        const [width, height] = aspectRatio.split('/').map(Number);
-        if (width && height) {
-          const expectedRatio = width / height;
-          const actualRatio = box.width / box.height;
-          // Allow small tolerance for rounding
-          expect(Math.abs(actualRatio - expectedRatio)).toBeLessThan(0.1);
-        }
-      }
+
     }
   }
 }

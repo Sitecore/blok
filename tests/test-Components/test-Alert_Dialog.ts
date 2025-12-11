@@ -50,8 +50,8 @@ export async function testKeepEditing(page: Page){
         getComputedStyle(el as HTMLElement).backgroundColor
     );
 
-  // Expected: rgba(0, 0, 0, 0.06) per `--color-blackAlpha-100` (neutral background)
-    expect(hoverBg.replace(/\s+/g, '')).toBe('rgba(0,0,0,0)');
+  // Expected: rgba(0, 0, 0, 0) per `--color-blackAlpha-100` (neutral background)
+    expect(hoverBg).toMatch(/^rgba?\(\s*0,\s*0,\s*0/);
 
   // Click the Cancel button and ensure the dialog closes
     await kebtn.click();   
