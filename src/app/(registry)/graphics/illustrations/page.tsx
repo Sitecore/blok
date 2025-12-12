@@ -375,7 +375,7 @@ export default function IllustrationsPage() {
                         >
                           <img
                             src={`https://delivery-sitecore.sitecorecontenthub.cloud/api/public/content/spot-${name}`}
-                            alt={name}
+                            alt={`${name} illustration`}
                             className="max-w-[64px] h-auto object-contain"
                           />
                         </div>
@@ -396,7 +396,7 @@ export default function IllustrationsPage() {
                         >
                           <img
                             src={`https://delivery-sitecore.sitecorecontenthub.cloud/api/public/content/spot-${name}-neutral`}
-                            alt={`${name} neutral`}
+                            alt={`${name} illustration neutral variant`}
                             className="max-w-[64px] h-auto object-contain"
                           />
                         </div>

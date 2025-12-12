@@ -24,12 +24,12 @@ export default function Topbar() {
           <div className="flex items-center gap-1">
             <span className="text-xl font-bold text-red-500">
               <img
-                alt="Logo"
+                alt="blok logo"
                 className="flex-shrink-0 flex-grow-0 rounded-md object-cover object-left p-1 block dark:hidden"
                 src="https://delivery-sitecore.sitecorecontenthub.cloud/api/public/content/logo-sitecore"
               />
               <img
-                alt="Logo"
+                alt="blok logo"
                 className="flex-shrink-0 flex-grow-0 rounded-md object-cover object-left p-1 hidden dark:block"
                 src="https://delivery-sitecore.sitecorecontenthub.cloud/api/public/content/logo-sitecore-dark"
               />
