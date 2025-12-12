@@ -16,6 +16,7 @@ import { testCollapsible } from './test-Components/test-Collapsible';
 import { testCombobx } from './test-Components/test-Combobox';
 import { testCommand } from './test-Components/test-Command';
 import { testContextMenu } from './test-Components/test-Context_menu';
+import { testSingleDatePicker } from './test-Components/test-Date_picker';
 
 test.describe('UI BLOK QA Automation', () => {
 
@@ -115,6 +116,10 @@ test.describe('UI BLOK QA Automation', () => {
 
   test('test_Context_menu', async ({ page }) => {
     await testContextMenu(page);
+  });
+
+  test('test_Date_picker', async ({ page }) => {
+    await testSingleDatePicker(page);
   });
 
   test('close', async ({ page }) => {

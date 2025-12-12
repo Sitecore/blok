@@ -1,13 +1,22 @@
 import { test, expect, Page } from '@playwright/test';
 
-export async function testSingleCalendar(page: Page){
-    // Check that calendar is visible
-    const calendar = page.locator('[data-slot="calendar"]');
-    await expect(calendar).toBeVisible();
+export async function testSingleDatePicker(page: Page){
+    // Verify that date picker button is visible
+    const datePickerButton = page.locator('[data-slot="popover-trigger"]');
+    //const datePickerButton = page.locator('button:has-text("Pick a date")').last();
+    await expect(datePickerButton).toBeVisible();
+    await expect(datePickerButton).toContainText('Pick a date');
+    await expect(page.locator('[class="text-muted-foreground"]')).toBeVisible();
 
-    // Verify calendar has a table structure (react-day-picker uses table)
-    const table = calendar.locator('table');
-    await expect(table).toBeVisible();
+    // Verify that open calendar popover when button is clicked
+    await datePickerButton.click();
+    const popoverContent = page.locator('[data-slot="popover-content"]').last();
+    await expect(popoverContent).toBeVisible();
+
+    // Verify calendar is visible inside popover
+    const calendar = popoverContent.locator('[data-slot="calendar"]');
+    await expect(calendar).toBeVisible();    
+
 
     // Verify that navigate to previous month when previous button is clicked
     const prevButton = page.locator('[aria-label="Go to the Previous Month"]').first();
@@ -19,29 +28,6 @@ export async function testSingleCalendar(page: Page){
     await nextButton.click();
     await expect(calendar).toBeVisible();
 
-    // Verify weekday headers are visible (typically 7 days)
-    const weekdays = calendar.locator('thead tr th');
-    const weekdaycount = await weekdays.count();
-    expect(weekdaycount).toBe(7);
-    for (let i = 0; i < weekdaycount; i++) {
-      await expect(weekdays.nth(i)).toBeVisible();
-    }
-
-    // Verify all day buttons are visible
-    const dayButtons = calendar.locator('button[data-day]');
-    const daycount = await dayButtons.count();
-    expect(daycount).toBeGreaterThanOrEqual(28);
-    for (let i = 0; i < Math.min(daycount, 7); i++) {
-      await expect(dayButtons.nth(i)).toBeVisible();
-    }
-
-    // Verify default selected date (June 12, 2025)
-    const selectedDay = calendar.locator('button[data-selected="true"]');
-    await expect(selectedDay).toBeVisible();
-    const dayValue = await selectedDay.getAttribute('data-day');
-    expect(dayValue).toBeTruthy();
-    expect(dayValue).toContain('6/12/2025');
-
     // Verify display month options in dropdown
     const monthDropdown = calendar.locator('[data-slot="select-trigger"]').first();
     await monthDropdown.click();
@@ -51,9 +37,9 @@ export async function testSingleCalendar(page: Page){
     const expectedMonths = [
         /Jan/i, /Feb/i, /Mar/i, /Apr/i, /May/i, /Jun/i,
         /Jul/i, /Aug/i, /Sep/i, /Oct/i, /Nov/i, /Dec/i
-      ];
-      
-      // Verify all month options are visible
+    ];
+
+    // Verify all month options are visible
       const monthTexts = await monthOptions.allTextContents();
       expect(monthTexts.length).toBe(12);
       for (const monthPattern of expectedMonths) {
@@ -66,7 +52,7 @@ export async function testSingleCalendar(page: Page){
     if (await januaryOption.count() > 0) {
       await januaryOption.click();
       
-      // Dropdown should close
+    // Verify that dropdown is closed
       await expect(monthdropdownContent).not.toBeVisible();
     } 
 
@@ -84,28 +70,27 @@ export async function testSingleCalendar(page: Page){
     if (await otherYearOption.count() > 0) {
       await otherYearOption.click();
       
-      // Dropdown should close
+      // Verify that dropdown is closed
       await expect(monthdropdownContent).not.toBeVisible();
     } 
 
-    // Select a different day 
-    const otherdayButtons = calendar.locator('button[data-day]');
-    const selectedOtherDay = calendar.locator('button[data-selected="true"]');
-    const todayButton = calendar.locator('button[data-day]').filter({ hasText: new Date().getDate().toString() });
+    // Verify that select a date when day is clicked
+    const dayButtons = calendar.locator('button[data-day]');
+    const targetDay = dayButtons.filter({ hasText: '15' }).first();
 
-    // Click on the different day
-    const otherDay = otherdayButtons.filter({ hasNot: selectedOtherDay }).first();
-    await expect(otherDay).toBeVisible();
-    await otherDay.click();
-    
-    // Wait a bit for the selection to update
-    await page.waitForTimeout(300);
-    
-    // Verify the new day is selected
-    const newSelectedDay = calendar.locator('button[data-selected="true"]');
-    await expect(newSelectedDay).toBeVisible();
-    
-    // Verify it's a different day
-    const newSelectedDayValue = await newSelectedDay.getAttribute('data-day');
-    expect(newSelectedDayValue).not.toBe(todayButton);    
+    if (await targetDay.count() > 0) {
+        await expect(targetDay).toBeVisible();
+        await targetDay.click();
+    }
+
+    // Verify that close popover when clicking outside
+    await page.mouse.click(10, 10);
+    await expect(popoverContent).not.toBeVisible({ timeout: 2000 });
+
+    // Verify that update button text after date selection
+    const buttonText = await datePickerButton.textContent();
+    expect(buttonText).toBeTruthy();
+    expect(buttonText).not.toBe('Pick a date');
+    expect(buttonText).toBe('January 15th, 2024');
+
 }
