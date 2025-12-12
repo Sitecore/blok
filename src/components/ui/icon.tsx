@@ -19,7 +19,8 @@ const iconVariants = cva("inline-flex items-center justify-center", {
             yellow: "text-yellow-800 dark:text-yellow-200",
             teal: "text-teal-800 dark:text-teal-200",
             cyan: "text-cyan-800 dark:text-cyan-200",
-            blue: "text-info-fg",
+            blue: "text-blue-800 dark:text-blue-200",
+            purple: "text-info-fg",
             pink: "text-pink-800 dark:text-pink-200",
         }
     },
@@ -67,6 +68,11 @@ const iconVariants = cva("inline-flex items-center justify-center", {
         {
             variant: "subtle",
             colorScheme: "blue",
+            class: "bg-blue-100 dark:bg-blue-800",
+        },
+        {
+            variant: "subtle",
+            colorScheme: "purple",
             class: "bg-info-bg",
         },
         {
@@ -102,27 +108,32 @@ const iconVariants = cva("inline-flex items-center justify-center", {
         {
             variant: "filled",
             colorScheme: "yellow",
-            class: "bg-yellow-800 dark:bg-yellow-200 text-background",
+            class: "bg-yellow-800 dark:bg-yellow-200 text-background dark:text-background",
         },
         {
             variant: "filled",
             colorScheme: "teal",
-            class: "bg-teal-800 dark:bg-teal-200 text-background",
+            class: "bg-teal-800 dark:bg-teal-200 text-background dark:text-background",
         },
         {
             variant: "filled",
             colorScheme: "cyan",
-            class: "bg-cyan-800 dark:bg-cyan-200 text-background",
+            class: "bg-cyan-800 dark:bg-cyan-200 text-background dark:text-background",
         },
         {
             variant: "filled",
             colorScheme: "blue",
+            class: "bg-blue-800 dark:bg-blue-200 text-background dark:text-background",
+        },
+        {
+            variant: "filled",
+            colorScheme: "purple",
             class: "bg-info-fg text-background",
         },
         {
             variant: "filled",
             colorScheme: "pink",
-            class: "bg-pink-800 dark:bg-pink-200 text-background",
+            class: "bg-pink-800 dark:bg-pink-200 text-background dark:text-background",
         },
     ],
     defaultVariants: {

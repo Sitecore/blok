@@ -53,6 +53,7 @@ export const icon = {
         <Icon path={mdiInformationOutline} colorScheme="cyan" />
         <Icon path={mdiInformationOutline} colorScheme="primary" />
         <Icon path={mdiInformationOutline} colorScheme="blue" />
+        <Icon path={mdiInformationOutline} colorScheme="purple" />
         <Icon path={mdiInformationOutline} colorScheme="pink" />
       </div>
     ),
@@ -67,6 +68,7 @@ export const icon = {
             <Icon path={mdiInformationOutline} variant="subtle" colorScheme="teal" />
             <Icon path={mdiInformationOutline} variant="subtle" colorScheme="cyan" />
             <Icon path={mdiInformationOutline} variant="subtle" colorScheme="blue" />
+            <Icon path={mdiInformationOutline} variant="subtle" colorScheme="purple" />
             <Icon path={mdiInformationOutline} variant="subtle" colorScheme="pink" />
         </div>
     ),
@@ -81,15 +83,16 @@ export const icon = {
             <Icon path={mdiInformationOutline} variant="filled" colorScheme="teal" />
             <Icon path={mdiInformationOutline} variant="filled" colorScheme="cyan" />
             <Icon path={mdiInformationOutline} variant="filled" colorScheme="blue" />
+            <Icon path={mdiInformationOutline} variant="filled" colorScheme="purple" />
             <Icon path={mdiInformationOutline} variant="filled" colorScheme="pink" />
         </div>
     ),
     "Sitecore Logos": (
       <div className="flex items-center justify-center gap-4">
-        <Icon path={iconXmCloud} variant="default" />
-        <Icon path={iconContentHubOne} variant="subtle" />
-        <Icon path={iconPersonalize} variant="filled" />
-        <Icon path={iconOrdercloud} variant="filled" />
+        <Icon path={iconXmCloud} variant="default" colorScheme="neutral" />
+        <Icon path={iconContentHubOne} variant="subtle" colorScheme="primary" />
+        <Icon path={iconPersonalize} variant="subtle" colorScheme="danger" />
+        <Icon path={iconOrdercloud} variant="filled" colorScheme="cyan" />
       </div>
     )
   },
