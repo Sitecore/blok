@@ -1,91 +1,120 @@
 "use client";
 
 import * as React from "react";
-import { Draggable as DndDraggable } from "@dnd-kit/dom";
-import { useDragDropContext } from "./drag-drop-context";
-import { getElementFromRef } from "@/lib/drag-drop-utils";
+import { useDraggable, type UniqueIdentifier } from "@dnd-kit/core";
+import { CSS } from "@dnd-kit/utilities";
 import { cn } from "@/lib/utils";
+import { useDndMounted } from "./dnd-context";
 
-export interface DraggableProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'id' | 'onDragStart' | 'onDragEnd'> {
-  id: string | number;
+export interface DraggableProps extends Omit<React.HTMLAttributes<HTMLDivElement>, "id"> {
+  /** Unique identifier for this draggable item */
+  id: UniqueIdentifier;
+  /** Whether dragging is disabled */
   disabled?: boolean;
-  handle?: React.RefObject<HTMLElement> | HTMLElement;
-  onDragStart?: (event: { id: string | number }) => void;
-  onDragEnd?: (event: { id: string | number; canceled: boolean }) => void;
+  /** Optional data to pass along with drag events */
+  data?: Record<string, unknown>;
+  /** Element type to render (default: div) */
+  as?: React.ElementType;
   children: React.ReactNode;
 }
 
-export function Draggable({
+function DraggableInner({
   id,
   disabled = false,
-  handle,
-  onDragStart,
-  onDragEnd,
+  data,
   children,
   className,
+  as: Component = "div",
   ...props
 }: DraggableProps) {
-  const { manager } = useDragDropContext();
-  const elementRef = React.useRef<HTMLDivElement>(null);
-  const draggableRef = React.useRef<DndDraggable | null>(null);
-  const [isDragging, setIsDragging] = React.useState(false);
+  const {
+    attributes,
+    listeners,
+    setNodeRef,
+    transform,
+    isDragging,
+  } = useDraggable({
+    id,
+    disabled,
+    data,
+  });
 
-  React.useEffect(() => {
-    if (!elementRef.current) return;
-
-    const handleElement = getElementFromRef(handle);
-
-    draggableRef.current = new DndDraggable(
-      {
-        id,
-        element: elementRef.current,
-        handle: handleElement || undefined,
-        disabled,
-      },
-      manager
-    );
-
-    const handleDragStart = (event: any) => {
-      if (event.operation.source?.id === id) {
-        setIsDragging(true);
-        onDragStart?.({ id });
-      }
-    };
-
-    const handleDragEnd = (event: any) => {
-      if (event.operation.source?.id === id) {
-        setIsDragging(false);
-        onDragEnd?.({ id, canceled: event.canceled });
-      }
-    };
-
-    manager.monitor.addEventListener("dragstart", handleDragStart);
-    manager.monitor.addEventListener("dragend", handleDragEnd);
-
-    return () => {
-      manager.monitor.removeEventListener("dragstart", handleDragStart);
-      manager.monitor.removeEventListener("dragend", handleDragEnd);
-      draggableRef.current?.destroy();
-      draggableRef.current = null;
-    };
-  }, [id, disabled, manager, onDragStart, onDragEnd, handle]);
-
-  React.useEffect(() => {
-    if (draggableRef.current) {
-      draggableRef.current.disabled = disabled;
-    }
-  }, [disabled]);
+  const style: React.CSSProperties = {
+    transform: CSS.Translate.toString(transform),
+  };
 
   return (
-    <div
-      ref={elementRef}
+    <Component
+      ref={setNodeRef}
+      style={style}
       data-draggable-id={id}
       data-dragging={isDragging}
       className={cn(
-        isDragging && "opacity-50 cursor-grabbing",
-        !isDragging && "cursor-grab",
+        isDragging && "opacity-50 z-50",
+        !disabled && "cursor-grab",
+        isDragging && "cursor-grabbing",
+        disabled && "cursor-not-allowed opacity-60",
         className
       )}
+      {...listeners}
+      {...attributes}
+      {...props}
+    >
+      {children}
+    </Component>
+  );
+}
+
+export function Draggable({
+  children,
+  className,
+  as: Component = "div",
+  id,
+  disabled,
+  data,
+  ...props
+}: DraggableProps) {
+  const isMounted = useDndMounted();
+
+  // Render static version on server
+  if (!isMounted) {
+    return (
+      <Component className={className} {...props}>
+        {children}
+      </Component>
+    );
+  }
+
+  return (
+    <DraggableInner
+      className={className}
+      as={Component}
+      id={id}
+      disabled={disabled}
+      data={data}
+      {...props}
+    >
+      {children}
+    </DraggableInner>
+  );
+}
+
+export interface DraggableHandleProps extends React.HTMLAttributes<HTMLDivElement> {
+  children: React.ReactNode;
+}
+
+/**
+ * Use this component to create a drag handle within a Draggable.
+ * Pass the listeners and attributes from useDraggable to this component.
+ */
+export function DraggableHandle({
+  children,
+  className,
+  ...props
+}: DraggableHandleProps) {
+  return (
+    <div
+      className={cn("cursor-grab active:cursor-grabbing", className)}
       {...props}
     >
       {children}
@@ -93,3 +122,5 @@ export function Draggable({
   );
 }
 
+// Re-export the hook for custom implementations
+export { useDraggable } from "@dnd-kit/core";

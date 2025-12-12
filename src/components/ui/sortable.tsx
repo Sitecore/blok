@@ -1,122 +1,213 @@
 "use client";
 
 import * as React from "react";
-import { Sortable as DndSortable } from "@dnd-kit/dom/sortable";
-import { useDragDropContext } from "./drag-drop-context";
-import { getElementFromRef, createSortableTransition, type SortableTransition } from "@/lib/drag-drop-utils";
+import { useSortable, type AnimateLayoutChanges, defaultAnimateLayoutChanges } from "@dnd-kit/sortable";
+import { CSS } from "@dnd-kit/utilities";
+import type { UniqueIdentifier } from "@dnd-kit/core";
 import { cn } from "@/lib/utils";
+import { useDndMounted } from "./dnd-context";
 
-export interface SortableProps extends Omit<React.HTMLAttributes<HTMLElement>, "id"> {
-  id: string | number;
-  index: number;
-  group?: string | number;
-  handle?: React.RefObject<HTMLElement> | HTMLElement;
-  transition?: SortableTransition | null;
+// Context for passing sortable props to handles
+interface SortableContextValue {
+  listeners: ReturnType<typeof useSortable>["listeners"];
+  attributes: ReturnType<typeof useSortable>["attributes"];
+  isDragging: boolean;
+  isMounted: boolean;
+}
+
+// Default context value for server-side rendering
+const defaultContextValue: SortableContextValue = {
+  listeners: undefined,
+  attributes: {} as ReturnType<typeof useSortable>["attributes"],
+  isDragging: false,
+  isMounted: false,
+};
+
+const SortableItemContext = React.createContext<SortableContextValue>(defaultContextValue);
+
+export interface SortableItemProps extends Omit<React.HTMLAttributes<HTMLElement>, "id"> {
+  /** Unique identifier for this sortable item */
+  id: UniqueIdentifier;
+  /** Whether sorting is disabled for this item */
   disabled?: boolean;
-  type?: string | number | Symbol;
-  accepts?: string | number | Symbol | ((type: string | number | Symbol) => boolean);
+  /** Optional data to pass along with drag events */
+  data?: Record<string, unknown>;
+  /** Element type to render (default: div) */
+  as?: React.ElementType;
+  /** Whether to use a handle (if true, spreading listeners won't make the whole element draggable) */
+  withHandle?: boolean;
+  children: React.ReactNode;
+}
+
+const animateLayoutChanges: AnimateLayoutChanges = (args) => 
+  defaultAnimateLayoutChanges({ ...args, wasDragging: true });
+
+function SortableItemInner({
+  id,
+  disabled = false,
+  data,
+  children,
+  className,
+  as: Component = "div",
+  withHandle = false,
+  ...props
+}: SortableItemProps) {
+  const {
+    attributes,
+    listeners,
+    setNodeRef,
+    transform,
+    transition,
+    isDragging,
+    isOver,
+  } = useSortable({
+    id,
+    disabled,
+    data,
+    animateLayoutChanges,
+  });
+
+  const style: React.CSSProperties = {
+    transform: CSS.Transform.toString(transform),
+    transition,
+  };
+
+  // If using a handle, don't spread listeners on the container
+  const containerProps = withHandle ? {} : listeners;
+
+  // Context value for child handles
+  const contextValue = React.useMemo(
+    () => ({ listeners, attributes, isDragging, isMounted: true }),
+    [listeners, attributes, isDragging]
+  );
+
+  return (
+    <SortableItemContext.Provider value={contextValue}>
+      <Component
+        ref={setNodeRef}
+        style={style}
+        data-sortable-id={id}
+        data-dragging={isDragging}
+        data-over={isOver}
+        className={cn(
+          "touch-none",
+          isDragging && "opacity-50 z-50",
+          !disabled && !withHandle && "cursor-grab",
+          isDragging && "cursor-grabbing",
+          isOver && "ring-2 ring-primary",
+          disabled && "cursor-not-allowed opacity-60",
+          className
+        )}
+        {...containerProps}
+        {...attributes}
+        {...props}
+      >
+        {children}
+      </Component>
+    </SortableItemContext.Provider>
+  );
+}
+
+export function SortableItem({
+  children,
+  className,
+  as: Component = "div",
+  id,
+  disabled,
+  data,
+  withHandle,
+  ...props
+}: SortableItemProps) {
+  const isMounted = useDndMounted();
+
+  // Render static version on server with default context
+  if (!isMounted) {
+    return (
+      <SortableItemContext.Provider value={defaultContextValue}>
+        <Component className={className} {...props}>
+          {children}
+        </Component>
+      </SortableItemContext.Provider>
+    );
+  }
+
+  return (
+    <SortableItemInner
+      className={className}
+      as={Component}
+      id={id}
+      disabled={disabled}
+      data={data}
+      withHandle={withHandle}
+      {...props}
+    >
+      {children}
+    </SortableItemInner>
+  );
+}
+
+/**
+ * Hook to get sortable listeners and attributes for a custom drag handle.
+ * Must be used within a SortableItem with withHandle={true}.
+ * 
+ * Example:
+ * ```tsx
+ * function MySortableCard({ id, content }) {
+ *   return (
+ *     <SortableItem id={id} withHandle>
+ *       <Card>
+ *         <SortableHandle>
+ *           <GripVertical />
+ *         </SortableHandle>
+ *         <span>{content}</span>
+ *       </Card>
+ *     </SortableItem>
+ *   );
+ * }
+ * ```
+ */
+export function useSortableItemContext() {
+  return React.useContext(SortableItemContext);
+}
+
+export interface SortableHandleProps extends React.HTMLAttributes<HTMLDivElement> {
   children: React.ReactNode;
   as?: React.ElementType;
 }
 
-export function Sortable({
-  id,
-  index,
-  group,
-  handle,
-  transition,
-  disabled = false,
-  type,
-  accepts,
+/**
+ * A component that serves as the drag handle within a SortableItem.
+ * Must be used within a SortableItem with withHandle={true}.
+ */
+export function SortableHandle({
   children,
   className,
   as: Component = "div",
   ...props
-}: SortableProps) {
-  const { manager } = useDragDropContext();
-  const elementRef = React.useRef<HTMLElement>(null);
-  const sortableRef = React.useRef<DndSortable | null>(null);
-  const [isDragging, setIsDragging] = React.useState(false);
-  const [isDropTarget, setIsDropTarget] = React.useState(false);
+}: SortableHandleProps) {
+  const { listeners, attributes, isDragging, isMounted } = useSortableItemContext();
 
-  React.useEffect(() => {
-    if (!elementRef.current) return;
-
-    const handleElement = getElementFromRef(handle);
-
-    // Adapt accepts prop to DndSortable's accept API
-    // DndSortable expects accept to be a function that receives a Draggable object,
-    // but our accepts prop can be a function that receives just the type
-    let acceptValue: any;
-    if (typeof accepts === "function") {
-      // If accepts is a function, adapt it to receive a Draggable object
-      acceptValue = (source: any) => {
-        const sourceType = source?.type;
-        return accepts(sourceType);
-      };
-    } else {
-      acceptValue = accepts;
-    }
-
-    sortableRef.current = new DndSortable(
-      {
-        id,
-        index,
-        element: elementRef.current,
-        group,
-        handle: handleElement || undefined,
-        transition: createSortableTransition(transition),
-        disabled,
-        type,
-        accept: acceptValue as any,
-      },
-      manager
+  // Render static version when not mounted
+  if (!isMounted) {
+    return (
+      <Component
+        className={cn("cursor-grab touch-none", className)}
+        {...props}
+      >
+        {children}
+      </Component>
     );
-
-    const handleDragStart = () => {
-      setIsDragging(sortableRef.current?.isDragging ?? false);
-    };
-
-    const handleDragMove = () => {
-      setIsDragging(sortableRef.current?.isDragging ?? false);
-      setIsDropTarget(sortableRef.current?.isDropTarget ?? false);
-    };
-
-    manager.monitor.addEventListener("dragstart", handleDragStart);
-    manager.monitor.addEventListener("dragmove", handleDragMove);
-    manager.monitor.addEventListener("dragend", () => {
-      setIsDragging(false);
-      setIsDropTarget(false);
-    });
-
-    return () => {
-      manager.monitor.removeEventListener("dragstart", handleDragStart);
-      manager.monitor.removeEventListener("dragmove", handleDragMove);
-      sortableRef.current?.destroy();
-      sortableRef.current = null;
-    };
-  }, [id, index, group, disabled, manager, handle, transition, type, accepts]);
-
-  React.useEffect(() => {
-    if (sortableRef.current) {
-      sortableRef.current.index = index;
-      sortableRef.current.disabled = disabled;
-    }
-  }, [index, disabled]);
+  }
 
   return (
     <Component
-      ref={elementRef as any}
-      data-sortable-id={id}
-      data-sortable-index={index}
-      data-dragging={isDragging}
-      data-drop-target={isDropTarget}
       className={cn(
-        isDragging && "opacity-50 cursor-grabbing",
-        !isDragging && "cursor-grab",
-        isDropTarget && "ring-2 ring-primary",
+        "cursor-grab touch-none",
+        isDragging && "cursor-grabbing",
         className
       )}
+      {...listeners}
+      {...attributes}
       {...props}
     >
       {children}
@@ -124,3 +215,6 @@ export function Sortable({
   );
 }
 
+// Re-export the hook and utilities for custom implementations
+export { useSortable } from "@dnd-kit/sortable";
+export { CSS } from "@dnd-kit/utilities";
