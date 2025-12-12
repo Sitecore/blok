@@ -13,6 +13,7 @@ import { testDefaultCarousel } from './test-Components/test-Carousel';
 import { testAreaChart } from './test-Components/test-Chart';
 import { testCheckbox, testCheckboxDisabled, testCheckboxWithDescription, testCheckEnabledLabel } from './test-Components/test-Checkbox';
 import { testCollapsible } from './test-Components/test-Collapsible';
+import { testCombobx } from './test-Components/test-Combobox';
 
 test.describe('UI BLOK QA Automation', () => {
 
@@ -100,6 +101,10 @@ test.describe('UI BLOK QA Automation', () => {
 
   test('test_Collapsible', async ({ page }) => {
     await testCollapsible(page);
+  });
+
+  test('test_Combobox', async ({ page }) => {
+    await testCombobx(page);
   });
 
   test('close', async ({ page }) => {

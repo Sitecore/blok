@@ -24,7 +24,7 @@ export async function testKeepEditing(page: Page){
     await expect(content).toBeVisible();
 
   // Verify title and description are visible
-    await expect(content.getByText('Discard Changes?')).toBeVisible();
+    await expect(content.getByText('Discard changes')).toBeVisible();
     await expect(content.getByText('Discard unsaved changes and close?')).toBeVisible();
 
   // Computed background should be transparent by default (ghost uses bg-transparent)
