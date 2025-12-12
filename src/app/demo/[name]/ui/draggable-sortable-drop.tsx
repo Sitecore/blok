@@ -8,8 +8,10 @@ import {
   SortableContainer,
   arrayMove,
   UniqueIdentifier,
-  closestCorners,
+  pointerWithin,
+  rectIntersection,
 } from "@/components/ui/dnd-context";
+import type { CollisionDetection } from "@dnd-kit/core";
 import { Draggable } from "@/components/ui/draggable";
 import { Droppable } from "@/components/ui/droppable";
 import { SortableItem } from "@/components/ui/sortable";
@@ -44,6 +46,33 @@ function getCardColor(id: string) {
   return cardColors[index % cardColors.length];
 }
 
+// Custom collision detection that prioritizes items over containers
+// This ensures that when dragging over sortable items, they get detected first
+const customCollisionDetection: CollisionDetection = (args) => {
+  // First, try pointerWithin to find items directly under the cursor
+  const pointerCollisions = pointerWithin(args);
+  
+  if (pointerCollisions.length > 0) {
+    // Filter to prioritize sortable items (cards) over containers
+    const itemCollisions = pointerCollisions.filter(
+      (collision) => 
+        collision.id !== "source-drop" && 
+        collision.id !== "favorites-drop"
+    );
+    
+    // If we're over a specific item, return that
+    if (itemCollisions.length > 0) {
+      return itemCollisions;
+    }
+    
+    // Otherwise return container collisions
+    return pointerCollisions;
+  }
+  
+  // Fallback to rectIntersection for edge cases
+  return rectIntersection(args);
+};
+
 function ItemCard({ item, index }: { item: CardItem; index?: number }) {
   return (
     <Card className={cn(getCardColor(item.id), "hover:shadow-sm transition-all duration-200")}>
@@ -61,7 +90,7 @@ function ItemCard({ item, index }: { item: CardItem; index?: number }) {
   );
 }
 
-export function DragDropSortableDemo() {
+export default function DragDropSortableDemo() {
   // Cards that are available to drag (source pool)
   const [sourceCards, setSourceCards] = React.useState<CardItem[]>(initialCards);
   // Cards in the favorites list (sortable)
@@ -152,7 +181,7 @@ export function DragDropSortableDemo() {
 
   return (
     <DndContext
-      collisionDetection={closestCorners}
+      collisionDetection={customCollisionDetection}
       onDragStart={handleDragStart}
       onDragEnd={handleDragEnd}
       onDragCancel={handleDragCancel}

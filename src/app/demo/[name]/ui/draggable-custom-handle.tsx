@@ -37,7 +37,7 @@ function SortableCard({ item, cardColor }: { item: Item; cardColor: string }) {
   );
 }
 
-export function CustomHandleDemo() {
+export default function CustomHandleDemo() {
   const [items, setItems] = React.useState<Item[]>([
     { id: "A", name: "Project Alpha" },
     { id: "B", name: "Project Beta" },

@@ -10,7 +10,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Move, CheckCircle2 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
-export function BasicDragDrop() {
+export default function BasicDragDrop() {
   // Track which container the item is in: "source" or "drop-zone"
   const [container, setContainer] = React.useState<"source" | "drop-zone">("source");
   const [activeId, setActiveId] = React.useState<UniqueIdentifier | null>(null);

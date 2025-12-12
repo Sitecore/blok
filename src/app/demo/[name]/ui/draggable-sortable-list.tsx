@@ -12,7 +12,7 @@ interface Item {
   name: string;
 }
 
-export function SortableListDemo() {
+export default function SortableListDemo() {
   const [items, setItems] = React.useState<Item[]>([
     { id: 1, name: "Design System" },
     { id: 2, name: "API Integration" },
