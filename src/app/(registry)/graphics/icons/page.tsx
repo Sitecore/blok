@@ -726,6 +726,7 @@ export default function IconsPage() {
                     <Tooltip>
                       <TooltipTrigger asChild>
                         <code
+                          lang="tsx"
                           onClick={() => copyToClipboard(code || "")}
                           className="cursor-pointer bg-muted px-2 py-1 rounded text-sm hover:bg-muted/80 transition-colors inline-block"
                         >
