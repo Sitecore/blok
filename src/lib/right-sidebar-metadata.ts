@@ -75,6 +75,7 @@ export const rightSidebarMetadata: Record<string, RightSidebarMetadata> = {
           { id: "fallback", title: "Fallback" },
           { id: "large", title: "Large" },
           { id: "interactive", title: "Interactive" },
+          { id: "avatar-menu", title: "Avatar Menu" },
         ],
       },
     ],
