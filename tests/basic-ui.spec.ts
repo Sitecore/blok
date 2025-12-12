@@ -15,6 +15,7 @@ import { testCheckbox, testCheckboxDisabled, testCheckboxWithDescription, testCh
 import { testCollapsible } from './test-Components/test-Collapsible';
 import { testCombobx } from './test-Components/test-Combobox';
 import { testCommand } from './test-Components/test-Command';
+import { testContextMenu } from './test-Components/test-Context_menu';
 
 test.describe('UI BLOK QA Automation', () => {
 
@@ -110,6 +111,10 @@ test.describe('UI BLOK QA Automation', () => {
 
   test('test_Command', async ({ page }) => {
     await testCommand(page);
+  });
+
+  test('test_Context_menu', async ({ page }) => {
+    await testContextMenu(page);
   });
 
   test('close', async ({ page }) => {
