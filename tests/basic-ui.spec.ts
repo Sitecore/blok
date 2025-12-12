@@ -14,6 +14,7 @@ import { testAreaChart } from './test-Components/test-Chart';
 import { testCheckbox, testCheckboxDisabled, testCheckboxWithDescription, testCheckEnabledLabel } from './test-Components/test-Checkbox';
 import { testCollapsible } from './test-Components/test-Collapsible';
 import { testCombobx } from './test-Components/test-Combobox';
+import { testCommand } from './test-Components/test-Command';
 
 test.describe('UI BLOK QA Automation', () => {
 
@@ -105,6 +106,10 @@ test.describe('UI BLOK QA Automation', () => {
 
   test('test_Combobox', async ({ page }) => {
     await testCombobx(page);
+  });
+
+  test('test_Command', async ({ page }) => {
+    await testCommand(page);
   });
 
   test('close', async ({ page }) => {
