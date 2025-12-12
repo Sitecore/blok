@@ -317,7 +317,7 @@ export default function LogosPage() {
                         >
                           <img
                             src={`https://delivery-sitecore.sitecorecontenthub.cloud/api/public/content/${filename}`}
-                            alt={brand}
+                            alt={`${brand} ${type.toLowerCase()}`}
                             className="h-7 object-contain object-left"
                           />
                         </div>
@@ -338,7 +338,7 @@ export default function LogosPage() {
                         >
                           <img
                             src={`https://delivery-sitecore.sitecorecontenthub.cloud/api/public/content/${filename}-dark`}
-                            alt={`${brand} Dark`}
+                            alt={`${brand} ${type.toLowerCase()} dark variant`}
                             className="h-7 object-contain object-left"
                           />
                         </div>

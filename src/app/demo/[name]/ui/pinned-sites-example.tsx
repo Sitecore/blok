@@ -440,6 +440,7 @@ export function PinnedSitesExample() {
                   value={newSiteName}
                   onChange={(e) => setNewSiteName(e.target.value)}
                   placeholder="Enter site name"
+                  autoComplete="off"
                 />
               </div>
             </div>
@@ -472,6 +473,7 @@ export function PinnedSitesExample() {
                   value={duplicateSiteName}
                   onChange={(e) => setDuplicateSiteName(e.target.value)}
                   placeholder="Enter new site name"
+                  autoComplete="off"
                 />
               </div>
             </div>

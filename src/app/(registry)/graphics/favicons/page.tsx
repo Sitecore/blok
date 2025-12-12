@@ -116,7 +116,7 @@ export default function FaviconsPage() {
                   <TableCell className="px-4 min-w-[100px]">
                     <img
                       src={`https://delivery-sitecore.sitecorecontenthub.cloud/api/public/content/mark-${name}`}
-                      alt={brand}
+                      alt={`${brand} favicon`}
                       className="h-6 object-contain object-left"
                     />
                   </TableCell>
