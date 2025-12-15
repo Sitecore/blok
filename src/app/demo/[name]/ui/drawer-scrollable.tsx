@@ -53,7 +53,7 @@ export function DrawerScrollableContent() {
   return (
     <Drawer direction="right">
       <DrawerTrigger asChild>
-        <Button variant="outline" colorScheme="neutral">
+        <Button variant="default">
           Scrollable Content
         </Button>
       </DrawerTrigger>
