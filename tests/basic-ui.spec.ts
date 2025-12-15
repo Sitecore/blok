@@ -22,6 +22,7 @@ import { testDrawer } from './test-Components/test-Drawer';
 import { testDropdown } from './test-Components/test-Dropdown';
 import { testEmptyStates } from './test-Components/test-Empty_States';
 import { testErrorStates } from './test-Components/test-Error_States';
+import { testHoverCard } from './test-Components/test-Hover_Card';
 
 test.describe('UI BLOK QA Automation', () => {
 
@@ -145,6 +146,10 @@ test.describe('UI BLOK QA Automation', () => {
 
   test('test_Error_States', async ({ page }) => {
     await testErrorStates(page);
+  });
+
+  test('test_Hover_Card', async ({ page }) => {
+    await testHoverCard(page);
   });
 
   test('close', async ({ page }) => {
