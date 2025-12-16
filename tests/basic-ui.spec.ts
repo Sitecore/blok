@@ -26,6 +26,7 @@ import { testHoverCard } from './test-Components/test-Hover_Card';
 import { testInput } from './test-Components/test-Input';
 import { testInputOTP } from './test-Components/test-Input_OTP';
 import { testLabel } from './test-Components/test-Label';
+import { testNavigationMenu } from './test-Components/test-Navigation_Menu';
 
 test.describe('UI BLOK QA Automation', () => {
 
@@ -166,6 +167,10 @@ test.describe('UI BLOK QA Automation', () => {
 
   test('test_Label', async ({ page }) => {
     await testLabel(page);
+  });
+
+  test('test_Navigation_Menu', async ({ page }) => {
+    await testNavigationMenu(page);
   });
 
   test('close', async ({ page }) => {
