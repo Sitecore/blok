@@ -13,7 +13,7 @@ export function CollapsibleDemo() {
   const [isOpen, setIsOpen] = React.useState(false);
 
   return (
-    <div className="flex rounded-t-md bg-body-bg">
+    <div className="flex rounded-t-md">
       <Collapsible
         open={isOpen}
         onOpenChange={setIsOpen}

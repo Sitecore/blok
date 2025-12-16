@@ -12,7 +12,7 @@ export const popover = {
   defaultComponent: (
     <Popover>
       <PopoverTrigger asChild>
-        <Button variant="outline">Open popover</Button>
+        <Button variant="default">Open popover</Button>
       </PopoverTrigger>
       <PopoverContent className="w-80" align="start">
         <div className="grid gap-4">

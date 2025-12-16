@@ -529,7 +529,7 @@ export default function TopBar() {
             )}
           </div>
           {/* TODO: Hidden till migration is complete */}
-          {/* <Button variant="ghost" className="hidden items-center gap-1 sm:flex hover:bg-muted active:bg-muted">
+          <Button variant="ghost" className="hidden items-center gap-1 sm:flex hover:bg-muted active:bg-muted">
             <a
               href={externalLinks?.Block_site_old || ""}
               target="_blank"
@@ -539,7 +539,7 @@ export default function TopBar() {
               <Icon path={mdiOpenInNew} size={0.9} />
               {appConfig?.blockVersion}
             </a>
-          </Button> */}
+          </Button>
 
           <Button variant="ghost" size="icon" asChild className="hover:bg-muted active:bg-muted">
             <a
