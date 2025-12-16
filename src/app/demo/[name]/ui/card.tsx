@@ -16,7 +16,7 @@ const paddingVariants = ["sm", "md", "lg"];
 export const card = {
   name: "card",
   defaultComponent: (
-    <Card style="flat" elevation="none" padding="lg" className="w-[400px] p-8">
+    <Card id="card" style="flat" elevation="none" padding="lg" className="w-[400px] p-8">
       <CardHeader>
         <CardTitle>Default Card</CardTitle>
         <CardDescription>Style: flat, Elevation: none</CardDescription>

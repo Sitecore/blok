@@ -42,7 +42,7 @@ const chartConfig = {
 
 export function LineChartComponent() {
   return (
-    <Card style="outline" className="w-4xl">
+    <Card id="line-chart" style="outline" className="w-4xl">
       <CardHeader>
         <CardTitle>Line Chart - Multiple</CardTitle>
         <CardDescription>January - June 2024</CardDescription>

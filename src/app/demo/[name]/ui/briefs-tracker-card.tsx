@@ -16,7 +16,7 @@ import {
 
 export function BriefsTrackerCard() {
   return (
-    <Card style="outline" elevation="md" padding="lg" className="w-full max-w-6xl">
+    <Card id="briefs-tracker-card" style="outline" elevation="md" padding="lg" className="w-full max-w-6xl">
       <CardHeader className="flex flex-row items-center justify-between space-y-0">
         <CardTitle>Briefs tracker</CardTitle>
         <div className="flex items-center gap-3">

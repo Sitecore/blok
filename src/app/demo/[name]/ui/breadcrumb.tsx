@@ -17,7 +17,7 @@ import {
 export const breadcrumb = {
   name: "breadcrumb",
   defaultComponent: (
-    <Breadcrumb>
+    <Breadcrumb id="breadcrumb">
       <BreadcrumbList>
         <BreadcrumbItem>
           <BreadcrumbLink href="#home">Home</BreadcrumbLink>

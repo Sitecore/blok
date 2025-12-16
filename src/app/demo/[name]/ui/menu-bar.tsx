@@ -20,8 +20,8 @@ export const menuBar = {
   name: "menu-bar",
   components: {
     Default: (
-      <div className="flex rounded-t-md">
-        <Menubar>
+      <div id="menu-bar" className="flex rounded-t-md">
+        <Menubar id="menu-bar-default">
           <MenubarMenu>
             <MenubarTrigger>File</MenubarTrigger>
             <MenubarContent>

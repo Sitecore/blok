@@ -3,7 +3,7 @@ import { EmptyStates } from "@/components/ui/empty-states";
 export const emptyStates = {
   name: "empty-states",
   defaultComponent: (
-    <div className="h-[300px]">
+    <div id="empty-states-default" className="h-[300px]">
       <EmptyStates variant="no-search-results" />
     </div>
   ),
@@ -13,17 +13,17 @@ export const emptyStates = {
   ],
   components: {
     "No Search Results": (
-      <div className="h-[300px]">
+      <div id="empty-states-no-search-results" className="h-[300px]">
         <EmptyStates variant="no-search-results" />
       </div>
     ),
     "Nothing Created": (
-      <div className="h-[300px]">
+      <div id="empty-states-nothing-created" className="h-[300px]">
         <EmptyStates variant="nothing-created" />
       </div>
     ),
     Error: (
-      <div className="h-[300px]">
+      <div id="empty-states-error" className="h-[300px]">
         <EmptyStates variant="error" />
       </div>
     ),

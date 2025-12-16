@@ -83,6 +83,7 @@ function EmptyStates({
   return (
     <div
       data-slot="empty-states"
+      id="empty-states"
       className={cn(emptyStatesVariants({ variant }), className)}
       {...props}
     >

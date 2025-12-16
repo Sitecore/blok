@@ -10,7 +10,7 @@ import { Label } from "@radix-ui/react-label";
 export const popover = {
   name: "popover",
   defaultComponent: (
-    <Popover>
+    <Popover >
       <PopoverTrigger asChild>
         <Button variant="default">Open popover</Button>
       </PopoverTrigger>

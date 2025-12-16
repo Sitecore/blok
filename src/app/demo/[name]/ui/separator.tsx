@@ -3,8 +3,8 @@ import { Separator } from "@/components/ui/separator";
 export const separator = {
   name: "separator",
   defaultComponent: (
-    <div>
-      <div className="flex rounded-md bg-body-bg p-4">
+    <div id="separator">
+      <div id="separator-default" className="flex rounded-md bg-body-bg p-4">
         <div className="">
           <div className="flex flex-col gap-1">
             <div className="text-sm leading-none font-medium">

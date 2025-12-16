@@ -125,7 +125,7 @@ export function TableDemo() {
   });
 
   return (
-    <div className="w-full">
+    <div id="table-demo" className="w-full">
       <Table className="table-fixed">
         <TableHeader>
           {table.getHeaderGroups().map((headerGroup) => (

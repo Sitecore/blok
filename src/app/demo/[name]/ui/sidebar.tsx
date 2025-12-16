@@ -5,7 +5,7 @@ import { Icon } from "@/lib/icon";
 export const sidebar = {
   name: "sidebar",
   defaultComponent: (
-    <div className="flex h-[350px] w-full">
+    <div id="sidebar" className="flex h-[350px] w-full">
       <SidebarProvider>
         <Sidebar className="w-64 px-2 py-6">
           <SidebarHeader>

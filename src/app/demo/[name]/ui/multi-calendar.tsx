@@ -66,6 +66,7 @@ export function MultiCalendar({numberOfMonths = 1}: {numberOfMonths?: number}) {
 
   return (
     <Calendar
+      id="multi-calendar"
       mode="range"
       defaultMonth={dateRange?.from}
       selected={dateRange}

@@ -11,7 +11,7 @@ export const spinner = {
   ],
   components: {
     Variants: (
-      <div className="flex flex-wrap items-center gap-30">
+      <div id="spinner-variants" className="flex flex-wrap items-center gap-30">
         <Spinner variant="default" size="md" />
         <Spinner variant="circular" size="md" />
       </div>

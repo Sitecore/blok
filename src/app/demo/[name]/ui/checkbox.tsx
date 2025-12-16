@@ -5,7 +5,7 @@ export const checkbox = {
   name: "checkbox",
   defaultComponent: (
     <div className="flex items-center gap-3 p-4">
-      <Checkbox id="terms" aria-label="Accept terms and conditions" />
+      <Checkbox id="checkbox-terms" aria-label="Accept terms and conditions" />
       <Label htmlFor="terms">Accept terms and conditions</Label>
     </div>
   ),

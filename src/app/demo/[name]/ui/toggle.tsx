@@ -10,7 +10,7 @@ import {
 export const toggle = {
   name: "toggle",
   defaultComponent: (
-    <div className="flex flex-wrap items-center gap-6">
+    <div id="toggle-square-variant" className="flex flex-wrap items-center gap-6">
       <Toggle aria-label="Toggle bold" variant="square">
         <Icon path={mdiFormatBold} size={1.1} />
       </Toggle>
@@ -39,7 +39,7 @@ export const toggle = {
   ],
   components: {
     Square: (
-      <div className="flex flex-wrap items-center gap-6">
+      <div id="toggle-square-variant" className="flex flex-wrap items-center gap-6">
         <Toggle aria-label="Toggle bold" variant="square">
           <Icon path={mdiFormatBold} size={1.1} />
         </Toggle>
@@ -63,7 +63,7 @@ export const toggle = {
       </div>
     ),
     Rounded: (
-      <div className="flex flex-wrap items-center gap-6">
+      <div id="toggle-rounded-variant" className="flex flex-wrap items-center gap-6">
         <Toggle aria-label="Toggle bold" variant="rounded">
           <Icon path={mdiFormatBold} size={1.1} />
         </Toggle>

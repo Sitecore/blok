@@ -6,7 +6,7 @@ import { mdiClose } from "@mdi/js"
 export const badge = {
   name: "badge",
   defaultComponent: (
-    <Badge>Badge</Badge>
+    <Badge id="badge">Badge</Badge>
   ),
   usage: [
     `import { Badge } from "@/components/ui/badge"`,
@@ -16,8 +16,8 @@ export const badge = {
     // Sizes
     Sizing: (
       <div className="flex flex-wrap items-center gap-3">
-        <Badge size="sm">Size sm</Badge>
-        <Badge size="md">Size md</Badge>
+        <Badge id="badge-sizing-sm" size="sm">Size sm</Badge>
+        <Badge id="badge-sizing-md" size="md">Size md</Badge>
         <Badge size="lg">Size lg</Badge>
       </div>
     ),

@@ -70,7 +70,7 @@ const components: { title: string; href: string; description: string }[] = [
 export const navigationMenu = {
   name: "navigation-menu",
   defaultComponent: (
-    <NavigationMenu>
+    <NavigationMenu id="navigation-menu">
       <NavigationMenuList>
         <NavigationMenuItem>
           <NavigationMenuTrigger>Getting Started</NavigationMenuTrigger>
@@ -132,7 +132,7 @@ export const navigationMenu = {
   ],
   components: {
     Secondary: (
-      <div className="pb-50">
+      <div id="navigation-menu-secondary" className="pb-50">
         <NavigationMenu viewport={false}>
           <NavigationMenuList>
             <NavigationMenuItem>

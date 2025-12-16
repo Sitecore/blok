@@ -38,7 +38,7 @@ const navigationItems: StackNavigationElement[] = [
 const StackNavigationExample = () => {
 
   return (
-    <div>
+    <div id="stack-navigation-example">
        <StackNavigation
         items={navigationItems}
       />

@@ -5,7 +5,7 @@ import { mdiFormatBold, mdiFormatItalic, mdiFormatUnderline } from "@mdi/js";
 export const toggleGroup = {
   name: "toggle-group",
   defaultComponent: (
-    <div className="p-2">
+    <div id="toggle-group-default" className="p-2">
       <ToggleGroup
         type="multiple"
         variant="square"
@@ -37,7 +37,7 @@ export const toggleGroup = {
   ],
   components: {
     "Square Variant": (
-      <div className="p-2">
+      <div id="toggle-group-square-variant" className="p-2">
         <ToggleGroup
           type="multiple"
           variant="square"
@@ -65,6 +65,7 @@ export const toggleGroup = {
     ),
     "Rounded Variant": (
       <ToggleGroup
+        id="toggle-group-rounded-variant"
         variant="rounded"
         type="single"
         defaultValue="all"

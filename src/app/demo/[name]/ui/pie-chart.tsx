@@ -58,7 +58,7 @@ export function PieChartComponent() {
   }, []);
 
   return (
-    <Card style="outline" className="w-4xl">
+    <Card id="pie-chart" style="outline" className="w-4xl">
       <CardHeader className="items-center pb-0">
         <CardTitle>Pie Chart</CardTitle>
         <CardDescription>January - June 2024</CardDescription>

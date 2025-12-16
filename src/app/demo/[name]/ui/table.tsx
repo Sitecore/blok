@@ -40,7 +40,7 @@ export const featureTable = [
 export const table = {
   name: "table",
   defaultComponent: (
-    <Table>
+    <Table id="table-default">
       <TableHeader>
         <TableRow>
           <TableHead className="w-[150px]">Feature</TableHead>

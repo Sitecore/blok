@@ -16,7 +16,7 @@ export function TimePickerExample() {
   }, [time]);
 
   return (
-    <div className="p-2">
+    <div id="time-picker-example" className="p-2">
       <TimePicker value={time} onChange={setTime} />
     </div>
   );

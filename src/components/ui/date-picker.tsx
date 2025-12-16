@@ -51,7 +51,7 @@ export function CustomDropdown({
         <SelectValue />
       </SelectTrigger>
 
-      <SelectContent className="rounded-md borde p-0 min-w-20">
+      <SelectContent id="datepicker-dropdown-content" className="rounded-md borde p-0 min-w-20">
         {options.map(({ value: v, label, disabled }) => (
           <SelectItem
             key={String(v)}
@@ -74,6 +74,7 @@ function DatePickerSimple() {
     <Popover>
       <PopoverTrigger asChild>
         <Button
+          id="datepicker-simple-trigger"
           variant={"outline"}
           colorScheme={"neutral"}
           className={cn(
@@ -82,6 +83,7 @@ function DatePickerSimple() {
           )}
         >
           <Icon
+            id="datepicker-simple-icon"
             path={mdiCalendarBlankOutline}
             size={1}
             className="text-muted-foreground"
@@ -89,8 +91,9 @@ function DatePickerSimple() {
           {date ? format(date, "PPP") : <span>Pick a date</span>}
         </Button>
       </PopoverTrigger>
-      <PopoverContent className="w-auto p-0" align="start">
+      <PopoverContent id="datepicker-simple-popover" className="w-auto p-0" align="start">
         <Calendar
+          id="datepicker-simple-calendar"
           mode="single"
           selected={date}
           onSelect={setDate}
@@ -113,7 +116,7 @@ function DatePickerWithRange() {
     <Popover>
       <PopoverTrigger asChild>
         <Button
-          id="date"
+          id="datepicker-range-trigger"
           variant={"outline"}
           colorScheme={"neutral"}
           className={cn(
@@ -122,6 +125,7 @@ function DatePickerWithRange() {
           )}
         >
           <Icon
+            id="datepicker-range-icon"
             path={mdiCalendarBlankOutline}
             size={1}
             className="text-muted-foreground"
@@ -140,8 +144,9 @@ function DatePickerWithRange() {
           )}
         </Button>
       </PopoverTrigger>
-      <PopoverContent className="w-auto p-0" align="start">
+      <PopoverContent id="datepicker-range-popover" className="w-auto p-0" align="start">
         <Calendar
+          id="datepicker-range-calendar"
           initialFocus
           mode="range"
           defaultMonth={date?.from}

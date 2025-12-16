@@ -4,7 +4,7 @@ import { InputOTP, InputOTPGroup, InputOTPSeparator, InputOTPSlot } from "@/comp
 export const inputOtp = {
   name: "inputOtp",
   defaultComponent: (
-    <div className="grid gap-2 p-5">
+    <div id="input-otp-simple" className="grid gap-2 p-5">
       <Label htmlFor="simple">Simple</Label>
       <InputOTP id="simple" maxLength={6}>
         <InputOTPGroup>
@@ -27,7 +27,7 @@ export const inputOtp = {
   ],
   components: {
     Pattern: (
-      <div className="grid gap-2 p-5">
+      <div id="input-otp-pattern" className="grid gap-2 p-5">
         <Label htmlFor="digits-only">Digits Only</Label>
         <InputOTP id="digits-only" maxLength={6} >
           <InputOTPGroup>
@@ -43,7 +43,7 @@ export const inputOtp = {
     ),
     // With Spacing
     "With Spacing": (
-      <div className="grid gap-2 p-5">
+      <div id="input-otp-with-spacing" className="grid gap-2 p-5">
         <Label htmlFor="with-spacing">With Spacing</Label>
         <InputOTP id="with-spacing" maxLength={6}>
           <InputOTPGroup className="gap-2 *:data-[slot=input-otp-slot]:rounded-md *:data-[slot=input-otp-slot]:border">

@@ -11,7 +11,7 @@ import { Icon } from "@/lib/icon";
 export const hoverCard = {
   name: "hover-card",
   defaultComponent: (
-    <HoverCard>
+    <HoverCard >
       <HoverCardTrigger asChild>
         <Button variant="link">@blok</Button>
       </HoverCardTrigger>

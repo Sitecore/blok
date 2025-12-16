@@ -409,7 +409,7 @@ export function AllSitesExample() {
       />
 
       {/* Rename Dialog */}
-      <Dialog open={renameDialogOpen} onOpenChange={setRenameDialogOpen}>
+      <Dialog open={renameDialogOpen}  onOpenChange={setRenameDialogOpen}>
         <DialogContent>
           <form onSubmit={handleRenameSubmit}>
             <DialogHeader>

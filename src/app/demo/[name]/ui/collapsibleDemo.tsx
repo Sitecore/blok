@@ -15,6 +15,7 @@ export function CollapsibleDemo() {
   return (
     <div className="flex rounded-t-md">
       <Collapsible
+        id="collapsible"
         open={isOpen}
         onOpenChange={setIsOpen}
         className="flex w-full flex-col gap-2 md:w-[350px]"

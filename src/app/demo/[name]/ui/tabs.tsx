@@ -17,7 +17,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 export const tabs = {
   name: "tabs",
   defaultComponent: (
-    <Tabs defaultValue="account" className="w-[400px]">
+    <Tabs id="tabs-default" defaultValue="account" className="w-[400px]">
       <TabsList>
         <TabsTrigger value="account">Account</TabsTrigger>
         <TabsTrigger value="password">Password</TabsTrigger>
@@ -50,7 +50,7 @@ export const tabs = {
   ],
   components: {
     "Line Variant": (
-      <Tabs defaultValue="account" className="max-w-[400px]">
+      <Tabs id="tabs-line-variant" defaultValue="account" className="max-w-[400px]">
         <TabsList>
           <TabsTrigger value="account">Account</TabsTrigger>
           <TabsTrigger value="password">Password</TabsTrigger>
@@ -104,7 +104,7 @@ export const tabs = {
       </Tabs>
     ),
     "Line Variant with Icons": (
-      <Tabs defaultValue="home">
+      <Tabs id="tabs-line-variant-with-icons" defaultValue="home">
         <TabsList>
           <TabsTrigger value="home">
             <Icon path={mdiHome} size={1.2} />
@@ -124,7 +124,7 @@ export const tabs = {
       </Tabs>
     ),
     "Soft Rounded Variant": (
-      <Tabs defaultValue="home">
+      <Tabs id="tabs-soft-rounded-variant" defaultValue="home">
         <TabsList variant="soft-rounded">
           <TabsTrigger value="home" variant="soft-rounded">
             Home
@@ -142,7 +142,7 @@ export const tabs = {
       </Tabs>
     ),
     "With Icons": (
-      <Tabs defaultValue="preview">
+      <Tabs id="tabs-with-icons" defaultValue="preview">
         <TabsList variant="soft-rounded">
           <TabsTrigger value="preview" variant="soft-rounded">
             <Icon path={mdiWindowMaximize} size={1.2} />

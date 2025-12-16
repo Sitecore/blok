@@ -18,7 +18,7 @@ import {
 export const select = {
   name: "select",
   defaultComponent: (
-    <div className="p-2">
+    <div id="select" className="p-2">
       <Select>
         <SelectTrigger className="w-[180px]" aria-label="Select a product">
           <SelectValue placeholder="Select a product" />
@@ -43,7 +43,7 @@ export const select = {
   ],
   components: {
     "Large List": (
-      <div className="p-2">
+      <div id="select-large-list" className="p-2">
         <Select>
           <SelectTrigger className="w-[180px]" aria-label="Select from large list">
             <SelectValue placeholder="Large List" />
@@ -59,7 +59,7 @@ export const select = {
       </div>
     ),
     "With Icon": (
-      <div className="p-2">
+      <div id="select-with-icon" className="p-2">
         <Select>
           <SelectTrigger className="w-[180px]" aria-label="Select chart type">
             <SelectValue
@@ -96,7 +96,7 @@ export const select = {
       </div>
     ),
     Disabled: (
-      <div className="p-2">
+      <div id="select-disabled" className="p-2">
         <Select disabled>
           <SelectTrigger className="w-[180px]" aria-label="Disabled select">
             <SelectValue placeholder="Disabled" />

@@ -4,7 +4,7 @@ import { Textarea } from "@/components/ui/textarea";
 export const textarea = {
   name: "textarea",
   defaultComponent: (
-    <div className="grid gap-2 m-2 w-75">
+    <div id="textarea-default" className="grid gap-2 m-2 w-75">
       <Label htmlFor="basic-textarea">Message</Label>
       <Textarea id="basic-textarea" aria-label="Message" placeholder="Type your message here." />
     </div>
@@ -16,7 +16,7 @@ export const textarea = {
   components: {
     // Invalid state
     Invalid: (
-      <div className="grid gap-2 m-2 w-75">
+      <div id="textarea-invalid" className="grid gap-2 m-2 w-75">
         <Label htmlFor="invalid-textarea">Message</Label>
         <Textarea id="invalid-textarea" placeholder="Type your message here." aria-label="Message" aria-invalid="true" />
       </div>
@@ -24,7 +24,7 @@ export const textarea = {
 
     // With label
     "With Label": (
-      <div className="grid gap-3 m-2 w-75">
+      <div id="textarea-with-label" className="grid gap-3 m-2 w-75">
         <Label htmlFor="textarea-demo-message">Message</Label>
         <Textarea
           id="textarea-demo-message"
@@ -37,7 +37,7 @@ export const textarea = {
 
     // With label and description
     "With Label and Description": (
-      <div className="grid gap-3 m-2 w-75">
+      <div id="textarea-with-label-and-description" className="grid gap-3 m-2 w-75">
         <Label htmlFor="textarea-demo-message-2">Message</Label>
         <Textarea
           id="textarea-demo-message-2"
@@ -53,7 +53,7 @@ export const textarea = {
 
     // Disabled state
     Disabled: (
-      <div className="grid gap-3 m-2 w-75">
+      <div id="textarea-disabled" className="grid gap-3 m-2 w-75">
         <Label htmlFor="textarea-demo-disabled">Disabled Textarea</Label>
         <Textarea
           id="textarea-demo-disabled"
@@ -66,7 +66,7 @@ export const textarea = {
 
     // Small size
     Small: (
-      <div className="grid gap-3 m-2 w-75">
+      <div id="textarea-small" className="grid gap-3 m-2 w-75">
         <Label htmlFor="small-textarea">Small (3 rows)</Label>
         <Textarea
           id="small-textarea"
@@ -80,7 +80,7 @@ export const textarea = {
 
     // Large size
     Large: (
-      <div className="grid gap-3 m-2 w-75">
+      <div id="textarea-large" className="grid gap-3 m-2 w-75">
         <Label htmlFor="large-textarea">Large (8 rows)</Label>
         <Textarea
           id="large-textarea"
@@ -94,7 +94,7 @@ export const textarea = {
 
     // With default value
     "With Default Value": (
-      <div className="grid gap-3 m-2 w-75">
+      <div id="textarea-with-default-value" className="grid gap-3 m-2 w-75">
         <Label htmlFor="textarea-with-value">Pre-filled Textarea</Label>
         <Textarea
           id="textarea-with-value"

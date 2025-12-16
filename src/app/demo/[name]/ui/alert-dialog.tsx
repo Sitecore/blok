@@ -14,9 +14,9 @@ import { Button } from "@/components/ui/button";
 export const alertDialog = {
   name: "Alert Dialog",
   defaultComponent: (
-    <AlertDialog>
+    <AlertDialog >
       <AlertDialogTrigger asChild>
-        <Button variant="default" colorScheme="danger">
+        <Button id="alert-dialog-trigger" variant="default" colorScheme="danger">
           Open alert dialog
         </Button>
       </AlertDialogTrigger>

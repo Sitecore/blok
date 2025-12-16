@@ -10,7 +10,7 @@ export const tooltip = {
   name: "tooltip",
   defaultComponent: (
     <TooltipProvider>
-      <div className="flex gap-4">
+      <div id="tooltip-default" className="flex gap-4">
         <Tooltip>
           <TooltipTrigger asChild>
             <Button variant="outline">Hover</Button>

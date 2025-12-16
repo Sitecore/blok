@@ -5,6 +5,7 @@ export const aspectRatio = {
   defaultComponent: (
     <div className="w-lg">
       <AspectRatio
+        id="aspect-ratio"
         ratio={16 / 9}
         className="bg-muted rounded-lg border border-border flex items-center justify-center"
       >

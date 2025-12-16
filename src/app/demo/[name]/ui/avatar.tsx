@@ -3,7 +3,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 export const avatar = {
   name: "avatar",
   defaultComponent: (
-    <Avatar>
+    <Avatar id="avatar">
       <AvatarImage src="https://ca.slack-edge.com/T1S2RKGUA-U015TJJS8MS-b581732f917e-512" alt="Frank Grinaert" />
       <AvatarFallback className="bg-primary text-primary-foreground">
         <span className="text-xs">CN</span>
@@ -16,7 +16,7 @@ export const avatar = {
   ],
   components: {
     Fallback: (
-      <Avatar>
+      <Avatar id="avatar-fallback">
         <AvatarFallback>BM</AvatarFallback>
       </Avatar>
     ),

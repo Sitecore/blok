@@ -64,6 +64,7 @@ export function SingleCalendar() {
 
   return (
     <Calendar
+      id="single-calendar"
       mode="single"
       defaultMonth={date}
       selected={date}

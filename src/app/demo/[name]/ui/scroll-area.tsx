@@ -25,8 +25,8 @@ const tags = Array.from({ length: 50 }).map(
 export const scrollArea = {
   name: "scrollarea",
   defaultComponent: (
-    <div className="flex flex-col gap-6">
-      <ScrollArea className="h-72 w-48 rounded-md border">
+    <div id="scroll-area-vertical" className="flex flex-col gap-6">
+      <ScrollArea id="scroll-area-vertical-default" className="h-72 w-48 rounded-md border">
         <div className="p-4">
           <h4 className="mb-4 text-sm leading-none font-medium">Tags</h4>
           {tags.map((tag) => (
@@ -45,8 +45,8 @@ export const scrollArea = {
   ],
   components: {
     Vertical: (
-      <div className="flex flex-col gap-6">
-        <ScrollArea className="h-72 w-48 rounded-md border">
+      <div id="scroll-area-vertical" className="flex flex-col gap-6">
+        <ScrollArea id="scroll-area-vertical-default" className="h-72 w-48 rounded-md border">
           <div className="p-4">
             <h4 className="mb-4 text-sm leading-none font-medium">Tags</h4>
             {tags.map((tag) => (
@@ -60,7 +60,7 @@ export const scrollArea = {
       </div>
     ),
     Horizontal: (
-      <ScrollArea className="w-full max-w-96 rounded-md border p-4">
+      <ScrollArea id="scroll-area-horizontal" className="w-full max-w-96 rounded-md border p-4">
         <div className="flex gap-4">
           {works.map((artwork) => (
             <figure key={artwork.artist} className="shrink-0">

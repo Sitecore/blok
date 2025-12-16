@@ -38,7 +38,7 @@ const navigationItems: StackNavigationElement[] = [
 const StackNavigationHorizontal = () => {
 
   return (
-    <div>
+    <div id="stack-navigation-horizontal">
       <StackNavigation
         items={navigationItems}
         orientation="horizontal"

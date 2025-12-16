@@ -8,6 +8,7 @@ export const resizable = {
   name: "resizable",
   defaultComponent: (
     <ResizablePanelGroup
+      id="resizable-panel-group-horizontal"
       direction="horizontal"
       className="max-w-md rounded-lg border md:min-w-[450px]"
     >
@@ -42,6 +43,7 @@ export const resizable = {
     Vertical: (
       <ResizablePanelGroup
         direction="vertical"
+        id="resizable-panel-group-vertical"
         className="min-h-[200px] max-w-md rounded-lg border md:min-w-[450px]"
       >
         <ResizablePanel defaultSize={25}>
@@ -60,6 +62,7 @@ export const resizable = {
     Handle: (
       <ResizablePanelGroup
         direction="horizontal"
+        id="resizable-panel-group-horizontal-with-handle"
         className="min-h-[200px] max-w-md rounded-lg border md:min-w-[450px]"
       >
         <ResizablePanel defaultSize={25}>

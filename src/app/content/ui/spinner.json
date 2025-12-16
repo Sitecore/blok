@@ -1,8 +1,7 @@
 {
-    "Default": "import { Spinner } from \"@/components/ui/spinner\";\n\nexport default function DefaultDemo() {\n  return (\n    <div className=\"flex items-start justify-center w-28\">\n      <Spinner  variant=\"default\" size=\"md\" />\n    </div>\n  );\n}",
+    "Default": "import { Spinner } from \"@/components/ui/spinner\";\n\nexport default function DefaultDemo() {\n  return (\n    <div id=\"spinner-default-wrapper\" className=\"flex items-start justify-center w-28\">\n      <Spinner id=\"spinner-default\" variant=\"default\" size=\"md\" />\n    </div>\n  );\n}",
     
-    "Variants": "import { Spinner } from \"@/components/ui/spinner\";\n\nexport default function VariantsDemo() {\n  return (\n    <div className=\"flex flex-wrap items-center gap-30\">\n      <Spinner variant=\"default\" size=\"md\" />\n      <Spinner variant=\"circular\" size=\"md\" />\n    </div>\n  );\n}",    
+    "Variants": "import { Spinner } from \"@/components/ui/spinner\";\n\nexport default function VariantsDemo() {\n  return (\n    <div id=\"spinner-variants\" className=\"flex flex-wrap items-center gap-30\">\n      <Spinner id=\"spinner-variant-default\" variant=\"default\" size=\"md\" />\n      <Spinner id=\"spinner-variant-circular\" variant=\"circular\" size=\"md\" />\n    </div>\n  );\n}",    
     
-    "With Text Spinner": "import { Spinner } from \"@/components/ui/spinner\";\n\nexport default function WithTextSpinnerDemo() {\n  return (\n    <div className=\"flex items-start justify-center w-28\">\n      <Spinner variant=\"circular\" size=\"md\"  message=\"Loading...\" />\n    </div>\n  );\n}"
+    "With Text Spinner": "import { Spinner } from \"@/components/ui/spinner\";\n\nexport default function WithTextSpinnerDemo() {\n  return (\n    <div id=\"spinner-with-text-wrapper\" className=\"flex items-start justify-center w-28\">\n      <Spinner id=\"spinner-with-text\" variant=\"circular\" size=\"md\" message=\"Loading...\" />\n    </div>\n  );\n}"
 }
-

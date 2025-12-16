@@ -5,7 +5,7 @@ import { ButtonLinkAlert } from "@/app/demo/[name]/ui/alert-button-Link";
 export const alert = {
   name: "alert",
   defaultComponent: (
-    <Alert>
+    <Alert id="alert">
       <AlertTitle>Alert</AlertTitle>
       <AlertDescription>
         This is an example of an alert with a title and description.
@@ -18,7 +18,7 @@ export const alert = {
   ],
   components: {
     Primary: (
-      <Alert variant="primary">
+      <Alert id="alert-primary" variant="primary">
         <AlertTitle>Primary Alert</AlertTitle>
         <AlertDescription>
           This is a primary alert with a title and description.
@@ -26,7 +26,7 @@ export const alert = {
       </Alert>
     ),
     Success: (
-      <Alert variant="success">
+      <Alert id="alert-success" variant="success">
         <AlertTitle>Success Alert</AlertTitle>
         <AlertDescription>
           This is a success alert with a title and description.
@@ -34,7 +34,7 @@ export const alert = {
       </Alert>
     ),
     Danger: (
-      <Alert variant="danger">
+      <Alert id="alert-danger" variant="danger">
         <AlertTitle>Danger Alert</AlertTitle>
         <AlertDescription>
           This is a danger alert with a title and description.
@@ -42,7 +42,7 @@ export const alert = {
       </Alert>
     ),
     Warning: (
-      <Alert variant="warning">
+      <Alert id="alert-warning" variant="warning">
         <AlertTitle>Warning Alert</AlertTitle>
         <AlertDescription>
           This is a warning alert with a title and description.

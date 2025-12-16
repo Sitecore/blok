@@ -11,8 +11,8 @@ import {
 export const pagination = {
   name: "pagination",
   defaultComponent: (
-    <div className="flex flex-col gap-6">
-      <Pagination>
+    <div id="pagination" className="flex flex-col gap-6">
+      <Pagination id="pagination-default">
         <PaginationContent>
           <PaginationItem>
             <PaginationPrevious href="#" />

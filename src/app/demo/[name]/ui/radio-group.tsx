@@ -20,7 +20,7 @@ const plans = [
 export const radioGroup = {
   name: "radio-group",
   defaultComponent: (
-    <RadioGroup defaultValue="comfortable">
+    <RadioGroup id="radio-group-default" defaultValue="comfortable">
       <div className="flex items-center gap-3">
         <RadioGroupItem value="default" id="r1" aria-label="Default option" />
         <Label htmlFor="r1">Admin</Label>
