@@ -14,7 +14,7 @@ export const icon = {
   name: "icon",
   preInformation: (
     <Alert>
-      <span className="inline text-md [&_p]:leading-relaxed">Looking for the right icon to use? See <Link href="/graphics/icons" target="_blank" className="text-primary hover:text-primary/80 no-underline"> icons</Link>.</span>
+      <span className="inline text-md [&_p]:leading-relaxed">Looking for the right icon to use? See <Link href="/graphics/icons" className="text-primary hover:text-primary/80 no-underline"> icons</Link>.</span>
     </Alert>
   ),
   defaultComponent: (
