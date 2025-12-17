@@ -12,7 +12,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 
-export const marketingInspirationContent = [
+const marketingInspirationContent = [
   {
     title: "Marketing That Inspires Action",
     content: `Marketing is more than promotion—it’s about creating meaningful connections. Every campaign should tell a story that resonates with your audience and builds trust.`,
