@@ -67,6 +67,7 @@ export function ComponentGridCard({
       return (
         <a
           href={href}
+          aria-label={`Open ${title} in a new tab`}
           target="_blank"
           rel="noopener noreferrer"
           className="block h-full"

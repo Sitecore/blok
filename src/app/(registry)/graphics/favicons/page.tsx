@@ -92,9 +92,9 @@ export default function FaviconsPage() {
 
       <div className="flex flex-col gap-6 mb-12">
         <Alert variant="primary">
-          <AlertDescription className="flex flex-row">
+          <AlertDescription className="flex">
             To install the favicon you need, paste the corresponding code in the{" "}
-            <code className="px-1.5 py-0.5 rounded bg-muted text-sm font-mono">
+            <code className="px-1.5 py-0.5 rounded bg-muted text-sm font-mono whitespace-normal break-words">
               {`<head>`}
             </code>{" "}
             tag of your app
@@ -116,7 +116,7 @@ export default function FaviconsPage() {
                   <TableCell className="px-4 min-w-[100px]">
                     <img
                       src={`https://delivery-sitecore.sitecorecontenthub.cloud/api/public/content/mark-${name}`}
-                      alt={brand}
+                      alt={`${brand} favicon`}
                       className="h-6 object-contain object-left"
                     />
                   </TableCell>

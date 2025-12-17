@@ -54,7 +54,7 @@ export function AllSitesSection<T extends SiteData>({
       <section className="w-full bg-subtle-bg rounded-lg p-6">
         <div className="mb-4">
           <h2 className="text-lg font-semibold">All Sites</h2>
-          <p className="text-sm text-muted-foreground mt-1">
+          <p className="text-sm text-muted-foreground mt-1 wrap-break-words">
             Browse all available sites and pin your favorites for quick access
           </p>
         </div>
