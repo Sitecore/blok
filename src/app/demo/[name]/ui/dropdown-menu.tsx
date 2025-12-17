@@ -5,7 +5,7 @@ import {
   DropdownMenuRadioGroupDemo,
   DropdownMenuSimple,
   DropdownMenuWithAvatar,
-} from "./dropdownMenu-options";
+} from "@/app/demo/[name]/ui/dropdownMenu-options";
 
 export const dropdownMenu = {
   name: "dropdown-menu",
