@@ -431,7 +431,7 @@ export default function TopBar() {
 
         {/* Right Section */}
         <div className="flex w-full items-center justify-end gap-3 lg:w-auto">
-          <div className="relative w-full max-w-md" ref={searchRef}>
+          <div className="relative w-full max-w-md" role="search" ref={searchRef}>
             <Icon
               path={mdiMagnify}
               size={0.9}

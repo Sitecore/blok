@@ -92,9 +92,9 @@ export default function FaviconsPage() {
 
       <div className="flex flex-col gap-6 mb-12">
         <Alert variant="primary">
-          <AlertDescription className="flex flex-row">
+          <AlertDescription className="flex">
             To install the favicon you need, paste the corresponding code in the{" "}
-            <code className="px-1.5 py-0.5 rounded bg-muted text-sm font-mono">
+            <code className="px-1.5 py-0.5 rounded bg-muted text-sm font-mono whitespace-normal break-words">
               {`<head>`}
             </code>{" "}
             tag of your app

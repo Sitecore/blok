@@ -49,7 +49,7 @@ export const textarea = {
           rows={6}
           autoComplete="off"
         />
-        <div className="text-muted-foreground text-sm">
+        <div className="text-muted-foreground text-sm wrap-break-words">
           Type your message and press enter to send.
         </div>
       </div>
