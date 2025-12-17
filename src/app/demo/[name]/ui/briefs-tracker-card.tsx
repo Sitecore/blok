@@ -20,7 +20,7 @@ export function BriefsTrackerCard() {
       <CardHeader className="flex flex-row items-center justify-between space-y-0">
         <CardTitle>Briefs tracker</CardTitle>
         <div className="flex items-center gap-3">
-          <span className="text-sm font-semibold text-muted-foreground">
+          <span className="text-sm font-semibold text-muted-foreground wrap-break-word">
             View all briefs
           </span>
           <Button variant="ghost" size="icon-sm" aria-label="More options">

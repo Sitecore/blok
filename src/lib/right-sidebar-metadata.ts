@@ -416,6 +416,27 @@ export const rightSidebarMetadata: Record<string, RightSidebarMetadata> = {
       shadcn: "https://ui.shadcn.com/docs/components/hover-card",
     },
   },
+  icon: {
+    links: {
+    },
+    sections: [
+      { id: "preview", title: "Preview" },
+      { id: "installation", title: "Installation" },
+      { id: "usage", title: "Usage" },
+      {
+        id: "examples",
+        title: "Examples",
+        children: [
+          { id: "variants", title: "Variants" },
+          { id: "sizing", title: "Sizing" },
+          { id: "color-schemes", title: "Color Schemes" },
+          { id: "subtle-variants", title: "Subtle Variants" },
+          { id: "filled-variants", title: "Filled Variants" },
+          { id: "sitecore-logos", title: "Sitecore Logos" },
+        ],
+      },
+    ],
+  },
   input: {
     links: {
       shadcn: "https://ui.shadcn.com/docs/components/input",
@@ -670,6 +691,7 @@ export const rightSidebarMetadata: Record<string, RightSidebarMetadata> = {
         title: "Examples",
         children: [
           { id: "horizontal", title: "Horizontal" },
+          { id: "horizontal-tabs", title: "Horizontal Tabs" },
         ],
       },
     ],
@@ -868,4 +890,3 @@ export function getShadcnUrl(componentName: string): string {
 }
 
 export type { TocSection, RightSidebarLinks };
-
