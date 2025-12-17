@@ -87,13 +87,13 @@ export const icon = {
             <Icon path={mdiInformationOutline} variant="filled" colorScheme="pink" />
         </div>
     ),
-    "Sitecore Logos": (
-      <div className="flex items-center justify-center gap-4">
-        <Icon path={iconXmCloud} variant="default" colorScheme="neutral" />
-        <Icon path={iconContentHubOne} variant="subtle" colorScheme="primary" />
-        <Icon path={iconPersonalize} variant="subtle" colorScheme="danger" />
-        <Icon path={iconOrdercloud} variant="filled" colorScheme="cyan" />
-      </div>
-    )
+    // "Sitecore Logos": (
+    //   <div className="flex items-center justify-center gap-4">
+    //     <Icon path={iconXmCloud} variant="default" colorScheme="neutral" />
+    //     <Icon path={iconContentHubOne} variant="subtle" colorScheme="primary" />
+    //     <Icon path={iconPersonalize} variant="subtle" colorScheme="danger" />
+    //     <Icon path={iconOrdercloud} variant="filled" colorScheme="cyan" />
+    //   </div>
+    // )
   },
 };
