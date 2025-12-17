@@ -54,7 +54,7 @@ const SheetPopupComponent = ({
 }) => (
   <Sheet key={side}>
     <SheetTrigger asChild>
-      <Button variant="outline" colorScheme="neutral" className="capitalize">
+      <Button variant="default" className="capitalize">
         {side}
       </Button>
     </SheetTrigger>
@@ -88,7 +88,7 @@ export const sheet = {
         <div className="flex flex-col gap-6 md:flex-row">
             <Sheet>
                 <SheetTrigger asChild>
-                    <Button variant="outline" colorScheme="neutral">Open</Button>
+                    <Button variant="default">Open</Button>
                 </SheetTrigger>
                 <SheetContent>
                     <SheetHeader>

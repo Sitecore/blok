@@ -44,7 +44,7 @@ export const dialog = {
   defaultComponent: (
     <Dialog>
       <DialogTrigger asChild>
-        <Button variant="outline">Edit Profile</Button>
+        <Button variant="default">Edit Profile</Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
@@ -92,7 +92,7 @@ export const dialog = {
     Scrollable: (
       <Dialog>
         <DialogTrigger asChild>
-          <Button variant="outline">Scrollable Content</Button>
+          <Button variant="default">Scrollable Content</Button>
         </DialogTrigger>
         <DialogContent className="sm:max-w-[425px]">
           <DialogHeader>
@@ -114,7 +114,7 @@ export const dialog = {
     "Sticky Footer": (
       <Dialog>
         <DialogTrigger asChild>
-          <Button variant="outline">Sticky Footer</Button>
+          <Button variant="default">Sticky Footer</Button>
         </DialogTrigger>
         <DialogContent className="sm:max-w-lg">
           <DialogHeader>

@@ -8,14 +8,16 @@ import {
   SortableContainer,
   arrayMove,
   UniqueIdentifier,
-  closestCorners,
+  pointerWithin,
+  rectIntersection,
 } from "@/components/ui/dnd-context";
+import type { CollisionDetection } from "@dnd-kit/core";
 import { Draggable } from "@/components/ui/draggable";
 import { Droppable } from "@/components/ui/droppable";
 import { SortableItem } from "@/components/ui/sortable";
 import { DragOverlay } from "@/components/ui/drag-overlay";
 import { Card, CardContent } from "@/components/ui/card";
-import { Star, Package } from "lucide-react";
+import { Move } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 interface CardItem {
@@ -44,6 +46,33 @@ function getCardColor(id: string) {
   return cardColors[index % cardColors.length];
 }
 
+// Custom collision detection that prioritizes items over containers
+// This ensures that when dragging over sortable items, they get detected first
+const customCollisionDetection: CollisionDetection = (args) => {
+  // First, try pointerWithin to find items directly under the cursor
+  const pointerCollisions = pointerWithin(args);
+  
+  if (pointerCollisions.length > 0) {
+    // Filter to prioritize sortable items (cards) over containers
+    const itemCollisions = pointerCollisions.filter(
+      (collision) => 
+        collision.id !== "source-drop" && 
+        collision.id !== "favorites-drop"
+    );
+    
+    // If we're over a specific item, return that
+    if (itemCollisions.length > 0) {
+      return itemCollisions;
+    }
+    
+    // Otherwise return container collisions
+    return pointerCollisions;
+  }
+  
+  // Fallback to rectIntersection for edge cases
+  return rectIntersection(args);
+};
+
 function ItemCard({ item, index }: { item: CardItem; index?: number }) {
   return (
     <Card className={cn(getCardColor(item.id), "hover:shadow-sm transition-all duration-200")}>
@@ -61,7 +90,7 @@ function ItemCard({ item, index }: { item: CardItem; index?: number }) {
   );
 }
 
-export function DragDropSortableDemo() {
+export default function DragDropSortableDemo() {
   // Cards that are available to drag (source pool)
   const [sourceCards, setSourceCards] = React.useState<CardItem[]>(initialCards);
   // Cards in the favorites list (sortable)
@@ -152,7 +181,7 @@ export function DragDropSortableDemo() {
 
   return (
     <DndContext
-      collisionDetection={closestCorners}
+      collisionDetection={customCollisionDetection}
       onDragStart={handleDragStart}
       onDragEnd={handleDragEnd}
       onDragCancel={handleDragCancel}
@@ -168,15 +197,14 @@ export function DragDropSortableDemo() {
         <div className="flex flex-col lg:flex-row gap-6">
           {/* Source Cards Panel - Now Droppable */}
           <div className="flex-1">
-            <div className="mb-3 text-xs font-medium text-muted-foreground uppercase flex items-center gap-2">
-              <Package className="h-3.5 w-3.5" />
-              Available Items ({sourceCards.length})
+            <div className="mb-3 text-xs font-medium text-muted-foreground uppercase">
+              Source
             </div>
             <Droppable
               id="source-drop"
               className={cn(
                 "p-4 rounded-xl border-2 border-dashed min-h-[200px] transition-all duration-200",
-                "bg-muted/10 border-muted",
+                "bg-gradient-to-br from-background to-muted/30 border-muted",
                 "data-[drop-target=true]:border-primary data-[drop-target=true]:bg-primary/5"
               )}
             >
@@ -190,29 +218,27 @@ export function DragDropSortableDemo() {
                 </div>
               ) : (
                 <div className="flex flex-col items-center justify-center h-full min-h-[150px] text-center">
-                  <Package className="h-12 w-12 text-muted-foreground/30 mb-3" />
                   <p className="text-sm font-medium text-muted-foreground">No items</p>
                   <p className="text-xs text-muted-foreground mt-1">
-                    Drag items back here from favorites
+                    Drag items back here
                   </p>
                 </div>
               )}
             </Droppable>
           </div>
 
-          {/* Favorites Panel (Droppable + Sortable) */}
+          {/* Drop Zone Panel (Droppable + Sortable) */}
           <div className="flex-1">
-            <div className="mb-3 text-xs font-medium text-muted-foreground uppercase flex items-center gap-2">
-              <Star className="h-3.5 w-3.5 text-yellow-500" />
-              My Favorites ({favoriteCards.length})
+            <div className="mb-3 text-xs font-medium text-muted-foreground uppercase">
+              Drop Zone
             </div>
             <Droppable
               id="favorites-drop"
               className={cn(
                 "p-4 rounded-xl border-2 border-dashed min-h-[200px] transition-all duration-200",
-                "bg-gradient-to-br from-yellow-50/50 to-orange-50/50 dark:from-yellow-950/20 dark:to-orange-950/20",
-                "border-yellow-200 dark:border-yellow-800",
-                "data-[drop-target=true]:border-yellow-500 data-[drop-target=true]:bg-yellow-100/50 dark:data-[drop-target=true]:bg-yellow-900/30"
+                "bg-gradient-to-br from-muted/20 to-muted/10",
+                "hover:from-muted/30 hover:to-muted/20",
+                "data-[drop-target=true]:border-primary data-[drop-target=true]:bg-primary/5 data-[drop-target=true]:shadow-lg data-[drop-target=true]:shadow-primary/10"
               )}
             >
               {favoriteCards.length > 0 ? (
@@ -226,12 +252,16 @@ export function DragDropSortableDemo() {
                   </div>
                 </SortableContainer>
               ) : (
-                <div className="flex flex-col items-center justify-center h-full min-h-[150px] text-center">
-                  <Star className="h-12 w-12 text-yellow-300 mb-3" />
-                  <p className="text-sm font-medium text-muted-foreground">Drop items here</p>
-                  <p className="text-xs text-muted-foreground mt-1">
-                    Drag cards from the left to add favorites
-                  </p>
+                <div className="flex flex-col items-center justify-center h-full min-h-[150px] text-center space-y-3">
+                  <div className="mx-auto w-12 h-12 rounded-full bg-muted flex items-center justify-center">
+                    <Move className="h-6 w-6 text-muted-foreground" />
+                  </div>
+                  <div>
+                    <p className="font-medium text-sm text-muted-foreground">Drop Zone</p>
+                    <p className="text-xs text-muted-foreground mt-1">
+                      Drop items here and reorder them
+                    </p>
+                  </div>
                 </div>
               )}
             </Droppable>
@@ -242,9 +272,9 @@ export function DragDropSortableDemo() {
         <div className="text-xs text-muted-foreground bg-muted/50 rounded-lg p-3 space-y-1">
           <p><strong>Tips:</strong></p>
           <ul className="list-disc list-inside space-y-0.5 ml-2">
-            <li>Drag items from &quot;Available Items&quot; to &quot;My Favorites&quot;</li>
-            <li>Drag items back from &quot;My Favorites&quot; to &quot;Available Items&quot;</li>
-            <li>Reorder favorites by dragging them up or down</li>
+            <li>Drag items from Source to Drop Zone</li>
+            <li>Drag items back from Drop Zone to Source</li>
+            <li>Reorder items in Drop Zone by dragging them</li>
           </ul>
         </div>
       </div>
@@ -252,7 +282,7 @@ export function DragDropSortableDemo() {
       {/* Drag Overlay */}
       <DragOverlay>
         {activeItem ? (
-          <Card className={cn(getCardColor(activeItem.id), "shadow-lg")}>
+          <Card className={cn(getCardColor(activeItem.id), "shadow-sm")}>
             <CardContent className="p-2.5">
               <div className="flex items-center gap-2">
                 {activeIndexInFavorites >= 0 && (

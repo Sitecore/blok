@@ -18,6 +18,7 @@ import * as mdiIcons from "@mdi/js";
 import * as logoIcons from "./logo-icons";
 import { Suspense } from "react";
 import { Spinner } from "@/components/ui/spinner";
+import { Alert, AlertDescription } from "@/components/ui/alert";
 
 const iconsData = [
   { mdi: "account-circle-outline", usage: "Profile", icon: "", code: "" },
@@ -645,18 +646,17 @@ export default function IconsPage() {
 
       <div className="flex flex-col gap-6 mb-12">
 
-      {/* TODO: Add alert with link to Icon component */}
-        {/* <Alert variant="primary">
+        <Alert variant="primary">
           <AlertDescription className="flex flex-row">
             To learn how to implement these icons, see{" "}
             <a
-              href="/components/icon"
+              href="/primitives/icon"
               className="text-primary hover:text-primary/80 no-underline whitespace-nowrap"
             >
               Icon component
             </a>
           </AlertDescription>
-        </Alert> */}
+        </Alert>
 
         <h2 className="text-2xl font-semibold">General icons</h2>
 
@@ -746,13 +746,12 @@ export default function IconsPage() {
 
         <p className="text-muted-foreground max-w-[65ch]">
           Used when a logo needs to be rendered as a single path inside an{" "}
-          {/* TODO: Add link to Icon component */}
-          {/* <a
-            href="/components/icon"
+          <a
+            href="/primitives/icon"
             className="text-primary hover:text-primary/80 no-underline"
-          > */}
+          >
             Icon
-          {/* </a> */}
+          </a>
           . For the regular full-color logo images, see{" "}
           <a
             href="/graphics/logos"
