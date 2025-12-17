@@ -24,7 +24,7 @@ export default async function DemoPage({
   if (!name || !demos[name]) {
     notFound();
   }
-  const { defaultComponent, usage, components } = demos[name];
+  const { preInformation, defaultComponent, usage, components } = demos[name];
 
   const registryUrl = `https://${baseUrl}/r/${name}.json`;
 
@@ -37,9 +37,14 @@ export default async function DemoPage({
 
   return (
       <div className="flex min-h-screen w-full flex-col gap-12 bg-body-bg">
+        {preInformation && (
+          <div id="pre-information" className="flex flex-col gap-3">
+            {preInformation}
+          </div>
+        )}
+
         <div className="flex flex-col">
           <DemoTab
-            id="preview"
             key={name} 
             code={codeMap["Default"] ?? ""} 
             component={componentDemo(defaultComponent)} 
@@ -64,7 +69,7 @@ export default async function DemoPage({
           <div id="examples" className="flex flex-col gap-9">
             <div className="flex flex-col gap-6">
               <h2 className="font-semibold text-3xl">Examples</h2>
-              <p className="text-sm text-muted-foreground">The following are examples of our {name} classes.</p>
+              <p className="text-sm text-muted-foreground wrap-break-words">The following are examples of our {name} classes.</p>
             </div>
 
             {components &&
@@ -73,7 +78,7 @@ export default async function DemoPage({
                 const sectionId = key.toLowerCase().replace(/\s+/g, '-');
                 return (
                   <div key={index} id={sectionId} className="flex flex-col gap-6">
-                    <h3 className="font-semibold text-xl">{key}</h3>
+                    <h3 className="font-semibold text-xl wrap-break-word">{key}</h3>
                     <DemoTab
                       key={key} 
                       code={codeMap[key] ?? ""} 

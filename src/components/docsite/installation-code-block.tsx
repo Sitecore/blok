@@ -67,16 +67,16 @@ export default function InstallationCodeBlock({ registryUrl }: InstallationCodeB
                 </div>
 
                 <TabsContent value="pnpm" className="mt-2 mb-0 pb-2">
-                    <code className="font-mono text-md text-body-text pl-1">{pnpmCommand}</code>
+                    <code className="font-mono text-md text-body-text pl-1 wrap-break-words">{pnpmCommand}</code>
                 </TabsContent>
                 <TabsContent value="npm" className="mt-2 mb-0 pb-2">
-                    <code className="font-mono text-md text-body-text pl-1">{npxCommand}</code>
+                    <code className="font-mono text-md text-body-text pl-1 wrap-break-words">{npxCommand}</code>
                 </TabsContent>
                 <TabsContent value="yarn" className="mt-2 mb-0 pb-2">
-                    <code className="font-mono text-md text-body-text pl-1">{yarnCommand}</code>
+                    <code className="font-mono text-md text-body-text pl-1 wrap-break-words">{yarnCommand}</code>
                 </TabsContent>
                 <TabsContent value="bun" className="mt-2 mb-0 pb-2">
-                    <code className="font-mono text-md text-body-text pl-1">{bunCommand}</code>
+                    <code className="font-mono text-md text-body-text pl-1 wrap-break-words">{bunCommand}</code>
                 </TabsContent>
             </Tabs>
         </div>

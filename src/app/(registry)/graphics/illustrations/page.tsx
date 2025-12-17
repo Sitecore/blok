@@ -365,7 +365,7 @@ export default function IllustrationsPage() {
                   <TableCell className="px-4 min-w-[120px]">
                     <Tooltip>
                       <TooltipTrigger asChild>
-                        <div
+                        <button
                           onClick={() =>
                             copyToClipboard(
                               `https://delivery-sitecore.sitecorecontenthub.cloud/api/public/content/spot-${name}`
@@ -375,10 +375,10 @@ export default function IllustrationsPage() {
                         >
                           <img
                             src={`https://delivery-sitecore.sitecorecontenthub.cloud/api/public/content/spot-${name}`}
-                            alt={name}
+                            alt={`${name} illustration`}
                             className="max-w-[64px] h-auto object-contain"
                           />
-                        </div>
+                        </button>
                       </TooltipTrigger>
                       <TooltipContent>Copy URL</TooltipContent>
                     </Tooltip>
@@ -386,7 +386,7 @@ export default function IllustrationsPage() {
                   <TableCell className="px-4 min-w-[120px]">
                     <Tooltip>
                       <TooltipTrigger asChild>
-                        <div
+                        <button
                           onClick={() =>
                             copyToClipboard(
                               `https://delivery-sitecore.sitecorecontenthub.cloud/api/public/content/spot-${name}-neutral`
@@ -396,10 +396,10 @@ export default function IllustrationsPage() {
                         >
                           <img
                             src={`https://delivery-sitecore.sitecorecontenthub.cloud/api/public/content/spot-${name}-neutral`}
-                            alt={`${name} neutral`}
+                            alt={`${name} illustration neutral variant`}
                             className="max-w-[64px] h-auto object-contain"
                           />
-                        </div>
+                        </button>
                       </TooltipTrigger>
                       <TooltipContent>Copy URL</TooltipContent>
                     </Tooltip>

@@ -18,6 +18,7 @@ import * as mdiIcons from "@mdi/js";
 import * as logoIcons from "./logo-icons";
 import { Suspense } from "react";
 import { Spinner } from "@/components/ui/spinner";
+import { Alert, AlertDescription } from "@/components/ui/alert";
 
 const iconsData = [
   { mdi: "account-circle-outline", usage: "Profile", icon: "", code: "" },
@@ -645,18 +646,17 @@ export default function IconsPage() {
 
       <div className="flex flex-col gap-6 mb-12">
 
-      {/* TODO: Add alert with link to Icon component */}
-        {/* <Alert variant="primary">
+        <Alert variant="primary">
           <AlertDescription className="flex flex-row">
             To learn how to implement these icons, see{" "}
             <a
-              href="/components/icon"
+              href="/primitives/icon"
               className="text-primary hover:text-primary/80 no-underline whitespace-nowrap"
             >
               Icon component
             </a>
           </AlertDescription>
-        </Alert> */}
+        </Alert>
 
         <h2 className="text-2xl font-semibold">General icons</h2>
 
@@ -666,7 +666,7 @@ export default function IconsPage() {
             href="https://pictogrammers.com/library/mdi/"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-primary hover:text-primary/80 no-underline"
+            className="text-primary hover:text-primary/80 hover:underline"
           >
             Material Design Icons
           </a>{" "}
@@ -717,7 +717,7 @@ export default function IconsPage() {
                       href={`https://pictogrammers.com/library/mdi/icon/${mdi}`}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-primary hover:text-primary/80 no-underline text-sm transition-colors"
+                      className="text-primary hover:text-primary/80 hover:underline text-sm transition-colors"
                     >
                       {mdi}
                     </a>
@@ -725,12 +725,12 @@ export default function IconsPage() {
                   <TableCell className="px-4">
                     <Tooltip>
                       <TooltipTrigger asChild>
-                        <code
+                        <button
                           onClick={() => copyToClipboard(code || "")}
                           className="cursor-pointer bg-muted px-2 py-1 rounded text-sm hover:bg-muted/80 transition-colors inline-block"
                         >
                           {code}
-                        </code>
+                        </button>
                       </TooltipTrigger>
                       <TooltipContent>Copy to clipboard</TooltipContent>
                     </Tooltip>
@@ -746,17 +746,16 @@ export default function IconsPage() {
 
         <p className="text-muted-foreground max-w-[65ch]">
           Used when a logo needs to be rendered as a single path inside an{" "}
-          {/* TODO: Add link to Icon component */}
-          {/* <a
-            href="/components/icon"
+          <a
+            href="/primitives/icon"
             className="text-primary hover:text-primary/80 no-underline"
-          > */}
+          >
             Icon
-          {/* </a> */}
+          </a>
           . For the regular full-color logo images, see{" "}
           <a
             href="/graphics/logos"
-            className="text-primary hover:text-primary/80 no-underline"
+            className="text-primary hover:text-primary/80 hover:underline"
           >
             Logos
           </a>

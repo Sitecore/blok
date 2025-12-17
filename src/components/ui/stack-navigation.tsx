@@ -148,6 +148,8 @@ export function StackNavigation({
 
   const pathname = providedPathname ?? clientPathname;
   const isHorizontal = orientation === "horizontal";
+  const hasShadowNone = className?.includes("shadow-none");
+  const shadowClass = hasShadowNone ? "" : "shadow-base";
 
   return (
     <aside
@@ -155,12 +157,14 @@ export function StackNavigation({
         !isHorizontal &&
           cn(
             width,
-            "bg-background p-1.5 text-sidebar-foreground min-h-full flex flex-col opacity-100 shadow-base",
+            "bg-background p-1.5 text-sidebar-foreground min-h-full flex flex-col opacity-100",
+            shadowClass,
             className
           ),
         isHorizontal &&
           cn(
-            " bg-background w-full p-1.5 text-sidebar-foreground shadow-base",
+            " bg-background w-full p-1.5 text-sidebar-foreground",
+            shadowClass,
             "flex flex-row items-center p-1.5 overflow-x-auto",
             className
           )
@@ -220,4 +224,3 @@ export function StackNavigation({
     </aside>
   );
 }
- 

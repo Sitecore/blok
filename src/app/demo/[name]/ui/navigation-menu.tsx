@@ -75,7 +75,7 @@ export const navigationMenu = {
         <NavigationMenuItem>
           <NavigationMenuTrigger>Getting Started</NavigationMenuTrigger>
           <NavigationMenuContent>
-            <ul className="grid gap-2 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
+          <ul className="grid gap-2 w-full max-w-[500px] lg:grid-cols-[.75fr_1fr]">
               <ListItem
                 href="#"
                 className="row-span-3 from-muted/50 to-muted flex h-full w-full flex-col justify-end rounded-md bg-linear-to-b p-6 no-underline outline-hidden select-none focus:shadow-md"
