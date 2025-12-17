@@ -54,7 +54,7 @@ const SheetPopupComponent = ({
 }) => (
   <Sheet key={side}>
     <SheetTrigger asChild>
-      <Button variant="outline" colorScheme="neutral" className="capitalize">
+      <Button variant="default" className="capitalize">
         {side}
       </Button>
     </SheetTrigger>
@@ -88,7 +88,7 @@ export const sheet = {
         <div className="flex flex-col gap-6 md:flex-row">
             <Sheet>
                 <SheetTrigger asChild>
-                    <Button variant="outline" colorScheme="neutral">Open</Button>
+                    <Button variant="default">Open</Button>
                 </SheetTrigger>
                 <SheetContent>
                     <SheetHeader>
@@ -100,11 +100,11 @@ export const sheet = {
                     <div className="grid flex-1 auto-rows-min gap-6 px-4">
                         <div className="grid gap-3">
                             <Label htmlFor="sheet-demo-name">Name</Label>
-                            <Input id="sheet-demo-name" defaultValue="Liz" />
+                            <Input id="sheet-demo-name" name="name" defaultValue="Liz" autoComplete="name" />
                         </div>
                         <div className="grid gap-3">
                             <Label htmlFor="sheet-demo-username">Username</Label>
-                            <Input id="sheet-demo-username" defaultValue="@liz" />
+                            <Input id="sheet-demo-username" name="username" defaultValue="@liz" autoComplete="username" />
                         </div>
                     </div>
                     <SheetFooter>

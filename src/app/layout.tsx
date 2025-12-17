@@ -7,8 +7,8 @@ import "@/app/globals.css";
 import { Toaster } from "@/components/ui/sonner";
 
 export const metadata: Metadata = {
-  title: "Blok Registry (Beta)",
-  description: "Blok Registry is a Shadcn Custom Registry ",
+  title: "Blok",
+  description: "Blok is Sitecore's design system. It is used for created industry leading martech applications.",
   icons: [{ rel: "icon", url: "/favicon.svg", type: "image/svg+xml" }],
 };
 

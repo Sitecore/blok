@@ -372,7 +372,7 @@ export default function TopBar() {
           <div className="lg:hidden">
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <Button variant="ghost" size="icon">
+                <Button variant="ghost" size="icon" aria-label="Open navigation menu">
                   <Icon path={mdiMenu} size={1} />
                 </Button>
               </DropdownMenuTrigger>
@@ -529,7 +529,7 @@ export default function TopBar() {
             )}
           </div>
           {/* TODO: Hidden till migration is complete */}
-          {/* <Button variant="ghost" className="hidden items-center gap-1 sm:flex hover:bg-muted active:bg-muted">
+          <Button variant="ghost" className="hidden items-center gap-1 sm:flex hover:bg-muted active:bg-muted">
             <a
               href={externalLinks?.Block_site_old || ""}
               target="_blank"
@@ -539,7 +539,7 @@ export default function TopBar() {
               <Icon path={mdiOpenInNew} size={0.9} />
               {appConfig?.blockVersion}
             </a>
-          </Button> */}
+          </Button>
 
           <Button variant="ghost" size="icon" asChild className="hover:bg-muted active:bg-muted">
             <a
@@ -547,12 +547,13 @@ export default function TopBar() {
               aria-label="Open GitHub"
               target="_blank"
               rel="noopener noreferrer"
+              aria-label="View GitHub repository"
             >
               <Icon path={mdiGithub} size={1} />
             </a>
           </Button>
 
-          <Button variant="ghost" size="icon" onClick={toggleDarkMode} className="hover:bg-muted active:bg-muted">
+          <Button variant="ghost" size="icon" onClick={toggleDarkMode} className="hover:bg-muted active:bg-muted" aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}>
             <Icon path={mdiCircleHalfFull} size={1} />
           </Button>
         </div>

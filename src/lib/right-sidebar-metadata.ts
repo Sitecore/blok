@@ -75,6 +75,7 @@ export const rightSidebarMetadata: Record<string, RightSidebarMetadata> = {
           { id: "fallback", title: "Fallback" },
           { id: "large", title: "Large" },
           { id: "interactive", title: "Interactive" },
+          { id: "avatar-menu", title: "Avatar Menu" },
         ],
       },
     ],
@@ -310,6 +311,7 @@ export const rightSidebarMetadata: Record<string, RightSidebarMetadata> = {
   },
   draggable: {
     links: {
+      documentation: "https://docs.dndkit.com/",
     },
     sections: [
       { id: "preview", title: "Preview" },
@@ -322,6 +324,7 @@ export const rightSidebarMetadata: Record<string, RightSidebarMetadata> = {
           { id: "basic-drag-and-drop", title: "Basic Drag and Drop" },
           { id: "sortable-list", title: "Sortable List" },
           { id: "custom-handle", title: "Custom Handle" },
+          { id: "drag,-drop-&-sort", title: "Drag, Drop & Sort" },
         ],
       },
     ],
@@ -412,6 +415,27 @@ export const rightSidebarMetadata: Record<string, RightSidebarMetadata> = {
     links: {
       shadcn: "https://ui.shadcn.com/docs/components/hover-card",
     },
+  },
+  icon: {
+    links: {
+    },
+    sections: [
+      { id: "preview", title: "Preview" },
+      { id: "installation", title: "Installation" },
+      { id: "usage", title: "Usage" },
+      {
+        id: "examples",
+        title: "Examples",
+        children: [
+          { id: "variants", title: "Variants" },
+          { id: "sizing", title: "Sizing" },
+          { id: "color-schemes", title: "Color Schemes" },
+          { id: "subtle-variants", title: "Subtle Variants" },
+          { id: "filled-variants", title: "Filled Variants" },
+          { id: "sitecore-logos", title: "Sitecore Logos" },
+        ],
+      },
+    ],
   },
   input: {
     links: {
@@ -648,6 +672,7 @@ export const rightSidebarMetadata: Record<string, RightSidebarMetadata> = {
         id: "examples",
         title: "Examples",
         children: [
+          { id: "variants", title: "Variants" },
           { id: "with-text-spinner", title: "With Text Spinner" },
         ],
       },
@@ -666,6 +691,7 @@ export const rightSidebarMetadata: Record<string, RightSidebarMetadata> = {
         title: "Examples",
         children: [
           { id: "horizontal", title: "Horizontal" },
+          { id: "horizontal-tabs", title: "Horizontal Tabs" },
         ],
       },
     ],
@@ -864,4 +890,3 @@ export function getShadcnUrl(componentName: string): string {
 }
 
 export type { TocSection, RightSidebarLinks };
-

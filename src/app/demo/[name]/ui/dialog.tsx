@@ -44,7 +44,7 @@ export const dialog = {
   defaultComponent: (
     <Dialog>
       <DialogTrigger asChild>
-        <Button variant="outline">Edit Profile</Button>
+        <Button variant="default">Edit Profile</Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
@@ -56,16 +56,28 @@ export const dialog = {
         <div className="grid gap-4">
           <div className="grid gap-3">
             <Label htmlFor="name-1">Name</Label>
-            <Input id="name-1" name="name" defaultValue="Liz" />
+            <Input
+              id="name-1"
+              name="name"
+              defaultValue="Liz"
+              autoComplete="name"
+            />
           </div>
           <div className="grid gap-3">
             <Label htmlFor="username-1">Username</Label>
-            <Input id="name-1" name="username" defaultValue="@liz" />
+            <Input
+              id="username-1"
+              name="username"
+              defaultValue="@liz"
+              autoComplete="username"
+            />
           </div>
         </div>
         <DialogFooter>
           <DialogClose asChild>
-            <Button variant="ghost" colorScheme="neutral">Cancel</Button>
+            <Button variant="ghost" colorScheme="neutral">
+              Cancel
+            </Button>
           </DialogClose>
           <Button type="submit">Save changes</Button>
         </DialogFooter>
@@ -80,7 +92,7 @@ export const dialog = {
     Scrollable: (
       <Dialog>
         <DialogTrigger asChild>
-          <Button variant="outline">Scrollable Content</Button>
+          <Button variant="default">Scrollable Content</Button>
         </DialogTrigger>
         <DialogContent className="sm:max-w-[425px]">
           <DialogHeader>
@@ -102,7 +114,7 @@ export const dialog = {
     "Sticky Footer": (
       <Dialog>
         <DialogTrigger asChild>
-          <Button variant="outline">Sticky Footer</Button>
+          <Button variant="default">Sticky Footer</Button>
         </DialogTrigger>
         <DialogContent className="sm:max-w-lg">
           <DialogHeader>
