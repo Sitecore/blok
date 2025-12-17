@@ -1,4 +1,3 @@
 {
-    "Default": "\"use client\";\n\nimport * as React from \"react\";\nimport { TimePicker } from \"@/components/ui/time-picker\";\n\nexport default function DefaultDemo() {\n  const [time, setTime] = React.useState<{\n    hour: string;\n    minute: string;\n    period?: \"AM\" | \"PM\";\n  }>();\n\n  React.useEffect(() => {\n    if (time) {\n      console.log(\"Time:\", time);\n    }\n  }, [time]);\n\n  return <TimePicker value={time} onChange={setTime} />;\n}"
+    "Default": "\"use client\";\nimport * as React from \"react\";\nimport { TimePicker } from \"@/components/ui/time-picker\";\n\nexport function TimePickerExample() {\n  const [time, setTime] = React.useState<{\n    hour: string;\n    minute: string;\n    period?: \"AM\" | \"PM\";\n  }>();\n\n  React.useEffect(() => {\n    if (time) {\n      console.log(\"Time:\", time);\n    }\n  }, [time]);\n\n  return (\n    <div className=\"p-2\">\n      <TimePicker value={time} onChange={setTime} />\n    </div>\n  );\n}\n\n"
 }
-

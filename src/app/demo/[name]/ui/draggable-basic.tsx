@@ -6,7 +6,6 @@ import { DragOverlay } from "@/components/ui/drag-overlay";
 import { Draggable } from "@/components/ui/draggable";
 import { Droppable } from "@/components/ui/droppable";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
 import { Move, CheckCircle2 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
