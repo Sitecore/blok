@@ -670,6 +670,7 @@ export const rightSidebarMetadata: Record<string, RightSidebarMetadata> = {
         title: "Examples",
         children: [
           { id: "horizontal", title: "Horizontal" },
+          { id: "horizontal-tabs", title: "Horizontal Tabs" },
         ],
       },
     ],
