@@ -96,7 +96,7 @@ export function BreakpointsClient({ content }: Props) {
         <p className="text-lg text-muted-foreground font-semibold">Window width: {windowWidth}px</p>
       </div>
 
-      <div className="flex flex-row items-center gap-2 text-lg mb-10 font-semibold text-muted-foreground">
+      <div className="flex flex-col sm:flex-row items-start sm:items-center gap-2 text-lg mb-10 font-semibold text-muted-foreground">
         <p>Active breakpoint:</p>
         {Object.entries(filteredBreakpoints).map(([key]) => {
           const isActive = currentBreakpointName === key;

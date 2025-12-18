@@ -307,7 +307,7 @@ export default function LogosPage() {
                   <TableCell className="px-4 py-3 min-w-[200px]">
                     <Tooltip>
                       <TooltipTrigger asChild>
-                        <div
+                        <button
                           onClick={() =>
                             copyToClipboard(
                               `https://delivery-sitecore.sitecorecontenthub.cloud/api/public/content/${filename}`
@@ -317,10 +317,10 @@ export default function LogosPage() {
                         >
                           <img
                             src={`https://delivery-sitecore.sitecorecontenthub.cloud/api/public/content/${filename}`}
-                            alt={brand}
+                            alt={`${brand} ${type.toLowerCase()}`}
                             className="h-7 object-contain object-left"
                           />
-                        </div>
+                        </button>
                       </TooltipTrigger>
                       <TooltipContent>Copy URL</TooltipContent>
                     </Tooltip>
@@ -328,7 +328,7 @@ export default function LogosPage() {
                   <TableCell className="px-4 py-3 min-w-[200px]">
                     <Tooltip>
                       <TooltipTrigger asChild>
-                        <div
+                        <button
                           onClick={() =>
                             copyToClipboard(
                               `https://delivery-sitecore.sitecorecontenthub.cloud/api/public/content/${filename}-dark`
@@ -338,10 +338,10 @@ export default function LogosPage() {
                         >
                           <img
                             src={`https://delivery-sitecore.sitecorecontenthub.cloud/api/public/content/${filename}-dark`}
-                            alt={`${brand} Dark`}
+                            alt={`${brand} ${type.toLowerCase()} dark variant`}
                             className="h-7 object-contain object-left"
                           />
-                        </div>
+                        </button>
                       </TooltipTrigger>
                       <TooltipContent>Copy URL</TooltipContent>
                     </Tooltip>

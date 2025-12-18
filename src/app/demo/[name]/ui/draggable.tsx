@@ -1,7 +1,7 @@
-import BasicDragDrop from "./draggable-basic";
-import SortableListDemo from "./draggable-sortable-list";
-import CustomHandleDemo from "./draggable-custom-handle";
-import DragDropSortableDemo from "./draggable-sortable-drop";
+import BasicDragDrop from "@/app/demo/[name]/ui/draggable-basic";
+import SortableListDemo from "@/app/demo/[name]/ui/draggable-sortable-list";
+import CustomHandleDemo from "@/app/demo/[name]/ui/draggable-custom-handle";
+import DragDropSortableDemo from "@/app/demo/[name]/ui/draggable-sortable-drop";
 
 export const draggable = {
   name: "draggable",

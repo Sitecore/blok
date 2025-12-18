@@ -1,4 +1,3 @@
 {
     "Default": "import { Separator } from \"@/components/ui/separator\";\n\nexport default function DefaultDemo() {\n  return (\n    <div>\n      <div className=\"flex rounded-md bg-body-bg p-4\">\n        <div className=\"\">\n          <div className=\"flex flex-col gap-1\">\n            <div className=\"text-sm leading-none font-medium\">\n              Blok\n            </div>\n            <div className=\"text-muted-foreground text-sm\">\n              The Sitecore design system.\n            </div>\n          </div>\n          <Separator className=\"my-4\" />\n          <div className=\"flex h-5 items-center gap-4 text-sm\">\n            <div>Blog</div>\n            <Separator orientation=\"vertical\" />\n            <div>Docs</div>\n            <Separator orientation=\"vertical\" />\n            <div>Source</div>\n          </div>\n        </div>\n      </div>\n    </div>\n  );\n}"
 }
-

@@ -96,7 +96,7 @@ export function CodeBlock({ code, lang = "tsx", showLineNumbers = true, classNam
       </div>
       <div
         dir="ltr"
-        className="text-md overflow-x-auto p-4"
+        className="text-md overflow-x-auto p-4 wrap-break-words"
         style={{ minWidth: 0, width: "100%" }}
         dangerouslySetInnerHTML={{ __html: html }}
       />

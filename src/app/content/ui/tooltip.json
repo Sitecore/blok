@@ -1,4 +1,3 @@
 {
-    "Default": "import { Button } from \"@/components/ui/button\";\nimport {\n  Tooltip,\n  TooltipContent,\n  TooltipProvider,\n  TooltipTrigger,\n} from \"@/components/ui/tooltip\";\n\nexport default function DefaultDemo() {\n  return (\n    <TooltipProvider>\n      <div className=\"flex gap-4\">\n        <Tooltip>\n          <TooltipTrigger asChild>\n            <Button variant=\"outline\">Hover</Button>\n          </TooltipTrigger>\n          <TooltipContent side=\"bottom\">Add to library</TooltipContent>\n        </Tooltip>\n      </div>\n    </TooltipProvider>\n  );\n}"
+    "Default": "import {\n  TooltipProvider,\n  Tooltip,\n  TooltipTrigger,\n  TooltipContent\n} from \"@/components/ui/tooltip\";\nimport { Button } from \"@/components/ui/button\";\n\nexport default function DefaultDemo() {\n  return (\n    <TooltipProvider>\n      <div className=\"flex gap-4\">\n        <Tooltip>\n          <TooltipTrigger asChild>\n            <Button variant=\"outline\">Hover</Button>\n          </TooltipTrigger>\n          <TooltipContent side=\"bottom\">Add to library</TooltipContent>\n        </Tooltip>\n      </div>\n    </TooltipProvider>\n  );\n}"
 }
-

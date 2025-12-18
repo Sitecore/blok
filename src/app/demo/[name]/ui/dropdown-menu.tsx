@@ -1,11 +1,9 @@
-import {
-  DropdownMenuAvatarOnly,
-  DropdownMenuCheckboxes,
-  DropdownMenuIconColor,
-  DropdownMenuRadioGroupDemo,
-  DropdownMenuSimple,
-  DropdownMenuWithAvatar,
-} from "./dropdownMenu-options";
+import { DropdownMenuSimple } from "@/app/demo/[name]/ui/dropdown-simple";
+import { DropdownMenuCheckboxes } from "@/app/demo/[name]/ui/dropdown-checkbox";
+import { DropdownMenuRadioGroupDemo } from "@/app/demo/[name]/ui/dropdown-radio-group";
+import { DropdownMenuWithAvatar } from "@/app/demo/[name]/ui/dropdown-avatar";
+import { DropdownMenuAvatarOnly } from "@/app/demo/[name]/ui/dropdown-avatar-only";
+import { DropdownMenuIconColor } from "@/app/demo/[name]/ui/dropdown-icon-color";
 
 export const dropdownMenu = {
   name: "dropdown-menu",
