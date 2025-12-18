@@ -31,6 +31,7 @@ import { testPagination } from './test-Components/test-Pagination';
 import { testPopover } from './test-Components/test-Popover';
 import { testProgress } from './test-Components/test-Progress';
 import { testRadioGroup } from './test-Components/test-Radio_Group';
+import { testResizableHorizontal, testResizableVertical, testResizableWithHandle } from './test-Components/test-Resizable';
 
 test.describe('UI BLOK QA Automation', () => {
 
@@ -190,6 +191,12 @@ test.describe('UI BLOK QA Automation', () => {
 
   test('test_Radio_Group', async ({ page }) => {
     await testRadioGroup(page);
+  });
+
+  test('test_Resizable', async ({ page }) => {
+    await testResizableHorizontal(page);
+    await testResizableVertical(page);
+    await testResizableWithHandle(page);
   });
 
   test('close', async ({ page }) => {
