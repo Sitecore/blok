@@ -1,6 +1,6 @@
 import type React from "react";
-import NavigationMenuSimple from "./navigation-menu-simple";
-import NavigationMenuSecondary from "./navigation-menu-secondary";
+import NavigationMenuSimple from "@/app/demo/[name]/ui/navigation-menu-simple";
+import NavigationMenuSecondary from "@/app/demo/[name]/ui/navigation-menu-secondary";
 
 export const navigationMenu = {
   name: "navigation-menu",

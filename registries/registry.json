@@ -1317,10 +1317,10 @@
       "title": "Resizable",
       "description": "Accessible resizable panel groups and layouts with keyboard support.",
       "registryDependencies": [
-        "https://blok.sitecore.com/r/theme.json"
+        "http://localhost:3000/r/theme.json"
       ],
       "dependencies": [
-        "react-resizable-panels",
+        "react-resizable-panels@3.0.3",
         "@mdi/js"
       ],
       "files": [
