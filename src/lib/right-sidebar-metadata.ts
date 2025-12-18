@@ -432,7 +432,7 @@ export const rightSidebarMetadata: Record<string, RightSidebarMetadata> = {
           { id: "color-schemes", title: "Color Schemes" },
           { id: "subtle-variants", title: "Subtle Variants" },
           { id: "filled-variants", title: "Filled Variants" },
-          { id: "sitecore-logos", title: "Sitecore Logos" },
+          // { id: "sitecore-logos", title: "Sitecore Logos" },
         ],
       },
     ],
