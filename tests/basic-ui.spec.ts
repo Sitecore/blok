@@ -36,6 +36,7 @@ import { testScrollAreaHorizontal, testScrollAreaVertical } from './test-Compone
 import { testSelectDefault } from './test-Components/test-Select';
 import { testSeparator } from './test-Components/test-Separator';
 import { testSheetDefault } from './test-Components/test-Sheet';
+import { testSidebar } from './test-Components/test-Sidebar';
 
 test.describe('UI BLOK QA Automation', () => {
 
@@ -219,7 +220,11 @@ test.describe('UI BLOK QA Automation', () => {
   test('test_Sheet', async ({ page }) => {
     await testSheetDefault(page);
   });
-  
+
+  test('test_Sidebar', async ({ page }) => {
+    await testSidebar(page);
+  });
+
   test('close', async ({ page }) => {
     await page.close();
   });
