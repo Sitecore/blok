@@ -33,6 +33,7 @@ import { testProgress } from './test-Components/test-Progress';
 import { testRadioGroup } from './test-Components/test-Radio_Group';
 import { testResizableHorizontal, testResizableVertical, testResizableWithHandle } from './test-Components/test-Resizable';
 import { testScrollAreaHorizontal, testScrollAreaVertical } from './test-Components/test-Scroll_Area';
+import { testSelectDefault } from './test-Components/test-Select';
 
 test.describe('UI BLOK QA Automation', () => {
 
@@ -203,6 +204,10 @@ test.describe('UI BLOK QA Automation', () => {
   test('test_Scroll_Area', async ({ page }) => {
     await testScrollAreaVertical(page);
     await testScrollAreaHorizontal(page);
+  });
+
+  test('test_Select', async ({ page }) => {
+    await testSelectDefault(page);
   });
 
   test('close', async ({ page }) => {
