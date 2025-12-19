@@ -37,6 +37,7 @@ import { testSelectDefault } from './test-Components/test-Select';
 import { testSeparator } from './test-Components/test-Separator';
 import { testSheetDefault } from './test-Components/test-Sheet';
 import { testSidebar } from './test-Components/test-Sidebar';
+import { testSkeletonDefault } from './test-Components/test-Skeleton';
 
 test.describe('UI BLOK QA Automation', () => {
 
@@ -223,6 +224,10 @@ test.describe('UI BLOK QA Automation', () => {
 
   test('test_Sidebar', async ({ page }) => {
     await testSidebar(page);
+  });
+
+  test('test_Skeleton', async ({ page }) => {
+    await testSkeletonDefault(page);
   });
 
   test('close', async ({ page }) => {
