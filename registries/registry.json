@@ -1526,6 +1526,9 @@
       "registryDependencies": [
         "https://blok.sitecore.com/r/theme.json"
       ],
+      "dependencies": [
+        "@mdi/js"
+      ],
       "files": [
         {
           "path": "src/components/ui/stack-navigation.tsx",
