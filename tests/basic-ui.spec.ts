@@ -35,6 +35,7 @@ import { testResizableHorizontal, testResizableVertical, testResizableWithHandle
 import { testScrollAreaHorizontal, testScrollAreaVertical } from './test-Components/test-Scroll_Area';
 import { testSelectDefault } from './test-Components/test-Select';
 import { testSeparator } from './test-Components/test-Separator';
+import { testSheetDefault } from './test-Components/test-Sheet';
 
 test.describe('UI BLOK QA Automation', () => {
 
@@ -213,6 +214,10 @@ test.describe('UI BLOK QA Automation', () => {
 
   test('test_Separator', async ({ page }) => {
     await testSeparator(page);
+  });
+
+  test('test_Sheet', async ({ page }) => {
+    await testSheetDefault(page);
   });
   
   test('close', async ({ page }) => {
