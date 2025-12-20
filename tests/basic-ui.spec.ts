@@ -39,6 +39,7 @@ import { testSheetDefault } from './test-Components/test-Sheet';
 import { testSidebar } from './test-Components/test-Sidebar';
 import { testSkeletonDefault } from './test-Components/test-Skeleton';
 import { testSlider } from './test-Components/test-Slider';
+import { testToastAction, testToastClosable, testToastError, testToastNormal, testToastSuccessful, testToastWarning } from './test-Components/test-Sonner';
 
 test.describe('UI BLOK QA Automation', () => {
 
@@ -235,6 +236,15 @@ test.describe('UI BLOK QA Automation', () => {
     await testSlider(page);
   });
 
+  test('test_Sonner', async ({ page }) => {
+    await testToastNormal(page);
+    await testToastSuccessful(page);
+    await testToastWarning(page);
+    await testToastError(page);
+    await testToastAction(page);
+    await testToastClosable(page);
+  });
+  
   test('close', async ({ page }) => {
     await page.close();
   });
