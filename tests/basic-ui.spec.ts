@@ -40,6 +40,7 @@ import { testSidebar } from './test-Components/test-Sidebar';
 import { testSkeletonDefault } from './test-Components/test-Skeleton';
 import { testSlider } from './test-Components/test-Slider';
 import { testToastAction, testToastClosable, testToastError, testToastNormal, testToastSuccessful, testToastWarning } from './test-Components/test-Sonner';
+import { testSpinnerCircular, testSpinnerDefault, testSpinnerMessage } from './test-Components/test-Spinner';
 
 test.describe('UI BLOK QA Automation', () => {
 
@@ -243,6 +244,12 @@ test.describe('UI BLOK QA Automation', () => {
     await testToastError(page);
     await testToastAction(page);
     await testToastClosable(page);
+  });
+
+  test('test_Spinner', async ({ page }) => {
+    await testSpinnerDefault(page);
+    await testSpinnerCircular(page);
+    await testSpinnerMessage(page);
   });
   
   test('close', async ({ page }) => {
