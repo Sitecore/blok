@@ -1,7 +1,8 @@
+'use client'
+
 import { cn } from "@/lib/utils";
-import * as React from "react";
 import { cva, type VariantProps } from "class-variance-authority";
-import { SVGProps } from "react";
+import { SVGProps, useEffect, useState } from "react";
 
 const iconVariants = cva("inline-flex items-center justify-center", {
     variants: {
@@ -151,6 +152,33 @@ const iconSize = {
     xxl: "size-11",
 } as const;
 
+function isUrl(value: string) {
+    return (
+        value.startsWith("http://") ||
+        value.startsWith("https://") ||
+        value.startsWith("data:") ||
+        value.startsWith("blob:")
+    );
+}
+
+function extractInlineSvg(svgText: string) {
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(svgText, "image/svg+xml");
+  
+    const svg = doc.querySelector("svg");
+    if (!svg) return null;
+  
+    // Normalize colors so `currentColor` works
+    svg.querySelectorAll("[fill]").forEach((el) => {
+      el.setAttribute("fill", "currentColor");
+    });
+  
+    return {
+      inner: svg.innerHTML,
+      viewBox: svg.getAttribute("viewBox") ?? "0 0 24 24",
+    };
+}
+
 type IconsProps = SVGProps<SVGSVGElement> & {
     path: string,
     title?: string,
@@ -169,22 +197,66 @@ function Icon({
     fill = "currentColor",
     ...props
 }: IconsProps) {
+    const [svgData, setSvgData] = useState<{
+        inner: string;
+        viewBox: string;
+    } | null>(null);
+    
+    const url = isUrl(path);
+
+    useEffect(() => {
+        if (!url) return;
+    
+        let cancelled = false;
+    
+        fetch(path)
+        .then(async (res) => {
+            const text = await res.text();
+            const extracted = extractInlineSvg(text);
+
+            if (!cancelled) {
+            setSvgData(extracted);
+            }
+        })
+        .catch(() => {
+            if (!cancelled) setSvgData(null);
+        });
+    
+        return () => {
+            cancelled = true;
+        };
+    }, [path, url]);
+
     return (
         <span
             className={cn(
                 iconVariants({ variant, colorScheme }),
+                "inline-flex items-center justify-center",
                 className
             )}
         >
-            <svg
-                viewBox="0 0 24 24"
-                aria-label={title}
-                className={iconSize[size]}
-                fill={fill}
-                {...props}
-            >
-                <path d={path} />
-            </svg>
+            {!url && (
+                <svg
+                    viewBox="0 0 24 24"
+                    aria-label={title}
+                    className={iconSize[size]}
+                    fill={fill}
+                    {...props}
+                >
+                    <path d={path} />
+                </svg>
+            )}
+
+            {url && svgData && (
+                <svg
+                    viewBox={svgData.viewBox}
+                    aria-label={title}
+                    className={iconSize[size]}
+                    fill={fill}
+                    dangerouslySetInnerHTML={{ __html: svgData.inner }}
+                    {...props}
+                />
+            )}
         </span>
     )
 }
