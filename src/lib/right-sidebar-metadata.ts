@@ -831,6 +831,24 @@ export const rightSidebarMetadata: Record<string, RightSidebarMetadata> = {
       figma: "https://www.figma.com/design/x0CUbrC5Kjcuk64VPCnbgz/Blok-Components?m=auto&node-id=6748-14480&t=NScvPldB3fxBBWL8-1"
     },
   },
+  timeline: {
+    links: {
+    },
+    sections: [
+      { id: "preview", title: "Preview" },
+      { id: "installation", title: "Installation" },
+      { id: "usage", title: "Usage" },
+      {
+        id: "examples",
+        title: "Examples",
+        children: [
+          { id: "variants", title: "Variants" },
+          { id: "sizes", title: "Sizes" },
+          { id: "connector-variants", title: "Connector Variants" },
+        ],
+      },
+    ],
+  },
 
   // ===== BLOK-SPECIFIC METADATA =====
   "all-site": {

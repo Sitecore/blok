@@ -1617,9 +1617,12 @@
       "name": "timeline",
       "type": "registry:ui",
       "title": "Timeline",
-      "description": "A textarea component for multi-line text input.",
+      "description": "Used to display a list of events in chronological order.",
       "registryDependencies": [
         "https://blok.sitecore.com/r/theme.json"
+      ],
+      "dependencies": [
+        "class-variance-authority"
       ],
       "files": [
         {

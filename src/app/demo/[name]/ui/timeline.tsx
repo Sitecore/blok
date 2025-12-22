@@ -1,5 +1,4 @@
 import {
-  Timeline,
   TimelineRoot,
   TimelineItem,
   TimelineSeparator,
@@ -50,7 +49,7 @@ export const timeline = {
       <TimelineItem>
         <TimelineSeparator>
            <TimelineIndicator>
-           <Icon path={mdiPackageVariantClosed} size={1} />
+           <Icon path={mdiPackageVariantClosed} size={0.7} />
           </TimelineIndicator>
         </TimelineSeparator>
         <TimelineContent>
@@ -60,7 +59,32 @@ export const timeline = {
       </TimelineItem>
     </TimelineRoot>
   ),
-  usage: [],
+  usage: [
+    `import {
+  TimelineRoot,
+  TimelineItem,
+  TimelineSeparator,
+  TimelineIndicator,
+  TimelineConnector,
+  TimelineContent,
+  TimelineTitle,
+  TimelineDescription,
+} from "@/components/ui/timeline";`,
+    `<TimelineRoot>
+  <TimelineItem>
+    <TimelineSeparator>
+      <TimelineIndicator>
+        <CheckIcon className="size-4" />
+      </TimelineIndicator>
+      <TimelineConnector />
+    </TimelineSeparator>
+    <TimelineContent>
+      <TimelineTitle>Step Completed</TimelineTitle>
+      <TimelineDescription>Description text</TimelineDescription>
+    </TimelineContent>
+  </TimelineItem>
+</TimelineRoot>`,
+  ],
   components: {
     "Variants": (
       <div className="space-y-6">
