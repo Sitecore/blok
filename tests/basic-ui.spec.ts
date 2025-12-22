@@ -48,6 +48,7 @@ import { testTimePicker } from './test-Components/test-Time_picker';
 import { testToggleRounded, testToggleSquare } from './test-Components/test-Toggle';
 import { testToggleGroupRounded, testToggleGroupSquare } from './test-Components/test-Toggle_group';
 import { testTooltip } from './test-Components/test-Tooltip';
+import { testTopbar } from './test-Components/test-Topbar';
 
 
 test.describe('UI BLOK QA Automation', () => {
@@ -297,6 +298,10 @@ test.describe('UI BLOK QA Automation', () => {
 
   test('test_Tooltip', async ({ page }) => {
     await testTooltip(page);
+  });
+
+  test('test_Topbar', async ({ page }) => {
+    await testTopbar(page);
   });
 
   test('close', async ({ page }) => {
