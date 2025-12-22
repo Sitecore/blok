@@ -403,17 +403,12 @@ function generateComponentCode(
     }
   });
   
-  // Step: If the JSX is just a single component from a separate demo file, return the entire file content
-  if (demoComponentsToInline.size === 1) {
+  // Step: If any demo component is from a separate file, return the entire file content
+  // Since JSX is always just that one component when it's from a separate file
+  if (demoComponentsToInline.size > 0) {
     const [compName, compInfo] = Array.from(demoComponentsToInline.entries())[0];
     
-    // Check if the content is just the component (with optional wrapper div)
-    const trimmedContent = content.trim();
-    const isSingleComponent = new RegExp(`^<${compName}\\s*/>$`).test(trimmedContent) ||
-                              new RegExp(`^<${compName}[^>]*>[\\s\\S]*</${compName}>$`).test(trimmedContent) ||
-                              new RegExp(`^<div[^>]*>\\s*<${compName}\\s*/>\\s*</div>$`).test(trimmedContent);
-    
-    if (isSingleComponent && existsSync(compInfo.filePath)) {
+    if (existsSync(compInfo.filePath)) {
       const fileContent = readFileSync(compInfo.filePath, "utf-8");
       const normalizedContent = fileContent.replace(/\r\n/g, "\n").replace(/\r/g, "\n");
       console.log(`✅ Using full file content for ${compName} from ${compInfo.filePath}`);
