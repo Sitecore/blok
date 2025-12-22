@@ -46,6 +46,7 @@ import { testTable } from './test-Components/test-Table';
 import { testTextareaBasic, testTextareaDisabled, testTextareaInvalid, testTextareaLarge, testTextareaSmall, testTextareaWithDefaultValue, testTextareaWithLabel, testTextareaWithLabelAndDescription } from './test-Components/test-Textarea';
 import { testTimePicker } from './test-Components/test-Time_picker';
 import { testToggleRounded, testToggleSquare } from './test-Components/test-Toggle';
+import { testToggleGroupRounded, testToggleGroupSquare } from './test-Components/test-Toggle_group';
 
 
 test.describe('UI BLOK QA Automation', () => {
@@ -286,6 +287,11 @@ test.describe('UI BLOK QA Automation', () => {
   test('test_Toggle', async ({ page }) => {
     await testToggleSquare(page);
     await testToggleRounded(page);
+  });
+
+  test('test_Toggle_group', async ({ page }) => {
+    await testToggleGroupSquare(page);
+    await testToggleGroupRounded(page);
   });
 
   test('close', async ({ page }) => {
