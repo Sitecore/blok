@@ -2,7 +2,7 @@
 
 import {
   StackNavigation,
-  StackNavigationElement
+  StackNavigationElement,
 } from "@/components/ui/stack-navigation";
 import { Icon } from "@/lib/icon";
 import { mdiAccount, mdiAccountMultipleOutline, mdiArchiveOutline, mdiCog, mdiCogOutline, mdiFileOutline, mdiHome, mdiHomeVariantOutline, mdiViewDashboard } from "@mdi/js";
@@ -10,39 +10,35 @@ import { mdiAccount, mdiAccountMultipleOutline, mdiArchiveOutline, mdiCog, mdiCo
 const navigationItems: StackNavigationElement[] = [
   {
     name: "Home",
-    path: "/demo/stack-navigation",
+    path: "/primitives/stack-navigation",
     icon: <Icon path={mdiHomeVariantOutline} />,
   },
   {
     name: "User management",
-    path: "/user",
+    path: "#user-management", 
     icon: <Icon path={mdiAccountMultipleOutline} />,
   },
   {
     name: "Documents",
-    path: "/documents",
+    path: "#documents", 
     icon: <Icon path={mdiFileOutline} />,
   },
   {
     name: "Archive",
-    path: "/archive",
+    path: "#archive", 
     icon: <Icon path={mdiArchiveOutline} />,
   },
   {
     name: "Settings",
-    path: "/settings",
+    path: "#settings", 
     icon: <Icon path={mdiCogOutline} />,
   },
 ];
 
 const StackNavigationHorizontal = () => {
-
   return (
     <div>
-      <StackNavigation
-        items={navigationItems}
-        orientation="horizontal"
-      />
+      <StackNavigation items={navigationItems} orientation="horizontal" />
     </div>
   );
 };
