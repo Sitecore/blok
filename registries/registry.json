@@ -1223,7 +1223,6 @@
       "files": [
         {
           "path": "src/components/bloks/site-card.tsx",
-          "target": "src/components/bloks/site-card.tsx",
           "type": "registry:ui"
         }
       ]
@@ -1243,7 +1242,6 @@
       "files": [
         {
           "path": "src/components/bloks/all-sites-section.tsx",
-          "target": "src/components/bloks/all-sites-section.tsx",
           "type": "registry:ui"
         }
       ]
@@ -1264,7 +1262,6 @@
       "files": [
         {
           "path": "src/components/bloks/pinned-sites-section.tsx",
-          "target": "src/components/bloks/pinned-sites-section.tsx",
           "type": "registry:ui"
         },
         {
@@ -1323,7 +1320,7 @@
         "https://blok.sitecore.com/r/theme.json"
       ],
       "dependencies": [
-        "react-resizable-panels@3.0.3",
+        "react-resizable-panels",
         "@mdi/js"
       ],
       "files": [
