@@ -16,4 +16,4 @@ export function ClosableSonner() {
             Closable Toast
         </Button>
     );
-  }
+}

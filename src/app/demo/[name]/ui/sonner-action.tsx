@@ -28,4 +28,4 @@ export function ActionSonner() {
             Action Toast
         </Button>
     );
-  }
+}
