@@ -59,7 +59,7 @@ import { siteCard } from "@/app/demo/[name]/ui/site-card";
 import { timePicker } from "@/app/demo/[name]/ui/time-picker";
 import { draggable } from "@/app/demo/[name]/ui/draggable";
 import { stackNavigation } from "@/app/demo/[name]/ui/stack-navigation";
-
+import { filter } from "@/app/demo/[name]/ui/filter";
 
 interface Demo {
   name: string; // this must match the `/registries/registry.json` name
@@ -98,6 +98,7 @@ export const demos: { [name: string]: Demo } = {
   "dropdown-menu": dropdownMenu,
   "empty-states": emptyStates,
   "error-states": errorStates,
+  filter,
   "hover-card": hoverCard,
   icon,
   input,

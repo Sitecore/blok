@@ -1085,6 +1085,25 @@
       ]
     },
     {
+      "name": "filter",
+      "type": "registry:ui",
+      "title": "Filter",
+      "description": "Displays empty state variants for no search results, nothing created, and error scenarios.",
+      "dependencies": [
+        "class-variance-authority"
+      ],
+      "registryDependencies": [
+        "https://blok.sitecore.com/r/theme.json",
+        "https://blok.sitecore.com/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui/empty-states.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
       "name": "icon",
       "type": "registry:ui",
       "title": "Icon",
