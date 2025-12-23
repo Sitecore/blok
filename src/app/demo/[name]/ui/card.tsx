@@ -6,11 +6,10 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { BriefsTrackerCard } from "./briefs-tracker-card";
-import { cn } from "@/lib/utils";
+import { BriefsTrackerCard } from "@/app/demo/[name]/ui/briefs-tracker-card";
+import CardStyleDemo from "@/app/demo/[name]/ui/card-style";
 
 const elevationVariants = ["none", "xs", "sm", "base", "md", "lg"];
-const styleVariants = ["flat", "outline", "filled"];
 const paddingVariants = ["sm", "md", "lg"];
 
 export const card = {
@@ -52,17 +51,7 @@ export const card = {
 
     // Style Variants
     "Style": (
-      <div className="flex flex-wrap items-center gap-3 p-8">
-        {styleVariants.map((variant) => (
-          <div key={variant} className={cn("p-4", variant === "filled" && "bg-body-bg rounded-lg" )}>
-            <Card style={variant as "flat" | "outline" | "filled"} elevation="base" padding="lg" className="w-[300px]">
-              <CardHeader>
-                <CardTitle>{variant} Style</CardTitle>
-              </CardHeader>
-            </Card>
-          </div>
-        ))}
-      </div>
+      <CardStyleDemo />
     ),
 
     // Padding Variants

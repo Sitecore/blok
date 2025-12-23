@@ -3,7 +3,7 @@ import * as React from "react";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import { Separator } from "@/components/ui/separator";
 
-export const works = [
+const works = [
   {
     artist: "Ornella Binni",
     art: "https://delivery-sitecore.sitecorecontenthub.cloud/api/public/content/235496330fe148edb446ee62d1d54d56?v=4a57ed46",
