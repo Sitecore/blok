@@ -177,7 +177,18 @@ function jsxToString(node: ts.Node, sourceFile: ts.SourceFile): string {
 
 function extractComponentName(key: string): string {
   return key
+    // Remove parentheses and their contents, but keep numbers
+    .replace(/\(([^)]+)\)/g, (match, content) => {
+      // Extract numbers from parentheses content
+      const numbers = content.match(/\d+/g);
+      return numbers ? numbers.join('') : '';
+    })
+    // Remove special characters except alphanumeric and spaces
+    .replace(/[^a-zA-Z0-9\s]/g, '')
+    // Split by whitespace
     .split(/\s+/)
+    .filter(word => word.length > 0)
+    // Capitalize first letter, lowercase rest
     .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
     .join("") + "Demo";
 }
