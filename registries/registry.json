@@ -1050,8 +1050,7 @@
       "title": "Error states",
       "description": "Displays error state variants for different HTTP error codes and generic errors.",
       "dependencies": [
-        "class-variance-authority",
-        "next"
+        "class-variance-authority"
       ],
       "registryDependencies": [
         "https://blok.sitecore.com/r/theme.json",
@@ -1070,8 +1069,7 @@
       "title": "Empty states",
       "description": "Displays empty state variants for no search results, nothing created, and error scenarios.",
       "dependencies": [
-        "class-variance-authority",
-        "next"
+        "class-variance-authority"
       ],
       "registryDependencies": [
         "https://blok.sitecore.com/r/theme.json",
