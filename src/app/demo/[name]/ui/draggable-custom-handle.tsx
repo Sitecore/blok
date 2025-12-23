@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { DndContext, DragEndEvent, SortableContainer, arrayMove, UniqueIdentifier } from "@/components/ui/dnd-context";
+import { DndContext, type DragEndEvent, SortableContainer, arrayMove, type UniqueIdentifier } from "@/components/ui/dnd-context";
 import { SortableItem, SortableHandle } from "@/components/ui/sortable";
 import { DragOverlay } from "@/components/ui/drag-overlay";
 import { Card, CardContent } from "@/components/ui/card";
