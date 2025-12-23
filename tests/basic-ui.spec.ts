@@ -41,6 +41,7 @@ import { testSkeletonDefault } from './test-Components/test-Skeleton';
 import { testSlider } from './test-Components/test-Slider';
 import { testToastAction, testToastClosable, testToastError, testToastNormal, testToastSuccessful, testToastWarning } from './test-Components/test-Sonner';
 import { testSpinnerCircular, testSpinnerDefault, testSpinnerMessage } from './test-Components/test-Spinner';
+import { testStackNavigationHorizontal, testStackNavigationHorizontalTabs, testStackNavigationVertical } from './test-Components/test-Stack_Navigation';
 import { testSwitchDanger, testSwitchPrimary, testSwitchSuccess } from './test-Components/test-Switch';
 import { testDataTable, testTable } from './test-Components/test-Table';
 import { testTabsDefault, testTabsLine, testTabsLineIcons, testTabsSoftRounded, testTabsSoftRoundedIcons } from './test-Components/test-Tabs';
@@ -50,6 +51,7 @@ import { testToggleRounded, testToggleSquare } from './test-Components/test-Togg
 import { testToggleGroupRounded, testToggleGroupSquare } from './test-Components/test-Toggle_group';
 import { testTooltip } from './test-Components/test-Tooltip';
 import { testTopbar } from './test-Components/test-Topbar';
+
 
 test.describe('UI BLOK QA Automation', () => {
 
@@ -262,6 +264,12 @@ test.describe('UI BLOK QA Automation', () => {
     await testSpinnerDefault(page);
     await testSpinnerCircular(page);
     await testSpinnerMessage(page);
+  });
+
+  test('test_Stack_Navigation', async ({ page }) => {
+    await testStackNavigationVertical(page);
+    await testStackNavigationHorizontal(page);
+    await testStackNavigationHorizontalTabs(page);
   });
 
   test('test_Switch', async ({ page }) => {
