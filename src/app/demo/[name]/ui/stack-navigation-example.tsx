@@ -2,7 +2,7 @@
 
 import {
   StackNavigation,
-  StackNavigationElement
+  type StackNavigationElement
 } from "@/components/ui/stack-navigation";
 import { Icon } from "@/lib/icon";
 import { mdiAccount, mdiAccountMultipleOutline, mdiArchiveOutline, mdiCog, mdiCogOutline, mdiFileOutline, mdiHome, mdiHomeVariantOutline, mdiViewDashboard } from "@mdi/js";
