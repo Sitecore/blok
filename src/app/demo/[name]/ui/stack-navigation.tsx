@@ -1,6 +1,6 @@
-import StackNavigationExample from "./stack-navigation-example";
-import StackNavigationHorizontal from "./stack-navigation-horizontal";
-import StackNavigationTabs from "./stack-navigation-tabs";
+import StackNavigationExample from "@/app/demo/[name]/ui/stack-navigation-example";
+import StackNavigationHorizontal from "@/app/demo/[name]/ui/stack-navigation-horizontal";
+import StackNavigationTabs from "@/app/demo/[name]/ui/stack-navigation-tabs";
 
 export const stackNavigation = {
   name: "stack-navigation",

@@ -1564,7 +1564,8 @@
       "description": "A set of layered sections of content known as tab panels that are displayed one at a time.",
       "dependencies": [
         "@radix-ui/react-tabs",
-        "class-variance-authority"
+        "class-variance-authority",
+        "@mdi/js"
       ],
       "registryDependencies": [
         "https://blok.sitecore.com/r/theme.json"
