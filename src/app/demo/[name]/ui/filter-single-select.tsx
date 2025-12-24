@@ -47,23 +47,23 @@ export function FilterSingleSelect() {
   return (
     <div className="flex flex-col gap-4">
       {/* //Default Single Select */}
-      <div className="relative inline-flex">
+      <div className="relative inline-flex w-fit">
         <Select value={defaultValue} onValueChange={setDefaultValue}>
           <SelectTrigger
             className={cn(
               "*:data-[slot=select-value]:hidden",
-              defaultValue && "pr-8 [&>svg]:hidden"
+              defaultValue && "pr-8 [&>svg]:hidden overflow-hidden"
             )}
           >
             <SelectValue placeholder="Select a product" />
-            <span className="flex items-center gap-2 pointer-events-none">
-              <span className="text-neutral-fg font-semibold">
+            <span className="flex items-center gap-2 pointer-events-none min-w-0 overflow-hidden">
+              <span className="text-neutral-fg font-semibold truncate">
                 Select a product
               </span>
               {defaultSelectedLabel && (
                 <>
-                  <span className="text-neutral-fg">:</span>
-                  <span className="text-neutral-fg font-normal">
+                  <span className="text-neutral-fg shrink-0">:</span>
+                  <span className="text-neutral-fg font-normal truncate min-w-0">
                     {defaultSelectedLabel}
                   </span>
                 </>
@@ -84,41 +84,53 @@ export function FilterSingleSelect() {
         </Select>
         {defaultValue && (
           <Button
-            onClick={handleDefaultClear} 
+            onClick={handleDefaultClear}
             variant="ghost"
             colorScheme="neutral"
             size="icon-xs"
             aria-label="Clear selection"
-            className="absolute right-2 top-1/2 -translate-y-1/2"
+            className="absolute right-2 top-1/2 -translate-y-1/2 pointer-events-auto"
           >
             <Icon path={mdiClose} />
           </Button>
         )}
       </div>
       {/* //Simple Single Select */}
-      <div className="relative inline-flex">
+      <div className="relative inline-flex w-fit">
         <Select value={primaryValue} onValueChange={setPrimaryValue}>
           <SelectTrigger
             className={cn(
               "*:data-[slot=select-value]:hidden",
-              primaryValue && "pr-8 [&>svg]:hidden bg-primary-bg text-primary-fg hover:bg-primary-bg hover:text-primary-fg border-primary"
+              primaryValue &&
+                "pr-8 [&>svg]:hidden bg-primary-bg text-primary-fg border-primary overflow-hidden"
             )}
           >
             <SelectValue placeholder="Select a product" />
-            <span className="flex items-center gap-2 pointer-events-none">
-              <span className={cn(
-                "font-semibold",
-                primaryValue ? "text-primary-fg" : "text-neutral-fg"
-              )}>
+            <span className="flex items-center gap-2 pointer-events-none min-w-0 overflow-hidden">
+              <span
+                className={cn(
+                  "font-semibold truncate",
+                  primaryValue ? "text-primary-fg" : "text-neutral-fg"
+                )}
+              >
                 Select a product
               </span>
               {primarySelectedLabel && (
                 <>
-                  <span className={primaryValue ? "text-primary-fg" : "text-neutral-fg"}>:</span>
-                  <span className={cn(
-                    "font-normal",
-                    primaryValue ? "text-primary-fg" : "text-neutral-fg"
-                  )}>
+                  <span
+                    className={cn(
+                      "shrink-0",
+                      primaryValue ? "text-primary-fg" : "text-neutral-fg"
+                    )}
+                  >
+                    :
+                  </span>
+                  <span
+                    className={cn(
+                      "font-normal truncate min-w-0",
+                      primaryValue ? "text-primary-fg" : "text-neutral-fg"
+                    )}
+                  >
                     {primarySelectedLabel}
                   </span>
                 </>
@@ -144,7 +156,7 @@ export function FilterSingleSelect() {
             size="icon-xs"
             colorScheme="primary"
             aria-label="Clear selection"
-            className="absolute right-2 top-1/2 -translate-y-1/2 text-primary-fg"
+            className="absolute right-2 top-1/2 -translate-y-1/2 text-primary-fg pointer-events-auto"
           >
             <Icon path={mdiClose} />
           </Button>
