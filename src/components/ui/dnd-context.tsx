@@ -3,10 +3,10 @@
 import * as React from "react";
 import {
   DndContext as DndKitContext,
-  DragEndEvent,
-  DragMoveEvent,
-  DragOverEvent,
-  DragStartEvent,
+  type DragEndEvent,
+  type DragMoveEvent,
+  type DragOverEvent,
+  type DragStartEvent,
   KeyboardSensor,
   PointerSensor,
   closestCenter,

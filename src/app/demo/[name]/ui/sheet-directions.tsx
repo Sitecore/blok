@@ -1,0 +1,83 @@
+import { Button } from "@/components/ui/button";
+import { Sheet, SheetHeader, SheetTitle, SheetContent, SheetTrigger, SheetFooter, SheetClose } from "@/components/ui/sheet";
+
+export const sitecoreContent = [
+    {
+      title: "Sitecore: A Legacy of Innovation",
+      content: `Since its founding in 2001, Sitecore has been at the forefront of digital experience management. What started as a CMS has evolved into a powerful composable DXP, enabling brands to deliver personalized, omnichannel experiences at scale.`,
+    },
+    {
+      title: "Our Vision",
+      content: `Sitecore’s mission is simple: empower marketers and developers to create connected experiences that inspire loyalty and drive growth. With a focus on flexibility, scalability, and AI-driven personalization, we help businesses stay ahead in a rapidly changing digital landscape.`,
+    },
+    {
+      title: "Marketing Meets Technology",
+      content: `Modern marketing is about more than campaigns—it’s about creating journeys. Sitecore combines content, commerce, and data into a unified platform, giving brands the tools to engage customers with relevance and precision.`,
+    },
+    {
+      title: "Why It Matters",
+      content: `Personalization isn’t a trend—it’s an expectation. Sitecore enables marketers to deliver the right message at the right time, turning interactions into lasting relationships.`,
+    },
+    {
+      title: "Continuous Innovation",
+      content: `From headless architecture to AI-powered content delivery, Sitecore continues to push boundaries. Our vision is to make digital experiences smarter, faster, and more human.`,
+    },
+    {
+      title: "Future-Ready Experiences",
+      content: `The future of marketing is composable. Sitecore’s cloud-native solutions allow businesses to adapt quickly, integrate seamlessly, and innovate without limits. This flexibility ensures brands can respond to market changes and customer needs in real time.`,
+    },
+    {
+      title: "AI and Automation at Scale",
+      content: `Artificial intelligence is transforming marketing. Sitecore leverages AI to automate personalization, predict customer behavior, and optimize content delivery—helping brands achieve efficiency without sacrificing creativity.`,
+    },
+    {
+      title: "Global Community and Support",
+      content: `With thousands of partners and developers worldwide, Sitecore fosters a vibrant ecosystem. Our community drives innovation, shares best practices, and ensures customers have the resources they need to succeed.`,
+    },
+];
+
+const SheetPopupComponent = ({
+    side = "left",
+}: {
+    side?: "top" | "right" | "bottom" | "left";
+}) => (
+    <Sheet key={side}>
+        <SheetTrigger asChild>
+            <Button variant="default" className="capitalize">
+                {side}
+            </Button>
+        </SheetTrigger>
+        <SheetContent side={side}>
+            <SheetHeader>
+                <SheetTitle>Empowering Brands Through Digital Experience</SheetTitle>
+            </SheetHeader>
+            <div className="overflow-y-auto px-4 text-sm">
+                {sitecoreContent.map((item, index) => (
+                    <div key={index}>
+                        <h4 className="mb-2 text-sm leading-none font-medium">
+                            {item.title}
+                        </h4>
+                        <p className="mb-4 leading-normal">{item.content}</p>
+                    </div>
+                ))}
+            </div>
+            <SheetFooter>
+                <SheetClose asChild>
+                    <Button variant="outline">Cancel</Button>
+                </SheetClose>
+                <Button type="submit">Save changes</Button>
+            </SheetFooter>
+        </SheetContent>
+    </Sheet>
+);
+
+export default function SheetDirections() {
+    return (
+        <div className="flex gap-4">
+            <SheetPopupComponent side="top" />
+            <SheetPopupComponent side="right" />
+            <SheetPopupComponent side="bottom" />
+            <SheetPopupComponent side="left" />
+        </div>
+    )
+}

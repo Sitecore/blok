@@ -3,8 +3,8 @@
 import { useState } from "react";
 import {
   StackNavigation,
-  StackNavigationElement,
-  StackNavigationItem,
+  type StackNavigationElement,
+  type StackNavigationItem,
 } from "@/components/ui/stack-navigation";
 import { Icon } from "@/lib/icon";
 import { mdiViewDashboard, mdiHistory, mdiLayers } from "@mdi/js";

@@ -2,12 +2,12 @@
 
 import * as React from "react";
 import {
-  ColumnDef,
+  type ColumnDef,
   flexRender,
   getCoreRowModel,
   getPaginationRowModel,
   getSortedRowModel,
-  SortingState,
+  type SortingState,
   useReactTable,
 } from "@tanstack/react-table";
 import {

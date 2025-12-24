@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { DndContext, DragEndEvent, UniqueIdentifier } from "@/components/ui/dnd-context";
+import { DndContext, type DragEndEvent, type UniqueIdentifier } from "@/components/ui/dnd-context";
 import { DragOverlay } from "@/components/ui/drag-overlay";
 import { Draggable } from "@/components/ui/draggable";
 import { Droppable } from "@/components/ui/droppable";
