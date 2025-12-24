@@ -65,6 +65,7 @@ export function CodeBlock({ code, lang = "tsx", showLineNumbers = true, classNam
 
   return (
     <div
+      dir="ltr"
       className={cn(
         "relative rounded-md bg-muted max-h-[400px] overflow-auto",
         className
@@ -72,7 +73,7 @@ export function CodeBlock({ code, lang = "tsx", showLineNumbers = true, classNam
       style={{ width: "100%", maxWidth: "100%" }}
     >
       <div className="sticky top-0 h-0 z-10">
-        <div className="absolute top-2 right-2">
+        <div className="absolute top-2 right-2" dir="ltr">
           <Button
             variant="ghost"
             size="icon-sm"
@@ -94,6 +95,7 @@ export function CodeBlock({ code, lang = "tsx", showLineNumbers = true, classNam
         </div>
       </div>
       <div
+        dir="ltr"
         className="text-md overflow-x-auto p-4 wrap-break-words"
         style={{ minWidth: 0, width: "100%" }}
         dangerouslySetInnerHTML={{ __html: html }}

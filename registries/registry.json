@@ -1003,25 +1003,6 @@
       ]
     },
     {
-      "name": "drawer",
-      "type": "registry:ui",
-      "title": "Drawer",
-      "description": "A side panel containing content or editable fields.",
-      "dependencies": [
-        "vaul"
-      ],
-      "registryDependencies": [
-        "https://blok.sitecore.com/r/button.json",
-        "https://blok.sitecore.com/r/theme.json"
-      ],
-      "files": [
-        {
-          "path": "src/components/ui/drawer.tsx",
-          "type": "registry:ui"
-        }
-      ]
-    },
-    {
       "name": "dropdown-menu",
       "type": "registry:ui",
       "title": "Dropdown",
@@ -1050,8 +1031,7 @@
       "title": "Error states",
       "description": "Displays error state variants for different HTTP error codes and generic errors.",
       "dependencies": [
-        "class-variance-authority",
-        "next"
+        "class-variance-authority"
       ],
       "registryDependencies": [
         "https://blok.sitecore.com/r/theme.json",
@@ -1070,8 +1050,7 @@
       "title": "Empty states",
       "description": "Displays empty state variants for no search results, nothing created, and error scenarios.",
       "dependencies": [
-        "class-variance-authority",
-        "next"
+        "class-variance-authority"
       ],
       "registryDependencies": [
         "https://blok.sitecore.com/r/theme.json",
@@ -1526,6 +1505,9 @@
       "registryDependencies": [
         "https://blok.sitecore.com/r/theme.json"
       ],
+      "dependencies": [
+        "@mdi/js"
+      ],
       "files": [
         {
           "path": "src/components/ui/stack-navigation.tsx",
@@ -1582,7 +1564,8 @@
       "description": "A set of layered sections of content known as tab panels that are displayed one at a time.",
       "dependencies": [
         "@radix-ui/react-tabs",
-        "class-variance-authority"
+        "class-variance-authority",
+        "@mdi/js"
       ],
       "registryDependencies": [
         "https://blok.sitecore.com/r/theme.json"
@@ -1719,24 +1702,6 @@
       "files": [
         {
           "path": "src/components/ui/popover.tsx",
-          "type": "registry:ui"
-        }
-      ]
-    },
-    {
-      "name": "hover-card",
-      "type": "registry:ui",
-      "title": "Hover card",
-      "description": "For sighted users to preview content available behind a link.",
-      "registryDependencies": [
-        "https://blok.sitecore.com/r/theme.json"
-      ],
-      "dependencies": [
-        "@radix-ui/react-hover-card"
-      ],
-      "files": [
-        {
-          "path": "src/components/ui/hover-card.tsx",
           "type": "registry:ui"
         }
       ]

@@ -22,12 +22,13 @@ export function CopyableToken({ token }: CopyableTokenProps) {
   return (
     <Tooltip>
       <TooltipTrigger asChild>
-        <button
+        <code
+          dir="ltr"
           onClick={handleCopy}
           className="cursor-pointer rounded bg-muted px-[0.3rem] py-[0.2rem] font-mono text-sm hover:bg-muted/80 transition-colors inline-block"
         >
           {token}
-        </button>
+        </code>
       </TooltipTrigger>
       <TooltipContent>Copy to clipboard</TooltipContent>
     </Tooltip>

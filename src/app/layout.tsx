@@ -5,6 +5,7 @@ import type { ReactNode } from "react";
 
 import "@/app/globals.css";
 import { Toaster } from "@/components/ui/sonner";
+import { DirectionProvider } from "@/components/docsite/direction-provider";
 
 export const metadata: Metadata = {
   title: "Blok",
@@ -28,10 +29,12 @@ export default function RootLayout({
         content="noindex, nofollow, noarchive, nosnippet, noimageindex"
       />
       <body className="flex grow">
-        {children}
-        <Analytics />
-        <SpeedInsights />
-        <Toaster />
+        <DirectionProvider>
+          {children}
+          <Analytics />
+          <SpeedInsights />
+          <Toaster />
+        </DirectionProvider>
       </body>
     </html>
   );

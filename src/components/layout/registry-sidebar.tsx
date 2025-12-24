@@ -7,6 +7,7 @@ import {
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React, { useMemo } from "react";
+import { useDirection } from "@radix-ui/react-direction";
 
 import { RegistryLogo } from "@/components/docsite/registry-logo";
 import { Button } from "@/components/ui/button";
@@ -32,10 +33,11 @@ export const REGISTRY_SIDEBAR_WIDTH = "13rem";
 export function MobileSidebarTrigger() {
   const pathname = usePathname();
   const { setOpenMobile } = useSidebar();
+  const direction = useDirection();
 
   // Only show mobile trigger if sidebar should be visible
   const shouldShowSidebar = useMemo(() => {
-    if (pathname === "/" || pathname.startsWith("/resources") || pathname.startsWith("/mcp")) {
+    if (pathname === "/" || pathname.startsWith("/resources") || pathname.startsWith("/mcp") || pathname.startsWith("/rtl")) {
       return false;
     }
     return (
@@ -52,7 +54,7 @@ export function MobileSidebarTrigger() {
   }
 
   return (
-    <div className="absolute top-8 right-4 md:hidden">
+    <div className={`absolute top-8 ${direction === "rtl" ? "left-4" : "right-4"} md:hidden`}>
       <Button aria-label="Open menu" onClick={() => setOpenMobile(true)}>
         <Menu className="size-5" />
       </Button>
@@ -63,11 +65,12 @@ export function MobileSidebarTrigger() {
 export function RegistrySidebar() {
   const pathname = usePathname();
   const { setOpenMobile } = useSidebar();
+  const direction = useDirection();
 
   // Determine which sidebar content to show based on pathname
   const sidebarType = useMemo(() => {
-    if (pathname === "/" || pathname.startsWith("/resources") || pathname.startsWith("/mcp")) {
-      return null; // No sidebar for homepage, resources, or mcp
+    if (pathname === "/" || pathname.startsWith("/resources") || pathname.startsWith("/mcp") || pathname.startsWith("/rtl")) {
+      return null; // No sidebar for homepage, resources, mcp, or rtl
     }
     if (pathname.startsWith("/primitives")) {
       return "components";
@@ -113,6 +116,7 @@ export function RegistrySidebar() {
 
   return (
     <Sidebar
+      side={direction === "rtl" ? "right" : "left"}
       collapsible="icon"
       className="[&>div[data-slot='sidebar-inner']]:bg-subtle-bg [&>div[data-mobile='true']]:bg-subtle-bg"
     >
@@ -129,7 +133,7 @@ export function RegistrySidebar() {
         </div>
       </SidebarHeader>
 
-      <SidebarContent className="ml-4 py-4">
+      <SidebarContent className={`${direction === "rtl" ? "mr-4" : "ml-4"} py-4`}>
         <ScrollArea className="h-full w-full pr-4">
           <SidebarMenu >
             {sidebarType === "components" &&

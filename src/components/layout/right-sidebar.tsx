@@ -87,7 +87,9 @@ export function RightSidebar({
   if (!hasContent) return null;
 
   return (
-    <aside className="hidden xl:block xl:sticky xl:top-12 xl:h-[calc(100vh-48px)] xl:w-[250px] xl:overflow-y-auto xl:flex-shrink-0 p-10 space-y-8 bg-transparent">
+    <aside
+      className="hidden xl:block xl:sticky xl:top-12 xl:h-[calc(100vh-48px)] xl:w-[250px] xl:overflow-y-auto xl:shrink-0 p-10 space-y-8 bg-transparent"
+    >
         {/* Links Section */}
         {links && Object.keys(links).length > 0 && (
           <div className="space-y-2.5">
@@ -195,7 +197,7 @@ export function RightSidebar({
                     type="button"
                     onClick={() => scrollToSection(section.id)}
                     className={cn(
-                      "block w-full text-left text-md font-semibold transition-colors hover:text-foreground",
+                      "block w-full text-start text-md font-semibold transition-colors hover:text-foreground",
                       activeId === section.id
                         ? "text-foreground"
                         : "text-muted-foreground"
@@ -204,14 +206,14 @@ export function RightSidebar({
                     {section.title}
                   </button>
                   {section.children && (
-                    <ul className="mt-2 space-y-2 pl-4">
+                    <ul className="mt-2 space-y-2 ps-4">
                       {section.children.map((child) => (
                         <li key={child.id}>
                           <button
                             type="button"
                             onClick={() => scrollToSection(child.id)}
                             className={cn(
-                              "block w-full text-left text-md font-semibold transition-colors hover:text-foreground",
+                              "block w-full text-start text-md font-semibold transition-colors hover:text-foreground",
                               activeId === child.id
                                 ? "text-foreground"
                                 : "text-muted-foreground"

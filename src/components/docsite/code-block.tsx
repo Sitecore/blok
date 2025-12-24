@@ -47,8 +47,8 @@ export function Codeblocks({ variant, code, showLineNumbers = true }: Codeblocks
   }, [hasCopied]);
 
   return (
-    <div className="relative">
-      <div className="absolute top-1 right-3 flex gap-2">
+    <div className="relative" dir="ltr">
+      <div className="absolute top-1 right-3 flex gap-2" dir="ltr">
         <Button
           size="icon-sm"
           variant="ghost"
@@ -70,9 +70,9 @@ export function Codeblocks({ variant, code, showLineNumbers = true }: Codeblocks
         </Button>
       </div>
 
-      <div className={codeBlockVariants({ variant })}>
+      <div className={codeBlockVariants({ variant })} dir="ltr">
         {showLineNumbers && (
-          <div className="flex flex-col items-center justify-start py-2 px-2 text-md gap-y-1">
+          <div className="flex flex-col items-center justify-start py-2 px-2 text-md gap-y-1" dir="ltr">
             {codeLines.map((_, index) => (
               <span key={index} className="w-6 text-center py-1 leading-none">
                 {index + 1}
@@ -81,8 +81,8 @@ export function Codeblocks({ variant, code, showLineNumbers = true }: Codeblocks
           </div>
         )}
 
-        <pre className="flex-1 overflow-x-auto p-2">
-          <code className="relative bg-transparent font-mono text-md leading-none whitespace-pre-wrap break-words">
+        <pre className="flex-1 overflow-x-auto p-2" dir="ltr">
+          <code className="relative bg-transparent font-mono text-md leading-none whitespace-pre-wrap overflow-wrap-break-word" dir="ltr">
             {code}
           </code>
         </pre>

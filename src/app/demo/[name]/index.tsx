@@ -17,7 +17,6 @@ import { checkbox } from "@/app/demo/[name]/ui/checkbox";
 import { contextMenu } from "@/app/demo/[name]/ui/context-menu";
 import { datePicker } from "@/app/demo/[name]/ui/date-picker";
 import { dialog } from "@/app/demo/[name]/ui/dialog";
-import { drawer } from "@/app/demo/[name]/ui/drawer";
 import { emptyStates } from "@/app/demo/[name]/ui/empty-states";
 import { errorStates } from "@/app/demo/[name]/ui/error-states";
 import { dropdownMenu } from "@/app/demo/[name]/ui/dropdown-menu";
@@ -47,7 +46,6 @@ import { topbar } from "@/app/demo/[name]/ui/topbar";
 import { pagination } from "@/app/demo/[name]/ui/pagination";
 import { scrollArea } from "@/app/demo/[name]/ui/scroll-area";
 import { popover } from "@/app/demo/[name]/ui/popover";
-import { hoverCard } from "@/app/demo/[name]/ui/hover-card";
 import { collapsible } from "@/app/demo/[name]/ui/collapsible";
 import { progress } from "@/app/demo/[name]/ui/progress";
 import { command } from "@/app/demo/[name]/ui/command";
@@ -94,11 +92,9 @@ export const demos: { [name: string]: Demo } = {
   "date-picker": datePicker,
   dialog,
   draggable,
-  drawer,
   "dropdown-menu": dropdownMenu,
   "empty-states": emptyStates,
   "error-states": errorStates,
-  "hover-card": hoverCard,
   icon,
   input,
   inputOtp,

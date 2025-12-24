@@ -34,23 +34,44 @@ export interface StackNavigationProps {
    * - Next.js: `usePathname()`
    */
   pathname?: string;
+
+  onItemClick?: (
+    item: StackNavigationItem,
+    event: React.MouseEvent<HTMLAnchorElement>
+  ) => void | boolean;
 }
 
 function DefaultNavItem({
   item,
   orientation = "vertical",
   pathname,
+  onItemClick,
 }: {
   item: StackNavigationItem;
   orientation?: "vertical" | "horizontal";
   pathname: string;
+  onItemClick?: (
+    item: StackNavigationItem,
+    event: React.MouseEvent<HTMLAnchorElement>
+  ) => void | boolean;
 }) {
   const isActive = pathname === item.path;
 
   const isHorizontal = orientation === "horizontal";
 
+  const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    if (onItemClick) {
+      const result = onItemClick(item, e);
+      if (result === false) {
+        e.preventDefault();
+      }
+    }
+  };
+
   return (
-    <div
+    <a
+      href={item.path}
+      onClick={handleClick}
       className={cn(
         // ---------VERTICAL--------------
         !isHorizontal &&
@@ -62,6 +83,7 @@ function DefaultNavItem({
             "text-3xs text-neutral-fg font-medium",
             "hover:bg-sidebar-accent cursor-pointer",
             "relative opacity-100",
+            "no-underline",
             isActive &&
               "bg-primary-bg text-primary-fg hover:bg-primary-bg hover:text-primary-fg font-medium",
             item.className
@@ -73,12 +95,14 @@ function DefaultNavItem({
             "flex flex-col items-center justify-center",
             "min-w-14 w-fit h-14 p-1.5 gap-1 rounded-md cursor-pointer overflow-hidden",
             "text-neutral-fg hover:bg-sidebar-accent transition-colors font-medium",
+            "no-underline",
             isActive &&
               "bg-primary-bg text-primary-fg hover:bg-primary-bg hover:text-primary-fg font-medium",
             item.className
           )
       )}
       onContextMenu={(e) => e.preventDefault()}
+      aria-label={item.name}
     >
       {/* Icon */}
       <div
@@ -106,7 +130,7 @@ function DefaultNavItem({
       {!isHorizontal && item.badge && (
         <div className="absolute top-1 right-1">{item.badge}</div>
       )}
-    </div>
+    </a>
   );
 }
 
@@ -135,6 +159,7 @@ export function StackNavigation({
   footer,
   orientation = "vertical",
   pathname: providedPathname,
+  onItemClick,
 }: StackNavigationProps) {
   // Use provided pathname or fall back to window.location.pathname
   const [clientPathname, setClientPathname] = React.useState("");
@@ -207,7 +232,7 @@ export function StackNavigation({
                 {renderItem ? (
                   renderItem(navItem)
                 ) : (
-                  <DefaultNavItem item={navItem} orientation={orientation} pathname={pathname} />
+                  <DefaultNavItem item={navItem} orientation={orientation} pathname={pathname} onItemClick={onItemClick} />
                 )}
               </div>
             );

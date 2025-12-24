@@ -22,7 +22,7 @@ export default function DemoTab({ id, code, component, defaultTab = "preview" }:
                 {component}
             </TabsContent>
 
-            <TabsContent value="code" className="min-h-[200px] rounded-b-md">
+            <TabsContent value="code" dir="ltr" className="min-h-[200px] rounded-b-md">
                 <CodeBlock code={code} className="rounded-t-none rounded-b-md" />
             </TabsContent>
         </Tabs>

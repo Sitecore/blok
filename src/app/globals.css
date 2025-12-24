@@ -293,6 +293,12 @@
   body {
     @apply bg-background text-foreground;
   }
+  /* Ensure code elements always remain LTR for readability */
+  code, pre, kbd, samp {
+    direction: ltr;
+    text-align: left;
+    unicode-bidi: isolate;
+  }
 }
 
 .scrollbar-hidden {

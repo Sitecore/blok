@@ -38,7 +38,7 @@ export default function InstallationCodeBlock({ registryUrl }: InstallationCodeB
     }
 
     return (
-        <div className="rounded-lg bg-subtle-bg p-4">
+        <div dir="ltr" className="rounded-lg bg-subtle-bg p-4">
             <Tabs defaultValue="pnpm" onValueChange={setActiveTab}>
                 <div className="flex items-center justify-between">
                     <TabsList variant="soft-rounded">

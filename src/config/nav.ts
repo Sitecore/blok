@@ -50,4 +50,11 @@ export const searchableItems = [
     type: 'page' as const,
     description: "Blok MCP Server configuration and setup"
   },
+  // RTL Support
+  {
+    title: "RTL Support",
+    href: "/rtl",
+    type: 'page' as const,
+    description: "Right-to-Left (RTL) language support documentation"
+  },
 ];
