@@ -18,6 +18,7 @@ import { testCommand } from './test-Components/test-Command';
 import { testContextMenu } from './test-Components/test-Context_menu';
 import { testSingleDatePicker } from './test-Components/test-Date_picker';
 import { testDialog } from './test-Components/test-Dialog';
+import { testDraggable } from './test-Components/test-Draggable';
 import { testDrawer } from './test-Components/test-Drawer';
 import { testDropdown } from './test-Components/test-Dropdown';
 import { testEmptyStates } from './test-Components/test-Empty_States';
@@ -52,12 +53,12 @@ import { testToggleRounded, testToggleSquare } from './test-Components/test-Togg
 import { testToggleGroupRounded, testToggleGroupSquare } from './test-Components/test-Toggle_group';
 import { testTooltip } from './test-Components/test-Tooltip';
 import { testTopbar } from './test-Components/test-Topbar';
-import { testDraggable } from './test-Components/test-Draggable';
 
 
 test.describe('UI BLOK QA Automation', () => {
 
   test.beforeEach('Base URL', async ({ page }) => {
+    await page.setViewportSize({ width: 1700, height: 800 });
     // adjust baseURL in playwright config, or use full URL:
     await page.goto('/');
   });
