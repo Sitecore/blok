@@ -10,10 +10,7 @@ import { FilterHorizontalLayout } from "@/app/demo/[name]/ui/filter-horizontal-l
 export const filter = {
   name: "alert",
   defaultComponent: <FilterHorizontalLayout />,
-  usage: [
-    `import {\n  Alert,\n  AlertDescription,\n  AlertTitle,\n} from "@/components/ui/alert"`,
-    `<Alert>\n  <AlertTitle>Alert</AlertTitle>\n  <AlertDescription>\n    This is an example of an alert with a title and description.\n  </AlertDescription>\n</Alert>`
-  ],
+ 
   components: {
     "Filter Input": <FilterInput />,
     "Filter Single Select": <FilterSingleSelect />,

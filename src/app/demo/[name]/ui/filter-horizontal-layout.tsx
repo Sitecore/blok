@@ -47,17 +47,17 @@ export function FilterHorizontalLayout() {
     { value: "contentHub", label: "Content Hub" },
     { value: "CDP", label: "CDP" },
     { value: "Blok", label: "Blok" },
-    { value: "OrderCloud", label: "OrderCloud" },
+    { value: "OrderCloud", label: "Order cloud" },
     { value: "SitecoreXP", label: "Sitecore XP" },
     { value: "SitecoreXM", label: "Sitecore XM" },
     { value: "Send", label: "Send" },
     { value: "Discover", label: "Discover" },
     { value: "Connect", label: "Connect" },
     { value: "Personalize", label: "Personalize" },
-    { value: "ContentOps", label: "Content Operations" },
-    { value: "Commerce", label: "Sitecore Commerce" },
-    { value: "Forms", label: "Sitecore Forms" },
-    { value: "JSS", label: "JavaScript Services" },
+    { value: "ContentOps", label: "Content operations" },
+    { value: "Commerce", label: "Sitecore commerce" },
+    { value: "Forms", label: "Sitecore forms" },
+    { value: "JSS", label: "JavaScript services" },
     { value: "Headless", label: "Headless CMS" },
   ];
 
@@ -101,13 +101,20 @@ export function FilterHorizontalLayout() {
     setPrimaryActive((prev) => !prev);
   };
 
+  const handleClearAll = () => {
+    setValue("");
+    setPrimaryValue("");
+    setPrimaryValues([]);
+    setPrimaryActive(false);
+  };
+
   return (
     <div className="flex items-center gap-3 flex-wrap">
       {/* Filter Input */}
       <div className="relative w-64 max-w-sm">
         <Icon
           path={mdiMagnify}
-          className="absolute top-1/2 left-3 shrink-0 -translate-y-1/2 opacity-50 size-5 pointer-events-none"
+          className="absolute top-1/2 left-3 -translate-y-1/2 opacity-50 size-5 pointer-events-none"
         />
         <Input
           type="input"
@@ -143,7 +150,7 @@ export function FilterHorizontalLayout() {
             )}
           >
             <SelectValue placeholder="Select a product" />
-            <span className="flex items-center gap-2 pointer-events-none min-w-0 overflow-hidden">
+            <span className="flex items-center gap-0 pointer-events-none min-w-0 overflow-hidden">
               <span
                 className={cn(
                   "font-semibold truncate",
@@ -156,7 +163,6 @@ export function FilterHorizontalLayout() {
                 <>
                   <span
                     className={cn(
-                      "shrink-0",
                       primaryValue ? "text-primary-fg" : "text-neutral-fg"
                     )}
                   >
@@ -164,7 +170,7 @@ export function FilterHorizontalLayout() {
                   </span>
                   <span
                     className={cn(
-                      "font-normal truncate min-w-0",
+                      "font-normal truncate min-w-0 ml-0.5",
                     primaryValue ? "text-primary-fg" : "text-neutral-fg"
                     )}
                   >
@@ -213,7 +219,7 @@ export function FilterHorizontalLayout() {
                   : ""
               )}
             >
-              <span className="flex items-center gap-2 pointer-events-none min-w-0 overflow-hidden">
+              <span className="flex items-center gap-0 pointer-events-none min-w-0 overflow-hidden">
                 <span
                   className={cn(
                     "font-semibold truncate",
@@ -228,7 +234,6 @@ export function FilterHorizontalLayout() {
                   <>
                     <span
                       className={cn(
-                        "shrink-0",
                         primaryValues.length > 0
                           ? "text-primary-fg"
                           : "text-neutral-fg"
@@ -238,7 +243,7 @@ export function FilterHorizontalLayout() {
                     </span>
                     <span
                       className={cn(
-                        "font-normal truncate min-w-0",
+                        "font-normal truncate min-w-0 ml-0.5",
                         primaryValues.length > 0
                           ? "text-primary-fg"
                           : "text-neutral-fg"
@@ -253,7 +258,7 @@ export function FilterHorizontalLayout() {
                 <Icon
                   path={mdiChevronDown}
                   size={1.3}
-                  className="opacity-50 shrink-0 pointer-events-none"
+                  className="opacity-50 pointer-events-none"
                 />
               )}
             </Button>
@@ -314,7 +319,7 @@ export function FilterHorizontalLayout() {
         <span className="font-medium">Assigned to me</span>
         {primaryActive && (
           <span
-            className="shrink-0 cursor-pointer rounded-full p-0.5 hover:bg-neutral-bg-active flex items-center justify-center"
+            className="cursor-pointer rounded-full p-0.5 hover:bg-neutral-bg-active flex items-center justify-center"
             onClick={(e) => {
               e.stopPropagation();
               setPrimaryActive(false);
@@ -323,6 +328,17 @@ export function FilterHorizontalLayout() {
             <Icon path={mdiClose} size={1.1} className="pointer-events-none" />
           </span>
         )}
+      </Button>
+
+      {/* Clear All Button */}
+      <Button
+        onClick={handleClearAll}
+        variant="link"
+        size="sm"
+        colorScheme="primary"
+        className="w-fit"
+      >
+        Clear all
       </Button>
     </div>
   );

@@ -56,14 +56,14 @@ export function FilterSingleSelect() {
             )}
           >
             <SelectValue placeholder="Select a product" />
-            <span className="flex items-center gap-2 pointer-events-none min-w-0 overflow-hidden">
+            <span className="flex items-center gap-0 pointer-events-none min-w-0 overflow-hidden">
               <span className="text-neutral-fg font-semibold truncate">
                 Select a product
               </span>
               {defaultSelectedLabel && (
                 <>
-                  <span className="text-neutral-fg shrink-0">:</span>
-                  <span className="text-neutral-fg font-normal truncate min-w-0">
+                  <span className="text-neutral-fg">:</span>
+                  <span className="text-neutral-fg font-normal truncate min-w-0 ml-0.5">
                     {defaultSelectedLabel}
                   </span>
                 </>
@@ -106,7 +106,7 @@ export function FilterSingleSelect() {
             )}
           >
             <SelectValue placeholder="Select a product" />
-            <span className="flex items-center gap-2 pointer-events-none min-w-0 overflow-hidden">
+            <span className="flex items-center gap-0 pointer-events-none min-w-0 overflow-hidden">
               <span
                 className={cn(
                   "font-semibold truncate",
@@ -119,7 +119,6 @@ export function FilterSingleSelect() {
                 <>
                   <span
                     className={cn(
-                      "shrink-0",
                       primaryValue ? "text-primary-fg" : "text-neutral-fg"
                     )}
                   >
@@ -127,7 +126,7 @@ export function FilterSingleSelect() {
                   </span>
                   <span
                     className={cn(
-                      "font-normal truncate min-w-0",
+                      "font-normal truncate min-w-0 ml-0.5",
                     primaryValue ? "text-primary-fg" : "text-neutral-fg"
                     )}
                   >

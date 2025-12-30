@@ -1088,18 +1088,23 @@
       "name": "filter",
       "type": "registry:ui",
       "title": "Filter",
-      "description": "Displays empty state variants for no search results, nothing created, and error scenarios.",
+      "description": "Filter components including input search, single select, multi select, and toggle filters for filtering data.",
       "dependencies": [
+        "@mdi/js",
         "class-variance-authority"
       ],
       "registryDependencies": [
         "https://blok.sitecore.com/r/theme.json",
-        "https://blok.sitecore.com/r/button.json"
+        "https://blok.sitecore.com/r/button.json",
+        "https://blok.sitecore.com/r/input.json",
+        "https://blok.sitecore.com/r/select.json",
+        "https://blok.sitecore.com/r/popover.json",
+        "https://blok.sitecore.com/r/badge.json"
       ],
       "files": [
         {
-          "path": "src/components/ui/empty-states.tsx",
-          "type": "registry:ui"
+          "path": "src/lib/icon.tsx",
+          "type": "registry:lib"
         }
       ]
     },

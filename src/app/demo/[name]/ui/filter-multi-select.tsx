@@ -25,17 +25,17 @@ export function FilterMultiSelect() {
     { value: "contentHub", label: "Content Hub" },
     { value: "CDP", label: "CDP" },
     { value: "Blok", label: "Blok" },
-    { value: "OrderCloud", label: "OrderCloud" },
+    { value: "OrderCloud", label: "Order cloud" },
     { value: "SitecoreXP", label: "Sitecore XP" },
     { value: "SitecoreXM", label: "Sitecore XM" },
     { value: "Send", label: "Send" },
     { value: "Discover", label: "Discover" },
     { value: "Connect", label: "Connect" },
     { value: "Personalize", label: "Personalize" },
-    { value: "ContentOps", label: "Content Operations" },
-    { value: "Commerce", label: "Sitecore Commerce" },
-    { value: "Forms", label: "Sitecore Forms" },
-    { value: "JSS", label: "JavaScript Services" },
+    { value: "ContentOps", label: "Content operations" },
+    { value: "Commerce", label: "Sitecore commerce" },
+    { value: "Forms", label: "Sitecore forms" },
+    { value: "JSS", label: "JavaScript services" },
     { value: "Headless", label: "Headless CMS" },
   ];
 
@@ -107,14 +107,14 @@ export function FilterMultiSelect() {
                   : ""
               )}
             >
-              <span className="flex items-center gap-2 pointer-events-none min-w-0 overflow-hidden">
+              <span className="flex items-center gap-0 pointer-events-none min-w-0 overflow-hidden">
                 <span className="text-neutral-fg font-semibold truncate">
                   Select products
                 </span>
                 {defaultSelectedLabels.length > 0 && (
                   <>
-                    <span className="text-neutral-fg shrink-0">:</span>
-                    <span className="text-neutral-fg font-normal truncate min-w-0">
+                    <span className="text-neutral-fg">:</span>
+                    <span className="text-neutral-fg font-normal truncate min-w-0 ml-0.5">
                       {getDisplayText(defaultSelectedLabels)}
                     </span>
                   </>
@@ -124,7 +124,7 @@ export function FilterMultiSelect() {
                 <Icon
                   path={mdiChevronDown}
                   size={1.3}
-                  className="opacity-50 shrink-0 pointer-events-none"
+                  className="opacity-50 pointer-events-none"
                 />
               )}
             </Button>
@@ -184,7 +184,7 @@ export function FilterMultiSelect() {
                   : ""
               )}
             >
-              <span className="flex items-center gap-2 pointer-events-none min-w-0 overflow-hidden">
+              <span className="flex items-center gap-0 pointer-events-none min-w-0 overflow-hidden">
                 <span
                   className={cn(
                     "font-semibold truncate",
@@ -199,7 +199,6 @@ export function FilterMultiSelect() {
                   <>
                     <span
                       className={cn(
-                        "shrink-0",
                         primaryValues.length > 0
                           ? "text-primary-fg"
                           : "text-neutral-fg"
@@ -209,7 +208,7 @@ export function FilterMultiSelect() {
                     </span>
                     <span
                       className={cn(
-                        "font-normal truncate min-w-0",
+                        "font-normal truncate min-w-0 ml-0.5",
                         primaryValues.length > 0
                           ? "text-primary-fg"
                           : "text-neutral-fg"
@@ -224,7 +223,7 @@ export function FilterMultiSelect() {
                 <Icon
                   path={mdiChevronDown}
                   size={1.3}
-                  className="opacity-50 shrink-0 pointer-events-none"
+                  className="opacity-50 pointer-events-none"
                 />
               )}
             </Button>
@@ -284,14 +283,14 @@ export function FilterMultiSelect() {
                   : ""
               )}
             >
-              <span className="flex items-center gap-2 pointer-events-none min-w-0 overflow-hidden flex-wrap">
-                <span className="text-neutral-fg font-semibold shrink-0">
+              <span className="flex items-center gap-0 pointer-events-none min-w-0 overflow-hidden flex-wrap">
+                <span className="text-neutral-fg font-semibold">
                   Select products
                 </span>
                 {badgeValues.length > 0 && (
                   <>
-                    <span className="text-neutral-fg shrink-0">:</span>
-                    <span className="flex items-center gap-1.5 flex-wrap min-w-0">
+                    <span className="text-neutral-fg">:</span>
+                    <span className="flex items-center gap-1.5 flex-wrap min-w-0 ml-0.5">
                       {badgeValues.slice(0, 3).map((value) => {
                         const label = options.find(
                           (opt) => opt.value === value
@@ -305,7 +304,7 @@ export function FilterMultiSelect() {
                             style={{
                               minHeight: "1.5rem",
                             }}
-                            className="shrink-0 overflow-visible!"
+                            className="overflow-visible!"
                           >
                             <span>{label}</span>
                             <span
@@ -325,7 +324,7 @@ export function FilterMultiSelect() {
                         );
                       })}
                       {badgeValues.length > 3 && (
-                        <span className="text-neutral-fg font-normal shrink-0">
+                        <span className="text-neutral-fg font-normal">
                           +{badgeValues.length - 3}
                         </span>
                       )}
@@ -337,7 +336,7 @@ export function FilterMultiSelect() {
                 <Icon
                   path={mdiChevronDown}
                   size={1.3}
-                  className="opacity-50 shrink-0 pointer-events-none"
+                  className="opacity-50 pointer-events-none"
                 />
               )}
             </Button>

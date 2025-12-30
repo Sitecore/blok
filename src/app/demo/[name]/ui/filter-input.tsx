@@ -17,7 +17,7 @@ export function FilterInput() {
     <div className="relative w-full max-w-sm">
       <Icon
         path={mdiMagnify}
-        className="absolute top-1/2 left-3 shrink-0 -translate-y-1/2 opacity-50 size-5 pointer-events-none"
+        className="absolute top-1/2 left-3 -translate-y-1/2 opacity-50 size-5 pointer-events-none"
       />
       <Input
         type="input"

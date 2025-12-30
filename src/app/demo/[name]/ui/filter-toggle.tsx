@@ -44,7 +44,7 @@ export function FilterToggle() {
         <span className="font-medium">Assigned to me</span>
         {primaryActive && (
           <span
-            className="shrink-0 cursor-pointer rounded-full p-0.5 hover:bg-neutral-bg-active flex items-center justify-center"
+            className="cursor-pointer rounded-full p-0.5 hover:bg-neutral-bg-active flex items-center justify-center"
             onClick={(e) => {
               e.stopPropagation();
               setPrimaryActive(false);
