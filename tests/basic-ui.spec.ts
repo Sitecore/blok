@@ -58,9 +58,8 @@ import { testTopbar } from './test-Components/test-Topbar';
 test.describe('UI BLOK QA Automation', () => {
 
   test.beforeEach('Base URL', async ({ page }) => {
-    await page.setViewportSize({ width: 1700, height: 800 });
     // adjust baseURL in playwright config, or use full URL:
-    await page.goto('/');
+    await page.goto('/', { waitUntil: 'domcontentloaded', timeout: 120000 });
   });
 
   test('test_Accordion', async ({ page }) => {

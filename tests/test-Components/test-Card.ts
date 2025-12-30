@@ -26,15 +26,31 @@ export async function testDefaultCard(page: Page){
     const cardDescription = page.locator('[data-slot="card-description"]').filter({ hasText: 'Style: flat, Elevation: none' });
     await expect(cardDescription).toBeVisible();
     
-    /*
+    
     // Verify that card has content (If there any content in the card, it will be visible)
     const cardContent = defaultCard.locator('[data-slot="card-content"]');
-    await expect(cardContent).toBeVisible();
+    const cardContentCount = await cardContent.count();
+    if (cardContentCount > 0) {
+        const hasContent = await cardContent.first().evaluate((el) => {
+            return el.textContent?.trim().length > 0 || el.children.length > 0;
+        });
+        if (hasContent) {
+            await expect(cardContent.first()).toBeVisible();
+        }
+    }
     
     // Verify that card has footer (If there any footer in the card, it will be visible)
     const cardFooter = defaultCard.locator('[data-slot="card-footer"]');
-    await expect(cardFooter).toBeVisible();
-    */
+    const cardFooterCount = await cardFooter.count();
+    if (cardFooterCount > 0) {
+        const hasFooterContent = await cardFooter.first().evaluate((el) => {
+            return el.textContent?.trim().length > 0 || el.children.length > 0;
+        });
+        if (hasFooterContent) {
+            await expect(cardFooter.first()).toBeVisible();
+        }
+    }
+    
 }
 
 export async function testCardElevation(page: Page){

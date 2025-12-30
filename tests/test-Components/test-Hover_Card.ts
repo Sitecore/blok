@@ -11,16 +11,11 @@ export async function testHoverCard(page: Page){
     await expect(hoverCardContent).toBeVisible();
 
     // Verify that display avatar in hover card
-    const avatar = hoverCardContent.locator('[data-slot="avatar"]').or(
-        hoverCardContent.locator('img[src="/favicon.svg"]')
-      ).or(
-        hoverCardContent.locator('img')
-      );
+    const avatar = hoverCardContent.locator('[data-slot="avatar"]').or(hoverCardContent.locator('img[src="/favicon.svg"]')).or(hoverCardContent.locator('img'));
+    await expect(avatar).toBeVisible();
       
-      // Avatar might be rendered as an img or with specific avatar component
-      // Check if there's an image or avatar fallback
-      const hasImage = await hoverCardContent.locator('img').count() > 0;
       const hasAvatarFallback = await hoverCardContent.getByText('VC').count() > 0;
+      await expect(hasAvatarFallback).toBeTruthy();
 
     // Verify that display hover card title and description
     const title = hoverCardContent.getByRole('heading', { name: 'Blok' });

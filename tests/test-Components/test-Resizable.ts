@@ -21,19 +21,45 @@ export async function testResizableHorizontal(page: Page){
     const handleBox = await handle.boundingBox();
     expect(handleBox, "resize handle should have a bounding box").not.toBeNull();
 
-    const startX = handleBox!.x + handleBox!.width / 2;
-    const startY = handleBox!.y + handleBox!.height / 2;
+    // Use pointer events to drag the handle - more reliable for resizable components
+    await handle.hover();
+    await page.waitForTimeout(100);
+    
+    // Get the bounding box again after hover to ensure accurate coordinates
+    const handleBoxAfterHover = await handle.boundingBox();
+    const currentX = handleBoxAfterHover!.x + handleBoxAfterHover!.width / 2;
+    const currentY = handleBoxAfterHover!.y + handleBoxAfterHover!.height / 2;
+    const finalX = currentX + 80;
+    const finalY = currentY;
 
-    await page.mouse.move(startX, startY);
+    // Use actual mouse button events - move to handle, press down, drag, release
+    await page.mouse.move(currentX, currentY);
+    await page.waitForTimeout(100);
+    
+    // Press mouse button down
     await page.mouse.down();
-    await page.mouse.move(startX + 80, startY, { steps: 12 });
+    await page.waitForTimeout(100);
+    
+    // Drag in steps to simulate smooth dragging
+    for (let i = 1; i <= 20; i++) {
+      const stepX = currentX + (finalX - currentX) * (i / 20);
+      await page.mouse.move(stepX, finalY, { steps: 1 });
+      await page.waitForTimeout(5);
+    }
+    
+    // Release mouse button
     await page.mouse.up();
+    await page.waitForTimeout(200);
 
-    await page.waitForTimeout(1000);
+    // Wait for resize to complete
+    await page.waitForTimeout(500);
 
     await expect.poll(async () => {
       const after = await leftPanel.boundingBox();
       return after?.width ?? 0;
+    }, {
+      timeout: 5000,
+      message: 'Panel width should change after dragging the handle'
     }).not.toBe(before!.width);
 }
 
@@ -59,17 +85,45 @@ export async function testResizableVertical(page: Page){
     const handleBox = await handle.boundingBox();
     expect(handleBox, "resize handle should have a bounding box").not.toBeNull();
 
-    const startX = handleBox!.x + handleBox!.width / 2;
-    const startY = handleBox!.y + handleBox!.height / 2;
+    // Hover on handle first
+    await handle.hover();
+    await page.waitForTimeout(100);
+    
+    // Get the bounding box again after hover to ensure accurate coordinates
+    const handleBoxAfterHover = await handle.boundingBox();
+    const currentX = handleBoxAfterHover!.x + handleBoxAfterHover!.width / 2;
+    const currentY = handleBoxAfterHover!.y + handleBoxAfterHover!.height / 2;
+    const finalX = currentX;
+    const finalY = currentY + 60;
 
-    await page.mouse.move(startX, startY);
+    // Use actual mouse button events - move to handle, press down, drag, release
+    await page.mouse.move(currentX, currentY);
+    await page.waitForTimeout(100);
+    
+    // Press mouse button down
     await page.mouse.down();
-    await page.mouse.move(startX, startY + 60, { steps: 12 });
+    await page.waitForTimeout(100);
+    
+    // Drag in steps to simulate smooth dragging
+    for (let i = 1; i <= 20; i++) {
+      const stepY = currentY + (finalY - currentY) * (i / 20);
+      await page.mouse.move(finalX, stepY, { steps: 1 });
+      await page.waitForTimeout(5);
+    }
+    
+    // Release mouse button
     await page.mouse.up();
+    await page.waitForTimeout(200);
+
+    // Wait for resize to complete
+    await page.waitForTimeout(500);
 
     await expect.poll(async () => {
       const after = await topPanel.boundingBox();
       return after?.height ?? 0;
+    }, {
+      timeout: 5000,
+      message: 'Panel height should change after dragging the handle'
     }).not.toBe(before!.height);
 }
 
@@ -98,16 +152,44 @@ export async function testResizableWithHandle(page: Page){
     const handleBox = await handle.boundingBox();
     expect(handleBox, "resize handle should have a bounding box").not.toBeNull();
 
-    const startX = handleBox!.x + handleBox!.width / 2;
-    const startY = handleBox!.y + handleBox!.height / 2;
+    // Use pointer events to drag the handle - more reliable for resizable components
+    await handle.hover();
+    await page.waitForTimeout(100);
+    
+    // Get the bounding box again after hover to ensure accurate coordinates
+    const handleBoxAfterHover = await handle.boundingBox();
+    const currentX = handleBoxAfterHover!.x + handleBoxAfterHover!.width / 2;
+    const currentY = handleBoxAfterHover!.y + handleBoxAfterHover!.height / 2;
+    const finalX = currentX + 80;
+    const finalY = currentY;
 
-    await page.mouse.move(startX, startY);
+    // Use actual mouse button events - move to handle, press down, drag, release
+    await page.mouse.move(currentX, currentY);
+    await page.waitForTimeout(100);
+    
+    // Press mouse button down
     await page.mouse.down();
-    await page.mouse.move(startX + 80, startY, { steps: 12 });
+    await page.waitForTimeout(100);
+    
+    // Drag in steps to simulate smooth dragging
+    for (let i = 1; i <= 20; i++) {
+      const stepX = currentX + (finalX - currentX) * (i / 20);
+      await page.mouse.move(stepX, finalY, { steps: 1 });
+      await page.waitForTimeout(5);
+    }
+    
+    // Release mouse button
     await page.mouse.up();
+    await page.waitForTimeout(200);
+
+    // Wait for resize to complete
+    await page.waitForTimeout(500);
 
     await expect.poll(async () => {
       const after = await sidebarPanel.boundingBox();
       return after?.width ?? 0;
+    }, {
+      timeout: 5000,
+      message: 'Panel width should change after dragging the handle'
     }).not.toBe(before!.width);
 }
