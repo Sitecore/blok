@@ -4,7 +4,7 @@ import * as React from "react";
 import { addDays, format } from "date-fns";
 import { mdiCalendarBlankOutline } from "@mdi/js";
 import { Icon } from "@/lib/icon";
-import { DateRange } from "react-day-picker";
+import type { DateRange } from "react-day-picker";
 
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";

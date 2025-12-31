@@ -3,11 +3,11 @@
 import * as React from "react";
 import {
   DndContext,
-  DragEndEvent,
-  DragStartEvent,
+  type DragEndEvent,
+  type DragStartEvent,
   SortableContainer,
   arrayMove,
-  UniqueIdentifier,
+  type UniqueIdentifier,
   pointerWithin,
   rectIntersection,
 } from "@/components/ui/dnd-context";
