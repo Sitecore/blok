@@ -720,15 +720,21 @@
       "title": "Card",
       "description": "Containers for displaying content and actions about a single subject.",
       "dependencies": [
-        "class-variance-authority"
+        "class-variance-authority",
+        "@mdi/js"
       ],
       "registryDependencies": [
-        "https://blok.sitecore.com/r/theme.json"
+        "https://blok.sitecore.com/r/theme.json",
+        "https://blok.sitecore.com/r/button.json"
       ],
       "files": [
         {
           "path": "src/components/ui/card.tsx",
           "type": "registry:ui"
+        },
+        {
+          "path": "src/lib/icon.tsx",
+          "type": "registry:lib"
         }
       ]
     },
