@@ -139,7 +139,7 @@ export const inputGroup = {
           <InputGroupAddon align="inline-end">
             <Tooltip>
               <TooltipTrigger asChild>
-                <InputGroupButton className="rounded-full" size="icon-xs">
+                <InputGroupButton size="icon-xs">
                   <Icon path={mdiInformationOutline} size={0.9} />
                 </InputGroupButton>
               </TooltipTrigger>
