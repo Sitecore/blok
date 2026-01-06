@@ -1,16 +1,20 @@
 export const alert = {
   name: "alert",
-  defaultComponent: "alert",
-  usage: [
-    `import {\n  Alert,\n  AlertDescription,\n  AlertTitle,\n} from "@/components/ui/alert"`,
-    `<Alert>\n  <AlertTitle>Alert</AlertTitle>\n  <AlertDescription>\n    This is an example of an alert with a title and description.\n  </AlertDescription>\n</Alert>`
-  ],
+  preview: {
+    defaultComponent: "alert",
+  },
+  usage: {
+    usage: [
+      `import {\n  Alert,\n  AlertDescription,\n  AlertTitle,\n} from "@/components/ui/alert"`,
+      `<Alert>\n  <AlertTitle>Alert</AlertTitle>\n  <AlertDescription>\n    This is an example of an alert with a title and description.\n  </AlertDescription>\n</Alert>`
+    ],
+  },
   components: {
-    Primary: "alert-primary",
-    Success: "alert-success",
-    Danger: "alert-danger",
-    Warning: "alert-warning",
-    Closable: "alert-closable",
-    "With Button Link": "alert-button-link",
+    "alert-primary": { component: "alert-primary", },
+    "alert-success": { component: "alert-success", },
+    "alert-danger": { component: "alert-danger", },
+    "alert-warning": { component: "alert-warning", },
+    "alert-closable": { component: "alert-closable", },
+    "alert-button-link": { component: "alert-button-link", },
   },
 };
