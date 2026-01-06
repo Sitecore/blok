@@ -83,9 +83,9 @@ export function RegistrySidebar() {
       const itemName = segments[segments.length - 1];
 
       if (itemName) {
-        try {
-          const item = getRegistryItem(itemName);
+        const item = getRegistryItem(itemName);
 
+        if (item) {
           if (
             item.type === "registry:block" ||
             item.type === "registry:component"
@@ -94,8 +94,6 @@ export function RegistrySidebar() {
           } else if (item.type === "registry:ui") {
             return "components";
           }
-        } catch (error) {
-          return "components";
         }
       }
       return "components";
