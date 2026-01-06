@@ -1,14 +1,6 @@
-import { Checkbox } from "@/components/ui/checkbox";
-import { Label } from "@/components/ui/label";
-
 export const label = {
   name: "label",
-  defaultComponent: (
-    <div className="flex items-center space-x-2 p-2">
-      <Checkbox id="terms" aria-label="Accept terms and conditions" />
-      <Label htmlFor="terms">Accept terms and conditions</Label>
-    </div>
-  ),
+  defaultComponent: "label",
   usage: [
     `import { Label } from "@/components/ui/label";`,
     `<Label htmlFor="terms">Accept terms and conditions</Label>`,

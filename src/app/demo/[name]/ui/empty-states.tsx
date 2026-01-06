@@ -1,32 +1,14 @@
-import { EmptyStates } from "@/components/ui/empty-states";
-
 export const emptyStates = {
   name: "empty-states",
-  defaultComponent: (
-    <div className="h-[300px]">
-      <EmptyStates variant="no-search-results" />
-    </div>
-  ),
+  defaultComponent: "empty-states-no-results",
   usage: [
     `import { EmptyStates } from "@/components/ui/empty-states";`,
     `<EmptyStates variant="no-search-results" />`,
   ],
   components: {
-    "No Search Results": (
-      <div className="h-[300px]">
-        <EmptyStates variant="no-search-results" />
-      </div>
-    ),
-    "Nothing Created": (
-      <div className="h-[300px]">
-        <EmptyStates variant="nothing-created" />
-      </div>
-    ),
-    Error: (
-      <div className="h-[300px]">
-        <EmptyStates variant="error" />
-      </div>
-    ),
+    "No Search Results": "empty-states-no-results",
+    "Nothing Created": "empty-states-nothing-created",
+    Error: "empty-states-error",
   },
 };
 
