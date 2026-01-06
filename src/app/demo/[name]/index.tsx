@@ -63,11 +63,26 @@ import { pinnedSite } from "@/app/demo/[name]/bloks/pinned-site";
 
 interface Demo {
   name: string; // this must match the `/registries/registry.json` name
-  preInformation?: ReactNode | ReactElement;
-  defaultComponent: ReactNode | ReactElement;
-  usage?: string[];
+  preview: {
+    pre?: ReactNode | ReactElement;
+    defaultComponent: string;
+    post?: ReactNode | ReactElement;
+  };
+  installation?: {
+    pre?: string;
+    post?: string;
+  };
+  usage?: {
+    pre?: ReactNode | ReactElement;
+    usage: string[];
+    post?: ReactNode | ReactElement;
+  }
   components?: {
-    [name: string]: ReactNode | ReactElement;
+    [name: string]: {
+      pre?: ReactNode | ReactElement;
+      component: ReactNode | ReactElement;
+      post?: ReactNode | ReactElement;
+    };
   };
 }
 

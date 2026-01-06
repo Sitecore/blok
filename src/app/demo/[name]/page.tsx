@@ -26,8 +26,8 @@ export default async function DemoPage({
   if (!demo) notFound();
 
   const { 
-    preInformation, 
-    defaultComponent, 
+    preview, 
+    installation, 
     usage, 
     components 
   } = demo;
@@ -36,7 +36,7 @@ export default async function DemoPage({
 
   // Default component
   const defaultEntry = await loadFromRegistry(
-    defaultComponent as keyof typeof docsiteRegistry
+    preview.defaultComponent as keyof typeof docsiteRegistry
   );
 
   if (!defaultEntry) notFound();
@@ -44,20 +44,22 @@ export default async function DemoPage({
   // Examples
   const exampleSections = components
     ? await Promise.all(
-        Object.entries(components).map(async ([title, registryKey]) => {
+        Object.entries(components).map(async ([title, component]) => {
           const entry = await loadFromRegistry(
-            registryKey as keyof typeof docsiteRegistry
+            component.component as keyof typeof docsiteRegistry
           );
 
           if (!entry) return null;
 
           return (
-            <div key={title} id={registryKey as string} className="flex flex-col gap-6">
+            <div key={title} id={component.component as string} className="flex flex-col gap-6">
               <h3 className="font-semibold text-xl">{title}</h3>
+              {component.pre}
               <DemoTab
                 code={entry.code}
                 component={componentDemo(React.createElement(entry.Component as ComponentType<any>))}
               />
+              {component.post}
             </div>
           );
         })
@@ -65,34 +67,36 @@ export default async function DemoPage({
     : null;
 
   return (
-    <div className="flex min-h-screen w-full flex-col gap-12 bg-body-bg">
-      {preInformation && (
-        <div id="pre-information" className="flex flex-col gap-3">
-          {preInformation}
-        </div>
-      )}
-  
-      {/* Default Demo */}
+    <div className="flex min-h-screen w-full flex-col gap-12 bg-body-bg">  
+      {/* Preview */}
+      {preview.pre}
       <DemoTab
         key={name}
         id="preview"
         code={defaultEntry.code}
         component={componentDemo(React.createElement(defaultEntry.Component as ComponentType<any>))}
       />
-  
+      {preview.post}
+
       {/* Installation */}
-      <div id="installation" className="flex flex-col gap-3">
-        <h2 className="font-semibold text-3xl">Installation</h2>
-        <InstallationCodeBlock registryUrl={registryUrl} />
-      </div>
+      {installation && (
+        <div id="installation" className="flex flex-col gap-3">
+          <h2 className="font-semibold text-3xl">Installation</h2>
+          {installation.pre}
+          <InstallationCodeBlock registryUrl={registryUrl} />
+          {installation.post}
+        </div>
+      )}
 
       {/* Usage */}
       {usage && (
         <div id="usage" className="flex flex-col gap-3">
           <h2 className="font-semibold text-3xl">Usage</h2>
-          {usage.map((code: string, index: number) => (
+          {usage.pre}
+          {usage.usage.map((code: string, index: number) => (
             <CodeBlock key={index} code={code} />
           ))}
+          {usage.post}
         </div>
       )}
   
