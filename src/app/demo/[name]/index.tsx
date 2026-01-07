@@ -37,6 +37,7 @@ import { skeleton } from "@/app/demo/[name]/ui/skeleton";
 import { slider } from "@/app/demo/[name]/ui/slider";
 import { sonner } from "@/app/demo/[name]/ui/sonner";
 import { switchComponent } from "@/app/demo/[name]/ui/switch";
+import { stepper } from "@/app/demo/[name]/ui/stepper";
 import { table } from "@/app/demo/[name]/ui/table";
 import { tabs } from "@/app/demo/[name]/ui/tabs";
 import { textarea } from "@/app/demo/[name]/ui/textarea";
@@ -58,7 +59,6 @@ import { siteCard } from "@/app/demo/[name]/ui/site-card";
 import { timePicker } from "@/app/demo/[name]/ui/time-picker";
 import { draggable } from "@/app/demo/[name]/ui/draggable";
 import { stackNavigation } from "@/app/demo/[name]/ui/stack-navigation";
-
 
 interface Demo {
   name: string; // this must match the `/registries/registry.json` name
@@ -120,7 +120,8 @@ export const demos: { [name: string]: Demo } = {
   sonner,
   spinner,
   switch: switchComponent,
-  "stack-navigation":stackNavigation,
+  "stack-navigation": stackNavigation,
+  stepper,
   table,
   tabs,
   textarea,

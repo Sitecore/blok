@@ -707,6 +707,16 @@ export const rightSidebarMetadata: Record<string, RightSidebarMetadata> = {
       },
     ],
   },
+  stepper: {
+    links: {
+      shadcn: "https://ui.shadcn.com/docs/components/stepper",
+    },
+    sections: [
+      { id: "preview", title: "Preview" },
+      { id: "installation", title: "Installation" },
+      { id: "usage", title: "Usage" },
+    ],
+  },
   switch: {
     links: {
       shadcn: "https://ui.shadcn.com/docs/components/switch",
