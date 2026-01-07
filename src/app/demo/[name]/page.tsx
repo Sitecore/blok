@@ -45,7 +45,7 @@ export default async function DemoPage({
           </div>
         )}
 
-        <div className="flex flex-col">
+        <div id="preview" className="flex flex-col">
           <DemoTab
             key={name} 
             code={codeMap["Default"] ?? ""} 

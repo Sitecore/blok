@@ -60,6 +60,7 @@ import LabelThumb from "@/components/component-thumbs/label";
 import AllSiteThumb from "@/components/component-thumbs/all-site";
 import PinnedSiteThumb from "@/components/component-thumbs/pinned-site";
 import SiteCardThumb from "@/components/component-thumbs/site-card";
+import CollaborationThumb from "@/components/component-thumbs/collaboration";
 
 // Map component names to their thumbnail components
 const componentThumbnails: Record<
@@ -123,6 +124,7 @@ const componentThumbnails: Record<
   "all-site": AllSiteThumb,
   "pinned-site": PinnedSiteThumb,
   "site-card": SiteCardThumb,
+  collaboration: CollaborationThumb,
 };
 
 interface ComponentThumbProps {

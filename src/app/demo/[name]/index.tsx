@@ -58,6 +58,7 @@ import { siteCard } from "@/app/demo/[name]/ui/site-card";
 import { timePicker } from "@/app/demo/[name]/ui/time-picker";
 import { draggable } from "@/app/demo/[name]/ui/draggable";
 import { stackNavigation } from "@/app/demo/[name]/ui/stack-navigation";
+import { collaboration } from "@/app/demo/[name]/ui/collaboration";
 
 
 interface Demo {
@@ -129,4 +130,5 @@ export const demos: { [name: string]: Demo } = {
   "toggle-group": toggleGroup,
   tooltip,
   topbar,
+  collaboration,
 };

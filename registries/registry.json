@@ -1276,12 +1276,8 @@
       "files": [
         {
           "path": "src/components/bloks/pinned-sites-section.tsx",
-          "target": "src/components/bloks/pinned-sites-section.tsx",
-          "type": "registry:ui"
-        },
-        {
-          "path": "src/lib/empty-pin.svg",
-          "type": "registry:lib"
+          "type": "registry:block",
+          "target": "src/components/blocks/pinned-sites-section.tsx"
         }
       ]
     },
@@ -1739,6 +1735,30 @@
         {
           "path": "src/components/ui/popover.tsx",
           "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "collaboration",
+      "type": "registry:block",
+      "title": "Collaboration",
+      "description": "A user collaboration blok that allows adding and removing team members with search functionality.",
+      "registryDependencies": [
+        "https://blok.sitecore.com/r/theme.json",
+        "https://blok.sitecore.com/r/card.json",
+        "https://blok.sitecore.com/r/avatar.json",
+        "https://blok.sitecore.com/r/button.json",
+        "http://localhost:3000/r/input-group.json",
+        "https://blok.sitecore.com/r/dialog.json"
+      ],
+      "dependencies": [
+        "@mdi/js"
+      ],
+      "files": [
+        {
+          "path": "src/components/bloks/collaboration.tsx",
+          "type": "registry:block",
+          "target": "src/components/blocks/collaboration.tsx"
         }
       ]
     }

@@ -844,6 +844,14 @@ export const rightSidebarMetadata: Record<string, RightSidebarMetadata> = {
   },
 
   // ===== BLOK-SPECIFIC METADATA =====
+  collaboration: {
+    links: {},
+    sections: [
+      { id: "preview", title: "Preview" },
+      { id: "installation", title: "Installation" },
+      { id: "usage", title: "Usage" },
+    ],
+  },
   "all-site": {
      links: {
 
