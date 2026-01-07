@@ -8,10 +8,11 @@ export const draggable = {
     <BasicDragDrop />
   ),
   usage: [
-    `import { DndContext, DragEndEvent } from "@/components/ui/dnd-context";
+    `import { DndContext, type DragEndEvent } from "@/components/ui/dnd-context";
 import { Draggable } from "@/components/ui/draggable";
 import { Droppable } from "@/components/ui/droppable";`,
-    `function App() {
+`
+function App() {
   const handleDragEnd = (event: DragEndEvent) => {
     const { active, over } = event;
     if (over) {

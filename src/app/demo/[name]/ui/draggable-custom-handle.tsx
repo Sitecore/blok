@@ -1,4 +1,4 @@
-"use client";
+"use client"; // comment this line if you are not using next.js
 
 import * as React from "react";
 import { DndContext, type DragEndEvent, SortableContainer, arrayMove, type UniqueIdentifier } from "@/components/ui/dnd-context";
