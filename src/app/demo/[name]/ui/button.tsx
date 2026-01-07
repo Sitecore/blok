@@ -1,16 +1,20 @@
 export const button = {
   name: "button",
-  defaultComponent: "button",
-  usage: [
-    `import { Button } from "@/components/ui/button"`,
-    `<Button variant=’default’ colorScheme=’default’ size=’default’>Click me</Button>`
-  ],
+  preview: {
+    defaultComponent: "button",
+  },
+  usage: {
+    usage: [
+      `import { Button } from "@/components/ui/button"`,
+      `<Button variant=’default’ colorScheme=’default’ size=’default’>Click me</Button>`
+    ],
+  },
   components: {
-    Variants: "button-variants",
-    Sizing: "button-sizing",
-    "Color Schemes": "button-color-schemes",
-    "Icon Sizing": "button-icon-sizing",
-    "Icon with Text": "button-icon-text",
-    "Disabled States": "button-disabled",
+    Variants: { component: "button-variants", },
+    Sizing: { component: "button-sizing", },
+    "Color Schemes": { component: "button-color-schemes", },
+    "Icon Sizing": { component: "button-icon-sizing", },
+    "Icon with Text": { component: "button-icon-text", },
+    "Disabled States": { component: "button-disabled", },
   },
 };
