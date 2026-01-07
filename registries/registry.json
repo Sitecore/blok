@@ -497,11 +497,9 @@
         "https://blok.sitecore.com/r/context-menu.json",
         "https://blok.sitecore.com/r/date-picker.json",
         "https://blok.sitecore.com/r/dialog.json",
-        "https://blok.sitecore.com/r/drawer.json",
         "https://blok.sitecore.com/r/dropdown-menu.json",
         "https://blok.sitecore.com/r/empty-states.json",
         "https://blok.sitecore.com/r/error-states.json",
-        "https://blok.sitecore.com/r/hover-card.json",
         "https://blok.sitecore.com/r/input.json",
         "https://blok.sitecore.com/r/inputOtp.json",
         "https://blok.sitecore.com/r/label.json",
@@ -701,7 +699,8 @@
       ],
       "registryDependencies": [
         "https://blok.sitecore.com/r/theme.json",
-        "https://blok.sitecore.com/r/button.json"
+        "https://blok.sitecore.com/r/button.json",
+        "https://blok.sitecore.com/r/select.json"
       ],
       "files": [
         {
@@ -720,15 +719,21 @@
       "title": "Card",
       "description": "Containers for displaying content and actions about a single subject.",
       "dependencies": [
-        "class-variance-authority"
+        "class-variance-authority",
+        "@mdi/js"
       ],
       "registryDependencies": [
-        "https://blok.sitecore.com/r/theme.json"
+        "https://blok.sitecore.com/r/theme.json",
+        "https://blok.sitecore.com/r/button.json"
       ],
       "files": [
         {
           "path": "src/components/ui/card.tsx",
           "type": "registry:ui"
+        },
+        {
+          "path": "src/lib/icon.tsx",
+          "type": "registry:lib"
         }
       ]
     },
@@ -1202,6 +1207,7 @@
       "files": [
         {
           "path": "src/components/bloks/site-card.tsx",
+          "target": "src/components/bloks/site-card.tsx",
           "type": "registry:ui"
         }
       ]
@@ -1221,6 +1227,7 @@
       "files": [
         {
           "path": "src/components/bloks/all-sites-section.tsx",
+          "target": "src/components/bloks/all-sites-section.tsx",
           "type": "registry:ui"
         }
       ]
@@ -1241,6 +1248,7 @@
       "files": [
         {
           "path": "src/components/bloks/pinned-sites-section.tsx",
+          "target": "src/components/bloks/pinned-sites-section.tsx",
           "type": "registry:ui"
         },
         {
@@ -1299,7 +1307,7 @@
         "https://blok.sitecore.com/r/theme.json"
       ],
       "dependencies": [
-        "react-resizable-panels",
+        "react-resizable-panels@3.0.3",
         "@mdi/js"
       ],
       "files": [

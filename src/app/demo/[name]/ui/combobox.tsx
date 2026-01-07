@@ -126,22 +126,27 @@ const users = [
   {
     id: "1",
     username: "ChristianHahn",
+    avatar: "https://github.com/ChristianHahn.png",
   },
   {
     id: "2",
     username: "ThomasKelly",
+    avatar: "https://github.com/ThomasKelly.png",
   },
   {
     id: "3",
     username: "FrankGrinaert",
+    avatar: "https://github.com/FrankGrinaert.png",
   },
   {
     id: "4",
     username: "SpyridonMisichronis",
+    avatar: "https://github.com/SpyridonMisichronis.png",
   },
   {
     id: "5",
     username: "LasithGunaratne",
+    avatar: "https://github.com/LasithGunaratne.png",
   }
 ] as const;
 const timezones = [

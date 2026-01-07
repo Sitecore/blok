@@ -35,6 +35,7 @@ type FrameworkComboboxProps = {
 type User = {
   id: string;
   username: string;
+  avatar?: string;
 };
 
 type UserComboboxProps = {
@@ -138,7 +139,7 @@ function UserCombobox({ users, selectedUserId }: UserComboboxProps) {
             <div className="flex items-center gap-2">
               <Avatar className="size-5">
                 <AvatarImage
-                  src={`/${selectedUser.username}.png`}
+                  src={selectedUser.avatar}
                   alt={`${selectedUser.username} avatar`}
                 />
                 <AvatarFallback>{selectedUser.username[0]}</AvatarFallback>
@@ -160,15 +161,20 @@ function UserCombobox({ users, selectedUserId }: UserComboboxProps) {
               {users.map((user) => (
                 <CommandItem
                   key={user.id}
-                  value={user.id}
+                  value={user.username}
                   onSelect={(currentValue) => {
-                    setValue(currentValue === value ? "" : currentValue);
+                    const selected = users.find(
+                      (u) => u.username.toLowerCase() === currentValue.toLowerCase()
+                    );
+                    if (selected) {
+                      setValue(selected.id === value ? "" : selected.id);
+                    }
                     setOpen(false);
                   }}
                 >
                   <Avatar className="size-5">
                     <AvatarImage
-                      src={`https://github.com/${user.username}.pngg`}
+                      src={user.avatar}
                       alt={`${user.username} avatar`}
                     />
                     <AvatarFallback>{user.username[0]}</AvatarFallback>

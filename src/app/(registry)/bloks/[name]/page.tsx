@@ -5,6 +5,8 @@ import { ComponentCard } from "@/components/docsite/component-card";
 import { getRegistryItem, getBlocks } from "@/lib/registry";
 import { getPrompt } from "@/lib/utils";
 
+export const dynamicParams = false;
+
 export async function generateStaticParams() {
   const blocks = getBlocks();
 
