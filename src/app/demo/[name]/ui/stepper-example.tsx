@@ -1,5 +1,3 @@
-"use client";
-
 import { Stepper } from "@/components/ui/stepper";
 
 const StepperExample = () => {
