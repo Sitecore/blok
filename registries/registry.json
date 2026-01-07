@@ -1621,6 +1621,10 @@
         {
           "path": "src/components/ui/timeline.tsx",
           "type": "registry:ui"
+        },
+        {
+          "path": "src/lib/icon.tsx",
+          "type": "registry:lib"
         }
       ]
     },
