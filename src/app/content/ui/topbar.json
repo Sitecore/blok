@@ -1,3 +1,0 @@
-{
-    "Default": "import Topbar from \"@/components/ui/top-bar\";\n\nexport default function DefaultDemo() {\n  return (\n    <Topbar />\n  );\n}"
-}

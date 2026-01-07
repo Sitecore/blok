@@ -1,6 +1,0 @@
-{
-    "Default": "import { EmptyStates } from \"@/components/ui/empty-states\";\n\nexport default function DefaultDemo() {\n  return (\n    <div className=\"h-[300px]\">\n      <EmptyStates variant=\"no-search-results\" />\n    </div>\n  );\n}",
-    "No Search Results": "import { EmptyStates } from \"@/components/ui/empty-states\";\n\nexport default function NoSearchResultsDemo() {\n  return (\n    <div className=\"h-[300px]\">\n      <EmptyStates variant=\"no-search-results\" />\n    </div>\n  );\n}",
-    "Nothing Created": "import { EmptyStates } from \"@/components/ui/empty-states\";\n\nexport default function NothingCreatedDemo() {\n  return (\n    <div className=\"h-[300px]\">\n      <EmptyStates variant=\"nothing-created\" />\n    </div>\n  );\n}",
-    "Error": "import { EmptyStates } from \"@/components/ui/empty-states\";\n\nexport default function ErrorDemo() {\n  return (\n    <div className=\"h-[300px]\">\n      <EmptyStates variant=\"error\" />\n    </div>\n  );\n}"
-}

@@ -1,6 +1,6 @@
 import type { ReactElement, ReactNode } from "react";
 
-// ui
+// PRIMITIVES
 import { accordion } from "@/app/demo/[name]/ui/accordion";
 import { alertDialog } from "@/app/demo/[name]/ui/alert-dialog";
 import { alert } from "@/app/demo/[name]/ui/alert";
@@ -20,11 +20,10 @@ import { dialog } from "@/app/demo/[name]/ui/dialog";
 import { emptyStates } from "@/app/demo/[name]/ui/empty-states";
 import { errorStates } from "@/app/demo/[name]/ui/error-states";
 import { dropdownMenu } from "@/app/demo/[name]/ui/dropdown-menu";
-import { icon } from "@/app/demo/[name]/ui/icon";
+import { icon } from "@/app/demo/[name]/ui/icon-component";
 import { input } from "@/app/demo/[name]/ui/input";
 import { inputOtp } from "@/app/demo/[name]/ui/inputOtp";
 import { label } from "@/app/demo/[name]/ui/label";
-// import { menuBar } from "@/app/demo/[name]/ui/menu-bar";
 import { navigationMenu } from "@/app/demo/[name]/ui/navigation-menu";
 import { radioGroup } from "@/app/demo/[name]/ui/radio-group";
 import { resizable } from "@/app/demo/[name]/ui/resizable";
@@ -51,30 +50,45 @@ import { progress } from "@/app/demo/[name]/ui/progress";
 import { command } from "@/app/demo/[name]/ui/command";
 import { combobox } from "@/app/demo/[name]/ui/combobox";
 import { spinner } from "@/app/demo/[name]/ui/spinner";
-import { pinnedSite } from "@/app/demo/[name]/ui/pinned-site";
-import { allSite } from "@/app/demo/[name]/ui/all-site";
-import { siteCard } from "@/app/demo/[name]/ui/site-card";
 import { timePicker } from "@/app/demo/[name]/ui/time-picker";
 import { draggable } from "@/app/demo/[name]/ui/draggable";
 import { stackNavigation } from "@/app/demo/[name]/ui/stack-navigation";
 
+// BLOKS
+import { allSite } from "@/app/demo/[name]/bloks/all-site";
+import { siteCard } from "@/app/demo/[name]/bloks/site-card";
+import { pinnedSite } from "@/app/demo/[name]/bloks/pinned-site";
 
 interface Demo {
   name: string; // this must match the `/registries/registry.json` name
-  preInformation?: ReactNode | ReactElement;
-  defaultComponent: ReactNode | ReactElement;
-  usage?: string[];
+  preview: {
+    pre?: ReactNode | ReactElement;
+    defaultComponent: string;
+    post?: ReactNode | ReactElement;
+  };
+  installation?: {
+    pre?: ReactNode | ReactElement;
+    post?: ReactNode | ReactElement;
+  };
+  usage?: {
+    pre?: ReactNode | ReactElement;
+    usage: string[];
+    post?: ReactNode | ReactElement;
+  }
   components?: {
-    [name: string]: ReactNode | ReactElement;
+    [name: string]: {
+      pre?: ReactNode | ReactElement;
+      component: ReactNode | ReactElement;
+      post?: ReactNode | ReactElement;
+    };
   };
 }
 
 export const demos: { [name: string]: Demo } = {
-  // ui
+  // PRIMITIVES
   accordion,
   alert,
   "alert-dialog": alertDialog,
-  "all-site": allSite,
   "aspect-ratio": aspectRatio,
   avatar,
   badge,
@@ -99,10 +113,8 @@ export const demos: { [name: string]: Demo } = {
   input,
   inputOtp,
   label,
-  // "menu-bar": menuBar,
   "navigation-menu": navigationMenu,
   pagination,
-  "pinned-site": pinnedSite,
   popover,
   progress,
   "radio-group": radioGroup,
@@ -112,7 +124,6 @@ export const demos: { [name: string]: Demo } = {
   separator,
   sheet,
   sidebar,
-  "site-card": siteCard,
   skeleton,
   slider,
   sonner,
@@ -127,4 +138,9 @@ export const demos: { [name: string]: Demo } = {
   "toggle-group": toggleGroup,
   tooltip,
   topbar,
+
+  // BLOKS
+  "all-site": allSite,
+  "site-card": siteCard,
+  "pinned-site": pinnedSite,
 };

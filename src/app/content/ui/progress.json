@@ -1,3 +1,0 @@
-{
-    "Default": "import { Progress } from \"@/components/ui/progress\";\n\nexport default function DefaultDemo() {\n  return (\n    <div className=\"min-w-lg\">\n      <div className=\"flex items-center justify-center rounded-t-md p-10\">\n        <Progress value={80} />\n      </div>\n    </div>\n  );\n}"
-}
