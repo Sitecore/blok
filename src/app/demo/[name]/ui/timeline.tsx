@@ -28,8 +28,8 @@ export const timeline = {
           <TimelineTitle>Product Shipped</TimelineTitle>
           <TimelineDescription>13th May 2021</TimelineDescription>
           <p className="text-base text-foreground ">
-            Lorem ipsum dolor sit amet, consectetur <strong> adipiscing</strong> elit,
-            sed do eiusmod tempor incididunt.
+            Your package has been dispatched and is <strong>on its way</strong> to the destination.
+            Estimated delivery within 5-7 business days.
           </p>
         </TimelineContent>
       </TimelineItem>
@@ -70,12 +70,14 @@ export const timeline = {
   TimelineContent,
   TimelineTitle,
   TimelineDescription,
-} from "@/components/ui/timeline";`,
+} from "@/components/ui/timeline";
+import { Icon } from "@/lib/icon";
+import { mdiCheck } from "@mdi/js";`,
     `<TimelineRoot>
   <TimelineItem>
     <TimelineSeparator>
       <TimelineIndicator>
-        <CheckIcon className="size-4" />
+        <Icon path={mdiCheck} size={0.7} />
       </TimelineIndicator>
       <TimelineConnector />
     </TimelineSeparator>

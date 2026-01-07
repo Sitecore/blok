@@ -1,7 +1,7 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry.json",
   "name": "blok",
-  "homepage": "https://blok.sitecore.com",
+  "homepage": "http://localhost:3000",
   "items": [
     {
       "name": "theme",
@@ -519,6 +519,7 @@
         "https://blok.sitecore.com/r/table.json",
         "https://blok.sitecore.com/r/tabs.json",
         "https://blok.sitecore.com/r/textarea.json",
+        "https://blok.sitecore.com/r/timeline.json",
         "https://blok.sitecore.com/r/toggle.json",
         "https://blok.sitecore.com/r/toggle-group.json",
         "https://blok.sitecore.com/r/tooltip.json",
@@ -1610,7 +1611,8 @@
       "title": "Timeline",
       "description": "Used to display a list of events in chronological order.",
       "registryDependencies": [
-        "https://blok.sitecore.com/r/theme.json"
+        "https://blok.sitecore.com/r/theme.json",
+        "https://blok.sitecore.com/r/badge.json"
       ],
       "dependencies": [
         "class-variance-authority"
