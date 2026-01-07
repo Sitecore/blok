@@ -1,7 +1,7 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry.json",
   "name": "blok",
-  "homepage": "http://localhost:3000",
+  "homepage": "https://blok.sitecore.com",
   "items": [
     {
       "name": "theme",
