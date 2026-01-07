@@ -1,11 +1,19 @@
 export const chart = {
   name: "chart",
-  defaultComponent: "area-chart",
+  preview: {
+    defaultComponent: "area-chart",
+  },
+  usage: {
+    usage: [
+      `import { AreaChart } from "@/components/ui/chart"`,
+      `<AreaChart />`,
+    ],
+  },
   components: {
-    "Area Chart": "area-chart",
-    "Bar Chart": "bar-chart",
-    "Mixed Bar Chart": "mixed-bar-chart",
-    "Line Chart": "line-chart",
-    "Pie Chart": "pie-chart",
+    "Area Chart": { component: "area-chart", },
+    "Bar Chart": { component: "bar-chart", },
+    "Mixed Bar Chart": { component: "mixed-bar-chart", },
+    "Line Chart": { component: "line-chart", },
+    "Pie Chart": { component: "pie-chart", },
   },
 };
