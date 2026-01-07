@@ -86,7 +86,7 @@ import ErrorStates401Demo from "@/app/content/ui/error-states-401";
 import ErrorStatesGenericDemo from "@/app/content/ui/error-states-generic";
 import HoverCardDemo from "@/app/content/ui/hover-card";
 import IconVariantsDemo from "@/app/content/ui/icon-variants";
-import IconDemo from "@/app/content/ui/icon";
+import IconDemo from "@/app/content/ui/icon-component";
 import IconColorSchemesDemo from "@/app/content/ui/icon-color-schemes";
 import IconSizingDemo from "@/app/content/ui/icon-sizing";
 import SubtleIconVariantsDemo from "@/app/content/ui/icon-subtle";
@@ -596,7 +596,7 @@ export const docsiteRegistry: Record<string, DocsiteRegistryEntry> = {
     },
     "icon": {
         name: "icon",
-        path: "src/app/content/ui/icon.tsx",
+        path: "src/app/content/ui/icon-component.tsx",
         component: IconDemo,
     },
     "icon-variants": {

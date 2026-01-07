@@ -23,6 +23,6 @@ export const icon = {
     "Color Schemes": { component: "icon-color-schemes", },
     "Subtle Variants": { component: "icon-subtle", },
     "Filled Variants": { component: "icon-filled", },
-    "Sitecore Logos": { component: "icon-sitecore-logos", },
+    // "Sitecore Logos": { component: "icon-sitecore-logos", },
   },
 };

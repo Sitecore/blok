@@ -20,7 +20,7 @@ import { dialog } from "@/app/demo/[name]/ui/dialog";
 import { emptyStates } from "@/app/demo/[name]/ui/empty-states";
 import { errorStates } from "@/app/demo/[name]/ui/error-states";
 import { dropdownMenu } from "@/app/demo/[name]/ui/dropdown-menu";
-import { icon } from "@/app/demo/[name]/ui/icon";
+import { icon } from "@/app/demo/[name]/ui/icon-component";
 import { input } from "@/app/demo/[name]/ui/input";
 import { inputOtp } from "@/app/demo/[name]/ui/inputOtp";
 import { label } from "@/app/demo/[name]/ui/label";
