@@ -304,6 +304,28 @@ export const rightSidebarMetadata: Record<string, RightSidebarMetadata> = {
       },
     ],
   },
+  editable: {
+    links: {
+      chakra: "https://www.chakra-ui.com/docs/components/editable",
+    },
+    sections: [
+      { id: "preview", title: "Preview" },
+      { id: "installation", title: "Installation" },
+      { id: "usage", title: "Usage" },
+      {
+        id: "examples",
+        title: "Examples",
+        children: [
+          { id: "double-click", title: "Double Click" },
+          { id: "disabled", title: "Disabled" },
+          { id: "textarea", title: "Textarea" },
+          { id: "with-controls", title: "With Controls" },
+          { id: "controlled", title: "Controlled" },
+          { id: "store", title: "Store" },
+        ],
+      },
+    ],
+  },
   draggable: {
     links: {
       documentation: "https://docs.dndkit.com/",
