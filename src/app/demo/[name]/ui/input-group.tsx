@@ -100,13 +100,13 @@ export const inputGroup = {
   InputGroupAddon,
   InputGroupButton,
   InputGroupInput,
-  InputGroupText,
-  InputGroupTextarea,
-} from "@/components/ui/input-group";`,
+} from "@/components/ui/input-group";
+import { Icon } from "@/lib/icon";
+import { mdiMagnify } from "@mdi/js";`,
     `<InputGroup>
   <InputGroupInput placeholder="Search..." />
   <InputGroupAddon>
-    <SearchIcon />
+    <Icon path={mdiMagnify} size={1} />
   </InputGroupAddon>
   <InputGroupAddon align="inline-end">
     <InputGroupButton>Search</InputGroupButton>
@@ -115,7 +115,7 @@ export const inputGroup = {
   ],
   components: {
     Search: (
-      <div className="w-full max-w-sm p-2">
+      <div className="grid w-full max-w-md gap-4">
         <InputGroup>
           <InputGroupInput placeholder="Search..." aria-label="Search" />
           <InputGroupAddon>
@@ -126,7 +126,7 @@ export const inputGroup = {
       </div>
     ),
     URL: (
-      <div className="w-full max-w-md p-2">
+      <div className="grid w-full max-w-md gap-4">
         <InputGroup>
           <InputGroupInput
             placeholder="example.com"
@@ -150,7 +150,7 @@ export const inputGroup = {
       </div>
     ),
     Dropdown: (
-      <div className="grid w-full max-w-md gap-4 p-2">
+      <div className="grid w-full max-w-md gap-4">
         <InputGroup>
           <InputGroupInput placeholder="Enter file name" aria-label="File name" />
           <InputGroupAddon align="inline-end">
