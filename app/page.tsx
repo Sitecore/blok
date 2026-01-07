@@ -21,11 +21,9 @@ import { ContextMenuDemo } from "@/components-demo/context_menu-demo";
 import { DatePickerDemo } from "@/components-demo/date-picker-demo";
 import { DialogDemo } from "@/components-demo/dialog-demo";
 import { DraggableDemo } from "@/components-demo/draggable-demo";
-import { DrawerDemo } from "@/components-demo/drawer-demo";
 import { DropdownDemo } from "@/components-demo/dropdown-demo";
 import { EmptyStatesDemo } from "@/components-demo/empty_states-demo";
 import { ErrorStatesDemo } from "@/components-demo/error_states-demo";
-import { HoverCardDemo } from "@/components-demo/hover_card-demo";
 import { IconDemo } from "@/components-demo/icon-demo";
 import { InputDemo } from "@/components-demo/input-demo";
 import { InputOTPDemo } from "@/components-demo/input_otp-demo";
@@ -145,10 +143,6 @@ export default function SinkPage() {
       </div>
     <br />
       <div>
-        {/* <DrawerDemo /> */}
-      </div>
-    <br />
-      <div>
         <DropdownDemo />
       </div>
     <br />
@@ -159,10 +153,6 @@ export default function SinkPage() {
       <div>
         <ErrorStatesDemo />
       </div>
-    <br />
-      <div>
-        {/* <HoverCardDemo /> */}
-      </div> 
     <br />
       <div>
         <IconDemo />
