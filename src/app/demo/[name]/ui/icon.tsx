@@ -3,22 +3,26 @@ import Link from "next/link";
 
 export const icon = {
   name: "icon",
-  preInformation: (
-    <Alert>
-      <span className="inline text-md [&_p]:leading-relaxed">Looking for the right icon to use? See <Link href="/graphics/icons" className="text-primary hover:text-primary/80 no-underline"> icons</Link>.</span>
-    </Alert>
-  ),
-  defaultComponent: "icon",
-  usage: [
-    `import { Icon } from "@/components/ui/icon";`,
-    `<Icon path={mdiInformationOutline} />`,
-  ],
+  preview: {
+    pre: (
+      <Alert>
+        <span className="inline text-md [&_p]:leading-relaxed">Looking for the right icon to use? See <Link href="/graphics/icons" className="text-primary hover:text-primary/80 no-underline"> icons</Link>.</span>
+      </Alert>
+    ),
+    defaultComponent: "icon",
+  },
+  usage: {
+    usage: [
+      `import { Icon } from "@/components/ui/icon";`,
+      `<Icon path={mdiInformationOutline} />`,
+    ],
+  },
   components: {
-    Variants: "icon-variants",
-    Sizing: "icon-sizing",
-    "Color Schemes": "icon-color-schemes",
-    "Subtle Variants": "icon-subtle",
-    "Filled Variants": "icon-filled",
-    "Sitecore Logos": "icon-sitecore-logos",
+    Variants: { component: "icon-variants", },
+    Sizing: { component: "icon-sizing", },
+    "Color Schemes": { component: "icon-color-schemes", },
+    "Subtle Variants": { component: "icon-subtle", },
+    "Filled Variants": { component: "icon-filled", },
+    "Sitecore Logos": { component: "icon-sitecore-logos", },
   },
 };
