@@ -22,6 +22,7 @@ import { errorStates } from "@/app/demo/[name]/ui/error-states";
 import { dropdownMenu } from "@/app/demo/[name]/ui/dropdown-menu";
 import { icon } from "@/app/demo/[name]/ui/icon";
 import { input } from "@/app/demo/[name]/ui/input";
+import { inputGroup } from "@/app/demo/[name]/ui/input-group";
 import { inputOtp } from "@/app/demo/[name]/ui/inputOtp";
 import { label } from "@/app/demo/[name]/ui/label";
 // import { menuBar } from "@/app/demo/[name]/ui/menu-bar";
@@ -97,6 +98,7 @@ export const demos: { [name: string]: Demo } = {
   "error-states": errorStates,
   icon,
   input,
+  "input-group": inputGroup,
   inputOtp,
   label,
   // "menu-bar": menuBar,

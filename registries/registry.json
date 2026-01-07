@@ -1099,6 +1099,34 @@
       ]
     },
     {
+      "name": "input-group",
+      "type": "registry:ui",
+      "title": "Input Group",
+      "description": "A flexible input container that combines an input field with addons like icons, buttons, text, or dropdowns.",
+      "dependencies": [
+        "@mdi/js",
+        "class-variance-authority"
+      ],
+      "registryDependencies": [
+        "https://blok.sitecore.com/r/theme.json",
+        "https://blok.sitecore.com/r/input.json",
+        "https://blok.sitecore.com/r/button.json",
+        "https://blok.sitecore.com/r/textarea.json",
+        "https://blok.sitecore.com/r/dropdown-menu.json",
+        "https://blok.sitecore.com/r/tooltip.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui/input-group.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "src/lib/icon.tsx",
+          "type": "registry:lib"
+        }
+      ]
+    },
+    {
       "name": "inputOtp",
       "type": "registry:ui",
       "title": "Input OTP",

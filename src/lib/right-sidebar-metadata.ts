@@ -454,6 +454,25 @@ export const rightSidebarMetadata: Record<string, RightSidebarMetadata> = {
       },
     ],
   },
+  "input-group": {
+    links: {
+      shadcn: "https://ui.shadcn.com/docs/components/input",
+    },
+    sections: [
+      { id: "preview", title: "Preview" },
+      { id: "installation", title: "Installation" },
+      { id: "usage", title: "Usage" },
+      {
+        id: "examples",
+        title: "Examples",
+        children: [
+          { id: "search", title: "Search" },
+          { id: "url", title: "URL" },
+          { id: "dropdown", title: "Dropdown" },
+        ],
+      },
+    ],
+  },
   "inputOtp": {
     links: {
       shadcn: "https://ui.shadcn.com/docs/components/input-otp",

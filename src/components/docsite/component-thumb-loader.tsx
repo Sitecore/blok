@@ -28,6 +28,7 @@ import EmptyStateThumb from "@/components/component-thumbs/empty-state";
 import ErrorStateThumb from "@/components/component-thumbs/error-state";
 import HoverCardThumb from "@/components/component-thumbs/hover-card";
 import InputThumb from "@/components/component-thumbs/input";
+import InputGroupThumb from "@/components/component-thumbs/input-group";
 import NavigationMenuThumb from "@/components/component-thumbs/navigation-menu";
 import PaginationThumb from "@/components/component-thumbs/pagination";
 import PinInputThumb from "@/components/component-thumbs/pin-input";
@@ -90,6 +91,7 @@ const componentThumbnails: Record<
   "error-states": ErrorStateThumb,
   "hover-card": HoverCardThumb,
   input: InputThumb,
+  "input-group": InputGroupThumb,
   inputOtp: PinInputThumb,
   "navigation-menu": NavigationMenuThumb,
   pagination: PaginationThumb,
