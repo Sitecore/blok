@@ -106,9 +106,9 @@ test.describe('UI BLOK QA Automation', () => {
     await testOutlineButton(page);
     await testGhostButton(page);
     await testLinkVariant(page);
-    await testDisabledButtons(page);
-    await testIcononlyVariant(page);
     await testSizeVariant(page);
+    await testIcononlyVariant(page);
+    await testDisabledButtons(page);
   });
 
   test('test_Calendar', async ({ page }) => {
