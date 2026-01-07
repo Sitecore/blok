@@ -10,7 +10,7 @@ import {
 } from "@/components/ui/editable";
 import { Icon } from "@/lib/icon";
 import { mdiPencil, mdiCheck, mdiClose } from "@mdi/js";
-import { ControlledDemo, StoreDemo } from "@/app/demo/[name]/ui/editable-controlled";
+import { ControlledDemo, StoreDemo } from "@/app/demo/[name]/ui/editable-demos";
 
 export const editable = {
   name: "editable",
@@ -39,7 +39,6 @@ export const editable = {
 </Editable>`,
   ],
   components: {
-    // Double Click activation
     "Double Click": (
       <div >
         <Editable 
@@ -48,12 +47,11 @@ export const editable = {
           activationMode="dblclick"
         >
           <EditablePreview />
-          <EditableInput />
+          <EditableInput className="w-72"/>
         </Editable>
       </div>
     ),
 
-    // Disabled state
     "Disabled": (
       <div >
         <Editable
@@ -67,7 +65,6 @@ export const editable = {
       </div>
     ),
 
-    // Textarea for multi-line editing
     "Textarea": (
       <div className="w-96">
         <Editable
@@ -80,7 +77,6 @@ export const editable = {
       </div>
     ),
 
-    // With control buttons
     "With Controls": (
       <div>
         <Editable
@@ -108,10 +104,8 @@ export const editable = {
       </div>
     ),
 
-    // Controlled mode
     "Controlled": <ControlledDemo />,
 
-    // Store pattern
     "Store": <StoreDemo />,
   },
 };

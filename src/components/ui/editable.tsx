@@ -35,6 +35,131 @@ function useEditableContext() {
   return context;
 }
 
+// useEditable Hook 
+interface UseEditableProps {
+  /** The initial value (uncontrolled) */
+  defaultValue?: string;
+  /** The controlled value */
+  value?: string;
+  /** Placeholder text when empty */
+  placeholder?: string;
+  /** Whether the component is disabled */
+  isDisabled?: boolean;
+  /** Whether clicking the preview starts editing */
+  isPreviewFocusable?: boolean;
+  /** Whether to submit on blur */
+  submitOnBlur?: boolean;
+  /** Whether to start in edit mode */
+  startWithEditView?: boolean;
+  /** Whether to select all text on focus */
+  selectAllOnFocus?: boolean;
+  /** Activation mode: 'click' or 'dblclick' */
+  activationMode?: ActivationMode;
+  /** Callback when value is submitted */
+  onSubmit?: (value: string) => void;
+  /** Callback when value changes */
+  onChange?: (value: string) => void;
+  /** Callback when value changes (alias for onChange) */
+  onValueChange?: (value: string) => void;
+  /** Callback when editing is cancelled */
+  onCancel?: (previousValue: string) => void;
+  /** Callback when entering edit mode */
+  onEdit?: () => void;
+}
+
+interface UseEditableReturn extends EditableContextValue {
+  /** Whether the editable is currently in edit mode */
+  editing: boolean;
+}
+
+function useEditable(props: UseEditableProps = {}): UseEditableReturn {
+  const {
+    defaultValue = "",
+    value: controlledValue,
+    placeholder = "Click to edit...",
+    isDisabled = false,
+    isPreviewFocusable = true,
+    submitOnBlur = true,
+    startWithEditView = false,
+    selectAllOnFocus = true,
+    activationMode = "click",
+    onSubmit,
+    onChange,
+    onValueChange,
+    onCancel,
+    onEdit,
+  } = props;
+
+  const [isEditing, setIsEditing] = React.useState(startWithEditView);
+  const [internalValue, setInternalValue] = React.useState(defaultValue);
+  const [previousValue, setPreviousValue] = React.useState(defaultValue);
+  const inputRef = React.useRef<HTMLInputElement | HTMLTextAreaElement | null>(null);
+
+  // Support both controlled and uncontrolled modes
+  const isControlled = controlledValue !== undefined;
+  const value = isControlled ? controlledValue : internalValue;
+
+  const startEdit = React.useCallback(() => {
+    if (isDisabled) return;
+    setPreviousValue(value);
+    setIsEditing(true);
+    onEdit?.();
+  }, [isDisabled, value, onEdit]);
+
+  const cancelEdit = React.useCallback(() => {
+    if (!isControlled) {
+      setInternalValue(previousValue);
+    }
+    setIsEditing(false);
+    onCancel?.(previousValue);
+  }, [isControlled, previousValue, onCancel]);
+
+  const submitEdit = React.useCallback(() => {
+    setIsEditing(false);
+    onSubmit?.(value);
+  }, [value, onSubmit]);
+
+  const handleChange = React.useCallback(
+    (newValue: string) => {
+      if (!isControlled) {
+        setInternalValue(newValue);
+      }
+      onChange?.(newValue);
+      onValueChange?.(newValue);
+    },
+    [isControlled, onChange, onValueChange]
+  );
+
+  // Focus input when entering edit mode
+  React.useEffect(() => {
+    if (isEditing && inputRef.current) {
+      inputRef.current.focus();
+      if (selectAllOnFocus && inputRef.current instanceof HTMLInputElement) {
+        inputRef.current.select();
+      } else if (selectAllOnFocus && inputRef.current instanceof HTMLTextAreaElement) {
+        inputRef.current.select();
+      }
+    }
+  }, [isEditing, selectAllOnFocus]);
+
+  return {
+    isEditing,
+    editing: isEditing, // Alias for Chakra compatibility
+    value,
+    placeholder,
+    isDisabled,
+    isPreviewFocusable,
+    submitOnBlur,
+    selectAllOnFocus,
+    activationMode,
+    startEdit,
+    cancelEdit,
+    submitEdit,
+    handleChange,
+    inputRef,
+  };
+}
+
 // Editable Root Component
 
 const editableVariants = cva("inline-flex flex-col gap-1", {
@@ -184,6 +309,34 @@ function Editable({
   );
 }
 
+// EditableRootProvider Component
+
+interface EditableRootProviderProps
+  extends Omit<React.HTMLAttributes<HTMLDivElement>, "onChange" | "onSubmit">,
+    VariantProps<typeof editableVariants> {
+  value: EditableContextValue;
+}
+
+function EditableRootProvider({
+  className,
+  size,
+  value,
+  children,
+  ...props
+}: EditableRootProviderProps) {
+  return (
+    <EditableContext.Provider value={value}>
+      <div
+        data-slot="editable"
+        className={cn(editableVariants({ size }), className)}
+        {...props}
+      >
+        {children}
+      </div>
+    </EditableContext.Provider>
+  );
+}
+
 // EditablePreview Component
 
 const editablePreviewVariants = cva(
@@ -297,10 +450,7 @@ function EditableInput({ className, ...props }: EditableInputProps) {
   );
 }
 
-// ============================================================================
 // EditableTextarea Component
-// ============================================================================
-
 interface EditableTextareaProps
   extends Omit<React.ComponentProps<typeof Textarea>, "value" | "onChange"> {}
 
@@ -350,9 +500,7 @@ function EditableTextarea({ className, ...props }: EditableTextareaProps) {
   );
 }
 
-// ============================================================================
 // EditableControl Component
-// ============================================================================
 
 interface EditableControlProps extends React.HTMLAttributes<HTMLDivElement> {}
 
@@ -368,9 +516,7 @@ function EditableControl({ className, children, ...props }: EditableControlProps
   );
 }
 
-// ============================================================================
 // EditableEditTrigger Component
-// ============================================================================
 
 interface EditableEditTriggerProps extends React.ComponentProps<typeof Button> {}
 
@@ -397,9 +543,7 @@ function EditableEditTrigger({ className, children, ...props }: EditableEditTrig
   );
 }
 
-// ============================================================================
 // EditableCancelTrigger Component
-// ============================================================================
 
 interface EditableCancelTriggerProps extends React.ComponentProps<typeof Button> {}
 
@@ -425,9 +569,7 @@ function EditableCancelTrigger({ className, children, ...props }: EditableCancel
   );
 }
 
-// ============================================================================
 // EditableSubmitTrigger Component
-// ============================================================================
 
 interface EditableSubmitTriggerProps extends React.ComponentProps<typeof Button> {}
 
@@ -453,12 +595,9 @@ function EditableSubmitTrigger({ className, children, ...props }: EditableSubmit
   );
 }
 
-// ============================================================================
-// Exports
-// ============================================================================
-
 export {
   Editable,
+  EditableRootProvider,
   EditablePreview,
   EditableInput,
   EditableTextarea,
@@ -468,8 +607,12 @@ export {
   EditableSubmitTrigger,
   editableVariants,
   editablePreviewVariants,
+  useEditable,
   useEditableContext,
   type EditableProps,
+  type EditableRootProviderProps,
   type EditableContextValue,
+  type UseEditableProps,
+  type UseEditableReturn,
   type ActivationMode,
 };
