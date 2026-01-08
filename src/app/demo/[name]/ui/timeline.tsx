@@ -97,7 +97,7 @@ import { mdiCheck } from "@mdi/js";`,
               <TimelineIndicator variant="solid">
                 <Avatar className="size-5">
                     <AvatarImage
-                      src={"/ChristianHahn.png"}
+                      src={"https://github.com/ChristianHahn.png"}
                       alt={"ChristianHahn avatar"}
                     />
                     <AvatarFallback>{"C"}</AvatarFallback>
@@ -139,7 +139,7 @@ import { mdiCheck } from "@mdi/js";`,
               <TimelineIndicator variant="outline">
                 <Avatar className="size-5">
                     <AvatarImage
-                      src={"/ChristianHahn.png"}
+                      src={"https://github.com/ChristianHahn.png"}
                       alt={"ChristianHahn avatar"}
                     />
                     <AvatarFallback>{"C"}</AvatarFallback>
@@ -181,7 +181,7 @@ import { mdiCheck } from "@mdi/js";`,
               <TimelineIndicator variant="plain">
                 <Avatar className="size-5">
                     <AvatarImage
-                      src={"/ChristianHahn.png"}
+                      src={"https://github.com/ChristianHahn.png"}
                       alt={"ChristianHahn avatar"}
                     />
                     <AvatarFallback>{"C"}</AvatarFallback>
@@ -223,7 +223,7 @@ import { mdiCheck } from "@mdi/js";`,
               <TimelineIndicator variant="subtle">
                 <Avatar className="size-5">
                     <AvatarImage
-                      src={"/ChristianHahn.png"}
+                      src={"https://github.com/ChristianHahn.png"}
                       alt={"ChristianHahn avatar"}
                     />
                     <AvatarFallback>{"C"}</AvatarFallback>
