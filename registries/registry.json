@@ -519,6 +519,7 @@
         "https://blok.sitecore.com/r/table.json",
         "https://blok.sitecore.com/r/tabs.json",
         "https://blok.sitecore.com/r/textarea.json",
+        "https://blok.sitecore.com/r/timeline.json",
         "https://blok.sitecore.com/r/toggle.json",
         "https://blok.sitecore.com/r/toggle-group.json",
         "https://blok.sitecore.com/r/tooltip.json",
@@ -1647,6 +1648,29 @@
         {
           "path": "src/components/ui/textarea.tsx",
           "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "timeline",
+      "type": "registry:ui",
+      "title": "Timeline",
+      "description": "Used to display a list of events in chronological order.",
+      "registryDependencies": [
+        "https://blok.sitecore.com/r/theme.json",
+        "https://blok.sitecore.com/r/badge.json"
+      ],
+      "dependencies": [
+        "class-variance-authority"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui/timeline.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "src/lib/icon.tsx",
+          "type": "registry:lib"
         }
       ]
     },
