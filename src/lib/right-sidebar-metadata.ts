@@ -707,6 +707,16 @@ export const rightSidebarMetadata: Record<string, RightSidebarMetadata> = {
       },
     ],
   },
+  stepper: {
+    links: {
+      shadcn: "https://ui.shadcn.com/docs/components/stepper",
+    },
+    sections: [
+      { id: "preview", title: "Preview" },
+      { id: "installation", title: "Installation" },
+      { id: "usage", title: "Usage" },
+    ],
+  },
   switch: {
     links: {
       shadcn: "https://ui.shadcn.com/docs/components/switch",
@@ -841,6 +851,24 @@ export const rightSidebarMetadata: Record<string, RightSidebarMetadata> = {
     links: {
       figma: "https://www.figma.com/design/x0CUbrC5Kjcuk64VPCnbgz/Blok-Components?m=auto&node-id=6748-14480&t=NScvPldB3fxBBWL8-1"
     },
+  },
+  timeline: {
+    links: {
+    },
+    sections: [
+      { id: "preview", title: "Preview" },
+      { id: "installation", title: "Installation" },
+      { id: "usage", title: "Usage" },
+      {
+        id: "examples",
+        title: "Examples",
+        children: [
+          { id: "variants", title: "Variants" },
+          { id: "sizes", title: "Sizes" },
+          { id: "connector-variants", title: "Connector Variants" },
+        ],
+      },
+    ],
   },
 
   // ===== BLOK-SPECIFIC METADATA =====
