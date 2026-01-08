@@ -30,6 +30,7 @@ import { navigationMenu } from "@/app/demo/[name]/ui/navigation-menu";
 import { radioGroup } from "@/app/demo/[name]/ui/radio-group";
 import { resizable } from "@/app/demo/[name]/ui/resizable";
 import { select } from "@/app/demo/[name]/ui/select";
+import { selectReact } from "@/app/demo/[name]/ui/select-react";
 import { separator } from "@/app/demo/[name]/ui/separator";
 import { sheet } from "@/app/demo/[name]/ui/sheet";
 import { sidebar } from "@/app/demo/[name]/ui/sidebar";
@@ -112,6 +113,7 @@ export const demos: { [name: string]: Demo } = {
   resizable,
   "scroll-area": scrollArea,
   select,
+  "select-react": selectReact,
   separator,
   sheet,
   sidebar,
