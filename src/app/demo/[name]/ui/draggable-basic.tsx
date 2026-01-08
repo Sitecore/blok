@@ -58,6 +58,9 @@ function DroppedFieldCard({
 }) {
   return (
     <div className="flex items-center gap-3 px-3 py-2.5 bg-card border border-border rounded-lg hover:border-primary/50 transition-colors group">
+      <div className="shrink-0 text-muted-foreground">
+        <GripVertical className="w-4 h-4" />
+      </div>
       <div className="shrink-0 p-1.5 rounded bg-primary/10">
         <Icon path={mdiTextShort} className="w-4 h-4 text-primary" />
       </div>
