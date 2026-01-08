@@ -25,6 +25,8 @@ function InputGroup({ className, ...props }: React.ComponentProps<"div">) {
 
         // Focus state (matches input primary focus style).
         "has-[[data-slot=input-group-control]:focus-visible]:border-primary has-[[data-slot=input-group-control]:focus-visible]:ring-primary/50 has-[[data-slot=input-group-control]:focus-visible]:ring-1",
+        // Focus state for buttons inside input group (dropdown triggers, etc.)
+        "has-[button:focus-visible]:border-primary has-[button:focus-visible]:ring-primary/50 has-[button:focus-visible]:ring-1",
 
         // Error state.
         "has-[[data-slot][aria-invalid=true]]:ring-destructive/20 has-[[data-slot][aria-invalid=true]]:border-destructive dark:has-[[data-slot][aria-invalid=true]]:ring-destructive/40",

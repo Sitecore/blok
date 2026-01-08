@@ -75,7 +75,7 @@ export const inputGroup = {
         </InputGroupAddon>
       </InputGroup>
       {/* Dropdown with Search */}
-      <InputGroup className="[--radius:1rem]">
+      <InputGroup>
         <InputGroupInput placeholder="Enter search query" aria-label="Search query" />
         <InputGroupAddon align="inline-end">
           <DropdownMenu>
@@ -84,7 +84,7 @@ export const inputGroup = {
                 Search In... <Icon path={mdiChevronDown} size={0.5} />
               </InputGroupButton>
             </DropdownMenuTrigger>
-            <DropdownMenuContent align="end" className="[--radius:0.95rem]">
+            <DropdownMenuContent align="end">
               <DropdownMenuItem>Documentation</DropdownMenuItem>
               <DropdownMenuItem>Blog Posts</DropdownMenuItem>
               <DropdownMenuItem>Changelog</DropdownMenuItem>
@@ -172,7 +172,7 @@ import { mdiMagnify } from "@mdi/js";`,
             </DropdownMenu>
           </InputGroupAddon>
         </InputGroup>
-        <InputGroup className="[--radius:1rem]">
+        <InputGroup>
           <InputGroupInput placeholder="Enter search query" aria-label="Search query" />
           <InputGroupAddon align="inline-end">
             <DropdownMenu>
@@ -181,7 +181,7 @@ import { mdiMagnify } from "@mdi/js";`,
                   Search In... <Icon path={mdiChevronDown} size={1} />
                 </InputGroupButton>
               </DropdownMenuTrigger>
-              <DropdownMenuContent align="end" className="[--radius:0.95rem]">
+              <DropdownMenuContent align="end">
                 <DropdownMenuItem>Documentation</DropdownMenuItem>
                 <DropdownMenuItem>Blog Posts</DropdownMenuItem>
                 <DropdownMenuItem>Changelog</DropdownMenuItem>

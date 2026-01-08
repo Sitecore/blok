@@ -461,7 +461,7 @@ export const rightSidebarMetadata: Record<string, RightSidebarMetadata> = {
   },
   "input-group": {
     links: {
-      shadcn: "https://ui.shadcn.com/docs/components/input",
+      shadcn: "https://ui.shadcn.com/docs/components/input-group",
     },
     sections: [
       { id: "preview", title: "Preview" },
