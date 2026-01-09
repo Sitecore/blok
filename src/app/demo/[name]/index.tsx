@@ -2,6 +2,7 @@ import type { ReactElement, ReactNode } from "react";
 
 // ui
 import { accordion } from "@/app/demo/[name]/ui/accordion";
+import { actionBar } from "@/app/demo/[name]/ui/action-bar";
 import { alertDialog } from "@/app/demo/[name]/ui/alert-dialog";
 import { alert } from "@/app/demo/[name]/ui/alert";
 import { aspectRatio } from "@/app/demo/[name]/ui/aspect-ratio";
@@ -75,6 +76,7 @@ interface Demo {
 export const demos: { [name: string]: Demo } = {
   // ui
   accordion,
+  "action-bar": actionBar,
   alert,
   "alert-dialog": alertDialog,
   "all-site": allSite,

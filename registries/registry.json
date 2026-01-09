@@ -1790,6 +1790,31 @@
       ]
     },
     {
+      "name": "action-bar",
+      "type": "registry:ui",
+      "title": "Action bar",
+      "description": "A slide-up action bar for bulk operations on selected items.",
+      "registryDependencies": [
+        "https://blok.sitecore.com/r/theme.json",
+        "https://blok.sitecore.com/r/button.json",
+        "https://blok.sitecore.com/r/tooltip.json",
+        "https://blok.sitecore.com/r/dropdown-menu.json"
+      ],
+      "dependencies": [
+        "@mdi/js"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui/action-bar.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "src/lib/icon.tsx",
+          "type": "registry:lib"
+        }
+      ]
+    },
+    {
       "name": "popover",
       "type": "registry:ui",
       "title": "Popover",

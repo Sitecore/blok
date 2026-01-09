@@ -25,6 +25,14 @@ export const rightSidebarMetadata: Record<string, RightSidebarMetadata> = {
       figma: "https://www.figma.com/design/x0CUbrC5Kjcuk64VPCnbgz/Blok-Components?m=auto&node-id=8164-5745&t=NScvPldB3fxBBWL8-1"
     },
   },
+  "action-bar": {
+    links: {},
+    sections: [
+      { id: "preview", title: "Preview" },
+      { id: "installation", title: "Installation" },
+      { id: "usage", title: "Usage" },
+    ],
+  },
   alert: {
     links: {
       shadcn: "https://ui.shadcn.com/docs/components/alert",
@@ -728,7 +736,7 @@ export const rightSidebarMetadata: Record<string, RightSidebarMetadata> = {
   },
   stepper: {
     links: {
-      shadcn: "https://ui.shadcn.com/docs/components/stepper",
+    
     },
     sections: [
       { id: "preview", title: "Preview" },
