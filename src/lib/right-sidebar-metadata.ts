@@ -317,7 +317,6 @@ export const rightSidebarMetadata: Record<string, RightSidebarMetadata> = {
         title: "Examples",
         children: [
           { id: "basic-drag-and-drop", title: "Basic Drag and Drop" },
-          { id: "sortable-list", title: "Sortable List" },
           { id: "custom-handle", title: "Custom Handle" },
           { id: "drag,-drop-&-sort", title: "Drag, Drop & Sort" },
         ],

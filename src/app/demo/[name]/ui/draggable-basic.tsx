@@ -1,17 +1,94 @@
-"use client";
+"use client"; // comment this line if you are not using next.js
 
 import * as React from "react";
 import { DndContext, type DragEndEvent, type UniqueIdentifier } from "@/components/ui/dnd-context";
 import { DragOverlay } from "@/components/ui/drag-overlay";
 import { Draggable } from "@/components/ui/draggable";
 import { Droppable } from "@/components/ui/droppable";
-import { Button } from "@/components/ui/button";
-import { Move, CheckCircle2 } from "lucide-react";
+import { GripVertical, List, Trash2 } from "lucide-react";
+import { mdiTextShort } from "@mdi/js";
+import { Icon } from "@/lib/icon";
 import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
+
+interface FieldItem {
+  id: string;
+  label: string;
+  name: string;
+  type: string;
+}
+
+const initialFields: FieldItem[] = [
+  { id: "field-1", label: "First Name", name: "first_name", type: "Text" },
+  { id: "field-2", label: "Last Name", name: "last_name", type: "Text" },
+  { id: "field-3", label: "Email Address", name: "email", type: "Text" },
+];
+
+// Draggable field card (source) - same style as sortable-drop
+function DraggableFieldCard({ item }: { item: FieldItem }) {
+  return (
+    <div className="flex items-center gap-3 px-3 py-2.5 bg-card border border-border rounded-lg hover:border-primary/50 transition-colors cursor-grab active:cursor-grabbing group">
+      <div className="shrink-0 text-muted-foreground">
+        <GripVertical className="w-4 h-4" />
+      </div>
+      <div className="shrink-0 p-1.5 rounded bg-primary/10">
+        <Icon path={mdiTextShort} className="w-4 h-4 text-primary" />
+      </div>
+      <div className="flex-1 min-w-0 text-sm font-medium text-foreground truncate">
+        {item.label}
+      </div>
+      <div className="shrink-0 text-sm text-muted-foreground truncate max-w-[150px]">
+        {item.name}
+      </div>
+      <div className="shrink-0 text-sm text-muted-foreground/50">|</div>
+      <div className="shrink-0 text-sm text-muted-foreground">
+        {item.type}
+      </div>
+    </div>
+  );
+}
+
+// Dropped field card - shows in drop zone
+function DroppedFieldCard({ 
+  item, 
+  onRemove 
+}: { 
+  item: FieldItem; 
+  onRemove: (id: string) => void;
+}) {
+  return (
+    <div className="flex items-center gap-3 px-3 py-2.5 bg-card border border-border rounded-lg hover:border-primary/50 transition-colors group">
+      <div className="shrink-0 text-muted-foreground">
+        <GripVertical className="w-4 h-4" />
+      </div>
+      <div className="shrink-0 p-1.5 rounded bg-primary/10">
+        <Icon path={mdiTextShort} className="w-4 h-4 text-primary" />
+      </div>
+      <div className="flex-1 min-w-0 text-sm font-medium text-foreground truncate">
+        {item.label}
+      </div>
+      <div className="shrink-0 text-sm text-muted-foreground truncate max-w-[150px]">
+        {item.name}
+      </div>
+      <div className="shrink-0 text-sm text-muted-foreground/50">|</div>
+      <div className="shrink-0 text-sm text-muted-foreground">
+        {item.type}
+      </div>
+      <Button
+        variant="ghost"
+        size="icon"
+        className="h-8 w-8 opacity-0 group-hover:opacity-100 text-muted-foreground hover:text-danger-fg"
+        onClick={() => onRemove(item.id)}
+      >
+        <Trash2 className="w-4 h-4" />
+      </Button>
+    </div>
+  );
+}
 
 export default function BasicDragDrop() {
-  // Track which container the item is in: "source" or "drop-zone"
-  const [container, setContainer] = React.useState<"source" | "drop-zone">("source");
+  const [sourceFields, setSourceFields] = React.useState<FieldItem[]>(initialFields);
+  const [droppedFields, setDroppedFields] = React.useState<FieldItem[]>([]);
   const [activeId, setActiveId] = React.useState<UniqueIdentifier | null>(null);
 
   const handleDragStart = ({ active }: { active: { id: UniqueIdentifier } }) => {
@@ -19,36 +96,31 @@ export default function BasicDragDrop() {
   };
 
   const handleDragEnd = (event: DragEndEvent) => {
-    const { over } = event;
+    const { active, over } = event;
     setActiveId(null);
     
-    if (over) {
-      // Move to whichever container it was dropped on
-      if (over.id === "drop-zone") {
-        setContainer("drop-zone");
-      } else if (over.id === "source") {
-        setContainer("source");
+    if (over?.id === "drop-zone") {
+      const field = sourceFields.find(f => f.id === active.id);
+      if (field) {
+        setDroppedFields(prev => [...prev, field]);
+        setSourceFields(prev => prev.filter(f => f.id !== active.id));
       }
     }
-    // If dropped outside any droppable, stay where it was
   };
 
   const handleDragCancel = () => {
     setActiveId(null);
   };
 
-  const draggableContent = (
-    <Button
-      className={cn(
-        "w-full shadow-md hover:shadow-lg transition-all duration-200",
-        "bg-gradient-to-r from-primary to-primary/90 hover:from-primary/90 hover:to-primary"
-      )}
-      size="lg"
-    >
-      <Move className="mr-2 h-4 w-4" />
-      draggable
-    </Button>
-  );
+  const handleRemove = (id: string) => {
+    const field = droppedFields.find(f => f.id === id);
+    if (field) {
+      setDroppedFields(prev => prev.filter(f => f.id !== id));
+      setSourceFields(prev => [...prev, field]);
+    }
+  };
+
+  const activeField = activeId ? sourceFields.find(f => f.id === activeId) : null;
 
   return (
     <DndContext
@@ -57,102 +129,112 @@ export default function BasicDragDrop() {
       onDragCancel={handleDragCancel}
     >
       <div className="p-6 space-y-6">
-        <div className="space-y-2">
-          <div className="flex items-center gap-2">
-            <h3 className="text-2xl font-semibold">Basic Drag & Drop</h3>
-          </div>
-          <p className="text-sm text-muted-foreground">
-            Drag the button between the source and drop zone areas.
+        <div>
+          <h3 className="text-2xl font-semibold">Basic Drag & Drop</h3>
+          <p className="text-sm text-muted-foreground mt-2">
+            Drag fields from the source to the drop zone. The drop zone shows an active state when fields can be dropped.
           </p>
         </div>
 
-        <div className="flex flex-col md:flex-row gap-6 items-start">
-          {/* Source Area - Now a Droppable */}
-          <div className="flex-shrink-0">
-            <div className="mb-3 text-xs font-medium text-muted-foreground uppercase">
-              Source
+        <div className="flex flex-col lg:flex-row gap-6">
+          {/* Source Panel - Available Fields */}
+          <div className="flex-1">
+            <div className="mb-3 text-xs font-medium text-muted-foreground uppercase tracking-wide">
+              Available Fields
             </div>
             <Droppable
-              id="source"
+              id="source-drop"
               className={cn(
-                "w-64 min-h-[140px] rounded-xl border-2 border-dashed p-4 transition-all duration-200",
-                "bg-gradient-to-br from-background to-muted/30 border-muted",
-                "data-[drop-target=true]:border-primary data-[drop-target=true]:bg-primary/5"
+                "p-4 rounded-lg border-2 border-dashed min-h-[280px] transition-all duration-200",
+                "bg-card border-border",
+                "data-[drop-target=true]:border-primary data-[drop-target=true]:bg-primary/5 data-[drop-target=true]:shadow-md"
               )}
             >
-              <div className="space-y-3 h-full flex flex-col justify-center">
-                {container === "source" ? (
-                  <>
-                    <Draggable id="draggable-button">
-                      {draggableContent}
+              {sourceFields.length > 0 ? (
+                <div className="space-y-2">
+                  {sourceFields.map((field) => (
+                    <Draggable key={field.id} id={field.id}>
+                      <DraggableFieldCard item={field} />
                     </Draggable>
-                    {!activeId && (
-                      <div className="flex items-center gap-2 text-xs text-muted-foreground justify-center">
-                        <span>Drag me to the drop zone</span>
-                      </div>
-                    )}
-                  </>
-                ) : (
-                  <div className="text-center text-xs text-muted-foreground py-4">
-                    <p>Drop here to return</p>
+                  ))}
+                </div>
+              ) : (
+                <div className="flex flex-col items-center justify-center h-full min-h-[200px] text-center">
+                  <div className="w-12 h-12 flex items-center justify-center text-muted-foreground/50 mb-3">
+                    <List className="w-8 h-8" />
                   </div>
-                )}
-              </div>
+                  <p className="text-sm text-muted-foreground">
+                    All fields have been moved
+                  </p>
+                </div>
+              )}
             </Droppable>
           </div>
 
-          {/* Drop Zone */}
-          <div className="flex-1 min-w-0">
-            <div className="mb-3 text-xs font-medium text-muted-foreground uppercase">
+          {/* Drop Zone Panel */}
+          <div className="flex-1">
+            <div className="mb-3 text-xs font-medium text-muted-foreground uppercase tracking-wide">
               Drop Zone
             </div>
             <Droppable
               id="drop-zone"
               className={cn(
-                "w-full min-h-[280px] rounded-xl border-2 border-dashed p-8 flex items-center justify-center transition-all duration-200",
-                "bg-gradient-to-br from-muted/20 to-muted/10",
-                "hover:from-muted/30 hover:to-muted/20",
-                "data-[drop-target=true]:border-primary data-[drop-target=true]:bg-primary/5 data-[drop-target=true]:shadow-lg data-[drop-target=true]:shadow-primary/10"
+                "p-4 rounded-lg border-2 border-dashed min-h-[280px] transition-all duration-200",
+                "bg-primary/5 border-primary/40",
+                "data-[drop-target=true]:border-primary data-[drop-target=true]:bg-primary/10 data-[drop-target=true]:shadow-md data-[drop-target=true]:border-solid"
               )}
             >
-              <div className="w-full h-full flex flex-col items-center justify-center gap-4">
-                {container === "drop-zone" ? (
-                  <div className="text-center space-y-3 animate-in fade-in duration-300">
-                    <div className="mx-auto w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center">
-                      <CheckCircle2 className="h-8 w-8 text-primary" />
-                    </div>
-                    <div>
-                      <p className="font-semibold text-sm">Successfully Dropped!</p>
-                      <p className="text-xs text-muted-foreground mt-1">
-                        Drag the button back to the source area
-                      </p>
-                    </div>
-                    <Draggable id="draggable-button">
-                      {draggableContent}
-                    </Draggable>
+              {droppedFields.length > 0 ? (
+                <div className="space-y-2">
+                  {droppedFields.map((field) => (
+                    <DroppedFieldCard 
+                      key={field.id}
+                      item={field} 
+                      onRemove={handleRemove}
+                    />
+                  ))}
+                </div>
+              ) : (
+                <div className="flex flex-col items-center justify-center h-full min-h-[200px] text-center">
+                  <div className="w-12 h-12 flex items-center justify-center text-muted-foreground/50 mb-3">
+                    <List className="w-8 h-8" />
                   </div>
-                ) : (
-                  <div className="text-center space-y-3">
-                    <div className="mx-auto w-16 h-16 rounded-full bg-muted flex items-center justify-center">
-                      <Move className="h-8 w-8 text-muted-foreground" />
-                    </div>
-                    <div>
-                      <p className="font-medium text-sm text-muted-foreground">Drop Zone</p>
-                      <p className="text-xs text-muted-foreground mt-1">
-                        Release the button here to drop it
-                      </p>
-                    </div>
-                  </div>
-                )}
-              </div>
+                  <p className="text-sm text-muted-foreground">
+                    Drop (fields) in this area to (add) (items)
+                  </p>
+                  <p className="text-xs text-muted-foreground mt-2">
+                    Border highlights when you can drop here
+                  </p>
+                </div>
+              )}
             </Droppable>
           </div>
         </div>
+
       </div>
 
-      {/* Drag Overlay for smooth animations */}
+      {/* Drag Overlay */}
       <DragOverlay>
-        {activeId ? draggableContent : null}
+        {activeField ? (
+          <div className="flex items-center gap-3 px-3 py-2.5 bg-card border border-primary rounded-lg shadow-lg">
+            <div className="shrink-0 text-foreground cursor-grabbing">
+              <GripVertical className="w-4 h-4" />
+            </div>
+            <div className="shrink-0 p-1.5 rounded bg-primary/10">
+              <Icon path={mdiTextShort} className="w-4 h-4 text-primary" />
+            </div>
+            <div className="flex-1 min-w-0 text-sm font-medium text-foreground truncate">
+              {activeField.label}
+            </div>
+            <div className="shrink-0 text-sm text-muted-foreground truncate max-w-[150px]">
+              {activeField.name}
+            </div>
+            <div className="shrink-0 text-sm text-muted-foreground/50">|</div>
+            <div className="shrink-0 text-sm text-muted-foreground">
+              {activeField.type}
+            </div>
+          </div>
+        ) : null}
       </DragOverlay>
     </DndContext>
   );
