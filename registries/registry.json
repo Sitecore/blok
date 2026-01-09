@@ -498,6 +498,7 @@
         "https://blok.sitecore.com/r/date-picker.json",
         "https://blok.sitecore.com/r/dialog.json",
         "https://blok.sitecore.com/r/dropdown-menu.json",
+        "https://blok.sitecore.com/r/editable.json",
         "https://blok.sitecore.com/r/empty-states.json",
         "https://blok.sitecore.com/r/error-states.json",
         "https://blok.sitecore.com/r/input.json",
@@ -1036,6 +1037,27 @@
         {
           "path": "src/lib/icon.tsx",
           "type": "registry:lib"
+        }
+      ]
+    },
+    {
+      "name": "editable",
+      "type": "registry:ui",
+      "title": "Editable",
+      "description": "An inline editable text component that allows users to edit text in place with customizable input or textarea modes.",
+      "dependencies": [
+        "class-variance-authority"
+      ],
+      "registryDependencies": [
+        "https://blok.sitecore.com/r/theme.json",
+        "https://blok.sitecore.com/r/input.json",
+        "https://blok.sitecore.com/r/textarea.json",
+        "https://blok.sitecore.com/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui/editable.tsx",
+          "type": "registry:ui"
         }
       ]
     },
