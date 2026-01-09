@@ -502,6 +502,7 @@
         "https://blok.sitecore.com/r/error-states.json",
         "https://blok.sitecore.com/r/input.json",
         "https://blok.sitecore.com/r/inputOtp.json",
+        "https://blok.sitecore.com/r/kbd.json",
         "https://blok.sitecore.com/r/label.json",
         "https://blok.sitecore.com/r/navigation-menu.json",
         "https://blok.sitecore.com/r/pagination.json",
@@ -1147,6 +1148,21 @@
         {
           "path": "src/lib/icon.tsx",
           "type": "registry:lib"
+        }
+      ]
+    },
+    {
+      "name": "kbd",
+      "type": "registry:ui",
+      "title": "Kbd",
+      "description": "Used to display textual user input from keyboard.",
+      "registryDependencies": [
+        "https://blok.sitecore.com/r/theme.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui/kbd.tsx",
+          "type": "registry:ui"
         }
       ]
     },

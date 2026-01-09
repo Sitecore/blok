@@ -491,6 +491,26 @@ export const rightSidebarMetadata: Record<string, RightSidebarMetadata> = {
       },
     ],
   },
+  kbd: {
+    links: {
+      shadcn: "https://ui.shadcn.com/docs/components/kbd",
+    },
+    sections: [
+      { id: "preview", title: "Preview" },
+      { id: "installation", title: "Installation" },
+      { id: "usage", title: "Usage" },
+      {
+        id: "examples",
+        title: "Examples",
+        children: [
+          { id: "group", title: "Group" },
+          { id: "button", title: "Button" },
+          { id: "tooltip", title: "Tooltip" },
+          { id: "keyboard-shortcuts", title: "Keyboard Shortcuts" },
+        ],
+      },
+    ],
+  },
   label: {
     links: {
       shadcn: "https://ui.shadcn.com/docs/components/label",
