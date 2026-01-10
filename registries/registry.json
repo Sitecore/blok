@@ -1543,10 +1543,28 @@
       ]
     },
     {
+      "name": "circular-progress",
+      "type": "registry:ui",
+      "title": "Circular Progress",
+      "description": "A circular progress component for loading states.",
+      "registryDependencies": [
+        "https://blok.sitecore.com/r/theme.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui/circular-progress.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
       "name": "spinner",
       "type": "registry:ui",
       "title": "Spinner",
-      "description": "A spinner component for loading states.",
+      "description": "An indicator that can be used to show a loading state.",
+      "dependencies": [
+        "lucide-react"
+      ],
       "registryDependencies": [
         "https://blok.sitecore.com/r/theme.json"
       ],

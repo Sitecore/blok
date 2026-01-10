@@ -17,7 +17,7 @@ import {
 import * as mdiIcons from "@mdi/js";
 import * as logoIcons from "./logo-icons";
 import { Suspense } from "react";
-import { Spinner } from "@/components/ui/spinner";
+import { CircularProgress } from "@/components/ui/circular-progress";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 
 const iconsData = [
@@ -694,7 +694,7 @@ export default function IconsPage() {
               {iconsData.map(({ mdi, usage, icon, code }) => (
                 <TableRow key={mdi}>
                   <TableCell className="w-28 px-4">
-                    <Suspense fallback={<Spinner size="sm" />}>
+                    <Suspense fallback={<CircularProgress size="sm" />}>
                       <Tooltip>
                         <TooltipTrigger asChild>
                           <button
@@ -782,7 +782,7 @@ export default function IconsPage() {
               {iconLogos.map(({ icon, product, path }) => (
                 <TableRow key={icon}>
                   <TableCell className="w-36 px-4">
-                    <Suspense fallback={<Spinner size="sm" />}>
+                    <Suspense fallback={<CircularProgress size="sm" />}>
                       <Tooltip>
                         <TooltipTrigger asChild>
                           <button

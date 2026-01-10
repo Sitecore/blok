@@ -45,6 +45,7 @@ import SidebarThumb from "@/components/component-thumbs/sidebar";
 import SonnerThumb from "@/components/component-thumbs/sonner";
 import SkeletonThumb from "@/components/component-thumbs/skeleton";
 import SliderThumb from "@/components/component-thumbs/slider";
+import CircularProgressThumb from "@/components/component-thumbs/circular-progress";
 import SpinnerThumb from "@/components/component-thumbs/spinner";
 import SwitchThumb from "@/components/component-thumbs/switch";
 import TableThumb from "@/components/component-thumbs/table";
@@ -109,6 +110,7 @@ const componentThumbnails: Record<
   sonner: SonnerThumb,
   skeleton: SkeletonThumb,
   slider: SliderThumb,
+  "circular-progress": CircularProgressThumb,
   spinner: SpinnerThumb,
   switch: SwitchThumb,
   table: TableThumb,
