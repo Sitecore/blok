@@ -691,7 +691,6 @@ export const rightSidebarMetadata: Record<string, RightSidebarMetadata> = {
         title: "Examples",
         children: [
           { id: "size", title: "Size" },
-          { id: "color", title: "Color" },
           { id: "button", title: "Button" },
           { id: "badge", title: "Badge" },
         ],
