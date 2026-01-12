@@ -26,7 +26,9 @@ export const rightSidebarMetadata: Record<string, RightSidebarMetadata> = {
     },
   },
   "action-bar": {
-    links: {},
+    links: {
+      figma: "https://www.figma.com/design/x0CUbrC5Kjcuk64VPCnbgz/Blok-Components?m=auto&node-id=10195-6505&t=phPvYFQwTMa2lY7e-1"
+    },
     sections: [
       { id: "preview", title: "Preview" },
       { id: "installation", title: "Installation" },
