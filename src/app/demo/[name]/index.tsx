@@ -60,6 +60,7 @@ import { allSite } from "@/app/demo/[name]/ui/all-site";
 import { siteCard } from "@/app/demo/[name]/ui/site-card";
 import { timePicker } from "@/app/demo/[name]/ui/time-picker";
 import { draggable } from "@/app/demo/[name]/ui/draggable";
+import { editable } from "@/app/demo/[name]/ui/editable";
 import { stackNavigation } from "@/app/demo/[name]/ui/stack-navigation";
 import { timeline } from "@/app/demo/[name]/ui/timeline";
 
@@ -97,6 +98,7 @@ export const demos: { [name: string]: Demo } = {
   dialog,
   draggable,
   "dropdown-menu": dropdownMenu,
+  editable,
   "empty-states": emptyStates,
   "error-states": errorStates,
   icon,
