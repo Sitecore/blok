@@ -3,6 +3,7 @@
 import * as React from "react";
 import { mdiChevronLeft, mdiChevronRight,mdiChevronDown } from "@mdi/js";
 import { Icon } from "@/lib/icon";
+import { format } from "date-fns";
 
 import {
   type DayButton,
@@ -198,8 +199,8 @@ function CalendarDayButton({
       ref={ref}
       variant="ghost"
       size="icon"
-      aria-label={`Select ${day.date.toLocaleDateString()}`}
-      data-day={day.date.toLocaleDateString()}
+      aria-label={`Select ${format(day.date, "PPP")}`}
+      data-day={format(day.date, "yyyy-MM-dd")}
       data-selected={modifiers.selected ? "true" : "false"}
       data-range-start={modifiers.range_start}
       data-range-end={modifiers.range_end}
