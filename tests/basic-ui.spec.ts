@@ -51,6 +51,7 @@ import { testToggleRounded, testToggleSquare } from './test-Components/test-Togg
 import { testToggleGroupRounded, testToggleGroupSquare } from './test-Components/test-Toggle_group';
 import { testTooltip } from './test-Components/test-Tooltip';
 import { testTopbar } from './test-Components/test-Topbar';
+import { testTimelineConnectors, testTimelineDefault, testTimelineSizes, testTimelineVariant } from './test-Components/test-Timeline';
 
 
 test.describe('UI BLOK QA Automation', () => {
@@ -326,6 +327,13 @@ test.describe('UI BLOK QA Automation', () => {
 
   test('test_Topbar', async ({ page }) => {
     await testTopbar(page);
+  });
+
+  test('test_Timeline', async ({ page }) => {
+    await testTimelineDefault(page);
+    await testTimelineVariant(page);
+    await testTimelineSizes(page);
+    await testTimelineConnectors(page);
   });
 
   test('close', async ({ page }) => {
