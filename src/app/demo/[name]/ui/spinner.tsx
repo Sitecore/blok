@@ -1,6 +1,5 @@
 import { Spinner } from "@/components/ui/spinner";
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
 
 export const spinner = {
   name: "spinner",
@@ -12,46 +11,40 @@ export const spinner = {
   usage: [
     `import { Spinner } from "@/components/ui/spinner";`,
     `<Spinner />`,
+    `<Spinner size="md" />`,
+    `<Spinner size="xl" thickness="4px" emptyColor="var(--color-neutral-100)" color="var(--color-primary-500)" />`,
   ],
   components: {
     Size: (
       <div className="flex items-center gap-6">
-        <Spinner className="size-3" />
-        <Spinner className="size-4" />
-        <Spinner className="size-6" />
-        <Spinner className="size-8" />
+        <Spinner size="xs" />
+        <Spinner size="sm" />
+        <Spinner size="md" />
+        <Spinner size="lg" />
+        <Spinner size="xl" />
+      </div>
+    ),
+    Decorative: (
+      <div className="flex items-center gap-6">
+        <Spinner
+          thickness="4px"
+          emptyColor="var(--color-neutral-200)"
+          color="var(--color-primary-500)"
+          size="xl"
+        />
       </div>
     ),
     Button: (
       <div className="flex flex-col items-center gap-4">
-        <Button disabled size="sm">
-          <Spinner />
+        <Button loading>
           Loading...
         </Button>
-        <Button variant="outline" disabled size="sm">
-          <Spinner />
+        <Button variant="outline" loading>
           Please wait
         </Button>
-        <Button variant="ghost" disabled size="sm">
-          <Spinner />
+        <Button variant="ghost" loading>
           Processing
         </Button>
-      </div>
-    ),
-    Badge: (
-      <div className="flex items-center gap-4">
-        <Badge>
-          <Spinner />
-          Syncing
-        </Badge>
-        <Badge variant="bold" colorScheme="primary">
-          <Spinner />
-          Updating
-        </Badge>
-        <Badge variant="bold" colorScheme="success">
-          <Spinner />
-          Processing
-        </Badge>
       </div>
     ),
   },

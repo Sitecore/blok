@@ -3,6 +3,7 @@ import { Slot } from "@radix-ui/react-slot"
 import { cva, type VariantProps } from "class-variance-authority"
 
 import { cn } from "@/lib/utils"
+import { Spinner } from "@/components/ui/spinner"
 
 const buttonVariants = cva(
   [
@@ -172,10 +173,14 @@ function Button({
   size,
   colorScheme,
   asChild = false,
+  loading = false,
+  children,
+  disabled,
   ...props
 }: React.ComponentProps<"button"> &
   VariantProps<typeof buttonVariants> & {
     asChild?: boolean
+    loading?: boolean
   }) {
   const Comp = asChild ? Slot : "button"
 
@@ -196,6 +201,35 @@ function Button({
     }
   }
 
+  // Determine spinner size based on button size
+  const spinnerSize = 
+    size === "xs" ? "xs" :
+    size === "sm" ? "xs" :
+    size === "lg" ? "sm" :
+    "sm"
+
+  // When asChild is true, Slot expects a single child, so we can't add the spinner
+  // In this case, loading state should be handled by the parent component
+  if (asChild) {
+    return (
+      <Comp
+        data-slot="button"
+        className={cn(
+          buttonVariants({
+            variant,
+            size,
+            colorScheme: resolvedColorSchemeFinal,
+            className,
+          })
+        )}
+        disabled={disabled || loading}
+        {...props}
+      >
+        {children}
+      </Comp>
+    )
+  }
+
   return (
     <Comp
       data-slot="button"
@@ -207,8 +241,12 @@ function Button({
           className,
         })
       )}
+      disabled={disabled || loading}
       {...props}
-    />
+    >
+      {loading && <Spinner size={spinnerSize} />}
+      {children}
+    </Comp>
   )
 }
 
