@@ -17,8 +17,11 @@ function MinimalLayout({
 
 export function TopbarDemo() {
   return (
-    <MinimalLayout>
-      <Topbar />
-    </MinimalLayout>
+    <div>
+      <h2 className="font-semibold text-4xl wrap-break-words">Topbar</h2>
+      <MinimalLayout>
+        <Topbar />
+      </MinimalLayout>
+    </div>
   );
 }

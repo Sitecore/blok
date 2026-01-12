@@ -123,32 +123,35 @@ export function StackNavigationDemo  (){
   };
   
   return (
-    <div className="flex w-full max-w-full gap-4">
-      <div id="stack-navigation-vertical">
-        <StackNavigation
-          items={navigationItems}
-        />
-      </div>
-<br />
-      <div id="stack-navigation-horizontal">
-        <StackNavigation
-          items={navigationItems}
-          orientation="horizontal"
-        />
-      </div>
-<br />
-      <div id="stack-navigation-horizontal-tabs">
-        <div className="w-full border rounded-md bg-background overflow-hidden">
-          <div className="border-b">
-            <StackNavigation
-              items={navigationItemsTabs}
-              orientation="horizontal"
-              renderItem={renderTabItem}
-              navClassName="justify-start"
-              className="shadow-none"
-            />
+    <div>
+      <h2 className="font-semibold text-4xl wrap-break-words">Stack Navigation</h2>
+      <div className="flex w-full max-w-full gap-4">
+        <div id="stack-navigation-vertical">
+          <StackNavigation
+            items={navigationItems}
+          />
+        </div>
+  <br />
+        <div id="stack-navigation-horizontal">
+          <StackNavigation
+            items={navigationItems}
+            orientation="horizontal"
+          />
+        </div>
+  <br />
+        <div id="stack-navigation-horizontal-tabs">
+          <div className="w-full border rounded-md bg-background overflow-hidden">
+            <div className="border-b">
+              <StackNavigation
+                items={navigationItemsTabs}
+                orientation="horizontal"
+                renderItem={renderTabItem}
+                navClassName="justify-start"
+                className="shadow-none"
+              />
+            </div>
+            <div className="w-full">{tabContent[activeTab]}</div>
           </div>
-          <div className="w-full">{tabContent[activeTab]}</div>
         </div>
       </div>
     </div>

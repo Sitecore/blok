@@ -53,6 +53,7 @@ import { ToggleDemo } from "@/components-demo/toggle-demo";
 import { ToggleGroupDemo } from "@/components-demo/toggle_group-demo";
 import { TooltipDemo } from "@/components-demo/tooltip-demo";
 import { TopbarDemo } from "@/components-demo/topbar-demo";
+import { TimelineDemo } from "@/components-demo/timeline-demo";
 
 
 
@@ -252,6 +253,10 @@ export default function SinkPage() {
     <br />
       <div>
         <TimePickerDemo />
+      </div>
+    <br />
+      <div>
+        <TimelineDemo />
       </div>
     <br />
       <div>

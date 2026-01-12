@@ -152,6 +152,7 @@ export function TableDemo() {
   
     return (
       <div>
+        <h2 className="font-semibold text-4xl wrap-break-words">Table</h2>
         {/* Feature Table */}
         <div id="table">
           <Table>

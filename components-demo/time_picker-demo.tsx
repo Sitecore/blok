@@ -17,8 +17,11 @@ export function TimePickerDemo() {
   }, [time]);
 
   return (
-    <div id="time-picker">
-      <TimePicker value={time} onChange={setTime} />
+    <div>
+      <h2 className="font-semibold text-4xl wrap-break-words">Time Picker</h2>
+      <div id="time-picker">
+        <TimePicker value={time} onChange={setTime} />
+      </div>
     </div>
   );
 }

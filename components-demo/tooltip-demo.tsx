@@ -9,6 +9,7 @@ import {
 export function TooltipDemo() {
   return (
     <div id="tooltip">
+      <h2 className="font-semibold text-4xl wrap-break-words">Tooltip</h2>
       <TooltipProvider>
         <div className="flex gap-4">
           <Tooltip>
