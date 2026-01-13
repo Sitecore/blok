@@ -13,7 +13,7 @@ export const selectReact = {
   name: "select-react",
     preInformation: (
     <Alert>
-      <span className="inline text-md [&_p]:leading-relaxed">More information: <Link href="https://react-select.com/home" className="text-primary hover:text-primary/80 no-underline"> React-Select</Link></span>
+      <span className="inline text-md [&_p]:leading-relaxed">More information: <Link href="https://react-select.com/home" target="_blank" rel="noopener noreferrer" className="text-primary hover:text-primary/80 no-underline"> React-Select</Link></span>
     </Alert>
   ),
   defaultComponent: (
