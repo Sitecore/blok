@@ -62,7 +62,7 @@ test.describe('UI BLOK QA Automation', () => {
     // adjust baseURL in playwright config, or use full URL:
     await page.goto('/', { waitUntil: 'domcontentloaded', timeout: 120000 });
   });
-{/*
+
   test('test_Accordion', async ({ page }) => {
     await testAccordian(page);
   });
@@ -344,7 +344,7 @@ test.describe('UI BLOK QA Automation', () => {
     await testSpinnerButton(page);
     await testSpinnerBadge(page);
   });
-*/}
+
   test('test_Stepper', async ({ page }) => {
     await testStepper(page);
   });
