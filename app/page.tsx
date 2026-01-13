@@ -55,6 +55,7 @@ import { TooltipDemo } from "@/components-demo/tooltip-demo";
 import { TopbarDemo } from "@/components-demo/topbar-demo";
 import { TimelineDemo } from "@/components-demo/timeline-demo";
 import { SpinnerDemo } from "@/components-demo/spinner-demo";
+import { StepperDemo } from "@/components-demo/stepper-demo";
 
 
 
@@ -238,6 +239,10 @@ export default function SinkPage() {
     <br />
       <div>
         <StackNavigationDemo />       
+      </div>
+    <br />
+      <div>
+        <StepperDemo />
       </div>
     <br />
       <div>
