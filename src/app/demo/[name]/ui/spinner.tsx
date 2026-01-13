@@ -10,9 +10,7 @@ export const spinner = {
   ),
   usage: [
     `import { Spinner } from "@/components/ui/spinner";`,
-    `<Spinner />`,
     `<Spinner size="md" />`,
-    `<Spinner size="xl" thickness="4px" emptyColor="var(--color-neutral-100)" color="var(--color-primary-500)" />`,
   ],
   components: {
     Size: (
@@ -32,19 +30,6 @@ export const spinner = {
           color="var(--color-primary-500)"
           size="xl"
         />
-      </div>
-    ),
-    Button: (
-      <div className="flex flex-col items-center gap-4">
-        <Button loading>
-          Loading...
-        </Button>
-        <Button variant="outline" loading>
-          Please wait
-        </Button>
-        <Button variant="ghost" loading>
-          Processing
-        </Button>
       </div>
     ),
   },
