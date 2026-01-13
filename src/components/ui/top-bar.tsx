@@ -1,3 +1,5 @@
+"use client";
+
 import { mdiDotsGrid, mdiHelpCircleOutline } from "@mdi/js";
 import { Icon } from "@/lib/icon";
 
@@ -13,89 +15,56 @@ import {
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
 
-// Types for navigation items
 export interface NavDropdownItem {
+  id?: string;
   label: string;
   href: string;
 }
-
 export interface NavItem {
+  id?: string;
   label: string;
   href?: string;
   isActive?: boolean;
   children?: NavDropdownItem[];
 }
 
-// Logo configuration
 export interface LogoConfig {
   light: string;
   dark: string;
   alt?: string;
 }
 
-// Avatar configuration
 export interface AvatarConfig {
   src?: string;
   fallback: string;
+  alt?: string;
 }
 
-// Main Topbar props
+export interface HelpConfig {
+  icon?: string;
+  link?: string;
+  onClick?: () => void;
+}
+
+/** Main Topbar component props */
 export interface TopbarProps {
   logo?: LogoConfig;
-  /** Brand name displayed next to the logo */
   brandName?: string;
-  menuIcon?: string;
-  /** Callback when menu button is clicked */
-  onMenuClick?: () => void;
-  /** Navigation items to display */
   navigation?: NavItem[];
-  /** Icon path for the help button (MDI icon path) */
-  helpIcon?: string;
-  onHelpClick?: () => void;
-  showHelp?: boolean;
   avatar?: AvatarConfig;
-  rightContent?: React.ReactNode;
-  /** Additional class names for the header */
+  help?: HelpConfig;
+  onMenuClick?: () => void;
   className?: string;
 }
 
-// Default values
-const defaultLogo: LogoConfig = {
-  light: "https://delivery-sitecore.sitecorecontenthub.cloud/api/public/content/logo-sitecore",
-  dark: "https://delivery-sitecore.sitecorecontenthub.cloud/api/public/content/logo-sitecore-dark",
-  alt: "Logo",
-};
-
-const defaultNavigation: NavItem[] = [
-  { label: "Home", href: "#" },
-  {
-    label: "Content model",
-    children: [
-      { label: "Components", href: "#" },
-      { label: "Documentation", href: "#" },
-      { label: "Blocks", href: "#" },
-    ],
-  },
-  { label: "Content", href: "#", isActive: true },
-  { label: "Media", href: "#" },
-  { label: "Settings", href: "#" },
-];
-
-const defaultAvatar: AvatarConfig = {
-  fallback: "SC",
-};
-
+// MAIN COMPONENT
 export default function Topbar({
-  logo = defaultLogo,
-  brandName = "Blok",
-  menuIcon = mdiDotsGrid,
+  logo,
+  brandName,
+  navigation = [],
+  avatar,
+  help,
   onMenuClick,
-  navigation = defaultNavigation,
-  helpIcon = mdiHelpCircleOutline,
-  onHelpClick,
-  showHelp = true,
-  avatar = defaultAvatar,
-  rightContent,
   className,
 }: TopbarProps) {
   return (
@@ -110,21 +79,23 @@ export default function Topbar({
             aria-label="Menu"
             onClick={onMenuClick}
           >
-            <Icon path={menuIcon} size={1} />
+            <Icon path={mdiDotsGrid} size={1} />
           </Button>
           <div className="flex items-center gap-1">
-            <span className="text-xl font-bold text-red-500">
-              <img
-                alt={logo.alt ?? "Logo"}
-                className="shrink-0 grow-0 rounded-md object-cover object-left p-1 block dark:hidden"
-                src={logo.light}
-              />
-              <img
-                alt={logo.alt ?? "Logo"}
-                className="shrink-0 grow-0 rounded-md object-cover object-left p-1 hidden dark:block"
-                src={logo.dark}
-              />
-            </span>
+            {logo && (
+              <span className="shrink-0">
+                <img
+                  alt={logo.alt ?? "Logo"}
+                  className="shrink-0 grow-0 rounded-md object-cover object-left p-1 block dark:hidden"
+                  src={logo.light}
+                />
+                <img
+                  alt={logo.alt ?? "Logo"}
+                  className="shrink-0 grow-0 rounded-md object-cover object-left p-1 hidden dark:block"
+                  src={logo.dark}
+                />
+              </span>
+            )}
             {brandName && (
               <span className="text-lg font-semibold">{brandName}</span>
             )}
@@ -133,18 +104,17 @@ export default function Topbar({
 
         {/* Navigation Menu */}
         {navigation.length > 0 && (
-          <NavigationMenu className="ml-6 md:inline-flex hidden">
+          <NavigationMenu className="ml-6 md:inline-flex hidden" viewport={false}>
             <NavigationMenuList>
               {navigation.map((item) => (
-                <NavigationMenuItem key={item.label}>
-                  {item.children ? (
-                    // Dropdown navigation item
+                <NavigationMenuItem key={item.id ?? item.label}>
+                  {item.children && item.children.length > 0 ? (
                     <>
                       <NavigationMenuTrigger>{item.label}</NavigationMenuTrigger>
                       <NavigationMenuContent>
                         <ul className="grid w-[200px] gap-2">
                           {item.children.map((child) => (
-                            <li key={child.label}>
+                            <li key={child.id ?? child.label}>
                               <NavigationMenuLink href={child.href}>
                                 {child.label}
                               </NavigationMenuLink>
@@ -154,7 +124,6 @@ export default function Topbar({
                       </NavigationMenuContent>
                     </>
                   ) : (
-                    // Simple navigation link
                     <NavigationMenuLink
                       href={item.href}
                       className={`${navigationMenuTriggerStyle()}${item.isActive ? " active" : ""}`}
@@ -170,26 +139,36 @@ export default function Topbar({
 
         {/* Right section */}
         <div className="ml-auto flex items-center space-x-4">
-          {rightContent ?? (
-            <>
-              {showHelp && (
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  colorScheme="neutral"
-                  aria-label="Help"
-                  onClick={onHelpClick}
-                >
-                  <Icon path={helpIcon} size={1} />
-                </Button>
-              )}
-              {avatar && (
-                <Avatar className="h-8 w-8">
-                  {avatar.src && <AvatarImage src={avatar.src} />}
-                  <AvatarFallback>{avatar.fallback}</AvatarFallback>
-                </Avatar>
-              )}
-            </>
+          {help && (
+            help.link ? (
+              <Button
+                variant="ghost"
+                size="icon"
+                colorScheme="neutral"
+                aria-label="Help"
+                asChild
+              >
+                <a href={help.link}>
+                  <Icon path={help.icon ?? mdiHelpCircleOutline} size={1} />
+                </a>
+              </Button>
+            ) : (
+              <Button
+                variant="ghost"
+                size="icon"
+                colorScheme="neutral"
+                aria-label="Help"
+                onClick={help.onClick}
+              >
+                <Icon path={help.icon ?? mdiHelpCircleOutline} size={1} />
+              </Button>
+            )
+          )}
+          {avatar && (
+            <Avatar className="h-8 w-8">
+              <AvatarImage src={avatar.src} alt={avatar.alt} />
+              <AvatarFallback>{avatar.fallback}</AvatarFallback>
+            </Avatar>
           )}
         </div>
       </div>
