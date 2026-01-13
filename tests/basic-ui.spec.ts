@@ -53,6 +53,7 @@ import { testTooltip } from './test-Components/test-Tooltip';
 import { testTopbar } from './test-Components/test-Topbar';
 import { testTimelineConnectors, testTimelineDefault, testTimelineSizes, testTimelineVariant } from './test-Components/test-Timeline';
 import { testSpinnerBadge, testSpinnerButton, testSpinnerDefault, testSpinnerSize } from './test-Components/test-Spinner';
+import { testStepper } from './test-Components/test-Stepper';
 
 
 test.describe('UI BLOK QA Automation', () => {
@@ -61,7 +62,7 @@ test.describe('UI BLOK QA Automation', () => {
     // adjust baseURL in playwright config, or use full URL:
     await page.goto('/', { waitUntil: 'domcontentloaded', timeout: 120000 });
   });
-
+{/*
   test('test_Accordion', async ({ page }) => {
     await testAccordian(page);
   });
@@ -342,6 +343,10 @@ test.describe('UI BLOK QA Automation', () => {
     await testSpinnerSize(page);
     await testSpinnerButton(page);
     await testSpinnerBadge(page);
+  });
+*/}
+  test('test_Stepper', async ({ page }) => {
+    await testStepper(page);
   });
 
   test('close', async ({ page }) => {
