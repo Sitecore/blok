@@ -44,13 +44,13 @@ const buttonVariants = cva(
         default: "h-10 min-w-10 px-4 rounded-4xl",
         lg: "h-12 min-w-12 px-6 rounded-4xl",
         sm: "h-8 min-w-8 px-3 rounded-4xl",
-        xs: "h-6 min-w-6 px-2 rounded-4xl text-xs [&>svg]:!w-[1.178rem] [&>svg]:!h-[1.178rem]",
+        xs: "h-6 min-w-6 px-2 rounded-4xl text-xs [&>svg]:!w-[18px] [&>svg]:!h-[18px]",
         icon: "size-10 rounded-full",
         // New icon-specific sizes
         "icon-lg": "size-12 rounded-full",
         "icon-sm": "size-8 rounded-full",
         "icon-xs":
-          "size-6 rounded-full [&>svg]:!w-[1.178rem] [&>svg]:!h-[1.178rem]",
+          "size-6 rounded-full [&>svg]:!w-[18px] [&>svg]:!h-[18px]",
       },
       colorScheme: {
         primary: "",
