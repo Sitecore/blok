@@ -4,6 +4,7 @@ import * as React from "react";
 
 // Import all component thumbnails
 import AccordionThumb from "@/components/component-thumbs/accordion";
+import ActionBarThumb from "@/components/component-thumbs/action-bar";
 import AlertThumb from "@/components/component-thumbs/alert";
 import AlertDialogThumb from "@/components/component-thumbs/alert-dialog";
 import AspectRatioThumb from "@/components/component-thumbs/aspect-ratio";
@@ -28,6 +29,7 @@ import EmptyStateThumb from "@/components/component-thumbs/empty-state";
 import ErrorStateThumb from "@/components/component-thumbs/error-state";
 import HoverCardThumb from "@/components/component-thumbs/hover-card";
 import InputThumb from "@/components/component-thumbs/input";
+import InputGroupThumb from "@/components/component-thumbs/input-group";
 import NavigationMenuThumb from "@/components/component-thumbs/navigation-menu";
 import PaginationThumb from "@/components/component-thumbs/pagination";
 import PinInputThumb from "@/components/component-thumbs/pin-input";
@@ -44,7 +46,9 @@ import SidebarThumb from "@/components/component-thumbs/sidebar";
 import SonnerThumb from "@/components/component-thumbs/sonner";
 import SkeletonThumb from "@/components/component-thumbs/skeleton";
 import SliderThumb from "@/components/component-thumbs/slider";
+import CircularProgressThumb from "@/components/component-thumbs/circular-progress";
 import SpinnerThumb from "@/components/component-thumbs/spinner";
+import StepperThumb from "@/components/component-thumbs/stepper";
 import SwitchThumb from "@/components/component-thumbs/switch";
 import TableThumb from "@/components/component-thumbs/table";
 import TabsThumb from "@/components/component-thumbs/tabs";
@@ -56,6 +60,7 @@ import TopbarThumb from "@/components/component-thumbs/topbar";
 import TooltipThumb from "@/components/component-thumbs/tooltip";
 import DialogThumb from "@/components/component-thumbs/dialog";
 import LabelThumb from "@/components/component-thumbs/label";
+import KbdThumb from "@/components/component-thumbs/kbd";
 import AllSiteThumb from "@/components/component-thumbs/all-site";
 import PinnedSiteThumb from "@/components/component-thumbs/pinned-site";
 import SiteCardThumb from "@/components/component-thumbs/site-card";
@@ -66,6 +71,7 @@ const componentThumbnails: Record<
   React.ComponentType<{ className?: string }>
 > = {
   accordion: AccordionThumb,
+  "action-bar": ActionBarThumb,
   alert: AlertThumb,
   "alert-dialog": AlertDialogThumb,
   "aspect-ratio": AspectRatioThumb,
@@ -90,6 +96,7 @@ const componentThumbnails: Record<
   "error-states": ErrorStateThumb,
   "hover-card": HoverCardThumb,
   input: InputThumb,
+  "input-group": InputGroupThumb,
   inputOtp: PinInputThumb,
   "navigation-menu": NavigationMenuThumb,
   pagination: PaginationThumb,
@@ -106,7 +113,9 @@ const componentThumbnails: Record<
   sonner: SonnerThumb,
   skeleton: SkeletonThumb,
   slider: SliderThumb,
+  "circular-progress": CircularProgressThumb,
   spinner: SpinnerThumb,
+  stepper: StepperThumb,
   switch: SwitchThumb,
   table: TableThumb,
   tabs: TabsThumb,
@@ -118,6 +127,7 @@ const componentThumbnails: Record<
   tooltip: TooltipThumb,
   dialog: DialogThumb,
   label: LabelThumb,
+  kbd: KbdThumb,
   "all-site": AllSiteThumb,
   "pinned-site": PinnedSiteThumb,
   "site-card": SiteCardThumb,

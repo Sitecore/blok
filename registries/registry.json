@@ -498,10 +498,12 @@
         "https://blok.sitecore.com/r/date-picker.json",
         "https://blok.sitecore.com/r/dialog.json",
         "https://blok.sitecore.com/r/dropdown-menu.json",
+        "https://blok.sitecore.com/r/editable.json",
         "https://blok.sitecore.com/r/empty-states.json",
         "https://blok.sitecore.com/r/error-states.json",
         "https://blok.sitecore.com/r/input.json",
         "https://blok.sitecore.com/r/inputOtp.json",
+        "https://blok.sitecore.com/r/kbd.json",
         "https://blok.sitecore.com/r/label.json",
         "https://blok.sitecore.com/r/navigation-menu.json",
         "https://blok.sitecore.com/r/pagination.json",
@@ -519,6 +521,7 @@
         "https://blok.sitecore.com/r/table.json",
         "https://blok.sitecore.com/r/tabs.json",
         "https://blok.sitecore.com/r/textarea.json",
+        "https://blok.sitecore.com/r/timeline.json",
         "https://blok.sitecore.com/r/toggle.json",
         "https://blok.sitecore.com/r/toggle-group.json",
         "https://blok.sitecore.com/r/tooltip.json",
@@ -977,12 +980,15 @@
       "title": "Draggable",
       "description": "Drag and drop components using @dnd-kit/react. Includes draggable, droppable, and sortable functionality with hooks.",
       "registryDependencies": [
-        "https://blok.sitecore.com/r/theme.json"
+        "https://blok.sitecore.com/r/theme.json",
+        "https://blok.sitecore.com/r/button.json"
       ],
       "dependencies": [
         "@dnd-kit/core",
         "@dnd-kit/sortable",
-        "@dnd-kit/utilities"
+        "@dnd-kit/utilities",
+        "lucide-react",
+        "@mdi/js"
       ],
       "files": [
         {
@@ -1004,6 +1010,10 @@
         {
           "path": "src/components/ui/drag-overlay.tsx",
           "type": "registry:ui"
+        },
+        {
+          "path": "src/lib/icon.tsx",
+          "type": "registry:lib"
         }
       ]
     },
@@ -1027,6 +1037,27 @@
         {
           "path": "src/lib/icon.tsx",
           "type": "registry:lib"
+        }
+      ]
+    },
+    {
+      "name": "editable",
+      "type": "registry:ui",
+      "title": "Editable",
+      "description": "An inline editable text component that allows users to edit text in place with customizable input or textarea modes.",
+      "dependencies": [
+        "class-variance-authority"
+      ],
+      "registryDependencies": [
+        "https://blok.sitecore.com/r/theme.json",
+        "https://blok.sitecore.com/r/input.json",
+        "https://blok.sitecore.com/r/textarea.json",
+        "https://blok.sitecore.com/r/button.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui/editable.tsx",
+          "type": "registry:ui"
         }
       ]
     },
@@ -1099,6 +1130,34 @@
       ]
     },
     {
+      "name": "input-group",
+      "type": "registry:ui",
+      "title": "Input Group",
+      "description": "A flexible input container that combines an input field with addons like icons, buttons, text, or dropdowns.",
+      "dependencies": [
+        "@mdi/js",
+        "class-variance-authority"
+      ],
+      "registryDependencies": [
+        "https://blok.sitecore.com/r/theme.json",
+        "https://blok.sitecore.com/r/input.json",
+        "https://blok.sitecore.com/r/button.json",
+        "https://blok.sitecore.com/r/textarea.json",
+        "https://blok.sitecore.com/r/dropdown-menu.json",
+        "https://blok.sitecore.com/r/tooltip.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui/input-group.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "src/lib/icon.tsx",
+          "type": "registry:lib"
+        }
+      ]
+    },
+    {
       "name": "inputOtp",
       "type": "registry:ui",
       "title": "Input OTP",
@@ -1118,6 +1177,21 @@
         {
           "path": "src/lib/icon.tsx",
           "type": "registry:lib"
+        }
+      ]
+    },
+    {
+      "name": "kbd",
+      "type": "registry:ui",
+      "title": "Kbd",
+      "description": "Used to display textual user input from keyboard.",
+      "registryDependencies": [
+        "https://blok.sitecore.com/r/theme.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui/kbd.tsx",
+          "type": "registry:ui"
         }
       ]
     },
@@ -1491,10 +1565,28 @@
       ]
     },
     {
+      "name": "circular-progress",
+      "type": "registry:ui",
+      "title": "Circular Progress",
+      "description": "A circular progress component for loading states.",
+      "registryDependencies": [
+        "https://blok.sitecore.com/r/theme.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui/circular-progress.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
       "name": "spinner",
       "type": "registry:ui",
       "title": "Spinner",
-      "description": "A spinner component for loading states.",
+      "description": "An indicator that can be used to show a loading state.",
+      "dependencies": [
+        "lucide-react"
+      ],
       "registryDependencies": [
         "https://blok.sitecore.com/r/theme.json"
       ],
@@ -1543,6 +1635,24 @@
       "files": [
         {
           "path": "src/components/ui/switch.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "stepper",
+      "type": "registry:ui",
+      "title": "Stepper",
+      "description": "A progress indicator component that displays steps in a process.",
+      "dependencies": [
+        "class-variance-authority"
+      ],
+      "registryDependencies": [
+        "https://blok.sitecore.com/r/theme.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui/stepper.tsx",
           "type": "registry:ui"
         }
       ]
@@ -1601,6 +1711,29 @@
         {
           "path": "src/components/ui/textarea.tsx",
           "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "timeline",
+      "type": "registry:ui",
+      "title": "Timeline",
+      "description": "Used to display a list of events in chronological order.",
+      "registryDependencies": [
+        "https://blok.sitecore.com/r/theme.json",
+        "https://blok.sitecore.com/r/badge.json"
+      ],
+      "dependencies": [
+        "class-variance-authority"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui/timeline.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "src/lib/icon.tsx",
+          "type": "registry:lib"
         }
       ]
     },
@@ -1688,6 +1821,32 @@
       "files": [
         {
           "path": "src/components/ui/top-bar.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "src/lib/icon.tsx",
+          "type": "registry:lib"
+        }
+      ]
+    },
+    {
+      "name": "action-bar",
+      "type": "registry:ui",
+      "title": "Action bar",
+      "description": "A slide-up action bar for bulk operations on selected items.",
+      "registryDependencies": [
+        "https://blok.sitecore.com/r/theme.json",
+        "https://blok.sitecore.com/r/button.json",
+        "https://blok.sitecore.com/r/tooltip.json",
+        "https://blok.sitecore.com/r/checkbox.json",
+        "https://blok.sitecore.com/r/dropdown-menu.json"
+      ],
+      "dependencies": [
+        "@mdi/js"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui/action-bar.tsx",
           "type": "registry:ui"
         },
         {

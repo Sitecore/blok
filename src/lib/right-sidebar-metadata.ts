@@ -25,6 +25,16 @@ export const rightSidebarMetadata: Record<string, RightSidebarMetadata> = {
       figma: "https://www.figma.com/design/x0CUbrC5Kjcuk64VPCnbgz/Blok-Components?m=auto&node-id=8164-5745&t=NScvPldB3fxBBWL8-1"
     },
   },
+  "action-bar": {
+    links: {
+      figma: "https://www.figma.com/design/x0CUbrC5Kjcuk64VPCnbgz/Blok-Components?m=auto&node-id=10195-6505&t=phPvYFQwTMa2lY7e-1"
+    },
+    sections: [
+      { id: "preview", title: "Preview" },
+      { id: "installation", title: "Installation" },
+      { id: "usage", title: "Usage" },
+    ],
+  },
   alert: {
     links: {
       shadcn: "https://ui.shadcn.com/docs/components/alert",
@@ -304,6 +314,23 @@ export const rightSidebarMetadata: Record<string, RightSidebarMetadata> = {
       },
     ],
   },
+  editable: {
+    links: {
+      chakra: "https://www.chakra-ui.com/docs/components/editable",
+    },
+    sections: [
+      { id: "preview", title: "Preview" },
+      { id: "installation", title: "Installation" },
+      { id: "usage", title: "Usage" },
+      {
+        id: "examples",
+        title: "Examples",
+        children: [
+          { id: "textarea", title: "Textarea" },
+        ],
+      },
+    ],
+  },
   draggable: {
     links: {
       documentation: "https://docs.dndkit.com/",
@@ -317,7 +344,6 @@ export const rightSidebarMetadata: Record<string, RightSidebarMetadata> = {
         title: "Examples",
         children: [
           { id: "basic-drag-and-drop", title: "Basic Drag and Drop" },
-          { id: "sortable-list", title: "Sortable List" },
           { id: "custom-handle", title: "Custom Handle" },
           { id: "drag,-drop-&-sort", title: "Drag, Drop & Sort" },
         ],
@@ -454,6 +480,25 @@ export const rightSidebarMetadata: Record<string, RightSidebarMetadata> = {
       },
     ],
   },
+  "input-group": {
+    links: {
+      shadcn: "https://ui.shadcn.com/docs/components/input-group",
+    },
+    sections: [
+      { id: "preview", title: "Preview" },
+      { id: "installation", title: "Installation" },
+      { id: "usage", title: "Usage" },
+      {
+        id: "examples",
+        title: "Examples",
+        children: [
+          { id: "search", title: "Search" },
+          { id: "url", title: "URL" },
+          { id: "dropdown", title: "Dropdown" },
+        ],
+      },
+    ],
+  },
   "inputOtp": {
     links: {
       shadcn: "https://ui.shadcn.com/docs/components/input-otp",
@@ -468,6 +513,26 @@ export const rightSidebarMetadata: Record<string, RightSidebarMetadata> = {
         children: [
           { id: "pattern", title: "Pattern" },
           { id: "with-spacing", title: "With Spacing" },
+        ],
+      },
+    ],
+  },
+  kbd: {
+    links: {
+      shadcn: "https://ui.shadcn.com/docs/components/kbd",
+    },
+    sections: [
+      { id: "preview", title: "Preview" },
+      { id: "installation", title: "Installation" },
+      { id: "usage", title: "Usage" },
+      {
+        id: "examples",
+        title: "Examples",
+        children: [
+          { id: "group", title: "Group" },
+          { id: "button", title: "Button" },
+          { id: "tooltip", title: "Tooltip" },
+          { id: "keyboard-shortcuts", title: "Keyboard Shortcuts" },
         ],
       },
     ],
@@ -651,7 +716,7 @@ export const rightSidebarMetadata: Record<string, RightSidebarMetadata> = {
       },
     ],
   },
-  spinner: {
+  "circular-progress": {
     links: {
       shadcn: "https://ui.shadcn.com/docs/components/spinner",
       figma: "https://www.figma.com/design/x0CUbrC5Kjcuk64VPCnbgz/Blok-Components?m=auto&node-id=7069-16458&t=NScvPldB3fxBBWL8-1"
@@ -665,7 +730,26 @@ export const rightSidebarMetadata: Record<string, RightSidebarMetadata> = {
         title: "Examples",
         children: [
           { id: "variants", title: "Variants" },
-          { id: "with-text-spinner", title: "With Text Spinner" },
+          { id: "with-text-circular-progress", title: "With Text Circular Progress" },
+        ],
+      },
+    ],
+  },
+  spinner: {
+    links: {
+      shadcn: "https://ui.shadcn.com/docs/components/spinner",
+    },
+    sections: [
+      { id: "preview", title: "Preview" },
+      { id: "installation", title: "Installation" },
+      { id: "usage", title: "Usage" },
+      {
+        id: "examples",
+        title: "Examples",
+        children: [
+          { id: "size", title: "Size" },
+          { id: "button", title: "Button" },
+          { id: "badge", title: "Badge" },
         ],
       },
     ],
@@ -686,6 +770,16 @@ export const rightSidebarMetadata: Record<string, RightSidebarMetadata> = {
           { id: "horizontal-tabs", title: "Horizontal Tabs" },
         ],
       },
+    ],
+  },
+  stepper: {
+    links: {
+    
+    },
+    sections: [
+      { id: "preview", title: "Preview" },
+      { id: "installation", title: "Installation" },
+      { id: "usage", title: "Usage" },
     ],
   },
   switch: {
@@ -822,6 +916,24 @@ export const rightSidebarMetadata: Record<string, RightSidebarMetadata> = {
     links: {
       figma: "https://www.figma.com/design/x0CUbrC5Kjcuk64VPCnbgz/Blok-Components?m=auto&node-id=6748-14480&t=NScvPldB3fxBBWL8-1"
     },
+  },
+  timeline: {
+    links: {
+    },
+    sections: [
+      { id: "preview", title: "Preview" },
+      { id: "installation", title: "Installation" },
+      { id: "usage", title: "Usage" },
+      {
+        id: "examples",
+        title: "Examples",
+        children: [
+          { id: "variants", title: "Variants" },
+          { id: "sizes", title: "Sizes" },
+          { id: "connector-variants", title: "Connector Variants" },
+        ],
+      },
+    ],
   },
 
   // ===== BLOK-SPECIFIC METADATA =====
