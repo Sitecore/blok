@@ -54,6 +54,10 @@ const illustrationsData = [
     usage: "Guest profile",
   },
   {
+    name: "bell-ring",
+    usage: "Notifications",
+  },
+  {
     name: "briefcase-outline-ai",
     usage: "Brand Kits",
   },
