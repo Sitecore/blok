@@ -55,6 +55,7 @@ import { testTimelineConnectors, testTimelineDefault, testTimelineSizes, testTim
 import { testSpinnerBadge, testSpinnerButton, testSpinnerDefault, testSpinnerSize } from './test-Components/test-Spinner';
 import { testStepper } from './test-Components/test-Stepper';
 import { testInputGroupDropdown, testInputGroupSearch, testInputGroupURL } from './test-Components/test-Input_Group';
+import { testActionBar } from './test-Components/test-Action_Bar';
 
 
 test.describe('UI BLOK QA Automation', () => {
@@ -354,6 +355,10 @@ test.describe('UI BLOK QA Automation', () => {
     await testInputGroupSearch(page);
     await testInputGroupURL(page);
     await testInputGroupDropdown(page);
+  });
+
+  test('test_Action_Bar', async ({ page }) => {
+    await testActionBar(page);
   });
 
   test('close', async ({ page }) => {
