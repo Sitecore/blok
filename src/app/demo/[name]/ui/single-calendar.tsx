@@ -63,7 +63,6 @@ export function SingleCalendar() {
   );
 
   return (
-    <div className="w-fit">
       <Calendar
         mode="single"
         defaultMonth={date}
@@ -80,6 +79,5 @@ export function SingleCalendar() {
           },
         }}
       />
-    </div>
   );
 }
