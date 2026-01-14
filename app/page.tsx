@@ -57,6 +57,7 @@ import { TimelineDemo } from "@/components-demo/timeline-demo";
 import { SpinnerDemo } from "@/components-demo/spinner-demo";
 import { StepperDemo } from "@/components-demo/stepper-demo";
 import { InputGroupDemo } from "@/components-demo/input-group-demo";
+import { ActionBarDemo } from "@/components-demo/action_bar-demo";
 
 
 
@@ -68,6 +69,10 @@ export default function SinkPage() {
 
       <div>
         <AccordionDemo />
+      </div>
+    <br />
+      <div>
+        <ActionBarDemo />
       </div>
     <br />
       <div>
