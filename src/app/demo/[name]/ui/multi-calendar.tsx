@@ -65,22 +65,24 @@ export function MultiCalendar({numberOfMonths = 1}: {numberOfMonths?: number}) {
   });
 
   return (
-    <Calendar
-      mode="range"
-      defaultMonth={dateRange?.from}
-      selected={dateRange}
-      onSelect={setDateRange}
-      numberOfMonths={numberOfMonths}
-      className="rounded-lg border shadow-sm"
-      captionLayout="dropdown"
-      components={{ Dropdown: CustomDropdown }}
-      labels={{
+    <div className="w-fit">
+      <Calendar
+        mode="range"
+        defaultMonth={dateRange?.from}
+        selected={dateRange}
+        onSelect={setDateRange}
+        numberOfMonths={numberOfMonths}
+        className="rounded-lg border shadow-sm"
+        captionLayout="dropdown"
+        components={{ Dropdown: CustomDropdown }}
+        labels={{
               labelDayButton: (day) => {
                 const visible = format(day, "d");
                 const longLabel = format(day, "PPPP");
                 return `${visible} – ${longLabel}`;
               },
             }}
-    />
+      />
+    </div>
   );
 }

@@ -1138,7 +1138,10 @@
       ],
       "registryDependencies": [
         "https://blok.sitecore.com/r/theme.json",
-        "https://blok.sitecore.com/r/label.json"
+        "https://blok.sitecore.com/r/input.json",
+        "https://blok.sitecore.com/r/switch.json"
+
+
       ],
       "files": [
         {

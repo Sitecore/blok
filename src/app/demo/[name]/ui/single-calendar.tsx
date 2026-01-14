@@ -63,21 +63,23 @@ export function SingleCalendar() {
   );
 
   return (
-    <Calendar
-      mode="single"
-      defaultMonth={date}
-      selected={date}
-      onSelect={setDate}
-      className="rounded-lg border shadow-sm"
-      captionLayout="dropdown"
-      components={{ Dropdown: CustomDropdown }}
-      labels={{
-        labelDayButton: (day) => {
-          const visible = format(day, "d");
-          const longLabel = format(day, "PPPP");
-          return `${visible} – ${longLabel}`;
-        },
-      }}
-    />
+    <div className="w-fit">
+      <Calendar
+        mode="single"
+        defaultMonth={date}
+        selected={date}
+        onSelect={setDate}
+        className="rounded-lg border shadow-sm"
+        captionLayout="dropdown"
+        components={{ Dropdown: CustomDropdown }}
+        labels={{
+          labelDayButton: (day) => {
+            const visible = format(day, "d");
+            const longLabel = format(day, "PPPP");
+            return `${visible} – ${longLabel}`;
+          },
+        }}
+      />
+    </div>
   );
 }
