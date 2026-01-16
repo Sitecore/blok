@@ -6,16 +6,23 @@ export const topbar = {
   name: "topbar",
   defaultComponent: <TopbarDefault />,
   usage: [
-    `import Topbar, { type NavItem, type LogoConfig, type AvatarConfig, type HelpConfig } from "@/components/ui/top-bar";
+    `"use client";
+
+import Topbar, {
+  type NavItem,
+  type LogoConfig,
+  type AvatarConfig,
+  type HelpConfig,
+} from "@/components/ui/top-bar";
 import { mdiHelpCircleOutline } from "@mdi/js";`,
 
-    `const logo: LogoConfig = {
-  light: "https://example.com/logo-light.png",
-  dark: "https://example.com/logo-dark.png",
+`const defaultLogo: LogoConfig = {
+  light: "https://delivery-sitecore.sitecorecontenthub.cloud/api/public/content/logo-sitecore",
+  dark: "https://delivery-sitecore.sitecorecontenthub.cloud/api/public/content/logo-sitecore-dark",
   alt: "Logo",
 };
 
-const navigation: NavItem[] = [
+const defaultNavigation: NavItem[] = [
   { id: "home", label: "Home", href: "#" },
   {
     id: "content-model",
@@ -31,23 +38,29 @@ const navigation: NavItem[] = [
   { id: "settings", label: "Settings", href: "#" },
 ];
 
-const avatar: AvatarConfig = {
+const defaultAvatar: AvatarConfig = {
   src: "",
   fallback: "SC",
   alt: "User avatar",
+  onClick: () => {},
 };
 
-const help: HelpConfig = {
+const defaultHelp: HelpConfig = {
   link: "https://doc.sitecore.com/",
   icon: mdiHelpCircleOutline,
 };
 
-<Topbar
-  logo={logo}
-  brandName="Blok"
-  navigation={navigation}
-  avatar={avatar}
-  help={help}
-/>`,
+export function TopbarDefault() {
+  return (
+    <Topbar
+      logo={defaultLogo}
+      brandName="Blok"
+      navigation={defaultNavigation}
+      avatar={defaultAvatar}
+      help={defaultHelp}
+      onMenuClick={() => {}}
+    />
+  );
+}`,
   ],
 };

@@ -26,14 +26,15 @@ const defaultNavigation: NavItem[] = [
     ],
   },
   { id: "content", label: "Content", href: "#", isActive: true },
-  { id: "media", label: "Media", href: "#"},
+  { id: "media", label: "Media", href: "#" },
   { id: "settings", label: "Settings", href: "#" },
 ];
 
 const defaultAvatar: AvatarConfig = {
-  src:"",
+  src: "",
   fallback: "SC",
   alt: "User avatar",
+  onClick: () => {},
 };
 
 const defaultHelp: HelpConfig = {
@@ -49,6 +50,7 @@ export function TopbarDefault() {
       navigation={defaultNavigation}
       avatar={defaultAvatar}
       help={defaultHelp}
+      onMenuClick={() => {}}
     />
   );
 }

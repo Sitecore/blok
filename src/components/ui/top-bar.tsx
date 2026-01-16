@@ -38,6 +38,7 @@ export interface AvatarConfig {
   src?: string;
   fallback: string;
   alt?: string;
+  onClick?: () => void;
 }
 
 export interface HelpConfig {
@@ -165,7 +166,10 @@ export default function Topbar({
             )
           )}
           {avatar && (
-            <Avatar className="h-8 w-8">
+            <Avatar
+              className="h-8 w-8 cursor-pointer"
+              onClick={avatar.onClick}
+            >
               <AvatarImage src={avatar.src} alt={avatar.alt} />
               <AvatarFallback>{avatar.fallback}</AvatarFallback>
             </Avatar>

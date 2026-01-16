@@ -5,7 +5,7 @@ import {
   type StackNavigationElement
 } from "@/components/ui/stack-navigation";
 import { Icon } from "@/lib/icon";
-import { mdiAccount, mdiAccountMultipleOutline, mdiArchiveOutline, mdiCog, mdiCogOutline, mdiFileOutline, mdiHome, mdiHomeVariantOutline, mdiViewDashboard } from "@mdi/js";
+import { mdiAccountMultipleOutline, mdiArchiveOutline, mdiCogOutline, mdiFileOutline, mdiHomeVariantOutline } from "@mdi/js";
 
 const navigationItems: StackNavigationElement[] = [
     {
