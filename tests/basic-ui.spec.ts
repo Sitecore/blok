@@ -56,6 +56,7 @@ import { testSpinnerBadge, testSpinnerButton, testSpinnerDefault, testSpinnerSiz
 import { testStepper } from './test-Components/test-Stepper';
 import { testInputGroupDropdown, testInputGroupSearch, testInputGroupURL } from './test-Components/test-Input_Group';
 import { testActionBar } from './test-Components/test-Action_Bar';
+import { testKbdButton, testKbdDefault, testKbdGroup, testKbdShortcut, testKbdTooltip } from './test-Components/test-Kbd';
 
 
 test.describe('UI BLOK QA Automation', () => {
@@ -64,7 +65,7 @@ test.describe('UI BLOK QA Automation', () => {
     // adjust baseURL in playwright config, or use full URL:
     await page.goto('/', { waitUntil: 'domcontentloaded', timeout: 120000 });
   });
-
+{/*
   test('test_Accordion', async ({ page }) => {
     await testAccordian(page);
   });
@@ -359,6 +360,14 @@ test.describe('UI BLOK QA Automation', () => {
 
   test('test_Action_Bar', async ({ page }) => {
     await testActionBar(page);
+  });
+*/}
+  test('test_Kbd', async ({ page }) => {
+    await testKbdDefault(page);
+    await testKbdGroup(page);
+    await testKbdButton(page);
+    await testKbdTooltip(page);
+    await testKbdShortcut(page);
   });
 
   test('close', async ({ page }) => {
