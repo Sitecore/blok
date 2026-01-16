@@ -23,9 +23,6 @@ import { Icon } from "@/lib/icon";
 import { mdiClose, mdiMagnify, mdiChevronDown } from "@mdi/js";
 import { cn } from "@/lib/utils";
 
-// ============================================================================
-// TYPE DEFINITIONS
-// ============================================================================
 
 export type FilterColorScheme = "neutral" | "primary";
 
@@ -36,94 +33,54 @@ export interface FilterOption {
 }
 
 export interface FilterInputProps {
-  /** Current input value */
   value?: string;
-  /** Default value for uncontrolled mode */
   defaultValue?: string;
-  /** Callback when value changes */
   onChange?: (value: string) => void;
-  /** Placeholder text */
   placeholder?: string;
-  /** Aria label for accessibility */
   ariaLabel?: string;
-  /** Icon path for the search icon */
   icon?: string;
-  /** Whether to show the clear button */
   showClear?: boolean;
-  /** Additional class names */
   className?: string;
-  /** Input width */
   width?: string;
-  /** Whether the input is disabled */
   disabled?: boolean;
 }
 
 export interface FilterSingleSelectProps {
-  /** Current selected value */
   value?: string;
-  /** Default value for uncontrolled mode */
   defaultValue?: string;
-  /** Callback when value changes */
   onChange?: (value: string) => void;
-  /** Available options */
   options: FilterOption[];
-  /** Placeholder/label text */
   placeholder?: string;
-  /** Group label for the options */
   groupLabel?: string;
-  /** Color scheme when selected */
   colorScheme?: FilterColorScheme;
-  /** Whether to show the clear button */
   showClear?: boolean;
-  /** Additional class names */
   className?: string;
-  /** Whether the select is disabled */
   disabled?: boolean;
 }
 
 export interface FilterMultiSelectProps {
-  /** Current selected values */
   value?: string[];
-  /** Default values for uncontrolled mode */
   defaultValue?: string[];
-  /** Callback when values change */
   onChange?: (values: string[]) => void;
-  /** Available options */
   options: FilterOption[];
-  /** Placeholder/label text */
   placeholder?: string;
-  /** Group label for the options */
   groupLabel?: string;
-  /** Color scheme when selected */
   colorScheme?: FilterColorScheme;
-  /** Display mode for selected items */
   displayMode?: "text" | "badge";
-  /** Maximum items to display before showing "+N" */
   maxDisplayItems?: number;
-  /** Whether to show the clear button */
   showClear?: boolean;
-  /** Additional class names */
   className?: string;
-  /** Whether the multi-select is disabled */
   disabled?: boolean;
 }
 
 export interface FilterToggleProps {
-  /** Current active state */
   active?: boolean;
-  /** Default active state for uncontrolled mode */
   defaultActive?: boolean;
-  /** Callback when active state changes */
   onChange?: (active: boolean) => void;
-  /** Toggle label */
   label: string;
-  /** Color scheme when active */
   colorScheme?: FilterColorScheme;
-  /** Whether to show close button when active */
   showClose?: boolean;
-  /** Additional class names */
   className?: string;
-  /** Whether the toggle is disabled */
   disabled?: boolean;
 }
 
@@ -134,29 +91,18 @@ export type FilterDefinition =
   | { type: "toggle"; key: string; props: FilterToggleProps };
 
 export interface FilterBarProps {
-  /** Array of filter definitions */
   filters: FilterDefinition[];
-  /** Current filter values (controlled mode) */
   values?: Record<string, unknown>;
-  /** Callback when any filter value changes */
   onChange?: (key: string, value: unknown) => void;
-  /** Callback when clear all is clicked */
   onClearAll?: () => void;
-  /** Whether to show the clear all button */
   showClearAll?: boolean;
-  /** Clear all button text */
   clearAllText?: string;
-  /** Layout direction */
   direction?: "horizontal" | "vertical";
-  /** Gap between filters */
   gap?: string;
-  /** Additional class names */
   className?: string;
 }
 
-// ============================================================================
 // FILTER INPUT COMPONENT
-// ============================================================================
 
 const FilterInput = React.forwardRef<HTMLInputElement, FilterInputProps>(
   (
@@ -229,9 +175,7 @@ const FilterInput = React.forwardRef<HTMLInputElement, FilterInputProps>(
 );
 FilterInput.displayName = "FilterInput";
 
-// ============================================================================
 // FILTER SINGLE SELECT COMPONENT
-// ============================================================================
 
 const FilterSingleSelect = React.forwardRef<
   HTMLButtonElement,
@@ -362,9 +306,7 @@ const FilterSingleSelect = React.forwardRef<
 );
 FilterSingleSelect.displayName = "FilterSingleSelect";
 
-// ============================================================================
 // FILTER MULTI SELECT COMPONENT
-// ============================================================================
 
 const FilterMultiSelect = React.forwardRef<
   HTMLButtonElement,
@@ -585,9 +527,7 @@ const FilterMultiSelect = React.forwardRef<
 );
 FilterMultiSelect.displayName = "FilterMultiSelect";
 
-// ============================================================================
 // FILTER TOGGLE COMPONENT
-// ============================================================================
 
 const FilterToggle = React.forwardRef<HTMLButtonElement, FilterToggleProps>(
   (
@@ -655,9 +595,7 @@ const FilterToggle = React.forwardRef<HTMLButtonElement, FilterToggleProps>(
 );
 FilterToggle.displayName = "FilterToggle";
 
-// ============================================================================
 // FILTER BAR COMPONENT (Composable Layout)
-// ============================================================================
 
 function FilterBar({
   filters,
@@ -742,9 +680,6 @@ function FilterBar({
   );
 }
 
-// ============================================================================
-// EXPORTS
-// ============================================================================
 
 export {
   FilterInput,
