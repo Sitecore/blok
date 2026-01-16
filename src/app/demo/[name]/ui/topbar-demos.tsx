@@ -1,12 +1,4 @@
-import {
-  TopbarDefault,
-} from "@/app/demo/[name]/ui/topbar-demos";
-
-export const topbar = {
-  name: "topbar",
-  defaultComponent: <TopbarDefault />,
-  usage: [
-    `"use client";
+"use client";
 
 import Topbar, {
   type NavItem,
@@ -17,9 +9,9 @@ import Topbar, {
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Icon } from "@/lib/icon";
-import { mdiDotsGrid, mdiHelpCircleOutline } from "@mdi/js";`,
+import { mdiDotsGrid, mdiHelpCircleOutline } from "@mdi/js";
 
-`const defaultLogo: LogoConfig = {
+const defaultLogo: LogoConfig = {
   light: "https://delivery-sitecore.sitecorecontenthub.cloud/api/public/content/logo-sitecore",
   dark: "https://delivery-sitecore.sitecorecontenthub.cloud/api/public/content/logo-sitecore-dark",
   alt: "Logo",
@@ -69,7 +61,7 @@ const defaultMenuButton: MenuButtonConfig = {
   ariaLabel: "Menu",
 };
 
-export default function TopbarDefault() {
+export function TopbarDefault() {
   return (
     <Topbar
       logo={defaultLogo}
@@ -79,6 +71,5 @@ export default function TopbarDefault() {
       menuButton={defaultMenuButton}
     />
   );
-}`,
-  ],
-};
+}
+

@@ -1,7 +1,9 @@
-import { mdiDotsGrid, mdiHelpCircleOutline } from "@mdi/js";
+"use client";
+
+import type { ReactNode } from "react";
+import { mdiDotsGrid } from "@mdi/js";
 import { Icon } from "@/lib/icon";
 
-import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import {
   NavigationMenu,
@@ -13,99 +15,132 @@ import {
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
 
-export default function Topbar() {
+export interface NavDropdownItem {
+  id?: string;
+  label: string;
+  href: string;
+}
+export interface NavItem {
+  id?: string;
+  label: string;
+  href?: string;
+  isActive?: boolean;
+  children?: NavDropdownItem[];
+}
+
+export interface LogoConfig {
+  light: string;
+  dark: string;
+  alt?: string;
+}
+
+export interface MenuButtonConfig {
+  icon?: string;
+  onClick?: () => void;
+  ariaLabel?: string;
+}
+
+export interface RightSideItem {
+  id: string;
+  content: ReactNode;
+}
+
+/** Main Topbar component props */
+export interface TopbarProps {
+  logo?: LogoConfig;
+  brandName?: string;
+  navigation?: NavItem[];
+  rightSideItems?: RightSideItem[];
+  menuButton?: MenuButtonConfig | false;
+  className?: string;
+}
+
+// MAIN COMPONENT
+export default function Topbar({
+  logo,
+  brandName,
+  navigation = [],
+  rightSideItems = [],
+  menuButton,
+  className,
+}: TopbarProps) {
   return (
-    <header className="border-b bg-body-bg">
+    <header className={`border-b bg-body-bg ${className ?? ""}`}>
       <div className="flex h-16 items-center px-4">
+        {/* Left section: Menu button + Logo + Brand */}
         <div className="flex items-center gap-4">
-          <Button variant="ghost" size="icon" colorScheme="neutral" aria-label="Menu">
-            <Icon path={mdiDotsGrid} size={1} />
-          </Button>
+          {menuButton !== false && (
+            <Button
+              variant="ghost"
+              size="icon"
+              colorScheme="neutral"
+              aria-label={menuButton?.ariaLabel ?? "Menu"}
+              onClick={menuButton?.onClick}
+            >
+              <Icon path={menuButton?.icon ?? mdiDotsGrid} size={1} />
+            </Button>
+          )}
           <div className="flex items-center gap-1">
-            <span className="text-xl font-bold text-red-500">
-              <img
-                alt="Logo"
-                className="flex-shrink-0 flex-grow-0 rounded-md object-cover object-left p-1 block dark:hidden"
-                src="https://delivery-sitecore.sitecorecontenthub.cloud/api/public/content/logo-sitecore"
-              />
-              <img
-                alt="Logo"
-                className="flex-shrink-0 flex-grow-0 rounded-md object-cover object-left p-1 hidden dark:block"
-                src="https://delivery-sitecore.sitecorecontenthub.cloud/api/public/content/logo-sitecore-dark"
-              />
-            </span>
-            <span className="text-lg font-semibold">Blok
-            </span>
+            {logo && (
+              <span className="shrink-0">
+                <img
+                  alt={logo.alt ?? "Logo"}
+                  className="shrink-0 grow-0 rounded-md object-cover object-left p-1 block dark:hidden"
+                  src={logo.light}
+                />
+                <img
+                  alt={logo.alt ?? "Logo"}
+                  className="shrink-0 grow-0 rounded-md object-cover object-left p-1 hidden dark:block"
+                  src={logo.dark}
+                />
+              </span>
+            )}
+            {brandName && (
+              <span className="text-lg font-semibold">{brandName}</span>
+            )}
           </div>
         </div>
 
         {/* Navigation Menu */}
-        <NavigationMenu className="ml-6 md:inline-flex hidden">
-          <NavigationMenuList>
-            <NavigationMenuItem>
-              <NavigationMenuLink
-                href="#"
-                className={navigationMenuTriggerStyle()}
-              >
-                Home
-              </NavigationMenuLink>
-            </NavigationMenuItem>
-
-            <NavigationMenuItem>
-              <NavigationMenuTrigger>Content model</NavigationMenuTrigger>
-              <NavigationMenuContent>
-                <ul className="grid w-[200px] gap-2">
-                  <li>
-                    <NavigationMenuLink href="#">Components</NavigationMenuLink>
-                  </li>
-                  <li>
-                    <NavigationMenuLink href="#">
-                      Documentation
+        {navigation.length > 0 && (
+          <NavigationMenu className="ml-6 md:inline-flex hidden" viewport={false}>
+            <NavigationMenuList>
+              {navigation.map((item) => (
+                <NavigationMenuItem key={item.id ?? item.label}>
+                  {item.children && item.children.length > 0 ? (
+                    <>
+                      <NavigationMenuTrigger>{item.label}</NavigationMenuTrigger>
+                      <NavigationMenuContent>
+                        <ul className="grid w-[200px] gap-2">
+                          {item.children.map((child) => (
+                            <li key={child.id ?? child.label}>
+                              <NavigationMenuLink href={child.href}>
+                                {child.label}
+                              </NavigationMenuLink>
+                            </li>
+                          ))}
+                        </ul>
+                      </NavigationMenuContent>
+                    </>
+                  ) : (
+                    <NavigationMenuLink
+                      href={item.href}
+                      className={`${navigationMenuTriggerStyle()}${item.isActive ? " active" : ""}`}
+                    >
+                      {item.label}
                     </NavigationMenuLink>
-                  </li>
-                  <li>
-                    <NavigationMenuLink href="#">Blocks</NavigationMenuLink>
-                  </li>
-                </ul>
-              </NavigationMenuContent>
-            </NavigationMenuItem>
+                  )}
+                </NavigationMenuItem>
+              ))}
+            </NavigationMenuList>
+          </NavigationMenu>
+        )}
 
-            <NavigationMenuItem>
-              <NavigationMenuLink
-                href="#"
-                className={`${navigationMenuTriggerStyle()} active`}
-              >
-                Content
-              </NavigationMenuLink>
-            </NavigationMenuItem>
-
-            <NavigationMenuItem>
-              <NavigationMenuLink
-                href="#"
-                className={navigationMenuTriggerStyle()}
-              >
-                Media
-              </NavigationMenuLink>
-            </NavigationMenuItem>
-
-            <NavigationMenuItem>
-              <NavigationMenuLink
-                href="#"
-                className={navigationMenuTriggerStyle()}
-              >
-                Settings
-              </NavigationMenuLink>
-            </NavigationMenuItem>
-          </NavigationMenuList>
-        </NavigationMenu>
-
+        {/* Right section */}
         <div className="ml-auto flex items-center space-x-4">
-          <Button variant="ghost" size="icon" colorScheme="neutral" aria-label="Help">
-            <Icon path={mdiHelpCircleOutline} size={1} />
-          </Button>
-          <Avatar className="h-8 w-8">
-            <AvatarFallback>SC</AvatarFallback>
-          </Avatar>
+          {rightSideItems.map((item) => (
+            <div key={item.id}>{item.content}</div>
+          ))}
         </div>
       </div>
     </header>
