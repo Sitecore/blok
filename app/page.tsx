@@ -58,6 +58,7 @@ import { SpinnerDemo } from "@/components-demo/spinner-demo";
 import { StepperDemo } from "@/components-demo/stepper-demo";
 import { InputGroupDemo } from "@/components-demo/input-group-demo";
 import { ActionBarDemo } from "@/components-demo/action_bar-demo";
+import { KbdDemo } from "@/components-demo/kbd-demo";
 
 
 
@@ -181,6 +182,10 @@ export default function SinkPage() {
     <br />
       <div>
         <InputGroupDemo />
+      </div>
+    <br />
+      <div>
+        <KbdDemo />
       </div>
     <br />
       <div>
