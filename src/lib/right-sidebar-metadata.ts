@@ -434,6 +434,7 @@ export const rightSidebarMetadata: Record<string, RightSidebarMetadata> = {
   },
   field: {
     links: {
+      shadcn: "https://ui.shadcn.com/docs/components/field",
     },
     sections: [
       { id: "preview", title: "Preview" },
