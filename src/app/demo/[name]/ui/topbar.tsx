@@ -8,6 +8,7 @@ export const topbar = {
   usage: [
     `import Topbar, { type NavItem, type LogoConfig, type AvatarConfig, type HelpConfig } from "@/components/ui/top-bar";
 import { mdiHelpCircleOutline } from "@mdi/js";`,
+
     `const logo: LogoConfig = {
   light: "https://example.com/logo-light.png",
   dark: "https://example.com/logo-dark.png",
