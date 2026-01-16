@@ -10,9 +10,6 @@ import {
   type FilterDefinition,
 } from "@/components/ui/filter";
 
-// ============================================================================
-// SHARED OPTIONS DATA
-// ============================================================================
 
 const productOptions = [
   { value: "XMCloud", label: "XM Cloud" },
@@ -40,9 +37,7 @@ const extendedProductOptions = [
   { value: "Headless", label: "Headless CMS" },
 ];
 
-// ============================================================================
-// FILTER INPUT DEMO
-// ============================================================================
+// FILTER INPUT 
 
 export function FilterInputDemo() {
   const [value, setValue] = React.useState("");
@@ -57,9 +52,7 @@ export function FilterInputDemo() {
   );
 }
 
-// ============================================================================
-// FILTER SINGLE SELECT DEMO
-// ============================================================================
+// FILTER SINGLE SELECT 
 
 export function FilterSingleSelectDemo() {
   const [defaultValue, setDefaultValue] = React.useState<string>("");
@@ -89,9 +82,7 @@ export function FilterSingleSelectDemo() {
   );
 }
 
-// ============================================================================
-// FILTER MULTI SELECT DEMO
-// ============================================================================
+// FILTER MULTI SELECT
 
 export function FilterMultiSelectDemo() {
   const [defaultValues, setDefaultValues] = React.useState<string[]>([]);
@@ -132,9 +123,7 @@ export function FilterMultiSelectDemo() {
   );
 }
 
-// ============================================================================
-// FILTER TOGGLE DEMO
-// ============================================================================
+// FILTER TOGGLE
 
 export function FilterToggleDemo() {
   const [defaultActive, setDefaultActive] = React.useState(false);
@@ -161,9 +150,7 @@ export function FilterToggleDemo() {
   );
 }
 
-// ============================================================================
-// FILTER HORIZONTAL LAYOUT DEMO (Using FilterBar)
-// ============================================================================
+// FILTER HORIZONTAL LAYOUT
 
 export function FilterHorizontalLayoutDemo() {
   const [filterValues, setFilterValues] = React.useState<Record<string, unknown>>({
