@@ -1460,6 +1460,30 @@
       ]
     },
     {
+      "name": "select-react",
+      "type": "registry:ui",
+      "title": "Select (React Select)",
+      "description": "A feature-rich select component built with React Select, supporting search, multi-select, and custom styling with Blok theming.",
+      "dependencies": [
+        "react-select",
+        "@mdi/js"
+      ],
+      "registryDependencies": [
+        "https://blok.sitecore.com/r/theme.json",
+        "https://blok.sitecore.com/r/badge.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui/select-react.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "src/lib/icon.tsx",
+          "type": "registry:lib"
+        }
+      ]
+    },
+    {
       "name": "separator",
       "type": "registry:ui",
       "title": "Separator",
