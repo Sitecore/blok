@@ -69,7 +69,7 @@ const defaultMenuButton: MenuButtonConfig = {
   ariaLabel: "Menu",
 };
 
-export function TopbarDefault() {
+export default function TopbarDefault() {
   return (
     <Topbar
       logo={defaultLogo}
