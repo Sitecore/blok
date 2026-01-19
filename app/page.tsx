@@ -60,6 +60,7 @@ import { InputGroupDemo } from "@/components-demo/input-group-demo";
 import { ActionBarDemo } from "@/components-demo/action_bar-demo";
 import { KbdDemo } from "@/components-demo/kbd-demo";
 import { EditableDemo } from "@/components-demo/editable-demo";
+import { SelectReactDemo } from "@/components-demo/select(React)-demo";
 
 
 
@@ -227,6 +228,10 @@ export default function SinkPage() {
     <br />
       <div>
         <SelectDemo /> 
+      </div>
+    <br />
+      <div>
+        <SelectReactDemo />
       </div>
     <br />
       <div>
