@@ -5,7 +5,7 @@ export const draggable = {
   },
   usage: {
     usage: [
-      `import { DndContext, DragEndEvent } from "@/components/ui/dnd-context";
+      `import { DndContext, type DragEndEvent } from "@/components/ui/dnd-context";
 import { Draggable } from "@/components/ui/draggable";
 import { Droppable } from "@/components/ui/droppable";`,
       `function App() {
@@ -31,7 +31,6 @@ import { Droppable } from "@/components/ui/droppable";`,
   },
   components: {
     "Basic Drag and Drop": { component: "draggable-basic", },
-    "Sortable List": { component: "draggable-sortable-list", },
     "Custom Handle": { component: "draggable-custom-handle", },
     "Drag, Drop & Sort": { component: "draggable-sortable-drop", },
   },

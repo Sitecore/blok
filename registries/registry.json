@@ -977,12 +977,15 @@
       "title": "Draggable",
       "description": "Drag and drop components using @dnd-kit/react. Includes draggable, droppable, and sortable functionality with hooks.",
       "registryDependencies": [
-        "https://blok.sitecore.com/r/theme.json"
+        "https://blok.sitecore.com/r/theme.json",
+        "https://blok.sitecore.com/r/button.json"
       ],
       "dependencies": [
         "@dnd-kit/core",
         "@dnd-kit/sortable",
-        "@dnd-kit/utilities"
+        "@dnd-kit/utilities",
+        "lucide-react",
+        "@mdi/js"
       ],
       "files": [
         {
@@ -1004,6 +1007,10 @@
         {
           "path": "src/components/ui/drag-overlay.tsx",
           "type": "registry:ui"
+        },
+        {
+          "path": "src/lib/icon.tsx",
+          "type": "registry:lib"
         }
       ]
     },

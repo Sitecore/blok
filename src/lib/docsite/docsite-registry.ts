@@ -62,7 +62,6 @@ import DialogDemo from "@/app/content/ui/dialog";
 import StickyFooterDialogDemo from "@/app/content/ui/dialog-sticky-footer";
 import ScrollableDialogDemo from "@/app/content/ui/dialog-scrollable";
 import DraggableBasicDragDropDemo from "@/app/content/ui/draggable-basic";
-import DraggableSortableDemo from "@/app/content/ui/draggable-sortable";
 import DraggableCustomHandleDemo from "@/app/content/ui/draggable-custom-handle";
 import DraggableDragDropSortableDemo from "@/app/content/ui/draggable-drag-drop-sort";
 import DrawerDemo from "@/app/content/ui/drawer";
@@ -478,11 +477,6 @@ export const docsiteRegistry: Record<string, DocsiteRegistryEntry> = {
         name: "draggable-basic",
         path: "src/app/content/ui/draggable-basic.tsx",
         component: DraggableBasicDragDropDemo,
-    },
-    "draggable-sortable-list": {
-        name: "draggable-sortable-list",
-        path: "src/app/content/ui/draggable-sortable.tsx",
-        component: DraggableSortableDemo,
     },
     "draggable-custom-handle": {
         name: "draggable-custom-handle",
