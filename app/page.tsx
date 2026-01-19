@@ -59,6 +59,7 @@ import { StepperDemo } from "@/components-demo/stepper-demo";
 import { InputGroupDemo } from "@/components-demo/input-group-demo";
 import { ActionBarDemo } from "@/components-demo/action_bar-demo";
 import { KbdDemo } from "@/components-demo/kbd-demo";
+import { EditableDemo } from "@/components-demo/editable-demo";
 
 
 
@@ -158,6 +159,10 @@ export default function SinkPage() {
     <br />
       <div>
         <DropdownDemo />
+      </div>
+    <br />
+      <div>
+        <EditableDemo />
       </div>
     <br />
       <div>
