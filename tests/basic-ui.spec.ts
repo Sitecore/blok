@@ -58,6 +58,7 @@ import { testInputGroupDropdown, testInputGroupSearch, testInputGroupURL } from 
 import { testActionBar } from './test-Components/test-Action_Bar';
 import { testKbdButton, testKbdDefault, testKbdGroup, testKbdShortcut, testKbdTooltip } from './test-Components/test-Kbd';
 import { testEditableInput, testEditableTextarea } from './test-Components/test-Editable';
+import { testSelectReact } from './test-Components/test-Select(React)';
 
 
 test.describe('UI BLOK QA Automation', () => {
@@ -374,6 +375,10 @@ test.describe('UI BLOK QA Automation', () => {
   test('test_Editable', async ({ page }) => {
     await testEditableInput(page);
     await testEditableTextarea(page);
+  });
+
+  test('test_Select(React)', async ({ page }) => {
+    await testSelectReact(page);
   });
 
   test('close', async ({ page }) => {
