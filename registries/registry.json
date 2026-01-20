@@ -501,6 +501,7 @@
         "https://blok.sitecore.com/r/editable.json",
         "https://blok.sitecore.com/r/empty-states.json",
         "https://blok.sitecore.com/r/error-states.json",
+        "https://blok.sitecore.com/r/field.json",
         "https://blok.sitecore.com/r/input.json",
         "https://blok.sitecore.com/r/inputOtp.json",
         "https://blok.sitecore.com/r/kbd.json",
@@ -1154,6 +1155,28 @@
         {
           "path": "src/lib/icon.tsx",
           "type": "registry:lib"
+        }
+      ]
+    },
+    {
+      "name": "field",
+      "type": "registry:ui",
+      "title": "Field",
+      "description": "Combine labels, controls, and help text to compose accessible form fields and grouped inputs.",
+      "dependencies": [
+        "class-variance-authority"
+      ],
+      "registryDependencies": [
+        "https://blok.sitecore.com/r/theme.json",
+        "https://blok.sitecore.com/r/input.json",
+        "https://blok.sitecore.com/r/switch.json"
+
+
+      ],
+      "files": [
+        {
+          "path": "src/components/ui/field.tsx",
+          "type": "registry:ui"
         }
       ]
     },

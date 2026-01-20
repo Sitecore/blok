@@ -428,6 +428,36 @@ export const rightSidebarMetadata: Record<string, RightSidebarMetadata> = {
       },
     ],
   },
+  field: {
+    links: {
+      shadcn: "https://ui.shadcn.com/docs/components/field",
+    },
+    sections: [
+      { id: "preview", title: "Preview" },
+      { id: "installation", title: "Installation" },
+      { id: "usage", title: "Usage" },
+      {
+        id: "examples",
+        title: "Examples",
+        children: [
+          { id: "field-input", title: "Input" },
+          { id: "field-textarea", title: "Textarea" },
+          { id: "field-select", title: "Select" },
+          { id: "field-checkbox", title: "Checkbox" },
+          { id: "field-radio-group", title: "Radio Group" },
+          { id: "field-switch", title: "Switch" },
+          { id: "field-with-separator", title: "With Separator" },
+          { id: "field-with-error", title: "With Error" },
+          { id: "field-input-icon", title: "Input with Icon" },
+          { id: "field-input-addon", title: "Input with Addon" },
+          { id: "field-disabled", title: "Disabled" },
+          { id: "field-readonly", title: "ReadOnly" },
+          { id: "field-small", title: "Small Size" },
+          { id: "field-input-types", title: "Input Types" },
+        ],
+      },
+    ],
+  },
   "hover-card": {
     links: {
       shadcn: "https://ui.shadcn.com/docs/components/hover-card",

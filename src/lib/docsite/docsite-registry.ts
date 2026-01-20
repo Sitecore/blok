@@ -187,6 +187,21 @@ import TimelineConnectorVariantsDemo from "@/app/content/ui/timeline-connector-v
 import TimelineDemo from "@/app/content/ui/timeline";
 import SelectReactDemo from "@/app/content/ui/select-react";
 import CollaborationDemo from "@/app/content/bloks/collaboration";
+import FieldDemo from "@/app/content/ui/field";
+import FieldInputDemo from "@/app/content/ui/field-input";
+import FieldTextareaDemo from "@/app/content/ui/field-textarea";
+import FieldSelectDemo from "@/app/content/ui/field-select";
+import FieldCheckboxDemo from "@/app/content/ui/field-checkbox";
+import FieldRadioGroupDemo from "@/app/content/ui/field-radio-group";
+import FieldSwitchDemo from "@/app/content/ui/field-switch";
+import FieldWithSeparatorDemo from "@/app/content/ui/field-separator";
+import FieldWithErrorDemo from "@/app/content/ui/field-error";
+import FieldInputWithIconDemo from "@/app/content/ui/field-input-icon";
+import FieldInputWithAddonDemo from "@/app/content/ui/field-input-addon";
+import FieldDisabledDemo from "@/app/content/ui/field-disabled";
+import FieldReadOnlyDemo from "@/app/content/ui/field-readonly";
+import FieldSmallDemo from "@/app/content/ui/field-small";
+import FieldInputTypesDemo from "@/app/content/ui/field-input-types";
 
 export interface DocsiteRegistryEntry {
     name: string;
@@ -219,7 +234,7 @@ export const docsiteRegistry: Record<string, DocsiteRegistryEntry> = {
     "alert-success": {
         name: "alert-success",
         path: "src/app/content/ui/alert-success.tsx",
-        component: AlertSuccessDemo,    
+        component: AlertSuccessDemo,
     },
     "alert-danger": {
         name: "alert-danger",
@@ -640,6 +655,81 @@ export const docsiteRegistry: Record<string, DocsiteRegistryEntry> = {
         name: "hover-card",
         path: "src/app/content/ui/hover-card.tsx",
         component: HoverCardDemo,
+    },
+    "field": {
+        name: "field",
+        path: "src/app/content/ui/field.tsx",
+        component: FieldDemo,
+    },
+    "field-input": {
+        name: "field-input",
+        path: "src/app/content/ui/field-input.tsx",
+        component: FieldInputDemo,
+    },
+    "field-textarea": {
+        name: "field-textarea",
+        path: "src/app/content/ui/field-textarea.tsx",
+        component: FieldTextareaDemo,
+    },
+    "field-select": {
+        name: "field-select",
+        path: "src/app/content/ui/field-select.tsx",
+        component: FieldSelectDemo,
+    },
+    "field-checkbox": {
+        name: "field-checkbox",
+        path: "src/app/content/ui/field-checkbox.tsx",
+        component: FieldCheckboxDemo,
+    },
+    "field-radio-group": {
+        name: "field-radio-group",
+        path: "src/app/content/ui/field-radio-group.tsx",
+        component: FieldRadioGroupDemo,
+    },
+    "field-switch": {
+        name: "field-switch",
+        path: "src/app/content/ui/field-switch.tsx",
+        component: FieldSwitchDemo,
+    },
+    "field-with-separator": {
+        name: "field-separator",
+        path: "src/app/content/ui/field-separator.tsx",
+        component: FieldWithSeparatorDemo,
+    },
+    "field-with-error": {
+        name: "field-with-error",
+        path: "src/app/content/ui/field-error.tsx",
+        component: FieldWithErrorDemo,
+    },
+    "field-input-icon": {
+        name: "field-input-icon",
+        path: "src/app/content/ui/field-input-icon.tsx",
+        component: FieldInputWithIconDemo,
+    },
+    "field-input-addon": {
+        name: "field-input-addon",
+        path: "src/app/content/ui/field-input-addon.tsx",
+        component: FieldInputWithAddonDemo,
+    },
+    "field-disabled": {
+        name: "field-disabled",
+        path: "src/app/content/ui/field-disabled.tsx",
+        component: FieldDisabledDemo,
+    },
+    "field-readonly": {
+        name: "field-readonly",
+        path: "src/app/content/ui/field-readonly.tsx",
+        component: FieldReadOnlyDemo,
+    },
+    "field-small": {
+        name: "field-small",
+        path: "src/app/content/ui/field-small.tsx",
+        component: FieldSmallDemo,
+    },
+    "field-input-types": {
+        name: "field-input-types",
+        path: "src/app/content/ui/field-input-types.tsx",
+        component: FieldInputTypesDemo,
     },
     "icon": {
         name: "icon",
