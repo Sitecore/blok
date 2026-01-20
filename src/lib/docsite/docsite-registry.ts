@@ -202,6 +202,11 @@ import FieldDisabledDemo from "@/app/content/ui/field-disabled";
 import FieldReadOnlyDemo from "@/app/content/ui/field-readonly";
 import FieldSmallDemo from "@/app/content/ui/field-small";
 import FieldInputTypesDemo from "@/app/content/ui/field-input-types";
+import FilterInputDemo from "@/app/content/ui/filter-input";
+import FilterMultiSelectDemo from "@/app/content/ui/filter-multi-select";
+import FilterToggleDemo from "@/app/content/ui/filter-toggle";
+import FilterSingleSelectDemo from "@/app/content/ui/filter-single-select";
+import FilterDemo from "@/app/content/ui/filter";
 
 export interface DocsiteRegistryEntry {
     name: string;
@@ -730,6 +735,31 @@ export const docsiteRegistry: Record<string, DocsiteRegistryEntry> = {
         name: "field-input-types",
         path: "src/app/content/ui/field-input-types.tsx",
         component: FieldInputTypesDemo,
+    },
+    "filter": {
+        name: "filter",
+        path: "src/app/content/ui/filter.tsx",
+        component: FilterDemo,
+    },
+    "filter-input": {
+        name: "filter-input",
+        path: "src/app/content/ui/filter-input.tsx",
+        component: FilterInputDemo,
+    },
+    "filter-single-select": {
+        name: "filter-single-select",
+        path: "src/app/content/ui/filter-single-select.tsx",
+        component: FilterSingleSelectDemo,
+    },
+    "filter-multi-select": {
+        name: "filter-multi-select",
+        path: "src/app/content/ui/filter-multi-select.tsx",
+        component: FilterMultiSelectDemo,
+    },
+    "filter-toggle": {
+        name: "filter-toggle",
+        path: "src/app/content/ui/filter-toggle.tsx",
+        component: FilterToggleDemo,
     },
     "icon": {
         name: "icon",

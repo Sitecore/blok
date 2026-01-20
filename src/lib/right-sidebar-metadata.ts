@@ -7,7 +7,7 @@ export interface RightSidebarMetadata {
 
 // Default links for component pages
 export const defaultComponentLinks: RightSidebarLinks = {
-      shadcn: "https://ui.shadcn.com/docs/components/{$componentName}",
+  shadcn: "https://ui.shadcn.com/docs/components/{$componentName}",
 };
 
 // Default sections for component pages
@@ -115,13 +115,13 @@ export const rightSidebarMetadata: Record<string, RightSidebarMetadata> = {
   breadcrumb: {
     links: {
       shadcn: "https://ui.shadcn.com/docs/components/breadcrumb",
-      figma:"https://www.figma.com/design/x0CUbrC5Kjcuk64VPCnbgz/Blok-Components?m=auto&node-id=6748-14479&t=NScvPldB3fxBBWL8-1"
+      figma: "https://www.figma.com/design/x0CUbrC5Kjcuk64VPCnbgz/Blok-Components?m=auto&node-id=6748-14479&t=NScvPldB3fxBBWL8-1"
     },
   },
   button: {
     links: {
       shadcn: "https://ui.shadcn.com/docs/components/button",
-      figma:"https://www.figma.com/design/x0CUbrC5Kjcuk64VPCnbgz/Blok-Components?m=auto&node-id=6748-14498&t=NScvPldB3fxBBWL8-1"
+      figma: "https://www.figma.com/design/x0CUbrC5Kjcuk64VPCnbgz/Blok-Components?m=auto&node-id=6748-14498&t=NScvPldB3fxBBWL8-1"
     },
     sections: [
       { id: "preview", title: "Preview" },
@@ -387,7 +387,7 @@ export const rightSidebarMetadata: Record<string, RightSidebarMetadata> = {
       },
     ],
   },
-  "empty-states":{
+  "empty-states": {
     links: {
       figma: "https://www.figma.com/design/x0CUbrC5Kjcuk64VPCnbgz/Blok-Components?m=auto&node-id=6748-14511&t=NScvPldB3fxBBWL8-1",
     },
@@ -406,7 +406,7 @@ export const rightSidebarMetadata: Record<string, RightSidebarMetadata> = {
       },
     ],
   },
-  "error-states":{
+  "error-states": {
     links: {
     },
     sections: [
@@ -454,6 +454,26 @@ export const rightSidebarMetadata: Record<string, RightSidebarMetadata> = {
           { id: "field-readonly", title: "ReadOnly" },
           { id: "field-small", title: "Small Size" },
           { id: "field-input-types", title: "Input Types" },
+        ],
+      },
+    ],
+  },
+  filter: {
+    links: {
+      shadcn: "https://ui.shadcn.com/docs/components/filter",
+    },
+    sections: [
+      { id: "preview", title: "Preview" },
+      { id: "installation", title: "Installation" },
+      { id: "usage", title: "Usage" },
+      {
+        id: "examples",
+        title: "Examples",
+        children: [
+          { id: "filter-input", title: "Filter Input" },
+          { id: "filter-single-select", title: "Filter Single Select" },
+          { id: "filter-multi-select", title: "Filter Multi Select" },
+          { id: "filter-toggle", title: "Filter Toggle" },
         ],
       },
     ],
@@ -788,10 +808,10 @@ export const rightSidebarMetadata: Record<string, RightSidebarMetadata> = {
     ],
   },
   "stack-navigation": {
-    links:{
+    links: {
       figma: "https://www.figma.com/design/x0CUbrC5Kjcuk64VPCnbgz/Blok-Components?m=auto&node-id=10256-14999&t=NScvPldB3fxBBWL8-1"
     },
-        sections: [
+    sections: [
       { id: "preview", title: "Preview" },
       { id: "installation", title: "Installation" },
       { id: "usage", title: "Usage" },
@@ -807,7 +827,7 @@ export const rightSidebarMetadata: Record<string, RightSidebarMetadata> = {
   },
   stepper: {
     links: {
-    
+
     },
     sections: [
       { id: "preview", title: "Preview" },
@@ -861,7 +881,7 @@ export const rightSidebarMetadata: Record<string, RightSidebarMetadata> = {
     sections: [
       { id: "preview", title: "Preview" },
       { id: "installation", title: "Installation" },
-      { id: "usage", title: "Usage" }, 
+      { id: "usage", title: "Usage" },
       {
         id: "examples",
         title: "Examples",
@@ -981,7 +1001,7 @@ export const rightSidebarMetadata: Record<string, RightSidebarMetadata> = {
     ],
   },
   "all-site": {
-     links: {
+    links: {
 
     },
   },
@@ -990,9 +1010,9 @@ export const rightSidebarMetadata: Record<string, RightSidebarMetadata> = {
 
     },
   },
-    "site-card": {
+  "site-card": {
     links: {
-      
+
     },
   },
   // ===== THEMING-SPECIFIC METADATA =====
@@ -1016,16 +1036,16 @@ export const rightSidebarMetadata: Record<string, RightSidebarMetadata> = {
 
 export function getRightSidebarMetadata(key: string): RightSidebarMetadata {
   const metadata = rightSidebarMetadata[key];
-  
+
   // Get the links and replace {$componentName} placeholder with the actual key
   const links = metadata?.links || defaultComponentLinks;
   const processedLinks = { ...links };
-  
+
   // Replace {$componentName} in shadcn link if it exists
   if (processedLinks.shadcn && typeof processedLinks.shadcn === 'string') {
     processedLinks.shadcn = processedLinks.shadcn.replace('{$componentName}', key);
   }
-  
+
   return {
     links: processedLinks,
     sections: metadata?.sections || defaultComponentSections,
