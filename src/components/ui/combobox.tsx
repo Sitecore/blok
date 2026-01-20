@@ -23,6 +23,17 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 
+function ComboboxContent(
+  { className, ...props }: React.ComponentProps<typeof PopoverContent>
+) {
+  return (
+    <PopoverContent
+      className={cn("max-h-80 overflow-hidden", className)}
+      {...props}
+    />
+  );
+}
+
 type Framework = {
   value: string;
   label: string;
@@ -80,7 +91,7 @@ function FrameworkCombobox({ frameworks }: FrameworkComboboxProps) {
           <ChevronsUpDown className="text-muted-foreground" />
         </Button>
       </PopoverTrigger>
-      <PopoverContent className="w-(--radix-popover-trigger-width) p-0">
+      <ComboboxContent className="w-(--radix-popover-trigger-width) p-0">
         <Command>
           <CommandInput placeholder="Search framework..." />
           <CommandList>
@@ -107,7 +118,7 @@ function FrameworkCombobox({ frameworks }: FrameworkComboboxProps) {
             </CommandGroup>
           </CommandList>
         </Command>
-      </PopoverContent>
+      </ComboboxContent>
     </Popover>
   );
 }
@@ -152,7 +163,7 @@ function UserCombobox({ users, selectedUserId }: UserComboboxProps) {
           <ChevronsUpDown className="text-muted-foreground" />
         </Button>
       </PopoverTrigger>
-      <PopoverContent className="w-(--radix-popover-trigger-width) p-0">
+      <ComboboxContent className="w-(--radix-popover-trigger-width) p-0">
         <Command>
           <CommandInput placeholder="Search user..." />
           <CommandList className="max-h-[300px] pb-12 relative">
@@ -197,7 +208,7 @@ function UserCombobox({ users, selectedUserId }: UserComboboxProps) {
             </Button>
           </div>
         </Command>
-      </PopoverContent>
+      </ComboboxContent>
     </Popover>
   );
 }
@@ -246,7 +257,7 @@ function TimezoneCombobox({
           <ChevronDownIcon className="text-muted-foreground" />
         </Button>
       </PopoverTrigger>
-      <PopoverContent className="p-0" align="start">
+      <ComboboxContent className="p-0" align="start">
         <Command>
           <CommandInput placeholder="Search timezone..." />
           <CommandList className="max-h-[300px] pb-12 relative">
@@ -287,7 +298,7 @@ function TimezoneCombobox({
             </Button>
           </div>
         </Command>
-      </PopoverContent>
+      </ComboboxContent>
     </Popover>
   );
 }
@@ -318,7 +329,7 @@ function ComboboxWithCheckbox({ frameworks }: FrameworkComboboxProps) {
           <ChevronsUpDown className="text-muted-foreground" />
         </Button>
       </PopoverTrigger>
-      <PopoverContent className="w-[300px] p-0" align="start">
+      <ComboboxContent className="w-[300px] p-0" align="start">
         <Command>
           <CommandInput placeholder="Search framework..." />
           <CommandList>
@@ -352,7 +363,7 @@ function ComboboxWithCheckbox({ frameworks }: FrameworkComboboxProps) {
             </CommandGroup>
           </CommandList>
         </Command>
-      </PopoverContent>
+      </ComboboxContent>
     </Popover>
   );
 }

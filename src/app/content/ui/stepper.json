@@ -1,3 +1,0 @@
-{
-  "Default": "import { Stepper } from \"@/components/ui/stepper\";\n\nconst StepperExample = () => {\n  const steps = [\n    {\n      label: \"First\",\n      description: \"Contact info\",\n      status: \"completed\" as const,\n    },\n    {\n      label: \"Second\",\n      description: \"Date & time\",\n      status: \"active\" as const,\n    },\n    {\n      label: \"Third\",\n      description: \"Select rooms\",\n      status: \"pending\" as const,\n    },\n  ];\n\n  return (\n    <div className=\"w-200\">\n      <Stepper steps={steps} />\n    </div>\n  );\n};\n\nexport default StepperExample;"
-}

@@ -1,7 +1,0 @@
-{
-    "Default": "import { CircularProgress } from \"@/components/ui/circular-progress\";\n\nexport default function DefaultDemo() {\n  return (\n    <div className=\"flex items-start justify-center w-28\"><CircularProgress variant=\"default\" size=\"md\" /></div>\n  );\n}",
-    "Variants": "import { CircularProgress } from \"@/components/ui/circular-progress\";\n\nexport default function VariantsDemo() {\n  return (\n    <div className=\"flex flex-wrap items-center gap-30\">\n      <CircularProgress variant=\"default\" size=\"md\" />\n      <CircularProgress variant=\"circular\" size=\"md\" />\n    </div>\n  );\n}",
-    "With Text Circular Progress": "import { CircularProgress } from \"@/components/ui/circular-progress\";\n\nexport default function WithTextCircularProgressDemo() {\n  return (\n    <div className=\"flex items-start justify-center w-28\"> <CircularProgress variant=\"circular\" size=\"md\" message=\"Loading...\" /></div>\n  );\n}"
-}
-
-

@@ -1,5 +1,0 @@
-{
-    "Default": "import { DatePickerSimple } from \"@/components/ui/date-picker\";\n\nexport default function DefaultDemo() {\n  return (\n    <DatePickerSimple />\n  );\n}",
-    "Date Picker Simple": "import { DatePickerSimple } from \"@/components/ui/date-picker\";\n\nexport default function DatePickerSimpleDemo() {\n  return (\n    <DatePickerSimple />\n  );\n}",
-    "Date Picker With Range": "import { DatePickerWithRange } from \"@/components/ui/date-picker\";\n\nexport default function DatePickerWithRangeDemo() {\n  return (\n    <DatePickerWithRange />\n  );\n}"
-}

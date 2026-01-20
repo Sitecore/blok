@@ -1,10 +1,12 @@
-import StepperExample from "@/app/demo/[name]/ui//stepper-example";
-
 export const stepper = {
   name: "stepper",
-  defaultComponent: <StepperExample />,
-  usage: [
+  preview: {
+    defaultComponent: "stepper",
+  },
+  usage: {
+    usage: [
     `import { Stepper } from "@/components/ui/stepper";`,
-    `<Stepper steps={steps} />`,
-  ]
+      `<Stepper steps={steps} />`,
+    ]
+  },
 };
