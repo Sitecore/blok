@@ -1,7 +1,6 @@
-'use client'
+"use client";
 
-import { formatColorValue, parseCssVariablesByTheme, resolveVariableValue } from "@/lib/token-utils";
-import { useEffect, useState } from "react";
+import { CopyableToken } from "@/components/docsite/copyable-token";
 import {
   Table,
   TableBody,
@@ -10,48 +9,68 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { CopyableToken } from "@/components/docsite/copyable-token";
+import {
+  formatColorValue,
+  parseCssVariablesByTheme,
+  resolveVariableValue,
+} from "@/lib/token-utils";
+import { useEffect, useState } from "react";
 
 type Props = {
   content: string;
 };
 
 // Calculate contrast ratio between two colors
-const getContrastRatio = (color1: string, color2: string = '#FFFFFF'): number | undefined => {
-  if (!color1 || color1.includes('rgba(') || color1.includes('rgb(') || !color1.startsWith('#')) {
+const getContrastRatio = (
+  color1: string,
+  color2 = "#FFFFFF",
+): number | undefined => {
+  if (
+    !color1 ||
+    color1.includes("rgba(") ||
+    color1.includes("rgb(") ||
+    !color1.startsWith("#")
+  ) {
     return undefined;
   }
 
   // Helper function to calculate the luminance of a color
   function getLuminance(color: string): number {
-    const hex = color.replace(/^#/, '');
-    
+    const hex = color.replace(/^#/, "");
+
     // Check if hex is valid
     if (hex.length !== 6) {
-      return NaN;
+      return Number.NaN;
     }
-    
-    const r = parseInt(hex.slice(0, 2), 16) / 255;
-    const g = parseInt(hex.slice(2, 4), 16) / 255;
-    const b = parseInt(hex.slice(4, 6), 16) / 255;
+
+    const r = Number.parseInt(hex.slice(0, 2), 16) / 255;
+    const g = Number.parseInt(hex.slice(2, 4), 16) / 255;
+    const b = Number.parseInt(hex.slice(4, 6), 16) / 255;
 
     // Check for NaN values
-    if (isNaN(r) || isNaN(g) || isNaN(b)) {
-      return NaN;
+    if (Number.isNaN(r) || Number.isNaN(g) || Number.isNaN(b)) {
+      return Number.NaN;
     }
 
-    const gammaCorrectedR = r <= 0.04045 ? r / 12.92 : Math.pow((r + 0.055) / 1.055, 2.4);
-    const gammaCorrectedG = g <= 0.04045 ? g / 12.92 : Math.pow((g + 0.055) / 1.055, 2.4);
-    const gammaCorrectedB = b <= 0.04045 ? b / 12.92 : Math.pow((b + 0.055) / 1.055, 2.4);
+    const gammaCorrectedR =
+      r <= 0.04045 ? r / 12.92 : ((r + 0.055) / 1.055) ** 2.4;
+    const gammaCorrectedG =
+      g <= 0.04045 ? g / 12.92 : ((g + 0.055) / 1.055) ** 2.4;
+    const gammaCorrectedB =
+      b <= 0.04045 ? b / 12.92 : ((b + 0.055) / 1.055) ** 2.4;
 
-    return 0.2126 * gammaCorrectedR + 0.7152 * gammaCorrectedG + 0.0722 * gammaCorrectedB;
+    return (
+      0.2126 * gammaCorrectedR +
+      0.7152 * gammaCorrectedG +
+      0.0722 * gammaCorrectedB
+    );
   }
 
   const luminance1 = getLuminance(color1);
   const luminance2 = getLuminance(color2);
 
   // Check if luminance calculations are valid
-  if (isNaN(luminance1) || isNaN(luminance2)) {
+  if (Number.isNaN(luminance1) || Number.isNaN(luminance2)) {
     return undefined;
   }
 
@@ -62,7 +81,9 @@ const getContrastRatio = (color1: string, color2: string = '#FFFFFF'): number | 
 };
 
 export function ColorsClient({ content }: Props) {
-  const [defaultColors, setDefaultColors] = useState<Record<string, string>>({});
+  const [defaultColors, setDefaultColors] = useState<Record<string, string>>(
+    {},
+  );
   const [darkColors, setDarkColors] = useState<Record<string, string>>({});
 
   const [defaultVars, setDefaultVars] = useState<Record<string, string>>({});
@@ -71,8 +92,13 @@ export function ColorsClient({ content }: Props) {
   const [isDarkTheme, setIsDarkTheme] = useState<boolean>(false);
 
   useEffect(() => {
-    const { default: parsedDefault, dark: parsedDark, defaultVars, darkVars } = parseCssVariablesByTheme(content);
-    
+    const {
+      default: parsedDefault,
+      dark: parsedDark,
+      defaultVars,
+      darkVars,
+    } = parseCssVariablesByTheme(content);
+
     setDefaultColors(parsedDefault);
     setDarkColors(parsedDark);
     setDefaultVars(defaultVars);
@@ -87,28 +113,30 @@ export function ColorsClient({ content }: Props) {
     setIsDarkTheme(document.documentElement.classList.contains("dark"));
 
     // Observe class changes on <html>
-    observer.observe(document.documentElement, { attributes: true, attributeFilter: ["class"] });
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ["class"],
+    });
 
     return () => observer.disconnect();
   }, [content]);
 
   // Filter to only show base color tokens
-  const allKeys = Object.keys(defaultColors)
-    .filter((key) => {
-      const value = defaultColors[key];
-      const trimmedValue = value.trim();
-      const isDirectColor = 
-        trimmedValue.startsWith("#") ||
-        trimmedValue.startsWith("rgba(") ||
-        trimmedValue.startsWith("rgb(") ||
-        trimmedValue === "transparent";
-      
-      return (
-        key.startsWith("color-") &&
-        isDirectColor &&
-        !trimmedValue.startsWith("var(")
-      );
-    });
+  const allKeys = Object.keys(defaultColors).filter((key) => {
+    const value = defaultColors[key];
+    const trimmedValue = value.trim();
+    const isDirectColor =
+      trimmedValue.startsWith("#") ||
+      trimmedValue.startsWith("rgba(") ||
+      trimmedValue.startsWith("rgb(") ||
+      trimmedValue === "transparent";
+
+    return (
+      key.startsWith("color-") &&
+      isDirectColor &&
+      !trimmedValue.startsWith("var(")
+    );
+  });
 
   return (
     <div className="overflow-x-auto">
@@ -119,7 +147,9 @@ export function ColorsClient({ content }: Props) {
             <TableHead className="px-4">Token</TableHead>
             <TableHead className="px-4">Value (Default)</TableHead>
             <TableHead className="px-4">Value (Dark)</TableHead>
-            <TableHead className="px-4 text-right">Contrast against bg</TableHead>
+            <TableHead className="px-4 text-right">
+              Contrast against bg
+            </TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
@@ -127,12 +157,16 @@ export function ColorsClient({ content }: Props) {
             const defaultValue = defaultColors[key];
             const darkValue = darkColors[key] || defaultValue;
             const bgColor = isDarkTheme ? darkValue : defaultValue;
-            const { light, dark } = resolveVariableValue(defaultValue, defaultVars, darkVars);
-            
+            const { light, dark } = resolveVariableValue(
+              defaultValue,
+              defaultVars,
+              darkVars,
+            );
+
             const formattedLight = formatColorValue(light);
             const formattedDark = formatColorValue(dark);
             const contrastRatio = getContrastRatio(light);
-            const bgForContrast = isDarkTheme ? '000000' : 'FFFFFF';
+            const bgForContrast = isDarkTheme ? "000000" : "FFFFFF";
 
             return (
               <TableRow key={key}>
@@ -152,13 +186,15 @@ export function ColorsClient({ content }: Props) {
                   <code className="font-mono text-sm">{formattedDark}</code>
                 </TableCell>
                 <TableCell className="px-4 py-3 text-right">
-                  {contrastRatio && !isNaN(contrastRatio) && (
+                  {contrastRatio && !Number.isNaN(contrastRatio) && (
                     <a
-                      href={`https://webaim.org/resources/contrastchecker/?fcolor=${formattedLight.replace('#', '')}&bcolor=${bgForContrast}`}
+                      href={`https://webaim.org/resources/contrastchecker/?fcolor=${formattedLight.replace("#", "")}&bcolor=${bgForContrast}`}
                       target="_blank"
                       rel="noopener noreferrer"
                       className={`font-mono text-sm underline ${
-                        contrastRatio >= 4.5 ? 'text-green-600 dark:text-green-400' : 'text-red-600 dark:text-red-400'
+                        contrastRatio >= 4.5
+                          ? "text-green-600 dark:text-green-400"
+                          : "text-red-600 dark:text-red-400"
                       }`}
                     >
                       {contrastRatio.toFixed(2)}
@@ -173,4 +209,3 @@ export function ColorsClient({ content }: Props) {
     </div>
   );
 }
-

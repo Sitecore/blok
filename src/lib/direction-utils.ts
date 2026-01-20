@@ -31,4 +31,3 @@ export function getBrowserLanguage(): string {
   const languages = navigator.languages || [navigator.language];
   return languages[0] || "en";
 }
-

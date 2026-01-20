@@ -1,12 +1,11 @@
 "use client";
 
-import * as React from "react";
-import Link from "next/link";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
+import Link from "next/link";
+import type * as React from "react";
 
 interface ComponentGridCardProps {
-  name: string;
   title: string;
   href?: string;
   preview?: React.ReactNode;
@@ -34,7 +33,6 @@ export function PlaceholderImage() {
 }
 
 export function ComponentGridCard({
-  name,
   title,
   href,
   preview,
@@ -44,7 +42,7 @@ export function ComponentGridCard({
     <Card
       className={cn(
         "group relative overflow-hidden p-0 h-full w-56 flex flex-col cursor-pointer transition-all hover:shadow-md gap-0 border-black/10",
-        className
+        className,
       )}
       style="filled"
     >
@@ -61,8 +59,9 @@ export function ComponentGridCard({
 
   if (href) {
     // Check if href is an external URL
-    const isExternal = href.startsWith("http://") || href.startsWith("https://");
-    
+    const isExternal =
+      href.startsWith("http://") || href.startsWith("https://");
+
     if (isExternal) {
       return (
         <a
@@ -76,7 +75,7 @@ export function ComponentGridCard({
         </a>
       );
     }
-    
+
     return (
       <Link href={href} className="block h-full">
         {content}

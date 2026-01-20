@@ -1,10 +1,4 @@
-import * as React from "react";
-
-interface ColorsThumbProps {
-  className?: string;
-}
-
-const ColorssThumb = ({ className }: ColorsThumbProps) => (
+const ColorssThumb = () => (
   <svg
     width="50"
     height="50"

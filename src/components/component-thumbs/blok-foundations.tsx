@@ -15,4 +15,3 @@ const BlokFoundationsThumb = () => (
 );
 
 export default BlokFoundationsThumb;
-

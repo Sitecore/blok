@@ -1,8 +1,8 @@
 "use client";
 
-import { useState } from "react";
-import { PinnedSitesSection } from "@/components/bloks/pinned-sites-section";
 import { AllSitesSection } from "@/components/bloks/all-sites-section";
+import { PinnedSitesSection } from "@/components/bloks/pinned-sites-section";
+import { Button } from "@/components/ui/button";
 import {
   Dialog,
   DialogClose,
@@ -14,16 +14,16 @@ import {
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Button } from "@/components/ui/button";
 import {
-  Settings,
-  Pin,
-  PinOff,
-  Edit,
   Copy,
+  Edit,
   FileEdit,
   LayoutGrid,
+  Pin,
+  PinOff,
+  Settings,
 } from "lucide-react";
+import { useState } from "react";
 
 export interface SitePermissions {
   canAdmin: boolean;
@@ -293,7 +293,9 @@ export default function PinnedSitesSectionDemo() {
 
   // Handlers for page builder action
   const handlePageBuilder = (site: SiteFavoritesResponse) => {
-    console.log(`Opening page builder for site: ${site.displayName} (${site.id})`);
+    console.log(
+      `Opening page builder for site: ${site.displayName} (${site.id})`,
+    );
 
     // TODO: Add your navigation logic here
     // Example with Next.js router:
@@ -376,7 +378,10 @@ export default function PinnedSitesSectionDemo() {
   ];
 
   // Dropdown actions factory - used by All Sites section
-  const getDropdownActions = (site: SiteFavoritesResponse, isPinned: boolean) => [
+  const getDropdownActions = (
+    site: SiteFavoritesResponse,
+    isPinned: boolean,
+  ) => [
     {
       icon: <Settings className="mr-2 h-4 w-4" />,
       label: "Settings",
@@ -384,9 +389,13 @@ export default function PinnedSitesSectionDemo() {
       show: true,
     },
     {
-      icon: isPinned ? <PinOff className="mr-2 h-4 w-4" /> : <Pin className="mr-2 h-4 w-4" />,
+      icon: isPinned ? (
+        <PinOff className="mr-2 h-4 w-4" />
+      ) : (
+        <Pin className="mr-2 h-4 w-4" />
+      ),
       label: isPinned ? "Unpin Site" : "Pin Site",
-      onClick: () => isPinned ? handleUnpin(site.id) : handlePin(site.id),
+      onClick: () => (isPinned ? handleUnpin(site.id) : handlePin(site.id)),
       show: true,
     },
     {
@@ -398,7 +407,8 @@ export default function PinnedSitesSectionDemo() {
     {
       icon: <Copy className="mr-2 h-4 w-4" />,
       label: "Duplicate",
-      onClick: () => handleDuplicate(site.id, `${site.displayName || site.name} (Copy)`),
+      onClick: () =>
+        handleDuplicate(site.id, `${site.displayName || site.name} (Copy)`),
       show: site.permissions.canCreate,
     },
   ];
@@ -428,7 +438,8 @@ export default function PinnedSitesSectionDemo() {
             <DialogHeader>
               <DialogTitle>Rename Site</DialogTitle>
               <DialogDescription>
-                Enter a new name for your site. This will update the display name.
+                Enter a new name for your site. This will update the display
+                name.
               </DialogDescription>
             </DialogHeader>
             <div className="grid gap-4 py-4">
@@ -446,7 +457,9 @@ export default function PinnedSitesSectionDemo() {
             </div>
             <DialogFooter>
               <DialogClose asChild>
-                <Button type="button" variant="ghost" colorScheme="neutral">Cancel</Button>
+                <Button type="button" variant="ghost" colorScheme="neutral">
+                  Cancel
+                </Button>
               </DialogClose>
               <Button type="submit">Rename</Button>
             </DialogFooter>
@@ -461,7 +474,8 @@ export default function PinnedSitesSectionDemo() {
             <DialogHeader>
               <DialogTitle>Duplicate Site</DialogTitle>
               <DialogDescription>
-                Create a copy of this site with a new name. All content and settings will be duplicated.
+                Create a copy of this site with a new name. All content and
+                settings will be duplicated.
               </DialogDescription>
             </DialogHeader>
             <div className="grid gap-4 py-4">
@@ -479,7 +493,9 @@ export default function PinnedSitesSectionDemo() {
             </div>
             <DialogFooter>
               <DialogClose asChild>
-                <Button type="button" variant="ghost" colorScheme="neutral">Cancel</Button>
+                <Button type="button" variant="ghost" colorScheme="neutral">
+                  Cancel
+                </Button>
               </DialogClose>
               <Button type="submit">Duplicate</Button>
             </DialogFooter>

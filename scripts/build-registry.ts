@@ -1,6 +1,6 @@
-import { copyFileSync, mkdirSync } from "fs";
-import { dirname } from "path";
-import { execSync } from "child_process";
+import { execSync } from "node:child_process";
+import { copyFileSync, mkdirSync } from "node:fs";
+import { dirname } from "node:path";
 
 interface RegistryConfig {
   source: string;
@@ -29,7 +29,7 @@ function buildRegistry(config: RegistryConfig): void {
   console.log(`✨ ${source} built successfully!`);
 }
 
-// gets config file  
+// gets config file
 if (require.main === module) {
   const configFile = process.argv[2];
 

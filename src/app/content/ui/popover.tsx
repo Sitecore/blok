@@ -1,11 +1,11 @@
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import {
   Popover,
+  PopoverContent,
   PopoverTrigger,
-  PopoverContent
 } from "@/components/ui/popover";
-import { Button } from "@/components/ui/button";
 import { Label } from "@radix-ui/react-label";
-import { Input } from "@/components/ui/input";
 
 export default function PopoverDemo() {
   return (
@@ -24,11 +24,7 @@ export default function PopoverDemo() {
           <div className="grid gap-2">
             <div className="grid grid-cols-3 items-center gap-4">
               <Label htmlFor="width">Width</Label>
-              <Input
-                id="width"
-                defaultValue="100%"
-                className="col-span-2"
-              />
+              <Input id="width" defaultValue="100%" className="col-span-2" />
             </div>
             <div className="grid grid-cols-3 items-center gap-4">
               <Label htmlFor="maxWidth">Max. width</Label>
@@ -40,11 +36,7 @@ export default function PopoverDemo() {
             </div>
             <div className="grid grid-cols-3 items-center gap-4">
               <Label htmlFor="height">Height</Label>
-              <Input
-                id="height"
-                defaultValue="25px"
-                className="col-span-2"
-              />
+              <Input id="height" defaultValue="25px" className="col-span-2" />
             </div>
             <div className="grid grid-cols-3 items-center gap-4">
               <Label htmlFor="maxHeight">Max. height</Label>

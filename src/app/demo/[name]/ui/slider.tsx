@@ -4,9 +4,6 @@ export const slider = {
     defaultComponent: "slider",
   },
   usage: {
-    usage: [
-      `import { Slider } from "@/components/ui/slider";`,
-      `<Slider />`,
-    ]
+    usage: [`import { Slider } from "@/components/ui/slider";`, `<Slider />`],
   },
 };

@@ -2,15 +2,15 @@
 
 import {
   StackNavigation,
-  type StackNavigationElement
+  type StackNavigationElement,
 } from "@/components/ui/stack-navigation";
 import { Icon } from "@/lib/icon";
-import { 
-  mdiAccountMultipleOutline, 
-  mdiArchiveOutline, 
-  mdiCogOutline, 
-  mdiFileOutline, 
-  mdiHomeVariantOutline 
+import {
+  mdiAccountMultipleOutline,
+  mdiArchiveOutline,
+  mdiCogOutline,
+  mdiFileOutline,
+  mdiHomeVariantOutline,
 } from "@mdi/js";
 
 const navigationItems: StackNavigationElement[] = [
@@ -21,28 +21,26 @@ const navigationItems: StackNavigationElement[] = [
   },
   {
     name: "User management",
-    path: "#user-management", 
+    path: "#user-management",
     icon: <Icon path={mdiAccountMultipleOutline} />,
   },
   {
     name: "Documents",
-    path: "#documents", 
+    path: "#documents",
     icon: <Icon path={mdiFileOutline} />,
   },
   {
     name: "Archive",
-    path: "#archive", 
+    path: "#archive",
     icon: <Icon path={mdiArchiveOutline} />,
   },
   {
     name: "Settings",
-    path: "#settings", 
+    path: "#settings",
     icon: <Icon path={mdiCogOutline} />,
   },
 ];
 
 export default function StackNavigationDemo() {
-  return (
-    <StackNavigation items={navigationItems} />
-  );
+  return <StackNavigation items={navigationItems} />;
 }

@@ -1,5 +1,5 @@
-import * as React from "react";
-import { cva, type VariantProps } from "class-variance-authority";
+import { type VariantProps, cva } from "class-variance-authority";
+import type * as React from "react";
 
 import { cn } from "@/lib/utils";
 
@@ -13,7 +13,7 @@ const cardVariants = cva(
         sm: "shadow-sm",
         base: "shadow-base",
         md: "shadow-md",
-        lg: "shadow-lg"
+        lg: "shadow-lg",
       },
       style: {
         flat: "bg-body-bg border-transparent",
@@ -31,7 +31,7 @@ const cardVariants = cva(
       style: "flat",
       padding: "lg",
     },
-  }
+  },
 );
 
 function Card({
@@ -56,7 +56,7 @@ function CardHeader({ className, ...props }: React.ComponentProps<"div">) {
       data-slot="card-header"
       className={cn(
         "@container/card-header grid auto-rows-min grid-rows-[auto_auto] items-start gap-1.5 has-data-[slot=card-action]:grid-cols-[1fr_auto] [.border-b]:pb-6",
-        className
+        className,
       )}
       {...props}
     />
@@ -89,7 +89,7 @@ function CardAction({ className, ...props }: React.ComponentProps<"div">) {
       data-slot="card-action"
       className={cn(
         "col-start-2 row-span-2 row-start-1 self-start justify-self-end",
-        className
+        className,
       )}
       {...props}
     />

@@ -1,5 +1,5 @@
-import { mdiDotsHorizontal, mdiSlashForward } from "@mdi/js";
 import { Icon } from "@/lib/icon";
+import { mdiDotsHorizontal, mdiSlashForward } from "@mdi/js";
 import { Slot } from "@radix-ui/react-slot";
 import type * as React from "react";
 

@@ -1,14 +1,14 @@
 "use client";
 
-import { ComponentGridCard } from "@/components/docsite/component-grid-card";
-import BreakpointsThumb from "@/components/component-thumbs/breakpoints";
 import BorderRadiusThumb from "@/components/component-thumbs/border-radius";
+import BreakpointsThumb from "@/components/component-thumbs/breakpoints";
 import ColorssThumb from "@/components/component-thumbs/colors";
 import SemanticTokensThumb from "@/components/component-thumbs/semantic-tokens";
 import ShadowsThumb from "@/components/component-thumbs/shadows";
 import SizesThumb from "@/components/component-thumbs/sizes";
 import SpacingThumb from "@/components/component-thumbs/spacing";
 import TypographyThumb from "@/components/component-thumbs/typography";
+import { ComponentGridCard } from "@/components/docsite/component-grid-card";
 
 const themingCategories = [
   {
@@ -17,7 +17,7 @@ const themingCategories = [
     href: "/theming/border-radius",
     preview: (
       <div className="w-full h-full flex items-center justify-center p-4">
-        <BorderRadiusThumb className="w-full h-auto max-h-full" />
+        <BorderRadiusThumb />
       </div>
     ),
   },
@@ -27,7 +27,7 @@ const themingCategories = [
     href: "/theming/breakpoints",
     preview: (
       <div className="w-full h-full flex items-center justify-center p-4">
-        <BreakpointsThumb className="w-full h-auto max-h-full" />
+        <BreakpointsThumb />
       </div>
     ),
   },
@@ -37,7 +37,7 @@ const themingCategories = [
     href: "/theming/colors",
     preview: (
       <div className="w-full h-full flex items-center justify-center p-4">
-        <ColorssThumb className="w-full h-auto max-h-full" />
+        <ColorssThumb />
       </div>
     ),
   },
@@ -47,7 +47,7 @@ const themingCategories = [
     href: "/theming/semantic-tokens",
     preview: (
       <div className="w-full h-full flex items-center justify-center p-4">
-        <SemanticTokensThumb className="w-full h-auto max-h-full" />
+        <SemanticTokensThumb />
       </div>
     ),
   },
@@ -57,7 +57,7 @@ const themingCategories = [
     href: "/theming/shadows",
     preview: (
       <div className="w-full h-full flex items-center justify-center p-4">
-        <ShadowsThumb className="w-full h-auto max-h-full" />
+        <ShadowsThumb />
       </div>
     ),
   },
@@ -67,7 +67,7 @@ const themingCategories = [
     href: "/theming/sizes",
     preview: (
       <div className="w-full h-full flex items-center justify-center p-4">
-        <SizesThumb className="w-full h-auto max-h-full" />
+        <SizesThumb />
       </div>
     ),
   },
@@ -77,7 +77,7 @@ const themingCategories = [
     href: "/theming/spacing",
     preview: (
       <div className="w-full h-full flex items-center justify-center p-4">
-        <SpacingThumb className="w-full h-auto max-h-full" />
+        <SpacingThumb />
       </div>
     ),
   },
@@ -87,7 +87,7 @@ const themingCategories = [
     href: "/theming/typography",
     preview: (
       <div className="w-full h-full flex items-center justify-center p-4">
-        <TypographyThumb className="w-full h-auto max-h-full" />
+        <TypographyThumb />
       </div>
     ),
   },
@@ -107,7 +107,6 @@ export default function ThemingPage() {
         {themingCategories?.map((category) => (
           <ComponentGridCard
             key={category?.name}
-            name={category?.name}
             title={category?.title}
             href={category?.href}
             preview={category?.preview}

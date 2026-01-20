@@ -1,6 +1,14 @@
-import { SidebarProvider, Sidebar, SidebarHeader, SidebarContent, SidebarMenu, SidebarMenuItem, SidebarMenuButton } from "@/components/ui/sidebar";
+import {
+  Sidebar,
+  SidebarContent,
+  SidebarHeader,
+  SidebarMenu,
+  SidebarMenuButton,
+  SidebarMenuItem,
+  SidebarProvider,
+} from "@/components/ui/sidebar";
 import { Icon } from "@/lib/icon";
-import { mdiHome, mdiAccount, mdiCog } from "@mdi/js";
+import { mdiAccount, mdiCog, mdiHome } from "@mdi/js";
 
 export default function SidebarDemo() {
   return (
@@ -8,7 +16,9 @@ export default function SidebarDemo() {
       <SidebarProvider>
         <Sidebar className="w-64 px-2 py-6">
           <SidebarHeader>
-            <div className="py-1.5 text-sm font-semibold uppercase text-subtle-text">Navigation</div>
+            <div className="py-1.5 text-sm font-semibold uppercase text-subtle-text">
+              Navigation
+            </div>
           </SidebarHeader>
           <SidebarContent>
             <SidebarMenu>

@@ -30,8 +30,8 @@ import { Droppable } from "@/components/ui/droppable";`,
     ],
   },
   components: {
-    "Basic Drag and Drop": { component: "draggable-basic", },
-    "Custom Handle": { component: "draggable-custom-handle", },
-    "Drag, Drop & Sort": { component: "draggable-sortable-drop", },
+    "Basic Drag and Drop": { component: "draggable-basic" },
+    "Custom Handle": { component: "draggable-custom-handle" },
+    "Drag, Drop & Sort": { component: "draggable-sortable-drop" },
   },
 };

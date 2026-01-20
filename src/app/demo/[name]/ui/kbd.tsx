@@ -13,9 +13,9 @@ export const kbd = {
     ],
   },
   components: {
-    "Group": { component: "kbd-group", },
-    "Button": { component: "kbd-button", },
-    "Tooltip": { component: "kbd-tooltip", },
-    "Keyboard Shortcuts": { component: "kbd-shortcut", },
+    Group: { component: "kbd-group" },
+    Button: { component: "kbd-button" },
+    Tooltip: { component: "kbd-tooltip" },
+    "Keyboard Shortcuts": { component: "kbd-shortcut" },
   },
 };

@@ -138,9 +138,7 @@ export default function RTLPage() {
         </div>
 
         <div className="flex flex-col space-y-3 p-5 md:pt-2 md:px-10">
-          <h2 className="font-semibold text-3xl md:text-4xl">
-            Installation
-          </h2>
+          <h2 className="font-semibold text-3xl md:text-4xl">Installation</h2>
           <p>Install the required dependency from your command line:</p>
           <Codeblocks
             showLineNumbers={false}
@@ -215,9 +213,7 @@ export default function RTLPage() {
         </div>
 
         <div className="flex flex-col space-y-3 p-5 md:pt-2 md:px-10">
-          <h2 className="font-semibold text-3xl md:text-4xl">
-            Implementation
-          </h2>
+          <h2 className="font-semibold text-3xl md:text-4xl">Implementation</h2>
           <p>
             To implement RTL support in your application, wrap your app with the{" "}
             <code className="inline text-sm tabular-nums bg-muted px-1 rounded">
@@ -303,9 +299,7 @@ export default function RTLPage() {
         </div>
 
         <div className="flex flex-col space-y-3 p-5 md:pt-2 md:px-10 pb-20">
-          <h2 className="font-semibold text-3xl md:text-4xl">
-            Examples
-          </h2>
+          <h2 className="font-semibold text-3xl md:text-4xl">Examples</h2>
 
           <div className="space-y-4">
             <div>
@@ -380,4 +374,3 @@ export function Sidebar() {
     </main>
   );
 }
-

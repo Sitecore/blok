@@ -5,8 +5,8 @@ export const stepper = {
   },
   usage: {
     usage: [
-    `import { Stepper } from "@/components/ui/stepper";`,
+      `import { Stepper } from "@/components/ui/stepper";`,
       `<Stepper steps={steps} />`,
-    ]
+    ],
   },
 };

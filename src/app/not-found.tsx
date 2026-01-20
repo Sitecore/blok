@@ -1,7 +1,6 @@
-import Link from "next/link";
-import Image from "next/image";
 import TopBar from "@/components/layout/topbar";
 import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 export default function NotFound() {
   return (
@@ -12,18 +11,19 @@ export default function NotFound() {
 
       <main className="flex flex-1 flex-col items-center justify-center mt-12 px-4">
         <div className="flex flex-col items-center text-center max-w-md">
-           <img
-                            src={`https://delivery-sitecore.sitecorecontenthub.cloud/api/public/content/blok-404?v=b2358501`}
-                            alt={`404 Illustration`}
-                            className="max-w-[160px] h-auto object-contain"
-                          />
-          
+          <img
+            src={`https://delivery-sitecore.sitecorecontenthub.cloud/api/public/content/blok-404?v=b2358501`}
+            alt={`404 Illustration`}
+            className="max-w-[160px] h-auto object-contain"
+          />
+
           <h1 className="text-3xl font-semibold text-foreground mb-4 mt-4">
             404 - Page not found
           </h1>
-          
+
           <p className="text-muted-foreground mb-8">
-            The page you are looking for does not seem to exist. Try navigating home or searching again
+            The page you are looking for does not seem to exist. Try navigating
+            home or searching again
           </p>
 
           <Button asChild variant="default" colorScheme="primary">
@@ -34,4 +34,3 @@ export default function NotFound() {
     </div>
   );
 }
-

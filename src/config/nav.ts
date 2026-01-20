@@ -30,31 +30,31 @@ export const graphicsItems = [
 // Searchable items
 export const searchableItems = [
   // Theming items
-  ...themingItems.map(item => ({
+  ...themingItems.map((item) => ({
     title: item.title,
     href: item.path,
-    type: 'theming' as const,
-    description: `Theming: ${item.title}`
+    type: "theming" as const,
+    description: `Theming: ${item.title}`,
   })),
   // Graphics items
-  ...graphicsItems.map(item => ({
+  ...graphicsItems.map((item) => ({
     title: item.title,
     href: item.path,
-    type: 'graphics' as const,
-    description: `Graphics: ${item.title}`
+    type: "graphics" as const,
+    description: `Graphics: ${item.title}`,
   })),
   // MCP Server
   {
     title: "MCP Server",
     href: "/mcp",
-    type: 'page' as const,
-    description: "Blok MCP Server configuration and setup"
+    type: "page" as const,
+    description: "Blok MCP Server configuration and setup",
   },
   // RTL Support
   {
     title: "RTL Support",
     href: "/rtl",
-    type: 'page' as const,
-    description: "Right-to-Left (RTL) language support documentation"
+    type: "page" as const,
+    description: "Right-to-Left (RTL) language support documentation",
   },
 ];

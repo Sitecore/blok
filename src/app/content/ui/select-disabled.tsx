@@ -1,9 +1,9 @@
 import {
   Select,
+  SelectContent,
+  SelectItem,
   SelectTrigger,
   SelectValue,
-  SelectContent,
-  SelectItem
 } from "@/components/ui/select";
 
 export default function DisabledSelectDemo() {

@@ -20,7 +20,10 @@ export default function HorizontalScrollAreaDemo() {
     <ScrollArea className="w-full max-w-96 rounded-md border p-4">
       <div className="flex gap-4">
         {works.map((artwork) => (
-          <figure key={artwork.artist} className="shrink-0 w-full max-w-[300px]">
+          <figure
+            key={artwork.artist}
+            className="shrink-0 w-full max-w-[300px]"
+          >
             <div className="overflow-hidden rounded-md">
               <img
                 src={artwork.art}

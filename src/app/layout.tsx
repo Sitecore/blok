@@ -4,12 +4,13 @@ import type { Metadata } from "next";
 import type { ReactNode } from "react";
 
 import "@/app/globals.css";
-import { Toaster } from "@/components/ui/sonner";
 import { DirectionProvider } from "@/components/docsite/direction-provider";
+import { Toaster } from "@/components/ui/sonner";
 
 export const metadata: Metadata = {
   title: "Blok",
-  description: "Blok is Sitecore's design system. It is used for creating industry leading martech applications.",
+  description:
+    "Blok is Sitecore's design system. It is used for creating industry leading martech applications.",
   icons: [{ rel: "icon", url: "/favicon.svg", type: "image/svg+xml" }],
 };
 

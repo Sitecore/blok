@@ -1,11 +1,10 @@
 "use client";
 
-import * as React from "react";
-import { CheckIcon, ChevronDownIcon, ChevronsUpDown } from "lucide-react";
-import { mdiPlus } from "@mdi/js";
 import { Icon } from "@/lib/icon";
+import { mdiPlus } from "@mdi/js";
+import { CheckIcon, ChevronDownIcon, ChevronsUpDown } from "lucide-react";
+import * as React from "react";
 
-import { cn } from "@/lib/utils";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import {
@@ -22,10 +21,12 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
+import { cn } from "@/lib/utils";
 
-function ComboboxContent(
-  { className, ...props }: React.ComponentProps<typeof PopoverContent>
-) {
+function ComboboxContent({
+  className,
+  ...props
+}: React.ComponentProps<typeof PopoverContent>) {
   return (
     <PopoverContent
       className={cn("max-h-80 overflow-hidden", className)}
@@ -82,7 +83,7 @@ function FrameworkCombobox({ frameworks }: FrameworkComboboxProps) {
           aria-label="Select framework"
           className={cn(
             "w-full justify-between md:max-w-[200px] rounded-md",
-            open && "ring-primary ring-[2px]"
+            open && "ring-primary ring-[2px]",
           )}
         >
           {value
@@ -110,7 +111,7 @@ function FrameworkCombobox({ frameworks }: FrameworkComboboxProps) {
                   <CheckIcon
                     className={cn(
                       "ml-auto",
-                      value === framework.value ? "opacity-100" : "opacity-0"
+                      value === framework.value ? "opacity-100" : "opacity-0",
                     )}
                   />
                 </CommandItem>
@@ -129,7 +130,7 @@ function UserCombobox({ users, selectedUserId }: UserComboboxProps) {
 
   const selectedUser = React.useMemo(
     () => users.find((user) => user.id === value),
-    [value, users]
+    [value, users],
   );
 
   return (
@@ -143,7 +144,7 @@ function UserCombobox({ users, selectedUserId }: UserComboboxProps) {
           aria-label="Select user"
           className={cn(
             "w-full justify-between px-2 md:max-w-[200px] rounded-md",
-            open && "ring-primary ring-[2px]"
+            open && "ring-primary ring-[2px]",
           )}
         >
           {selectedUser ? (
@@ -175,7 +176,8 @@ function UserCombobox({ users, selectedUserId }: UserComboboxProps) {
                   value={user.username}
                   onSelect={(currentValue) => {
                     const selected = users.find(
-                      (u) => u.username.toLowerCase() === currentValue.toLowerCase()
+                      (u) =>
+                        u.username.toLowerCase() === currentValue.toLowerCase(),
                     );
                     if (selected) {
                       setValue(selected.id === value ? "" : selected.id);
@@ -194,7 +196,7 @@ function UserCombobox({ users, selectedUserId }: UserComboboxProps) {
                   <CheckIcon
                     className={cn(
                       "ml-auto",
-                      value === user.id ? "opacity-100" : "opacity-0"
+                      value === user.id ? "opacity-100" : "opacity-0",
                     )}
                   />
                 </CommandItem>
@@ -202,7 +204,12 @@ function UserCombobox({ users, selectedUserId }: UserComboboxProps) {
             </CommandGroup>
           </CommandList>
           <div className="absolute bottom-0 left-0 right-0 border-x border-b bg-background p-2 rounded-b-md z-10">
-            <Button variant="ghost" size="sm" colorScheme="primary" aria-label="Create new user">
+            <Button
+              variant="ghost"
+              size="sm"
+              colorScheme="primary"
+              aria-label="Create new user"
+            >
               <Icon path={mdiPlus} size={0.9} className="" />
               Create user
             </Button>
@@ -223,14 +230,14 @@ function TimezoneCombobox({
   const selectedGroup = React.useMemo(
     () =>
       timezones.find((group) =>
-        group.timezones.find((tz) => tz.value === value)
+        group.timezones.find((tz) => tz.value === value),
       ),
-    [value, timezones]
+    [value, timezones],
   );
 
   const selectedTimezoneLabel = React.useMemo(
     () => selectedGroup?.timezones.find((tz) => tz.value === value)?.label,
-    [value, selectedGroup]
+    [value, selectedGroup],
   );
 
   return (
@@ -241,7 +248,7 @@ function TimezoneCombobox({
           colorScheme="neutral"
           className={cn(
             "h-12 w-full justify-between px-2.5 md:max-w-[200px] rounded-md",
-            open && "ring-primary ring-[2px]"
+            open && "ring-primary ring-[2px]",
           )}
         >
           {selectedTimezone ? (
@@ -275,7 +282,7 @@ function TimezoneCombobox({
                       value={timezone.value}
                       onSelect={(currentValue) => {
                         setValue(
-                          currentValue as Timezone["timezones"][number]["value"]
+                          currentValue as Timezone["timezones"][number]["value"],
                         );
                         setOpen(false);
                       }}
@@ -292,7 +299,12 @@ function TimezoneCombobox({
             ))}
           </CommandList>
           <div className="absolute bottom-0 left-0 right-0 border-x border-b bg-background p-2 rounded-b-md z-10">
-            <Button variant="ghost" size="sm" colorScheme="primary" aria-label="Create new timezone">
+            <Button
+              variant="ghost"
+              size="sm"
+              colorScheme="primary"
+              aria-label="Create new timezone"
+            >
               <Icon path={mdiPlus} size={0.9} className="" />
               Create timezone
             </Button>
@@ -320,7 +332,7 @@ function ComboboxWithCheckbox({ frameworks }: FrameworkComboboxProps) {
           aria-label="Select frameworks (multi-select)"
           className={cn(
             "w-fit min-w-[280px] justify-between rounded-md",
-            open && "ring-primary ring-[2px]"
+            open && "ring-primary ring-[2px]",
           )}
         >
           {selectedFrameworks.length > 0
@@ -343,16 +355,16 @@ function ComboboxWithCheckbox({ frameworks }: FrameworkComboboxProps) {
                     setSelectedFrameworks(
                       selectedFrameworks.some((f) => f.value === currentValue)
                         ? selectedFrameworks.filter(
-                            (f) => f.value !== currentValue
+                            (f) => f.value !== currentValue,
                           )
-                        : [...selectedFrameworks, framework]
+                        : [...selectedFrameworks, framework],
                     );
                   }}
                 >
                   <div
                     className="border-input data-[selected=true]:border-primary data-[selected=true]:bg-primary data-[selected=true]:text-inverse-text pointer-events-none size-4 shrink-0 rounded-[4px] border transition-all select-none *:[svg]:opacity-0 data-[selected=true]:*:[svg]:opacity-100"
                     data-selected={selectedFrameworks.some(
-                      (f) => f.value === framework.value
+                      (f) => f.value === framework.value,
                     )}
                   >
                     <CheckIcon className="size-3.5 text-current" />

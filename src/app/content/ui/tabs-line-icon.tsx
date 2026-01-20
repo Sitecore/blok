@@ -1,6 +1,6 @@
-import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Icon } from "@/lib/icon";
-import { mdiHome, mdiCog } from "@mdi/js";
+import { mdiCog, mdiHome } from "@mdi/js";
 
 export default function TabsLineVariantWithIconsDemo() {
   return (

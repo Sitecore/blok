@@ -28,6 +28,6 @@ export const collaboration = {
   isSearching={isLoading}
   disableClientFilter={true}
 />`,
-    ]
+    ],
   },
 };

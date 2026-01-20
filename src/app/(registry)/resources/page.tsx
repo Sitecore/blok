@@ -1,14 +1,14 @@
 "use client";
 
-import { ComponentGridCard } from "@/components/docsite/component-grid-card";
-import CodeGuidelineThumb from "@/components/component-thumbs/code-guideline";
-import WritingUITextThumb from "@/components/component-thumbs/writing-ui-text";
 import BlokFoundationsThumb from "@/components/component-thumbs/blok-foundations";
-import ShadcnMcpThumb from "@/components/component-thumbs/shadcn-mcp";
+import CodeGuidelineThumb from "@/components/component-thumbs/code-guideline";
+import ContributionGuide from "@/components/component-thumbs/contribution-guide";
 import LogosThumb from "@/components/component-thumbs/logos";
 import RtlThumb from "@/components/component-thumbs/rtl";
+import ShadcnMcpThumb from "@/components/component-thumbs/shadcn-mcp";
+import WritingUITextThumb from "@/components/component-thumbs/writing-ui-text";
+import { ComponentGridCard } from "@/components/docsite/component-grid-card";
 import { Badge } from "@/components/ui/badge";
-import ContributionGuide from "@/components/component-thumbs/contribution-guide";
 
 const guidelinesItems = [
   {
@@ -160,7 +160,6 @@ export default function ResourcesPage() {
             {guidelinesItems.map((item) => (
               <ComponentGridCard
                 key={item.name}
-                name={item.name}
                 title={item.title}
                 href={item.href}
                 preview={item.preview}
@@ -178,7 +177,6 @@ export default function ResourcesPage() {
             {resourcesItems.map((item) => (
               <ComponentGridCard
                 key={item.name}
-                name={item.name}
                 title={item.title}
                 href={item.href}
                 preview={item.preview}

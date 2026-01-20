@@ -1,18 +1,14 @@
 "use client";
 
-import { useState } from "react";
 import {
   StackNavigation,
   type StackNavigationElement,
   type StackNavigationItem,
 } from "@/components/ui/stack-navigation";
 import { Icon } from "@/lib/icon";
-import { 
-  mdiViewDashboard, 
-  mdiHistory, 
-  mdiLayers 
-} from "@mdi/js";
 import { cn } from "@/lib/utils";
+import { mdiHistory, mdiLayers, mdiViewDashboard } from "@mdi/js";
+import { useState } from "react";
 
 export default function StackNavigationHorizontalTabsDemo() {
   const [activeTab, setActiveTab] = useState("/overview");
@@ -48,7 +44,7 @@ export default function StackNavigationHorizontalTabsDemo() {
           "min-w-14 w-fit h-14 p-1.5 gap-1 rounded-md cursor-pointer overflow-hidden",
           "text-neutral-fg hover:bg-sidebar-accent transition-colors font-medium",
           isActive &&
-            "bg-primary-bg text-primary-fg hover:bg-primary-bg hover:text-primary-fg font-medium"
+            "bg-primary-bg text-primary-fg hover:bg-primary-bg hover:text-primary-fg font-medium",
         )}
         onClick={() => handleTabClick(item.path)}
         onContextMenu={(e) => e.preventDefault()}

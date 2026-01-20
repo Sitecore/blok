@@ -1,14 +1,20 @@
 "use client"; // comment this line if you are not using next.js
 
-import * as React from "react";
-import { DndContext, type DragEndEvent, SortableContainer, arrayMove, type UniqueIdentifier } from "@/components/ui/dnd-context";
-import { SortableItem, SortableHandle } from "@/components/ui/sortable";
+import { Button } from "@/components/ui/button";
+import {
+  DndContext,
+  type DragEndEvent,
+  SortableContainer,
+  type UniqueIdentifier,
+  arrayMove,
+} from "@/components/ui/dnd-context";
 import { DragOverlay } from "@/components/ui/drag-overlay";
-import { GripVertical, Trash2, ChevronDown } from "lucide-react";
-import { mdiTextShort } from "@mdi/js";
+import { SortableHandle, SortableItem } from "@/components/ui/sortable";
 import { Icon } from "@/lib/icon";
 import { cn } from "@/lib/utils";
-import { Button } from "@/components/ui/button";
+import { mdiTextShort } from "@mdi/js";
+import { ChevronDown, GripVertical, Trash2 } from "lucide-react";
+import * as React from "react";
 
 interface FieldItem {
   id: string;
@@ -18,10 +24,10 @@ interface FieldItem {
 }
 
 // Sitecore-style field item with custom drag handle
-function SortableFieldItem({ 
-  item, 
-  onDelete 
-}: { 
+function SortableFieldItem({
+  item,
+  onDelete,
+}: {
   item: FieldItem;
   onDelete?: (id: string) => void;
 }) {
@@ -34,7 +40,7 @@ function SortableFieldItem({
             "flex-shrink-0 w-6 h-6 rounded flex items-center justify-center",
             "text-muted-foreground hover:text-foreground hover:bg-muted",
             "cursor-grab active:cursor-grabbing",
-            "transition-all duration-200"
+            "transition-all duration-200",
           )}
         >
           <GripVertical className="w-4 h-4" />
@@ -88,13 +94,30 @@ function SortableFieldItem({
 
 export default function DraggableCustomHandleDemo() {
   const [items, setItems] = React.useState<FieldItem[]>([
-    { id: "field-A", label: "Click to edit field label", name: "Click to edit field name", type: "Text" },
-    { id: "field-B", label: "Click to edit field label", name: "Click to edit field name", type: "Text" },
-    { id: "field-C", label: "Click to edit field label", name: "Click to edit field name", type: "Text" },
+    {
+      id: "field-A",
+      label: "Click to edit field label",
+      name: "Click to edit field name",
+      type: "Text",
+    },
+    {
+      id: "field-B",
+      label: "Click to edit field label",
+      name: "Click to edit field name",
+      type: "Text",
+    },
+    {
+      id: "field-C",
+      label: "Click to edit field label",
+      name: "Click to edit field name",
+      type: "Text",
+    },
   ]);
   const [activeId, setActiveId] = React.useState<UniqueIdentifier | null>(null);
 
-  const handleDragStart = ({ active }: { active: { id: UniqueIdentifier } }) => {
+  const handleDragStart = ({
+    active,
+  }: { active: { id: UniqueIdentifier } }) => {
     setActiveId(active.id);
   };
 
@@ -104,7 +127,9 @@ export default function DraggableCustomHandleDemo() {
 
     if (over && active.id !== over.id) {
       setItems((currentItems) => {
-        const oldIndex = currentItems.findIndex((item) => item.id === active.id);
+        const oldIndex = currentItems.findIndex(
+          (item) => item.id === active.id,
+        );
         const newIndex = currentItems.findIndex((item) => item.id === over.id);
         return arrayMove(currentItems, oldIndex, newIndex);
       });
@@ -116,10 +141,12 @@ export default function DraggableCustomHandleDemo() {
   };
 
   const handleDelete = (id: string) => {
-    setItems(items.filter(item => item.id !== id));
+    setItems(items.filter((item) => item.id !== id));
   };
 
-  const activeItem = activeId ? items.find((item) => item.id === activeId) : null;
+  const activeItem = activeId
+    ? items.find((item) => item.id === activeId)
+    : null;
 
   return (
     <DndContext
@@ -131,14 +158,19 @@ export default function DraggableCustomHandleDemo() {
         <div>
           <h3 className="text-2xl font-semibold">Custom Drag Handle</h3>
           <p className="text-sm text-muted-foreground mt-2">
-            Drag fields using the grip icon handle only. Other parts of the item (labels, dropdowns, buttons) are interactive and won&apos;t trigger dragging.
+            Drag fields using the grip icon handle only. Other parts of the item
+            (labels, dropdowns, buttons) are interactive and won&apos;t trigger
+            dragging.
           </p>
         </div>
 
         <div className="max-w-3xl">
           {/* Sitecore-style field list container */}
           <div className="rounded-lg border-2 border-dashed border-primary/40 p-4 bg-primary/5">
-            <SortableContainer items={items.map((item) => item.id)} strategy="vertical">
+            <SortableContainer
+              items={items.map((item) => item.id)}
+              strategy="vertical"
+            >
               <div className="space-y-2">
                 {items.map((item) => (
                   <SortableFieldItem
@@ -149,7 +181,7 @@ export default function DraggableCustomHandleDemo() {
                 ))}
               </div>
             </SortableContainer>
-            
+
             {items.length === 0 && (
               <div className="text-center py-8 text-sm text-muted-foreground">
                 No fields. Add some fields to get started.
@@ -160,8 +192,14 @@ export default function DraggableCustomHandleDemo() {
 
         {/* Instructions */}
         <div className="text-xs text-muted-foreground bg-muted/50 rounded-lg p-3 space-y-1">
-          <p><strong>Tip:</strong> Only the grip handle (⋮⋮) on the left side initiates dragging.</p>
-          <p>You can click on labels, names, and action buttons without triggering a drag.</p>
+          <p>
+            <strong>Tip:</strong> Only the grip handle (⋮⋮) on the left side
+            initiates dragging.
+          </p>
+          <p>
+            You can click on labels, names, and action buttons without
+            triggering a drag.
+          </p>
         </div>
       </div>
 
@@ -181,7 +219,9 @@ export default function DraggableCustomHandleDemo() {
             <div className="flex-shrink-0 text-sm text-muted-foreground truncate max-w-[150px]">
               {activeItem.name}
             </div>
-            <div className="flex-shrink-0 text-sm text-muted-foreground/50">|</div>
+            <div className="flex-shrink-0 text-sm text-muted-foreground/50">
+              |
+            </div>
             <div className="flex-shrink-0 text-sm text-muted-foreground">
               {activeItem.type}
             </div>

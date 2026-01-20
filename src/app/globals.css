@@ -15,7 +15,7 @@
 
 :root {
   --radius: 0.625rem;
-  
+
   /* Core semantic tokens (light mode - default) */
   --background: var(--color-white);
   --muted: var(--color-gray-50);
@@ -26,7 +26,7 @@
   --border: var(--color-blackAlpha-200);
   --border-a11y: var(--color-blackAlpha-400);
   --input: var(--color-blackAlpha-400);
-  
+
   /* Foreground tokens */
   --primary-foreground: var(--color-primary-600);
   --destructive-foreground: var(--color-danger-600);
@@ -34,7 +34,7 @@
   --success-foreground: var(--color-success-600);
   --info-foreground: var(--color-info-600);
   --neutral-foreground: var(--color-blackAlpha-600);
-  
+
   /* Background tokens */
   --destructive-background: var(--color-danger-100);
   --primary-background: var(--color-primary-100);
@@ -42,7 +42,7 @@
   --success-background: var(--color-success-100);
   --info-background: var(--color-info-100);
   --neutral-background: var(--color-blackAlpha-100);
-  
+
   /* Active background tokens */
   --primary-background-active: var(--color-primary-200);
   --destructive-background-active: var(--color-danger-200);
@@ -50,7 +50,7 @@
   --success-background-active: var(--color-success-200);
   --info-background-active: var(--color-info-200);
   --neutral-background-active: var(--color-blackAlpha-200);
-  
+
   /* Color tokens */
   --primary: var(--color-primary-500);
   --destructive: var(--color-danger-500);
@@ -58,7 +58,7 @@
   --warning: var(--color-warning-500);
   --info: var(--color-info-500);
   --neutral: var(--color-blackAlpha-500);
-  
+
   /* Button hover colors (light mode) */
   --primary-hover: var(--color-primary-600);
   --destructive-hover: var(--color-danger-600);
@@ -66,7 +66,7 @@
   --warning-hover: var(--color-warning-600);
   --info-hover: var(--color-info-600);
   --neutral-hover: var(--color-neutral-600);
-  
+
   /* Button active colors (light mode) */
   --primary-active: var(--color-primary-700);
   --destructive-active: var(--color-danger-700);
@@ -74,7 +74,7 @@
   --warning-active: var(--color-warning-700);
   --info-active: var(--color-info-700);
   --neutral-active: var(--color-neutral-700);
-  
+
   /* Shadcn/ui compatible mappings */
   --card: var(--background);
   --card-foreground: var(--foreground);
@@ -85,11 +85,11 @@
   --accent: var(--muted);
   --accent-foreground: var(--foreground);
   --ring: #6987f9;
-  --chart-1: #4E41CC;
-  --chart-2: #0FB5AE; 
-  --chart-3: #F08910;   
-  --chart-4: #33C5E8;  
-  --chart-5: #E055E2;   
+  --chart-1: #4e41cc;
+  --chart-2: #0fb5ae;
+  --chart-3: #f08910;
+  --chart-4: #33c5e8;
+  --chart-5: #e055e2;
   --sidebar: oklch(0.985 0 0);
   --sidebar-foreground: oklch(0.145 0 0);
   --sidebar-primary: oklch(0.205 0 0);
@@ -111,7 +111,7 @@
   --border: var(--color-whiteAlpha-200);
   --border-a11y: var(--color-whiteAlpha-400);
   --input: var(--color-whiteAlpha-500);
-  
+
   /* Foreground tokens */
   --primary-foreground: var(--color-primary-200);
   --destructive-foreground: var(--color-danger-200);
@@ -119,7 +119,7 @@
   --success-foreground: var(--color-success-200);
   --info-foreground: var(--color-info-200);
   --neutral-foreground: var(--color-whiteAlpha-700);
-  
+
   /* Background tokens */
   --primary-background: rgba(217, 212, 255, 0.12);
   --destructive-background: rgba(255, 204, 200, 0.12);
@@ -127,7 +127,7 @@
   --success-background: rgba(139, 235, 208, 0.12);
   --info-background: rgba(217, 212, 255, 0.12);
   --neutral-background: var(--color-whiteAlpha-100);
-  
+
   /* Active background tokens */
   --primary-background-active: rgba(217, 212, 255, 0.24);
   --destructive-background-active: rgba(255, 204, 200, 0.24);
@@ -135,7 +135,7 @@
   --success-background-active: rgba(139, 235, 208, 0.24);
   --info-background-active: rgba(217, 212, 255, 0.24);
   --neutral-background-active: var(--color-whiteAlpha-300);
-  
+
   /* Color tokens */
   --primary: var(--color-primary-200);
   --destructive: var(--color-danger-200);
@@ -143,7 +143,7 @@
   --warning: var(--color-warning-200);
   --info: var(--color-info-200);
   --neutral: var(--color-whiteAlpha-600);
-  
+
   /* Button hover colors (dark mode) */
   --primary-hover: var(--color-primary-300);
   --destructive-hover: var(--color-danger-300);
@@ -151,7 +151,7 @@
   --warning-hover: var(--color-warning-300);
   --info-hover: var(--color-info-300);
   --neutral-hover: var(--color-neutral-300);
-  
+
   /* Button active colors (dark mode) */
   --primary-active: var(--color-primary-400);
   --destructive-active: var(--color-danger-400);
@@ -159,8 +159,7 @@
   --warning-active: var(--color-warning-400);
   --info-active: var(--color-info-400);
   --neutral-active: var(--color-neutral-400);
-  
-  
+
   /* Shadcn/ui compatible mappings */
   --card: var(--background);
   --card-foreground: var(--foreground);
@@ -192,64 +191,64 @@
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
 
-   /* Semantic token mappings for Tailwind */
-   --color-body-bg: var(--background);
-   --color-subtle-bg: var(--muted);
-   --color-body-text: var(--foreground);
-   --color-subtle-text: var(--muted-foreground);
-   --color-placeholder-color: var(--placeholder);
-   --color-inverse-text: var(--inverse);
-   --color-border-color: var(--border);
-   --color-border-color-a11y: var(--border-a11y);
-   
-   /* Semantic foreground tokens */
-   --color-primary-fg: var(--primary-foreground);
-   --color-danger-fg: var(--destructive-foreground);
-   --color-warning-fg: var(--warning-foreground);
-   --color-success-fg: var(--success-foreground);
-   --color-info-fg: var(--info-foreground);
-   --color-neutral-fg: var(--neutral-foreground);
-   
-   /* Semantic background tokens */
-   --color-primary-bg: var(--primary-background);
-   --color-warning-bg: var(--warning-background);
-   --color-success-bg: var(--success-background);
-   --color-info-bg: var(--info-background);
-   --color-danger-bg: var(--destructive-background);
-   --color-neutral-bg: var(--neutral-background);
-   
-   /* Semantic active background tokens */
-   --color-primary-bg-active: var(--primary-background-active);
-   --color-danger-bg-active: var(--destructive-background-active);
-   --color-warning-bg-active: var(--warning-background-active);
-   --color-success-bg-active: var(--success-background-active);
-   --color-info-bg-active: var(--info-background-active);
-   --color-neutral-bg-active: var(--neutral-background-active);
-   
-   /* Semantic color tokens */
-   --color-primary: var(--primary);
-   --color-danger: var(--destructive);
-   --color-success: var(--success);
-   --color-warning: var(--warning);
-   --color-info: var(--info);
-   --color-neutral: var(--neutral);
-   
-   /* Button hover colors */
-   --color-primary-hover: var(--primary-hover);
-   --color-danger-hover: var(--destructive-hover);
-   --color-success-hover: var(--success-hover);
-   --color-warning-hover: var(--warning-hover);
-   --color-info-hover: var(--info-hover);
-   --color-neutral-hover: var(--neutral-hover);
-   
-   /* Button active colors */
-   --color-primary-active: var(--primary-active);
-   --color-danger-active: var(--destructive-active);
-   --color-success-active: var(--success-active);
-   --color-warning-active: var(--warning-active);
-   --color-info-active: var(--info-active);
-   --color-neutral-active: var(--neutral-active);
-  
+  /* Semantic token mappings for Tailwind */
+  --color-body-bg: var(--background);
+  --color-subtle-bg: var(--muted);
+  --color-body-text: var(--foreground);
+  --color-subtle-text: var(--muted-foreground);
+  --color-placeholder-color: var(--placeholder);
+  --color-inverse-text: var(--inverse);
+  --color-border-color: var(--border);
+  --color-border-color-a11y: var(--border-a11y);
+
+  /* Semantic foreground tokens */
+  --color-primary-fg: var(--primary-foreground);
+  --color-danger-fg: var(--destructive-foreground);
+  --color-warning-fg: var(--warning-foreground);
+  --color-success-fg: var(--success-foreground);
+  --color-info-fg: var(--info-foreground);
+  --color-neutral-fg: var(--neutral-foreground);
+
+  /* Semantic background tokens */
+  --color-primary-bg: var(--primary-background);
+  --color-warning-bg: var(--warning-background);
+  --color-success-bg: var(--success-background);
+  --color-info-bg: var(--info-background);
+  --color-danger-bg: var(--destructive-background);
+  --color-neutral-bg: var(--neutral-background);
+
+  /* Semantic active background tokens */
+  --color-primary-bg-active: var(--primary-background-active);
+  --color-danger-bg-active: var(--destructive-background-active);
+  --color-warning-bg-active: var(--warning-background-active);
+  --color-success-bg-active: var(--success-background-active);
+  --color-info-bg-active: var(--info-background-active);
+  --color-neutral-bg-active: var(--neutral-background-active);
+
+  /* Semantic color tokens */
+  --color-primary: var(--primary);
+  --color-danger: var(--destructive);
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-info: var(--info);
+  --color-neutral: var(--neutral);
+
+  /* Button hover colors */
+  --color-primary-hover: var(--primary-hover);
+  --color-danger-hover: var(--destructive-hover);
+  --color-success-hover: var(--success-hover);
+  --color-warning-hover: var(--warning-hover);
+  --color-info-hover: var(--info-hover);
+  --color-neutral-hover: var(--neutral-hover);
+
+  /* Button active colors */
+  --color-primary-active: var(--primary-active);
+  --color-danger-active: var(--destructive-active);
+  --color-success-active: var(--success-active);
+  --color-warning-active: var(--warning-active);
+  --color-info-active: var(--info-active);
+  --color-neutral-active: var(--neutral-active);
+
   /* Shadcn/ui compatible mappings */
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -283,7 +282,7 @@
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
-  --color-sonner-error:var(--destructive-background);
+  --color-sonner-error: var(--destructive-background);
 }
 
 @layer base {
@@ -294,7 +293,10 @@
     @apply bg-background text-foreground;
   }
   /* Ensure code elements always remain LTR for readability */
-  code, pre, kbd, samp {
+  code,
+  pre,
+  kbd,
+  samp {
     direction: ltr;
     text-align: left;
     unicode-bidi: isolate;
@@ -312,7 +314,7 @@
 
 /* Scrollbar with hidden background: Chrome, Safari, Edge */
 .scrollbar-hidden-bg {
-  scrollbar-color: rgba(150,150,150,0.5) transparent;
+  scrollbar-color: rgba(150, 150, 150, 0.5) transparent;
 }
 
 .scrollbar-hidden-bg::-webkit-scrollbar-track {

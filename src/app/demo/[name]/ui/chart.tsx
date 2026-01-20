@@ -10,10 +10,10 @@ export const chart = {
     ],
   },
   components: {
-    "Area Chart": { component: "area-chart", },
-    "Bar Chart": { component: "bar-chart", },
-    "Mixed Bar Chart": { component: "mixed-bar-chart", },
-    "Line Chart": { component: "line-chart", },
-    "Pie Chart": { component: "pie-chart", },
+    "Area Chart": { component: "area-chart" },
+    "Bar Chart": { component: "bar-chart" },
+    "Mixed Bar Chart": { component: "mixed-bar-chart" },
+    "Line Chart": { component: "line-chart" },
+    "Pie Chart": { component: "pie-chart" },
   },
 };

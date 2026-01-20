@@ -1,18 +1,6 @@
 "use client";
 
 import {
-  Menu,
-  X,
-} from "lucide-react";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
-import React, { useMemo } from "react";
-import { useDirection } from "@radix-ui/react-direction";
-
-import { RegistryLogo } from "@/components/docsite/registry-logo";
-import { Button } from "@/components/ui/button";
-import { ScrollArea } from "@/components/ui/scroll-area";
-import {
   Sidebar,
   SidebarContent,
   SidebarHeader,
@@ -21,8 +9,15 @@ import {
   SidebarMenuItem,
   useSidebar,
 } from "@/components/docsite/docsite-sidebar";
+import { Button } from "@/components/ui/button";
+import { ScrollArea } from "@/components/ui/scroll-area";
+import { graphicsItems, themingItems } from "@/config/nav";
 import { getBlocks, getComponents, getRegistryItem } from "@/lib/registry";
-import { themingItems, graphicsItems } from "@/config/nav";
+import { useDirection } from "@radix-ui/react-direction";
+import { Menu, X } from "lucide-react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { useMemo } from "react";
 
 const componentItems = getComponents();
 const blockItems = getBlocks();
@@ -37,7 +32,12 @@ export function MobileSidebarTrigger() {
 
   // Only show mobile trigger if sidebar should be visible
   const shouldShowSidebar = useMemo(() => {
-    if (pathname === "/" || pathname.startsWith("/resources") || pathname.startsWith("/mcp") || pathname.startsWith("/rtl")) {
+    if (
+      pathname === "/" ||
+      pathname.startsWith("/resources") ||
+      pathname.startsWith("/mcp") ||
+      pathname.startsWith("/rtl")
+    ) {
       return false;
     }
     return (
@@ -54,7 +54,9 @@ export function MobileSidebarTrigger() {
   }
 
   return (
-    <div className={`absolute top-8 ${direction === "rtl" ? "left-4" : "right-4"} md:hidden`}>
+    <div
+      className={`absolute top-8 ${direction === "rtl" ? "left-4" : "right-4"} md:hidden`}
+    >
       <Button aria-label="Open menu" onClick={() => setOpenMobile(true)}>
         <Menu className="size-5" />
       </Button>
@@ -69,7 +71,12 @@ export function RegistrySidebar() {
 
   // Determine which sidebar content to show based on pathname
   const sidebarType = useMemo(() => {
-    if (pathname === "/" || pathname.startsWith("/resources") || pathname.startsWith("/mcp") || pathname.startsWith("/rtl")) {
+    if (
+      pathname === "/" ||
+      pathname.startsWith("/resources") ||
+      pathname.startsWith("/mcp") ||
+      pathname.startsWith("/rtl")
+    ) {
       return null; // No sidebar for homepage, resources, mcp, or rtl
     }
     if (pathname.startsWith("/primitives")) {
@@ -91,7 +98,8 @@ export function RegistrySidebar() {
             item.type === "registry:component"
           ) {
             return "blocks";
-          } else if (item.type === "registry:ui") {
+          }
+          if (item.type === "registry:ui") {
             return "components";
           }
         }
@@ -131,9 +139,11 @@ export function RegistrySidebar() {
         </div>
       </SidebarHeader>
 
-      <SidebarContent className={`${direction === "rtl" ? "mr-4" : "ml-4"} py-4`}>
+      <SidebarContent
+        className={`${direction === "rtl" ? "mr-4" : "ml-4"} py-4`}
+      >
         <ScrollArea className="h-full w-full pr-4">
-          <SidebarMenu >
+          <SidebarMenu>
             {sidebarType === "components" &&
               componentItems.map((item) => (
                 <SidebarMenuItem key={item.name}>
@@ -178,10 +188,7 @@ export function RegistrySidebar() {
                     isActive={pathname === item.path}
                     className="h-10 font-medium text-md text-neutral-fg hover:bg-gray-100 hover:dark:bg-gray-700 data-[active=true]:text-primary-fg data-[active=true]:bg-primary-background"
                   >
-                    <Link
-                      onClick={() => setOpenMobile(false)}
-                      href={item.path}
-                    >
+                    <Link onClick={() => setOpenMobile(false)} href={item.path}>
                       {item.title}
                     </Link>
                   </SidebarMenuButton>
@@ -196,10 +203,7 @@ export function RegistrySidebar() {
                     isActive={pathname === item.path}
                     className="h-10 font-medium text-md text-neutral-fg hover:bg-gray-100 hover:dark:bg-gray-700 data-[active=true]:text-primary-fg data-[active=true]:bg-primary-background"
                   >
-                    <Link
-                      onClick={() => setOpenMobile(false)}
-                      href={item.path}
-                    >
+                    <Link onClick={() => setOpenMobile(false)} href={item.path}>
                       {item.title}
                     </Link>
                   </SidebarMenuButton>

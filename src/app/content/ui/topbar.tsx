@@ -1,18 +1,19 @@
 "use client";
 
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Button } from "@/components/ui/button";
 import Topbar, {
   type NavItem,
   type LogoConfig,
   type RightSideItem,
   type MenuButtonConfig,
 } from "@/components/ui/top-bar";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Button } from "@/components/ui/button";
 import { Icon } from "@/lib/icon";
 import { mdiDotsGrid, mdiHelpCircleOutline } from "@mdi/js";
 
 const defaultLogo: LogoConfig = {
-  light: "https://delivery-sitecore.sitecorecontenthub.cloud/api/public/content/logo-sitecore",
+  light:
+    "https://delivery-sitecore.sitecorecontenthub.cloud/api/public/content/logo-sitecore",
   dark: "https://delivery-sitecore.sitecorecontenthub.cloud/api/public/content/logo-sitecore-dark",
   alt: "Logo",
 };
@@ -37,7 +38,13 @@ const defaultRightSideItems: RightSideItem[] = [
   {
     id: "help",
     content: (
-      <Button variant="ghost" size="icon" colorScheme="neutral" aria-label="Help" asChild>
+      <Button
+        variant="ghost"
+        size="icon"
+        colorScheme="neutral"
+        aria-label="Help"
+        asChild
+      >
         <a href="https://doc.sitecore.com/">
           <Icon path={mdiHelpCircleOutline} size={1} />
         </a>
@@ -72,4 +79,3 @@ export default function TopbarDemo() {
     />
   );
 }
-

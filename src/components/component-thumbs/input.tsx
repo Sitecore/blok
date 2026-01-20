@@ -46,4 +46,3 @@ const InputThumb = ({ className }: { className?: string }) => (
 );
 
 export default InputThumb;
-

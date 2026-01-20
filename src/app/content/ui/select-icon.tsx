@@ -1,18 +1,18 @@
 import {
   Select,
-  SelectTrigger,
-  SelectValue,
   SelectContent,
   SelectGroup,
+  SelectItem,
   SelectLabel,
-  SelectItem
+  SelectTrigger,
+  SelectValue,
 } from "@/components/ui/select";
 import { Icon } from "@/lib/icon";
 import {
-  mdiCircleOutline,
-  mdiChartLine,
   mdiChartBar,
-  mdiChartPie
+  mdiChartLine,
+  mdiChartPie,
+  mdiCircleOutline,
 } from "@mdi/js";
 
 export default function SelectWithIconDemo() {

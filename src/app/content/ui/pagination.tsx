@@ -1,11 +1,11 @@
 import {
   Pagination,
   PaginationContent,
-  PaginationItem,
-  PaginationPrevious,
-  PaginationLink,
   PaginationEllipsis,
-  PaginationNext
+  PaginationItem,
+  PaginationLink,
+  PaginationNext,
+  PaginationPrevious,
 } from "@/components/ui/pagination";
 
 export default function PaginationDemo() {

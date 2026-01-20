@@ -1,12 +1,11 @@
-"use client"
+"use client";
 
 import { Button } from "@/components/ui/button";
-import { ScrollArea } from "@/components/ui/scroll-area";
 import { Icon } from "@/lib/icon";
 import { cn } from "@/lib/utils";
 import { mdiClipboardOutline } from "@mdi/js";
 import { Check } from "lucide-react";
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import * as shiki from "shiki";
 
 interface CodeBlockProps {
@@ -16,7 +15,12 @@ interface CodeBlockProps {
   className?: string;
 }
 
-export function CodeBlock({ code, lang = "tsx", showLineNumbers = true, className }: CodeBlockProps) {
+export function CodeBlock({
+  code,
+  lang = "tsx",
+  showLineNumbers = true,
+  className,
+}: CodeBlockProps) {
   const [copied, setCopied] = useState(false);
   const [html, setHtml] = useState<string>("");
   const [isDark, setIsDark] = useState(false);
@@ -43,7 +47,15 @@ export function CodeBlock({ code, lang = "tsx", showLineNumbers = true, classNam
     async function load() {
       const highlighter = await shiki.createHighlighter({
         themes: ["github-light", "github-dark"],
-            langs: ["typescript", "javascript", "tsx", "jsx", "json", "css", "html"],
+        langs: [
+          "typescript",
+          "javascript",
+          "tsx",
+          "jsx",
+          "json",
+          "css",
+          "html",
+        ],
       });
 
       const rawHtml = highlighter.codeToHtml(code, {
@@ -68,7 +80,7 @@ export function CodeBlock({ code, lang = "tsx", showLineNumbers = true, classNam
       dir="ltr"
       className={cn(
         "relative rounded-md bg-muted max-h-[400px] overflow-auto",
-        className
+        className,
       )}
       style={{ width: "100%", maxWidth: "100%" }}
     >
@@ -118,7 +130,7 @@ function addLineNumbers(html: string) {
                 <span class="w-5 table-cell select-none text-zinc-500">${i + 1}</span>
                 <span class="table-cell">${line || "&nbsp;"}</span>
             </div>
-        `
+        `,
     )
     .join("");
 
