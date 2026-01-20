@@ -343,7 +343,7 @@ const editablePreviewVariants = cva(
   [
     "cursor-text rounded-md px-2 py-1 transition-colors",
     "hover:bg-neutral-bg",
-    "min-h-[2rem] flex items-center",
+    "min-h-[2rem] flex items-center whitespace-pre-line break-words",
   ].join(" "),
   {
     variants: {
