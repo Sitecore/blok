@@ -185,6 +185,7 @@ import TimelineVariantsDemo from "@/app/content/ui/timeline-variants";
 import TimelineSizesDemo from "@/app/content/ui/timeline-sizes";
 import TimelineConnectorVariantsDemo from "@/app/content/ui/timeline-connector-variants";
 import TimelineDemo from "@/app/content/ui/timeline";
+import SelectReactDemo from "@/app/content/ui/select-react";
 
 export interface DocsiteRegistryEntry {
     name: string;
@@ -838,6 +839,11 @@ export const docsiteRegistry: Record<string, DocsiteRegistryEntry> = {
         name: "select-disabled",
         path: "src/app/content/ui/select-disabled.tsx",
         component: DisabledSelectDemo,
+    },
+    "select-react": {
+        name: "select-react",
+        path: "src/app/content/ui/select-react.tsx",
+        component: SelectReactDemo,
     },
     "separator": {
         name: "separator",

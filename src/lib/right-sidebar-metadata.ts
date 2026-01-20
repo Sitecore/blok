@@ -635,6 +635,15 @@ export const rightSidebarMetadata: Record<string, RightSidebarMetadata> = {
       },
     ],
   },
+  "select-react": {
+    links: {
+    },
+    sections: [
+      { id: "preview", title: "Preview" },
+      { id: "installation", title: "Installation" },
+      { id: "usage", title: "Usage" },
+    ],
+  },
   separator: {
     links: {
       shadcn: "https://ui.shadcn.com/docs/components/separator",
