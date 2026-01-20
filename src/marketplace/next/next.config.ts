@@ -15,11 +15,7 @@ const nextConfig: NextConfig = {
           {
             key: "Content-Security-Policy",
             value: `frame-ancestors 'self' ${allowedParentDomains.join(" ")}`,
-          },
-          {
-            key: "X-Content-Type-Options",
-            value: "nosniff",
-          },
+          }
         ],
       },
     ];
