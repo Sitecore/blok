@@ -752,10 +752,7 @@ export const rightSidebarMetadata: Record<string, RightSidebarMetadata> = {
     ],
   },
   "circular-progress": {
-    links: {
-      shadcn: "https://ui.shadcn.com/docs/components/spinner",
-      figma: "https://www.figma.com/design/x0CUbrC5Kjcuk64VPCnbgz/Blok-Components?m=auto&node-id=7069-16458&t=NScvPldB3fxBBWL8-1"
-    },
+    links: {},
     sections: [
       { id: "preview", title: "Preview" },
       { id: "installation", title: "Installation" },
@@ -773,6 +770,7 @@ export const rightSidebarMetadata: Record<string, RightSidebarMetadata> = {
   spinner: {
     links: {
       shadcn: "https://ui.shadcn.com/docs/components/spinner",
+      figma: "https://www.figma.com/design/x0CUbrC5Kjcuk64VPCnbgz/Blok-Components?m=auto&node-id=7069-16458&t=NScvPldB3fxBBWL8-1"
     },
     sections: [
       { id: "preview", title: "Preview" },
