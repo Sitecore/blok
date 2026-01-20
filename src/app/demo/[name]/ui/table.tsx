@@ -10,7 +10,7 @@ import {
 } from "@/components/ui/table";
 import { TableDemo } from "@/app/demo/[name]/ui/table-demo";
 
-export const featureTable = [
+const featureTable = [
   {
     feature: "Personalization",
     description: "Deliver tailored experiences based on user behavior and preferences.",

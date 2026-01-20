@@ -74,6 +74,10 @@ export const button = {
           <Icon path={mdiInformationOutline} className="mr-2" />
           Ghost Icon
         </Button>
+        <Button variant="link">
+          <Icon path={mdiInformationOutline} className="mr-2" />
+          link Icon
+        </Button>
       </div>
     ),
     
@@ -86,64 +90,6 @@ export const button = {
         <Button disabled variant="outline">Disabled Outline</Button>
         <Button disabled variant="ghost">Disabled Ghost</Button>
         <Button disabled variant="link">Disabled Link</Button>
-      </div>
-    ),
-    
-    // Success Color Scheme
-    "Success Color Scheme": (
-      <div className="flex flex-wrap items-center gap-3">
-        <Button colorScheme="success">Normal Success</Button>
-        <Button colorScheme="success" disabled>Disabled Success</Button>
-        <Button colorScheme="success" size="lg">Large Success</Button>
-        <Button colorScheme="success" size="sm">Small Success</Button>
-      </div>
-    ),
-    
-    // Danger Color Scheme
-    "Danger Color Scheme": (
-      <div className="flex flex-wrap items-center gap-3">
-        <Button colorScheme="danger">Normal Danger</Button>
-        <Button colorScheme="danger" disabled>Disabled Danger</Button>
-        <Button colorScheme="danger" size="lg">Large Danger</Button>
-        <Button colorScheme="danger" size="sm">Small Danger</Button>
-      </div>
-    ),
-    
-    // Icon with Different Colors
-    "Icon Colors": (
-      <div className="flex flex-wrap items-center gap-3">
-        <Button size="icon" colorScheme="primary" aria-label="Contact support">
-          <Icon path={mdiInformationOutline} />
-        </Button>
-        <Button size="icon" colorScheme="success" aria-label="View documentation">
-          <Icon path={mdiInformationOutline} />
-        </Button>
-        <Button size="icon" colorScheme="danger" aria-label="Report issue">
-          <Icon path={mdiInformationOutline} />
-        </Button>
-        <Button size="icon" colorScheme="neutral" aria-label="Learn more">
-          <Icon path={mdiInformationOutline} />
-        </Button>
-      </div>
-    ),
-    
-    // Size Variations
-    "Size Variations": (
-      <div className="flex flex-wrap items-center gap-3">
-        <Button size="lg">Large Button</Button>
-        <Button size="default">Default Button</Button>
-        <Button size="sm">Small Button</Button>
-        <Button size="xs">Extra Small Button</Button>
-      </div>
-    ),
-    
-    // Color Scheme Variations
-    "Color Scheme Variations": (
-      <div className="flex flex-wrap items-center gap-3">
-        <Button colorScheme="primary">Primary</Button>
-        <Button colorScheme="success">Success</Button>
-        <Button colorScheme="danger">Danger</Button>
-        <Button colorScheme="neutral">Neutral</Button>
       </div>
     ),
   },

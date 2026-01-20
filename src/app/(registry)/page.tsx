@@ -43,8 +43,7 @@ export default function Home() {
               Build better products faster
             </h1>
             <p className="text-muted-foreground w-full text-lg">
-              Blok is Sitecore's design system. It is used for created industry
-              leading martech applications.
+            Blok is Sitecore's design system. It is used for creating industry leading martech applications.
               <br /> Now, it's publicly available, so that anyone can easily
               build software in the Sitecore product design language.
             </p>

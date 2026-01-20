@@ -6,6 +6,8 @@ import { ReactNode } from "react";
 import DemoTab from "@/components/demo-tab";
 import { CodeBlock } from "@/components/code-block";
 
+export const dynamicParams = false;
+
 export async function generateStaticParams() {
   return Object.keys(demos).map((name) => ({
     name,
@@ -43,7 +45,7 @@ export default async function DemoPage({
           </div>
         )}
 
-        <div className="flex flex-col">
+        <div id="preview" className="flex flex-col">
           <DemoTab
             key={name} 
             code={codeMap["Default"] ?? ""} 

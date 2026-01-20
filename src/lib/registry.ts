@@ -17,16 +17,12 @@ export function getRegistryItems(): Component[] {
   return components as Component[];
 }
 
-export function getRegistryItem(name: string): Component {
+export function getRegistryItem(name: string): Component | undefined {
   const components = getRegistryItems();
 
   const component = components.find(
     (item: { name: string }) => item.name === name,
   );
-
-  if (component == null) {
-    throw new Error(`Component "${name}" not found`);
-  }
 
   return component;
 }

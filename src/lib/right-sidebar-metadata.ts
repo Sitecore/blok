@@ -25,6 +25,16 @@ export const rightSidebarMetadata: Record<string, RightSidebarMetadata> = {
       figma: "https://www.figma.com/design/x0CUbrC5Kjcuk64VPCnbgz/Blok-Components?m=auto&node-id=8164-5745&t=NScvPldB3fxBBWL8-1"
     },
   },
+  "action-bar": {
+    links: {
+      figma: "https://www.figma.com/design/x0CUbrC5Kjcuk64VPCnbgz/Blok-Components?m=auto&node-id=10195-6505&t=phPvYFQwTMa2lY7e-1"
+    },
+    sections: [
+      { id: "preview", title: "Preview" },
+      { id: "installation", title: "Installation" },
+      { id: "usage", title: "Usage" },
+    ],
+  },
   alert: {
     links: {
       shadcn: "https://ui.shadcn.com/docs/components/alert",
@@ -130,11 +140,6 @@ export const rightSidebarMetadata: Record<string, RightSidebarMetadata> = {
           { id: "icon-sizing", title: "Icon Sizing" },
           { id: "icon-with-text", title: "Icon with Text" },
           { id: "disabled-states", title: "Disabled States" },
-          { id: "success-color-scheme", title: "Success Color Scheme" },
-          { id: "danger-color-scheme", title: "Danger Color Scheme" },
-          { id: "icon-colors", title: "Icon Colors" },
-          { id: "size-variations", title: "Size Variations" },
-          { id: "color-scheme-variations", title: "Color Scheme Variations" },
         ],
       },
     ],
@@ -309,6 +314,23 @@ export const rightSidebarMetadata: Record<string, RightSidebarMetadata> = {
       },
     ],
   },
+  editable: {
+    links: {
+      chakra: "https://www.chakra-ui.com/docs/components/editable",
+    },
+    sections: [
+      { id: "preview", title: "Preview" },
+      { id: "installation", title: "Installation" },
+      { id: "usage", title: "Usage" },
+      {
+        id: "examples",
+        title: "Examples",
+        children: [
+          { id: "textarea", title: "Textarea" },
+        ],
+      },
+    ],
+  },
   draggable: {
     links: {
       documentation: "https://docs.dndkit.com/",
@@ -322,7 +344,6 @@ export const rightSidebarMetadata: Record<string, RightSidebarMetadata> = {
         title: "Examples",
         children: [
           { id: "basic-drag-and-drop", title: "Basic Drag and Drop" },
-          { id: "sortable-list", title: "Sortable List" },
           { id: "custom-handle", title: "Custom Handle" },
           { id: "drag,-drop-&-sort", title: "Drag, Drop & Sort" },
         ],
@@ -411,6 +432,36 @@ export const rightSidebarMetadata: Record<string, RightSidebarMetadata> = {
       },
     ],
   },
+  field: {
+    links: {
+      shadcn: "https://ui.shadcn.com/docs/components/field",
+    },
+    sections: [
+      { id: "preview", title: "Preview" },
+      { id: "installation", title: "Installation" },
+      { id: "usage", title: "Usage" },
+      {
+        id: "examples",
+        title: "Examples",
+        children: [
+          { id: "input", title: "Input" },
+          { id: "textarea", title: "Textarea" },
+          { id: "select", title: "Select" },
+          { id: "checkbox", title: "Checkbox" },
+          { id: "radio-group", title: "Radio Group" },
+          { id: "switch", title: "Switch" },
+          { id: "with-separator", title: "With Separator" },
+          { id: "with-error", title: "With Error" },
+          { id: "input-with-icon", title: "Input with Icon" },
+          { id: "input-with-addon", title: "Input with Addon" },
+          { id: "disabled", title: "Disabled" },
+          { id: "readonly", title: "ReadOnly" },
+          { id: "small-size", title: "Small Size" },
+          { id: "input-types", title: "Input Types" },
+        ],
+      },
+    ],
+  },
   "hover-card": {
     links: {
       shadcn: "https://ui.shadcn.com/docs/components/hover-card",
@@ -459,6 +510,25 @@ export const rightSidebarMetadata: Record<string, RightSidebarMetadata> = {
       },
     ],
   },
+  "input-group": {
+    links: {
+      shadcn: "https://ui.shadcn.com/docs/components/input-group",
+    },
+    sections: [
+      { id: "preview", title: "Preview" },
+      { id: "installation", title: "Installation" },
+      { id: "usage", title: "Usage" },
+      {
+        id: "examples",
+        title: "Examples",
+        children: [
+          { id: "search", title: "Search" },
+          { id: "url", title: "URL" },
+          { id: "dropdown", title: "Dropdown" },
+        ],
+      },
+    ],
+  },
   "inputOtp": {
     links: {
       shadcn: "https://ui.shadcn.com/docs/components/input-otp",
@@ -473,6 +543,26 @@ export const rightSidebarMetadata: Record<string, RightSidebarMetadata> = {
         children: [
           { id: "pattern", title: "Pattern" },
           { id: "with-spacing", title: "With Spacing" },
+        ],
+      },
+    ],
+  },
+  kbd: {
+    links: {
+      shadcn: "https://ui.shadcn.com/docs/components/kbd",
+    },
+    sections: [
+      { id: "preview", title: "Preview" },
+      { id: "installation", title: "Installation" },
+      { id: "usage", title: "Usage" },
+      {
+        id: "examples",
+        title: "Examples",
+        children: [
+          { id: "group", title: "Group" },
+          { id: "button", title: "Button" },
+          { id: "tooltip", title: "Tooltip" },
+          { id: "keyboard-shortcuts", title: "Keyboard Shortcuts" },
         ],
       },
     ],
@@ -579,6 +669,15 @@ export const rightSidebarMetadata: Record<string, RightSidebarMetadata> = {
       },
     ],
   },
+  "select-react": {
+    links: {
+    },
+    sections: [
+      { id: "preview", title: "Preview" },
+      { id: "installation", title: "Installation" },
+      { id: "usage", title: "Usage" },
+    ],
+  },
   separator: {
     links: {
       shadcn: "https://ui.shadcn.com/docs/components/separator",
@@ -598,10 +697,7 @@ export const rightSidebarMetadata: Record<string, RightSidebarMetadata> = {
         id: "examples",
         title: "Examples",
         children: [
-          { id: "top", title: "Top" },
-          { id: "bottom", title: "Bottom" },
-          { id: "left", title: "Left" },
-          { id: "right", title: "Right" },
+          { id: "directions", title: "Directions" },
         ],
       },
     ],
@@ -659,6 +755,22 @@ export const rightSidebarMetadata: Record<string, RightSidebarMetadata> = {
       },
     ],
   },
+  "circular-progress": {
+    links: {},
+    sections: [
+      { id: "preview", title: "Preview" },
+      { id: "installation", title: "Installation" },
+      { id: "usage", title: "Usage" },
+      {
+        id: "examples",
+        title: "Examples",
+        children: [
+          { id: "variants", title: "Variants" },
+          { id: "with-text-circular-progress", title: "With Text Circular Progress" },
+        ],
+      },
+    ],
+  },
   spinner: {
     links: {
       shadcn: "https://ui.shadcn.com/docs/components/spinner",
@@ -672,8 +784,9 @@ export const rightSidebarMetadata: Record<string, RightSidebarMetadata> = {
         id: "examples",
         title: "Examples",
         children: [
-          { id: "variants", title: "Variants" },
-          { id: "with-text-spinner", title: "With Text Spinner" },
+          { id: "size", title: "Size" },
+          { id: "button", title: "Button" },
+          { id: "badge", title: "Badge" },
         ],
       },
     ],
@@ -694,6 +807,16 @@ export const rightSidebarMetadata: Record<string, RightSidebarMetadata> = {
           { id: "horizontal-tabs", title: "Horizontal Tabs" },
         ],
       },
+    ],
+  },
+  stepper: {
+    links: {
+    
+    },
+    sections: [
+      { id: "preview", title: "Preview" },
+      { id: "installation", title: "Installation" },
+      { id: "usage", title: "Usage" },
     ],
   },
   switch: {
@@ -831,8 +954,36 @@ export const rightSidebarMetadata: Record<string, RightSidebarMetadata> = {
       figma: "https://www.figma.com/design/x0CUbrC5Kjcuk64VPCnbgz/Blok-Components?m=auto&node-id=6748-14480&t=NScvPldB3fxBBWL8-1"
     },
   },
+  timeline: {
+    links: {
+    },
+    sections: [
+      { id: "preview", title: "Preview" },
+      { id: "installation", title: "Installation" },
+      { id: "usage", title: "Usage" },
+      {
+        id: "examples",
+        title: "Examples",
+        children: [
+          { id: "variants", title: "Variants" },
+          { id: "sizes", title: "Sizes" },
+          { id: "connector-variants", title: "Connector Variants" },
+        ],
+      },
+    ],
+  },
 
   // ===== BLOK-SPECIFIC METADATA =====
+  collaboration: {
+    links: {
+      figma: "https://www.figma.com/design/x0CUbrC5Kjcuk64VPCnbgz/Blok-Components?m=auto&node-id=12635-12702&t=lmjHbhiQJqZWNi7i-1"
+    },
+    sections: [
+      { id: "preview", title: "Preview" },
+      { id: "installation", title: "Installation" },
+      { id: "usage", title: "Usage" },
+    ],
+  },
   "all-site": {
      links: {
 

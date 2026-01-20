@@ -9,7 +9,7 @@ import { DirectionProvider } from "@/components/docsite/direction-provider";
 
 export const metadata: Metadata = {
   title: "Blok",
-  description: "Blok is Sitecore's design system. It is used for created industry leading martech applications.",
+  description: "Blok is Sitecore's design system. It is used for creating industry leading martech applications.",
   icons: [{ rel: "icon", url: "/favicon.svg", type: "image/svg+xml" }],
 };
 

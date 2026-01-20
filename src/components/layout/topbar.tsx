@@ -333,9 +333,9 @@ export default function TopBar() {
                   const itemName = segments[segments.length - 1];
                   
                   if (itemName) {
-                    try {
-                      const registryItem = getRegistryItem(itemName);
-                      
+                    const registryItem = getRegistryItem(itemName);
+                    
+                    if (registryItem) {
                       // If this is a UI component and we're checking "Primitives"
                       if (item.name === "Primitives" && registryItem.type === "registry:ui") {
                         isActive = true;
@@ -345,8 +345,6 @@ export default function TopBar() {
                                (registryItem.type === "registry:block" || registryItem.type === "registry:component")) {
                         isActive = true;
                       }
-                    } catch (error) {
-                      // If registry item not found, fall back to default behavior
                     }
                   }
                 }
@@ -390,9 +388,9 @@ export default function TopBar() {
                     const itemName = segments[segments.length - 1];
                     
                     if (itemName) {
-                      try {
-                        const registryItem = getRegistryItem(itemName);
-                        
+                      const registryItem = getRegistryItem(itemName);
+                      
+                      if (registryItem) {
                         // If this is a UI component and we're checking "Primitives"
                         if (item.name === "Primitives" && registryItem.type === "registry:ui") {
                           isActive = true;
@@ -402,8 +400,6 @@ export default function TopBar() {
                                  (registryItem.type === "registry:block" || registryItem.type === "registry:component")) {
                           isActive = true;
                         }
-                      } catch (error) {
-                        // If registry item not found, fall back to default behavior
                       }
                     }
                   }
