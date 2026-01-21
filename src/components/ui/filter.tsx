@@ -189,13 +189,13 @@ const FilterInput = React.forwardRef<HTMLInputElement, FilterInputProps>(
           <Button
             onClick={handleClear}
             variant="ghost"
-            size="icon"
+            size="icon-xs"
             colorScheme="neutral"
             aria-label="Clear search"
             disabled={disabled}
-            className="absolute top-1/2 right-1 -translate-y-1/2 h-8 w-8 text-subtle-text hover:text-body-text focus:outline-none"
+            className="absolute top-1/2 right-1 -translate-y-1/2 text-subtle-text hover:text-body-text hover:bg-neutral-bg-active focus:outline-none"
           >
-            <Icon path={mdiClose} size={1} />
+            <Icon path={mdiClose} size={0.75} />
           </Button>
         )}
         {helperText && (
@@ -300,11 +300,12 @@ const FilterSingleSelect = React.forwardRef<
               hasValue && "pr-8 overflow-hidden",
               hasValue &&
                 isPrimary &&
-                "bg-primary-bg text-primary-fg border-primary"
+                "bg-primary-bg text-primary-fg border-primary",
+              hasValue && showClear && "[&_svg]:hidden"
             )}
             >
               <SelectValue placeholder={placeholder} />
-              <span className="flex items-center gap-0 pointer-events-none min-w-0 overflow-hidden">
+              <span className="flex items-center gap-0.5 pointer-events-none min-w-0 overflow-hidden">
                 <span
                   className={cn(
                     "font-semibold truncate",
@@ -361,11 +362,11 @@ const FilterSingleSelect = React.forwardRef<
               colorScheme={isPrimary ? "primary" : "neutral"}
               aria-label="Clear selection"
               className={cn(
-                "absolute right-2 top-1/2 -translate-y-1/2 pointer-events-auto",
+                "absolute right-2 top-1/2 -translate-y-1/2 pointer-events-auto hover:bg-neutral-bg-active",
                 isPrimary && "text-primary-fg"
               )}
             >
-              <Icon path={mdiClose} />
+              <Icon path={mdiClose} size={0.75} />
             </Button>
           )}
         </div>
@@ -511,7 +512,7 @@ const FilterMultiSelect = React.forwardRef<
                     "bg-primary-bg text-primary-fg border-primary hover:bg-primary-bg hover:text-primary-fg"
                 )}
               >
-                <span className="flex items-center gap-0 pointer-events-none min-w-0 overflow-hidden flex-wrap">
+                <span className="flex items-center gap-0.5 pointer-events-none min-w-0 overflow-hidden flex-wrap">
                   <span
                     className={cn(
                       "font-semibold truncate",
@@ -575,7 +576,7 @@ const FilterMultiSelect = React.forwardRef<
                               <span
                                 role="button"
                                 tabIndex={0}
-                                className="cursor-pointer rounded-full p-0.5 hover:bg-neutral-bg-active flex items-center justify-center -mr-1 pointer-events-auto focus:outline-none focus:ring-1 focus:ring-ring"
+                                className="cursor-pointer rounded-full p-0 hover:bg-neutral-bg-active flex items-center justify-center -mr-1 pointer-events-auto focus:outline-none focus:ring-1 focus:ring-ring"
                                 onClick={(e) => handleRemoveBadge(val, e)}
                                 onKeyDown={(e) => {
                                   if (e.key === "Enter" || e.key === " ") {
@@ -657,7 +658,7 @@ const FilterMultiSelect = React.forwardRef<
                 isPrimary && "text-primary-fg"
               )}
             >
-              <Icon path={mdiClose} />
+              <Icon path={mdiClose} size={0.75} />
             </Button>
           )}
         </div>
@@ -755,7 +756,7 @@ const FilterToggle = React.forwardRef<HTMLButtonElement, FilterToggleProps>(
               }}
               aria-label={`Remove ${label} filter`}
             >
-              <Icon path={mdiClose} size={1.1} className="pointer-events-none" />
+              <Icon path={mdiClose} size={0.75} className="pointer-events-none" />
             </span>
           )}
         </Button>
