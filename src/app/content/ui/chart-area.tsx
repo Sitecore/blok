@@ -1,7 +1,13 @@
 "use client";
 
 import { TrendingUp } from "lucide-react";
-import { Area, AreaChart, CartesianGrid, XAxis } from "recharts";
+import {
+    type ChartConfig,
+    ChartContainer,
+    ChartTooltip,
+    ChartTooltipContent,
+    useRecharts,
+} from "@/components/ui/chart";
 import {
     Card,
     CardContent,
@@ -10,12 +16,6 @@ import {
     CardHeader,
     CardTitle,
 } from "@/components/ui/card";
-import {
-    type ChartConfig,
-    ChartContainer,
-    ChartTooltip,
-    ChartTooltipContent,
-} from "@/components/ui/chart";
 
 export const description = "A simple area chart";
 
@@ -36,6 +36,35 @@ const chartConfig = {
 } satisfies ChartConfig;
 
 export default function AreaChartDemo() {
+    const recharts = useRecharts();
+    if (!recharts) {
+        return (
+            <Card style="outline" className="w-4xl">
+                <CardHeader>
+                    <CardTitle>Area Chart</CardTitle>
+                    <CardDescription>
+                        Showing total visitors for the last 6 months
+                    </CardDescription>
+                </CardHeader>
+                <CardContent className="flex aspect-video items-center justify-center text-muted-foreground text-xs">
+                    Loading chart…
+                </CardContent>
+                <CardFooter>
+                    <div className="flex w-full items-start gap-2 text-sm">
+                        <div className="grid gap-2">
+                            <div className="flex items-center gap-2 leading-none font-medium wrap-break-word">
+                                Trending up by 5.2% this month <TrendingUp className="h-4 w-4" />
+                            </div>
+                            <div className="text-muted-foreground flex items-center gap-2 leading-none wrap-break-word">
+                                January - June 2024
+                            </div>
+                        </div>
+                    </div>
+                </CardFooter>
+            </Card>
+        );
+    }
+    const { Area, AreaChart, CartesianGrid, XAxis } = recharts;
     return (
         <Card style="outline" className="w-4xl">
             <CardHeader>

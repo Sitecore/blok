@@ -1,7 +1,13 @@
 "use client";
 
 import { TrendingUp } from "lucide-react";
-import { Bar, BarChart, CartesianGrid, XAxis } from "recharts";
+import {
+    type ChartConfig,
+    ChartContainer,
+    ChartTooltip,
+    ChartTooltipContent,
+    useRecharts,
+} from "@/components/ui/chart";
 import {
     Card,
     CardContent,
@@ -10,12 +16,6 @@ import {
     CardHeader,
     CardTitle,
 } from "@/components/ui/card";
-import {
-    type ChartConfig,
-    ChartContainer,
-    ChartTooltip,
-    ChartTooltipContent,
-} from "@/components/ui/chart";
 
 export const description = "A multiple bar chart";
 
@@ -40,6 +40,29 @@ const chartConfig = {
 } satisfies ChartConfig;
 
 export default function BarChartDemo() {
+    const recharts = useRecharts();
+    if (!recharts) {
+        return (
+            <Card style="outline" className="w-4xl">
+                <CardHeader>
+                    <CardTitle>Bar Chart - Multiple</CardTitle>
+                    <CardDescription>January - June 2024</CardDescription>
+                </CardHeader>
+                <CardContent className="flex aspect-video items-center justify-center text-muted-foreground text-xs">
+                    Loading chart…
+                </CardContent>
+                <CardFooter className="flex-col items-start gap-2 text-sm">
+                    <div className="flex gap-2 leading-none font-medium wrap-break-word">
+                        Trending up by 5.2% this month <TrendingUp className="h-4 w-4" />
+                    </div>
+                    <div className="text-muted-foreground leading-none wrap-break-word">
+                        Showing total visitors for the last 6 months
+                    </div>
+                </CardFooter>
+            </Card>
+        );
+    }
+    const { Bar, BarChart, CartesianGrid, XAxis } = recharts;
     return (
         <Card style="outline" className="w-4xl">
             <CardHeader>

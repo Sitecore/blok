@@ -1,9 +1,20 @@
 "use client";
 
 import * as React from "react";
-import * as RechartsPrimitive from "recharts";
+import type * as RechartsPrimitive from "recharts";
 
 import { cn } from "@/lib/utils";
+
+// Dynamic import for code-splitting; recharts is loaded when the first chart mounts
+const getRecharts = () => import("recharts");
+
+export function useRecharts() {
+  const [recharts, setRecharts] = React.useState<typeof RechartsPrimitive | null>(null);
+  React.useEffect(() => {
+    getRecharts().then((m) => setRecharts(m));
+  }, []);
+  return recharts;
+}
 
 // Format: { THEME_NAME: CSS_SELECTOR }
 const THEMES = { light: "", dark: ".dark" } as const;
@@ -20,6 +31,7 @@ export type ChartConfig = {
 
 type ChartContextProps = {
   config: ChartConfig;
+  recharts: typeof RechartsPrimitive | null;
 };
 
 const ChartContext = React.createContext<ChartContextProps | null>(null);
@@ -48,14 +60,33 @@ function ChartContainer({
 }) {
   const uniqueId = React.useId();
   const chartId = `chart-${id || uniqueId.replace(/:/g, "")}`;
+  const recharts = useRecharts();
+
+  if (!recharts) {
+    return (
+      <div
+        data-slot="chart"
+        role="img"
+        aria-label={props["aria-label"] || "Loading chart"}
+        className={cn(
+          "flex aspect-video items-center justify-center text-muted-foreground text-xs",
+          className
+        )}
+      >
+        Loading chart…
+      </div>
+    );
+  }
+
+  const ResponsiveContainer = recharts.ResponsiveContainer;
 
   return (
-    <ChartContext.Provider value={{ config }}>
+    <ChartContext.Provider value={{ config, recharts }}>
       <div
         data-slot="chart"
         data-chart={chartId}
         role="img"
-        aria-label={props['aria-label'] || 'Data visualization chart'}
+        aria-label={props["aria-label"] || "Data visualization chart"}
         className={cn(
           "[&_.recharts-cartesian-axis-tick_text]:fill-muted-foreground [&_.recharts-cartesian-grid_line[stroke='#ccc']]:stroke-border/50 [&_.recharts-curve.recharts-tooltip-cursor]:stroke-border [&_.recharts-polar-grid_[stroke='#ccc']]:stroke-border [&_.recharts-radial-bar-background-sector]:fill-muted [&_.recharts-rectangle.recharts-tooltip-cursor]:fill-muted [&_.recharts-reference-line_[stroke='#ccc']]:stroke-border flex aspect-video justify-center text-xs [&_.recharts-dot[stroke='#fff']]:stroke-transparent [&_.recharts-layer]:outline-hidden [&_.recharts-sector]:outline-hidden [&_.recharts-sector[stroke='#fff']]:stroke-transparent [&_.recharts-surface]:outline-hidden",
           className
@@ -63,9 +94,7 @@ function ChartContainer({
         {...props}
       >
         <ChartStyle id={chartId} config={config} />
-        <RechartsPrimitive.ResponsiveContainer>
-          {children}
-        </RechartsPrimitive.ResponsiveContainer>
+        <ResponsiveContainer>{children}</ResponsiveContainer>
       </div>
     </ChartContext.Provider>
   );
@@ -104,7 +133,14 @@ ${colorConfig
   );
 };
 
-const ChartTooltip = RechartsPrimitive.Tooltip;
+function ChartTooltip(
+  props: React.ComponentProps<typeof RechartsPrimitive.Tooltip>
+) {
+  const { recharts } = useChart();
+  if (!recharts) return null;
+  const Tooltip = recharts.Tooltip;
+  return <Tooltip {...props} />;
+}
 
 function ChartTooltipContent({
   active,
@@ -175,7 +211,7 @@ function ChartTooltipContent({
   return (
     <div
       className={cn(
-        "border-border/50 bg-background grid min-w-[8rem] items-start gap-1.5 rounded-lg border px-2.5 py-1.5 text-xs shadow-xl",
+        "border-border/50 bg-background grid min-w-32 items-start gap-1.5 rounded-lg border px-2.5 py-1.5 text-xs shadow-xl",
         className
       )}
     >
@@ -250,7 +286,15 @@ function ChartTooltipContent({
   );
 }
 
-const ChartLegend = RechartsPrimitive.Legend;
+function ChartLegend(
+  props: React.ComponentProps<typeof RechartsPrimitive.Legend>
+) {
+  const { recharts } = useChart();
+  if (!recharts) return null;
+  const Legend = recharts.Legend;
+  const { ref, ...rest } = props as React.ComponentProps<typeof RechartsPrimitive.Legend> & { ref?: React.Ref<unknown> };
+  return <Legend {...rest} />;
+}
 
 function ChartLegendContent({
   className,

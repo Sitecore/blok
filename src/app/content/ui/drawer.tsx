@@ -1,9 +1,8 @@
 "use client";
 
 import * as React from "react";
-import { Minus, Plus } from "lucide-react"
-import { Bar, BarChart, ResponsiveContainer } from "recharts";
-
+import { Minus, Plus } from "lucide-react";
+import { useRecharts } from "@/components/ui/chart";
 import { Button } from "@/components/ui/button";
 import {
     Drawer,
@@ -60,10 +59,13 @@ const data = [
 
 export default function DrawerDefaultDemo() {
     const [goal, setGoal] = React.useState(350);
+    const recharts = useRecharts();
 
     const onClick = React.useCallback((adjustment: number) => {
-        setGoal((prevGoal) => Math.max(200, Math.min(400, prevGoal + adjustment)))
+        setGoal((prevGoal) => Math.max(200, Math.min(400, prevGoal + adjustment)));
     }, []);
+
+    const { Bar, BarChart, ResponsiveContainer } = recharts ?? {};
 
     return (
         <Drawer>
@@ -110,19 +112,25 @@ export default function DrawerDefaultDemo() {
                             </Button>
                         </div>
                         <div className="mt-3 h-[120px]">
-                            <ResponsiveContainer width="100%" height="100%">
-                                <BarChart data={data}>
-                                    <Bar
-                                        dataKey="goal"
-                                        style={
-                                            {
-                                                fill: "var(--primary)",
-                                                opacity: 0.9,
-                                            } as React.CSSProperties
-                                        }
-                                    />
-                                </BarChart>
-                            </ResponsiveContainer>
+                            {Bar && BarChart && ResponsiveContainer ? (
+                                <ResponsiveContainer width="100%" height="100%">
+                                    <BarChart data={data}>
+                                        <Bar
+                                            dataKey="goal"
+                                            style={
+                                                {
+                                                    fill: "var(--primary)",
+                                                    opacity: 0.9,
+                                                } as React.CSSProperties
+                                            }
+                                        />
+                                    </BarChart>
+                                </ResponsiveContainer>
+                            ) : (
+                                <div className="flex h-full items-center justify-center text-muted-foreground text-xs">
+                                    Loading chart…
+                                </div>
+                            )}
                         </div>
                     </div>
                     <DrawerFooter>

@@ -2,7 +2,13 @@
 
 import { TrendingUp } from "lucide-react";
 import * as React from "react";
-import { Label, Pie, PieChart } from "recharts";
+import {
+    type ChartConfig,
+    ChartContainer,
+    ChartTooltip,
+    ChartTooltipContent,
+    useRecharts,
+} from "@/components/ui/chart";
 import {
     Card,
     CardContent,
@@ -11,12 +17,6 @@ import {
     CardHeader,
     CardTitle,
 } from "@/components/ui/card";
-import {
-    type ChartConfig,
-    ChartContainer,
-    ChartTooltip,
-    ChartTooltipContent,
-} from "@/components/ui/chart";
 const chartData = [
     { browser: "chrome", visitors: 275, fill: "var(--color-chrome)" },
     { browser: "safari", visitors: 200, fill: "var(--color-safari)" },
@@ -55,7 +55,29 @@ export default function PieChartDemo() {
     const totalVisitors = React.useMemo(() => {
         return chartData.reduce((acc, curr) => acc + curr.visitors, 0);
     }, []);
-
+    const recharts = useRecharts();
+    if (!recharts) {
+        return (
+            <Card style="outline" className="w-4xl">
+                <CardHeader className="items-center pb-0">
+                    <CardTitle>Pie Chart</CardTitle>
+                    <CardDescription>January - June 2024</CardDescription>
+                </CardHeader>
+                <CardContent className="flex aspect-square max-h-[250px] flex-1 items-center justify-center pb-0 text-muted-foreground text-xs">
+                    Loading chart…
+                </CardContent>
+                <CardFooter className="flex-col gap-2 text-sm">
+                    <div className="flex items-center gap-2 font-medium leading-none">
+                        Trending up by 5.2% this month <TrendingUp className="h-4 w-4" aria-hidden="true" />
+                    </div>
+                    <div className="text-muted-foreground leading-none">
+                        Showing total visitors for the last 6 months
+                    </div>
+                </CardFooter>
+            </Card>
+        );
+    }
+    const { Label, Pie, PieChart } = recharts;
     return (
         <Card style="outline" className="w-4xl">
             <CardHeader className="items-center pb-0">
