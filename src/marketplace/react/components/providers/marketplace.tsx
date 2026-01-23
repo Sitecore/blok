@@ -1,23 +1,28 @@
-"use client"
+"use client";
 
 import React, {
-  useEffect,
-  useState,
-  ReactNode,
   createContext,
   useContext,
+  useEffect,
+  useMemo,
+  useState,
+  type ReactNode,
 } from "react";
 import { ApplicationContext, ClientSDK } from "@sitecore-marketplace-sdk/client";
 // import { XMC } from "@sitecore-marketplace-sdk/xmc";
 
-interface ClientSDKProviderProps {
+interface MarketplaceProviderProps {
   children: ReactNode;
 }
 
-const ClientSDKContext = createContext<ClientSDK | null>(null);
-const AppContextContext = createContext<ApplicationContext | null>(null);
+type MarketplaceContextValue = {
+  client: ClientSDK;
+  appContext: ApplicationContext;
+};
 
-export const MarketplaceProvider: React.FC<ClientSDKProviderProps> = ({
+const MarketplaceContext = createContext<MarketplaceContextValue | null>(null);
+
+export const MarketplaceProvider: React.FC<MarketplaceProviderProps> = ({
   children,
 }) => {
   const [client, setClient] = useState<ClientSDK | null>(null);
@@ -84,27 +89,30 @@ export const MarketplaceProvider: React.FC<ClientSDKProviderProps> = ({
     return null;
   }
 
+  const value = useMemo(
+    () => ({ client, appContext }),
+    [client, appContext]
+  );
+
   return (
-    <ClientSDKContext.Provider value={client}>
-      <AppContextContext.Provider value={appContext}>
-        {children}
-      </AppContextContext.Provider>
-    </ClientSDKContext.Provider>
+    <MarketplaceContext.Provider value={value}>
+      {children}
+    </MarketplaceContext.Provider>
   );
 };
 
 export const useMarketplaceClient = () => {
-  const context = useContext(ClientSDKContext);
+  const context = useContext(MarketplaceContext);
   if (!context) {
-    throw new Error("useMarketplaceClient must be used within a ClientSDKProvider");
+    throw new Error("useMarketplaceClient must be used within a MarketplaceProvider");
   }
-  return context;
+  return context.client;
 };
 
 export const useAppContext = () => {
-  const context = useContext(AppContextContext);
+  const context = useContext(MarketplaceContext);
   if (!context) {
-    throw new Error("useAppContext must be used within a ClientSDKProvider");
+    throw new Error("useAppContext must be used within a MarketplaceProvider");
   }
-  return context;
+  return context.appContext;
 };
