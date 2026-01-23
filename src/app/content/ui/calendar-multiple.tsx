@@ -64,6 +64,22 @@ export function MultiCalendar({ numberOfMonths = 1 }: { numberOfMonths?: number 
         to: parseISO("2025-06-26"),
     });
 
+    const components = React.useMemo(
+        () => ({ Dropdown: CustomDropdown }),
+        []
+    );
+
+    const labels = React.useMemo(
+        () => ({
+            labelDayButton: (day: Date) => {
+                const visible = format(day, "d");
+                const longLabel = format(day, "PPPP");
+                return `${visible} – ${longLabel}`;
+            },
+        }),
+        []
+    );
+
     return (
         <Calendar
             mode="range"
@@ -73,14 +89,8 @@ export function MultiCalendar({ numberOfMonths = 1 }: { numberOfMonths?: number 
             numberOfMonths={numberOfMonths}
             className="rounded-lg border shadow-sm"
             captionLayout="dropdown"
-            components={{ Dropdown: CustomDropdown }}
-            labels={{
-                labelDayButton: (day) => {
-                    const visible = format(day, "d");
-                    const longLabel = format(day, "PPPP");
-                    return `${visible} – ${longLabel}`;
-                },
-            }}
+            components={components}
+            labels={labels}
         />
     );
 }

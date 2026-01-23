@@ -1,4 +1,5 @@
 "use client";
+import * as React from "react";
 import { ActionBar } from "@/components/ui/action-bar";
 import { Checkbox } from "@/components/ui/checkbox";
 import { useState } from "react";
@@ -13,44 +14,70 @@ import {
 export function ActionBarDemo() {
   const [isOpen, setIsOpen] = useState(false);
 
-  const buttons = [
-    {
-      label: "Publish",
-      icon: mdiCloudUploadOutline,
-      onClick: () => console.log("Publish clicked"),
-      variant: "outline" as const,
-      colorScheme: "neutral" as const,
-    },
-    {
-      label: "Unpublish",
-      icon: mdiCloudOffOutline,
-      onClick: () => console.log("Unpublish clicked"),
-      variant: "outline" as const,
-      colorScheme: "neutral" as const,
-    },
-    {
-      label: "Duplicate",
-      icon: mdiContentCopy,
-      onClick: () => console.log("Duplicate clicked"),
-      variant: "default" as const,
-      colorScheme: "primary" as const,
-    },
-  ];
+  const handlePublish = React.useCallback(() => {
+    console.log("Publish clicked");
+  }, []);
 
-  const menuItems = [
-    {
-      label: "Archive",
-      icon: mdiArchiveOutline,
-      onClick: () => console.log("Archive clicked"),
-      variant: "default" as const,
-    },
-    {
-      label: "Delete",
-      icon: mdiTrashCanOutline,
-      onClick: () => console.log("Delete clicked"),
-      variant: "destructive" as const,
-    },
-  ];
+  const handleUnpublish = React.useCallback(() => {
+    console.log("Unpublish clicked");
+  }, []);
+
+  const handleDuplicate = React.useCallback(() => {
+    console.log("Duplicate clicked");
+  }, []);
+
+  const handleArchive = React.useCallback(() => {
+    console.log("Archive clicked");
+  }, []);
+
+  const handleDelete = React.useCallback(() => {
+    console.log("Delete clicked");
+  }, []);
+
+  const buttons = React.useMemo(
+    () => [
+      {
+        label: "Publish",
+        icon: mdiCloudUploadOutline,
+        onClick: handlePublish,
+        variant: "outline" as const,
+        colorScheme: "neutral" as const,
+      },
+      {
+        label: "Unpublish",
+        icon: mdiCloudOffOutline,
+        onClick: handleUnpublish,
+        variant: "outline" as const,
+        colorScheme: "neutral" as const,
+      },
+      {
+        label: "Duplicate",
+        icon: mdiContentCopy,
+        onClick: handleDuplicate,
+        variant: "default" as const,
+        colorScheme: "primary" as const,
+      },
+    ],
+    [handlePublish, handleUnpublish, handleDuplicate]
+  );
+
+  const menuItems = React.useMemo(
+    () => [
+      {
+        label: "Archive",
+        icon: mdiArchiveOutline,
+        onClick: handleArchive,
+        variant: "default" as const,
+      },
+      {
+        label: "Delete",
+        icon: mdiTrashCanOutline,
+        onClick: handleDelete,
+        variant: "destructive" as const,
+      },
+    ],
+    [handleArchive, handleDelete]
+  );
 
   return (
     <div className="relative w-full overflow-hidden rounded-md ">

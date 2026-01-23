@@ -91,36 +91,45 @@ export default function DraggableBasicDragDropDemo() {
   const [droppedFields, setDroppedFields] = React.useState<FieldItem[]>([]);
   const [activeId, setActiveId] = React.useState<UniqueIdentifier | null>(null);
 
-  const handleDragStart = ({ active }: { active: { id: UniqueIdentifier } }) => {
+  const handleDragStart = React.useCallback(({ active }: { active: { id: UniqueIdentifier } }) => {
     setActiveId(active.id);
-  };
+  }, []);
 
-  const handleDragEnd = (event: DragEndEvent) => {
+  const handleDragEnd = React.useCallback((event: DragEndEvent) => {
     const { active, over } = event;
     setActiveId(null);
     
     if (over?.id === "drop-zone") {
-      const field = sourceFields.find(f => f.id === active.id);
-      if (field) {
-        setDroppedFields(prev => [...prev, field]);
-        setSourceFields(prev => prev.filter(f => f.id !== active.id));
-      }
+      setSourceFields((prev) => {
+        const field = prev.find(f => f.id === active.id);
+        if (field) {
+          setDroppedFields((prevDropped) => [...prevDropped, field]);
+          return prev.filter(f => f.id !== active.id);
+        }
+        return prev;
+      });
     }
-  };
+  }, []);
 
-  const handleDragCancel = () => {
+  const handleDragCancel = React.useCallback(() => {
     setActiveId(null);
-  };
+  }, []);
 
-  const handleRemove = (id: string) => {
-    const field = droppedFields.find(f => f.id === id);
-    if (field) {
-      setDroppedFields(prev => prev.filter(f => f.id !== id));
-      setSourceFields(prev => [...prev, field]);
-    }
-  };
+  const handleRemove = React.useCallback((id: string) => {
+    setDroppedFields((prev) => {
+      const field = prev.find(f => f.id === id);
+      if (field) {
+        setSourceFields((prevSource) => [...prevSource, field]);
+        return prev.filter(f => f.id !== id);
+      }
+      return prev;
+    });
+  }, []);
 
-  const activeField = activeId ? sourceFields.find(f => f.id === activeId) : null;
+  const activeField = React.useMemo(
+    () => activeId ? sourceFields.find(f => f.id === activeId) : null,
+    [activeId, sourceFields]
+  );
 
   return (
     <DndContext

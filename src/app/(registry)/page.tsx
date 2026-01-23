@@ -1,5 +1,6 @@
 "use client";
 
+import * as React from "react";
 import { Button } from "@/components/ui/button";
 import { Codeblocks } from "@/components/docsite/code-block";
 import { CodeBlock } from "@/components/code-block";
@@ -18,6 +19,26 @@ import { mdiOpenInNew } from "@mdi/js";
 import { externalLinks } from "@/config/links";
 
 export default function Home() {
+  const handleGetStartedClick = React.useCallback(() => {
+    const element = document.getElementById("step-1");
+    element?.scrollIntoView({ behavior: "smooth" });
+  }, []);
+
+  const registryUrl = React.useMemo(
+    () => process.env.NEXT_PUBLIC_REGISTRY_URL || "",
+    []
+  );
+
+  const buttonInstallCode = React.useMemo(
+    () => `npx shadcn@latest add https://${registryUrl}/r/button.json`,
+    [registryUrl]
+  );
+
+  const allComponentsInstallCode = React.useMemo(
+    () => `npx shadcn@latest add https://${registryUrl}/r/blok-components.json`,
+    [registryUrl]
+  );
+
   return (
     <main className="w-full bg-subtle-bg">
       <div className="bg-body-bg px-32 flex justify-center">
@@ -51,10 +72,7 @@ export default function Home() {
           <div className="flex space-x-4">
             <Button
               size="lg"
-              onClick={() => {
-                const element = document.getElementById("step-1");
-                element?.scrollIntoView({ behavior: "smooth" });
-              }}
+              onClick={handleGetStartedClick}
             >
               Get started
             </Button>
@@ -194,7 +212,7 @@ export default function Home() {
               process is similar to{" "}
               <a
                 href="https://ui.shadcn.com/docs/installation"
-                className="hover:underline break-words text-primary-fg font-semibold"
+                className="hover:underline wrap-break-word text-primary-fg font-semibold"
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -249,7 +267,7 @@ export default function Home() {
           </h2>
           <p>You can now start adding the Blok components to your project.</p>
           <Codeblocks
-            code={`npx shadcn@latest add https://${process.env.NEXT_PUBLIC_REGISTRY_URL}/r/button.json`}
+            code={buttonInstallCode}
             showLineNumbers={false}
           />
           <Alert variant="primary" className="items-start">
@@ -260,7 +278,7 @@ export default function Home() {
               </div>
               <div className="max-w-full overflow-x-auto">
                 <Codeblocks
-                  code={`npx shadcn@latest add https://${process.env.NEXT_PUBLIC_REGISTRY_URL}/r/blok-components.json`}
+                  code={allComponentsInstallCode}
                   showLineNumbers={false}
                 />
               </div>

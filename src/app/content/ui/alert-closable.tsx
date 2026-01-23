@@ -20,6 +20,10 @@ function ClosableAlert({
 }) {
     const [isOpen, setIsOpen] = React.useState(true);
 
+    const handleClose = React.useCallback(() => {
+        setIsOpen(false);
+    }, []);
+
     if (!isOpen) return null;
 
     return (
@@ -32,7 +36,7 @@ function ClosableAlert({
                 size="icon-xs"
                 variant="ghost"
                 className="absolute top-2.5 right-3 h-6 shadow-none dark:hover:bg-accent-foreground/10"
-                onClick={() => setIsOpen(false)}
+                onClick={handleClose}
                 aria-label="Close alert"
             >
                 ✕

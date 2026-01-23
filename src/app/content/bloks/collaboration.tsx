@@ -1,5 +1,6 @@
 "use client";  // Please remove this you are not using nextjs
 
+import * as React from "react";
 import { useState } from "react";
 import { Collaboration, type User } from "@/components/bloks/collaboration";
 
@@ -40,13 +41,13 @@ export default function CollaborationDemo() {
     availableUsers[2], 
   ]);
 
-  const handleAddUser = (user: User) => {
+  const handleAddUser = React.useCallback((user: User) => {
     setAddedUsers((prev) => [...prev, user]);
-  };
+  }, []);
 
-  const handleRemoveUser = (userId: string) => {
+  const handleRemoveUser = React.useCallback((userId: string) => {
     setAddedUsers((prev) => prev.filter((u) => u.id !== userId));
-  };
+  }, []);
 
   return (
     <div className="flex items-start justify-center pt-5 pb-8 px-8 min-h-[400px]">

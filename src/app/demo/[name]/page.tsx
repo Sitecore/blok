@@ -17,6 +17,15 @@ export async function generateStaticParams() {
 
 const baseUrl = process.env.NEXT_PUBLIC_REGISTRY_URL ?? "";
 
+// Stable function - defined outside component to avoid recreation
+const componentDemo = (component: ReactNode) => {
+  return (
+    <div className="relative rounded-lg">
+      <Renderer>{component}</Renderer>
+    </div>
+  );
+};
+
 export default async function DemoPage({
   params,
 }: { 
@@ -34,22 +43,30 @@ export default async function DemoPage({
     components 
   } = demo;
 
+  // Compute registry URL once per request
   const registryUrl = `https://${baseUrl}/r/${name}.json`;
 
-  // Default component
-  const defaultEntry = await loadFromRegistry(
-    preview.defaultComponent as keyof typeof docsiteRegistry
-  );
+  // Load default component and examples in parallel for better performance
+  const [defaultEntry, ...exampleEntries] = await Promise.all([
+    loadFromRegistry(
+      preview.defaultComponent as keyof typeof docsiteRegistry
+    ),
+    ...(components
+      ? Object.entries(components).map(([, component]) =>
+          loadFromRegistry(
+            component.component as keyof typeof docsiteRegistry
+          )
+        )
+      : []),
+  ]);
 
   if (!defaultEntry) notFound();
 
-  // Examples
-  const exampleSections = components
-    ? await Promise.all(
-        Object.entries(components).map(async ([title, component]) => {
-          const entry = await loadFromRegistry(
-            component.component as keyof typeof docsiteRegistry
-          );
+  // Build example sections with pre-loaded entries
+  const exampleSections = components && exampleEntries.length > 0
+    ? Object.entries(components)
+        .map(([title, component], index) => {
+          const entry = exampleEntries[index];
 
           if (!entry) return null;
 
@@ -65,7 +82,7 @@ export default async function DemoPage({
             </div>
           );
         })
-      )
+        .filter(Boolean)
     : null;
 
   return (
@@ -113,13 +130,5 @@ export default async function DemoPage({
         </div>
       )}
     </div>
-  );
-}
-
-const componentDemo = (component: ReactNode) => {
-  return (
-      <div className="relative rounded-lg">
-          <Renderer>{component}</Renderer>
-      </div>
   );
 }

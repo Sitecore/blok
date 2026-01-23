@@ -24,16 +24,17 @@ import { Icon } from "@/lib/icon";
 const CommandDemo = () => {
     const [open, setOpen] = React.useState(false);
 
-    React.useEffect(() => {
-        const down = (e: KeyboardEvent) => {
-            if (e.key === "j" && (e.metaKey || e.ctrlKey)) {
-                e.preventDefault();
-                setOpen((open) => !open);
-            }
-        };
-        document.addEventListener("keydown", down);
-        return () => document.removeEventListener("keydown", down);
+    const handleKeyDown = React.useCallback((e: KeyboardEvent) => {
+        if (e.key === "j" && (e.metaKey || e.ctrlKey)) {
+            e.preventDefault();
+            setOpen((prev) => !prev);
+        }
     }, []);
+
+    React.useEffect(() => {
+        document.addEventListener("keydown", handleKeyDown);
+        return () => document.removeEventListener("keydown", handleKeyDown);
+    }, [handleKeyDown]);
 
     return (
         <div>

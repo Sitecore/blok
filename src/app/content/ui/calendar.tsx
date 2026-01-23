@@ -62,6 +62,22 @@ export default function CalendarDemo() {
         parseISO("2025-06-12")
     );
 
+    const components = React.useMemo(
+        () => ({ Dropdown: CustomDropdown }),
+        []
+    );
+
+    const labels = React.useMemo(
+        () => ({
+            labelDayButton: (day: Date) => {
+                const visible = format(day, "d");
+                const longLabel = format(day, "PPPP");
+                return `${visible} – ${longLabel}`;
+            },
+        }),
+        []
+    );
+
     return (
         <Calendar
             mode="single"
@@ -70,14 +86,8 @@ export default function CalendarDemo() {
             onSelect={setDate}
             className="rounded-lg border shadow-sm"
             captionLayout="dropdown"
-            components={{ Dropdown: CustomDropdown }}
-            labels={{
-                labelDayButton: (day) => {
-                    const visible = format(day, "d");
-                    const longLabel = format(day, "PPPP");
-                    return `${visible} – ${longLabel}`;
-                },
-            }}
+            components={components}
+            labels={labels}
         />
     );
 }

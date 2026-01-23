@@ -1,5 +1,6 @@
 "use client";
 
+import * as React from "react";
 import { useState } from "react";
 import { PinnedSitesSection } from "@/components/bloks/pinned-sites-section";
 import { AllSitesSection } from "@/components/bloks/all-sites-section";
@@ -266,7 +267,7 @@ export default function PinnedSitesSectionDemo() {
   const [newSiteName, setNewSiteName] = useState("");
   const [duplicateSiteName, setDuplicateSiteName] = useState("");
 
-  const handlePin = (siteId: string) => {
+  const handlePin = React.useCallback((siteId: string) => {
     setPinnedSiteIds((prev) => [...prev, siteId]);
 
     // TODO: Add your API call here to persist to database
@@ -277,9 +278,9 @@ export default function PinnedSitesSectionDemo() {
     // });
 
     console.log(`Pinned site: ${siteId}`);
-  };
+  }, []);
 
-  const handleUnpin = (siteId: string) => {
+  const handleUnpin = React.useCallback((siteId: string) => {
     setPinnedSiteIds((prev) => prev.filter((id) => id !== siteId));
 
     // TODO: Add your API call here to remove from database
@@ -289,10 +290,10 @@ export default function PinnedSitesSectionDemo() {
     // });
 
     console.log(`Unpinned site: ${siteId}`);
-  };
+  }, []);
 
   // Handlers for page builder action
-  const handlePageBuilder = (site: SiteFavoritesResponse) => {
+  const handlePageBuilder = React.useCallback((site: SiteFavoritesResponse) => {
     console.log(`Opening page builder for site: ${site.displayName} (${site.id})`);
 
     // TODO: Add your navigation logic here
@@ -301,34 +302,34 @@ export default function PinnedSitesSectionDemo() {
 
     // Or with window.location:
     // window.location.href = `/collection/${site.collectionId}/sites/${site.id}/page-builder`;
-  };
+  }, []);
 
   // Handlers for dashboard action
-  const handleDashboard = (site: SiteFavoritesResponse) => {
+  const handleDashboard = React.useCallback((site: SiteFavoritesResponse) => {
     console.log(`Opening dashboard for site: ${site.displayName} (${site.id})`);
 
     // TODO: Add your navigation logic here
     // Example with Next.js router:
     // router.push(`/collection/${site.collectionId}/sites/${site.id}/dashboard`);
-  };
+  }, []);
 
   // Handlers for settings action
-  const handleSettings = (site: SiteFavoritesResponse) => {
+  const handleSettings = React.useCallback((site: SiteFavoritesResponse) => {
     console.log(`Opening settings for site: ${site.displayName} (${site.id})`);
 
     // TODO: Add your navigation logic here
     // Example with Next.js router:
     // router.push(`/collection/${site.collectionId}/sites/${site.id}/settings`);
-  };
+  }, []);
 
   // Handlers for rename action
-  const handleRename = (siteId: string, currentName: string) => {
+  const handleRename = React.useCallback((siteId: string, currentName: string) => {
     setCurrentSiteId(siteId);
     setNewSiteName(currentName);
     setRenameDialogOpen(true);
-  };
+  }, []);
 
-  const handleRenameSubmit = (e: React.FormEvent) => {
+  const handleRenameSubmit = React.useCallback((e: React.FormEvent) => {
     e.preventDefault();
     console.log(`Renaming site ${currentSiteId} to: ${newSiteName}`);
 
@@ -339,16 +340,16 @@ export default function PinnedSitesSectionDemo() {
     // });
 
     setRenameDialogOpen(false);
-  };
+  }, [currentSiteId, newSiteName]);
 
   // Handlers for duplicate action
-  const handleDuplicate = (siteId: string, suggestedName: string) => {
+  const handleDuplicate = React.useCallback((siteId: string, suggestedName: string) => {
     setCurrentSiteId(siteId);
     setDuplicateSiteName(suggestedName);
     setDuplicateDialogOpen(true);
-  };
+  }, []);
 
-  const handleDuplicateSubmit = (e: React.FormEvent) => {
+  const handleDuplicateSubmit = React.useCallback((e: React.FormEvent) => {
     e.preventDefault();
     console.log(`Duplicating site ${currentSiteId} as: ${duplicateSiteName}`);
 
@@ -359,10 +360,10 @@ export default function PinnedSitesSectionDemo() {
     // });
 
     setDuplicateDialogOpen(false);
-  };
+  }, [currentSiteId, duplicateSiteName]);
 
   // Footer buttons factory - used by both sections
-  const getFooterButtons = (site: SiteFavoritesResponse) => [
+  const getFooterButtons = React.useCallback((site: SiteFavoritesResponse) => [
     {
       icon: <FileEdit className="h-3.5 w-3.5" />,
       label: "Page builder",
@@ -373,10 +374,10 @@ export default function PinnedSitesSectionDemo() {
       label: "Dashboard",
       onClick: () => handleDashboard(site),
     },
-  ];
+  ], [handlePageBuilder, handleDashboard]);
 
   // Dropdown actions factory - used by All Sites section
-  const getDropdownActions = (site: SiteFavoritesResponse, isPinned: boolean) => [
+  const getDropdownActions = React.useCallback((site: SiteFavoritesResponse, isPinned: boolean) => [
     {
       icon: <Settings className="mr-2 h-4 w-4" />,
       label: "Settings",
@@ -401,7 +402,7 @@ export default function PinnedSitesSectionDemo() {
       onClick: () => handleDuplicate(site.id, `${site.displayName || site.name} (Copy)`),
       show: site.permissions.canCreate,
     },
-  ];
+  ], [handleSettings, handleUnpin, handlePin, handleRename, handleDuplicate]);
 
   return (
     <>

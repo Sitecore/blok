@@ -1,5 +1,6 @@
 "use client";
 
+import * as React from "react";
 import { useState } from "react";
 import {
   StackNavigation,
@@ -17,29 +18,32 @@ import { cn } from "@/lib/utils";
 export default function StackNavigationHorizontalTabsDemo() {
   const [activeTab, setActiveTab] = useState("/overview");
 
-  const navigationItems: StackNavigationElement[] = [
-    {
-      name: "Overview",
-      path: "/overview",
-      icon: <Icon path={mdiViewDashboard} />,
-    },
-    {
-      name: "Versions",
-      path: "/versions",
-      icon: <Icon path={mdiHistory} />,
-    },
-    {
-      name: "Usage",
-      path: "/usage",
-      icon: <Icon path={mdiLayers} />,
-    },
-  ];
+  const navigationItems: StackNavigationElement[] = React.useMemo(
+    () => [
+      {
+        name: "Overview",
+        path: "/overview",
+        icon: <Icon path={mdiViewDashboard} />,
+      },
+      {
+        name: "Versions",
+        path: "/versions",
+        icon: <Icon path={mdiHistory} />,
+      },
+      {
+        name: "Usage",
+        path: "/usage",
+        icon: <Icon path={mdiLayers} />,
+      },
+    ],
+    []
+  );
 
-  const handleTabClick = (path: string) => {
+  const handleTabClick = React.useCallback((path: string) => {
     setActiveTab(path);
-  };
+  }, []);
 
-  const renderTabItem = (item: StackNavigationItem) => {
+  const renderTabItem = React.useCallback((item: StackNavigationItem) => {
     const isActive = activeTab === item.path;
     return (
       <div
@@ -67,37 +71,40 @@ export default function StackNavigationHorizontalTabsDemo() {
         </span>
       </div>
     );
-  };
+  }, [activeTab, handleTabClick]);
 
-  const tabContent: Record<string, React.ReactNode> = {
-    "/overview": (
-      <div className="p-6">
-        <h3 className="text-lg font-semibold mb-2">Overview</h3>
-        <p className="text-sm text-muted-foreground">
-          This is the overview content. Here you can see a summary of all the
-          important information.
-        </p>
-      </div>
-    ),
-    "/versions": (
-      <div className="p-6">
-        <h3 className="text-lg font-semibold mb-2">Versions</h3>
-        <p className="text-sm text-muted-foreground">
-          This is the versions content. View and manage different versions of
-          your project.
-        </p>
-      </div>
-    ),
-    "/usage": (
-      <div className="p-6">
-        <h3 className="text-lg font-semibold mb-2">Usage</h3>
-        <p className="text-sm text-muted-foreground">
-          This is the usage content. Learn how to use this component
-          effectively.
-        </p>
-      </div>
-    ),
-  };
+  const tabContent: Record<string, React.ReactNode> = React.useMemo(
+    () => ({
+      "/overview": (
+        <div className="p-6">
+          <h3 className="text-lg font-semibold mb-2">Overview</h3>
+          <p className="text-sm text-muted-foreground">
+            This is the overview content. Here you can see a summary of all the
+            important information.
+          </p>
+        </div>
+      ),
+      "/versions": (
+        <div className="p-6">
+          <h3 className="text-lg font-semibold mb-2">Versions</h3>
+          <p className="text-sm text-muted-foreground">
+            This is the versions content. View and manage different versions of
+            your project.
+          </p>
+        </div>
+      ),
+      "/usage": (
+        <div className="p-6">
+          <h3 className="text-lg font-semibold mb-2">Usage</h3>
+          <p className="text-sm text-muted-foreground">
+            This is the usage content. Learn how to use this component
+            effectively.
+          </p>
+        </div>
+      ),
+    }),
+    []
+  );
 
   return (
     <div className="w-full border rounded-md bg-background overflow-hidden">
