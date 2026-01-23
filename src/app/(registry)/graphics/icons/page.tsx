@@ -1,4 +1,6 @@
 "use client";
+
+import { Suspense, useEffect, useMemo, useState } from "react";
 import { Icon } from "@/lib/icon";
 import { copyToClipboard } from "@/components/docsite/code-block";
 import {
@@ -14,9 +16,7 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
-import * as mdiIcons from "@mdi/js";
 import * as logoIcons from "./logo-icons";
-import { Suspense } from "react";
 import { CircularProgress } from "@/components/ui/circular-progress";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 
@@ -629,15 +629,25 @@ iconsData.forEach((data) => {
   allWords = allWords.map(
     (word) => word.charAt(0).toUpperCase() + word.slice(1)
   );
-  // join all words and prefix with 'mdi'=> [mdiAccountCircleOutline]
-  const code = "mdi" + allWords.join("");
-  data.icon = code;
-  data.code = code;
-  // lazy load all icon imports
-  data.icon = mdiIcons?.[code as keyof typeof mdiIcons] as string;
+  // join all words and prefix with 'mdi' => mdiAccountCircleOutline
+  data.code = "mdi" + allWords.join("");
 });
 
 export default function IconsPage() {
+  const [mdiIcons, setMdiIcons] = useState<Record<string, string> | null>(null);
+
+  useEffect(() => {
+    import("@mdi/js").then((m) => setMdiIcons(m as unknown as Record<string, string>));
+  }, []);
+
+  const resolvedIconsData = useMemo(() => {
+    if (!mdiIcons) return null;
+    return iconsData.map((d) => ({
+      ...d,
+      icon: mdiIcons[d.code as string] ?? "",
+    }));
+  }, [mdiIcons]);
+
   return (
     <div className="container p-5 md:p-10">
       <div className="mb-8">
@@ -681,6 +691,12 @@ export default function IconsPage() {
         </div>
 
         <div className="overflow-x-auto">
+          {!resolvedIconsData ? (
+            <div className="flex items-center justify-center py-12 text-muted-foreground text-sm">
+              <CircularProgress size="sm" className="mr-2" />
+              Loading icons…
+            </div>
+          ) : (
           <Table>
             <TableHeader>
               <TableRow>
@@ -691,7 +707,7 @@ export default function IconsPage() {
               </TableRow>
             </TableHeader>
             <TableBody>
-              {iconsData.map(({ mdi, usage, icon, code }) => (
+              {resolvedIconsData.map(({ mdi, usage, icon, code }) => (
                 <TableRow key={mdi}>
                   <TableCell className="w-28 px-4">
                     <Suspense fallback={<CircularProgress size="sm" />}>
@@ -702,7 +718,7 @@ export default function IconsPage() {
                             className="cursor-pointer inline-flex items-center justify-center w-8 h-8 hover:bg-muted rounded transition-colors"
                           >
                             <Icon
-                              path={icon as string}
+                              path={icon}
                               size={0.85}
                               className="text-foreground"
                             />
@@ -740,6 +756,7 @@ export default function IconsPage() {
               ))}
             </TableBody>
           </Table>
+          )}
         </div>
 
         <h2 className="text-2xl font-semibold">Logo icons</h2>
