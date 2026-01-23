@@ -25,17 +25,22 @@ export const ListLanguagesFromServerAction = () => {
   const [error, setError] = useState<string | null>(null);
 
   const fetchLanguages = async () => {
+    // Prevent multiple parallel calls
+    if (loading) {
+      return;
+    }
+
     setLoading(true);
     setError(null);
     try {
       // server action
-      const languages = await fetchLanguagesAction({
+      const fetchedLanguages = await fetchLanguagesAction({
         sitecoreContextId:
           appContext?.resourceAccess?.[0]?.context?.preview || "",
         accessToken: await getAccessTokenSilently(),
       });
 
-      setLanguages(languages);
+      setLanguages(fetchedLanguages);
     } catch (error) {
       console.error("error from server action", error);
       setError(error instanceof Error ? error.message : "An error occurred");

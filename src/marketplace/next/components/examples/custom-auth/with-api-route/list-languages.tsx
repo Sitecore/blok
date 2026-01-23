@@ -24,10 +24,15 @@ export const ListLanguagesFromApiRoute = () => {
   const [error, setError] = useState<string | null>(null);
 
   const fetchLanguages = async () => {
+    // Prevent multiple parallel calls
+    if (loading) {
+      return;
+    }
+
     setLoading(true);
     setError(null);
-    const accessToken = await getAccessTokenSilently();
     try {
+      const accessToken = await getAccessTokenSilently();
       // /app/api/sites/languages/route.ts
       const response = await fetch(
         `/api/sites/languages?contextid=${appContext?.resourceAccess?.[0]?.context?.preview}`,
@@ -41,8 +46,7 @@ export const ListLanguagesFromApiRoute = () => {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
       const data = await response.json();
-      console.log("languages from api", data);
-      setLanguages(data.data);
+      setLanguages(data?.data ?? []);
     } catch (error) {
       console.error("error from api", error);
       setError(error instanceof Error ? error.message : "An error occurred");

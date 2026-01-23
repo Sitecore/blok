@@ -21,20 +21,21 @@ export async function GET(request: NextRequest) {
     );
   }
 
-  const xmcClient = await experimental_createXMCClient({
-    getAccessToken: async () => {
-      return accessToken;
-    },
-  });
-
   try {
+    // One client per request; each API route invocation is a single request.
+    // Parallel HTTP requests correctly create separate clients.
+    const xmcClient = await experimental_createXMCClient({
+      getAccessToken: async () => {
+        return accessToken;
+      },
+    });
+
     const languages = await xmcClient.sites.listLanguages({
       query: {
         sitecoreContextId: contextId,
       },
     });
 
-    console.log("languages from API", languages);
     return NextResponse.json(languages);
   } catch (error) {
     console.error("Error fetching languages", error);
