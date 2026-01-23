@@ -77,7 +77,7 @@ const connectorVariants = cva("transition-colors", {
 });
 
 // Checkmark SVG path
-const CheckIcon = ({ className }: { className?: string }) => (
+const CheckIcon = React.memo(({ className }: { className?: string }) => (
   <svg
     className={className}
     viewBox="0 0 24 24"
@@ -89,9 +89,9 @@ const CheckIcon = ({ className }: { className?: string }) => (
   >
     <polyline points="20 6 9 17 4 12" />
   </svg>
-);
+));
 
-function StepperStepItem({
+const StepperStepItem = React.memo(function StepperStepItem({
   step,
   index,
   isLast,
@@ -144,9 +144,9 @@ function StepperStepItem({
       )}
     </>
   );
-}
+});
 
-export function Stepper({
+export const Stepper = React.memo(function Stepper({
   steps,
   currentStep,
   orientation = "horizontal",
@@ -245,4 +245,4 @@ export function Stepper({
       ))}
     </div>
   );
-}
+});

@@ -1,5 +1,6 @@
 "use client";
 
+import * as React from "react";
 import { SiteCard } from "@/components/bloks/site-card";
 import EmptyPin from "@/lib/empty-pin.svg";
 
@@ -53,7 +54,7 @@ interface PinnedSitesProps<T extends SiteData> {
   getDropdownActions?: (site: T) => DropdownAction[];
 }
 
-export function PinnedSitesSection<T extends SiteData>({
+export const PinnedSitesSection = React.memo(function PinnedSitesSection<T extends SiteData>({
   allSites = [],
   pinnedSiteIds = [],
   onUnpin,
@@ -115,6 +116,6 @@ export function PinnedSitesSection<T extends SiteData>({
       </section>
     </div>
   );
-}
+}) as <T extends SiteData>(props: PinnedSitesProps<T>) => React.ReactElement;
 
 

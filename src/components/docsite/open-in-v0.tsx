@@ -1,3 +1,4 @@
+import * as React from "react";
 import { type MouseEvent, useCallback } from "react";
 import type { ComponentProps } from "react";
 import { toast } from "sonner";
@@ -19,7 +20,7 @@ function buildV0Url(registryUrl: string, title?: string, prompt?: string) {
   return `https://v0.dev/chat/api/open?${params.toString()}`;
 }
 
-export function OpenInV0Button({
+export const OpenInV0Button = React.memo(function OpenInV0Button({
   registryUrl,
   title,
   prompt,
@@ -73,4 +74,4 @@ export function OpenInV0Button({
       </svg>
     </Button>
   );
-}
+});

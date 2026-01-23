@@ -140,7 +140,7 @@ interface ComponentThumbProps {
   className?: string;
 }
 
-export function ComponentThumb({
+export const ComponentThumb = React.memo(function ComponentThumb({
   componentName,
   className,
 }: ComponentThumbProps) {
@@ -151,7 +151,7 @@ export function ComponentThumb({
   }
 
   return <ThumbnailComponent className={className} />;
-}
+});
 
 export function hasComponentThumbnail(componentName: string): boolean {
   return componentName in componentThumbnails;

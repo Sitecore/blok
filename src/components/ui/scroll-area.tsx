@@ -5,7 +5,7 @@ import * as ScrollAreaPrimitive from "@radix-ui/react-scroll-area";
 
 import { cn } from "@/lib/utils";
 
-function ScrollArea({
+const ScrollArea = React.memo(function ScrollArea({
   className,
   children,
   ...props
@@ -27,9 +27,9 @@ function ScrollArea({
       <ScrollAreaPrimitive.Corner />
     </ScrollAreaPrimitive.Root>
   );
-}
+});
 
-function ScrollBar({
+const ScrollBar = React.memo(function ScrollBar({
   className,
   orientation = "vertical",
   ...props
@@ -54,6 +54,6 @@ function ScrollBar({
       />
     </ScrollAreaPrimitive.ScrollAreaScrollbar>
   );
-}
+});
 
 export { ScrollArea, ScrollBar };

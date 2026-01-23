@@ -159,7 +159,7 @@ type IconsProps = SVGProps<SVGSVGElement> & {
     size?: keyof typeof iconSize,
 } & VariantProps<typeof iconVariants>
 
-function Icon({ 
+const Icon = React.memo(function Icon({ 
     path,
     title,
     variant,
@@ -187,6 +187,6 @@ function Icon({
             </svg>
         </span>
     )
-}
+})
 
 export { Icon, iconVariants }

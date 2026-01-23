@@ -1,5 +1,6 @@
 "use client";
 
+import * as React from "react";
 import { SiteCard } from "@/components/bloks/site-card";
 
 interface SiteData {
@@ -40,7 +41,7 @@ interface AllSitesProps<T extends SiteData> {
   getDropdownActions?: (site: T, isPinned: boolean) => DropdownAction[];
 }
 
-export function AllSitesSection<T extends SiteData>({
+export const AllSitesSection = React.memo(function AllSitesSection<T extends SiteData>({
   allSites = [],
   pinnedSiteIds = [],
   getFooterButtons,
@@ -79,6 +80,6 @@ export function AllSitesSection<T extends SiteData>({
       </section>
     </div>
   );
-}
+}) as <T extends SiteData>(props: AllSitesProps<T>) => React.ReactElement;
 
 

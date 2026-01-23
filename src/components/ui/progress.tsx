@@ -5,7 +5,7 @@ import type * as React from "react";
 
 import { cn } from "@/lib/utils";
 
-function Progress({
+const Progress = React.memo(function Progress({
   className,
   value,
   ...props
@@ -27,6 +27,6 @@ function Progress({
       />
     </ProgressPrimitive.Root>
   );
-}
+});
 
 export { Progress };

@@ -20,7 +20,7 @@ interface TimelineRootProps
   extends React.ComponentProps<"div">,
     VariantProps<typeof timelineRootVariants> {}
 
-function TimelineRoot({ className, size, ...props }: TimelineRootProps) {
+const TimelineRoot = React.memo(function TimelineRoot({ className, size, ...props }: TimelineRootProps) {
   return (
     <div
       data-slot="timeline-root"
@@ -28,13 +28,13 @@ function TimelineRoot({ className, size, ...props }: TimelineRootProps) {
       {...props}
     />
   );
-}
+});
 
   // Timeline Item
 
 interface TimelineItemProps extends React.ComponentProps<"div"> {}
 
-function TimelineItem({ className, ...props }: TimelineItemProps) {
+const TimelineItem = React.memo(function TimelineItem({ className, ...props }: TimelineItemProps) {
   return (
     <div
       data-slot="timeline-item"
@@ -45,13 +45,13 @@ function TimelineItem({ className, ...props }: TimelineItemProps) {
       {...props}
     />
   );
-}
+});
 
   // Timeline Separator 
 
 interface TimelineSeparatorProps extends React.ComponentProps<"div"> {}
 
-function TimelineSeparator({ className, ...props }: TimelineSeparatorProps) {
+const TimelineSeparator = React.memo(function TimelineSeparator({ className, ...props }: TimelineSeparatorProps) {
   return (
     <div
       data-slot="timeline-separator"
@@ -59,7 +59,7 @@ function TimelineSeparator({ className, ...props }: TimelineSeparatorProps) {
       {...props}
     />
   );
-}
+});
 
   // Timeline Indicator
 
@@ -90,7 +90,7 @@ interface TimelineIndicatorProps
   extends React.ComponentProps<"div">,
     VariantProps<typeof timelineIndicatorVariants> {}
 
-function TimelineIndicator({
+const TimelineIndicator = React.memo(function TimelineIndicator({
   className,
   variant,
   size,
@@ -103,7 +103,7 @@ function TimelineIndicator({
       {...props}
     />
   );
-}
+});
 
 // Timeline Connector
 
@@ -124,7 +124,7 @@ interface TimelineConnectorProps
   extends React.ComponentProps<"div">,
     VariantProps<typeof timelineConnectorVariants> {}
 
-function TimelineConnector({
+const TimelineConnector = React.memo(function TimelineConnector({
   className,
   variant,
   ...props
@@ -136,13 +136,13 @@ function TimelineConnector({
       {...props}
     />
   );
-}
+});
 
 //  Timeline Content
 
 interface TimelineContentProps extends React.ComponentProps<"div"> {}
 
-function TimelineContent({ className, ...props }: TimelineContentProps) {
+const TimelineContent = React.memo(function TimelineContent({ className, ...props }: TimelineContentProps) {
   return (
     <div
       data-slot="timeline-content"
@@ -150,13 +150,13 @@ function TimelineContent({ className, ...props }: TimelineContentProps) {
       {...props}
     />
   );
-}
+});
 
  // Timeline Title
 
 interface TimelineTitleProps extends React.ComponentProps<"p"> {}
 
-function TimelineTitle({ className, ...props }: TimelineTitleProps) {
+const TimelineTitle = React.memo(function TimelineTitle({ className, ...props }: TimelineTitleProps) {
   return (
     <p
       data-slot="timeline-title"
@@ -164,13 +164,13 @@ function TimelineTitle({ className, ...props }: TimelineTitleProps) {
       {...props}
     />
   );
-}
+});
 
 // Timeline Description
 
 interface TimelineDescriptionProps extends React.ComponentProps<"p"> {}
 
-function TimelineDescription({ className, ...props }: TimelineDescriptionProps) {
+const TimelineDescription = React.memo(function TimelineDescription({ className, ...props }: TimelineDescriptionProps) {
   return (
     <p
       data-slot="timeline-description"
@@ -178,7 +178,7 @@ function TimelineDescription({ className, ...props }: TimelineDescriptionProps) 
       {...props}
     />
   );
-}
+});
 
 export {
   TimelineRoot,

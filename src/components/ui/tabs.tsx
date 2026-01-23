@@ -1,6 +1,6 @@
 "use client";
 
-import type * as React from "react";
+import * as React from "react";
 import * as TabsPrimitive from "@radix-ui/react-tabs";
 import { cva, type VariantProps } from "class-variance-authority";
 
@@ -37,7 +37,7 @@ const tabsTriggerVariants = cva(
   }
 );
 
-function Tabs({
+const Tabs = React.memo(function Tabs({
   className,
   ...props
 }: React.ComponentProps<typeof TabsPrimitive.Root>) {
@@ -48,9 +48,9 @@ function Tabs({
       {...props}
     />
   );
-}
+});
 
-function TabsList({
+const TabsList = React.memo(function TabsList({
   className,
   variant,
   ...props
@@ -63,9 +63,9 @@ function TabsList({
       {...props}
     />
   );
-}
+});
 
-function TabsTrigger({
+const TabsTrigger = React.memo(function TabsTrigger({
   className,
   variant,
   ...props
@@ -78,9 +78,9 @@ function TabsTrigger({
       {...props}
     />
   );
-}
+});
 
-function TabsContent({
+const TabsContent = React.memo(function TabsContent({
   className,
   ...props
 }: React.ComponentProps<typeof TabsPrimitive.Content>) {
@@ -91,6 +91,6 @@ function TabsContent({
       {...props}
     />
   );
-}
+});
 
 export { Tabs, TabsList, TabsTrigger, TabsContent };

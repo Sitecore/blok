@@ -16,7 +16,7 @@ interface ComponentGridProps {
   useThumbnails?: boolean;
 }
 
-export function ComponentGrid({
+export const ComponentGrid = React.memo(function ComponentGrid({
   components,
   getPreview,
   getHref,
@@ -60,4 +60,4 @@ export function ComponentGrid({
       })}
     </div>
   );
-}
+});

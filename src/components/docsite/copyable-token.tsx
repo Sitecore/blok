@@ -1,5 +1,6 @@
 "use client";
 
+import * as React from "react";
 import {
   Tooltip,
   TooltipContent,
@@ -14,10 +15,10 @@ async function copyToClipboard(value: string) {
   await navigator.clipboard.writeText(value);
 }
 
-export function CopyableToken({ token }: CopyableTokenProps) {
-  const handleCopy = async () => {
+export const CopyableToken = React.memo(function CopyableToken({ token }: CopyableTokenProps) {
+  const handleCopy = React.useCallback(async () => {
     await copyToClipboard(token);
-  };
+  }, [token]);
 
   return (
     <Tooltip>
@@ -33,5 +34,5 @@ export function CopyableToken({ token }: CopyableTokenProps) {
       <TooltipContent>Copy to clipboard</TooltipContent>
     </Tooltip>
   );
-}
+});
 

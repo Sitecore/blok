@@ -1,5 +1,6 @@
 "use client"
 
+import * as React from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "../ui/button";
 import { Check } from "lucide-react";
@@ -11,7 +12,7 @@ interface InstallationCodeBlockProps {
     registryUrl: string;
 }
 
-export default function InstallationCodeBlock({ registryUrl }: InstallationCodeBlockProps) {
+const InstallationCodeBlock = React.memo(function InstallationCodeBlock({ registryUrl }: InstallationCodeBlockProps) {
     const [copied, setCopied] = useState(false);
     const [activeTab, setActiveTab] = useState("pnpm")
     
@@ -81,4 +82,6 @@ export default function InstallationCodeBlock({ registryUrl }: InstallationCodeB
             </Tabs>
         </div>
     )
-}
+});
+
+export default InstallationCodeBlock;

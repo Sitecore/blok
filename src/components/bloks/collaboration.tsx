@@ -90,7 +90,7 @@ function getInitials(name: string): string {
 }
 
 /** Avatar trigger that opens the popover - shows user avatars + add button */
-function AvatarTrigger({
+const AvatarTrigger = React.memo(function AvatarTrigger({
   users,
   maxDisplay = 3,
 }: {
@@ -130,9 +130,9 @@ function AvatarTrigger({
       )}
     </div>
   );
-}
+});
 
-function UserListItem({
+const UserListItem = React.memo(function UserListItem({
   user,
   isCurrentUser = false,
   isAdded = false,
@@ -190,7 +190,7 @@ function UserListItem({
       )}
     </div>
   );
-}
+});
 
 // Main Component
 

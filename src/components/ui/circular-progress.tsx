@@ -18,7 +18,7 @@ const sizeClasses = {
   xl: "w-12 h-12",
 }
 
-function CircularProgress({
+const CircularProgress = React.memo(function CircularProgress({
   size = "md",
   variant = "default",
   className,
@@ -59,7 +59,7 @@ function CircularProgress({
   }
 
   return CircularProgressElement
-}
+})
 
 export { CircularProgress, type CircularProgressProps }
 

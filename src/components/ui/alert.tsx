@@ -31,7 +31,7 @@ const variantIcons = {
   success: mdiCheckCircle,
 };
 
-function Alert({
+const Alert = React.memo(function Alert({
   className,
   variant = "default",
   ...props
@@ -53,9 +53,9 @@ function Alert({
       {props.children}
     </div>
   );
-}
+});
 
-function AlertTitle({ className, ...props }: React.ComponentProps<"div">) {
+const AlertTitle = React.memo(function AlertTitle({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
       data-slot="alert-title"
@@ -66,9 +66,9 @@ function AlertTitle({ className, ...props }: React.ComponentProps<"div">) {
       {...props}
     />
   );
-}
+});
 
-function AlertDescription({
+const AlertDescription = React.memo(function AlertDescription({
   className,
   ...props
 }: React.ComponentProps<"div">) {
@@ -82,6 +82,6 @@ function AlertDescription({
       {...props}
     />
   );
-}
+});
 
 export { Alert, AlertTitle, AlertDescription };

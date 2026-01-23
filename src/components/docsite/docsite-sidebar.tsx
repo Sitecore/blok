@@ -305,7 +305,7 @@ function SidebarRail({ className, ...props }: React.ComponentProps<"button">) {
   );
 }
 
-function SidebarInset({ className, ...props }: React.ComponentProps<"main">) {
+const SidebarInset = React.memo(function SidebarInset({ className, ...props }: React.ComponentProps<"main">) {
   return (
     <main
       data-slot="sidebar-inset"
@@ -317,9 +317,9 @@ function SidebarInset({ className, ...props }: React.ComponentProps<"main">) {
       {...props}
     />
   );
-}
+});
 
-function SidebarInput({
+const SidebarInput = React.memo(function SidebarInput({
   className,
   ...props
 }: React.ComponentProps<typeof Input>) {
@@ -331,9 +331,9 @@ function SidebarInput({
       {...props}
     />
   );
-}
+});
 
-function SidebarHeader({ className, ...props }: React.ComponentProps<"div">) {
+const SidebarHeader = React.memo(function SidebarHeader({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
       data-slot="sidebar-header"
@@ -342,9 +342,9 @@ function SidebarHeader({ className, ...props }: React.ComponentProps<"div">) {
       {...props}
     />
   );
-}
+});
 
-function SidebarFooter({ className, ...props }: React.ComponentProps<"div">) {
+const SidebarFooter = React.memo(function SidebarFooter({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
       data-slot="sidebar-footer"
@@ -353,9 +353,9 @@ function SidebarFooter({ className, ...props }: React.ComponentProps<"div">) {
       {...props}
     />
   );
-}
+});
 
-function SidebarSeparator({
+const SidebarSeparator = React.memo(function SidebarSeparator({
   className,
   ...props
 }: React.ComponentProps<typeof Separator>) {
@@ -367,9 +367,9 @@ function SidebarSeparator({
       {...props}
     />
   );
-}
+});
 
-function SidebarContent({ className, ...props }: React.ComponentProps<"nav">) {
+const SidebarContent = React.memo(function SidebarContent({ className, ...props }: React.ComponentProps<"nav">) {
   return (
     <nav
       data-slot="sidebar-content"
@@ -383,9 +383,9 @@ function SidebarContent({ className, ...props }: React.ComponentProps<"nav">) {
       {...props}
     />
   );
-}
+});
 
-function SidebarGroup({ className, ...props }: React.ComponentProps<"div">) {
+const SidebarGroup = React.memo(function SidebarGroup({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
       data-slot="sidebar-group"
@@ -395,9 +395,9 @@ function SidebarGroup({ className, ...props }: React.ComponentProps<"div">) {
       {...props}
     />
   );
-}
+});
 
-function SidebarGroupLabel({
+const SidebarGroupLabel = React.memo(function SidebarGroupLabel({
   className,
   asChild = false,
   ...props
@@ -416,9 +416,9 @@ function SidebarGroupLabel({
       {...props}
     />
   );
-}
+});
 
-function SidebarGroupAction({
+const SidebarGroupAction = React.memo(function SidebarGroupAction({
   className,
   asChild = false,
   ...props
@@ -439,9 +439,9 @@ function SidebarGroupAction({
       {...props}
     />
   );
-}
+});
 
-function SidebarGroupContent({
+const SidebarGroupContent = React.memo(function SidebarGroupContent({
   className,
   ...props
 }: React.ComponentProps<"div">) {
@@ -453,9 +453,9 @@ function SidebarGroupContent({
       {...props}
     />
   );
-}
+});
 
-function SidebarMenu({ className, ...props }: React.ComponentProps<"ul">) {
+const SidebarMenu = React.memo(function SidebarMenu({ className, ...props }: React.ComponentProps<"ul">) {
   return (
     <ul
       data-slot="sidebar-menu"
@@ -464,9 +464,9 @@ function SidebarMenu({ className, ...props }: React.ComponentProps<"ul">) {
       {...props}
     />
   );
-}
+});
 
-function SidebarMenuItem({ className, ...props }: React.ComponentProps<"li">) {
+const SidebarMenuItem = React.memo(function SidebarMenuItem({ className, ...props }: React.ComponentProps<"li">) {
   return (
     <li
       data-slot="sidebar-menu-item"
@@ -475,7 +475,7 @@ function SidebarMenuItem({ className, ...props }: React.ComponentProps<"li">) {
       {...props}
     />
   );
-}
+});
 
 const sidebarMenuButtonVariants = cva(
   "peer/menu-button flex w-full items-center gap-2 overflow-hidden rounded-md p-2 text-left text-sm outline-hidden ring-sidebar-ring transition-[width,height,padding] hover:bg-sidebar-accent hover:text-sidebar-accent-foreground focus-visible:ring-2 active:bg-sidebar-accent active:text-sidebar-accent-foreground disabled:pointer-events-none disabled:opacity-50 group-has-data-[sidebar=menu-action]/menu-item:pr-8 aria-disabled:pointer-events-none aria-disabled:opacity-50 data-[active=true]:bg-sidebar-accent data-[active=true]:font-medium data-[active=true]:text-sidebar-accent-foreground data-[state=open]:hover:bg-sidebar-accent data-[state=open]:hover:text-sidebar-accent-foreground group-data-[collapsible=icon]:size-8! group-data-[collapsible=icon]:p-2! [&>span:last-child]:truncate [&>svg]:size-4 [&>svg]:shrink-0",
@@ -581,7 +581,7 @@ function SidebarMenuAction({
   );
 }
 
-function SidebarMenuBadge({
+const SidebarMenuBadge = React.memo(function SidebarMenuBadge({
   className,
   ...props
 }: React.ComponentProps<"div">) {
@@ -601,9 +601,9 @@ function SidebarMenuBadge({
       {...props}
     />
   );
-}
+});
 
-function SidebarMenuSkeleton({
+const SidebarMenuSkeleton = React.memo(function SidebarMenuSkeleton({
   className,
   showIcon = false,
   ...props
@@ -639,9 +639,9 @@ function SidebarMenuSkeleton({
       />
     </div>
   );
-}
+});
 
-function SidebarMenuSub({ className, ...props }: React.ComponentProps<"ul">) {
+const SidebarMenuSub = React.memo(function SidebarMenuSub({ className, ...props }: React.ComponentProps<"ul">) {
   return (
     <ul
       data-slot="sidebar-menu-sub"
@@ -654,9 +654,9 @@ function SidebarMenuSub({ className, ...props }: React.ComponentProps<"ul">) {
       {...props}
     />
   );
-}
+});
 
-function SidebarMenuSubItem({
+const SidebarMenuSubItem = React.memo(function SidebarMenuSubItem({
   className,
   ...props
 }: React.ComponentProps<"li">) {
@@ -668,9 +668,9 @@ function SidebarMenuSubItem({
       {...props}
     />
   );
-}
+});
 
-function SidebarMenuSubButton({
+const SidebarMenuSubButton = React.memo(function SidebarMenuSubButton({
   asChild = false,
   size = "md",
   isActive = false,
@@ -700,7 +700,7 @@ function SidebarMenuSubButton({
       {...props}
     />
   );
-}
+});
 
 export {
   Sidebar,

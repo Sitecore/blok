@@ -13,7 +13,7 @@ interface ComponentGridCardProps {
   className?: string;
 }
 
-export function PlaceholderImage() {
+export const PlaceholderImage = React.memo(function PlaceholderImage() {
   return (
     <div className="w-full h-full flex items-center justify-center">
       <svg
@@ -31,9 +31,9 @@ export function PlaceholderImage() {
       </svg>
     </div>
   );
-}
+});
 
-export function ComponentGridCard({
+export const ComponentGridCard = React.memo(function ComponentGridCard({
   name,
   title,
   href,
@@ -85,4 +85,4 @@ export function ComponentGridCard({
   }
 
   return content;
-}
+});

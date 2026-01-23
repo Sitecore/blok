@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 
-function InputGroup({ className, ...props }: React.ComponentProps<"div">) {
+const InputGroup = React.memo(function InputGroup({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
       data-slot="input-group"
@@ -36,7 +36,7 @@ function InputGroup({ className, ...props }: React.ComponentProps<"div">) {
       {...props}
     />
   )
-}
+})
 
 const inputGroupAddonVariants = cva(
   "text-muted-foreground flex h-auto cursor-text items-center justify-center gap-2 py-1.5 text-sm font-medium select-none [&>svg:not([class*='size-'])]:size-4 [&>kbd]:rounded-[calc(var(--radius)-5px)] group-data-[disabled=true]/input-group:opacity-50",
@@ -59,7 +59,7 @@ const inputGroupAddonVariants = cva(
   }
 )
 
-function InputGroupAddon({
+const InputGroupAddon = React.memo(function InputGroupAddon({
   className,
   align = "inline-start",
   ...props
@@ -79,7 +79,7 @@ function InputGroupAddon({
       {...props}
     />
   )
-}
+})
 
 const inputGroupButtonVariants = cva(
   "text-sm shadow-none flex gap-2 items-center",
@@ -98,7 +98,7 @@ const inputGroupButtonVariants = cva(
   }
 )
 
-function InputGroupButton({
+const InputGroupButton = React.memo(function InputGroupButton({
   className,
   type = "button",
   variant = "ghost",
@@ -115,9 +115,9 @@ function InputGroupButton({
       {...props}
     />
   )
-}
+})
 
-function InputGroupText({ className, ...props }: React.ComponentProps<"span">) {
+const InputGroupText = React.memo(function InputGroupText({ className, ...props }: React.ComponentProps<"span">) {
   return (
     <span
       className={cn(
@@ -127,9 +127,9 @@ function InputGroupText({ className, ...props }: React.ComponentProps<"span">) {
       {...props}
     />
   )
-}
+})
 
-function InputGroupInput({
+const InputGroupInput = React.memo(function InputGroupInput({
   className,
   ...props
 }: React.ComponentProps<"input">) {
@@ -143,9 +143,9 @@ function InputGroupInput({
       {...props}
     />
   )
-}
+})
 
-function InputGroupTextarea({
+const InputGroupTextarea = React.memo(function InputGroupTextarea({
   className,
   ...props
 }: React.ComponentProps<"textarea">) {
@@ -159,7 +159,7 @@ function InputGroupTextarea({
       {...props}
     />
   )
-}
+})
 
 export {
   InputGroup,

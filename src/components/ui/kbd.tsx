@@ -1,6 +1,7 @@
+import * as React from "react"
 import { cn } from "@/lib/utils"
 
-function Kbd({ className, ...props }: React.ComponentProps<"kbd">) {
+const Kbd = React.memo(function Kbd({ className, ...props }: React.ComponentProps<"kbd">) {
   return (
     <kbd
       data-slot="kbd"
@@ -13,9 +14,9 @@ function Kbd({ className, ...props }: React.ComponentProps<"kbd">) {
       {...props}
     />
   )
-}
+})
 
-function KbdGroup({ className, ...props }: React.ComponentProps<"div">) {
+const KbdGroup = React.memo(function KbdGroup({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <kbd
       data-slot="kbd-group"
@@ -23,6 +24,6 @@ function KbdGroup({ className, ...props }: React.ComponentProps<"div">) {
       {...props}
     />
   )
-}
+})
 
 export { Kbd, KbdGroup }

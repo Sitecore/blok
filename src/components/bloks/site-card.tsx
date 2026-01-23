@@ -1,5 +1,6 @@
 "use client";
 
+import * as React from "react";
 import { useState } from "react";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -52,7 +53,7 @@ interface PinnedSiteCardProps<T extends SiteData> {
   dropdownActions?: DropdownAction[];
 }
 
-export function SiteCard<T extends SiteData>({
+export const SiteCard = React.memo(function SiteCard<T extends SiteData>({
   site,
   isDisabled = false,
   onUnpin,
@@ -204,6 +205,6 @@ export function SiteCard<T extends SiteData>({
       )}
     </Card>
   );
-}
+}) as <T extends SiteData>(props: PinnedSiteCardProps<T>) => React.ReactElement;
 
 

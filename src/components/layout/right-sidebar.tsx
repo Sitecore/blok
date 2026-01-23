@@ -1,5 +1,6 @@
 "use client";
 
+import * as React from "react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
@@ -30,7 +31,7 @@ interface RightSidebarProps {
   children?: React.ReactNode;
 }
 
-export function RightSidebar({
+export const RightSidebar = React.memo(function RightSidebar({
   sections = [],
   links,
   children,
@@ -232,5 +233,5 @@ export function RightSidebar({
         )}
     </aside>
   );
-}
+});
 

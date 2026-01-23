@@ -50,7 +50,7 @@ const emptyStateConfig = {
   },
 };
 
-function EmptyStates({
+const EmptyStates = React.memo(function EmptyStates({
   className,
   variant = "no-search-results",
   title,
@@ -102,7 +102,7 @@ function EmptyStates({
       </div>
     </div>
   );
-}
+});
 
 export { EmptyStates, emptyStatesVariants, type EmptyStatesProps };
 

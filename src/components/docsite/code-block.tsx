@@ -1,5 +1,6 @@
 "use client";
 
+import * as React from "react";
 import { Check } from "lucide-react";
 import { useEffect, useState } from "react";
 
@@ -33,7 +34,7 @@ const codeBlockVariants = cva(
   }
 )
 
-export function Codeblocks({ variant, code, showLineNumbers = true }: CodeblocksProps) {
+export const Codeblocks = React.memo(function Codeblocks({ variant, code, showLineNumbers = true }: CodeblocksProps) {
   const [hasCopied, setHasCopied] = useState(false);
 
   const codeLines = code.split("\n");
@@ -89,4 +90,4 @@ export function Codeblocks({ variant, code, showLineNumbers = true }: Codeblocks
       </div>
     </div>
   );
-}
+});

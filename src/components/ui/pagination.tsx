@@ -1,11 +1,11 @@
+import * as React from "react";
 import { mdiChevronLeft, mdiChevronRight, mdiDotsHorizontal } from "@mdi/js";
-import type * as React from "react";
 
 import { cn } from "@/lib/utils";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { Icon } from "@/lib/icon";
 
-function Pagination({ className, ...props }: React.ComponentProps<"nav">) {
+const Pagination = React.memo(function Pagination({ className, ...props }: React.ComponentProps<"nav">) {
   return (
     <nav
       role="navigation"
@@ -15,9 +15,9 @@ function Pagination({ className, ...props }: React.ComponentProps<"nav">) {
       {...props}
     />
   );
-}
+});
 
-function PaginationContent({
+const PaginationContent = React.memo(function PaginationContent({
   className,
   ...props
 }: React.ComponentProps<"ul">) {
@@ -28,18 +28,18 @@ function PaginationContent({
       {...props}
     />
   );
-}
+});
 
-function PaginationItem({ ...props }: React.ComponentProps<"li">) {
+const PaginationItem = React.memo(function PaginationItem({ ...props }: React.ComponentProps<"li">) {
   return <li data-slot="pagination-item" {...props} />;
-}
+});
 
 type PaginationLinkProps = {
   isActive?: boolean;
 } & Pick<React.ComponentProps<typeof Button>, "size"> &
   React.ComponentProps<"a">;
 
-function PaginationLink({
+const PaginationLink = React.memo(function PaginationLink({
   className,
   isActive,
   size = "icon",
@@ -63,9 +63,9 @@ function PaginationLink({
       {...props}
     />
   );
-}
+});
 
-function PaginationPrevious({
+const PaginationPrevious = React.memo(function PaginationPrevious({
   className,
   ...props
 }: React.ComponentProps<typeof PaginationLink>) {
@@ -79,9 +79,9 @@ function PaginationPrevious({
       <Icon path={mdiChevronLeft} size={1} />
     </PaginationLink>
   );
-}
+});
 
-function PaginationNext({
+const PaginationNext = React.memo(function PaginationNext({
   className,
   ...props
 }: React.ComponentProps<typeof PaginationLink>) {
@@ -95,9 +95,9 @@ function PaginationNext({
       <Icon path={mdiChevronRight} size={1} />
     </PaginationLink>
   );
-}
+});
 
-function PaginationEllipsis({
+const PaginationEllipsis = React.memo(function PaginationEllipsis({
   className,
   ...props
 }: React.ComponentProps<"span">) {
@@ -115,7 +115,7 @@ function PaginationEllipsis({
       <span className="sr-only">More pages</span>
     </span>
   );
-}
+});
 
 export {
   Pagination,

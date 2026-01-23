@@ -3,7 +3,7 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 
 // FieldSet - Container that renders a semantic fieldset
-function FieldSet({
+const FieldSet = React.memo(function FieldSet({
   className,
   ...props
 }: React.ComponentProps<"fieldset">) {
@@ -14,7 +14,7 @@ function FieldSet({
       {...props}
     />
   );
-}
+});
 
 // FieldLegend - Legend element for a FieldSet
 const fieldLegendVariants = cva("", {
@@ -29,7 +29,7 @@ const fieldLegendVariants = cva("", {
   },
 });
 
-function FieldLegend({
+const FieldLegend = React.memo(function FieldLegend({
   className,
   variant = "legend",
   ...props
@@ -42,10 +42,10 @@ function FieldLegend({
       {...props}
     />
   );
-}
+});
 
 // FieldGroup - Layout wrapper that stacks Field components
-function FieldGroup({
+const FieldGroup = React.memo(function FieldGroup({
   className,
   ...props
 }: React.ComponentProps<"div">) {
@@ -56,7 +56,7 @@ function FieldGroup({
       {...props}
     />
   );
-}
+});
 
 // Field - Core wrapper for a single field
 const fieldVariants = cva("flex gap-2", {
@@ -72,7 +72,7 @@ const fieldVariants = cva("flex gap-2", {
   },
 });
 
-function Field({
+const Field = React.memo(function Field({
   className,
   orientation = "vertical",
   "data-invalid": dataInvalid,
@@ -94,10 +94,10 @@ function Field({
       {...props}
     />
   );
-}
+});
 
 // FieldContent - Flex column that groups label and description
-function FieldContent({
+const FieldContent = React.memo(function FieldContent({
   className,
   ...props
 }: React.ComponentProps<"div">) {
@@ -108,10 +108,10 @@ function FieldContent({
       {...props}
     />
   );
-}
+});
 
 // FieldLabel - Label styled for form fields
-function FieldLabel({
+const FieldLabel = React.memo(function FieldLabel({
   className,
   ...props
 }: React.ComponentProps<"label">) {
@@ -125,10 +125,10 @@ function FieldLabel({
       {...props}
     />
   );
-}
+});
 
 // FieldTitle - Renders a title with label styling inside FieldContent
-function FieldTitle({
+const FieldTitle = React.memo(function FieldTitle({
   className,
   ...props
 }: React.ComponentProps<"div">) {
@@ -139,10 +139,10 @@ function FieldTitle({
       {...props}
     />
   );
-}
+});
 
 // FieldDescription - Helper text slot
-function FieldDescription({
+const FieldDescription = React.memo(function FieldDescription({
   className,
   ...props
 }: React.ComponentProps<"div">) {
@@ -156,10 +156,10 @@ function FieldDescription({
       {...props}
     />
   );
-}
+});
 
 // FieldSeparator - Visual divider to separate sections
-function FieldSeparator({
+const FieldSeparator = React.memo(function FieldSeparator({
   className,
   children,
   ...props
@@ -187,10 +187,10 @@ function FieldSeparator({
       {...props}
     />
   );
-}
+});
 
 // FieldError - Accessible error container
-function FieldError({
+const FieldError = React.memo(function FieldError({
   className,
   errors,
   children,
@@ -228,7 +228,7 @@ function FieldError({
       )}
     </div>
   );
-}
+});
 
 export {
   Field,

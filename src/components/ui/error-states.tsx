@@ -99,7 +99,7 @@ const errorStateConfig = {
   },
 };
 
-function ErrorStates({
+const ErrorStates = React.memo(function ErrorStates({
   className,
   variant = "generic",
   title,
@@ -177,7 +177,7 @@ function ErrorStates({
       </div>
     </div>
   );
-}
+});
 
 export { ErrorStates, errorStatesVariants, type ErrorStatesProps };
 

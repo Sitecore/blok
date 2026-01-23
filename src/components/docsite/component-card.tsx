@@ -1,3 +1,4 @@
+import * as React from "react";
 import type { Component } from "@/lib/registry";
 import dynamic from "next/dynamic";
 
@@ -11,7 +12,7 @@ const DemoWrapper = dynamic(() => import("@/components/demo-wrapper"), {
   ssr: true,
 });
 
-export function ComponentCard({
+export const ComponentCard = React.memo(function ComponentCard({
   component,
   baseUrl,
   prompt,
@@ -32,4 +33,4 @@ export function ComponentCard({
       </div>
     </section>
   );
-}
+});
