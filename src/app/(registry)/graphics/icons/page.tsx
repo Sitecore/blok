@@ -1,6 +1,7 @@
 "use client";
 
-import { Suspense, useEffect, useMemo, useState } from "react";
+import { Suspense, useEffect, useMemo, useState, useRef } from "react";
+import { useVirtualizer } from "@tanstack/react-virtual";
 import { Icon } from "@/lib/icon";
 import { copyToClipboard } from "@/components/docsite/code-block";
 import {
@@ -621,6 +622,9 @@ const iconLogos = [
   },
 ];
 
+// Threshold for enabling virtual scrolling (if list exceeds this, use virtualization)
+const VIRTUAL_SCROLL_THRESHOLD = 50;
+
 iconsData.forEach((data) => {
   const { mdi } = data;
   // account-circle-outline => [account, circle, outline]
@@ -647,6 +651,17 @@ export default function IconsPage() {
       icon: mdiIcons[d.code as string] ?? "",
     }));
   }, [mdiIcons]);
+
+  // Virtual scrolling setup for icons table
+  const tableParentRef = useRef<HTMLDivElement>(null);
+  const shouldUseVirtualScrolling = resolvedIconsData && resolvedIconsData.length > VIRTUAL_SCROLL_THRESHOLD;
+
+  const rowVirtualizer = useVirtualizer({
+    count: resolvedIconsData?.length ?? 0,
+    getScrollElement: () => tableParentRef.current,
+    estimateSize: () => 60, // Estimated height per row
+    overscan: 5, // Render 5 extra rows outside viewport
+  });
 
   return (
     <div className="container p-5 md:p-10">
@@ -696,66 +711,152 @@ export default function IconsPage() {
               <CircularProgress size="sm" className="mr-2" />
               Loading icons…
             </div>
+          ) : shouldUseVirtualScrolling ? (
+            <div className="relative">
+              <div
+                ref={tableParentRef}
+                className="h-[600px] overflow-auto"
+                style={{ contain: "strict" }}
+              >
+                <Table>
+                  <TableHeader className="sticky top-0 z-10 bg-body-bg">
+                    <TableRow>
+                      <TableHead className="w-28 px-4">Icon</TableHead>
+                      <TableHead className="px-4">MDI link</TableHead>
+                      <TableHead className="px-4">MDI code</TableHead>
+                      <TableHead className="px-4">Usage</TableHead>
+                    </TableRow>
+                  </TableHeader>
+                  <TableBody
+                    style={{
+                      height: `${rowVirtualizer.getTotalSize()}px`,
+                      position: "relative",
+                    }}
+                  >
+                    {rowVirtualizer.getVirtualItems().map((virtualRow) => {
+                      const { mdi, usage, icon, code } = resolvedIconsData[virtualRow.index];
+                      return (
+                        <TableRow
+                          key={mdi}
+                          style={{
+                            position: "absolute",
+                            top: 0,
+                            left: 0,
+                            width: "100%",
+                            height: `${virtualRow.size}px`,
+                            transform: `translateY(${virtualRow.start}px)`,
+                          }}
+                        >
+                          <TableCell className="w-28 px-4">
+                            <Suspense fallback={<CircularProgress size="sm" />}>
+                              <Tooltip>
+                                <TooltipTrigger asChild>
+                                  <button
+                                    onClick={() => copyToClipboard(code || "")}
+                                    className="cursor-pointer inline-flex items-center justify-center w-8 h-8 hover:bg-muted rounded transition-colors"
+                                  >
+                                    <Icon
+                                      path={icon}
+                                      size={0.85}
+                                      className="text-foreground"
+                                    />
+                                  </button>
+                                </TooltipTrigger>
+                                <TooltipContent>Copy MDI code</TooltipContent>
+                              </Tooltip>
+                            </Suspense>
+                          </TableCell>
+                          <TableCell className="px-4">
+                            <a
+                              href={`https://pictogrammers.com/library/mdi/icon/${mdi}`}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="text-primary hover:text-primary/80 hover:underline text-sm transition-colors"
+                            >
+                              {mdi}
+                            </a>
+                          </TableCell>
+                          <TableCell className="px-4">
+                            <Tooltip>
+                              <TooltipTrigger asChild>
+                                <button
+                                  onClick={() => copyToClipboard(code || "")}
+                                  className="cursor-pointer bg-muted px-2 py-1 rounded text-sm hover:bg-muted/80 transition-colors inline-block"
+                                >
+                                  {code}
+                                </button>
+                              </TooltipTrigger>
+                              <TooltipContent>Copy to clipboard</TooltipContent>
+                            </Tooltip>
+                          </TableCell>
+                          <TableCell className="px-4 text-sm">{usage}</TableCell>
+                        </TableRow>
+                      );
+                    })}
+                  </TableBody>
+                </Table>
+              </div>
+            </div>
           ) : (
-          <Table>
-            <TableHeader>
-              <TableRow>
-                <TableHead className="w-28 px-4">Icon</TableHead>
-                <TableHead className="px-4">MDI link</TableHead>
-                <TableHead className="px-4">MDI code</TableHead>
-                <TableHead className="px-4">Usage</TableHead>
-              </TableRow>
-            </TableHeader>
-            <TableBody>
-              {resolvedIconsData.map(({ mdi, usage, icon, code }) => (
-                <TableRow key={mdi}>
-                  <TableCell className="w-28 px-4">
-                    <Suspense fallback={<CircularProgress size="sm" />}>
+            <Table>
+              <TableHeader>
+                <TableRow>
+                  <TableHead className="w-28 px-4">Icon</TableHead>
+                  <TableHead className="px-4">MDI link</TableHead>
+                  <TableHead className="px-4">MDI code</TableHead>
+                  <TableHead className="px-4">Usage</TableHead>
+                </TableRow>
+              </TableHeader>
+              <TableBody>
+                {resolvedIconsData.map(({ mdi, usage, icon, code }) => (
+                  <TableRow key={mdi}>
+                    <TableCell className="w-28 px-4">
+                      <Suspense fallback={<CircularProgress size="sm" />}>
+                        <Tooltip>
+                          <TooltipTrigger asChild>
+                            <button
+                              onClick={() => copyToClipboard(code || "")}
+                              className="cursor-pointer inline-flex items-center justify-center w-8 h-8 hover:bg-muted rounded transition-colors"
+                            >
+                              <Icon
+                                path={icon}
+                                size={0.85}
+                                className="text-foreground"
+                              />
+                            </button>
+                          </TooltipTrigger>
+                          <TooltipContent>Copy MDI code</TooltipContent>
+                        </Tooltip>
+                      </Suspense>
+                    </TableCell>
+                    <TableCell className="px-4">
+                      <a
+                        href={`https://pictogrammers.com/library/mdi/icon/${mdi}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-primary hover:text-primary/80 hover:underline text-sm transition-colors"
+                      >
+                        {mdi}
+                      </a>
+                    </TableCell>
+                    <TableCell className="px-4">
                       <Tooltip>
                         <TooltipTrigger asChild>
                           <button
                             onClick={() => copyToClipboard(code || "")}
-                            className="cursor-pointer inline-flex items-center justify-center w-8 h-8 hover:bg-muted rounded transition-colors"
+                            className="cursor-pointer bg-muted px-2 py-1 rounded text-sm hover:bg-muted/80 transition-colors inline-block"
                           >
-                            <Icon
-                              path={icon}
-                              size={0.85}
-                              className="text-foreground"
-                            />
+                            {code}
                           </button>
                         </TooltipTrigger>
-                        <TooltipContent>Copy MDI code</TooltipContent>
+                        <TooltipContent>Copy to clipboard</TooltipContent>
                       </Tooltip>
-                    </Suspense>
-                  </TableCell>
-                  <TableCell className="px-4">
-                    <a
-                      href={`https://pictogrammers.com/library/mdi/icon/${mdi}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-primary hover:text-primary/80 hover:underline text-sm transition-colors"
-                    >
-                      {mdi}
-                    </a>
-                  </TableCell>
-                  <TableCell className="px-4">
-                    <Tooltip>
-                      <TooltipTrigger asChild>
-                        <button
-                          onClick={() => copyToClipboard(code || "")}
-                          className="cursor-pointer bg-muted px-2 py-1 rounded text-sm hover:bg-muted/80 transition-colors inline-block"
-                        >
-                          {code}
-                        </button>
-                      </TooltipTrigger>
-                      <TooltipContent>Copy to clipboard</TooltipContent>
-                    </Tooltip>
-                  </TableCell>
-                  <TableCell className="px-4 text-sm">{usage}</TableCell>
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
+                    </TableCell>
+                    <TableCell className="px-4 text-sm">{usage}</TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
           )}
         </div>
 
