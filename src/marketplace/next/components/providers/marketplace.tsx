@@ -1,4 +1,4 @@
-"use client";
+"use client"
 
 import React, {
   useEffect,
@@ -7,10 +7,7 @@ import React, {
   createContext,
   useContext,
 } from "react";
-import {
-  ApplicationContext,
-  ClientSDK,
-} from "@sitecore-marketplace-sdk/client";
+import { ApplicationContext, ClientSDK } from "@sitecore-marketplace-sdk/client";
 // import { XMC } from "@sitecore-marketplace-sdk/xmc";
 
 interface ClientSDKProviderProps {
@@ -29,17 +26,6 @@ export const MarketplaceProvider: React.FC<ClientSDKProviderProps> = ({
   const [loading, setLoading] = useState<boolean>(false);
 
   useEffect(() => {
-    if (client) {
-      client.query("application.context").then((res) => {
-        if (res && res.data) {
-          setAppContext(res.data);
-          console.log("appContext", res.data);
-        }
-      });
-    }
-  }, [client]);
-
-  useEffect(() => {
     const init = async () => {
       const config = {
         target: window.parent,
@@ -48,11 +34,27 @@ export const MarketplaceProvider: React.FC<ClientSDKProviderProps> = ({
       };
       try {
         setLoading(true);
-        const client = await ClientSDK.init(config);
-        setClient(client);
+        setError(null);
+
+        // Initialize client
+        const initializedClient = await ClientSDK.init(config);
+        setClient(initializedClient);
+
+        // Immediately query for application context after initialization
+        const res = await initializedClient.query("application.context");
+
+        if (res && res.data) {
+          setAppContext(res.data);
+        } else {
+          setError("Failed to fetch application context");
+        }
       } catch (error) {
-        console.error("Error initializing client SDK", error);
-        setError("Error initializing client SDK");
+        console.error("Error initializing Marketplace SDK", error);
+        setError(
+          error instanceof Error
+            ? `Error initializing Marketplace SDK: ${error.message}`
+            : "Error initializing Marketplace SDK"
+        );
       } finally {
         setLoading(false);
       }
@@ -61,10 +63,6 @@ export const MarketplaceProvider: React.FC<ClientSDKProviderProps> = ({
     init();
   }, []);
 
-  if (loading) {
-    return <div>Attempting to connect to Sitecore Marketplace...</div>;
-  }
-
   if (error) {
     return (
       <div>
@@ -72,17 +70,17 @@ export const MarketplaceProvider: React.FC<ClientSDKProviderProps> = ({
         <div>{error}</div>
         <div>
           Please check if the client SDK is loaded inside Sitecore Marketplace
-          parent window and you have properly set your app's extention points.
+          parent window and you have properly set your app's extension points.
         </div>
       </div>
     );
   }
 
-  if (!client) {
-    return null;
+  if (loading) {
+    return <div>Attempting to connect to Sitecore Marketplace...</div>;
   }
 
-  if (!appContext) {
+  if (!client || !appContext) {
     return null;
   }
 
@@ -98,9 +96,7 @@ export const MarketplaceProvider: React.FC<ClientSDKProviderProps> = ({
 export const useMarketplaceClient = () => {
   const context = useContext(ClientSDKContext);
   if (!context) {
-    throw new Error(
-      "useMarketplaceClient must be used within a ClientSDKProvider"
-    );
+    throw new Error("useMarketplaceClient must be used within a ClientSDKProvider");
   }
   return context;
 };
