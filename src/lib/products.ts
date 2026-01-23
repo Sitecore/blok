@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { cache } from "react";
 
 const ProductSchema = z.object({
   id: z.number(),
@@ -12,9 +13,12 @@ const ProductSchema = z.object({
 
 export type Product = z.infer<typeof ProductSchema>;
 
-export async function getProducts(): Promise<Product[]> {
+// Cache the fetch function to deduplicate requests within the same render
+const fetchProducts = cache(async (): Promise<Product[]> => {
   try {
-    const response = await fetch("https://api.vercel.app/products");
+    const response = await fetch("https://api.vercel.app/products", {
+      next: { revalidate: 3600 }, // Revalidate every hour
+    });
 
     if (!response.ok) {
       throw new Error("Failed to fetch products");
@@ -31,12 +35,17 @@ export async function getProducts(): Promise<Product[]> {
     }
     throw error;
   }
+});
+
+export async function getProducts(): Promise<Product[]> {
+  return fetchProducts();
 }
 
-export async function getCategories(): Promise<string[]> {
+export async function getCategories(products?: Product[]): Promise<string[]> {
   try {
-    const products = await getProducts();
-    return Array.from(new Set(products.map((product) => product.category)));
+    // If products are provided, use them; otherwise fetch (will use cached result if available)
+    const productsData = products ?? await fetchProducts();
+    return Array.from(new Set(productsData.map((product) => product.category)));
   } catch (error) {
     console.error("Error fetching categories:", error);
     throw error;

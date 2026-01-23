@@ -7,7 +7,7 @@ import { cn } from "@/lib/utils";
 import { mdiClipboardOutline } from "@mdi/js";
 import { Check } from "lucide-react";
 import { useState, useEffect } from "react";
-import * as shiki from "shiki";
+import { CircularProgress } from "@/components/ui/circular-progress";
 
 interface CodeBlockProps {
   code: string;
@@ -20,6 +20,8 @@ export function CodeBlock({ code, lang = "tsx", showLineNumbers = true, classNam
   const [copied, setCopied] = useState(false);
   const [html, setHtml] = useState<string>("");
   const [isDark, setIsDark] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
   // detect theme
   useEffect(() => {
@@ -38,23 +40,47 @@ export function CodeBlock({ code, lang = "tsx", showLineNumbers = true, classNam
     return () => observer.disconnect();
   }, []);
 
-  // highlight code
+  // highlight code with lazy-loaded shiki
   useEffect(() => {
+    let isMounted = true;
+
     async function load() {
-      const highlighter = await shiki.createHighlighter({
-        themes: ["github-light", "github-dark"],
-            langs: ["typescript", "javascript", "tsx", "jsx", "json", "css", "html"],
-      });
+      try {
+        setIsLoading(true);
+        setError(null);
 
-      const rawHtml = highlighter.codeToHtml(code, {
-        lang,
-        theme: isDark ? "github-dark" : "github-light",
-      });
+        // Dynamically import shiki to reduce initial bundle size
+        const shiki = await import("shiki");
 
-      setHtml(showLineNumbers ? addLineNumbers(rawHtml) : rawHtml);
+        const highlighter = await shiki.createHighlighter({
+          themes: ["github-light", "github-dark"],
+          langs: ["typescript", "javascript", "tsx", "jsx", "json", "css", "html"],
+        });
+
+        if (!isMounted) return;
+
+        const rawHtml = highlighter.codeToHtml(code, {
+          lang,
+          theme: isDark ? "github-dark" : "github-light",
+        });
+
+        setHtml(showLineNumbers ? addLineNumbers(rawHtml) : rawHtml);
+        setIsLoading(false);
+      } catch (err) {
+        if (!isMounted) return;
+        console.error("Error loading shiki:", err);
+        setError("Failed to load syntax highlighter");
+        setIsLoading(false);
+        // Fallback: display code without syntax highlighting
+        setHtml(`<pre><code>${code}</code></pre>`);
+      }
     }
 
     load();
+
+    return () => {
+      isMounted = false;
+    };
   }, [code, lang, showLineNumbers, isDark]);
 
   async function copyToClipboard() {
@@ -94,12 +120,23 @@ export function CodeBlock({ code, lang = "tsx", showLineNumbers = true, classNam
           </Button>
         </div>
       </div>
-      <div
-        dir="ltr"
-        className="text-md overflow-x-auto p-4 wrap-break-words"
-        style={{ minWidth: 0, width: "100%" }}
-        dangerouslySetInnerHTML={{ __html: html }}
-      />
+      {isLoading ? (
+        <div className="flex items-center justify-center p-8 text-muted-foreground text-sm">
+          <CircularProgress size="sm" className="mr-2" />
+          Loading syntax highlighter…
+        </div>
+      ) : error ? (
+        <div className="p-4 text-sm text-muted-foreground">
+          {error}
+        </div>
+      ) : (
+        <div
+          dir="ltr"
+          className="text-md overflow-x-auto p-4 wrap-break-words"
+          style={{ minWidth: 0, width: "100%" }}
+          dangerouslySetInnerHTML={{ __html: html }}
+        />
+      )}
     </div>
   );
 }
