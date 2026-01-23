@@ -24,30 +24,35 @@ export const MarketplaceProvider: React.FC<ClientSDKProviderProps> = ({
   const [loading, setLoading] = useState<boolean>(false);
 
   useEffect(() => {
-    if (client) {
-      client.query("application.context").then((res) => {
-        if (res && res.data) {
-          setAppContext(res.data);
-          console.log("appContext", res.data);
-        }
-      });
-    }
-  }, [client]);
-
-  useEffect(() => {
     const init = async () => {
       const config = {
         target: window.parent,
         // Enable if your app uses XMC APIs
         // modules: [XMC]
       };
-      try{
+      try {
         setLoading(true);
-        const client = await ClientSDK.init(config);
-        setClient(client);
+        setError(null);
+        
+        // Initialize client
+        const initializedClient = await ClientSDK.init(config);
+        setClient(initializedClient);
+        
+        // Immediately query for application context after initialization
+        const res = await initializedClient.query("application.context");
+        
+        if (res && res.data) {
+          setAppContext(res.data);
+        } else {
+          setError("Failed to fetch application context");
+        }
       } catch (error) {
-        console.error("Error initializing client SDK", error);
-        setError("Error initializing client SDK");
+        console.error("Error initializing Marketplace SDK", error);
+        setError(
+          error instanceof Error
+            ? `Error initializing Marketplace SDK: ${error.message}`
+            : "Error initializing Marketplace SDK"
+        );
       } finally {
         setLoading(false);
       }
@@ -56,32 +61,31 @@ export const MarketplaceProvider: React.FC<ClientSDKProviderProps> = ({
     init();
   }, []);
 
+  if (error) {
+    return (
+      <div>
+        <h1>Error initializing Marketplace SDK</h1>
+        <div>{error}</div>
+        <div>
+          Please check if the client SDK is loaded inside Sitecore Marketplace
+          parent window and you have properly set your app's extension points.
+        </div>
+      </div>
+    );
+  }
+
   if (loading) {
     return <div>Attempting to connect to Sitecore Marketplace...</div>;
   }
 
-  if (error) {
-    return (
-    <div>
-      <h1>Error initializing Marketplace SDK</h1>
-      <div>{error}</div>
-      <div>Please check if the client SDK is loaded inside Sitecore Marketplace parent window and you have properly set your app's extention points.</div>
-    </div>
-    )
-  }
-
-  if (!client) {
-    return null;
-  }
-
-  if (!appContext) {
+  if (!client || !appContext) {
     return null;
   }
 
   return (
     <ClientSDKContext.Provider value={client}>
       <AppContextContext.Provider value={appContext}>
-      {children}
+        {children}
       </AppContextContext.Provider>
     </ClientSDKContext.Provider>
   );
