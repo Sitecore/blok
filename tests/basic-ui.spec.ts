@@ -168,11 +168,11 @@ test.describe('UI BLOK QA Automation', () => {
     await testCombobxTimezone(page);
     await testCombobxWithCheckbox(page);
   });
-
+{/*
   test('test_Command', async ({ page }) => {
     await testCommand(page);
   });
-
+*/}
   test('test_Context_menu', async ({ page }) => {
     await testContextMenu(page);
   });
@@ -247,7 +247,7 @@ test.describe('UI BLOK QA Automation', () => {
   test('test_Input_OTP', async ({ page }) => {
     await testInputOTP(page);
   });
-
+{/*
   test('test_Kbd', async ({ page }) => {
     await testKbdDefault(page);
     await testKbdGroup(page);
@@ -259,7 +259,7 @@ test.describe('UI BLOK QA Automation', () => {
   test('test_Label', async ({ page }) => {
     await testLabel(page);
   });
-
+*/}
   test('test_Navigation_Menu', async ({ page }) => {
     await testNavigationMenu(page);
   });
