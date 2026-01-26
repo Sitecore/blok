@@ -18,4 +18,3 @@ const EmptyStateThumb = ({ className }: { className?: string }) => (
 );
 
 export default EmptyStateThumb;
-

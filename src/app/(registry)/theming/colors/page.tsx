@@ -1,5 +1,5 @@
-import fs from "fs";
-import path from "path";
+import fs from "node:fs";
+import path from "node:path";
 import { ColorsClient } from "./colors-client";
 
 let cssPath = path.join(process.cwd(), "src", "app", "colors.css");

@@ -3,20 +3,13 @@ import dynamic from "next/dynamic";
 
 interface ComponentCardProps {
   component: Component;
-  baseUrl: string;
-  prompt: string;
 }
 
 const DemoWrapper = dynamic(() => import("@/components/demo-wrapper"), {
   ssr: true,
 });
 
-export function ComponentCard({
-  component,
-  baseUrl,
-  prompt,
-}: ComponentCardProps) {
-
+export function ComponentCard({ component }: ComponentCardProps) {
   return (
     <section>
       <div id="starting-kit">

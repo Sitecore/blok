@@ -1,26 +1,26 @@
 "use client"; // comment this line if you are not using next.js
 
-import * as React from "react";
+import { Button } from "@/components/ui/button";
 import {
   DndContext,
   type DragEndEvent,
   type DragStartEvent,
   SortableContainer,
-  arrayMove,
   type UniqueIdentifier,
+  arrayMove,
   pointerWithin,
   rectIntersection,
 } from "@/components/ui/dnd-context";
-import type { CollisionDetection } from "@dnd-kit/core";
+import { DragOverlay } from "@/components/ui/drag-overlay";
 import { Draggable } from "@/components/ui/draggable";
 import { Droppable } from "@/components/ui/droppable";
 import { SortableItem } from "@/components/ui/sortable";
-import { DragOverlay } from "@/components/ui/drag-overlay";
-import { GripVertical, Trash2, ChevronDown, List } from "lucide-react";
-import { mdiTextShort } from "@mdi/js";
 import { Icon } from "@/lib/icon";
 import { cn } from "@/lib/utils";
-import { Button } from "@/components/ui/button";
+import type { CollisionDetection } from "@dnd-kit/core";
+import { mdiTextShort } from "@mdi/js";
+import { ChevronDown, GripVertical, List, Trash2 } from "lucide-react";
+import * as React from "react";
 
 interface FieldItem {
   id: string;
@@ -30,29 +30,43 @@ interface FieldItem {
 }
 
 const initialFields: FieldItem[] = [
-  { id: "field-1", label: "Click to edit field label", name: "Click to edit field name", type: "Text" },
-  { id: "field-2", label: "Click to edit field label", name: "Click to edit field name", type: "Text" },
-  { id: "field-3", label: "Click to edit field label", name: "Click to edit field name", type: "Text" },
+  {
+    id: "field-1",
+    label: "Click to edit field label",
+    name: "Click to edit field name",
+    type: "Text",
+  },
+  {
+    id: "field-2",
+    label: "Click to edit field label",
+    name: "Click to edit field name",
+    type: "Text",
+  },
+  {
+    id: "field-3",
+    label: "Click to edit field label",
+    name: "Click to edit field name",
+    type: "Text",
+  },
 ];
 
 // Custom collision detection for better drop experience
 const customCollisionDetection: CollisionDetection = (args) => {
   const pointerCollisions = pointerWithin(args);
-  
+
   if (pointerCollisions.length > 0) {
     const itemCollisions = pointerCollisions.filter(
-      (collision) => 
-        collision.id !== "source-drop" && 
-        collision.id !== "dropzone-drop"
+      (collision) =>
+        collision.id !== "source-drop" && collision.id !== "dropzone-drop",
     );
-    
+
     if (itemCollisions.length > 0) {
       return itemCollisions;
     }
-    
+
     return pointerCollisions;
   }
-  
+
   return rectIntersection(args);
 };
 
@@ -81,11 +95,11 @@ function DraggableFieldCard({ item }: { item: FieldItem }) {
 }
 
 // Sortable field card - same style as custom handle
-function SortableFieldCard({ 
-  item, 
-  onRemove 
-}: { 
-  item: FieldItem; 
+function SortableFieldCard({
+  item,
+  onRemove,
+}: {
+  item: FieldItem;
   onRemove: (id: string) => void;
 }) {
   return (
@@ -102,7 +116,7 @@ function SortableFieldCard({
       <div className="flex-shrink-0 text-sm text-muted-foreground cursor-text hover:text-foreground truncate max-w-[150px]">
         {item.name}
       </div>
-      
+
       {/* Separator */}
       <div className="flex-shrink-0 text-sm text-muted-foreground/50">|</div>
 
@@ -133,15 +147,18 @@ function SortableFieldCard({
 }
 
 export default function DraggableDragDropSortableDemo() {
-  const [sourceFields, setSourceFields] = React.useState<FieldItem[]>(initialFields);
+  const [sourceFields, setSourceFields] =
+    React.useState<FieldItem[]>(initialFields);
   const [dropzoneFields, setDropzoneFields] = React.useState<FieldItem[]>([]);
-  const [activeId, setActiveId] = React.useState<UniqueIdentifier | null>(null);
+  const [_activeId, setActiveId] = React.useState<UniqueIdentifier | null>(
+    null,
+  );
   const [activeItem, setActiveItem] = React.useState<FieldItem | null>(null);
 
   const handleDragStart = (event: DragStartEvent) => {
     const { active } = event;
     setActiveId(active.id);
-    
+
     const fromSource = sourceFields.find((f) => f.id === active.id);
     const fromDropzone = dropzoneFields.find((f) => f.id === active.id);
     setActiveItem(fromSource || fromDropzone || null);
@@ -208,10 +225,10 @@ export default function DraggableDragDropSortableDemo() {
   };
 
   const handleRemove = (id: string) => {
-    const field = dropzoneFields.find(f => f.id === id);
+    const field = dropzoneFields.find((f) => f.id === id);
     if (field) {
-      setDropzoneFields(prev => prev.filter(f => f.id !== id));
-      setSourceFields(prev => [...prev, field]);
+      setDropzoneFields((prev) => prev.filter((f) => f.id !== id));
+      setSourceFields((prev) => [...prev, field]);
     }
   };
 
@@ -226,8 +243,9 @@ export default function DraggableDragDropSortableDemo() {
         <div>
           <h3 className="text-2xl font-semibold">Drag, Drop & Sort</h3>
           <p className="text-sm text-muted-foreground mt-2">
-            Drag fields between panels. The drop zone shows an active state when fields can be dropped. 
-            After dropping, fields transform to show editable properties.
+            Drag fields between panels. The drop zone shows an active state when
+            fields can be dropped. After dropping, fields transform to show
+            editable properties.
           </p>
         </div>
 
@@ -243,7 +261,7 @@ export default function DraggableDragDropSortableDemo() {
                 "p-4 rounded-lg border-2 border-dashed min-h-[280px] transition-all duration-200",
                 "bg-card border-border",
                 // Active state - highlighted when dragging over
-                "data-[drop-target=true]:border-primary data-[drop-target=true]:bg-primary/5 data-[drop-target=true]:shadow-md"
+                "data-[drop-target=true]:border-primary data-[drop-target=true]:bg-primary/5 data-[drop-target=true]:shadow-md",
               )}
             >
               {sourceFields.length > 0 ? (
@@ -278,17 +296,20 @@ export default function DraggableDragDropSortableDemo() {
                 "p-4 rounded-lg border-2 border-dashed min-h-[280px] transition-all duration-200",
                 "bg-primary/5 border-primary/40",
                 // Active state - stronger highlight when dragging over
-                "data-[drop-target=true]:border-primary data-[drop-target=true]:bg-primary/10 data-[drop-target=true]:shadow-md data-[drop-target=true]:border-solid"
+                "data-[drop-target=true]:border-primary data-[drop-target=true]:bg-primary/10 data-[drop-target=true]:shadow-md data-[drop-target=true]:border-solid",
               )}
             >
               {dropzoneFields.length > 0 ? (
                 // Content transformation: fields become editable after dropping
-                <SortableContainer items={dropzoneFields.map((f) => f.id)} strategy="vertical">
+                <SortableContainer
+                  items={dropzoneFields.map((f) => f.id)}
+                  strategy="vertical"
+                >
                   <div className="space-y-2">
                     {dropzoneFields.map((field) => (
                       <SortableItem key={field.id} id={field.id}>
-                        <SortableFieldCard 
-                          item={field} 
+                        <SortableFieldCard
+                          item={field}
                           onRemove={handleRemove}
                         />
                       </SortableItem>
@@ -311,7 +332,6 @@ export default function DraggableDragDropSortableDemo() {
             </Droppable>
           </div>
         </div>
-
       </div>
 
       {/* Drag Overlay */}
@@ -330,7 +350,9 @@ export default function DraggableDragDropSortableDemo() {
             <div className="flex-shrink-0 text-sm text-muted-foreground truncate max-w-[150px]">
               {activeItem.name}
             </div>
-            <div className="flex-shrink-0 text-sm text-muted-foreground/50">|</div>
+            <div className="flex-shrink-0 text-sm text-muted-foreground/50">
+              |
+            </div>
             <div className="flex-shrink-0 text-sm text-muted-foreground">
               {activeItem.type}
             </div>

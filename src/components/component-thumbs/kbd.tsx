@@ -112,5 +112,3 @@ const KbdThumb = ({ className }: { className?: string }) => (
 );
 
 export default KbdThumb;
-
-

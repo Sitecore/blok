@@ -1,10 +1,4 @@
-import * as React from "react";
-
-interface IconsThumbProps {
-  className?: string;
-}
-
-const IconsThumb = ({ className }: IconsThumbProps) => (
+const IconsThumb = () => (
   <svg
     width="59"
     height="59"

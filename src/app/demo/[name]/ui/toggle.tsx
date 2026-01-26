@@ -4,13 +4,10 @@ export const toggle = {
     defaultComponent: "toggle-square",
   },
   usage: {
-    usage: [
-      `import { Toggle } from "@/components/ui/toggle";`,
-      `<Toggle />`,
-    ]
-  },  
+    usage: [`import { Toggle } from "@/components/ui/toggle";`, `<Toggle />`],
+  },
   components: {
-    Square: { component: "toggle-square", },
-    Rounded: { component: "toggle-rounded", },
+    Square: { component: "toggle-square" },
+    Rounded: { component: "toggle-rounded" },
   },
 };

@@ -1,7 +1,7 @@
 import { useAppContext } from "@/components/providers/marketplace";
 
 function ClientSideExamples() {
-  const appContext = useAppContext()
+  const appContext = useAppContext();
   return (
     <div>
       <div>Application Context</div>

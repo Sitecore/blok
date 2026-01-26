@@ -4,9 +4,6 @@ export const topbar = {
     defaultComponent: "topbar",
   },
   usage: {
-    usage: [
-      `import Topbar from "@/components/ui/top-bar";`,
-      `<Topbar />`,
-    ]
+    usage: [`import Topbar from "@/components/ui/top-bar";`, `<Topbar />`],
   },
 };

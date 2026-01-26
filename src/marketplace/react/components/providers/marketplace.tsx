@@ -1,11 +1,15 @@
-import React, {
-  useEffect,
-  useState,
-  ReactNode,
+import {
+  type ApplicationContext,
+  ClientSDK,
+} from "@sitecore-marketplace-sdk/client";
+import type React from "react";
+import {
+  type ReactNode,
   createContext,
   useContext,
+  useEffect,
+  useState,
 } from "react";
-import { ApplicationContext, ClientSDK } from "@sitecore-marketplace-sdk/client";
 // import { XMC } from "@sitecore-marketplace-sdk/xmc";
 
 interface ClientSDKProviderProps {
@@ -26,7 +30,7 @@ export const MarketplaceProvider: React.FC<ClientSDKProviderProps> = ({
   useEffect(() => {
     if (client) {
       client.query("application.context").then((res) => {
-        if (res && res.data) {
+        if (res?.data) {
           setAppContext(res.data);
           console.log("appContext", res.data);
         }
@@ -41,7 +45,7 @@ export const MarketplaceProvider: React.FC<ClientSDKProviderProps> = ({
         // Enable if your app uses XMC APIs
         // modules: [XMC]
       };
-      try{
+      try {
         setLoading(true);
         const client = await ClientSDK.init(config);
         setClient(client);
@@ -62,12 +66,15 @@ export const MarketplaceProvider: React.FC<ClientSDKProviderProps> = ({
 
   if (error) {
     return (
-    <div>
-      <h1>Error initializing Marketplace SDK</h1>
-      <div>{error}</div>
-      <div>Please check if the client SDK is loaded inside Sitecore Marketplace parent window and you have properly set your app's extention points.</div>
-    </div>
-    )
+      <div>
+        <h1>Error initializing Marketplace SDK</h1>
+        <div>{error}</div>
+        <div>
+          Please check if the client SDK is loaded inside Sitecore Marketplace
+          parent window and you have properly set your app's extention points.
+        </div>
+      </div>
+    );
   }
 
   if (!client) {
@@ -81,7 +88,7 @@ export const MarketplaceProvider: React.FC<ClientSDKProviderProps> = ({
   return (
     <ClientSDKContext.Provider value={client}>
       <AppContextContext.Provider value={appContext}>
-      {children}
+        {children}
       </AppContextContext.Provider>
     </ClientSDKContext.Provider>
   );
@@ -90,7 +97,9 @@ export const MarketplaceProvider: React.FC<ClientSDKProviderProps> = ({
 export const useMarketplaceClient = () => {
   const context = useContext(ClientSDKContext);
   if (!context) {
-    throw new Error("useMarketplaceClient must be used within a ClientSDKProvider");
+    throw new Error(
+      "useMarketplaceClient must be used within a ClientSDKProvider",
+    );
   }
   return context;
 };

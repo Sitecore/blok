@@ -18,4 +18,3 @@ const ErrorStateThumb = ({ className }: { className?: string }) => (
 );
 
 export default ErrorStateThumb;
-

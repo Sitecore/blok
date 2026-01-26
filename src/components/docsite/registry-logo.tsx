@@ -1,5 +1,3 @@
-import { Squirrel } from "lucide-react";
-
 export function RegistryLogo() {
   return (
     <>

@@ -1,11 +1,11 @@
 "use client";
 
-import * as React from "react";
-import { cva, type VariantProps } from "class-variance-authority";
-import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
+import { type VariantProps, cva } from "class-variance-authority";
+import * as React from "react";
 
 type ActivationMode = "click" | "dblclick";
 
@@ -30,12 +30,14 @@ const EditableContext = React.createContext<EditableContextValue | null>(null);
 function useEditableContext() {
   const context = React.useContext(EditableContext);
   if (!context) {
-    throw new Error("Editable compound components must be used within an Editable component");
+    throw new Error(
+      "Editable compound components must be used within an Editable component",
+    );
   }
   return context;
 }
 
-// useEditable Hook 
+// useEditable Hook
 interface UseEditableProps {
   /** The initial value (uncontrolled) */
   defaultValue?: string;
@@ -93,7 +95,9 @@ function useEditable(props: UseEditableProps = {}): UseEditableReturn {
   const [isEditing, setIsEditing] = React.useState(startWithEditView);
   const [internalValue, setInternalValue] = React.useState(defaultValue);
   const [previousValue, setPreviousValue] = React.useState(defaultValue);
-  const inputRef = React.useRef<HTMLInputElement | HTMLTextAreaElement | null>(null);
+  const inputRef = React.useRef<HTMLInputElement | HTMLTextAreaElement | null>(
+    null,
+  );
 
   // Support both controlled and uncontrolled modes
   const isControlled = controlledValue !== undefined;
@@ -127,7 +131,7 @@ function useEditable(props: UseEditableProps = {}): UseEditableReturn {
       onChange?.(newValue);
       onValueChange?.(newValue);
     },
-    [isControlled, onChange, onValueChange]
+    [isControlled, onChange, onValueChange],
   );
 
   // Focus input when entering edit mode
@@ -136,7 +140,10 @@ function useEditable(props: UseEditableProps = {}): UseEditableReturn {
       inputRef.current.focus();
       if (selectAllOnFocus && inputRef.current instanceof HTMLInputElement) {
         inputRef.current.select();
-      } else if (selectAllOnFocus && inputRef.current instanceof HTMLTextAreaElement) {
+      } else if (
+        selectAllOnFocus &&
+        inputRef.current instanceof HTMLTextAreaElement
+      ) {
         inputRef.current.select();
       }
     }
@@ -231,7 +238,9 @@ function Editable({
   const [isEditing, setIsEditing] = React.useState(startWithEditView);
   const [internalValue, setInternalValue] = React.useState(defaultValue);
   const [previousValue, setPreviousValue] = React.useState(defaultValue);
-  const inputRef = React.useRef<HTMLInputElement | HTMLTextAreaElement | null>(null);
+  const inputRef = React.useRef<HTMLInputElement | HTMLTextAreaElement | null>(
+    null,
+  );
 
   // Support both controlled and uncontrolled modes
   const isControlled = controlledValue !== undefined;
@@ -265,7 +274,7 @@ function Editable({
       onChange?.(newValue);
       onValueChange?.(newValue);
     },
-    [isControlled, onChange, onValueChange]
+    [isControlled, onChange, onValueChange],
   );
 
   // Focus input when entering edit mode
@@ -274,7 +283,10 @@ function Editable({
       inputRef.current.focus();
       if (selectAllOnFocus && inputRef.current instanceof HTMLInputElement) {
         inputRef.current.select();
-      } else if (selectAllOnFocus && inputRef.current instanceof HTMLTextAreaElement) {
+      } else if (
+        selectAllOnFocus &&
+        inputRef.current instanceof HTMLTextAreaElement
+      ) {
         inputRef.current.select();
       }
     }
@@ -355,14 +367,21 @@ const editablePreviewVariants = cva(
     defaultVariants: {
       isEmpty: false,
     },
-  }
+  },
 );
 
 interface EditablePreviewProps extends React.HTMLAttributes<HTMLSpanElement> {}
 
 function EditablePreview({ className, ...props }: EditablePreviewProps) {
-  const { isEditing, value, placeholder, isDisabled, isPreviewFocusable, activationMode, startEdit } =
-    useEditableContext();
+  const {
+    isEditing,
+    value,
+    placeholder,
+    isDisabled,
+    isPreviewFocusable,
+    activationMode,
+    startEdit,
+  } = useEditableContext();
 
   if (isEditing) {
     return null;
@@ -371,8 +390,14 @@ function EditablePreview({ className, ...props }: EditablePreviewProps) {
   const isEmpty = !value || value.trim() === "";
   const displayValue = isEmpty ? placeholder : value;
 
-  const handleClick = activationMode === "click" && isPreviewFocusable && !isDisabled ? startEdit : undefined;
-  const handleDoubleClick = activationMode === "dblclick" && isPreviewFocusable && !isDisabled ? startEdit : undefined;
+  const handleClick =
+    activationMode === "click" && isPreviewFocusable && !isDisabled
+      ? startEdit
+      : undefined;
+  const handleDoubleClick =
+    activationMode === "dblclick" && isPreviewFocusable && !isDisabled
+      ? startEdit
+      : undefined;
 
   return (
     <span
@@ -382,7 +407,11 @@ function EditablePreview({ className, ...props }: EditablePreviewProps) {
       onClick={handleClick}
       onDoubleClick={handleDoubleClick}
       onKeyDown={(e) => {
-        if (isPreviewFocusable && !isDisabled && (e.key === "Enter" || e.key === " ")) {
+        if (
+          isPreviewFocusable &&
+          !isDisabled &&
+          (e.key === "Enter" || e.key === " ")
+        ) {
           e.preventDefault();
           startEdit();
         }
@@ -391,7 +420,7 @@ function EditablePreview({ className, ...props }: EditablePreviewProps) {
         editablePreviewVariants({ isEmpty }),
         isDisabled && "cursor-not-allowed opacity-50",
         !isPreviewFocusable && "cursor-default hover:bg-transparent",
-        className
+        className,
       )}
       {...props}
     >
@@ -444,7 +473,10 @@ function EditableInput({ className, ...props }: EditableInputProps) {
           cancelEdit();
         }
       }}
-      className={cn("w-full border-2 bg-transparent dark:bg-transparent focus-visible:ring-0 focus-visible:border-primary transition-colors", className)}
+      className={cn(
+        "w-full border-2 bg-transparent dark:bg-transparent focus-visible:ring-0 focus-visible:border-primary transition-colors",
+        className,
+      )}
       {...props}
     />
   );
@@ -494,7 +526,10 @@ function EditableTextarea({ className, ...props }: EditableTextareaProps) {
           cancelEdit();
         }
       }}
-      className={cn("w-36 border-2 bg-transparent dark:bg-transparent focus-visible:ring-0 focus-visible:border-primary transition-colors", className)}
+      className={cn(
+        "w-36 border-2 bg-transparent dark:bg-transparent focus-visible:ring-0 focus-visible:border-primary transition-colors",
+        className,
+      )}
       {...props}
     />
   );
@@ -504,7 +539,11 @@ function EditableTextarea({ className, ...props }: EditableTextareaProps) {
 
 interface EditableControlProps extends React.HTMLAttributes<HTMLDivElement> {}
 
-function EditableControl({ className, children, ...props }: EditableControlProps) {
+function EditableControl({
+  className,
+  children,
+  ...props
+}: EditableControlProps) {
   return (
     <div
       data-slot="editable-control"
@@ -518,9 +557,14 @@ function EditableControl({ className, children, ...props }: EditableControlProps
 
 // EditableEditTrigger Component
 
-interface EditableEditTriggerProps extends React.ComponentProps<typeof Button> {}
+interface EditableEditTriggerProps
+  extends React.ComponentProps<typeof Button> {}
 
-function EditableEditTrigger({ className, children, ...props }: EditableEditTriggerProps) {
+function EditableEditTrigger({
+  className,
+  children,
+  ...props
+}: EditableEditTriggerProps) {
   const { isEditing, isDisabled, startEdit } = useEditableContext();
 
   if (isEditing) {
@@ -545,9 +589,14 @@ function EditableEditTrigger({ className, children, ...props }: EditableEditTrig
 
 // EditableCancelTrigger Component
 
-interface EditableCancelTriggerProps extends React.ComponentProps<typeof Button> {}
+interface EditableCancelTriggerProps
+  extends React.ComponentProps<typeof Button> {}
 
-function EditableCancelTrigger({ className, children, ...props }: EditableCancelTriggerProps) {
+function EditableCancelTrigger({
+  className,
+  children,
+  ...props
+}: EditableCancelTriggerProps) {
   const { isEditing, cancelEdit } = useEditableContext();
 
   if (!isEditing) {
@@ -571,9 +620,14 @@ function EditableCancelTrigger({ className, children, ...props }: EditableCancel
 
 // EditableSubmitTrigger Component
 
-interface EditableSubmitTriggerProps extends React.ComponentProps<typeof Button> {}
+interface EditableSubmitTriggerProps
+  extends React.ComponentProps<typeof Button> {}
 
-function EditableSubmitTrigger({ className, children, ...props }: EditableSubmitTriggerProps) {
+function EditableSubmitTrigger({
+  className,
+  children,
+  ...props
+}: EditableSubmitTriggerProps) {
   const { isEditing, submitEdit } = useEditableContext();
 
   if (!isEditing) {

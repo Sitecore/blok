@@ -1,27 +1,24 @@
-import * as React from "react";
-import { cva, type VariantProps } from "class-variance-authority";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { type VariantProps, cva } from "class-variance-authority";
+import type * as React from "react";
 
-const errorStatesVariants = cva(
-  "flex items-center justify-center h-full",
-  {
-    variants: {
-      variant: {
-        generic: "",
-        "400": "",
-        "401": "",
-        "403": "",
-        "404": "",
-        "500": "",
-        "503": "",
-      },
+const errorStatesVariants = cva("flex items-center justify-center h-full", {
+  variants: {
+    variant: {
+      generic: "",
+      "400": "",
+      "401": "",
+      "403": "",
+      "404": "",
+      "500": "",
+      "503": "",
     },
-    defaultVariants: {
-      variant: "generic",
-    },
-  }
-);
+  },
+  defaultVariants: {
+    variant: "generic",
+  },
+});
 
 interface ErrorStatesProps
   extends React.ComponentProps<"div">,
@@ -37,12 +34,14 @@ interface ErrorStatesProps
 
 const errorStateConfig = {
   generic: {
-    imageSrc: "https://delivery-sitecore.sitecorecontenthub.cloud/api/public/content/spot-alert",
+    imageSrc:
+      "https://delivery-sitecore.sitecorecontenthub.cloud/api/public/content/spot-alert",
     imageAlt: "alert",
     defaultTitle: "Something went wrong",
     defaultDescription: (knowledgeBaseUrl?: string) => (
       <>
-        (Customizable text) Please try again. If the issue persists, try visiting the{" "}
+        (Customizable text) Please try again. If the issue persists, try
+        visiting the{" "}
         <a
           href={knowledgeBaseUrl || "#"}
           className="text-primary hover:underline"
@@ -56,45 +55,55 @@ const errorStateConfig = {
     ),
   },
   "400": {
-    imageSrc: "https://delivery-sitecore.sitecorecontenthub.cloud/api/public/content/spot-alert-circle",
+    imageSrc:
+      "https://delivery-sitecore.sitecorecontenthub.cloud/api/public/content/spot-alert-circle",
     imageAlt: "alert",
     defaultTitle: "Bad request",
-    defaultDescription: "(Customizable text) Lorem ipsum dolor sit amet, consectetuer adipiscing elit.",
+    defaultDescription:
+      "(Customizable text) Lorem ipsum dolor sit amet, consectetuer adipiscing elit.",
     defaultErrorCode: "Error 400",
   },
   "401": {
-    imageSrc: "https://delivery-sitecore.sitecorecontenthub.cloud/api/public/content/spot-stop",
+    imageSrc:
+      "https://delivery-sitecore.sitecorecontenthub.cloud/api/public/content/spot-stop",
     imageAlt: "stop",
     defaultTitle: "Unauthorized",
-    defaultDescription: "(Customizable text) Lorem ipsum dolor sit amet, consectetuer adipiscing elit.",
+    defaultDescription:
+      "(Customizable text) Lorem ipsum dolor sit amet, consectetuer adipiscing elit.",
     defaultErrorCode: "Error 401",
   },
   "403": {
-    imageSrc: "https://delivery-sitecore.sitecorecontenthub.cloud/api/public/content/spot-lock",
+    imageSrc:
+      "https://delivery-sitecore.sitecorecontenthub.cloud/api/public/content/spot-lock",
     imageAlt: "lock",
     defaultTitle: "Forbidden",
-    defaultDescription: "(Customizable text) You don't have permission to access this page.",
+    defaultDescription:
+      "(Customizable text) You don't have permission to access this page.",
     defaultErrorCode: "Error 403",
   },
   "404": {
-    imageSrc: "https://delivery-sitecore.sitecorecontenthub.cloud/api/public/content/spot-map-search",
+    imageSrc:
+      "https://delivery-sitecore.sitecorecontenthub.cloud/api/public/content/spot-map-search",
     imageAlt: "map-search",
     defaultTitle: "Page not found",
     defaultDescription: "The page you are looking for cannot be found.",
     defaultErrorCode: "Error 404",
   },
   "500": {
-    imageSrc: "https://delivery-sitecore.sitecorecontenthub.cloud/api/public/content/spot-alert-circle?",
+    imageSrc:
+      "https://delivery-sitecore.sitecorecontenthub.cloud/api/public/content/spot-alert-circle?",
     imageAlt: "alert",
     defaultTitle: "Internal server error",
     defaultDescription: "(Customizable text) This page isn't working.",
     defaultErrorCode: "Error 500",
   },
   "503": {
-    imageSrc: "https://delivery-sitecore.sitecorecontenthub.cloud/api/public/content/spot-wrench-clock",
+    imageSrc:
+      "https://delivery-sitecore.sitecorecontenthub.cloud/api/public/content/spot-wrench-clock",
     imageAlt: "wrench-clock",
     defaultTitle: "Service unavailable",
-    defaultDescription: "(Customizable text) The service you requested is not available at this time.",
+    defaultDescription:
+      "(Customizable text) The service you requested is not available at this time.",
     defaultErrorCode: "Error 503",
   },
 };
@@ -118,7 +127,9 @@ function ErrorStates({
     (typeof config.defaultDescription === "function"
       ? config.defaultDescription(knowledgeBaseUrl)
       : config.defaultDescription);
-  const finalErrorCode = errorCode || ("defaultErrorCode" in config ? config.defaultErrorCode : undefined);
+  const finalErrorCode =
+    errorCode ||
+    ("defaultErrorCode" in config ? config.defaultErrorCode : undefined);
   const finalImageSrc = imageSrc || config.imageSrc;
   const finalImageAlt = imageAlt || config.imageAlt;
 
@@ -129,27 +140,17 @@ function ErrorStates({
         <Button variant="link">Go to homepage</Button>
       </div>
     ),
-    "400": (
-      <Button variant="link">Go to homepage</Button>
-    ),
-    "401": (
-      <Button variant="link">Go to homepage</Button>
-    ),
-    "403": (
-      <Button variant="link">Go to homepage</Button>
-    ),
+    "400": <Button variant="link">Go to homepage</Button>,
+    "401": <Button variant="link">Go to homepage</Button>,
+    "403": <Button variant="link">Go to homepage</Button>,
     "404": (
       <div className="flex flex-col items-center gap-2">
         <Button variant="link">Go to homepage</Button>
         <Button variant="link">Visit knowledge base</Button>
       </div>
     ),
-    "500": (
-      <Button variant="link">Go to homepage</Button>
-    ),
-    "503": (
-      <Button variant="link">Go to homepage</Button>
-    ),
+    "500": <Button variant="link">Go to homepage</Button>,
+    "503": <Button variant="link">Go to homepage</Button>,
   };
 
   const finalActions = actions || defaultActions[variant || "generic"];
@@ -161,11 +162,7 @@ function ErrorStates({
       {...props}
     >
       <div className="flex flex-col items-center text-center gap-6 max-w-sm">
-        <img
-          src={finalImageSrc}
-          alt={finalImageAlt}
-          className="w-32 h-32"
-        />
+        <img src={finalImageSrc} alt={finalImageAlt} className="w-32 h-32" />
         <div className="flex flex-col items-center gap-1.5">
           <h1 className="text-2xl font-semibold">{finalTitle}</h1>
           {finalErrorCode && (
@@ -180,4 +177,3 @@ function ErrorStates({
 }
 
 export { ErrorStates, errorStatesVariants, type ErrorStatesProps };
-

@@ -10,8 +10,8 @@ export const checkbox = {
     ],
   },
   components: {
-    "With Description": { component: "checkbox-description", },
-    "Disabled": { component: "checkbox-disabled", },
-    "Enabled Label": { component: "checkbox-label", },
+    "With Description": { component: "checkbox-description" },
+    Disabled: { component: "checkbox-disabled" },
+    "Enabled Label": { component: "checkbox-label" },
   },
 };

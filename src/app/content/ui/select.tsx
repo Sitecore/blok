@@ -1,11 +1,11 @@
 import {
   Select,
-  SelectTrigger,
-  SelectValue,
   SelectContent,
   SelectGroup,
+  SelectItem,
   SelectLabel,
-  SelectItem
+  SelectTrigger,
+  SelectValue,
 } from "@/components/ui/select";
 
 export default function SelectDemo() {

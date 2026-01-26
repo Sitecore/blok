@@ -1,10 +1,4 @@
-import * as React from "react";
-
-interface IllustrationsThumbProps {
-  className?: string;
-}
-
-const IllustrationsThumb = ({ className }: IllustrationsThumbProps) => (
+const IllustrationsThumb = () => (
   <svg
     width="59"
     height="59"

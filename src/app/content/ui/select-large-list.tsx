@@ -1,16 +1,19 @@
 import {
   Select,
+  SelectContent,
+  SelectItem,
   SelectTrigger,
   SelectValue,
-  SelectContent,
-  SelectItem
 } from "@/components/ui/select";
 
 export default function SelectLargeListDemo() {
   return (
     <div className="p-2">
       <Select>
-        <SelectTrigger className="w-[180px]" aria-label="Select from large list">
+        <SelectTrigger
+          className="w-[180px]"
+          aria-label="Select from large list"
+        >
           <SelectValue placeholder="Large List" />
         </SelectTrigger>
         <SelectContent>

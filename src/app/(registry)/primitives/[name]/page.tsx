@@ -2,8 +2,7 @@ import { notFound } from "next/navigation";
 
 import { ComponentCard } from "@/components/docsite/component-card";
 
-import { getRegistryItem, getComponents } from "@/lib/registry";
-import { getPrompt } from "@/lib/utils";
+import { getComponents, getRegistryItem } from "@/lib/registry";
 
 export const dynamicParams = false;
 
@@ -32,16 +31,16 @@ export default async function PrimitiveItemPage({
       <div className="flex items-center justify-between">
         <div>
           <div className="py-10 flex flex-col gap-6">
-            <h2 className="font-semibold text-4xl wrap-break-words">{component.title}</h2>
-            <p className="text-lg text-subtle-text wrap-break-words">{component.description}</p>
+            <h2 className="font-semibold text-4xl wrap-break-words">
+              {component.title}
+            </h2>
+            <p className="text-lg text-subtle-text wrap-break-words">
+              {component.description}
+            </p>
           </div>
         </div>
       </div>
-      <ComponentCard
-        component={component}
-        baseUrl={process.env.NEXT_PUBLIC_REGISTRY_URL ?? ""}
-        prompt={getPrompt()}
-      />
+      <ComponentCard component={component} />
     </div>
   );
 }

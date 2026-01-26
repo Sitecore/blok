@@ -1,6 +1,7 @@
-import fs from "fs";
-import path from "path";
-import { convertCssVariablesToObject } from "@/lib/token-utils";
+import fs from "node:fs";
+import path from "node:path";
+import { CopyableToken } from "@/components/docsite/copyable-token";
+import { Alert, AlertDescription } from "@/components/ui/alert";
 import {
   Table,
   TableBody,
@@ -9,8 +10,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { CopyableToken } from "@/components/docsite/copyable-token";
-import { Alert, AlertDescription } from "@/components/ui/alert";
+import { convertCssVariablesToObject } from "@/lib/token-utils";
 
 const cssPath = path.join(process.cwd(), "src", "app", "typography.css");
 const typographyContent = fs.readFileSync(cssPath, "utf-8");
@@ -44,11 +44,8 @@ export default function TypographyPage() {
 
   return (
     <div className="container p-5 md:p-10">
-      
       <div className="mb-12">
-        <h1 className="font-semibold text-4xl mb-2">
-          Typography
-        </h1>
+        <h1 className="font-semibold text-4xl mb-2">Typography</h1>
       </div>
 
       <div className="flex flex-col gap-6 mb-12">
@@ -100,9 +97,7 @@ export default function TypographyPage() {
       </div>
 
       <div className="flex flex-col gap-6 mb-12">
-        <h2 className="font-semibold text-2xl">
-          Font Weights
-        </h2>
+        <h2 className="font-semibold text-2xl">Font Weights</h2>
         <div className="overflow-x-auto">
           <Table>
             <TableHeader>
@@ -132,9 +127,7 @@ export default function TypographyPage() {
       </div>
 
       <div className="flex flex-col gap-6 mb-12">
-        <h2 className="font-semibold text-2xl ">
-          Font Sizes
-        </h2>
+        <h2 className="font-semibold text-2xl ">Font Sizes</h2>
         <div className="overflow-x-auto">
           <Table>
             <TableHeader>
@@ -156,7 +149,7 @@ export default function TypographyPage() {
                   </TableCell>
                   <TableCell className="px-4 py-3">
                     <code className="font-mono text-sm">
-                      {parseFloat(value) * 16}px
+                      {Number.parseFloat(value) * 16}px
                     </code>
                   </TableCell>
                   <TableCell className="px-4 py-3">

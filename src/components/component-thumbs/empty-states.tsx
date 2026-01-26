@@ -1,10 +1,4 @@
-import * as React from "react";
-
-interface EmptyStatesThumbProps {
-  className?: string;
-}
-
-const EmptyStatesThumb = ({ className }: EmptyStatesThumbProps) => (
+const EmptyStatesThumb = () => (
   <svg
     width="30"
     height="42"

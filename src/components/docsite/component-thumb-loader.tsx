@@ -1,12 +1,13 @@
 "use client";
 
-import * as React from "react";
+import type * as React from "react";
 
 // Import all component thumbnails
 import AccordionThumb from "@/components/component-thumbs/accordion";
 import ActionBarThumb from "@/components/component-thumbs/action-bar";
 import AlertThumb from "@/components/component-thumbs/alert";
 import AlertDialogThumb from "@/components/component-thumbs/alert-dialog";
+import AllSiteThumb from "@/components/component-thumbs/all-site";
 import AspectRatioThumb from "@/components/component-thumbs/aspect-ratio";
 import AvatarThumb from "@/components/component-thumbs/avatar";
 import BadgeThumb from "@/components/component-thumbs/badge";
@@ -17,11 +18,14 @@ import CardThumb from "@/components/component-thumbs/card";
 import CarouselThumb from "@/components/component-thumbs/carousel";
 import ChartThumb from "@/components/component-thumbs/chart";
 import CheckboxThumb from "@/components/component-thumbs/checkbox";
+import CircularProgressThumb from "@/components/component-thumbs/circular-progress";
+import CollaborationThumb from "@/components/component-thumbs/collaboration";
 import CollapsibleThumb from "@/components/component-thumbs/collapsible";
 import ComboboxThumb from "@/components/component-thumbs/combobox";
 import CommandThumb from "@/components/component-thumbs/command";
 import ContextMenuThumb from "@/components/component-thumbs/context-menu";
 import DatePickerThumb from "@/components/component-thumbs/date-picker";
+import DialogThumb from "@/components/component-thumbs/dialog";
 import DraggableThumb from "@/components/component-thumbs/draggable";
 import DrawerThumb from "@/components/component-thumbs/drawer";
 import DropdownMenuThumb from "@/components/component-thumbs/dropdown-menu";
@@ -30,23 +34,26 @@ import ErrorStateThumb from "@/components/component-thumbs/error-state";
 import HoverCardThumb from "@/components/component-thumbs/hover-card";
 import InputThumb from "@/components/component-thumbs/input";
 import InputGroupThumb from "@/components/component-thumbs/input-group";
+import KbdThumb from "@/components/component-thumbs/kbd";
+import LabelThumb from "@/components/component-thumbs/label";
 import NavigationMenuThumb from "@/components/component-thumbs/navigation-menu";
 import PaginationThumb from "@/components/component-thumbs/pagination";
 import PinInputThumb from "@/components/component-thumbs/pin-input";
+import PinnedSiteThumb from "@/components/component-thumbs/pinned-site";
 import PopoverThumb from "@/components/component-thumbs/popover";
 import ProgressThumb from "@/components/component-thumbs/progress";
-import RadioGroupThumb from "@/components/component-thumbs/radio-group";
 import RadioThumb from "@/components/component-thumbs/radio";
+import RadioGroupThumb from "@/components/component-thumbs/radio-group";
 import ResizableThumb from "@/components/component-thumbs/resizable";
 import ScrollAreaThumb from "@/components/component-thumbs/scroll-area";
 import SelectThumb from "@/components/component-thumbs/select";
 import SeparatorThumb from "@/components/component-thumbs/separator";
 import SheetThumb from "@/components/component-thumbs/sheet";
 import SidebarThumb from "@/components/component-thumbs/sidebar";
-import SonnerThumb from "@/components/component-thumbs/sonner";
+import SiteCardThumb from "@/components/component-thumbs/site-card";
 import SkeletonThumb from "@/components/component-thumbs/skeleton";
 import SliderThumb from "@/components/component-thumbs/slider";
-import CircularProgressThumb from "@/components/component-thumbs/circular-progress";
+import SonnerThumb from "@/components/component-thumbs/sonner";
 import SpinnerThumb from "@/components/component-thumbs/spinner";
 import StepperThumb from "@/components/component-thumbs/stepper";
 import SwitchThumb from "@/components/component-thumbs/switch";
@@ -54,17 +61,10 @@ import TableThumb from "@/components/component-thumbs/table";
 import TabsThumb from "@/components/component-thumbs/tabs";
 import TextareaThumb from "@/components/component-thumbs/textarea";
 import TimePickerThumb from "@/components/component-thumbs/time-picker";
-import ToggleGroupThumb from "@/components/component-thumbs/toggle-group";
 import ToggleThumb from "@/components/component-thumbs/toggle";
-import TopbarThumb from "@/components/component-thumbs/topbar";
+import ToggleGroupThumb from "@/components/component-thumbs/toggle-group";
 import TooltipThumb from "@/components/component-thumbs/tooltip";
-import DialogThumb from "@/components/component-thumbs/dialog";
-import LabelThumb from "@/components/component-thumbs/label";
-import KbdThumb from "@/components/component-thumbs/kbd";
-import AllSiteThumb from "@/components/component-thumbs/all-site";
-import PinnedSiteThumb from "@/components/component-thumbs/pinned-site";
-import SiteCardThumb from "@/components/component-thumbs/site-card";
-import CollaborationThumb from "@/components/component-thumbs/collaboration";
+import TopbarThumb from "@/components/component-thumbs/topbar";
 
 // Map component names to their thumbnail components
 const componentThumbnails: Record<
@@ -147,7 +147,7 @@ export function ComponentThumb({
   const ThumbnailComponent = componentThumbnails[componentName];
 
   if (!ThumbnailComponent) {
-    return null; 
+    return null;
   }
 
   return <ThumbnailComponent className={className} />;

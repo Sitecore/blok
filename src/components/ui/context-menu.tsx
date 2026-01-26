@@ -1,7 +1,7 @@
 "use client";
 
-import { mdiCheck, mdiChevronRight, mdiCircle } from "@mdi/js";
 import { Icon } from "@/lib/icon";
+import { mdiCheck, mdiChevronRight, mdiCircle } from "@mdi/js";
 import * as ContextMenuPrimitive from "@radix-ui/react-context-menu";
 import type * as React from "react";
 

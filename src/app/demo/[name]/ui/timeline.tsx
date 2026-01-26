@@ -31,11 +31,11 @@ import { mdiCheck } from "@mdi/js";`,
     </TimelineContent>
   </TimelineItem>
 </TimelineRoot>`,
-    ]
+    ],
   },
   components: {
-    "Variants": { component: "timeline-variants", },
-    "Sizes": { component: "timeline-sizes", },
-    "Connector Variants": { component: "timeline-connector-variants", },
-  }
+    Variants: { component: "timeline-variants" },
+    Sizes: { component: "timeline-sizes" },
+    "Connector Variants": { component: "timeline-connector-variants" },
+  },
 };

@@ -1,5 +1,3 @@
-import * as React from "react";
-
 interface SliderThumbProps {
   className?: string;
 }
@@ -82,4 +80,3 @@ const SliderThumb = ({ className }: SliderThumbProps) => (
 );
 
 export default SliderThumb;
-

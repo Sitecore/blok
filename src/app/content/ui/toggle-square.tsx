@@ -1,10 +1,10 @@
 import { Toggle } from "@/components/ui/toggle";
 import { Icon } from "@/lib/icon";
 import {
+  mdiBookmark,
   mdiFormatBold,
-  mdiFormatUnderline,
   mdiFormatItalic,
-  mdiBookmark
+  mdiFormatUnderline,
 } from "@mdi/js";
 
 export default function SquareToggleDemo() {

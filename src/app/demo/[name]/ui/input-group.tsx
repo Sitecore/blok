@@ -25,9 +25,8 @@ import { mdiMagnify } from "@mdi/js";`,
     ],
   },
   components: {
-    Search: { component: "input-group-search", },
-    URL: { component: "input-group-url", },
-    Dropdown: { component: "input-group-dropdown", },
+    Search: { component: "input-group-search" },
+    URL: { component: "input-group-url" },
+    Dropdown: { component: "input-group-dropdown" },
   },
 };
-

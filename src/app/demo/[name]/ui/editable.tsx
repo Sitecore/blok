@@ -22,6 +22,6 @@ export const editable = {
     ],
   },
   components: {
-    "Textarea": { component: "editable-textarea", },
+    Textarea: { component: "editable-textarea" },
   },
 };

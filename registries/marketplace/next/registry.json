@@ -8,9 +8,7 @@
       "type": "registry:block",
       "title": "Quickstart for Next.js",
       "description": "A quickstart for next.js Sitecore marketplace apps with marketplace sdk",
-      "dependencies": [
-        "@sitecore-marketplace-sdk/client"
-      ],
+      "dependencies": ["@sitecore-marketplace-sdk/client"],
       "registryDependencies": [
         "https://blok.sitecore.com/r/badge.json",
         "https://blok.sitecore.com/r/card.json",
@@ -44,9 +42,7 @@
       "type": "registry:block",
       "title": "Quickstart for Next js with server side authentication",
       "description": "A quickstart for next.js Sitecore marketplace apps with server side authentication",
-      "dependencies": [
-        "@auth0/auth0-react"
-      ],
+      "dependencies": ["@auth0/auth0-react"],
       "registryDependencies": [
         "https://blok.sitecore.com/r/marketplace/next/quickstart.json"
       ],
@@ -84,9 +80,7 @@
       "type": "registry:block",
       "title": "Quickstart for Next.js with XMC API examples",
       "description": "A quickstart for next.js Sitecore marketplace apps with XMC API examples",
-      "dependencies": [
-        "@sitecore-marketplace-sdk/xmc"
-      ],
+      "dependencies": ["@sitecore-marketplace-sdk/xmc"],
       "registryDependencies": [
         "https://blok.sitecore.com/r/marketplace/next/quickstart.json",
         "https://blok.sitecore.com/r/button.json",

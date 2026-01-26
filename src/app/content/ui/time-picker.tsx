@@ -1,6 +1,6 @@
 "use client";
-import * as React from "react";
 import { TimePicker } from "@/components/ui/time-picker";
+import * as React from "react";
 
 export default function TimePickerDemo() {
   const [time, setTime] = React.useState<{
@@ -21,4 +21,3 @@ export default function TimePickerDemo() {
     </div>
   );
 }
-

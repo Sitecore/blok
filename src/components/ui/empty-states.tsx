@@ -1,23 +1,20 @@
-import * as React from "react";
-import { cva, type VariantProps } from "class-variance-authority";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { type VariantProps, cva } from "class-variance-authority";
+import type * as React from "react";
 
-const emptyStatesVariants = cva(
-  "flex items-center justify-center h-full",
-  {
-    variants: {
-      variant: {
-        "no-search-results": "",
-        "nothing-created": "",
-        error: "",
-      },
+const emptyStatesVariants = cva("flex items-center justify-center h-full", {
+  variants: {
+    variant: {
+      "no-search-results": "",
+      "nothing-created": "",
+      error: "",
     },
-    defaultVariants: {
-      variant: "no-search-results",
-    },
-  }
-);
+  },
+  defaultVariants: {
+    variant: "no-search-results",
+  },
+});
 
 interface EmptyStatesProps
   extends React.ComponentProps<"div">,
@@ -31,19 +28,22 @@ interface EmptyStatesProps
 
 const emptyStateConfig = {
   "no-search-results": {
-    imageSrc: "https://delivery-sitecore.sitecorecontenthub.cloud/api/public/content/spot-magnify-close-neutral",
+    imageSrc:
+      "https://delivery-sitecore.sitecorecontenthub.cloud/api/public/content/spot-magnify-close-neutral",
     imageAlt: "magnifier icon",
     defaultTitle: "No search results",
     defaultDescription: "Try a different search query.",
   },
   "nothing-created": {
-    imageSrc: "https://delivery-sitecore.sitecorecontenthub.cloud/api/public/content/spot-cactus-neutral",
+    imageSrc:
+      "https://delivery-sitecore.sitecorecontenthub.cloud/api/public/content/spot-cactus-neutral",
     imageAlt: "desert icon",
     defaultTitle: "No widgets yet",
     defaultDescription: undefined,
   },
   error: {
-    imageSrc: "https://delivery-sitecore.sitecorecontenthub.cloud/api/public/content/spot-alert-circle",
+    imageSrc:
+      "https://delivery-sitecore.sitecorecontenthub.cloud/api/public/content/spot-alert-circle",
     imageAlt: "alert icon",
     defaultTitle: "Something went wrong",
     defaultDescription: "Description of the error.",
@@ -67,18 +67,13 @@ function EmptyStates({
   const finalImageAlt = imageAlt || config.imageAlt;
 
   const defaultActions = {
-    "no-search-results": (
-      <Button variant="link">Reset search</Button>
-    ),
-    "nothing-created": (
-      <Button variant="default">Create widget</Button>
-    ),
-    error: (
-      <Button variant="link">Try again</Button>
-    ),
+    "no-search-results": <Button variant="link">Reset search</Button>,
+    "nothing-created": <Button variant="default">Create widget</Button>,
+    error: <Button variant="link">Try again</Button>,
   };
 
-  const finalActions = actions || defaultActions[variant || "no-search-results"];
+  const finalActions =
+    actions || defaultActions[variant || "no-search-results"];
 
   return (
     <div
@@ -87,11 +82,7 @@ function EmptyStates({
       {...props}
     >
       <div className="flex flex-col items-center text-center gap-4 max-w-sm">
-        <img
-          src={finalImageSrc}
-          alt={finalImageAlt}
-          className="w-16 h-16"
-        />
+        <img src={finalImageSrc} alt={finalImageAlt} className="w-16 h-16" />
         <div className="flex flex-col items-center gap-1.5">
           <h2 className="text-lg font-semibold">{finalTitle}</h2>
           {finalDescription && (
@@ -105,4 +96,3 @@ function EmptyStates({
 }
 
 export { EmptyStates, emptyStatesVariants, type EmptyStatesProps };
-

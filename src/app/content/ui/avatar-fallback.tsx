@@ -1,12 +1,9 @@
-import { 
-    Avatar, 
-    AvatarFallback 
-} from "@/components/ui/avatar";
+import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 
 export default function AvatarFallbackDemo() {
-    return (
-        <Avatar>
-            <AvatarFallback>BM</AvatarFallback>
-        </Avatar>
-    );
+  return (
+    <Avatar>
+      <AvatarFallback>BM</AvatarFallback>
+    </Avatar>
+  );
 }

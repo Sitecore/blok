@@ -1,10 +1,4 @@
-import * as React from "react";
-
-interface ErrorStatesThumbProps {
-  className?: string;
-}
-
-const ErrorStatesThumb = ({ className }: ErrorStatesThumbProps) => (
+const ErrorStatesThumb = () => (
   <svg
     width="55"
     height="47"

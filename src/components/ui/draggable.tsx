@@ -1,12 +1,13 @@
 "use client";
 
-import * as React from "react";
-import { useDraggable, type UniqueIdentifier } from "@dnd-kit/core";
-import { CSS } from "@dnd-kit/utilities";
 import { cn } from "@/lib/utils";
+import { type UniqueIdentifier, useDraggable } from "@dnd-kit/core";
+import { CSS } from "@dnd-kit/utilities";
+import type * as React from "react";
 import { useDndMounted } from "./dnd-context";
 
-export interface DraggableProps extends Omit<React.HTMLAttributes<HTMLDivElement>, "id"> {
+export interface DraggableProps
+  extends Omit<React.HTMLAttributes<HTMLDivElement>, "id"> {
   /** Unique identifier for this draggable item */
   id: UniqueIdentifier;
   /** Whether dragging is disabled */
@@ -27,17 +28,12 @@ function DraggableInner({
   as: Component = "div",
   ...props
 }: DraggableProps) {
-  const {
-    attributes,
-    listeners,
-    setNodeRef,
-    transform,
-    isDragging,
-  } = useDraggable({
-    id,
-    disabled,
-    data,
-  });
+  const { attributes, listeners, setNodeRef, transform, isDragging } =
+    useDraggable({
+      id,
+      disabled,
+      data,
+    });
 
   const style: React.CSSProperties = {
     transform: CSS.Translate.toString(transform),
@@ -54,7 +50,7 @@ function DraggableInner({
         !disabled && "cursor-grab",
         isDragging && "cursor-grabbing",
         disabled && "cursor-not-allowed opacity-60",
-        className
+        className,
       )}
       {...listeners}
       {...attributes}
@@ -99,7 +95,8 @@ export function Draggable({
   );
 }
 
-export interface DraggableHandleProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface DraggableHandleProps
+  extends React.HTMLAttributes<HTMLDivElement> {
   children: React.ReactNode;
 }
 

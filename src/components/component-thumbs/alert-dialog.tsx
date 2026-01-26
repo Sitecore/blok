@@ -1,5 +1,3 @@
-import * as React from "react";
-
 interface AlertDialogThumbProps {
   className?: string;
 }
@@ -51,4 +49,3 @@ const AlertDialogThumb = ({ className }: AlertDialogThumbProps) => (
 );
 
 export default AlertDialogThumb;
-

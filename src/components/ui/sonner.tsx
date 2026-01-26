@@ -1,12 +1,12 @@
 "use client";
 
+import { Icon } from "@/lib/icon";
 import {
   mdiAlertCircle,
   mdiCheckCircle,
   mdiClose,
   mdiInformation,
 } from "@mdi/js";
-import { Icon } from "@/lib/icon";
 import { useTheme } from "next-themes";
 import { Toaster as Sonner, type ToasterProps } from "sonner";
 
@@ -28,10 +28,12 @@ const Toaster = ({ ...props }: ToasterProps) => {
           info: "!bg-info-bg",
           warning: "!bg-warning-bg",
           default: "!bg-info-bg",
-          actionButton: "!bg-primary !text-inverse-text !hover:bg-primary-600 !active:bg-primary-700 !rounded-4xl",
+          actionButton:
+            "!bg-primary !text-inverse-text !hover:bg-primary-600 !active:bg-primary-700 !rounded-4xl",
           title: "text-sm !text-body-text !font-normal",
           description: "text-sm !text-body-text",
-          closeButton: "!absolute !top-3 !right-0 !left-auto !bg-transparent !border-none",
+          closeButton:
+            "!absolute !top-3 !right-0 !left-auto !bg-transparent !border-none",
         },
       }}
       {...props}
