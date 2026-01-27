@@ -202,6 +202,11 @@ import TimelineDemo from "@/app/content/ui/timeline";
 import TimelineConnectorVariantsDemo from "@/app/content/ui/timeline-connector-variants";
 import TimelineSizesDemo from "@/app/content/ui/timeline-sizes";
 import TimelineVariantsDemo from "@/app/content/ui/timeline-variants";
+import FilterDemo from "@/app/content/ui/filter";
+import FilterInputDemo from "@/app/content/ui/filter-input";
+import FilterSingleSelectDemo from "@/app/content/ui/filter-single-select";
+import FilterMultiSelectDemo from "@/app/content/ui/filter-multi-select";
+import FilterToggleDemo from "@/app/content/ui/filter-toggle";
 
 export interface DocsiteRegistryEntry {
   name: string;
@@ -731,6 +736,31 @@ export const docsiteRegistry: Record<string, DocsiteRegistryEntry> = {
     path: "src/app/content/ui/field-input-types.tsx",
     component: FieldInputTypesDemo,
   },
+      "filter": {
+        name: "filter",
+        path: "src/app/content/ui/filter.tsx",
+        component: FilterDemo,
+    },
+    "filter-input": {
+        name: "filter-input",
+        path: "src/app/content/ui/filter-input.tsx",
+        component: FilterInputDemo,
+    },
+    "filter-single-select": {
+        name: "filter-single-select",
+        path: "src/app/content/ui/filter-single-select.tsx",
+        component: FilterSingleSelectDemo,
+    },
+    "filter-multi-select": {
+        name: "filter-multi-select",
+        path: "src/app/content/ui/filter-multi-select.tsx",
+        component: FilterMultiSelectDemo,
+    },
+    "filter-toggle": {
+        name: "filter-toggle",
+        path: "src/app/content/ui/filter-toggle.tsx",
+        component: FilterToggleDemo,
+    },
   icon: {
     name: "icon",
     path: "src/app/content/ui/icon-component.tsx",
