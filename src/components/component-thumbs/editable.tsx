@@ -10,7 +10,7 @@ const EditableThumb = ({ className }: { className?: string }) => (
   >
     {/* Background card */}
     <rect x="53" y="90" width="294" height="120" rx="8" fill="white" />
-    
+
     {/* Preview text state */}
     <rect
       x="71"
@@ -20,7 +20,7 @@ const EditableThumb = ({ className }: { className?: string }) => (
       rx="4"
       fill="var(--color-gray-700)"
     />
-    
+
     {/* Input field with border */}
     <rect
       x="71"
@@ -32,7 +32,7 @@ const EditableThumb = ({ className }: { className?: string }) => (
       strokeWidth="2"
       fill="white"
     />
-    
+
     {/* Input text cursor */}
     <rect
       x="83"
@@ -42,7 +42,7 @@ const EditableThumb = ({ className }: { className?: string }) => (
       rx="4"
       fill="var(--color-gray-600)"
     />
-    
+
     {/* Cursor line */}
     <rect
       x="227"
@@ -51,7 +51,7 @@ const EditableThumb = ({ className }: { className?: string }) => (
       height="16"
       fill="var(--color-primary-500)"
     />
-    
+
     {/* Edit icon pencil */}
     <path
       d="M309 115L317 107L321 111L313 119L309 120L309 115Z"
@@ -61,7 +61,7 @@ const EditableThumb = ({ className }: { className?: string }) => (
       d="M318 106L320 104L324 108L322 110L318 106Z"
       fill="var(--color-primary-400)"
     />
-    
+
     {/* Save button */}
     <rect
       x="297"
@@ -71,7 +71,7 @@ const EditableThumb = ({ className }: { className?: string }) => (
       rx="13"
       fill="var(--color-primary-500)"
     />
-    
+
     {/* Check mark icon inside button */}
     <path
       d="M310 158L314 162L322 154"

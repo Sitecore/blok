@@ -1,28 +1,28 @@
 "use client";
 
-import React from "react";
 import {
-    CommandDialog,
-    CommandEmpty,
-    CommandGroup,
-    CommandInput,
-    CommandItem,
-    CommandList,
-    CommandSeparator,
-    CommandShortcut,
+  CommandDialog,
+  CommandEmpty,
+  CommandGroup,
+  CommandInput,
+  CommandItem,
+  CommandList,
+  CommandSeparator,
+  CommandShortcut,
 } from "@/components/ui/command";
-import {
-    mdiCalendarBlankOutline,
-    mdiEmoticonHappyOutline,
-    mdiAccountOutline,
-    mdiCalculatorVariantOutline,
-    mdiCreditCardOutline,
-    mdiCogOutline,
-} from "@mdi/js";
 import { Icon } from "@/lib/icon";
+import {
+  mdiAccountOutline,
+  mdiCalculatorVariantOutline,
+  mdiCalendarBlankOutline,
+  mdiCogOutline,
+  mdiCreditCardOutline,
+  mdiEmoticonHappyOutline,
+} from "@mdi/js";
+import React from "react";
 
 const CommandDemo = () => {
-    const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = React.useState(false);
 
     const handleKeyDown = React.useCallback((e: KeyboardEvent) => {
         if (e.key === "j" && (e.metaKey || e.ctrlKey)) {
@@ -79,16 +79,16 @@ const CommandDemo = () => {
                                 <CommandItem>
                                     <Icon path={mdiCogOutline} />
 
-                                    <span>Settings</span>
-                                    <CommandShortcut>⌘S</CommandShortcut>
-                                </CommandItem>
-                            </CommandGroup>
-                        </CommandList>
-                    </CommandDialog>
-                </>
-            </div>
-        </div>
-    );
+                  <span>Settings</span>
+                  <CommandShortcut>⌘S</CommandShortcut>
+                </CommandItem>
+              </CommandGroup>
+            </CommandList>
+          </CommandDialog>
+        </>
+      </div>
+    </div>
+  );
 };
 
 export default CommandDemo;

@@ -1,5 +1,3 @@
-import * as React from "react";
-
 interface CircularProgressThumbProps {
   className?: string;
 }
@@ -24,6 +22,3 @@ const CircularProgressThumb = ({ className }: CircularProgressThumbProps) => (
 );
 
 export default CircularProgressThumb;
-
-
-

@@ -1,7 +1,6 @@
-import * as React from "react";
 import { cn } from "@/lib/utils";
-import { cva, type VariantProps } from "class-variance-authority";
-
+import { type VariantProps, cva } from "class-variance-authority";
+import * as React from "react";
 
 const timelineRootVariants = cva("flex flex-col gap-0", {
   variants: {
@@ -30,7 +29,7 @@ const TimelineRoot = React.memo(function TimelineRoot({ className, size, ...prop
   );
 });
 
-  // Timeline Item
+// Timeline Item
 
 interface TimelineItemProps extends React.ComponentProps<"div"> {}
 
@@ -38,16 +37,13 @@ const TimelineItem = React.memo(function TimelineItem({ className, ...props }: T
   return (
     <div
       data-slot="timeline-item"
-      className={cn(
-        "relative flex gap-3",
-        className
-      )}
+      className={cn("relative flex gap-3", className)}
       {...props}
     />
   );
 });
 
-  // Timeline Separator 
+// Timeline Separator
 
 interface TimelineSeparatorProps extends React.ComponentProps<"div"> {}
 
@@ -61,7 +57,7 @@ const TimelineSeparator = React.memo(function TimelineSeparator({ className, ...
   );
 });
 
-  // Timeline Indicator
+// Timeline Indicator
 
 const timelineIndicatorVariants = cva(
   "relative z-10 flex shrink-0 items-center justify-center rounded-full",
@@ -83,7 +79,7 @@ const timelineIndicatorVariants = cva(
       variant: "solid",
       size: "sm",
     },
-  }
+  },
 );
 
 interface TimelineIndicatorProps
@@ -152,7 +148,7 @@ const TimelineContent = React.memo(function TimelineContent({ className, ...prop
   );
 });
 
- // Timeline Title
+// Timeline Title
 
 interface TimelineTitleProps extends React.ComponentProps<"p"> {}
 
@@ -202,4 +198,3 @@ export const Timeline = {
   Title: TimelineTitle,
   Description: TimelineDescription,
 };
-

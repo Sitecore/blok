@@ -7,12 +7,11 @@ export const spinner = {
     usage: [
       `import { Spinner } from "@/components/ui/spinner";`,
       `<Spinner />`,
-    ]
-  },  
+    ],
+  },
   components: {
-    Size: { component: "spinner-size", },
-    Button: { component: "spinner-button", },
-    Badge: { component: "spinner-badge", },
+    Size: { component: "spinner-size" },
+    Button: { component: "spinner-button" },
+    Badge: { component: "spinner-badge" },
   },
 };
-

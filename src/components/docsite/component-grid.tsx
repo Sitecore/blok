@@ -1,12 +1,12 @@
 "use client";
 
+import type { Component } from "@/lib/registry";
 import * as React from "react";
 import { ComponentGridCard } from "./component-grid-card";
 import {
   ComponentThumb,
   hasComponentThumbnail,
 } from "./component-thumb-loader";
-import type { Component } from "@/lib/registry";
 
 interface ComponentGridProps {
   components: Component[];
@@ -51,7 +51,6 @@ export const ComponentGrid = React.memo(function ComponentGrid({
         return (
           <ComponentGridCard
             key={component.name}
-            name={component.name}
             title={component.title}
             href={href}
             preview={preview}

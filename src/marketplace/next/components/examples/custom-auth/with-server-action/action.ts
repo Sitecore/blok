@@ -2,7 +2,7 @@
 
 import { cache } from "react";
 import { experimental_createXMCClient } from "@sitecore-marketplace-sdk/xmc";
-import { type Xmapp } from "@sitecore-marketplace-sdk/xmc";
+import type { Xmapp } from "@sitecore-marketplace-sdk/xmc";
 
 type Context = {
   sitecoreContextId: string;
@@ -25,7 +25,7 @@ const getXMCClientForToken = cache(async (accessToken: string) => {
 });
 
 export async function fetchLanguagesAction(
-  context: Context
+  context: Context,
 ): Promise<Xmapp.Language[]> {
   // Use cached client creation - if called multiple times in parallel
   // with the same access token, only one client is created per request

@@ -1,7 +1,7 @@
 import * as React from "react"
 import { Loader2 } from "lucide-react"
 
-import { cn } from "@/lib/utils"
+import { cn } from "@/lib/utils";
 
 const Spinner = React.memo(function Spinner({ className, ...props }: React.ComponentProps<"svg">) {
   return (
@@ -14,5 +14,4 @@ const Spinner = React.memo(function Spinner({ className, ...props }: React.Compo
   )
 })
 
-export { Spinner }
-
+export { Spinner };

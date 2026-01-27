@@ -1,6 +1,6 @@
-import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Icon } from "@/lib/icon";
-import { mdiWindowMaximize, mdiCodeBraces } from "@mdi/js";
+import { mdiCodeBraces, mdiWindowMaximize } from "@mdi/js";
 
 export default function TabsWithIconsDemo() {
   return (

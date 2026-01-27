@@ -1,14 +1,17 @@
-import path from "path";
-import fs from "fs/promises";
-import { DocsiteRegistryEntry, docsiteRegistry } from "@/lib/docsite/docsite-registry";
+import fs from "node:fs/promises";
+import path from "node:path";
+import {
+  type DocsiteRegistryEntry,
+  docsiteRegistry,
+} from "@/lib/docsite/docsite-registry";
 
 export type RegistryLoadResult = {
   code: string;
-  Component: DocsiteRegistryEntry['component'];
+  Component: DocsiteRegistryEntry["component"];
 };
 
 export async function loadFromRegistry(
-  registryKey: keyof typeof docsiteRegistry
+  registryKey: keyof typeof docsiteRegistry,
 ): Promise<RegistryLoadResult | null> {
   const entry = docsiteRegistry[registryKey];
   if (!entry) return null;

@@ -1,6 +1,6 @@
-import * as React from "react";
-import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
+import { type VariantProps, cva } from "class-variance-authority";
+import * as React from "react";
 
 // FieldSet - Container that renders a semantic fieldset
 const FieldSet = React.memo(function FieldSet({
@@ -33,8 +33,7 @@ const FieldLegend = React.memo(function FieldLegend({
   className,
   variant = "legend",
   ...props
-}: React.ComponentProps<"legend"> &
-  VariantProps<typeof fieldLegendVariants>) {
+}: React.ComponentProps<"legend"> & VariantProps<typeof fieldLegendVariants>) {
   return (
     <legend
       data-slot="field-legend"
@@ -64,7 +63,8 @@ const fieldVariants = cva("flex gap-2", {
     orientation: {
       vertical: "flex-col gap-2.5",
       horizontal: "flex-row items-center gap-4",
-      responsive: "flex-col gap-2.5 @container/field-group:flex-row @container/field-group:items-center @container/field-group:gap-4",
+      responsive:
+        "flex-col gap-2.5 @container/field-group:flex-row @container/field-group:items-center @container/field-group:gap-4",
     },
   },
   defaultVariants: {
@@ -88,8 +88,9 @@ const Field = React.memo(function Field({
       data-invalid={dataInvalid}
       className={cn(
         fieldVariants({ orientation }),
-        dataInvalid && "data-[invalid=true]:[&_input]:border-destructive data-[invalid=true]:[&_select]:border-destructive data-[invalid=true]:[&_textarea]:border-destructive",
-        className
+        dataInvalid &&
+          "data-[invalid=true]:[&_input]:border-destructive data-[invalid=true]:[&_select]:border-destructive data-[invalid=true]:[&_textarea]:border-destructive",
+        className,
       )}
       {...props}
     />
@@ -120,7 +121,7 @@ const FieldLabel = React.memo(function FieldLabel({
       data-slot="field-label"
       className={cn(
         "text-md text-neutral-fg flex items-center gap-2 leading-none font-medium select-none group-data-[disabled=true]:pointer-events-none group-data-[disabled=true]:opacity-50 peer-disabled:cursor-not-allowed peer-disabled:opacity-50",
-        className
+        className,
       )}
       {...props}
     />
@@ -149,10 +150,7 @@ const FieldDescription = React.memo(function FieldDescription({
   return (
     <div
       data-slot="field-description"
-      className={cn(
-        "text-sm text-muted-foreground -mt-1",
-        className
-      )}
+      className={cn("text-sm text-muted-foreground -mt-1", className)}
       {...props}
     />
   );
@@ -172,7 +170,7 @@ const FieldSeparator = React.memo(function FieldSeparator({
           "relative flex items-center gap-2 py-4",
           "before:flex-1 before:border-t before:border-border",
           "after:flex-1 after:border-t after:border-border",
-          className
+          className,
         )}
         {...props}
       >
@@ -199,7 +197,7 @@ const FieldError = React.memo(function FieldError({
   errors?: Array<{ message?: string } | undefined>;
 }) {
   const errorMessages = errors?.filter(Boolean) || [];
-  
+
   if (errorMessages.length === 0 && !children) {
     return null;
   }
@@ -209,14 +207,11 @@ const FieldError = React.memo(function FieldError({
       data-slot="field-error"
       role="alert"
       aria-live="polite"
-      className={cn(
-        "text-sm text-destructive -mt-1",
-        className
-      )}
+      className={cn("text-sm text-destructive -mt-1", className)}
       {...props}
     >
-      {children || (
-        errorMessages.length === 1 ? (
+      {children ||
+        (errorMessages.length === 1 ? (
           <span>{errorMessages[0]?.message}</span>
         ) : (
           <ul className="list-disc list-inside space-y-1">
@@ -224,8 +219,7 @@ const FieldError = React.memo(function FieldError({
               <li key={index}>{error?.message}</li>
             ))}
           </ul>
-        )
-      )}
+        ))}
     </div>
   );
 });

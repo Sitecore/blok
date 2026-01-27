@@ -18,13 +18,7 @@ const TimelineThumb = ({ className }: { className?: string }) => (
       fill="var(--color-background)"
     />
     {/* Connector line 1 */}
-    <rect
-      x="98"
-      y="90"
-      width="4"
-      height="50"
-      fill="var(--color-gray-300)"
-    />
+    <rect x="98" y="90" width="4" height="50" fill="var(--color-gray-300)" />
     {/* First content */}
     <rect
       x="140"
@@ -53,13 +47,7 @@ const TimelineThumb = ({ className }: { className?: string }) => (
       fill="var(--color-background)"
     />
     {/* Connector line 2 */}
-    <rect
-      x="98"
-      y="170"
-      width="4"
-      height="50"
-      fill="var(--color-gray-300)"
-    />
+    <rect x="98" y="170" width="4" height="50" fill="var(--color-gray-300)" />
     {/* Second content */}
     <rect
       x="140"
@@ -108,5 +96,3 @@ const TimelineThumb = ({ className }: { className?: string }) => (
 );
 
 export default TimelineThumb;
-
-

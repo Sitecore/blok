@@ -1,5 +1,3 @@
-import * as React from "react";
-
 interface TooltipThumbProps {
   className?: string;
 }
@@ -60,4 +58,3 @@ const TooltipThumb = ({ className }: TooltipThumbProps) => (
 );
 
 export default TooltipThumb;
-

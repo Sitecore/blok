@@ -1,9 +1,9 @@
 "use client";
 
-import * as React from "react";
-import { mdiMinus } from "@mdi/js";
 import { Icon } from "@/lib/icon";
+import { mdiMinus } from "@mdi/js";
 import { OTPInput, OTPInputContext } from "input-otp";
+import * as React from "react";
 
 import { cn } from "@/lib/utils";
 
@@ -12,14 +12,14 @@ function InputOTP({
   containerClassName,
   ...props
 }: React.ComponentProps<typeof OTPInput> & {
-  containerClassName?: string
+  containerClassName?: string;
 }) {
   return (
     <OTPInput
       data-slot="input-otp"
       containerClassName={cn(
         "flex items-center gap-2 has-disabled:opacity-50",
-        containerClassName
+        containerClassName,
       )}
       className={cn("disabled:cursor-not-allowed", className)}
       {...props}
@@ -42,10 +42,10 @@ function InputOTPSlot({
   className,
   ...props
 }: React.ComponentProps<"div"> & {
-  index: number
+  index: number;
 }) {
-  const inputOTPContext = React.useContext(OTPInputContext)
-  const { char, hasFakeCaret, isActive } = inputOTPContext?.slots[index] ?? {}
+  const inputOTPContext = React.useContext(OTPInputContext);
+  const { char, hasFakeCaret, isActive } = inputOTPContext?.slots[index] ?? {};
 
   return (
     <div
@@ -53,7 +53,7 @@ function InputOTPSlot({
       data-active={isActive}
       className={cn(
         "data-[active=true]:border-ring data-[active=true]:ring-primary-500 data-[active=true]:aria-invalid:ring-destructive dark:data-[active=true]:aria-invalid:ring-destructive/40 aria-invalid:border-destructive data-[active=true]:aria-invalid:border-destructive dark:bg-input/30 border-input text-md relative flex h-9 w-9 items-center justify-center border-y border-r transition-all outline-none first:rounded-l-md first:border-l last:rounded-r-md data-[active=true]:z-10 data-[active=true]:ring-[2px]",
-        className
+        className,
       )}
       {...props}
     >
@@ -70,7 +70,7 @@ function InputOTPSlot({
 function InputOTPSeparator({ ...props }: React.ComponentProps<"div">) {
   return (
     <div data-slot="input-otp-separator" role="separator" {...props}>
-      <Icon path={mdiMinus}  className="text-muted-foreground size-6" />
+      <Icon path={mdiMinus} className="text-muted-foreground size-6" />
     </div>
   );
 }

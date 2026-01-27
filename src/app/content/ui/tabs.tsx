@@ -1,10 +1,10 @@
-import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import {
   Card,
+  CardDescription,
   CardHeader,
   CardTitle,
-  CardDescription
 } from "@/components/ui/card";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 export default function TabsDemo() {
   return (
@@ -18,7 +18,8 @@ export default function TabsDemo() {
           <CardHeader>
             <CardTitle>Account</CardTitle>
             <CardDescription>
-              Make changes to your account here. Click save when you&apos;re done.
+              Make changes to your account here. Click save when you&apos;re
+              done.
             </CardDescription>
           </CardHeader>
         </Card>

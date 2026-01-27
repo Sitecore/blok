@@ -1,15 +1,15 @@
-"use client"
+"use client";
 
 import * as React from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Button } from "../ui/button";
-import { Check } from "lucide-react";
-import { useState } from "react";
 import { mdiClipboardOutline } from "@mdi/js";
 import Icon from "@mdi/react";
+import { Check } from "lucide-react";
+import { useState } from "react";
+import { Button } from "../ui/button";
 
 interface InstallationCodeBlockProps {
-    registryUrl: string;
+  registryUrl: string;
 }
 
 const InstallationCodeBlock = React.memo(function InstallationCodeBlock({ registryUrl }: InstallationCodeBlockProps) {
@@ -21,33 +21,57 @@ const InstallationCodeBlock = React.memo(function InstallationCodeBlock({ regist
     const yarnCommand = `yarn shadcn@latest add ${registryUrl}`;
     const bunCommand = `bunx --bun shadcn@latest add ${registryUrl}`;
 
-    const commands: Record<string, string> = {
-        pnpm: pnpmCommand,
-        npm: npxCommand,
-        yarn: yarnCommand,
-        bun: bunCommand,
-    }
+  const commands: Record<string, string> = {
+    pnpm: pnpmCommand,
+    npm: npxCommand,
+    yarn: yarnCommand,
+    bun: bunCommand,
+  };
 
-    const copyToClipboard = async () => {
-        try {
-          await navigator.clipboard.writeText(commands[activeTab])
-          setCopied(true)
-          setTimeout(() => setCopied(false), 2000)
-        } catch (err) {
-          console.error("Failed to copy text: ", err)
-        }
+  const copyToClipboard = async () => {
+    try {
+      await navigator.clipboard.writeText(commands[activeTab]);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch (err) {
+      console.error("Failed to copy text: ", err);
     }
+  };
 
-    return (
-        <div dir="ltr" className="rounded-lg bg-subtle-bg p-4">
-            <Tabs defaultValue="pnpm" onValueChange={setActiveTab}>
-                <div className="flex items-center justify-between">
-                    <TabsList variant="soft-rounded">
-                        <TabsTrigger variant="soft-rounded" className="rounded-md" value="pnpm">pnpm</TabsTrigger>
-                        <TabsTrigger variant="soft-rounded" className="rounded-md" value="npm">npm</TabsTrigger>
-                        <TabsTrigger variant="soft-rounded" className="rounded-md" value="yarn">yarn</TabsTrigger>
-                        <TabsTrigger variant="soft-rounded" className="rounded-md" value="bun">bun</TabsTrigger>
-                    </TabsList>
+  return (
+    <div dir="ltr" className="rounded-lg bg-subtle-bg p-4">
+      <Tabs defaultValue="pnpm" onValueChange={setActiveTab}>
+        <div className="flex items-center justify-between">
+          <TabsList variant="soft-rounded">
+            <TabsTrigger
+              variant="soft-rounded"
+              className="rounded-md"
+              value="pnpm"
+            >
+              pnpm
+            </TabsTrigger>
+            <TabsTrigger
+              variant="soft-rounded"
+              className="rounded-md"
+              value="npm"
+            >
+              npm
+            </TabsTrigger>
+            <TabsTrigger
+              variant="soft-rounded"
+              className="rounded-md"
+              value="yarn"
+            >
+              yarn
+            </TabsTrigger>
+            <TabsTrigger
+              variant="soft-rounded"
+              className="rounded-md"
+              value="bun"
+            >
+              bun
+            </TabsTrigger>
+          </TabsList>
 
                     <Button
                         onClick={copyToClipboard}

@@ -1,24 +1,18 @@
 "use client";
-import * as React from "react";
-import { 
-    Alert, 
-    AlertDescription, 
-    AlertTitle 
-} from "@/components/ui/alert";
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { Button } from "@/components/ui/button";
+import * as React from "react";
 
 export default function ClosableAlertDemo() {
-    return (
-        <ClosableAlert variantProp="primary" />
-    );
+  return <ClosableAlert variantProp="primary" />;
 }
 
 function ClosableAlert({
-    variantProp,
+  variantProp,
 }: {
-    variantProp: "default" | "primary" | "danger" | "warning" | "success";
+  variantProp: "default" | "primary" | "danger" | "warning" | "success";
 }) {
-    const [isOpen, setIsOpen] = React.useState(true);
+  const [isOpen, setIsOpen] = React.useState(true);
 
     const handleClose = React.useCallback(() => {
         setIsOpen(false);

@@ -2,14 +2,14 @@
 import * as React from "react";
 import { ActionBar } from "@/components/ui/action-bar";
 import { Checkbox } from "@/components/ui/checkbox";
-import { useState } from "react";
 import {
-  mdiCloudUploadOutline,
-  mdiCloudOffOutline,
-  mdiContentCopy,
   mdiArchiveOutline,
+  mdiCloudOffOutline,
+  mdiCloudUploadOutline,
+  mdiContentCopy,
   mdiTrashCanOutline,
 } from "@mdi/js";
+import { useState } from "react";
 
 export function ActionBarDemo() {
   const [isOpen, setIsOpen] = useState(false);

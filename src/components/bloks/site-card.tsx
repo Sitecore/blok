@@ -1,9 +1,8 @@
 "use client";
 
 import * as React from "react";
-import { useState } from "react";
-import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -11,6 +10,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { MoreVertical, PinOff } from "lucide-react";
+import { useState } from "react";
 
 interface SiteData {
   id: string;
@@ -64,10 +64,10 @@ export const SiteCard = React.memo(function SiteCard<T extends SiteData>({
 }: PinnedSiteCardProps<T>) {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
-  const handleCardClick = (e: React.MouseEvent) => {
+  const handleCardClick = (_e: React.MouseEvent) => {
     if (!isDisabled) {
       console.log(
-        `Navigate to /collection/${site.collectionId}/sites/${site.id}/overview`
+        `Navigate to /collection/${site.collectionId}/sites/${site.id}/overview`,
       );
     }
   };
@@ -79,7 +79,7 @@ export const SiteCard = React.memo(function SiteCard<T extends SiteData>({
 
   // Filter dropdown actions based on show property
   const visibleDropdownActions = dropdownActions.filter(
-    (action) => action.show !== false
+    (action) => action.show !== false,
   );
 
   return (
@@ -115,8 +115,8 @@ export const SiteCard = React.memo(function SiteCard<T extends SiteData>({
           isDropdownOpen
             ? "h-[102px] pt-3 pb-3 items-start justify-start gap-2"
             : site.collectionName
-            ? "h-[68px] pt-3 pb-3 items-start justify-center gap-0 group-hover:h-[102px] group-hover:justify-start group-hover:gap-2 group-hover:flex-[0.4]"
-            : "h-[68px] pt-3 pb-3 items-start justify-center gap-0 group-hover:h-[102px] group-hover:justify-start group-hover:gap-2"
+              ? "h-[68px] pt-3 pb-3 items-start justify-center gap-0 group-hover:h-[102px] group-hover:justify-start group-hover:gap-2 group-hover:flex-[0.4]"
+              : "h-[68px] pt-3 pb-3 items-start justify-center gap-0 group-hover:h-[102px] group-hover:justify-start group-hover:gap-2"
         }`}
       >
         {/* Site Title */}

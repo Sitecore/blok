@@ -1,15 +1,5 @@
 "use client";
 
-import * as React from "react";
-import {
-  type ColumnDef,
-  flexRender,
-  getCoreRowModel,
-  getPaginationRowModel,
-  getSortedRowModel,
-  type SortingState,
-  useReactTable,
-} from "@tanstack/react-table";
 import {
   Table,
   TableBody,
@@ -18,7 +8,17 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import {
+  type ColumnDef,
+  type SortingState,
+  flexRender,
+  getCoreRowModel,
+  getPaginationRowModel,
+  getSortedRowModel,
+  useReactTable,
+} from "@tanstack/react-table";
 import { ArrowDown, ArrowUp } from "lucide-react";
+import * as React from "react";
 
 export type Product_Data = {
   id: number;
@@ -90,8 +90,9 @@ export const columns: ColumnDef<Product_Data>[] = [
 
       return (
         <span
-          className={`flex items-center gap-1 ${isPositive ? "text-green-500" : isNegative ? "text-red-500" : ""
-            }`}
+          className={`flex items-center gap-1 ${
+            isPositive ? "text-green-500" : isNegative ? "text-red-500" : ""
+          }`}
         >
           {isPositive && <ArrowUp size={11} />}
           {isNegative && <ArrowDown size={11} />}
@@ -132,12 +133,13 @@ export function DataTableDemo() {
               {headerGroup.headers.map((header) => (
                 <TableHead
                   key={header.id}
-                  className={`py-4 ${header.column.id === "Keyword" ? "font-semibold" : ""
-                    }`}
+                  className={`py-4 ${
+                    header.column.id === "Keyword" ? "font-semibold" : ""
+                  }`}
                 >
                   {flexRender(
                     header.column.columnDef.header,
-                    header.getContext()
+                    header.getContext(),
                   )}
                 </TableHead>
               ))}
@@ -155,8 +157,9 @@ export function DataTableDemo() {
                 {row.getVisibleCells().map((cell) => (
                   <TableCell
                     key={cell.id}
-                    className={`py-4 ${cell.column.id === "Keyword" ? "font-semibold" : ""
-                      }`}
+                    className={`py-4 ${
+                      cell.column.id === "Keyword" ? "font-semibold" : ""
+                    }`}
                   >
                     {flexRender(cell.column.columnDef.cell, cell.getContext())}
                   </TableCell>

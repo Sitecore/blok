@@ -1,6 +1,6 @@
 export function convertCssVariablesToObject(
   cssString: string,
-  prefix: string
+  prefix: string,
 ): Record<string, string> {
   const lines = cssString.split("\n").map((line) => line.trim());
   const colorObject: Record<string, string> = {};
@@ -31,14 +31,12 @@ type ThemeColors = {
   dark: Record<string, string>;
   defaultVars: Record<string, string>;
   darkVars: Record<string, string>;
-}
+};
 
 // parse the css variables by theme
-export function parseCssVariablesByTheme(
-  cssString: string,
-): ThemeColors {
+export function parseCssVariablesByTheme(cssString: string): ThemeColors {
   const lines = cssString.split("\n").map((line) => line.trim());
-  
+
   // initialize the color objects to display
   const defaultColors: Record<string, string> = {};
   const darkColors: Record<string, string> = {};
@@ -47,34 +45,37 @@ export function parseCssVariablesByTheme(
   const defaultVars: Record<string, string> = {};
   const darkVars: Record<string, string> = {};
 
-  let currentTheme: 'default' | 'dark' | null = 'default';
+  let currentTheme: "default" | "dark" | null = "default";
 
-  for (let rawline of lines) {
+  for (const rawline of lines) {
     const line = rawline.trim();
 
     // Detect dark mode block
-    if (line.startsWith(".dark {") || line.includes("prefers-color-scheme: dark")) {
-      currentTheme = 'dark';
+    if (
+      line.startsWith(".dark {") ||
+      line.includes("prefers-color-scheme: dark")
+    ) {
+      currentTheme = "dark";
       continue;
     }
 
     // Detect end of block
     if (line === "}" || line === "};") {
-      currentTheme = 'default';
+      currentTheme = "default";
       continue;
     }
 
     // Pass variable lines
     if (line.startsWith("--")) {
       const [fullKey, valuePart] = line.split(":");
-      if(!valuePart) continue;
+      if (!valuePart) continue;
 
       const key = fullKey.trim().replace(/^--/, "");
       const value = valuePart.trim().replace(";", "");
 
       const isColorVar = fullKey.startsWith("--color-");
 
-      if (currentTheme === 'default') {
+      if (currentTheme === "default") {
         if (isColorVar) defaultColors[key] = value;
         else defaultVars[key] = value;
       } else {
@@ -100,7 +101,7 @@ export function formatColorValue(value: string): string {
 export function resolveVariableValue(
   value: string,
   defaultColors: Record<string, string>,
-  darkColors: Record<string, string>
+  darkColors: Record<string, string>,
 ): { light: string; dark: string } {
   // if the value is not a variable, return the value as it is
   if (!value.startsWith("var(")) {

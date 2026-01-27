@@ -1,16 +1,16 @@
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 import {
   Sheet,
-  SheetTrigger,
+  SheetClose,
   SheetContent,
-  SheetHeader,
-  SheetTitle,
   SheetDescription,
   SheetFooter,
-  SheetClose
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
 } from "@/components/ui/sheet";
-import { Button } from "@/components/ui/button";
-import { Label } from "@/components/ui/label";
-import { Input } from "@/components/ui/input";
 
 export default function SheetDemo() {
   return (
@@ -23,7 +23,8 @@ export default function SheetDemo() {
           <SheetHeader>
             <SheetTitle>Edit profile</SheetTitle>
             <SheetDescription>
-              Make changes to your profile here. Click save when you&apos;re done.
+              Make changes to your profile here. Click save when you&apos;re
+              done.
             </SheetDescription>
           </SheetHeader>
           <div className="grid flex-1 auto-rows-min gap-6 px-4">
@@ -38,7 +39,9 @@ export default function SheetDemo() {
           </div>
           <SheetFooter>
             <SheetClose asChild>
-              <Button variant="outline" colorScheme="neutral">Close</Button>
+              <Button variant="outline" colorScheme="neutral">
+                Close
+              </Button>
             </SheetClose>
             <Button type="submit">Save changes</Button>
           </SheetFooter>

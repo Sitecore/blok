@@ -4,8 +4,6 @@ import dynamic from "next/dynamic";
 
 interface ComponentCardProps {
   component: Component;
-  baseUrl: string;
-  prompt: string;
 }
 
 const DemoWrapper = dynamic(() => import("@/components/demo-wrapper"), {
@@ -14,8 +12,6 @@ const DemoWrapper = dynamic(() => import("@/components/demo-wrapper"), {
 
 export const ComponentCard = React.memo(function ComponentCard({
   component,
-  baseUrl,
-  prompt,
 }: ComponentCardProps) {
 
   return (

@@ -1,16 +1,16 @@
 "use client";
 
-import React from "react";
 import {
+  type Auth0ContextInterface,
   Auth0Provider,
-  GetTokenSilentlyOptions,
+  type GetTokenSilentlyOptions,
   useAuth0,
-  Auth0ContextInterface,
   withAuthenticationRequired,
 } from "@auth0/auth0-react";
+import type React from "react";
 
 export const WithAuth = withAuthenticationRequired(
-  ({ children }: { children: React.ReactNode }) => children
+  ({ children }: { children: React.ReactNode }) => children,
 );
 
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {

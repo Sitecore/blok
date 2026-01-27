@@ -1,4 +1,7 @@
-import type { TocSection, RightSidebarLinks } from "@/components/layout/right-sidebar";
+import type {
+  RightSidebarLinks,
+  TocSection,
+} from "@/components/layout/right-sidebar";
 
 export interface RightSidebarMetadata {
   links?: RightSidebarLinks;
@@ -7,7 +10,7 @@ export interface RightSidebarMetadata {
 
 // Default links for component pages
 export const defaultComponentLinks: RightSidebarLinks = {
-      shadcn: "https://ui.shadcn.com/docs/components/{$componentName}",
+  shadcn: "https://ui.shadcn.com/docs/components/{$componentName}",
 };
 
 // Default sections for component pages
@@ -22,12 +25,14 @@ export const rightSidebarMetadata: Record<string, RightSidebarMetadata> = {
   accordion: {
     links: {
       shadcn: "https://ui.shadcn.com/docs/components/accordion",
-      figma: "https://www.figma.com/design/x0CUbrC5Kjcuk64VPCnbgz/Blok-Components?m=auto&node-id=8164-5745&t=NScvPldB3fxBBWL8-1"
+      figma:
+        "https://www.figma.com/design/x0CUbrC5Kjcuk64VPCnbgz/Blok-Components?m=auto&node-id=8164-5745&t=NScvPldB3fxBBWL8-1",
     },
   },
   "action-bar": {
     links: {
-      figma: "https://www.figma.com/design/x0CUbrC5Kjcuk64VPCnbgz/Blok-Components?m=auto&node-id=10195-6505&t=phPvYFQwTMa2lY7e-1"
+      figma:
+        "https://www.figma.com/design/x0CUbrC5Kjcuk64VPCnbgz/Blok-Components?m=auto&node-id=10195-6505&t=phPvYFQwTMa2lY7e-1",
     },
     sections: [
       { id: "preview", title: "Preview" },
@@ -38,7 +43,8 @@ export const rightSidebarMetadata: Record<string, RightSidebarMetadata> = {
   alert: {
     links: {
       shadcn: "https://ui.shadcn.com/docs/components/alert",
-      figma: "https://www.figma.com/design/x0CUbrC5Kjcuk64VPCnbgz/Blok-Components?m=auto&node-id=6748-14484&t=NScvPldB3fxBBWL8-1",
+      figma:
+        "https://www.figma.com/design/x0CUbrC5Kjcuk64VPCnbgz/Blok-Components?m=auto&node-id=6748-14484&t=NScvPldB3fxBBWL8-1",
     },
     sections: [
       { id: "preview", title: "Preview" },
@@ -61,7 +67,8 @@ export const rightSidebarMetadata: Record<string, RightSidebarMetadata> = {
   "alert-dialog": {
     links: {
       shadcn: "https://ui.shadcn.com/docs/components/alert-dialog",
-      figma: "https://www.figma.com/design/x0CUbrC5Kjcuk64VPCnbgz/Blok-Components?m=auto&node-id=6748-14510&t=NScvPldB3fxBBWL8-1"
+      figma:
+        "https://www.figma.com/design/x0CUbrC5Kjcuk64VPCnbgz/Blok-Components?m=auto&node-id=6748-14510&t=NScvPldB3fxBBWL8-1",
     },
   },
   "aspect-ratio": {
@@ -72,7 +79,8 @@ export const rightSidebarMetadata: Record<string, RightSidebarMetadata> = {
   avatar: {
     links: {
       shadcn: "https://ui.shadcn.com/docs/components/avatar",
-      figma: "https://www.figma.com/design/x0CUbrC5Kjcuk64VPCnbgz/Blok-Components?m=auto&node-id=6748-14508&t=NScvPldB3fxBBWL8-1"
+      figma:
+        "https://www.figma.com/design/x0CUbrC5Kjcuk64VPCnbgz/Blok-Components?m=auto&node-id=6748-14508&t=NScvPldB3fxBBWL8-1",
     },
     sections: [
       { id: "preview", title: "Preview" },
@@ -93,7 +101,8 @@ export const rightSidebarMetadata: Record<string, RightSidebarMetadata> = {
   badge: {
     links: {
       shadcn: "https://ui.shadcn.com/docs/components/badge",
-      figma: "https://www.figma.com/design/x0CUbrC5Kjcuk64VPCnbgz/Blok-Components?m=auto&node-id=6748-14477&t=NScvPldB3fxBBWL8-1"
+      figma:
+        "https://www.figma.com/design/x0CUbrC5Kjcuk64VPCnbgz/Blok-Components?m=auto&node-id=6748-14477&t=NScvPldB3fxBBWL8-1",
     },
     sections: [
       { id: "preview", title: "Preview" },
@@ -115,13 +124,15 @@ export const rightSidebarMetadata: Record<string, RightSidebarMetadata> = {
   breadcrumb: {
     links: {
       shadcn: "https://ui.shadcn.com/docs/components/breadcrumb",
-      figma:"https://www.figma.com/design/x0CUbrC5Kjcuk64VPCnbgz/Blok-Components?m=auto&node-id=6748-14479&t=NScvPldB3fxBBWL8-1"
+      figma:
+        "https://www.figma.com/design/x0CUbrC5Kjcuk64VPCnbgz/Blok-Components?m=auto&node-id=6748-14479&t=NScvPldB3fxBBWL8-1",
     },
   },
   button: {
     links: {
       shadcn: "https://ui.shadcn.com/docs/components/button",
-      figma:"https://www.figma.com/design/x0CUbrC5Kjcuk64VPCnbgz/Blok-Components?m=auto&node-id=6748-14498&t=NScvPldB3fxBBWL8-1"
+      figma:
+        "https://www.figma.com/design/x0CUbrC5Kjcuk64VPCnbgz/Blok-Components?m=auto&node-id=6748-14498&t=NScvPldB3fxBBWL8-1",
     },
     sections: [
       { id: "preview", title: "Preview" },
@@ -162,7 +173,8 @@ export const rightSidebarMetadata: Record<string, RightSidebarMetadata> = {
   card: {
     links: {
       shadcn: "https://ui.shadcn.com/docs/components/card",
-      figma: "https://www.figma.com/design/x0CUbrC5Kjcuk64VPCnbgz/Blok-Components?m=auto&node-id=8101-4778&t=NScvPldB3fxBBWL8-1"
+      figma:
+        "https://www.figma.com/design/x0CUbrC5Kjcuk64VPCnbgz/Blok-Components?m=auto&node-id=8101-4778&t=NScvPldB3fxBBWL8-1",
     },
     sections: [
       { id: "preview", title: "Preview" },
@@ -221,7 +233,8 @@ export const rightSidebarMetadata: Record<string, RightSidebarMetadata> = {
   checkbox: {
     links: {
       shadcn: "https://ui.shadcn.com/docs/components/checkbox",
-      figma: "https://www.figma.com/design/x0CUbrC5Kjcuk64VPCnbgz/Blok-Components?m=auto&node-id=312-447&t=NScvPldB3fxBBWL8-1"
+      figma:
+        "https://www.figma.com/design/x0CUbrC5Kjcuk64VPCnbgz/Blok-Components?m=auto&node-id=312-447&t=NScvPldB3fxBBWL8-1",
     },
     sections: [
       { id: "preview", title: "Preview" },
@@ -276,7 +289,8 @@ export const rightSidebarMetadata: Record<string, RightSidebarMetadata> = {
   "date-picker": {
     links: {
       shadcn: "https://ui.shadcn.com/docs/components/date-picker",
-      figma: "https://www.figma.com/design/x0CUbrC5Kjcuk64VPCnbgz/Blok-Components?m=auto&node-id=10437-6444&t=NScvPldB3fxBBWL8-1"
+      figma:
+        "https://www.figma.com/design/x0CUbrC5Kjcuk64VPCnbgz/Blok-Components?m=auto&node-id=10437-6444&t=NScvPldB3fxBBWL8-1",
     },
     sections: [
       { id: "preview", title: "Preview" },
@@ -295,7 +309,8 @@ export const rightSidebarMetadata: Record<string, RightSidebarMetadata> = {
   dialog: {
     links: {
       shadcn: "https://ui.shadcn.com/docs/components/dialog",
-      figma: "https://www.figma.com/design/x0CUbrC5Kjcuk64VPCnbgz/Blok-Components?m=auto&node-id=6748-14505&t=NScvPldB3fxBBWL8-1"
+      figma:
+        "https://www.figma.com/design/x0CUbrC5Kjcuk64VPCnbgz/Blok-Components?m=auto&node-id=6748-14505&t=NScvPldB3fxBBWL8-1",
     },
     sections: [
       { id: "preview", title: "Preview" },
@@ -322,9 +337,7 @@ export const rightSidebarMetadata: Record<string, RightSidebarMetadata> = {
       {
         id: "examples",
         title: "Examples",
-        children: [
-          { id: "editable-textarea", title: "Textarea" },
-        ],
+        children: [{ id: "editable-textarea", title: "Textarea" }],
       },
     ],
   },
@@ -350,7 +363,8 @@ export const rightSidebarMetadata: Record<string, RightSidebarMetadata> = {
   drawer: {
     links: {
       shadcn: "https://ui.shadcn.com/docs/components/drawer",
-      figma: "https://www.figma.com/design/x0CUbrC5Kjcuk64VPCnbgz/Blok-Components?m=auto&node-id=6748-14509&t=NScvPldB3fxBBWL8-1"
+      figma:
+        "https://www.figma.com/design/x0CUbrC5Kjcuk64VPCnbgz/Blok-Components?m=auto&node-id=6748-14509&t=NScvPldB3fxBBWL8-1",
     },
     sections: [
       { id: "preview", title: "Preview" },
@@ -379,17 +393,24 @@ export const rightSidebarMetadata: Record<string, RightSidebarMetadata> = {
         title: "Examples",
         children: [
           { id: "dropdown-menu-checkboxes", title: "Dropdown Menu Checkboxes" },
-          { id: "dropdown-menu-radio-group", title: "Dropdown Menu Radio Group Demo" },
+          {
+            id: "dropdown-menu-radio-group",
+            title: "Dropdown Menu Radio Group Demo",
+          },
           { id: "dropdown-menu-avatar", title: "Dropdown Menu With Avatar" },
-          { id: "dropdown-menu-avatar-only", title: "Dropdown Menu Avatar Only" },
+          {
+            id: "dropdown-menu-avatar-only",
+            title: "Dropdown Menu Avatar Only",
+          },
           { id: "dropdown-menu-icon-color", title: "Dropdown Menu Icon Color" },
         ],
       },
     ],
   },
-  "empty-states":{
+  "empty-states": {
     links: {
-      figma: "https://www.figma.com/design/x0CUbrC5Kjcuk64VPCnbgz/Blok-Components?m=auto&node-id=6748-14511&t=NScvPldB3fxBBWL8-1",
+      figma:
+        "https://www.figma.com/design/x0CUbrC5Kjcuk64VPCnbgz/Blok-Components?m=auto&node-id=6748-14511&t=NScvPldB3fxBBWL8-1",
     },
     sections: [
       { id: "preview", title: "Preview" },
@@ -406,9 +427,8 @@ export const rightSidebarMetadata: Record<string, RightSidebarMetadata> = {
       },
     ],
   },
-  "error-states":{
-    links: {
-    },
+  "error-states": {
+    links: {},
     sections: [
       { id: "preview", title: "Preview" },
       { id: "installation", title: "Installation" },
@@ -464,8 +484,7 @@ export const rightSidebarMetadata: Record<string, RightSidebarMetadata> = {
     },
   },
   icon: {
-    links: {
-    },
+    links: {},
     sections: [
       { id: "preview", title: "Preview" },
       { id: "installation", title: "Installation" },
@@ -487,7 +506,8 @@ export const rightSidebarMetadata: Record<string, RightSidebarMetadata> = {
   input: {
     links: {
       shadcn: "https://ui.shadcn.com/docs/components/input",
-      figma: "https://www.figma.com/design/x0CUbrC5Kjcuk64VPCnbgz/Blok-Components?m=auto&node-id=6748-14494&t=NScvPldB3fxBBWL8-1"
+      figma:
+        "https://www.figma.com/design/x0CUbrC5Kjcuk64VPCnbgz/Blok-Components?m=auto&node-id=6748-14494&t=NScvPldB3fxBBWL8-1",
     },
     sections: [
       { id: "preview", title: "Preview" },
@@ -525,7 +545,7 @@ export const rightSidebarMetadata: Record<string, RightSidebarMetadata> = {
       },
     ],
   },
-  "inputOtp": {
+  inputOtp: {
     links: {
       shadcn: "https://ui.shadcn.com/docs/components/input-otp",
     },
@@ -579,34 +599,36 @@ export const rightSidebarMetadata: Record<string, RightSidebarMetadata> = {
       {
         id: "examples",
         title: "Examples",
-        children: [
-          { id: "navigation-menu-secondary", title: "Secondary" },
-        ],
+        children: [{ id: "navigation-menu-secondary", title: "Secondary" }],
       },
     ],
   },
   pagination: {
     links: {
       shadcn: "https://ui.shadcn.com/docs/components/pagination",
-      figma: "https://www.figma.com/design/x0CUbrC5Kjcuk64VPCnbgz/Blok-Components?m=auto&node-id=6748-14478&t=NScvPldB3fxBBWL8-1"
+      figma:
+        "https://www.figma.com/design/x0CUbrC5Kjcuk64VPCnbgz/Blok-Components?m=auto&node-id=6748-14478&t=NScvPldB3fxBBWL8-1",
     },
   },
   popover: {
     links: {
       shadcn: "https://ui.shadcn.com/docs/components/popover",
-      figma: "https://www.figma.com/design/x0CUbrC5Kjcuk64VPCnbgz/Blok-Components?m=auto&node-id=9143-6120&t=NScvPldB3fxBBWL8-1"
+      figma:
+        "https://www.figma.com/design/x0CUbrC5Kjcuk64VPCnbgz/Blok-Components?m=auto&node-id=9143-6120&t=NScvPldB3fxBBWL8-1",
     },
   },
   progress: {
     links: {
       shadcn: "https://ui.shadcn.com/docs/components/progress",
-      figma: "https://www.figma.com/design/x0CUbrC5Kjcuk64VPCnbgz/Blok-Components?m=auto&node-id=7069-16457&t=NScvPldB3fxBBWL8-1"
+      figma:
+        "https://www.figma.com/design/x0CUbrC5Kjcuk64VPCnbgz/Blok-Components?m=auto&node-id=7069-16457&t=NScvPldB3fxBBWL8-1",
     },
   },
   "radio-group": {
     links: {
       shadcn: "https://ui.shadcn.com/docs/components/radio-group",
-      figma: "https://www.figma.com/design/x0CUbrC5Kjcuk64VPCnbgz/Blok-Components?m=auto&node-id=316-158&t=NScvPldB3fxBBWL8-1"
+      figma:
+        "https://www.figma.com/design/x0CUbrC5Kjcuk64VPCnbgz/Blok-Components?m=auto&node-id=316-158&t=NScvPldB3fxBBWL8-1",
     },
   },
   resizable: {
@@ -648,7 +670,8 @@ export const rightSidebarMetadata: Record<string, RightSidebarMetadata> = {
   select: {
     links: {
       shadcn: "https://ui.shadcn.com/docs/components/select",
-      figma: "https://www.figma.com/design/x0CUbrC5Kjcuk64VPCnbgz/Blok-Components?m=auto&node-id=3727-14331&t=NScvPldB3fxBBWL8-1"
+      figma:
+        "https://www.figma.com/design/x0CUbrC5Kjcuk64VPCnbgz/Blok-Components?m=auto&node-id=3727-14331&t=NScvPldB3fxBBWL8-1",
     },
     sections: [
       { id: "preview", title: "Preview" },
@@ -666,8 +689,7 @@ export const rightSidebarMetadata: Record<string, RightSidebarMetadata> = {
     ],
   },
   "select-react": {
-    links: {
-    },
+    links: {},
     sections: [
       { id: "preview", title: "Preview" },
       { id: "installation", title: "Installation" },
@@ -677,13 +699,15 @@ export const rightSidebarMetadata: Record<string, RightSidebarMetadata> = {
   separator: {
     links: {
       shadcn: "https://ui.shadcn.com/docs/components/separator",
-      figma: "https://www.figma.com/design/x0CUbrC5Kjcuk64VPCnbgz/Blok-Components?m=auto&node-id=6748-14475&t=NScvPldB3fxBBWL8-1"
+      figma:
+        "https://www.figma.com/design/x0CUbrC5Kjcuk64VPCnbgz/Blok-Components?m=auto&node-id=6748-14475&t=NScvPldB3fxBBWL8-1",
     },
   },
   sheet: {
     links: {
       shadcn: "https://ui.shadcn.com/docs/components/sheet",
-      figma: "https://www.figma.com/design/x0CUbrC5Kjcuk64VPCnbgz/Blok-Components?m=auto&node-id=6748-14509&t=NScvPldB3fxBBWL8-1"
+      figma:
+        "https://www.figma.com/design/x0CUbrC5Kjcuk64VPCnbgz/Blok-Components?m=auto&node-id=6748-14509&t=NScvPldB3fxBBWL8-1",
     },
     sections: [
       { id: "preview", title: "Preview" },
@@ -692,22 +716,22 @@ export const rightSidebarMetadata: Record<string, RightSidebarMetadata> = {
       {
         id: "examples",
         title: "Examples",
-        children: [
-          { id: "sheet-directions", title: "Directions" },
-        ],
+        children: [{ id: "sheet-directions", title: "Directions" }],
       },
     ],
   },
   sidebar: {
     links: {
       shadcn: "https://ui.shadcn.com/docs/components/sidebar",
-      figma: "https://www.figma.com/design/x0CUbrC5Kjcuk64VPCnbgz/Blok-Components?m=auto&node-id=6990-12387&t=NScvPldB3fxBBWL8-1"
+      figma:
+        "https://www.figma.com/design/x0CUbrC5Kjcuk64VPCnbgz/Blok-Components?m=auto&node-id=6990-12387&t=NScvPldB3fxBBWL8-1",
     },
   },
   skeleton: {
     links: {
       shadcn: "https://ui.shadcn.com/docs/components/skeleton",
-      figma: "https://www.figma.com/design/x0CUbrC5Kjcuk64VPCnbgz/Blok-Components?m=auto&node-id=9145-8142&t=NScvPldB3fxBBWL8-1"
+      figma:
+        "https://www.figma.com/design/x0CUbrC5Kjcuk64VPCnbgz/Blok-Components?m=auto&node-id=9145-8142&t=NScvPldB3fxBBWL8-1",
     },
     sections: [
       { id: "preview", title: "Preview" },
@@ -716,22 +740,22 @@ export const rightSidebarMetadata: Record<string, RightSidebarMetadata> = {
       {
         id: "examples",
         title: "Examples",
-        children: [
-          { id: "skeleton-card", title: "Card List" },
-        ],
+        children: [{ id: "skeleton-card", title: "Card List" }],
       },
     ],
   },
   slider: {
     links: {
       shadcn: "https://ui.shadcn.com/docs/components/slider",
-      figma: "https://www.figma.com/design/x0CUbrC5Kjcuk64VPCnbgz/Blok-Components?m=auto&node-id=3798-14446&t=NScvPldB3fxBBWL8-1"
+      figma:
+        "https://www.figma.com/design/x0CUbrC5Kjcuk64VPCnbgz/Blok-Components?m=auto&node-id=3798-14446&t=NScvPldB3fxBBWL8-1",
     },
   },
   sonner: {
     links: {
       shadcn: "https://ui.shadcn.com/docs/components/sonner",
-      figma: "https://www.figma.com/design/x0CUbrC5Kjcuk64VPCnbgz/Blok-Components?m=auto&node-id=7069-16459&t=NScvPldB3fxBBWL8-1"
+      figma:
+        "https://www.figma.com/design/x0CUbrC5Kjcuk64VPCnbgz/Blok-Components?m=auto&node-id=7069-16459&t=NScvPldB3fxBBWL8-1",
     },
     sections: [
       { id: "preview", title: "Preview" },
@@ -762,7 +786,10 @@ export const rightSidebarMetadata: Record<string, RightSidebarMetadata> = {
         title: "Examples",
         children: [
           { id: "circular-progress-variants", title: "Variants" },
-          { id: "circular-progress-text", title: "With Text Circular Progress" },
+          {
+            id: "circular-progress-text",
+            title: "With Text Circular Progress",
+          },
         ],
       },
     ],
@@ -770,7 +797,8 @@ export const rightSidebarMetadata: Record<string, RightSidebarMetadata> = {
   spinner: {
     links: {
       shadcn: "https://ui.shadcn.com/docs/components/spinner",
-      figma: "https://www.figma.com/design/x0CUbrC5Kjcuk64VPCnbgz/Blok-Components?m=auto&node-id=7069-16458&t=NScvPldB3fxBBWL8-1"
+      figma:
+        "https://www.figma.com/design/x0CUbrC5Kjcuk64VPCnbgz/Blok-Components?m=auto&node-id=7069-16458&t=NScvPldB3fxBBWL8-1",
     },
     sections: [
       { id: "preview", title: "Preview" },
@@ -788,10 +816,11 @@ export const rightSidebarMetadata: Record<string, RightSidebarMetadata> = {
     ],
   },
   "stack-navigation": {
-    links:{
-      figma: "https://www.figma.com/design/x0CUbrC5Kjcuk64VPCnbgz/Blok-Components?m=auto&node-id=10256-14999&t=NScvPldB3fxBBWL8-1"
+    links: {
+      figma:
+        "https://www.figma.com/design/x0CUbrC5Kjcuk64VPCnbgz/Blok-Components?m=auto&node-id=10256-14999&t=NScvPldB3fxBBWL8-1",
     },
-        sections: [
+    sections: [
       { id: "preview", title: "Preview" },
       { id: "installation", title: "Installation" },
       { id: "usage", title: "Usage" },
@@ -806,9 +835,7 @@ export const rightSidebarMetadata: Record<string, RightSidebarMetadata> = {
     ],
   },
   stepper: {
-    links: {
-    
-    },
+    links: {},
     sections: [
       { id: "preview", title: "Preview" },
       { id: "installation", title: "Installation" },
@@ -818,7 +845,8 @@ export const rightSidebarMetadata: Record<string, RightSidebarMetadata> = {
   switch: {
     links: {
       shadcn: "https://ui.shadcn.com/docs/components/switch",
-      figma: "https://www.figma.com/design/x0CUbrC5Kjcuk64VPCnbgz/Blok-Components?m=auto&node-id=318-158&t=NScvPldB3fxBBWL8-1"
+      figma:
+        "https://www.figma.com/design/x0CUbrC5Kjcuk64VPCnbgz/Blok-Components?m=auto&node-id=318-158&t=NScvPldB3fxBBWL8-1",
     },
     sections: [
       { id: "preview", title: "Preview" },
@@ -838,7 +866,8 @@ export const rightSidebarMetadata: Record<string, RightSidebarMetadata> = {
   table: {
     links: {
       shadcn: "https://ui.shadcn.com/docs/components/table",
-      figma: "https://www.figma.com/design/x0CUbrC5Kjcuk64VPCnbgz/Blok-Components?m=auto&node-id=6748-14476&t=NScvPldB3fxBBWL8-1"
+      figma:
+        "https://www.figma.com/design/x0CUbrC5Kjcuk64VPCnbgz/Blok-Components?m=auto&node-id=6748-14476&t=NScvPldB3fxBBWL8-1",
     },
     sections: [
       { id: "preview", title: "Preview" },
@@ -847,21 +876,20 @@ export const rightSidebarMetadata: Record<string, RightSidebarMetadata> = {
       {
         id: "examples",
         title: "Examples",
-        children: [
-          { id: "table-data", title: "Data table" },
-        ],
+        children: [{ id: "table-data", title: "Data table" }],
       },
     ],
   },
   tabs: {
     links: {
       shadcn: "https://ui.shadcn.com/docs/components/tabs",
-      figma: "https://www.figma.com/design/x0CUbrC5Kjcuk64VPCnbgz/Blok-Components?m=auto&node-id=6748-14482&t=NScvPldB3fxBBWL8-1"
+      figma:
+        "https://www.figma.com/design/x0CUbrC5Kjcuk64VPCnbgz/Blok-Components?m=auto&node-id=6748-14482&t=NScvPldB3fxBBWL8-1",
     },
     sections: [
       { id: "preview", title: "Preview" },
       { id: "installation", title: "Installation" },
-      { id: "usage", title: "Usage" }, 
+      { id: "usage", title: "Usage" },
       {
         id: "examples",
         title: "Examples",
@@ -877,7 +905,8 @@ export const rightSidebarMetadata: Record<string, RightSidebarMetadata> = {
   textarea: {
     links: {
       shadcn: "https://ui.shadcn.com/docs/components/textarea",
-      figma: "https://www.figma.com/design/x0CUbrC5Kjcuk64VPCnbgz/Blok-Components?m=auto&node-id=3968-15028&t=NScvPldB3fxBBWL8-1"
+      figma:
+        "https://www.figma.com/design/x0CUbrC5Kjcuk64VPCnbgz/Blok-Components?m=auto&node-id=3968-15028&t=NScvPldB3fxBBWL8-1",
     },
     sections: [
       { id: "preview", title: "Preview" },
@@ -889,7 +918,10 @@ export const rightSidebarMetadata: Record<string, RightSidebarMetadata> = {
         children: [
           { id: "textarea-invalid", title: "Invalid" },
           { id: "textarea-with-label", title: "With Label" },
-          { id: "textarea-with-label-and-description", title: "With Label and Description" },
+          {
+            id: "textarea-with-label-and-description",
+            title: "With Label and Description",
+          },
           { id: "textarea-disabled", title: "Disabled" },
           { id: "textarea-small", title: "Small" },
           { id: "textarea-large", title: "Large" },
@@ -899,13 +931,13 @@ export const rightSidebarMetadata: Record<string, RightSidebarMetadata> = {
     ],
   },
   "time-picker": {
-    links: {
-    },
+    links: {},
   },
   toggle: {
     links: {
       shadcn: "https://ui.shadcn.com/docs/components/toggle",
-      figma: "https://www.figma.com/design/x0CUbrC5Kjcuk64VPCnbgz/Blok-Components?m=auto&node-id=7069-16468&t=NScvPldB3fxBBWL8-1"
+      figma:
+        "https://www.figma.com/design/x0CUbrC5Kjcuk64VPCnbgz/Blok-Components?m=auto&node-id=7069-16468&t=NScvPldB3fxBBWL8-1",
     },
     sections: [
       { id: "preview", title: "Preview" },
@@ -942,17 +974,18 @@ export const rightSidebarMetadata: Record<string, RightSidebarMetadata> = {
   tooltip: {
     links: {
       shadcn: "https://ui.shadcn.com/docs/components/tooltip",
-      figma: "https://www.figma.com/design/x0CUbrC5Kjcuk64VPCnbgz/Blok-Components?m=auto&node-id=7069-16463&t=NScvPldB3fxBBWL8-1"
+      figma:
+        "https://www.figma.com/design/x0CUbrC5Kjcuk64VPCnbgz/Blok-Components?m=auto&node-id=7069-16463&t=NScvPldB3fxBBWL8-1",
     },
   },
   topbar: {
     links: {
-      figma: "https://www.figma.com/design/x0CUbrC5Kjcuk64VPCnbgz/Blok-Components?m=auto&node-id=6748-14480&t=NScvPldB3fxBBWL8-1"
+      figma:
+        "https://www.figma.com/design/x0CUbrC5Kjcuk64VPCnbgz/Blok-Components?m=auto&node-id=6748-14480&t=NScvPldB3fxBBWL8-1",
     },
   },
   timeline: {
-    links: {
-    },
+    links: {},
     sections: [
       { id: "preview", title: "Preview" },
       { id: "installation", title: "Installation" },
@@ -972,7 +1005,8 @@ export const rightSidebarMetadata: Record<string, RightSidebarMetadata> = {
   // ===== BLOK-SPECIFIC METADATA =====
   collaboration: {
     links: {
-      figma: "https://www.figma.com/design/x0CUbrC5Kjcuk64VPCnbgz/Blok-Components?m=auto&node-id=12635-12702&t=lmjHbhiQJqZWNi7i-1"
+      figma:
+        "https://www.figma.com/design/x0CUbrC5Kjcuk64VPCnbgz/Blok-Components?m=auto&node-id=12635-12702&t=lmjHbhiQJqZWNi7i-1",
     },
     sections: [
       { id: "preview", title: "Preview" },
@@ -981,19 +1015,13 @@ export const rightSidebarMetadata: Record<string, RightSidebarMetadata> = {
     ],
   },
   "all-site": {
-     links: {
-
-    },
+    links: {},
   },
   "pinned-site": {
-    links: {
-
-    },
+    links: {},
   },
-    "site-card": {
-    links: {
-      
-    },
+  "site-card": {
+    links: {},
   },
   // ===== THEMING-SPECIFIC METADATA =====
 
@@ -1010,22 +1038,23 @@ export const rightSidebarMetadata: Record<string, RightSidebarMetadata> = {
   //     figma: "#",
   //   },
   // },
-
 };
-
 
 export function getRightSidebarMetadata(key: string): RightSidebarMetadata {
   const metadata = rightSidebarMetadata[key];
-  
+
   // Get the links and replace {$componentName} placeholder with the actual key
   const links = metadata?.links || defaultComponentLinks;
   const processedLinks = { ...links };
-  
+
   // Replace {$componentName} in shadcn link if it exists
-  if (processedLinks.shadcn && typeof processedLinks.shadcn === 'string') {
-    processedLinks.shadcn = processedLinks.shadcn.replace('{$componentName}', key);
+  if (processedLinks.shadcn && typeof processedLinks.shadcn === "string") {
+    processedLinks.shadcn = processedLinks.shadcn.replace(
+      "{$componentName}",
+      key,
+    );
   }
-  
+
   return {
     links: processedLinks,
     sections: metadata?.sections || defaultComponentSections,

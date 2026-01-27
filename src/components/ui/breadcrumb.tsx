@@ -1,9 +1,9 @@
 import * as React from "react";
 import { mdiDotsHorizontal, mdiSlashForward } from "@mdi/js";
-import { Icon } from "@/lib/icon";
 import { Slot } from "@radix-ui/react-slot";
 
 import { cn } from "@/lib/utils";
+import { Icon } from "@/lib/icon";
 
 const Breadcrumb = React.memo(function Breadcrumb({ ...props }: React.ComponentProps<"nav">) {
   return <nav aria-label="breadcrumb" data-slot="breadcrumb" {...props} />;

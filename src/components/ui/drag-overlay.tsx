@@ -1,8 +1,9 @@
 "use client";
-
-import * as React from "react";
-import { DragOverlay as DndKitDragOverlay, type DragOverlayProps as DndKitDragOverlayProps } from "@dnd-kit/core";
 import { cn } from "@/lib/utils";
+import {
+  DragOverlay as DndKitDragOverlay,
+  type DragOverlayProps as DndKitDragOverlayProps,
+} from "@dnd-kit/core";
 import { useDndMounted } from "./dnd-context";
 
 export interface DragOverlayProps extends DndKitDragOverlayProps {
@@ -13,16 +14,16 @@ export interface DragOverlayProps extends DndKitDragOverlayProps {
 /**
  * DragOverlay renders a draggable element that follows the cursor.
  * It's removed from the normal document flow and positioned relative to the viewport.
- * 
+ *
  * Use this when:
  * - Items need to move between containers
  * - You want a custom drag preview
  * - You need the dragged item to appear above all other elements
- * 
+ *
  * Example:
  * ```tsx
  * const [activeId, setActiveId] = useState<UniqueIdentifier | null>(null);
- * 
+ *
  * <DndContext onDragStart={({active}) => setActiveId(active.id)} onDragEnd={() => setActiveId(null)}>
  *   <Droppable id="container">
  *     {items.map(item => <Draggable key={item.id} id={item.id}>{item.content}</Draggable>)}
@@ -50,14 +51,9 @@ export function DragOverlay({
   }
 
   return (
-    <DndKitDragOverlay
-      dropAnimation={dropAnimation}
-      {...props}
-    >
+    <DndKitDragOverlay dropAnimation={dropAnimation} {...props}>
       {children ? (
-        <div className={cn("cursor-grabbing", className)}>
-          {children}
-        </div>
+        <div className={cn("cursor-grabbing", className)}>{children}</div>
       ) : null}
     </DndKitDragOverlay>
   );
@@ -65,4 +61,3 @@ export function DragOverlay({
 
 // Re-export for convenience
 export { DragOverlay as DndKitDragOverlay } from "@dnd-kit/core";
-

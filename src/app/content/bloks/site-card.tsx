@@ -1,14 +1,7 @@
 "use client";
 
 import { SiteCard } from "@/components/bloks/site-card";
-import {
-  Settings,
-  Pin,
-  Edit,
-  Copy,
-  FileEdit,
-  LayoutGrid,
-} from "lucide-react";
+import { Copy, Edit, FileEdit, LayoutGrid, Pin, Settings } from "lucide-react";
 
 export interface SitePermissions {
   canAdmin: boolean;

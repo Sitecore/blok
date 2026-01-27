@@ -1,5 +1,3 @@
-import * as React from "react";
-
 interface SwitchThumbProps {
   className?: string;
 }
@@ -36,4 +34,3 @@ const SwitchThumb = ({ className }: SwitchThumbProps) => (
 );
 
 export default SwitchThumb;
-

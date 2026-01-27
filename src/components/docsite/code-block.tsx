@@ -19,20 +19,17 @@ export interface CodeblocksProps {
   showLineNumbers?: boolean;
 }
 
-const codeBlockVariants = cva(
-  "mt-16 sm:mt-0 flex rounded-lg",
-  {
-    variants: {
-      variant: {
-        outline: "border bg-body-bg text-body-text",
-        filled: "bg-subtle-bg text-body-text border-none",
-      },
+const codeBlockVariants = cva("mt-16 sm:mt-0 flex rounded-lg", {
+  variants: {
+    variant: {
+      outline: "border bg-body-bg text-body-text",
+      filled: "bg-subtle-bg text-body-text border-none",
     },
-    defaultVariants: {
-      variant: "outline",
-    },
-  }
-)
+  },
+  defaultVariants: {
+    variant: "outline",
+  },
+});
 
 export const Codeblocks = React.memo(function Codeblocks({ variant, code, showLineNumbers = true }: CodeblocksProps) {
   const [hasCopied, setHasCopied] = useState(false);
@@ -57,7 +54,9 @@ export const Codeblocks = React.memo(function Codeblocks({ variant, code, showLi
             copyToClipboard(code);
             setHasCopied(true);
           }}
-          aria-label={hasCopied ? "Code copied to clipboard" : "Copy code to clipboard"}
+          aria-label={
+            hasCopied ? "Code copied to clipboard" : "Copy code to clipboard"
+          }
         >
           {hasCopied ? (
             <Check className="size-4" />
@@ -73,7 +72,10 @@ export const Codeblocks = React.memo(function Codeblocks({ variant, code, showLi
 
       <div className={codeBlockVariants({ variant })} dir="ltr">
         {showLineNumbers && (
-          <div className="flex flex-col items-center justify-start py-2 px-2 text-md gap-y-1" dir="ltr">
+          <div
+            className="flex flex-col items-center justify-start py-2 px-2 text-md gap-y-1"
+            dir="ltr"
+          >
             {codeLines.map((_, index) => (
               <span key={index} className="w-6 text-center py-1 leading-none">
                 {index + 1}
@@ -83,7 +85,10 @@ export const Codeblocks = React.memo(function Codeblocks({ variant, code, showLi
         )}
 
         <pre className="flex-1 overflow-x-auto p-2" dir="ltr">
-          <code className="relative bg-transparent font-mono text-md leading-none whitespace-pre-wrap overflow-wrap-break-word" dir="ltr">
+          <code
+            className="relative bg-transparent font-mono text-md leading-none whitespace-pre-wrap overflow-wrap-break-word"
+            dir="ltr"
+          >
             {code}
           </code>
         </pre>

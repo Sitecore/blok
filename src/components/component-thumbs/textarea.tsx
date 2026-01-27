@@ -1,5 +1,3 @@
-import * as React from "react";
-
 interface TextareaThumbProps {
   className?: string;
 }
@@ -49,4 +47,3 @@ const TextareaThumb = ({ className }: TextareaThumbProps) => (
 );
 
 export default TextareaThumb;
-

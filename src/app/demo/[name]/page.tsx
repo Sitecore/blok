@@ -1,13 +1,13 @@
-import { notFound } from "next/navigation";
-import React, { ComponentType } from "react";
 import { demos } from "@/app/demo/[name]/index";
 import { Renderer } from "@/app/demo/[name]/renderer";
-import InstallationCodeBlock from "@/components/docsite/installation-code-block";
-import { ReactNode } from "react";
-import DemoTab from "@/components/demo-tab";
 import { CodeBlock } from "@/components/code-block";
-import { docsiteRegistry } from "@/lib/docsite/docsite-registry";
+import DemoTab from "@/components/demo-tab";
+import InstallationCodeBlock from "@/components/docsite/installation-code-block";
+import type { docsiteRegistry } from "@/lib/docsite/docsite-registry";
 import { loadFromRegistry } from "@/lib/docsite/load-from-registry";
+import { notFound } from "next/navigation";
+import React, { type ComponentType } from "react";
+import type { ReactNode } from "react";
 
 export const dynamicParams = false;
 
@@ -28,20 +28,15 @@ const componentDemo = (component: ReactNode) => {
 
 export default async function DemoPage({
   params,
-}: { 
-  params: Promise<{ name: string }> 
+}: {
+  params: Promise<{ name: string }>;
 }) {
   const { name } = await params;
 
   const demo = demos[name];
   if (!demo) notFound();
 
-  const { 
-    preview, 
-    installation, 
-    usage, 
-    components 
-  } = demo;
+  const { preview, installation, usage, components } = demo;
 
   // Compute registry URL once per request
   const registryUrl = `https://${baseUrl}/r/${name}.json`;
@@ -71,12 +66,18 @@ export default async function DemoPage({
           if (!entry) return null;
 
           return (
-            <div key={title} id={component.component as string} className="flex flex-col gap-6">
+            <div
+              key={title}
+              id={component.component as string}
+              className="flex flex-col gap-6"
+            >
               <h3 className="font-semibold text-xl">{title}</h3>
               {component.pre}
               <DemoTab
                 code={entry.code}
-                component={componentDemo(React.createElement(entry.Component as ComponentType<any>))}
+                component={componentDemo(
+                  React.createElement(entry.Component as ComponentType<any>),
+                )}
               />
               {component.post}
             </div>
@@ -86,14 +87,16 @@ export default async function DemoPage({
     : null;
 
   return (
-    <div className="flex min-h-screen w-full flex-col gap-12 bg-body-bg">  
+    <div className="flex min-h-screen w-full flex-col gap-12 bg-body-bg">
       {/* Preview */}
       {preview.pre}
       <DemoTab
         key={name}
         id="preview"
         code={defaultEntry.code}
-        component={componentDemo(React.createElement(defaultEntry.Component as ComponentType<any>))}
+        component={componentDemo(
+          React.createElement(defaultEntry.Component as ComponentType<any>),
+        )}
       />
       {preview.post}
 
@@ -116,7 +119,7 @@ export default async function DemoPage({
           {usage.post}
         </div>
       )}
-  
+
       {/* Examples */}
       {exampleSections && (
         <div id="examples" className="flex flex-col gap-9">

@@ -1,14 +1,13 @@
 import * as React from "react";
 import { mdiChevronLeft, mdiChevronRight, mdiDotsHorizontal } from "@mdi/js";
 
-import { cn } from "@/lib/utils";
-import { Button, buttonVariants } from "@/components/ui/button";
+import { type Button, buttonVariants } from "@/components/ui/button";
 import { Icon } from "@/lib/icon";
+import { cn } from "@/lib/utils";
 
 const Pagination = React.memo(function Pagination({ className, ...props }: React.ComponentProps<"nav">) {
   return (
     <nav
-      role="navigation"
       aria-label="pagination"
       data-slot="pagination"
       className={cn("mx-auto flex w-full justify-center", className)}
@@ -58,7 +57,7 @@ const PaginationLink = React.memo(function PaginationLink({
         "text-neutral-fg bg-transparent disabled:text-neutral-fg/40 font-medium hover:bg-neutral-bg active:bg-primary-bg",
         isActive &&
           "bg-primary-bg text-neutral-fg hover:bg-primary-bg active:bg-primary-bg font-medium",
-        className
+        className,
       )}
       {...props}
     />
@@ -107,7 +106,7 @@ const PaginationEllipsis = React.memo(function PaginationEllipsis({
       data-slot="pagination-ellipsis"
       className={cn(
         "text-neutral-fg flex size-9 items-center justify-center",
-        className
+        className,
       )}
       {...props}
     >

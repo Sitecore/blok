@@ -1,7 +1,6 @@
-'use client'
+"use client";
 
-import { formatColorValue, parseCssVariablesByTheme, resolveVariableValue } from "@/lib/token-utils";
-import { useEffect, useState } from "react";
+import { CopyableToken } from "@/components/docsite/copyable-token";
 import {
   Table,
   TableBody,
@@ -10,14 +9,21 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { CopyableToken } from "@/components/docsite/copyable-token";
+import {
+  formatColorValue,
+  parseCssVariablesByTheme,
+  resolveVariableValue,
+} from "@/lib/token-utils";
+import { useEffect, useState } from "react";
 
 type Props = {
   content: string;
 };
 
 export function SemanticTokensClient({ content }: Props) {
-  const [defaultColors, setDefaultColors] = useState<Record<string, string>>({});
+  const [defaultColors, setDefaultColors] = useState<Record<string, string>>(
+    {},
+  );
   const [darkColors, setDarkColors] = useState<Record<string, string>>({});
 
   const [defaultVars, setDefaultVars] = useState<Record<string, string>>({});
@@ -26,8 +32,13 @@ export function SemanticTokensClient({ content }: Props) {
   const [isDarkTheme, setIsDarkTheme] = useState<boolean>(false);
 
   useEffect(() => {
-    const { default: parsedDefault, dark: parsedDark, defaultVars, darkVars } = parseCssVariablesByTheme(content);
-    
+    const {
+      default: parsedDefault,
+      dark: parsedDark,
+      defaultVars,
+      darkVars,
+    } = parseCssVariablesByTheme(content);
+
     setDefaultColors(parsedDefault);
     setDarkColors(parsedDark);
     setDefaultVars(defaultVars);
@@ -42,7 +53,10 @@ export function SemanticTokensClient({ content }: Props) {
     setIsDarkTheme(document.documentElement.classList.contains("dark"));
 
     // Observe class changes on <html>
-    observer.observe(document.documentElement, { attributes: true, attributeFilter: ["class"] });
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ["class"],
+    });
 
     return () => observer.disconnect();
   }, [content]);
@@ -52,12 +66,13 @@ export function SemanticTokensClient({ content }: Props) {
     const lines = content.split("\n");
     const semanticTokens: Record<string, string> = {};
     let inThemeBlock = false;
-    
-    const baseColorPattern = /^color-(blue|red|green|yellow|purple|pink|orange|cyan|teal|gray|blackAlpha|whiteAlpha|danger|success|warning|info|primary|neutral)-\d+$/;
+
+    const baseColorPattern =
+      /^color-(blue|red|green|yellow|purple|pink|orange|cyan|teal|gray|blackAlpha|whiteAlpha|danger|success|warning|info|primary|neutral)-\d+$/;
 
     for (let i = 0; i < lines.length; i++) {
       const line = lines[i].trim();
-      
+
       if (line.includes("@theme inline")) {
         inThemeBlock = true;
         continue;
@@ -70,12 +85,20 @@ export function SemanticTokensClient({ content }: Props) {
         continue;
       }
 
-      if (inThemeBlock && line.startsWith("--color-") && !line.startsWith("/*")) {
+      if (
+        inThemeBlock &&
+        line.startsWith("--color-") &&
+        !line.startsWith("/*")
+      ) {
         const colonIndex = line.indexOf(":");
         if (colonIndex > 0) {
           const key = line.substring(0, colonIndex).trim().replace(/^--/, "");
-          const value = line.substring(colonIndex + 1).trim().replace(/;.*$/, "").trim();
-          
+          const value = line
+            .substring(colonIndex + 1)
+            .trim()
+            .replace(/;.*$/, "")
+            .trim();
+
           if (value.startsWith("var(") && !baseColorPattern.test(key)) {
             semanticTokens[key] = value;
           }
@@ -103,11 +126,15 @@ export function SemanticTokensClient({ content }: Props) {
         <TableBody>
           {allKeys.map((key) => {
             const semanticValue = semanticTokens[key];
-            
+
             const allDefaultVars = { ...defaultVars, ...defaultColors };
             const allDarkVars = { ...darkVars, ...darkColors };
-            const { light, dark } = resolveVariableValue(semanticValue, allDefaultVars, allDarkVars);
-            
+            const { light, dark } = resolveVariableValue(
+              semanticValue,
+              allDefaultVars,
+              allDarkVars,
+            );
+
             const bgColor = isDarkTheme ? dark : light;
 
             const formattedLight = formatColorValue(light);
@@ -138,4 +165,3 @@ export function SemanticTokensClient({ content }: Props) {
     </div>
   );
 }
-

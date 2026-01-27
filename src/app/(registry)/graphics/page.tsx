@@ -1,10 +1,10 @@
 "use client";
 
-import { ComponentGridCard } from "@/components/docsite/component-grid-card";
+import FaviconsThumb from "@/components/component-thumbs/favicons";
 import IconsThumb from "@/components/component-thumbs/icons";
 import IllustrationsThumb from "@/components/component-thumbs/illustrations";
 import LogosThumb from "@/components/component-thumbs/logos";
-import FaviconsThumb from "@/components/component-thumbs/favicons";
+import { ComponentGridCard } from "@/components/docsite/component-grid-card";
 
 const grapicsCategories = [
   {
@@ -23,7 +23,7 @@ const grapicsCategories = [
     href: "/graphics/icons",
     preview: (
       <div className="w-full h-full flex items-center justify-center p-4">
-        <IconsThumb className="w-full h-auto max-h-full" />
+        <IconsThumb />
       </div>
     ),
   },
@@ -33,7 +33,7 @@ const grapicsCategories = [
     href: "/graphics/illustrations",
     preview: (
       <div className="w-full h-full flex items-center justify-center p-4">
-        <IllustrationsThumb className="w-full h-auto max-h-full" />
+        <IllustrationsThumb />
       </div>
     ),
   },
@@ -62,7 +62,6 @@ export default function GraphicsPage() {
         {grapicsCategories?.map((category) => (
           <ComponentGridCard
             key={category?.name}
-            name={category?.name}
             title={category?.title}
             href={category?.href}
             preview={category?.preview}

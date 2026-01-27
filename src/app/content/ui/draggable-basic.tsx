@@ -1,15 +1,19 @@
 "use client"; // comment this line if you are not using next.js
 
-import * as React from "react";
-import { DndContext, type DragEndEvent, type UniqueIdentifier } from "@/components/ui/dnd-context";
+import { Button } from "@/components/ui/button";
+import {
+  DndContext,
+  type DragEndEvent,
+  type UniqueIdentifier,
+} from "@/components/ui/dnd-context";
 import { DragOverlay } from "@/components/ui/drag-overlay";
 import { Draggable } from "@/components/ui/draggable";
 import { Droppable } from "@/components/ui/droppable";
-import { GripVertical, List, Trash2 } from "lucide-react";
-import { mdiTextShort } from "@mdi/js";
 import { Icon } from "@/lib/icon";
 import { cn } from "@/lib/utils";
-import { Button } from "@/components/ui/button";
+import { mdiTextShort } from "@mdi/js";
+import { GripVertical, List, Trash2 } from "lucide-react";
+import * as React from "react";
 
 interface FieldItem {
   id: string;
@@ -41,19 +45,17 @@ function DraggableFieldCard({ item }: { item: FieldItem }) {
         {item.name}
       </div>
       <div className="shrink-0 text-sm text-muted-foreground/50">|</div>
-      <div className="shrink-0 text-sm text-muted-foreground">
-        {item.type}
-      </div>
+      <div className="shrink-0 text-sm text-muted-foreground">{item.type}</div>
     </div>
   );
 }
 
 // Dropped field card - shows in drop zone
-function DroppedFieldCard({ 
-  item, 
-  onRemove 
-}: { 
-  item: FieldItem; 
+function DroppedFieldCard({
+  item,
+  onRemove,
+}: {
+  item: FieldItem;
   onRemove: (id: string) => void;
 }) {
   return (
@@ -71,9 +73,7 @@ function DroppedFieldCard({
         {item.name}
       </div>
       <div className="shrink-0 text-sm text-muted-foreground/50">|</div>
-      <div className="shrink-0 text-sm text-muted-foreground">
-        {item.type}
-      </div>
+      <div className="shrink-0 text-sm text-muted-foreground">{item.type}</div>
       <Button
         variant="ghost"
         size="icon"
@@ -87,7 +87,8 @@ function DroppedFieldCard({
 }
 
 export default function DraggableBasicDragDropDemo() {
-  const [sourceFields, setSourceFields] = React.useState<FieldItem[]>(initialFields);
+  const [sourceFields, setSourceFields] =
+    React.useState<FieldItem[]>(initialFields);
   const [droppedFields, setDroppedFields] = React.useState<FieldItem[]>([]);
   const [activeId, setActiveId] = React.useState<UniqueIdentifier | null>(null);
 
@@ -98,7 +99,7 @@ export default function DraggableBasicDragDropDemo() {
   const handleDragEnd = React.useCallback((event: DragEndEvent) => {
     const { active, over } = event;
     setActiveId(null);
-    
+
     if (over?.id === "drop-zone") {
       setSourceFields((prev) => {
         const field = prev.find(f => f.id === active.id);
@@ -141,7 +142,8 @@ export default function DraggableBasicDragDropDemo() {
         <div>
           <h3 className="text-2xl font-semibold">Basic Drag & Drop</h3>
           <p className="text-sm text-muted-foreground mt-2">
-            Drag fields from the source to the drop zone. The drop zone shows an active state when fields can be dropped.
+            Drag fields from the source to the drop zone. The drop zone shows an
+            active state when fields can be dropped.
           </p>
         </div>
 
@@ -156,7 +158,7 @@ export default function DraggableBasicDragDropDemo() {
               className={cn(
                 "p-4 rounded-lg border-2 border-dashed min-h-[280px] transition-all duration-200",
                 "bg-card border-border",
-                "data-[drop-target=true]:border-primary data-[drop-target=true]:bg-primary/5 data-[drop-target=true]:shadow-md"
+                "data-[drop-target=true]:border-primary data-[drop-target=true]:bg-primary/5 data-[drop-target=true]:shadow-md",
               )}
             >
               {sourceFields.length > 0 ? (
@@ -190,15 +192,15 @@ export default function DraggableBasicDragDropDemo() {
               className={cn(
                 "p-4 rounded-lg border-2 border-dashed min-h-[280px] transition-all duration-200",
                 "bg-primary/5 border-primary/40",
-                "data-[drop-target=true]:border-primary data-[drop-target=true]:bg-primary/10 data-[drop-target=true]:shadow-md data-[drop-target=true]:border-solid"
+                "data-[drop-target=true]:border-primary data-[drop-target=true]:bg-primary/10 data-[drop-target=true]:shadow-md data-[drop-target=true]:border-solid",
               )}
             >
               {droppedFields.length > 0 ? (
                 <div className="space-y-2">
                   {droppedFields.map((field) => (
-                    <DroppedFieldCard 
+                    <DroppedFieldCard
                       key={field.id}
-                      item={field} 
+                      item={field}
                       onRemove={handleRemove}
                     />
                   ))}
@@ -219,7 +221,6 @@ export default function DraggableBasicDragDropDemo() {
             </Droppable>
           </div>
         </div>
-
       </div>
 
       {/* Drag Overlay */}

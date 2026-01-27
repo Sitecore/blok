@@ -1,9 +1,7 @@
 "use client";
-
-import { Suspense, useEffect, useMemo, useState, useRef } from "react";
-import { useVirtualizer } from "@tanstack/react-virtual";
-import { Icon } from "@/lib/icon";
 import { copyToClipboard } from "@/components/docsite/code-block";
+import { Alert, AlertDescription } from "@/components/ui/alert";
+import { CircularProgress } from "@/components/ui/circular-progress";
 import {
   Table,
   TableBody,
@@ -17,9 +15,10 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
+import { Icon } from "@/lib/icon";
+import { useVirtualizer } from "@tanstack/react-virtual";
+import { Suspense, useEffect, useRef, useState, useMemo } from "react";
 import * as logoIcons from "./logo-icons";
-import { CircularProgress } from "@/components/ui/circular-progress";
-import { Alert, AlertDescription } from "@/components/ui/alert";
 
 const iconsData = [
   { mdi: "account-circle-outline", usage: "Profile", icon: "", code: "" },
@@ -631,7 +630,7 @@ iconsData.forEach((data) => {
   let allWords = mdi.split("-");
   // capitalize all words => [Account, Circle, Outline]
   allWords = allWords.map(
-    (word) => word.charAt(0).toUpperCase() + word.slice(1)
+    (word) => word.charAt(0).toUpperCase() + word.slice(1),
   );
   // join all words and prefix with 'mdi' => mdiAccountCircleOutline
   data.code = "mdi" + allWords.join("");
@@ -670,7 +669,6 @@ export default function IconsPage() {
       </div>
 
       <div className="flex flex-col gap-6 mb-12">
-
         <Alert variant="primary">
           <AlertDescription className="flex flex-row">
             To learn how to implement these icons, see{" "}

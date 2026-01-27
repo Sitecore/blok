@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import * as TabsPrimitive from "@radix-ui/react-tabs";
-import { cva, type VariantProps } from "class-variance-authority";
+import { type VariantProps, cva } from "class-variance-authority";
 
 import { cn } from "@/lib/utils";
 
@@ -18,7 +18,7 @@ const tabsListVariants = cva(
     defaultVariants: {
       variant: "line",
     },
-  }
+  },
 );
 
 const tabsTriggerVariants = cva(
@@ -34,7 +34,7 @@ const tabsTriggerVariants = cva(
     defaultVariants: {
       variant: "line",
     },
-  }
+  },
 );
 
 const Tabs = React.memo(function Tabs({

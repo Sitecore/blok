@@ -10,7 +10,6 @@
       "@/registry": ["../../../registry.json"],
       "@/lib/*": ["./lib/*", "../../../src/lib/*"],
       "@/components/*": ["./components/*", "../../../src/components/*"]
-
     }
   },
   "include": ["./**/*"],

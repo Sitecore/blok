@@ -1,9 +1,11 @@
 "use client";
 
 import * as React from "react";
-import { Button } from "@/components/ui/button";
-import { Codeblocks } from "@/components/docsite/code-block";
 import { CodeBlock } from "@/components/code-block";
+import { Codeblocks } from "@/components/docsite/code-block";
+import { Alert, AlertDescription } from "@/components/ui/alert";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
@@ -11,12 +13,10 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { Alert, AlertDescription } from "@/components/ui/alert";
-import Link from "next/link";
-import Icon from "@mdi/react";
-import { mdiOpenInNew } from "@mdi/js";
 import { externalLinks } from "@/config/links";
+import { mdiOpenInNew } from "@mdi/js";
+import Icon from "@mdi/react";
+import Link from "next/link";
 
 export default function Home() {
   const handleGetStartedClick = React.useCallback(() => {
@@ -64,7 +64,8 @@ export default function Home() {
               Build better products faster
             </h1>
             <p className="text-muted-foreground w-full text-lg">
-            Blok is Sitecore's design system. It is used for creating industry leading martech applications.
+              Blok is Sitecore's design system. It is used for creating industry
+              leading martech applications.
               <br /> Now, it's publicly available, so that anyone can easily
               build software in the Sitecore product design language.
             </p>

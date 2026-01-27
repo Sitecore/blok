@@ -1,10 +1,4 @@
-import * as React from "react";
-
-interface typographyThumbProps {
-  className?: string;
-}
-
-const TypographyThumb = ({ className }: typographyThumbProps) => (
+const TypographyThumb = () => (
   <svg
     width="38"
     height="37"

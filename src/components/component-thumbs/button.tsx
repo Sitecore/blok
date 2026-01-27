@@ -40,4 +40,3 @@ const ButtonThumb = ({ className }: { className?: string }) => (
 );
 
 export default ButtonThumb;
-

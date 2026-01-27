@@ -78,4 +78,3 @@ const AvatarThumb = ({ className }: { className?: string }) => (
 );
 
 export default AvatarThumb;
-

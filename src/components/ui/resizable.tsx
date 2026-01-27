@@ -1,7 +1,7 @@
 "use client";
 
-import { mdiDragVertical } from "@mdi/js";
 import { Icon } from "@/lib/icon";
+import { mdiDragVertical } from "@mdi/js";
 import * as React from "react";
 import * as ResizablePrimitive from "react-resizable-panels";
 

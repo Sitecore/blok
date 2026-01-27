@@ -7,6 +7,6 @@ export const timePicker = {
     usage: [
       `import { TimePicker } from "@/components/ui/time-picker";`,
       `<TimePicker />`,
-    ]
+    ],
   },
 };
