@@ -1,5 +1,6 @@
 "use client";
 
+import { CopyableToken } from "@/components/docsite/copyable-token";
 import {
   Table,
   TableBody,
@@ -8,7 +9,6 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { CopyableToken } from "@/components/docsite/copyable-token";
 
 type SpacingData = {
   name: string;
@@ -56,7 +56,7 @@ const SPACING_DATA: SpacingData[] = [
 
 export default function SpacingPage() {
   const getPixelValue = (pixels: string): number => {
-    return parseInt(pixels.replace("px", ""), 10);
+    return Number.parseInt(pixels.replace("px", ""), 10);
   };
 
   return (
@@ -98,7 +98,8 @@ export default function SpacingPage() {
                         height: "20px",
                         borderRadius: "4px",
                         minWidth: pixelValue === 0 ? "1px" : undefined,
-                        border: pixelValue === 0 ? "1px dashed #ccc" : undefined,
+                        border:
+                          pixelValue === 0 ? "1px dashed #ccc" : undefined,
                       }}
                       title={`${item.pixels} preview`}
                     />

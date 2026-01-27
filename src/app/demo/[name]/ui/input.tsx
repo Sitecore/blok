@@ -4,16 +4,13 @@ export const input = {
     defaultComponent: "input",
   },
   usage: {
-    usage: [
-      `import { Input } from "@/components/ui/input";`,
-      `<Input />`,
-    ]
+    usage: [`import { Input } from "@/components/ui/input";`, `<Input />`],
   },
   components: {
-    Email: { component: "input-email", },
-    Text: { component: "input-text", },
-    Password: { component: "input-password", },
-    File: { component: "input-file", },
-    Disabled: { component: "input-disabled", },
+    Email: { component: "input-email" },
+    Text: { component: "input-text" },
+    Password: { component: "input-password" },
+    File: { component: "input-file" },
+    Disabled: { component: "input-disabled" },
   },
 };

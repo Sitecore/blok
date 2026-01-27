@@ -1,16 +1,17 @@
 import {
   Table,
+  TableBody,
+  TableCell,
+  TableHead,
   TableHeader,
   TableRow,
-  TableHead,
-  TableBody,
-  TableCell
 } from "@/components/ui/table";
 
 const featureTable = [
   {
     feature: "Personalization",
-    description: "Deliver tailored experiences based on user behavior and preferences.",
+    description:
+      "Deliver tailored experiences based on user behavior and preferences.",
     benefit: "Increase engagement and conversion rates.",
     useCase: "Personalized product recommendations on e-commerce sites.",
   },
@@ -22,7 +23,8 @@ const featureTable = [
   },
   {
     feature: "Content Management",
-    description: "Centralized platform for creating and managing digital content.",
+    description:
+      "Centralized platform for creating and managing digital content.",
     benefit: "Consistent brand messaging across channels.",
     useCase: "Managing global campaigns with localized content.",
   },
@@ -48,10 +50,18 @@ export default function TableDemo() {
       <TableBody>
         {featureTable.map((item, index) => (
           <TableRow key={index}>
-            <TableCell className="font-medium break-words whitespace-normal">{item.feature}</TableCell>
-            <TableCell className="break-words whitespace-normal">{item.description}</TableCell>
-            <TableCell className="break-words whitespace-normal">{item.benefit}</TableCell>
-            <TableCell className="text-left break-words whitespace-normal">{item.useCase}</TableCell>
+            <TableCell className="font-medium break-words whitespace-normal">
+              {item.feature}
+            </TableCell>
+            <TableCell className="break-words whitespace-normal">
+              {item.description}
+            </TableCell>
+            <TableCell className="break-words whitespace-normal">
+              {item.benefit}
+            </TableCell>
+            <TableCell className="text-left break-words whitespace-normal">
+              {item.useCase}
+            </TableCell>
           </TableRow>
         ))}
       </TableBody>

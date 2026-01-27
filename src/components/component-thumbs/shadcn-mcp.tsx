@@ -15,4 +15,3 @@ const ShadcnMcpThumb = () => (
 );
 
 export default ShadcnMcpThumb;
-

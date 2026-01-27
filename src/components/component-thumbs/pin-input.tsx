@@ -1,5 +1,3 @@
-import * as React from "react";
-
 interface PinInputThumbProps {
   className?: string;
 }
@@ -49,4 +47,3 @@ const PinInputThumb = ({ className }: PinInputThumbProps) => (
 );
 
 export default PinInputThumb;
-

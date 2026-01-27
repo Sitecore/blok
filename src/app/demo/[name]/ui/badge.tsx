@@ -5,15 +5,15 @@ export const badge = {
   },
   usage: {
     usage: [
-    `import { Badge } from "@/components/ui/badge"`,
-    `<Badge>Badge</Badge>`
-    ]
+      `import { Badge } from "@/components/ui/badge"`,
+      `<Badge>Badge</Badge>`,
+    ],
   },
   components: {
-    Sizing: { component: "badge-sizing", },
-    "Color Schemes": { component: "badge-color-schemes", },
-    Bold: { component: "badge-bold", },
-    Links: { component: "badge-link", },
-    Closable: { component: "badge-closable", },
+    Sizing: { component: "badge-sizing" },
+    "Color Schemes": { component: "badge-color-schemes" },
+    Bold: { component: "badge-bold" },
+    Links: { component: "badge-link" },
+    Closable: { component: "badge-closable" },
   },
-}
+};

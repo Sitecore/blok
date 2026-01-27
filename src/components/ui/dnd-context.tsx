@@ -1,7 +1,7 @@
 "use client";
 
-import * as React from "react";
 import {
+  type CollisionDetection,
   DndContext as DndKitContext,
   type DragEndEvent,
   type DragMoveEvent,
@@ -9,20 +9,20 @@ import {
   type DragStartEvent,
   KeyboardSensor,
   PointerSensor,
+  type UniqueIdentifier,
   closestCenter,
   useSensor,
   useSensors,
-  type CollisionDetection,
-  type UniqueIdentifier,
 } from "@dnd-kit/core";
 import {
   SortableContext,
-  sortableKeyboardCoordinates,
-  verticalListSortingStrategy,
+  type SortingStrategy,
   horizontalListSortingStrategy,
   rectSortingStrategy,
-  type SortingStrategy,
+  sortableKeyboardCoordinates,
+  verticalListSortingStrategy,
 } from "@dnd-kit/sortable";
+import * as React from "react";
 
 // Context to track if DndContext is mounted (client-side only)
 const DndMountedContext = React.createContext(false);
@@ -52,7 +52,7 @@ export function DndContext({
 }: DndContextProps) {
   // Prevent hydration mismatch by only rendering DndKit on client
   const [isMounted, setIsMounted] = React.useState(false);
-  
+
   React.useEffect(() => {
     setIsMounted(true);
   }, []);
@@ -65,7 +65,7 @@ export function DndContext({
     }),
     useSensor(KeyboardSensor, {
       coordinateGetter: sortableKeyboardCoordinates,
-    })
+    }),
   );
 
   // Render children with mounted context but without DndKit on server
@@ -128,6 +128,16 @@ export function SortableContainer({
 
 // Re-export utilities for convenience
 export { arrayMove } from "@dnd-kit/sortable";
-export { closestCenter, closestCorners, rectIntersection, pointerWithin } from "@dnd-kit/core";
-export type { DragStartEvent, DragEndEvent, DragOverEvent, DragMoveEvent, UniqueIdentifier };
-
+export {
+  closestCenter,
+  closestCorners,
+  rectIntersection,
+  pointerWithin,
+} from "@dnd-kit/core";
+export type {
+  DragStartEvent,
+  DragEndEvent,
+  DragOverEvent,
+  DragMoveEvent,
+  UniqueIdentifier,
+};

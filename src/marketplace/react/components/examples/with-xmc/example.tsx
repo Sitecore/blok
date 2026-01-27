@@ -1,8 +1,8 @@
-import { useAppContext } from "@/components/providers/marketplace";
 import { ListLanguagesFromClientSdk } from "@/components/examples/with-xmc/list-languages";
+import { useAppContext } from "@/components/providers/marketplace";
 
 function ClientSideExamples() {
-  const appContext = useAppContext()
+  const appContext = useAppContext();
   return (
     <div>
       <div>Application Context</div>

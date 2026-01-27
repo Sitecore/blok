@@ -51,7 +51,7 @@ function DrawerContent({
   siblingMode = false,
   ...props
 }: React.ComponentProps<typeof DrawerPrimitive.Content> & {
-  siblingMode?: boolean
+  siblingMode?: boolean;
 }) {
   const content = (
     <DrawerPrimitive.Content
@@ -68,7 +68,7 @@ function DrawerContent({
         "data-[sibling-mode=true][data-state=closed]:data-[vaul-drawer-direction=bottom]:translate-y-full data-[sibling-mode=true][data-state=open]:data-[vaul-drawer-direction=bottom]:translate-y-0",
         "data-[sibling-mode=true][data-state=closed]:data-[vaul-drawer-direction=left]:-translate-x-full data-[sibling-mode=true][data-state=open]:data-[vaul-drawer-direction=left]:translate-x-0",
         "data-[sibling-mode=true][data-state=closed]:data-[vaul-drawer-direction=right]:translate-x-full data-[sibling-mode=true][data-state=open]:data-[vaul-drawer-direction=right]:translate-x-0",
-        className
+        className,
       )}
       data-sibling-mode={siblingMode}
       {...props}
@@ -76,10 +76,10 @@ function DrawerContent({
       <div className="bg-muted mx-auto mt-4 hidden h-2 w-[100px] shrink-0 rounded-full group-data-[vaul-drawer-direction=bottom]/drawer-content:block" />
       {children}
     </DrawerPrimitive.Content>
-  )
+  );
 
   if (siblingMode) {
-    return content
+    return content;
   }
 
   return (

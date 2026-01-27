@@ -1,10 +1,4 @@
-import * as React from "react";
-
-interface SemanticTokensThumbProps {
-  className?: string;
-}
-
-const SemanticTokensThumb = ({ className }: SemanticTokensThumbProps) => (
+const SemanticTokensThumb = () => (
   <svg
     width="50"
     height="50"

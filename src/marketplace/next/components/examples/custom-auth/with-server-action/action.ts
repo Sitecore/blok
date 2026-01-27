@@ -1,7 +1,7 @@
 "use server";
 
 import { experimental_createXMCClient } from "@sitecore-marketplace-sdk/xmc";
-import { type Xmapp } from "@sitecore-marketplace-sdk/xmc";
+import type { Xmapp } from "@sitecore-marketplace-sdk/xmc";
 
 type Context = {
   sitecoreContextId: string;
@@ -9,7 +9,7 @@ type Context = {
 };
 
 export async function fetchLanguagesAction(
-  context: Context
+  context: Context,
 ): Promise<Xmapp.Language[]> {
   const client = await experimental_createXMCClient({
     getAccessToken: async () => {

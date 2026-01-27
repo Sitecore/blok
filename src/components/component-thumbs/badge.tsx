@@ -32,4 +32,3 @@ const BadgeThumb = ({ className }: { className?: string }) => (
 );
 
 export default BadgeThumb;
-

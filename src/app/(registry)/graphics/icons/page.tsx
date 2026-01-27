@@ -1,6 +1,7 @@
 "use client";
-import { Icon } from "@/lib/icon";
 import { copyToClipboard } from "@/components/docsite/code-block";
+import { Alert, AlertDescription } from "@/components/ui/alert";
+import { CircularProgress } from "@/components/ui/circular-progress";
 import {
   Table,
   TableBody,
@@ -14,11 +15,10 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
+import { Icon } from "@/lib/icon";
 import * as mdiIcons from "@mdi/js";
-import * as logoIcons from "./logo-icons";
 import { Suspense } from "react";
-import { CircularProgress } from "@/components/ui/circular-progress";
-import { Alert, AlertDescription } from "@/components/ui/alert";
+import * as logoIcons from "./logo-icons";
 
 const iconsData = [
   { mdi: "account-circle-outline", usage: "Profile", icon: "", code: "" },
@@ -627,10 +627,10 @@ iconsData.forEach((data) => {
   let allWords = mdi.split("-");
   // capitalize all words => [Account, Circle, Outline]
   allWords = allWords.map(
-    (word) => word.charAt(0).toUpperCase() + word.slice(1)
+    (word) => word.charAt(0).toUpperCase() + word.slice(1),
   );
   // join all words and prefix with 'mdi'=> [mdiAccountCircleOutline]
-  const code = "mdi" + allWords.join("");
+  const code = `mdi${allWords.join("")}`;
   data.icon = code;
   data.code = code;
   // lazy load all icon imports
@@ -645,7 +645,6 @@ export default function IconsPage() {
       </div>
 
       <div className="flex flex-col gap-6 mb-12">
-
         <Alert variant="primary">
           <AlertDescription className="flex flex-row">
             To learn how to implement these icons, see{" "}

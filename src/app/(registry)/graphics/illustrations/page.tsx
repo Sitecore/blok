@@ -1,11 +1,7 @@
 "use client";
 
 import { copyToClipboard } from "@/components/docsite/code-block";
-import {
-  Alert,
-  AlertDescription,
-  AlertTitle,
-} from "@/components/ui/alert";
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import {
   Table,
   TableBody,
@@ -356,7 +352,9 @@ export default function IllustrationsPage() {
             <TableHeader>
               <TableRow>
                 <TableHead className="px-4 min-w-[120px]">Color SVG</TableHead>
-                <TableHead className="px-4 min-w-[120px]">Neutral SVG</TableHead>
+                <TableHead className="px-4 min-w-[120px]">
+                  Neutral SVG
+                </TableHead>
                 <TableHead className="px-4">Color URL</TableHead>
                 <TableHead className="px-4">Neutral URL</TableHead>
                 <TableHead className="px-4">Name</TableHead>
@@ -372,7 +370,7 @@ export default function IllustrationsPage() {
                         <button
                           onClick={() =>
                             copyToClipboard(
-                              `https://delivery-sitecore.sitecorecontenthub.cloud/api/public/content/spot-${name}`
+                              `https://delivery-sitecore.sitecorecontenthub.cloud/api/public/content/spot-${name}`,
                             )
                           }
                           className="cursor-pointer flex items-center"
@@ -393,7 +391,7 @@ export default function IllustrationsPage() {
                         <button
                           onClick={() =>
                             copyToClipboard(
-                              `https://delivery-sitecore.sitecorecontenthub.cloud/api/public/content/spot-${name}-neutral`
+                              `https://delivery-sitecore.sitecorecontenthub.cloud/api/public/content/spot-${name}-neutral`,
                             )
                           }
                           className="cursor-pointer flex items-center"

@@ -68,4 +68,3 @@ const SelectThumb = ({ className }: { className?: string }) => (
 );
 
 export default SelectThumb;
-

@@ -7,6 +7,6 @@ export const siteCard = {
     usage: [
       `import { SiteCard } from "@/components/ui/site-card";`,
       `<SiteCard />`,
-    ]
+    ],
   },
 };

@@ -1,5 +1,5 @@
 import { experimental_createXMCClient } from "@sitecore-marketplace-sdk/xmc";
-import { NextRequest, NextResponse } from "next/server";
+import { type NextRequest, NextResponse } from "next/server";
 
 export async function GET(request: NextRequest) {
   const url = new URL(request.url);
@@ -10,14 +10,14 @@ export async function GET(request: NextRequest) {
   if (!contextId) {
     return NextResponse.json(
       { error: "Context ID is required" },
-      { status: 400 }
+      { status: 400 },
     );
   }
 
   if (!accessToken) {
     return NextResponse.json(
       { error: "Access token is required" },
-      { status: 401 }
+      { status: 401 },
     );
   }
 
@@ -40,7 +40,7 @@ export async function GET(request: NextRequest) {
     console.error("Error fetching languages", error);
     return NextResponse.json(
       { error: "Failed to fetch languages" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

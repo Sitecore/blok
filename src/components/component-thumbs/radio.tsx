@@ -1,5 +1,3 @@
-import * as React from "react";
-
 interface RadioThumbProps {
   className?: string;
 }
@@ -46,4 +44,3 @@ const RadioThumb = ({ className }: RadioThumbProps) => (
 );
 
 export default RadioThumb;
-

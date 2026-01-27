@@ -1,10 +1,4 @@
-import * as React from "react";
-
-interface spacingThumbProps {
-  className?: string;
-}
-
-const SpacingThumb = ({ className }: spacingThumbProps) => (
+const SpacingThumb = () => (
   <svg
     width="59"
     height="59"

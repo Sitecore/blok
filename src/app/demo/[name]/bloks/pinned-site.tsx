@@ -7,6 +7,6 @@ export const pinnedSite = {
     usage: [
       `import { PinnedSitesSection } from "@/components/ui/pinned-sites-section";`,
       `<PinnedSitesSection />`,
-    ]
+    ],
   },
 };

@@ -1,5 +1,5 @@
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 
 export default function RadioGroupDemo() {
   return (
@@ -9,7 +9,11 @@ export default function RadioGroupDemo() {
         <Label htmlFor="r1">Admin</Label>
       </div>
       <div className="flex items-center gap-3">
-        <RadioGroupItem value="comfortable" id="r2" aria-label="Comfortable option" />
+        <RadioGroupItem
+          value="comfortable"
+          id="r2"
+          aria-label="Comfortable option"
+        />
         <Label htmlFor="r2">Write</Label>
       </div>
       <div className="flex items-center gap-3">

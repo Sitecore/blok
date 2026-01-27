@@ -1,15 +1,15 @@
-import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
+import { Button } from "@/components/ui/button";
 import {
   Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
   CardHeader,
   CardTitle,
-  CardDescription,
-  CardContent,
-  CardFooter
 } from "@/components/ui/card";
-import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
+import { Label } from "@/components/ui/label";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 export default function TabsLineVariantDemo() {
   return (
@@ -29,11 +29,19 @@ export default function TabsLineVariantDemo() {
           <CardContent className="grid gap-6">
             <div className="grid gap-3">
               <Label htmlFor="tabs-demo-name">Name</Label>
-              <Input id="tabs-demo-name" defaultValue="Liz" autoComplete="name" />
+              <Input
+                id="tabs-demo-name"
+                defaultValue="Liz"
+                autoComplete="name"
+              />
             </div>
             <div className="grid gap-3">
               <Label htmlFor="tabs-demo-username">Username</Label>
-              <Input id="tabs-demo-username" defaultValue="@liz" autoComplete="username" />
+              <Input
+                id="tabs-demo-username"
+                defaultValue="@liz"
+                autoComplete="username"
+              />
             </div>
           </CardContent>
           <CardFooter>
@@ -52,11 +60,19 @@ export default function TabsLineVariantDemo() {
           <CardContent className="grid gap-6">
             <div className="grid gap-3">
               <Label htmlFor="tabs-demo-current">Current password</Label>
-              <Input id="tabs-demo-current" type="password" autoComplete="current-password" />
+              <Input
+                id="tabs-demo-current"
+                type="password"
+                autoComplete="current-password"
+              />
             </div>
             <div className="grid gap-3">
               <Label htmlFor="tabs-demo-new">New password</Label>
-              <Input id="tabs-demo-new" type="password" autoComplete="new-password" />
+              <Input
+                id="tabs-demo-new"
+                type="password"
+                autoComplete="new-password"
+              />
             </div>
           </CardContent>
           <CardFooter>

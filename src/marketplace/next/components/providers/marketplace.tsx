@@ -1,16 +1,17 @@
 "use client";
 
-import React, {
-  useEffect,
-  useState,
-  ReactNode,
-  createContext,
-  useContext,
-} from "react";
 import {
-  ApplicationContext,
+  type ApplicationContext,
   ClientSDK,
 } from "@sitecore-marketplace-sdk/client";
+import type React from "react";
+import {
+  type ReactNode,
+  createContext,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
 // import { XMC } from "@sitecore-marketplace-sdk/xmc";
 
 interface ClientSDKProviderProps {
@@ -31,7 +32,7 @@ export const MarketplaceProvider: React.FC<ClientSDKProviderProps> = ({
   useEffect(() => {
     if (client) {
       client.query("application.context").then((res) => {
-        if (res && res.data) {
+        if (res?.data) {
           setAppContext(res.data);
           console.log("appContext", res.data);
         }
@@ -99,7 +100,7 @@ export const useMarketplaceClient = () => {
   const context = useContext(ClientSDKContext);
   if (!context) {
     throw new Error(
-      "useMarketplaceClient must be used within a ClientSDKProvider"
+      "useMarketplaceClient must be used within a ClientSDKProvider",
     );
   }
   return context;

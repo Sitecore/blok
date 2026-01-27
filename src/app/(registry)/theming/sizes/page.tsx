@@ -1,5 +1,6 @@
 "use client";
 
+import { CopyableToken } from "@/components/docsite/copyable-token";
 import {
   Table,
   TableBody,
@@ -8,7 +9,6 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { CopyableToken } from "@/components/docsite/copyable-token";
 
 type SizeData = {
   token: string;
@@ -53,7 +53,7 @@ const SIZES_DATA: SizeData[] = [
   { token: "size-72", value: "18rem", pixels: "288px" },
   { token: "size-80", value: "20rem", pixels: "320px" },
   { token: "size-96", value: "24rem", pixels: "384px" },
-  
+
   // Percentage sizes
   { token: "size-1/2", value: "50%", pixels: "50%" },
   { token: "size-1/3", value: "33.333333%", pixels: "33.33%" },
@@ -81,7 +81,7 @@ const SIZES_DATA: SizeData[] = [
   { token: "size-9/12", value: "75%", pixels: "75%" },
   { token: "size-10/12", value: "83.33%", pixels: "83.33%" },
   { token: "size-11/12", value: "91.66%", pixels: "91.66%" },
-  
+
   // Special sizes
   { token: "size-auto", value: "auto", pixels: "auto" },
   { token: "size-full", value: "100%", pixels: "100%" },

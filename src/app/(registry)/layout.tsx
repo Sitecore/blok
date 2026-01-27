@@ -1,14 +1,18 @@
-import { SidebarProvider, SidebarInset } from "@/components/docsite/docsite-sidebar";
-import React, { type ReactNode } from "react";
+import {
+  SidebarInset,
+  SidebarProvider,
+} from "@/components/docsite/docsite-sidebar";
+import type React from "react";
+import type { ReactNode } from "react";
 
+import { DynamicRightSidebar } from "@/components/layout/dynamic-right-sidebar";
 import {
   MobileSidebarTrigger,
-  RegistrySidebar,
   REGISTRY_SIDEBAR_WIDTH,
+  RegistrySidebar,
 } from "@/components/layout/registry-sidebar";
-import { Toaster } from "@/components/ui/sonner";
 import TopBar from "@/components/layout/topbar";
-import { DynamicRightSidebar } from "@/components/layout/dynamic-right-sidebar";
+import { Toaster } from "@/components/ui/sonner";
 
 export default function RegistryLayout({
   children,
@@ -18,17 +22,24 @@ export default function RegistryLayout({
   return (
     <>
       <div className="flex min-h-screen flex-col w-full bg-sidebar">
-      <header className="fixed top-0 left-0 right-0 z-50 border-b bg-background border-border w-full" style={{ transform: 'translateZ(0)', backfaceVisibility: 'hidden' }}>
+        <header
+          className="fixed top-0 left-0 right-0 z-50 border-b bg-background border-border w-full"
+          style={{ transform: "translateZ(0)", backfaceVisibility: "hidden" }}
+        >
           <TopBar />
         </header>
 
         <div className="flex flex-1 relative mt-12 bg-sidebar">
-          <SidebarProvider 
+          <SidebarProvider
             className="flex flex-1 w-full"
-            style={{ "--sidebar-width": REGISTRY_SIDEBAR_WIDTH } as React.CSSProperties}
+            style={
+              {
+                "--sidebar-width": REGISTRY_SIDEBAR_WIDTH,
+              } as React.CSSProperties
+            }
           >
             <RegistrySidebar />
-            
+
             <SidebarInset className="flex flex-col">
               <MobileSidebarTrigger />
               <div className="flex flex-1 w-full">

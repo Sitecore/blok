@@ -97,4 +97,3 @@ const CardThumb = ({ className }: { className?: string }) => (
 );
 
 export default CardThumb;
-

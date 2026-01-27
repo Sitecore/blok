@@ -1,13 +1,13 @@
-import { useState } from "react";
 import { useAppContext } from "@/components/providers/marketplace";
+import { Badge } from "@/components/ui/badge";
 import { CardTitle } from "@/components/ui/card";
 import {
   Collapsible,
   CollapsibleContent,
   CollapsibleTrigger,
 } from "@/components/ui/collapsible";
-import { Badge } from "@/components/ui/badge";
 import { ChevronDown, ChevronRight } from "lucide-react";
+import { useState } from "react";
 
 export const ApplicationContext = () => {
   const appContext = useAppContext();

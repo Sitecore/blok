@@ -1,8 +1,8 @@
 "use client";
 
-import type { ReactNode } from "react";
-import { mdiDotsGrid } from "@mdi/js";
 import { Icon } from "@/lib/icon";
+import { mdiDotsGrid } from "@mdi/js";
+import type { ReactNode } from "react";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -103,13 +103,18 @@ export default function Topbar({
 
         {/* Navigation Menu */}
         {navigation.length > 0 && (
-          <NavigationMenu className="ml-6 md:inline-flex hidden" viewport={false}>
+          <NavigationMenu
+            className="ml-6 md:inline-flex hidden"
+            viewport={false}
+          >
             <NavigationMenuList>
               {navigation.map((item) => (
                 <NavigationMenuItem key={item.id ?? item.label}>
                   {item.children && item.children.length > 0 ? (
                     <>
-                      <NavigationMenuTrigger>{item.label}</NavigationMenuTrigger>
+                      <NavigationMenuTrigger>
+                        {item.label}
+                      </NavigationMenuTrigger>
                       <NavigationMenuContent>
                         <ul className="grid w-[200px] gap-2">
                           {item.children.map((child) => (

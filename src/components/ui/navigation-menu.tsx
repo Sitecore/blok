@@ -1,5 +1,5 @@
-import { mdiChevronDown } from "@mdi/js";
 import { Icon } from "@/lib/icon";
+import { mdiChevronDown } from "@mdi/js";
 import * as NavigationMenuPrimitive from "@radix-ui/react-navigation-menu";
 import { cva } from "class-variance-authority";
 import type * as React from "react";

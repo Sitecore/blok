@@ -1,5 +1,9 @@
+import {
+  InputOTP,
+  InputOTPGroup,
+  InputOTPSlot,
+} from "@/components/ui/inputOtp";
 import { Label } from "@/components/ui/label";
-import { InputOTP, InputOTPGroup, InputOTPSlot } from "@/components/ui/inputOtp";
 
 export default function InputOTPSpacingDemo() {
   return (

@@ -4,14 +4,11 @@ export const switchComponent = {
     defaultComponent: "switch",
   },
   usage: {
-    usage: [
-      `import { Switch } from "@/components/ui/switch";`,
-      `<Switch />`,
-    ]
+    usage: [`import { Switch } from "@/components/ui/switch";`, `<Switch />`],
   },
   components: {
-    Primary: { component: "switch", },
-    Danger: { component: "switch-danger", },
-    Success: { component: "switch-success", },
+    Primary: { component: "switch" },
+    Danger: { component: "switch-danger" },
+    Success: { component: "switch-success" },
   },
 };

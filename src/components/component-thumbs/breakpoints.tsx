@@ -1,5 +1,3 @@
-import * as React from "react";
-
 interface BreakpointsThumbProps {
   className?: string;
 }
@@ -29,4 +27,3 @@ const BreakpointsThumb = ({ className }: BreakpointsThumbProps) => (
 );
 
 export default BreakpointsThumb;
-

@@ -1,22 +1,5 @@
 "use client";
-
-import * as React from "react";
-import {
-  mdiClose,
-  mdiCloudUploadOutline,
-  mdiCloudOffOutline,
-  mdiContentCopy,
-  mdiDotsHorizontal,
-  mdiArchiveOutline,
-  mdiTrashCanOutline,
-} from "@mdi/js";
-import { Icon } from "@/lib/icon";
 import { Button } from "@/components/ui/button";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -24,7 +7,22 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
+import { Icon } from "@/lib/icon";
 import { cn } from "@/lib/utils";
+import {
+  mdiArchiveOutline,
+  mdiClose,
+  mdiCloudOffOutline,
+  mdiCloudUploadOutline,
+  mdiContentCopy,
+  mdiDotsHorizontal,
+  mdiTrashCanOutline,
+} from "@mdi/js";
 
 export interface ActionBarButton {
   label: string;
@@ -134,13 +132,13 @@ export function ActionBar({
       className={cn(
         "fixed bottom-0 left-0 right-0 z-50 px-4 pb-4 transition-transform duration-300 ease-in-out",
         isOpen ? "translate-y-0" : "translate-y-full",
-        className
+        className,
       )}
     >
       <div
         className={cn(
           "flex items-center justify-between gap-4 border-t border-border bg-background rounded-lg shadow-lg px-4 py-3 max-w-2xl w-full",
-          alignClasses[align]
+          alignClasses[align],
         )}
       >
         <div className="flex items-center gap-4">

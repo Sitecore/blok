@@ -7,10 +7,10 @@ export const toggleGroup = {
     usage: [
       `import {\n ToggleGroup,\n ToggleGroupItem\n} from "@/components/ui/toggle-group";`,
       `<ToggleGroup>\n <ToggleGroupItem>\n  <Icon path={mdiFormatBold} />\n </ToggleGroupItem>\n</ToggleGroup>`,
-    ]
+    ],
   },
   components: {
-    "Square Variant": { component: "toggle-group-square", },
-    "Rounded Variant": { component: "toggle-group-rounded", },
+    "Square Variant": { component: "toggle-group-square" },
+    "Rounded Variant": { component: "toggle-group-rounded" },
   },
 };
