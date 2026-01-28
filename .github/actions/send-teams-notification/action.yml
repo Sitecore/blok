@@ -1,0 +1,460 @@
+name: 'Send Teams Notification'
+description: 'Send test results or build status to Teams channel via Power Automate webhook'
+
+inputs:
+  notification-type:
+    description: 'Type of notification (test-results or pr-build)'
+    required: true
+  build-status:
+    description: 'Build status (success or failed)'
+    required: false
+    default: 'success'
+  build-exit-code:
+    description: 'Build exit code'
+    required: false
+    default: '0'
+  test-status:
+    description: 'Test status (passed, failed, or unknown)'
+    required: false
+    default: 'unknown'
+  total:
+    description: 'Total number of tests'
+    required: false
+    default: '0'
+  passed:
+    description: 'Number of passed tests'
+    required: false
+    default: '0'
+  failed:
+    description: 'Number of failed tests'
+    required: false
+    default: '0'
+  skipped:
+    description: 'Number of skipped tests'
+    required: false
+    default: '0'
+  author-name:
+    description: 'Author name'
+    required: false
+    default: ''
+  author-username:
+    description: 'Author username'
+    required: false
+    default: ''
+  pr-number:
+    description: 'PR number (if applicable)'
+    required: false
+    default: ''
+  pr-title:
+    description: 'PR title (if applicable)'
+    required: false
+    default: ''
+  pr-branch:
+    description: 'PR branch name (if applicable)'
+    required: false
+    default: ''
+  base-branch:
+    description: 'Base branch name (if applicable)'
+    required: false
+    default: ''
+  event-type:
+    description: 'Event type (Pull Request or Direct Commit)'
+    required: false
+    default: 'Direct Commit'
+  event-details:
+    description: 'Event details (PR title or commit message)'
+    required: false
+    default: ''
+  webhook-url:
+    description: 'Teams webhook URL (from secrets)'
+    required: true
+  github-server-url:
+    description: 'GitHub server URL'
+    required: false
+    default: ''
+  github-repository:
+    description: 'GitHub repository name'
+    required: false
+    default: ''
+  github-ref-name:
+    description: 'GitHub ref name'
+    required: false
+    default: ''
+  github-sha:
+    description: 'GitHub commit SHA'
+    required: false
+    default: ''
+  github-workflow:
+    description: 'GitHub workflow name'
+    required: false
+    default: ''
+  github-run-number:
+    description: 'GitHub run number'
+    required: false
+    default: ''
+  github-run-id:
+    description: 'GitHub run ID'
+    required: false
+    default: ''
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Send notification to Teams
+      shell: bash
+      if: always()
+      run: |
+        # Determine notification content based on type
+        if [ "${{ inputs.notification-type }}" == "pr-build" ]; then
+          BUILD_STATUS="${{ inputs.build-status }}"
+          BUILD_STATUS="${BUILD_STATUS:-success}"
+          
+          if [ "$BUILD_STATUS" == "failed" ]; then
+            STATUS_EMOJI="❌"
+            STATUS_TEXT="Build Failed"
+            CARD_COLOR="Attention"
+            SUMMARY="PR branch build failed! Please fix build errors before merging."
+          else
+            STATUS_EMOJI="✅"
+            STATUS_TEXT="Build Success"
+            CARD_COLOR="Good"
+            SUMMARY="PR branch build completed successfully!"
+          fi
+          
+          AUTHOR_NAME="${{ inputs.author-name }}"
+          AUTHOR_USERNAME="${{ inputs.author-username }}"
+          PR_NUMBER="${{ inputs.pr-number }}"
+          PR_TITLE="${{ inputs.pr-title }}"
+          PR_BRANCH="${{ inputs.pr-branch }}"
+          BASE_BRANCH="${{ inputs.base-branch }}"
+          PR_URL="${{ inputs.github-server-url }}/${{ inputs.github-repository }}/pull/${PR_NUMBER}"
+          WORKFLOW_RUN_URL="${{ inputs.github-server-url }}/${{ inputs.github-repository }}/actions/runs/${{ inputs.github-run-id }}"
+          
+          # Export all variables as environment variables for Node.js
+          export STATUS_EMOJI="${STATUS_EMOJI}"
+          export STATUS_TEXT="${STATUS_TEXT}"
+          export CARD_COLOR="${CARD_COLOR}"
+          export SUMMARY="${SUMMARY}"
+          export AUTHOR_NAME="${AUTHOR_NAME}"
+          export PR_NUMBER="${PR_NUMBER}"
+          export PR_TITLE="${PR_TITLE}"
+          export PR_BRANCH="${PR_BRANCH}"
+          export BASE_BRANCH="${BASE_BRANCH}"
+          export PR_URL="${PR_URL}"
+          export WORKFLOW_RUN_URL="${WORKFLOW_RUN_URL}"
+          
+          node -e "
+            const fs = require('fs');
+            const payload = {
+              type: 'message',
+              attachments: [{
+                contentType: 'application/vnd.microsoft.card.adaptive',
+                content: {
+                  '\$schema': 'http://adaptivecards.io/schemas/adaptive-card.json',
+                  type: 'AdaptiveCard',
+                  version: '1.5',
+                  body: [
+                    {
+                      type: 'TextBlock',
+                      text: process.env.STATUS_EMOJI + ' PR Branch Build ' + process.env.STATUS_TEXT,
+                      weight: 'Bolder',
+                      size: 'Large',
+                      color: process.env.CARD_COLOR
+                    },
+                    {
+                      type: 'TextBlock',
+                      text: process.env.SUMMARY,
+                      wrap: true
+                    },
+                    {
+                      type: 'FactSet',
+                      facts: [
+                        { title: 'PR #', value: process.env.PR_NUMBER || '' },
+                        { title: 'PR Branch', value: process.env.PR_BRANCH || '' },
+                        { title: 'Target Branch', value: process.env.BASE_BRANCH || '' },
+                        { title: 'Author', value: process.env.AUTHOR_NAME || '' }
+                      ]
+                    },
+                    {
+                      type: 'Container',
+                      separator: true,
+                      items: [
+                        {
+                          type: 'TextBlock',
+                          text: 'PR Details',
+                          weight: 'Bolder'
+                        },
+                        {
+                          type: 'TextBlock',
+                          text: process.env.PR_TITLE || 'No title',
+                          wrap: true
+                        }
+                      ]
+                    }
+                  ],
+                  actions: [
+                    {
+                      type: 'Action.OpenUrl',
+                      title: 'View PR',
+                      url: process.env.PR_URL
+                    },
+                    {
+                      type: 'Action.OpenUrl',
+                      title: 'View Workflow Run',
+                      url: process.env.WORKFLOW_RUN_URL
+                    }
+                  ]
+                }
+              }]
+            };
+            fs.writeFileSync('/tmp/pr_build_payload.json', JSON.stringify(payload, null, 2));
+          "
+          
+          PAYLOAD_FILE="/tmp/pr_build_payload.json"
+        else
+          # Test results notification
+          BUILD_STATUS="${{ inputs.build-status }}"
+          BUILD_STATUS="${BUILD_STATUS:-success}"
+          STATUS="${{ inputs.test-status }}"
+          STATUS="${STATUS:-unknown}"
+          TOTAL="${{ inputs.total }}"
+          TOTAL="${TOTAL:-0}"
+          PASSED="${{ inputs.passed }}"
+          PASSED="${PASSED:-0}"
+          FAILED="${{ inputs.failed }}"
+          FAILED="${FAILED:-0}"
+          SKIPPED="${{ inputs.skipped }}"
+          SKIPPED="${SKIPPED:-0}"
+          
+          if [ "$BUILD_STATUS" == "failed" ]; then
+            OVERALL_STATUS="build_failed"
+            OVERALL_EMOJI="❌"
+            OVERALL_TEXT="Build Failed"
+            OVERALL_COLOR="Attention"
+          elif [ "$STATUS" == "failed" ]; then
+            OVERALL_STATUS="tests_failed"
+            OVERALL_EMOJI="❌"
+            OVERALL_TEXT="Tests Failed"
+            OVERALL_COLOR="Attention"
+          elif [ "$STATUS" == "passed" ]; then
+            OVERALL_STATUS="success"
+            OVERALL_EMOJI="✅"
+            OVERALL_TEXT="Success"
+            OVERALL_COLOR="Good"
+          else
+            OVERALL_STATUS="unknown"
+            OVERALL_EMOJI="⚠️"
+            OVERALL_TEXT="Unknown"
+            OVERALL_COLOR="Attention"
+          fi
+          
+          STATUS_EMOJI="${OVERALL_EMOJI}"
+          STATUS_TEXT="${OVERALL_TEXT}"
+          STATUS_COLOR="${OVERALL_COLOR}"
+          
+          AUTHOR_NAME="${{ inputs.author-name }}"
+          AUTHOR_USERNAME="${{ inputs.author-username }}"
+          WORKFLOW_RUN_URL="${{ inputs.github-server-url }}/${{ inputs.github-repository }}/actions/runs/${{ inputs.github-run-id }}"
+          REPORT_URL="${WORKFLOW_RUN_URL}#artifacts"
+          
+          if [ "${{ inputs.pr-number }}" != "" ]; then
+            EVENT_TYPE="Pull Request"
+            PR_NUMBER="${{ inputs.pr-number }}"
+            PR_TITLE="${{ inputs.pr-title }}"
+            EVENT_URL="${{ inputs.github-server-url }}/${{ inputs.github-repository }}/pull/${PR_NUMBER}"
+            EVENT_DETAILS="PR #${PR_NUMBER}: ${PR_TITLE}"
+          else
+            EVENT_TYPE="Direct Commit"
+            PR_NUMBER=""
+            PR_TITLE=""
+            EVENT_URL="${WORKFLOW_RUN_URL}"
+            EVENT_DETAILS="${{ inputs.event-details }}"
+          fi
+          
+          if [ "$BUILD_STATUS" == "failed" ]; then
+            SUMMARY_MESSAGE="Build failed! Please check the build errors and fix the issues before running tests."
+          elif [ "$STATUS" == "failed" ]; then
+            SUMMARY_MESSAGE="Some tests have failed. Please review the test results and download the report for details."
+          elif [ "$STATUS" == "passed" ]; then
+            SUMMARY_MESSAGE="Build and all tests passed successfully!"
+          else
+            SUMMARY_MESSAGE="Unable to parse test results. Please check the workflow logs for details."
+          fi
+          
+          export BUILD_STATUS="${BUILD_STATUS}"
+          export STATUS="${STATUS}"
+          export STATUS_EMOJI="${STATUS_EMOJI}"
+          export STATUS_TEXT="${STATUS_TEXT}"
+          export STATUS_COLOR="${STATUS_COLOR}"
+          export TOTAL="${TOTAL}"
+          export PASSED="${PASSED}"
+          export FAILED="${FAILED}"
+          export SKIPPED="${SKIPPED}"
+          export SUMMARY_MESSAGE="${SUMMARY_MESSAGE}"
+          export AUTHOR_NAME="${AUTHOR_NAME}"
+          export GITHUB_REPOSITORY="${{ inputs.github-repository }}"
+          export GITHUB_REF_NAME="${{ inputs.github-ref-name }}"
+          export GITHUB_SHA="${{ inputs.github-sha }}"
+          export GITHUB_WORKFLOW="${{ inputs.github-workflow }}"
+          export GITHUB_RUN_NUMBER="${{ inputs.github-run-number }}"
+          export WORKFLOW_RUN_URL="${WORKFLOW_RUN_URL}"
+          export EVENT_TYPE="${EVENT_TYPE}"
+          export EVENT_URL="${EVENT_URL}"
+          export EVENT_DETAILS="${EVENT_DETAILS}"
+          export PR_NUMBER="${PR_NUMBER:-}"
+          export REPORT_URL="${REPORT_URL}"
+          
+          node -e "
+            const fs = require('fs');
+            
+            const buildStatus = process.env.BUILD_STATUS || 'success';
+            const status = process.env.STATUS || 'unknown';
+            const statusEmoji = process.env.STATUS_EMOJI || '⚠️';
+            const statusText = process.env.STATUS_TEXT || 'Unknown';
+            const total = parseInt(process.env.TOTAL || '0');
+            const passed = parseInt(process.env.PASSED || '0');
+            const failed = parseInt(process.env.FAILED || '0');
+            const skipped = parseInt(process.env.SKIPPED || '0');
+            const summary = process.env.SUMMARY_MESSAGE || '';
+            const authorName = process.env.AUTHOR_NAME || '';
+            const repoName = process.env.GITHUB_REPOSITORY || '';
+            const branch = process.env.GITHUB_REF_NAME || '';
+            const commitShort = (process.env.GITHUB_SHA || '').substring(0, 7);
+            const workflowName = process.env.GITHUB_WORKFLOW || '';
+            const runNumber = parseInt(process.env.GITHUB_RUN_NUMBER || '0');
+            const workflowRunUrl = process.env.WORKFLOW_RUN_URL || '';
+            const eventType = process.env.EVENT_TYPE || '';
+            const eventDetails = process.env.EVENT_DETAILS || '';
+            const eventUrl = process.env.EVENT_URL || '';
+            const prNumber = process.env.PR_NUMBER || null;
+            
+            let cardColor = 'Attention';
+            let titleText = statusEmoji + ' Playwright Tests ' + statusText;
+            if (status === 'passed' && buildStatus === 'success') {
+              cardColor = 'Good';
+            } else if (buildStatus === 'failed') {
+              cardColor = 'Attention';
+              titleText = '❌ Build Failed - Playwright Tests';
+            }
+            
+            const actions = [
+              {
+                type: 'Action.OpenUrl',
+                title: 'View Workflow Run',
+                url: workflowRunUrl
+              }
+            ];
+            
+            if (prNumber && eventUrl) {
+              actions.push({
+                type: 'Action.OpenUrl',
+                title: 'View PR',
+                url: eventUrl
+              });
+            }
+            
+            const adaptiveCardPayload = {
+              type: 'message',
+              attachments: [
+                {
+                  contentType: 'application/vnd.microsoft.card.adaptive',
+                  content: {
+                    '\$schema': 'http://adaptivecards.io/schemas/adaptive-card.json',
+                    type: 'AdaptiveCard',
+                    version: '1.5',
+                    body: [
+                      {
+                        type: 'TextBlock',
+                        text: titleText,
+                        weight: 'Bolder',
+                        size: 'Large',
+                        color: cardColor
+                      },
+                      {
+                        type: 'TextBlock',
+                        text: summary,
+                        wrap: true
+                      },
+                      {
+                        type: 'FactSet',
+                        facts: [
+                          { title: 'Build Status', value: buildStatus === 'failed' ? 'Failed' : 'Success' },
+                          { title: 'Total Tests', value: total.toString() },
+                          { title: 'Passed', value: passed.toString() },
+                          { title: 'Failed', value: failed.toString() },
+                          { title: 'Skipped', value: skipped.toString() }
+                        ]
+                      },
+                      {
+                        type: 'Container',
+                        separator: true,
+                        items: [
+                          {
+                            type: 'TextBlock',
+                            text: 'Repository',
+                            weight: 'Bolder'
+                          },
+                          {
+                            type: 'FactSet',
+                            facts: [
+                              { title: 'Repo', value: repoName },
+                              { title: 'Branch', value: branch },
+                              { title: 'Commit', value: commitShort },
+                              { title: 'Author', value: authorName }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        type: 'Container',
+                        separator: true,
+                        items: [
+                          {
+                            type: 'TextBlock',
+                            text: 'Workflow',
+                            weight: 'Bolder'
+                          },
+                          {
+                            type: 'FactSet',
+                            facts: [
+                              { title: 'Name', value: workflowName },
+                              { title: 'Run #', value: runNumber.toString() },
+                              { title: 'Event', value: eventDetails }
+                            ]
+                          }
+                        ]
+                      }
+                    ],
+                    actions: actions
+                  }
+                }
+              ]
+            };
+            
+            fs.writeFileSync('/tmp/teams_payload.json', JSON.stringify(adaptiveCardPayload, null, 2));
+          "
+          
+          PAYLOAD_FILE="/tmp/teams_payload.json"
+        fi
+        
+        # Send to Teams webhook
+        WEBHOOK_URL="${{ inputs.webhook-url }}"
+        if [ -z "$WEBHOOK_URL" ] || [ "$WEBHOOK_URL" == "" ]; then
+          echo "Warning: Webhook URL is not set. Skipping Teams notification."
+          exit 0
+        fi
+        
+        echo "Sending notification to Teams..."
+        HTTP_CODE=$(curl -s -o /tmp/teams_response.txt -w "%{http_code}" \
+          -X POST \
+          -H "Content-Type: application/json" \
+          --data-binary @${PAYLOAD_FILE} \
+          "${WEBHOOK_URL}")
+        
+        if [ "$HTTP_CODE" -ge 200 ] && [ "$HTTP_CODE" -lt 300 ]; then
+          echo "Successfully sent notification to Teams (HTTP $HTTP_CODE)"
+        else
+          echo "Warning: Failed to send to Teams (HTTP $HTTP_CODE)"
+        fi
+      continue-on-error: true
+
