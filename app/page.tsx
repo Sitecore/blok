@@ -1,6 +1,4 @@
 
-import Image from "next/image"; 
-
 import { AccordionDemo } from "@/components-demo/accordion-demo"
 import { AlertDemo } from "@/components-demo/alert-demo"
 import { AlertDialogDemo } from "@/components-demo/alert-dialog-demo";
