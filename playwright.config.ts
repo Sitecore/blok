@@ -16,28 +16,45 @@ export default defineConfig({
   /* Maximum time one test can run for. */
   timeout: 120 * 1000, // 2 minutes
   /* Run tests in files in parallel */
-  workers: 1,          // no parallel execution
   fullyParallel: false,
   /* Fail the build on CI if you accidentally left test.only in the source code. */
   forbidOnly: !!process.env.CI,
   /* Retry on CI only */
   retries: process.env.CI ? 2 : 0,
   /* Opt out of parallel tests on CI. */
-  //workers: process.env.CI ? 1 : undefined,
+  workers: 1,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
-  reporter: 'html',
+  reporter: process.env.CI
+    ? [
+        ['list'],
+        ['@estruyf/github-actions-reporter', {
+          title: 'Playwright Test Results',
+          useDetails: true,
+          showError: true,
+          showTags: true,
+          showAnnotations: true,
+          includeResults: ['pass', 'skipped', 'fail', 'flaky'],
+          showArtifactsLink: true
+        }],
+        ['html']
+      ]
+    : 'html',
+  /* Timeout for expect() assertions - increased for CI stability */
+  expect: {
+    timeout: 10000, // 10 seconds for assertions
+  },
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
     /* Base URL to use in actions like `await page.goto('')`. */
-     //baseURL: 'https://qa-automation-nextjs-jmbpxrp6g-vishath-amarasinghes-projects.vercel.app',
-     baseURL: 'http://localhost:3000',
-     viewport: null,
-     ignoreHTTPSErrors: true,
-
+    baseURL: process.env.BASE_URL || 'http://localhost:3000',
+    viewport: null,
+    ignoreHTTPSErrors: true,
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on-first-retry',
     /* Maximum time each action such as `click()` can take. Defaults to 0 (no limit). */
     actionTimeout: 60 * 1000,
+    /* Maximum time for navigation operations (page.goto, etc.) */
+    navigationTimeout: 60 * 1000,
   },
 
   /* Configure projects for major browsers */

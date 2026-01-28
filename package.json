@@ -11,7 +11,10 @@
   "license": "ISC",
   "type": "commonjs",
   "devDependencies": {
-    "@playwright/test": "^1.57.0",
+    "@playwright/test": "^1.58.0",
     "@types/node": "^24.10.1"
+  },
+  "dependencies": {
+    "@estruyf/github-actions-reporter": "^1.10.0"
   }
 }
