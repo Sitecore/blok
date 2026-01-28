@@ -478,6 +478,26 @@ export const rightSidebarMetadata: Record<string, RightSidebarMetadata> = {
       },
     ],
   },
+  filter: {
+    links: {
+      shadcn: "https://ui.shadcn.com/docs/components/filter",
+    },
+    sections: [
+      { id: "preview", title: "Preview" },
+      { id: "installation", title: "Installation" },
+      { id: "usage", title: "Usage" },
+      {
+        id: "examples",
+        title: "Examples",
+        children: [
+          { id: "filter-input", title: "Filter Input" },
+          { id: "filter-single-select", title: "Filter Single Select" },
+          { id: "filter-multi-select", title: "Filter Multi Select" },
+          { id: "filter-toggle", title: "Filter Toggle" },
+        ],
+      },
+    ],
+  },
   "hover-card": {
     links: {
       shadcn: "https://ui.shadcn.com/docs/components/hover-card",

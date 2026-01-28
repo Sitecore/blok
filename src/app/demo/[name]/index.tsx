@@ -28,6 +28,7 @@ import { editable } from "@/app/demo/[name]/ui/editable";
 import { emptyStates } from "@/app/demo/[name]/ui/empty-states";
 import { errorStates } from "@/app/demo/[name]/ui/error-states";
 import { field } from "@/app/demo/[name]/ui/field";
+import { filter } from "@/app/demo/[name]/ui/filter";
 import { icon } from "@/app/demo/[name]/ui/icon-component";
 import { input } from "@/app/demo/[name]/ui/input";
 import { inputGroup } from "@/app/demo/[name]/ui/input-group";
@@ -122,6 +123,7 @@ export const demos: { [name: string]: Demo } = {
   "empty-states": emptyStates,
   "error-states": errorStates,
   field,
+  filter,
   icon,
   input,
   "input-group": inputGroup,
