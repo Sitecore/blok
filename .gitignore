@@ -39,3 +39,11 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# custom exclusions
+app/borderRadius.css
+app/breakpoints.css
+app/colors.css
+app/shadows.css
+app/typography.css
+components/

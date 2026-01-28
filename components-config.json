@@ -1,0 +1,24 @@
+{
+  "bulkInstall": {
+    "url": "https://blok.sitecore.com/r/blok-components.json",
+    "enabled": true
+  },
+  "additionalComponents": [
+    "https://blok.sitecore.com/r/action-bar.json",
+    "https://blok.sitecore.com/r/circular-progress.json",
+    "https://blok.sitecore.com/r/dnd-context.json",
+    "https://blok.sitecore.com/r/drag-overlay.json",
+    "https://blok.sitecore.com/r/draggable.json",
+    "https://blok.sitecore.com/r/droppable.json",
+    "https://blok.sitecore.com/r/icon.json",
+    "https://blok.sitecore.com/r/input-group.json",
+    "https://blok.sitecore.com/r/select-react.json",
+    "https://blok.sitecore.com/r/sidebar.json",
+    "https://blok.sitecore.com/r/slider.json",
+    "https://blok.sitecore.com/r/spinner.json",
+    "https://blok.sitecore.com/r/stack-navigation.json",
+    "https://blok.sitecore.com/r/stepper.json",
+    "https://blok.sitecore.com/r/time-picker.json",
+    "https://blok.sitecore.com/r/topbar.json"
+  ]
+}
