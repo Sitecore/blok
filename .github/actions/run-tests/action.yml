@@ -1,0 +1,215 @@
+name: 'Run Playwright Tests'
+description: 'Install test dependencies, run Playwright tests, and parse results'
+
+inputs:
+  tests-path:
+    description: 'Path to the tests directory'
+    required: true
+    default: 'tests'
+  base-url:
+    description: 'Base URL for tests'
+    required: false
+    default: 'http://localhost:3000'
+
+outputs:
+  exit-code:
+    description: 'Test execution exit code'
+    value: ${{ steps.run-tests.outputs.exit-code }}
+  total:
+    description: 'Total number of tests'
+    value: ${{ steps.parse-results.outputs.total }}
+  passed:
+    description: 'Number of passed tests'
+    value: ${{ steps.parse-results.outputs.passed }}
+  failed:
+    description: 'Number of failed tests'
+    value: ${{ steps.parse-results.outputs.failed }}
+  skipped:
+    description: 'Number of skipped tests'
+    value: ${{ steps.parse-results.outputs.skipped }}
+  status:
+    description: 'Test status (passed, failed, or unknown)'
+    value: ${{ steps.parse-results.outputs.status }}
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Install test dependencies
+      shell: bash
+      working-directory: ./${{ inputs.tests-path }}
+      run: |
+        npm ci
+        # Install GitHub Actions reporter for Playwright
+        npm install @estruyf/github-actions-reporter --save-dev
+    
+    - name: Install Playwright Browsers
+      shell: bash
+      working-directory: ./${{ inputs.tests-path }}
+      run: npx playwright install --with-deps
+    
+    - name: Run Playwright tests
+      id: run-tests
+      shell: bash
+      working-directory: ./${{ inputs.tests-path }}
+      continue-on-error: true
+      run: |
+        set +e
+        # Update playwright.config.ts to use GitHub Actions reporter if not already configured
+        if [ -f "playwright.config.ts" ]; then
+          node -e "
+            const fs = require('fs');
+            let config = fs.readFileSync('playwright.config.ts', 'utf-8');
+            
+            // Check if GitHub Actions reporter is already configured
+            if (!config.includes('@estruyf/github-actions-reporter')) {
+              // Replace reporter configuration
+              config = config.replace(
+                /reporter:\s*(?:'html'|\[\s*'html'\s*\])/,
+                \"reporter: process.env.CI ? [['list'], ['@estruyf/github-actions-reporter', { title: 'Playwright Test Results', useDetails: true, showError: true, showTags: true, showAnnotations: true, includeResults: ['pass', 'skipped', 'fail', 'flaky'], showArtifactsLink: true }], ['html']] : 'html'\"
+              );
+              fs.writeFileSync('playwright.config.ts', config);
+              console.log('Updated playwright.config.ts to use GitHub Actions reporter');
+            }
+          "
+        fi
+        
+        # Run tests - GitHub Actions reporter will automatically create summaries
+        npx playwright test 2>&1 | tee test-output.log
+        TEST_EXIT_CODE=$?
+        echo "exit-code=${TEST_EXIT_CODE}" >> $GITHUB_OUTPUT
+        
+        exit $TEST_EXIT_CODE
+      env:
+        BASE_URL: ${{ inputs.base-url }}
+        CI: true
+    
+    - name: Parse test results
+      id: parse-results
+      shell: bash
+      if: always()
+      working-directory: ./${{ inputs.tests-path }}
+      run: |
+        # Create script to parse Playwright JSON results
+        cat > parse-results.js << 'EOF'
+        const fs = require('fs');
+        const path = require('path');
+        
+        let total = 0, passed = 0, failed = 0, skipped = 0;
+        let status = 'unknown';
+        const exitCode = process.env.EXIT_CODE || '0';
+        
+        try {
+          const lastRunPath = path.join(process.cwd(), 'test-results', '.last-run.json');
+          const testOutputPath = path.join(process.cwd(), 'test-output.log');
+          
+          let jsonData = null;
+          let summaryData = null;
+          
+          if (fs.existsSync(lastRunPath)) {
+            try {
+              jsonData = JSON.parse(fs.readFileSync(lastRunPath, 'utf-8'));
+              console.error(`Found .last-run.json at: ${lastRunPath}`);
+            } catch (e) {
+              console.error(`Error reading .last-run.json:`, e.message);
+            }
+          }
+          
+          if (fs.existsSync(testOutputPath)) {
+            try {
+              const output = fs.readFileSync(testOutputPath, 'utf-8');
+              
+              let match = output.match(/(\d+)\s+passed/i);
+              const passedCount = match ? parseInt(match[1]) : 0;
+              
+              match = output.match(/(\d+)\s+failed/i);
+              const failedCount = match ? parseInt(match[1]) : 0;
+              
+              match = output.match(/(\d+)\s+skipped/i);
+              const skippedCount = match ? parseInt(match[1]) : 0;
+              
+              const lines = output.split('\n').reverse();
+              for (const line of lines.slice(0, 10)) {
+                const lineMatch = line.match(/(?:(\d+)\s+failed[,\s]*)?(?:(\d+)\s+passed)?(?:[,\s]*(\d+)\s+skipped)?/i);
+                if (lineMatch) {
+                  const f = parseInt(lineMatch[1] || '0');
+                  const p = parseInt(lineMatch[2] || '0');
+                  const s = parseInt(lineMatch[3] || '0');
+                  if (p > 0 || f > 0 || s > 0) {
+                    summaryData = {
+                      passed: p || passedCount,
+                      failed: f || failedCount,
+                      skipped: s || skippedCount
+                    };
+                    summaryData.total = summaryData.passed + summaryData.failed + summaryData.skipped;
+                    console.error(`Found summary in output line: "${line.trim()}"`, summaryData);
+                    break;
+                  }
+                }
+              }
+              
+              if (!summaryData && (passedCount > 0 || failedCount > 0 || skippedCount > 0)) {
+                summaryData = {
+                  passed: passedCount,
+                  failed: failedCount,
+                  skipped: skippedCount,
+                  total: passedCount + failedCount + skippedCount
+                };
+                console.error(`Found summary from individual counts:`, summaryData);
+              }
+            } catch (e) {
+              console.error(`Error parsing test output:`, e.message);
+            }
+          }
+          
+          if (summaryData) {
+            total = summaryData.total || 0;
+            passed = summaryData.passed || 0;
+            failed = summaryData.failed || 0;
+            skipped = summaryData.skipped || 0;
+            
+            if (failed > 0) {
+              status = 'failed';
+            } else if (passed > 0 && failed === 0) {
+              status = 'passed';
+            } else {
+              status = 'unknown';
+            }
+          } else if (jsonData) {
+            if (jsonData.status) {
+              status = jsonData.status;
+              if (jsonData.failedTests && Array.isArray(jsonData.failedTests)) {
+                failed = jsonData.failedTests.length;
+              }
+              if (status === 'passed' && total === 0) {
+                passed = 1;
+                total = 1;
+              }
+            }
+          } else {
+            console.error('JSON results file not found in any location, using exit code');
+            if (exitCode !== '0') {
+              status = 'failed';
+            } else {
+              status = 'passed';
+            }
+          }
+        } catch (e) {
+          console.error('Error parsing results:', e.message);
+          if (exitCode !== '0') {
+            status = 'failed';
+          } else {
+            status = 'passed';
+          }
+        }
+        
+        console.log(`total=${total}`);
+        console.log(`passed=${passed}`);
+        console.log(`failed=${failed}`);
+        console.log(`skipped=${skipped}`);
+        console.log(`status=${status}`);
+        
+        console.error(`Test Results: Total=${total}, Passed=${passed}, Failed=${failed}, Skipped=${skipped}, Status=${status}`);
+        EOF
+        
+        EXIT_CODE="${{ steps.run-tests.outputs.exit-code || '0' }}" node parse-results.js >> $GITHUB_OUTPUT
+
