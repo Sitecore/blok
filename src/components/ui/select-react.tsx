@@ -1,5 +1,8 @@
 "use client";
 
+import { Badge } from "@/components/ui/badge";
+import { Icon } from "@/lib/icon";
+import { mdiCheck, mdiChevronDown, mdiClose } from "@mdi/js";
 import * as React from "react";
 import ReactSelect, {
   type Props as ReactSelectProps,
@@ -13,9 +16,6 @@ import ReactSelect, {
   type MultiValueGenericProps,
   type OptionProps,
 } from "react-select";
-import { mdiCheck, mdiChevronDown, mdiClose } from "@mdi/js";
-import { Icon } from "@/lib/icon";
-import { Badge } from "@/components/ui/badge";
 
 import { cn } from "@/lib/utils";
 
@@ -140,7 +140,7 @@ function SelectReact<
         "dark:bg-input/30 dark:hover:bg-input/50",
         // Remove default react-select background
         "bg-transparent",
-        className
+        className,
       ),
     placeholder: () => "text-muted-foreground",
     input: () => "text-foreground",
@@ -154,7 +154,7 @@ function SelectReact<
       cn(
         "bg-popover text-popover-foreground relative z-50 min-w-[8rem] overflow-hidden rounded-md border shadow-md",
         // Animation classes matching SelectContent
-        "data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95"
+        "data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95",
       ),
     menuList: () => "p-1 max-h-[300px]",
     option: ({ isFocused, isSelected, isDisabled: optionDisabled }) =>
@@ -166,7 +166,7 @@ function SelectReact<
         // Selected state
         isSelected && "bg-accent text-accent-foreground",
         // Disabled state
-        optionDisabled && "pointer-events-none opacity-50"
+        optionDisabled && "pointer-events-none opacity-50",
       ),
     group: () => "",
     groupHeading: () =>
@@ -266,4 +266,3 @@ function SelectReact<
 }
 
 export { SelectReact };
-

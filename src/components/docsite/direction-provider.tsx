@@ -1,15 +1,13 @@
 "use client";
 
+import {
+  getBrowserLanguage,
+  getDirectionFromLanguage,
+} from "@/lib/direction-utils";
 import { DirectionProvider as RadixDirectionProvider } from "@radix-ui/react-direction";
 import { useEffect, useState } from "react";
-import {
-  getDirectionFromLanguage,
-  getBrowserLanguage,
-} from "@/lib/direction-utils";
 
-export function DirectionProvider({
-  children,
-}: { children: React.ReactNode }) {
+export function DirectionProvider({ children }: { children: React.ReactNode }) {
   const [dir, setDir] = useState<"ltr" | "rtl">("ltr");
 
   useEffect(() => {
@@ -45,7 +43,5 @@ export function DirectionProvider({
     };
   }, []);
 
-  return (
-    <RadixDirectionProvider dir={dir}>{children}</RadixDirectionProvider>
-  );
+  return <RadixDirectionProvider dir={dir}>{children}</RadixDirectionProvider>;
 }

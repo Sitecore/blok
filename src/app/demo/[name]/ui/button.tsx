@@ -1,96 +1,20 @@
-import { Button } from "@/components/ui/button";
-import { mdiInformationOutline } from "@mdi/js";
-import { Icon } from "@/lib/icon";
-
 export const button = {
   name: "button",
-  defaultComponent: (<Button variant="default">Click me</Button>),
-  usage: [
-    `import { Button } from "@/components/ui/button"`,
-    `<Button variant=’default’ colorScheme=’default’ size=’default’>Click me</Button>`
-  ],
+  preview: {
+    defaultComponent: "button",
+  },
+  usage: {
+    usage: [
+      `import { Button } from "@/components/ui/button"`,
+      `<Button variant=’default’ colorScheme=’default’ size=’default’>Click me</Button>`,
+    ],
+  },
   components: {
-    Variants: (
-      <div className="flex flex-wrap items-center gap-3">
-        <Button variant="default">Primary</Button>
-        <Button variant="outline">Outline</Button>
-        <Button variant="ghost">Ghost</Button>
-        <Button variant="link">Link</Button>
-      </div>
-    ),
-    Sizing: (
-      <div className="flex flex-wrap items-center gap-3">
-        <Button size="lg">Solid lg</Button>
-        <Button size="default">Solid</Button>
-        <Button size="sm">Solid sm</Button>
-        <Button size="xs">Solid xs</Button>
-      </div>
-    ),
-    "Color Schemes": (
-      <div className="flex flex-wrap items-center gap-3">
-        <Button colorScheme="primary">Default</Button>
-        <Button colorScheme="neutral">Secondary</Button>
-        <Button colorScheme="success">Success</Button>
-        <Button colorScheme="danger">Danger</Button>
-      </div>
-    ),
-    "Icon Sizing": (
-      <div className="flex flex-wrap items-center gap-3">
-        <Button size="icon-lg" aria-label="Help and support">
-          <Icon path={mdiInformationOutline} />
-        </Button>
-        <Button size="icon" aria-label="Get help">
-          <Icon path={mdiInformationOutline} />
-        </Button>
-        <Button size="icon-sm" aria-label="Help">
-          <Icon path={mdiInformationOutline} />
-        </Button>
-        <Button size="icon-xs" aria-label="Info">
-          <Icon path={mdiInformationOutline} />
-        </Button>
-      </div>
-    ),
-    
-    // Icon with Text
-    "Icon with Text": (
-      <div className="flex flex-wrap items-center gap-3">
-        <Button>
-          <Icon path={mdiInformationOutline} className="mr-2" />
-          Icon + Text
-        </Button>
-        <Button colorScheme="success">
-          <Icon path={mdiInformationOutline} className="mr-2" />
-          Success Icon
-        </Button>
-        <Button colorScheme="danger">
-          <Icon path={mdiInformationOutline} className="mr-2" />
-          Danger Icon
-        </Button>
-        <Button variant="outline">
-          <Icon path={mdiInformationOutline} className="mr-2" />
-          Outline Icon
-        </Button>
-        <Button variant="ghost">
-          <Icon path={mdiInformationOutline} className="mr-2" />
-          Ghost Icon
-        </Button>
-        <Button variant="link">
-          <Icon path={mdiInformationOutline} className="mr-2" />
-          link Icon
-        </Button>
-      </div>
-    ),
-    
-    // Disabled States
-    "Disabled States": (
-      <div className="flex flex-wrap items-center gap-3">
-        <Button disabled>Disabled Default</Button>
-        <Button disabled colorScheme="success">Disabled Success</Button>
-        <Button disabled colorScheme="danger">Disabled Danger</Button>
-        <Button disabled variant="outline">Disabled Outline</Button>
-        <Button disabled variant="ghost">Disabled Ghost</Button>
-        <Button disabled variant="link">Disabled Link</Button>
-      </div>
-    ),
+    Variants: { component: "button-variants" },
+    Sizing: { component: "button-sizing" },
+    "Color Schemes": { component: "button-color-schemes" },
+    "Icon Sizing": { component: "button-icon-sizing" },
+    "Icon with Text": { component: "button-icon-text" },
+    "Disabled States": { component: "button-disabled" },
   },
 };

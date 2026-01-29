@@ -1,10 +1,4 @@
-import * as React from "react";
-
-interface BorderRadiusThumbProps {
-  className?: string;
-}
-
-const BorderRadiusThumb = ({ className }: BorderRadiusThumbProps) => (
+const BorderRadiusThumb = () => (
   <svg
     width="59"
     height="59"

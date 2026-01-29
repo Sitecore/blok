@@ -1,5 +1,3 @@
-import * as React from "react";
-
 interface PopoverThumbProps {
   className?: string;
 }
@@ -83,4 +81,3 @@ const PopoverThumb = ({ className }: PopoverThumbProps) => (
 );
 
 export default PopoverThumb;
-

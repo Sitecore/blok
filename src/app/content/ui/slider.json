@@ -1,3 +1,0 @@
-{
-    "Default": "import { Slider } from \"@/components/ui/slider\";\n\nexport default function DefaultDemo() {\n  return (\n    <div className=\"w-md bg-body-bg p-4 rounded-md\">\n      <Slider />\n    </div>\n  );\n}"
-}

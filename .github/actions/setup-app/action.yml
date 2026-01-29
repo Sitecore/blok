@@ -1,0 +1,103 @@
+name: 'Setup and Build Application'
+description: 'Setup Node.js, install dependencies, install components, and build the Next.js application'
+
+inputs:
+  app-path:
+    description: 'Path to the application directory'
+    required: true
+    default: 'app'
+  node-version:
+    description: 'Node.js version to use'
+    required: false
+    default: 'lts/*'
+
+outputs:
+  build-status:
+    description: 'Build status (success or failed)'
+    value: ${{ steps.build.outputs.build-status }}
+  build-exit-code:
+    description: 'Build exit code'
+    value: ${{ steps.build.outputs.build-exit-code }}
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ inputs.node-version }}
+        cache: 'npm'
+        cache-dependency-path: ${{ inputs.app-path }}/package-lock.json
+    
+    - name: Install app dependencies
+      shell: bash
+      working-directory: ./${{ inputs.app-path }}
+      run: npm ci
+    
+    - name: Install Blok components
+      shell: bash
+      working-directory: ./${{ inputs.app-path }}
+      run: |
+        echo "Installing components from configuration..."
+        
+        # Check if components-config.json exists, if not use default
+        if [ -f "components-config.json" ]; then
+          echo "Found components-config.json, reading configuration..."
+          
+          # Install bulk components if enabled
+          BULK_ENABLED=$(node -p "require('./components-config.json').bulkInstall?.enabled !== false")
+          if [ "$BULK_ENABLED" = "true" ]; then
+            BULK_URL=$(node -p "require('./components-config.json').bulkInstall?.url || ''")
+            if [ -n "$BULK_URL" ] && [ "$BULK_URL" != "undefined" ]; then
+              echo "Installing bulk components from: $BULK_URL"
+              npx shadcn@latest add "$BULK_URL" --yes || true
+            fi
+          fi
+          
+          # Install additional components
+          echo "Installing additional components..."
+          node -e "
+            const config = require('./components-config.json');
+            if (config.additionalComponents && Array.isArray(config.additionalComponents)) {
+              config.additionalComponents.forEach(url => {
+                if (typeof url === 'string' && url.trim()) {
+                  console.log(url);
+                }
+              });
+            }
+          " | while IFS= read -r componentUrl; do
+            if [ -n "$componentUrl" ]; then
+              echo "  Installing from: $componentUrl"
+              npx shadcn@latest add "$componentUrl" --yes 2>&1 || echo "    Component installation skipped (may already exist or not available)"
+            fi
+          done
+        else
+          echo "components-config.json not found, using default URL..."
+          npx shadcn@latest add https://blok.sitecore.com/r/blok-components.json --yes || true
+        fi
+        
+        echo "Component installation completed"
+    
+    - name: Build Next.js application
+      id: build
+      shell: bash
+      working-directory: ./${{ inputs.app-path }}
+      continue-on-error: true
+      run: |
+        set +e
+        npm run build
+        BUILD_EXIT_CODE=$?
+        echo "build-exit-code=${BUILD_EXIT_CODE}" >> $GITHUB_OUTPUT
+        if [ $BUILD_EXIT_CODE -eq 0 ]; then
+          echo "build-status=success" >> $GITHUB_OUTPUT
+          echo "Build completed successfully"
+        else
+          echo "build-status=failed" >> $GITHUB_OUTPUT
+          echo "Build failed with exit code: $BUILD_EXIT_CODE"
+          echo "=== Build Error Output ==="
+          npm run build 2>&1 | tail -50 || true
+        fi
+        exit $BUILD_EXIT_CODE
+      env:
+        NODE_ENV: production
+

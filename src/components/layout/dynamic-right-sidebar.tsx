@@ -1,8 +1,8 @@
 "use client";
 
+import { getRightSidebarMetadata } from "@/lib/right-sidebar-metadata";
 import { usePathname } from "next/navigation";
 import { RightSidebar } from "./right-sidebar";
-import { getRightSidebarMetadata } from "@/lib/right-sidebar-metadata";
 
 const HIDDEN_SIDEBAR_PATHS = [
   "/",
@@ -24,14 +24,14 @@ const HIDDEN_SIDEBAR_PATHS = [
   "/graphics/favicons",
   "/graphics/icons",
   "/graphics/illustrations",
-  "/graphics/logos"
+  "/graphics/logos",
 ];
 
 export function DynamicRightSidebar() {
   const pathname = usePathname();
 
   const shouldHideSidebar = HIDDEN_SIDEBAR_PATHS.some(
-    (path) => pathname === path || pathname.endsWith(path)
+    (path) => pathname === path || pathname.endsWith(path),
   );
 
   if (shouldHideSidebar) {

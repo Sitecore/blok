@@ -44,4 +44,3 @@ const BreadcrumbThumb = ({ className }: { className?: string }) => (
 );
 
 export default BreadcrumbThumb;
-

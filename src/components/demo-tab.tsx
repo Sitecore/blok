@@ -1,30 +1,46 @@
-import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs"
 import { CodeBlock } from "@/components/code-block";
-import { ReactNode } from "react";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import type { ReactNode } from "react";
 
 interface DemoTabProps {
-    id?: string;
-    code: string;
-    component: ReactNode;
-    defaultTab?: "preview" | "code";
+  id?: string;
+  code: string;
+  component: ReactNode;
+  defaultTab?: "preview" | "code";
 }
 
-export default function DemoTab({ id, code, component, defaultTab = "preview" }: DemoTabProps) {
-    return (
-        <Tabs id={id} defaultValue={defaultTab} className="gap-0">
-            <TabsList className="w-full rounded-none justify-start">
-                <TabsTrigger value="preview">Preview</TabsTrigger>
-                <TabsTrigger value="code">Code</TabsTrigger>
-                <TabsTrigger value="" className="w-full pointer-events-none" aria-hidden="true" tabIndex={-1}></TabsTrigger>
+export default function DemoTab({
+  id,
+  code,
+  component,
+  defaultTab = "preview",
+}: DemoTabProps) {
+  return (
+    <Tabs id={id} defaultValue={defaultTab} className="gap-0">
+      <TabsList className="w-full rounded-none justify-start">
+        <TabsTrigger value="preview">Preview</TabsTrigger>
+        <TabsTrigger value="code">Code</TabsTrigger>
+        <TabsTrigger
+          value=""
+          className="w-full pointer-events-none"
+          aria-hidden="true"
+          tabIndex={-1}
+        />
+      </TabsList>
+      <TabsContent
+        value="preview"
+        className="min-h-[200px] p-8 bg-subtle-bg flex items-center justify-center rounded-b-md"
+      >
+        {component}
+      </TabsContent>
 
-            </TabsList>
-            <TabsContent value="preview" className="min-h-[200px] p-8 bg-subtle-bg flex items-center justify-center rounded-b-md">
-                {component}
-            </TabsContent>
-
-            <TabsContent value="code" dir="ltr" className="min-h-[200px] rounded-b-md">
-                <CodeBlock code={code} className="rounded-t-none rounded-b-md" />
-            </TabsContent>
-        </Tabs>
-    );
+      <TabsContent
+        value="code"
+        dir="ltr"
+        className="min-h-[200px] rounded-b-md"
+      >
+        <CodeBlock code={code} className="rounded-t-none rounded-b-md" />
+      </TabsContent>
+    </Tabs>
+  );
 }

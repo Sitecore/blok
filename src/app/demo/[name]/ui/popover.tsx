@@ -1,67 +1,12 @@
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover";
-import { Label } from "@radix-ui/react-label";
-
 export const popover = {
   name: "popover",
-  defaultComponent: (
-    <Popover>
-      <PopoverTrigger asChild>
-        <Button variant="default">Open popover</Button>
-      </PopoverTrigger>
-      <PopoverContent className="w-80" align="start">
-        <div className="grid gap-4">
-          <div className="grid gap-0.5">
-            <h4 className="leading-none font-semibold">Dimensions</h4>
-            <p className="text-muted-foreground text-sm">
-              Set the dimensions for the layer.
-            </p>
-          </div>
-          <div className="grid gap-2">
-            <div className="grid grid-cols-3 items-center gap-4">
-              <Label htmlFor="width">Width</Label>
-              <Input
-                id="width"
-                defaultValue="100%"
-                className="col-span-2"
-              />
-            </div>
-            <div className="grid grid-cols-3 items-center gap-4">
-              <Label htmlFor="maxWidth">Max. width</Label>
-              <Input
-                id="maxWidth"
-                defaultValue="300px"
-                className="col-span-2"
-              />
-            </div>
-            <div className="grid grid-cols-3 items-center gap-4">
-              <Label htmlFor="height">Height</Label>
-              <Input
-                id="height"
-                defaultValue="25px"
-                className="col-span-2"
-              />
-            </div>
-            <div className="grid grid-cols-3 items-center gap-4">
-              <Label htmlFor="maxHeight">Max. height</Label>
-              <Input
-                id="maxHeight"
-                defaultValue="none"
-                className="col-span-2"
-              />
-            </div>
-          </div>
-        </div>
-      </PopoverContent>
-    </Popover>
-  ),
-  usage: [
-    `import {\n  Popover,\n  PopoverContent,\n  PopoverTrigger,\n} from "@/components/ui/popover";`,
-    `<Popover>\n <PopoverTrigger>Open</PopoverTrigger>\n <PopoverContent>Place content for the popover here.</PopoverContent>\n</Popover>`,
-  ],
+  preview: {
+    defaultComponent: "popover",
+  },
+  usage: {
+    usage: [
+      `import {\n  Popover,\n  PopoverContent,\n  PopoverTrigger,\n} from "@/components/ui/popover";`,
+      `<Popover>\n <PopoverTrigger>Open</PopoverTrigger>\n <PopoverContent>Place content for the popover here.</PopoverContent>\n</Popover>`,
+    ],
+  },
 };

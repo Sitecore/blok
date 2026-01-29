@@ -1,18 +1,14 @@
-import BasicDragDrop from "@/app/demo/[name]/ui/draggable-basic";
-import CustomHandleDemo from "@/app/demo/[name]/ui/draggable-custom-handle";
-import DragDropSortableDemo from "@/app/demo/[name]/ui/draggable-sortable-drop";
-
 export const draggable = {
   name: "draggable",
-  defaultComponent: (
-    <BasicDragDrop />
-  ),
-  usage: [
-    `import { DndContext, type DragEndEvent } from "@/components/ui/dnd-context";
+  preview: {
+    defaultComponent: "draggable-basic",
+  },
+  usage: {
+    usage: [
+      `import { DndContext, type DragEndEvent } from "@/components/ui/dnd-context";
 import { Draggable } from "@/components/ui/draggable";
 import { Droppable } from "@/components/ui/droppable";`,
-`
-function App() {
+      `function App() {
   const handleDragEnd = (event: DragEndEvent) => {
     const { active, over } = event;
     if (over) {
@@ -31,10 +27,11 @@ function App() {
     </DndContext>
   );
 }`,
-  ],
+    ],
+  },
   components: {
-    "Basic Drag and Drop": <BasicDragDrop />,
-    "Custom Handle": <CustomHandleDemo />,
-    "Drag, Drop & Sort": <DragDropSortableDemo />
+    "Basic Drag and Drop": { component: "draggable-basic" },
+    "Custom Handle": { component: "draggable-custom-handle" },
+    "Drag, Drop & Sort": { component: "draggable-sortable-drop" },
   },
 };

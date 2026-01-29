@@ -1,11 +1,12 @@
 "use client";
 
-import * as React from "react";
-import { useDroppable, type UniqueIdentifier } from "@dnd-kit/core";
 import { cn } from "@/lib/utils";
+import { type UniqueIdentifier, useDroppable } from "@dnd-kit/core";
+import type * as React from "react";
 import { useDndMounted } from "./dnd-context";
 
-export interface DroppableProps extends Omit<React.HTMLAttributes<HTMLDivElement>, "id"> {
+export interface DroppableProps
+  extends Omit<React.HTMLAttributes<HTMLDivElement>, "id"> {
   /** Unique identifier for this droppable area */
   id: UniqueIdentifier;
   /** Whether dropping is disabled */
@@ -42,7 +43,7 @@ function DroppableInner({
         "transition-all duration-200",
         isOver && "ring-2 ring-primary ring-offset-2",
         disabled && "opacity-60",
-        className
+        className,
       )}
       {...props}
     >

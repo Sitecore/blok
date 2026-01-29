@@ -80,5 +80,3 @@ export function AllSitesSection<T extends SiteData>({
     </div>
   );
 }
-
-

@@ -34,4 +34,3 @@ export function CopyableToken({ token }: CopyableTokenProps) {
     </Tooltip>
   );
 }
-

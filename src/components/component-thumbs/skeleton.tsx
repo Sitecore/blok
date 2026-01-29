@@ -1,5 +1,3 @@
-import * as React from "react";
-
 interface SkeletonThumbProps {
   className?: string;
 }
@@ -15,36 +13,11 @@ const SkeletonThumb = ({ className }: SkeletonThumbProps) => (
     preserveAspectRatio="xMidYMid meet"
   >
     <circle cx="76" cy="98" r="23" fill="var(--color-gray-400)" />
-    <rect
-      x="53"
-      y="139"
-      width="294"
-      height="8"
-      fill="var(--color-gray-400)"
-    />
-    <rect
-      x="53"
-      y="165"
-      width="294"
-      height="8"
-      fill="var(--color-gray-400)"
-    />
-    <rect
-      x="53"
-      y="191"
-      width="294"
-      height="8"
-      fill="var(--color-gray-400)"
-    />
-    <rect
-      x="53"
-      y="217"
-      width="163"
-      height="8"
-      fill="var(--color-gray-400)"
-    />
+    <rect x="53" y="139" width="294" height="8" fill="var(--color-gray-400)" />
+    <rect x="53" y="165" width="294" height="8" fill="var(--color-gray-400)" />
+    <rect x="53" y="191" width="294" height="8" fill="var(--color-gray-400)" />
+    <rect x="53" y="217" width="163" height="8" fill="var(--color-gray-400)" />
   </svg>
 );
 
 export default SkeletonThumb;
-

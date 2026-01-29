@@ -1,0 +1,84 @@
+name: PR Build Check
+
+on:
+  workflow_call:
+    inputs:
+      pr-branch:
+        required: true
+        type: string
+      base-branch:
+        required: true
+        type: string
+      pr-number:
+        required: true
+        type: string
+      pr-title:
+        required: true
+        type: string
+      author-name:
+        required: true
+        type: string
+      author-username:
+        required: true
+        type: string
+
+jobs:
+  check-build:
+    timeout-minutes: 30
+    runs-on: ubuntu-latest
+    steps:
+      # Checkout repository (needed for composite actions)
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      
+      # Checkout PR branch
+      - name: Checkout PR branch
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.pr-branch }}
+          path: pr-branch
+      
+      - name: Setup and Build PR branch
+        id: setup-and-build
+        uses: ./.github/actions/setup-app
+        with:
+          app-path: pr-branch
+      
+      - name: Send PR build status to Teams
+        if: always()
+        uses: ./.github/actions/send-teams-notification
+        with:
+          notification-type: pr-build
+          build-status: ${{ steps.setup-and-build.outputs.build-status }}
+          build-exit-code: ${{ steps.setup-and-build.outputs.build-exit-code }}
+          author-name: ${{ inputs.author-name }}
+          author-username: ${{ inputs.author-username }}
+          pr-number: ${{ inputs.pr-number }}
+          pr-title: ${{ inputs.pr-title }}
+          pr-branch: ${{ inputs.pr-branch }}
+          base-branch: ${{ inputs.base-branch }}
+          webhook-url: ${{ secrets.TEAMS_WEBHOOK_URL }}
+          github-server-url: ${{ github.server_url }}
+          github-repository: ${{ github.repository }}
+          github-run-id: ${{ github.run_id }}
+          github-ref-name: ${{ github.ref_name }}
+          github-sha: ${{ github.sha }}
+          github-workflow: ${{ github.workflow }}
+          github-run-number: ${{ github.run_number }}
+        continue-on-error: true
+      
+      - name: Fail if PR build failed
+        if: always()
+        run: |
+          BUILD_STATUS="${{ steps.setup-and-build.outputs.build-status }}"
+          BUILD_EXIT_CODE="${{ steps.setup-and-build.outputs.build-exit-code }}"
+          BUILD_STATUS="${BUILD_STATUS:-success}"
+          
+          if [ "$BUILD_STATUS" == "failed" ] || [ "$BUILD_EXIT_CODE" != "0" ]; then
+            echo "PR branch build failed! Failing workflow..."
+            exit 1
+          else
+            echo "PR branch build passed!"
+            exit 0
+          fi
+

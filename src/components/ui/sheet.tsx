@@ -1,12 +1,12 @@
 "use client";
 
-import * as React from "react";
-import { mdiClose } from "@mdi/js";
 import { Icon } from "@/lib/icon";
+import { mdiClose } from "@mdi/js";
 import * as SheetPrimitive from "@radix-ui/react-dialog";
+import type * as React from "react";
 
-import { cn } from "@/lib/utils";
 import { buttonVariants } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 
 function Sheet({ ...props }: React.ComponentProps<typeof SheetPrimitive.Root>) {
   return <SheetPrimitive.Root data-slot="sheet" {...props} />;
@@ -81,7 +81,7 @@ function SheetContent({
               colorScheme: "neutral",
               size: "icon-sm",
             }),
-            "absolute top-2.5 right-4 opacity-70 transition-opacity hover:opacity-100"
+            "absolute top-2.5 right-4 opacity-70 transition-opacity hover:opacity-100",
           )}
         >
           <Icon path={mdiClose} />

@@ -1,0 +1,92 @@
+"use client";
+
+import { Calendar } from "@/components/ui/calendar";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { format, parseISO } from "date-fns";
+import * as React from "react";
+import type { DateRange } from "react-day-picker";
+import type { DropdownProps } from "react-day-picker";
+
+export function CustomDropdown({
+  options = [],
+  value,
+  onChange,
+  disabled,
+  name,
+  id,
+}: DropdownProps) {
+  return (
+    <Select
+      disabled={disabled}
+      name={name}
+      value={value != null ? String(value) : ""}
+      onValueChange={(val) => {
+        const e = {
+          target: { value: val },
+        } as unknown as React.ChangeEvent<HTMLSelectElement>;
+        onChange?.(e);
+      }}
+    >
+      <SelectTrigger
+        id={id}
+        size="sm"
+        aria-label={value ? undefined : "Select an option"}
+        className="z-50 px-3 text-sm [&_svg:not([class*='text-'])]:text-accent-foreground bg-transparent dark:bg-transparent dark:hover:bg-transparent"
+      >
+        <SelectValue />
+      </SelectTrigger>
+
+      <SelectContent className="rounded-md borde p-0 min-w-20">
+        {options.map(({ value: v, label, disabled }) => (
+          <SelectItem
+            key={String(v)}
+            value={String(v)}
+            disabled={disabled}
+            className="cursor-pointer px-3 py-1.5 text-sm"
+          >
+            {label}
+          </SelectItem>
+        ))}
+      </SelectContent>
+    </Select>
+  );
+}
+
+export function MultiCalendar({
+  numberOfMonths = 1,
+}: { numberOfMonths?: number }) {
+  const [dateRange, setDateRange] = React.useState<DateRange | undefined>({
+    from: parseISO("2025-06-09"),
+    to: parseISO("2025-06-26"),
+  });
+
+  return (
+    <Calendar
+      mode="range"
+      defaultMonth={dateRange?.from}
+      selected={dateRange}
+      onSelect={setDateRange}
+      numberOfMonths={numberOfMonths}
+      className="rounded-lg border shadow-sm"
+      captionLayout="dropdown"
+      components={{ Dropdown: CustomDropdown }}
+      labels={{
+        labelDayButton: (day) => {
+          const visible = format(day, "d");
+          const longLabel = format(day, "PPPP");
+          return `${visible} – ${longLabel}`;
+        },
+      }}
+    />
+  );
+}
+
+export default function MultipleCalendarDemo() {
+  return <MultiCalendar numberOfMonths={2} />;
+}

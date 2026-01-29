@@ -1,5 +1,3 @@
-import * as React from "react";
-
 interface DrawerThumbProps {
   className?: string;
 }
@@ -87,4 +85,3 @@ const DrawerThumb = ({ className }: DrawerThumbProps) => (
 );
 
 export default DrawerThumb;
-

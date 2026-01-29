@@ -1,6 +1,6 @@
+import { cn } from "@/lib/utils";
 import type { ReactNode } from "react";
 import * as React from "react";
-import { cn } from "@/lib/utils";
 
 export interface StackNavigationItem {
   name: string;
@@ -15,7 +15,9 @@ export interface StackNavigationDivider {
   className?: string;
 }
 
-export type StackNavigationElement = StackNavigationItem | StackNavigationDivider;
+export type StackNavigationElement =
+  | StackNavigationItem
+  | StackNavigationDivider;
 
 export interface StackNavigationProps {
   items: StackNavigationElement[];
@@ -37,8 +39,8 @@ export interface StackNavigationProps {
 
   onItemClick?: (
     item: StackNavigationItem,
-    event: React.MouseEvent<HTMLAnchorElement>
-  ) => void | boolean;
+    event: React.MouseEvent<HTMLAnchorElement>,
+  ) => undefined | boolean;
 }
 
 function DefaultNavItem({
@@ -52,8 +54,8 @@ function DefaultNavItem({
   pathname: string;
   onItemClick?: (
     item: StackNavigationItem,
-    event: React.MouseEvent<HTMLAnchorElement>
-  ) => void | boolean;
+    event: React.MouseEvent<HTMLAnchorElement>,
+  ) => undefined | boolean;
 }) {
   const isActive = pathname === item.path;
 
@@ -86,7 +88,7 @@ function DefaultNavItem({
             "no-underline",
             isActive &&
               "bg-primary-bg text-primary-fg hover:bg-primary-bg hover:text-primary-fg font-medium",
-            item.className
+            item.className,
           ),
 
         // --------- HORIZONTAL ---------
@@ -98,8 +100,8 @@ function DefaultNavItem({
             "no-underline",
             isActive &&
               "bg-primary-bg text-primary-fg hover:bg-primary-bg hover:text-primary-fg font-medium",
-            item.className
-          )
+            item.className,
+          ),
       )}
       onContextMenu={(e) => e.preventDefault()}
       aria-label={item.name}
@@ -109,7 +111,7 @@ function DefaultNavItem({
         aria-hidden="true"
         className={cn(
           "shrink-0 flex items-center justify-center",
-          "w-[22px] h-[22px]"
+          "w-[22px] h-[22px]",
         )}
       >
         {item.icon}
@@ -120,7 +122,8 @@ function DefaultNavItem({
         className={cn(
           !isHorizontal &&
             "text-3xs text-center overflow-hidden text-ellipsis whitespace-nowrap w-full block leading-[150%] tracking-normal",
-          isHorizontal && "text-3xs text-center whitespace-nowrap leading-tight"
+          isHorizontal &&
+            "text-3xs text-center whitespace-nowrap leading-tight",
         )}
         title={item.name}
       >
@@ -142,10 +145,16 @@ function DefaultDivider({
   orientation?: "vertical" | "horizontal";
 }) {
   if (orientation === "horizontal") {
-    return <div className={cn("w-px h-6 bg-border opacity-100", divider.className)} />;
+    return (
+      <div
+        className={cn("w-px h-6 bg-border opacity-100", divider.className)}
+      />
+    );
   }
 
-  return <div className={cn("w-14 h-px opacity-100 bg-border", divider.className)} />;
+  return (
+    <div className={cn("w-14 h-px opacity-100 bg-border", divider.className)} />
+  );
 }
 
 export function StackNavigation({
@@ -184,15 +193,15 @@ export function StackNavigation({
             width,
             "bg-background p-1.5 text-sidebar-foreground min-h-full flex flex-col opacity-100",
             shadowClass,
-            className
+            className,
           ),
         isHorizontal &&
           cn(
             " bg-background w-full p-1.5 text-sidebar-foreground",
             shadowClass,
             "flex flex-row items-center p-1.5 overflow-x-auto",
-            className
-          )
+            className,
+          ),
       )}
     >
       {/* HEADER */}
@@ -203,14 +212,15 @@ export function StackNavigation({
       <div
         className={cn(
           !isHorizontal && " flex-1 overflow-auto",
-          isHorizontal && "flex-1 overflow-x-auto"
+          isHorizontal && "flex-1 overflow-x-auto",
         )}
       >
         <nav
           className={cn(
             !isHorizontal && "flex flex-col gap-1",
-            isHorizontal && "flex flex-row items-center justify-center gap-1 h-full",
-            navClassName
+            isHorizontal &&
+              "flex flex-row items-center justify-center gap-1 h-full",
+            navClassName,
           )}
         >
           {items.map((item, index) => {
@@ -232,7 +242,12 @@ export function StackNavigation({
                 {renderItem ? (
                   renderItem(navItem)
                 ) : (
-                  <DefaultNavItem item={navItem} orientation={orientation} pathname={pathname} onItemClick={onItemClick} />
+                  <DefaultNavItem
+                    item={navItem}
+                    orientation={orientation}
+                    pathname={pathname}
+                    onItemClick={onItemClick}
+                  />
                 )}
               </div>
             );

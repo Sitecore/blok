@@ -1,3 +1,0 @@
-{
-    "Default": "import { SelectReact, type SelectReactOption } from \"@/components/ui/select-react\";\n\nconst productOptions: SelectReactOption[] = [\n  { value: \"XMCloud\", label: \"XM Cloud\" },\n  { value: \"contentHub\", label: \"Content Hub\" },\n  { value: \"CDP\", label: \"CDP\" },\n  { value: \"Blok\", label: \"Blok\", disabled: true },\n];\n\nexport default function DefaultDemo() {\n  return (\n    <div className=\"p-2 w-[280px]\">\n      <SelectReact\n        options={productOptions}\n        placeholder=\"Select a product\"\n        aria-label=\"Select a product\"\n      />\n    </div>\n  );\n}"
-}

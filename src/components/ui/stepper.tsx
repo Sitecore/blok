@@ -1,8 +1,8 @@
 "use client";
 
-import * as React from "react";
-import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
+import { cva } from "class-variance-authority";
+import * as React from "react";
 
 export interface StepperStep {
   label: string;
@@ -35,7 +35,7 @@ const stepIconVariants = cva(
       status: "pending",
       size: "default",
     },
-  }
+  },
 );
 
 const stepLabelVariants = cva("font-medium transition-colors", {
@@ -131,13 +131,13 @@ function StepperStepItem({
 
       {/* Connector line - positioned between steps, aligned with circle center */}
       {!isLast && (
-         <div className="flex-1 flex items-center shrink-0">
+        <div className="flex-1 flex items-center shrink-0">
           <div
             className={cn(
               connectorVariants({
                 status: status === "completed" ? "completed" : "pending",
               }),
-              "w-full"
+              "w-full",
             )}
           />
         </div>
@@ -163,8 +163,8 @@ export function Stepper({
           (index < currentStep
             ? "completed"
             : index === currentStep
-            ? "active"
-            : "pending"),
+              ? "active"
+              : "pending"),
       }));
     }
     return steps;
@@ -180,7 +180,7 @@ export function Stepper({
                 className={cn(
                   stepIconVariants({
                     status: step.status || "pending",
-                  })
+                  }),
                 )}
               >
                 {step.status === "completed" ? (
@@ -196,7 +196,7 @@ export function Stepper({
                       status:
                         step.status === "completed" ? "completed" : "pending",
                     }),
-                    "w-0.5 flex-1 mt-2"
+                    "w-0.5 flex-1 mt-2",
                   )}
                 />
               )}
@@ -204,7 +204,7 @@ export function Stepper({
             <div className="flex flex-col flex-1 pb-4">
               <div
                 className={cn(
-                  stepLabelVariants({ status: step.status || "pending" })
+                  stepLabelVariants({ status: step.status || "pending" }),
                 )}
               >
                 {step.label}
@@ -214,7 +214,7 @@ export function Stepper({
                   className={cn(
                     stepDescriptionVariants({
                       status: step.status || "pending",
-                    })
+                    }),
                   )}
                 >
                   {step.description}
@@ -231,7 +231,7 @@ export function Stepper({
     <div
       className={cn(
         "flex items-center p-6 rounded-lg bg-muted/30 w-full gap-4",
-        className
+        className,
       )}
       {...props}
     >

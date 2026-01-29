@@ -1,12 +1,12 @@
 "use client";
 
-import * as React from "react";
-import { mdiClose } from "@mdi/js";
 import { Icon } from "@/lib/icon";
+import { mdiClose } from "@mdi/js";
 import * as DialogPrimitive from "@radix-ui/react-dialog";
+import * as React from "react";
 
-import { cn } from "@/lib/utils";
 import { buttonVariants } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 
 function Dialog({
   ...props
@@ -41,7 +41,7 @@ function DialogOverlay({
       data-slot="dialog-overlay"
       className={cn(
         "data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 fixed inset-0 z-50 bg-black/50",
-        className
+        className,
       )}
       {...props}
     />
@@ -50,7 +50,7 @@ function DialogOverlay({
 
 interface DialogContentProps
   extends React.ComponentProps<typeof DialogPrimitive.Content> {
-  size?: "sm" | "md" | "lg" | "xl" | "full"
+  size?: "sm" | "md" | "lg" | "xl" | "full";
 }
 
 function DialogContent({
@@ -65,33 +65,9 @@ function DialogContent({
     lg: "max-w-2xl",
     xl: "max-w-4xl",
     full: "w-screen h-screen max-w-none max-h-none rounded-none p-0",
-  }
+  };
 
-  function hasCloseButton(node: React.ReactNode): boolean {
-    let found = false
 
-    React.Children.forEach(node, (child) => {
-      if (found) return
-
-      if (
-        React.isValidElement(child) &&
-        (child.type === DialogClose || child.type === DialogPrimitive.Close)
-      ) {
-        found = true
-      } else if (
-        React.isValidElement(child) &&
-        child.props &&
-        typeof child.props === "object" &&
-        "children" in child.props
-      ) {
-        found = hasCloseButton(child.props.children as React.ReactNode)
-      }
-    })
-
-    return found
-  }
-
-  const hasCustomCloseButton = hasCloseButton(children);
 
   return (
     <DialogPortal data-slot="dialog-portal">
@@ -104,27 +80,24 @@ function DialogContent({
             ? sizeClasses[size]
             : "max-w-[calc(100%-2rem)] rounded-lg px-7 py-5",
           size !== "full" && sizeClasses[size],
-          className
+          className,
         )}
         {...props}
       >
         {children}
-
-        {!hasCustomCloseButton && (
           <DialogPrimitive.Close
             className={cn(
               buttonVariants({
                 variant: "ghost",
                 size: "icon-sm",
-                colorScheme:"neutral"
+                colorScheme: "neutral",
               }),
-              "absolute top-2.5 right-4 min-w-0 opacity-70 transition-opacity hover:opacity-100"
+              "absolute top-2.5 right-4 min-w-0 opacity-70 transition-opacity hover:opacity-100",
             )}
           >
             <Icon path={mdiClose} size={0.9} />
             <span className="sr-only">Close</span>
           </DialogPrimitive.Close>
-        )}
       </DialogPrimitive.Content>
     </DialogPortal>
   );
@@ -146,7 +119,7 @@ function DialogFooter({ className, ...props }: React.ComponentProps<"div">) {
       data-slot="dialog-footer"
       className={cn(
         "flex flex-col-reverse gap-2 pt-5 sm:flex-row sm:justify-end",
-        className
+        className,
       )}
       {...props}
     />

@@ -1,9 +1,5 @@
 "use client"; // Remove this line if you are not using Next.js
 
-import * as React from "react";
-import { useState, useMemo } from "react";
-import { mdiAccountPlusOutline, mdiMagnify, mdiPlus, mdiClose } from "@mdi/js";
-import { Icon } from "@/lib/icon";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
@@ -17,7 +13,10 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-
+import { Icon } from "@/lib/icon";
+import { mdiAccountPlusOutline, mdiClose, mdiMagnify, mdiPlus } from "@mdi/js";
+import type * as React from "react";
+import { useMemo, useState } from "react";
 
 // Types
 
@@ -51,11 +50,9 @@ export interface CollaborationProps<T extends User = User> {
   title?: string;
   /** Custom class name */
   className?: string;
-  
-
 
   // API & Customization Props
- 
+
   /** Callback when search query changes - use for API-based search */
   onSearch?: (query: string) => void;
   /** Shows loading spinner in search results */
@@ -77,8 +74,6 @@ export interface CollaborationProps<T extends User = User> {
   /** Custom "no users available" message */
   noUsersAvailableMessage?: string;
 }
-
-
 
 function getInitials(name: string): string {
   return name
@@ -103,21 +98,15 @@ function AvatarTrigger({
 
   return (
     <div className="flex items-center -space-x-2 cursor-pointer">
-      {users.length > 0 && (
-        <>
-          {displayUsers.map((user) => (
-            <Avatar
-              key={user.id}
-              className="size-8 ring-0 border-2 border-white"
-            >
-              <AvatarImage src={user.avatarUrl} alt={user.name} />
-              <AvatarFallback className="text-xs bg-muted">
-                {getInitials(user.name)}
-              </AvatarFallback>
-            </Avatar>
-          ))}
-        </>
-      )}
+      {users.length > 0 &&
+        displayUsers.map((user) => (
+          <Avatar key={user.id} className="size-8 ring-0 border-2 border-white">
+            <AvatarImage src={user.avatarUrl} alt={user.name} />
+            <AvatarFallback className="text-xs bg-muted">
+              {getInitials(user.name)}
+            </AvatarFallback>
+          </Avatar>
+        ))}
       {/* Show +n count when overflow, otherwise show add user icon */}
       {hasOverflow ? (
         <div className="flex size-8 items-center justify-center rounded-full bg-primary-background text-primary-foreground border-2 border-white transition-colors hover:bg-primary hover:text-white">
@@ -210,7 +199,8 @@ export function Collaboration<T extends User = User>({
   isSearching = false,
   searchPlaceholder = "Search",
   getDisplayName = (user: T) => user.name,
-  getAvatarUrl = (user: T) => user.avatarUrl,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  getAvatarUrl: _getAvatarUrl = (user: T) => user.avatarUrl,
   getUserId = (user: T) => user.id,
   disableClientFilter = false,
   emptySearchMessage,
@@ -222,11 +212,16 @@ export function Collaboration<T extends User = User>({
   const [searchQuery, setSearchQuery] = useState("");
 
   // Filter out already added users from available users
-  const addedUserIds = useMemo(() => new Set(users.map((u) => getUserId(u as T))), [users, getUserId]);
+  const addedUserIds = useMemo(
+    () => new Set(users.map((u) => getUserId(u as T))),
+    [users, getUserId],
+  );
 
   const filteredAvailableUsers = useMemo(() => {
-    let filtered = availableUsers.filter((u) => !addedUserIds.has(getUserId(u)));
-    
+    let filtered = availableUsers.filter(
+      (u) => !addedUserIds.has(getUserId(u)),
+    );
+
     if (!disableClientFilter && searchQuery) {
       filtered = filtered.filter((u) => {
         const name = getDisplayName(u).toLowerCase();
@@ -235,9 +230,16 @@ export function Collaboration<T extends User = User>({
         return name.includes(query) || email.includes(query);
       });
     }
-    
+
     return filtered;
-  }, [availableUsers, addedUserIds, searchQuery, disableClientFilter, getDisplayName, getUserId]);
+  }, [
+    availableUsers,
+    addedUserIds,
+    searchQuery,
+    disableClientFilter,
+    getDisplayName,
+    getUserId,
+  ]);
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const query = e.target.value;
@@ -281,9 +283,9 @@ export function Collaboration<T extends User = User>({
             <AvatarTrigger users={users} maxDisplay={maxDisplayAvatars} />
           </button>
         </PopoverTrigger>
-        
-        <PopoverContent 
-          align="end" 
+
+        <PopoverContent
+          align="end"
           sideOffset={8}
           className="w-[368px] p-0 border-0 bg-transparent shadow-none"
         >
@@ -292,7 +294,9 @@ export function Collaboration<T extends User = User>({
             <div className="pb-2">
               <div className="text-[18px] font-semibold leading-[1.2] flex items-baseline gap-1">
                 <span>{title}</span>
-                <span className="text-muted-foreground text-sm">{userCount}</span>
+                <span className="text-muted-foreground text-sm">
+                  {userCount}
+                </span>
               </div>
             </div>
 
@@ -305,16 +309,21 @@ export function Collaboration<T extends User = User>({
                 <div className="space-y-1 max-h-48 overflow-y-auto">
                   {users.map((user) => {
                     const userId = getUserId(user as T);
-                    const currentUserId = currentUser ? getUserId(currentUser as T) : undefined;
+                    const currentUserId = currentUser
+                      ? getUserId(currentUser as T)
+                      : undefined;
                     const isCurrentUserItem = currentUserId === userId;
-                    const canRemove = !isCurrentUserItem || allowRemoveCurrentUser;
+                    const canRemove =
+                      !isCurrentUserItem || allowRemoveCurrentUser;
                     return (
                       <UserListItem
                         key={userId}
                         user={user}
                         isCurrentUser={isCurrentUserItem}
                         isAdded={true}
-                        onRemove={canRemove ? () => handleRemoveUser(userId) : undefined}
+                        onRemove={
+                          canRemove ? () => handleRemoveUser(userId) : undefined
+                        }
                       />
                     );
                   })}
@@ -322,7 +331,10 @@ export function Collaboration<T extends User = User>({
               )}
 
               {/* Second Popover: Add users button -> Add Users Card */}
-              <Popover open={isAddUsersOpen} onOpenChange={handleAddUsersOpenChange}>
+              <Popover
+                open={isAddUsersOpen}
+                onOpenChange={handleAddUsersOpenChange}
+              >
                 <PopoverTrigger asChild>
                   <Button
                     variant="ghost"
@@ -330,11 +342,13 @@ export function Collaboration<T extends User = User>({
                     className="w-full justify-start gap-2 text-muted-foreground hover:text-foreground mt-2 px-1"
                   >
                     <Icon path={mdiAccountPlusOutline} className="size-4" />
-                    <span className="font-semibold leading-[1.2]">Add users</span>
+                    <span className="font-semibold leading-[1.2]">
+                      Add users
+                    </span>
                   </Button>
                 </PopoverTrigger>
 
-                <PopoverContent 
+                <PopoverContent
                   side="bottom"
                   align="center"
                   sideOffset={-8}
@@ -342,7 +356,12 @@ export function Collaboration<T extends User = User>({
                   className="w-[420px] p-0 border-0 bg-transparent shadow-none"
                 >
                   {/* Add Users Panel */}
-                  <Card style="outline" padding="md" elevation="md" className="gap-0">
+                  <Card
+                    style="outline"
+                    padding="md"
+                    elevation="md"
+                    className="gap-0"
+                  >
                     <div className="pb-2">
                       <div className="flex items-center justify-between">
                         <div className="text-[18px] font-semibold leading-[1.2]">
@@ -381,22 +400,27 @@ export function Collaboration<T extends User = User>({
                             Searching...
                           </div>
                         )}
-                        
-                        {!isSearching && filteredAvailableUsers.map((user) => (
-                          <UserListItem
-                            key={getUserId(user)}
-                            user={user}
-                            isAdded={false}
-                            onAdd={() => handleAddUser(user)}
-                          />
-                        ))}
-                        
-                        {!isSearching && filteredAvailableUsers.length === 0 && searchQuery && (
-                          <div className="text-sm text-muted-foreground py-4 text-center">
-                            {emptySearchMessage || `No users found matching "${searchQuery}"`}
-                          </div>
-                        )}
-                        {!isSearching && filteredAvailableUsers.length === 0 &&
+
+                        {!isSearching &&
+                          filteredAvailableUsers.map((user) => (
+                            <UserListItem
+                              key={getUserId(user)}
+                              user={user}
+                              isAdded={false}
+                              onAdd={() => handleAddUser(user)}
+                            />
+                          ))}
+
+                        {!isSearching &&
+                          filteredAvailableUsers.length === 0 &&
+                          searchQuery && (
+                            <div className="text-sm text-muted-foreground py-4 text-center">
+                              {emptySearchMessage ||
+                                `No users found matching "${searchQuery}"`}
+                            </div>
+                          )}
+                        {!isSearching &&
+                          filteredAvailableUsers.length === 0 &&
                           !searchQuery &&
                           availableUsers.length > 0 && (
                             <div className="text-sm text-muted-foreground py-4 text-center">

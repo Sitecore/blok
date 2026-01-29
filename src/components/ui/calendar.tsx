@@ -1,9 +1,9 @@
 "use client";
 
-import * as React from "react";
-import { mdiChevronLeft, mdiChevronRight,mdiChevronDown } from "@mdi/js";
 import { Icon } from "@/lib/icon";
+import { mdiChevronLeft, mdiChevronRight } from "@mdi/js";
 import { format } from "date-fns";
+import * as React from "react";
 
 import {
   type DayButton,
@@ -56,7 +56,7 @@ function Calendar({
             colorScheme: "neutral",
             size: "icon",
           }),
-          "size-icon bg-transparent p-0 opacity-50 hover:opacity-100"
+          "size-icon bg-transparent p-0 opacity-50 hover:opacity-100",
         ),
         button_next: cn(
           buttonVariants({
@@ -64,23 +64,23 @@ function Calendar({
             colorScheme: "neutral",
             size: "icon",
           }),
-          "size-icon bg-transparent p-0 opacity-50 hover:opacity-100 "
+          "size-icon bg-transparent p-0 opacity-50 hover:opacity-100 ",
         ),
         month_caption: cn(
           "flex items-center justify-center h-(--cell-size) w-full px-(--cell-size)",
           defaultClassNames.month_caption,
         ),
-       dropdowns: cn(
+        dropdowns: cn(
           "w-full flex items-center text-sm font-medium justify-center h-(--cell-size) gap-1.5",
-          defaultClassNames.dropdowns
+          defaultClassNames.dropdowns,
         ),
         dropdown_root: cn(
           "relative has-focus:border-ring border px-2 border-input has-focus:ring-ring/50 has-focus:ring-[3px] rounded-md",
-          defaultClassNames.dropdown_root
+          defaultClassNames.dropdown_root,
         ),
         dropdown: cn(
           "absolute bg-popover inset-0 opacity-0 pl-4 scrollbar-hidden w-full flex justify-center items-center  ",
-          defaultClassNames.dropdown
+          defaultClassNames.dropdown,
         ),
         caption_label: cn(
           "select-none font-medium",
@@ -109,9 +109,12 @@ function Calendar({
         day_range_end:
           "day-range-end aria-selected:bg-primary-500 aria-selected:text-primary-foreground rounded-r-md rounded-l-none",
 
-        range_start: "day-range-start aria-selected:bg-primary-500 aria-selected:text-primary-foreground rounded-l-md rounded-r-none",
-        range_middle: "aria-selected:bg-primary-bg aria-selected:text-body-text rounded-none",
-        range_end: "day-range-end aria-selected:bg-primary-500 aria-selected:text-primary-foreground rounded-r-md rounded-l-none",
+        range_start:
+          "day-range-start aria-selected:bg-primary-500 aria-selected:text-primary-foreground rounded-l-md rounded-r-none",
+        range_middle:
+          "aria-selected:bg-primary-bg aria-selected:text-body-text rounded-none",
+        range_end:
+          "day-range-end aria-selected:bg-primary-500 aria-selected:text-primary-foreground rounded-r-md rounded-l-none",
         today: cn(
           "bg-accent text-accent-foreground rounded-md data-[selected=true]:rounded-none",
           defaultClassNames.today,
@@ -161,8 +164,7 @@ function Calendar({
             );
           }
           return (
-              <ChevronDownIcon className={cn("size-4", className)} {...props} />
-
+            <ChevronDownIcon className={cn("size-4", className)} {...props} />
           );
         },
         DayButton: CalendarDayButton,
@@ -225,12 +227,11 @@ function CalendarDayButton({
           "bg-primary-bg text-primary-fg hover:bg-primary hover:text-inverse-text rounded-none",
         modifiers.range_end &&
           "bg-primary-500 text-inverse-text rounded-r-md hover:bg-primary-600 hover:text-inverse-text",
-        className
+        className,
       )}
       {...props}
     />
   );
-};
-
+}
 
 export { Calendar, CalendarDayButton };

@@ -1,22 +1,21 @@
 "use client";
 
-import * as React from "react";
-import { mdiMenu } from "@mdi/js";
 import { Icon } from "@/lib/icon";
+import { mdiMenu } from "@mdi/js";
 import { Slot } from "@radix-ui/react-slot";
-import { cva, type VariantProps } from "class-variance-authority";
+import { type VariantProps, cva } from "class-variance-authority";
+import * as React from "react";
 
-import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Separator } from "@/components/ui/separator";
-import { Skeleton } from "@/components/ui/skeleton";
 import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
+import { cn } from "@/lib/utils";
 
 type SidebarContextProps = {
   state: "expanded" | "collapsed";
@@ -33,7 +32,7 @@ function useSidebar() {
     throw new Error("useSidebar must be used within a SidebarProvider.");
   }
   return context;
-};
+}
 
 function SidebarProvider({
   defaultOpen = true,
@@ -59,7 +58,7 @@ function SidebarProvider({
         _setOpen(openState);
       }
     },
-    [setOpenProp, open]
+    [setOpenProp, open],
   );
 
   const toggleSidebar = React.useCallback(() => {
@@ -75,7 +74,7 @@ function SidebarProvider({
       setOpen,
       toggleSidebar,
     }),
-    [state, open, setOpen, toggleSidebar]
+    [state, open, setOpen, toggleSidebar],
   );
 
   return (
@@ -107,7 +106,7 @@ function Sidebar({
       data-state={state}
       className={cn(
         "bg-sidebar text-sidebar-foreground flex h-full flex-col",
-        className
+        className,
       )}
       {...props}
     >
@@ -200,7 +199,7 @@ function SidebarContent({ className, ...props }: React.ComponentProps<"div">) {
       data-sidebar="content"
       className={cn(
         "flex min-h-0 flex-1 flex-col gap-2 overflow-auto",
-        className
+        className,
       )}
       {...props}
     />
@@ -226,7 +225,7 @@ function SidebarMenuItem({ className, ...props }: React.ComponentProps<"li">) {
       className={cn("group/menu-item relative", className)}
       {...props}
     />
-  )
+  );
 }
 
 const sidebarMenuButtonVariants = cva(
@@ -248,7 +247,7 @@ const sidebarMenuButtonVariants = cva(
       variant: "default",
       size: "default",
     },
-  }
+  },
 );
 
 function SidebarMenuButton({

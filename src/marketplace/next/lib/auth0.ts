@@ -1,17 +1,17 @@
 // lib/auth0.js
 import { Auth0Client } from "@auth0/nextjs-auth0/server";
 
-// Initialize the Auth0 client 
+// Initialize the Auth0 client
 export const auth0 = new Auth0Client({
   // Options are loaded from environment variables by default
   // Ensure necessary environment variables are properly set
-  session:{
-    cookie:{
+  session: {
+    cookie: {
       sameSite: "none",
       secure: true,
-    }
+    },
   },
-  transactionCookie:{
+  transactionCookie: {
     sameSite: "none",
     secure: true,
   },
@@ -22,5 +22,5 @@ export const auth0 = new Auth0Client({
     product_codes: `mkp_${process.env.SITECORE_APP_ID}`,
     organization_id: process.env.SITECORE_ORGANIZATION_ID,
     tenant_id: process.env.SITECORE_TENANT_ID,
-  }
+  },
 });

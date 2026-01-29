@@ -1,6 +1,6 @@
-import fs from "fs";
-import path from "path";
-import { convertCssVariablesToObject } from "@/lib/token-utils";
+import fs from "node:fs";
+import path from "node:path";
+import { CopyableToken } from "@/components/docsite/copyable-token";
 import {
   Table,
   TableBody,
@@ -9,7 +9,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { CopyableToken } from "@/components/docsite/copyable-token";
+import { convertCssVariablesToObject } from "@/lib/token-utils";
 
 const cssPath = path.join(process.cwd(), "src", "app", "borderRadius.css");
 const borderRadiusContent = fs.readFileSync(cssPath, "utf-8");
@@ -23,15 +23,13 @@ const NOTES: Record<string, string> = {
 export default function BorderRadiusPage() {
   const borderRadiuses = convertCssVariablesToObject(
     borderRadiusContent,
-    "--rounded-"
+    "--rounded-",
   );
 
   return (
     <div className="container p-5 md:p-10">
       <div className="mb-8">
-        <h1 className="font-semibold text-4xl mb-2">
-          Border radius
-        </h1>
+        <h1 className="font-semibold text-4xl mb-2">Border radius</h1>
       </div>
       <div className="overflow-x-auto">
         <Table>
@@ -46,7 +44,7 @@ export default function BorderRadiusPage() {
           </TableHeader>
           <TableBody>
             {Object.entries(borderRadiuses).map(([key, value]) => {
-              const pxValue = parseFloat(value) * 16;
+              const pxValue = Number.parseFloat(value) * 16;
 
               return (
                 <TableRow key={key}>
@@ -64,7 +62,7 @@ export default function BorderRadiusPage() {
                   </TableCell>
                   <TableCell className="px-4 py-3">
                     <code className="font-mono text-sm">
-                      {isNaN(pxValue) ? value : `${pxValue}px`}
+                      {Number.isNaN(pxValue) ? value : `${pxValue}px`}
                     </code>
                   </TableCell>
                   <TableCell className="px-4 py-3">

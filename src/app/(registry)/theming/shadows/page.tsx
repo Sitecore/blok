@@ -1,6 +1,7 @@
-import fs from "fs";
-import path from "path";
-import { convertCssVariablesToObject } from "@/lib/token-utils";
+import fs from "node:fs";
+import path from "node:path";
+import { CopyableToken } from "@/components/docsite/copyable-token";
+import { Card, CardContent } from "@/components/ui/card";
 import {
   Table,
   TableBody,
@@ -9,8 +10,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { Card, CardContent } from "@/components/ui/card";
-import { CopyableToken } from "@/components/docsite/copyable-token";
+import { convertCssVariablesToObject } from "@/lib/token-utils";
 
 const cssPath = path.join(process.cwd(), "src", "app", "shadows.css");
 const shadowsContent = fs.readFileSync(cssPath, "utf-8");

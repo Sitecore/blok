@@ -1,5 +1,3 @@
-import * as React from "react";
-
 interface TableThumbProps {
   className?: string;
 }
@@ -114,15 +112,8 @@ const TableThumb = ({ className }: TableThumbProps) => (
       d="M280 195.5C280 193.015 282.015 191 284.5 191H324.5C326.985 191 329 193.015 329 195.5C329 197.985 326.985 200 324.5 200H284.5C282.015 200 280 197.985 280 195.5Z"
       fill="var(--color-gray-500)"
     />
-    <rect
-      x="53"
-      y="83"
-      width="294"
-      height="27"
-      fill="var(--color-gray-300)"
-    />
+    <rect x="53" y="83" width="294" height="27" fill="var(--color-gray-300)" />
   </svg>
 );
 
 export default TableThumb;
-

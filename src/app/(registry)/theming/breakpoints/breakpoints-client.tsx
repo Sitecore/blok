@@ -1,7 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { convertCssVariablesToObject } from "@/lib/token-utils";
+import { CopyableToken } from "@/components/docsite/copyable-token";
 import {
   Table,
   TableBody,
@@ -10,7 +9,8 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { CopyableToken } from "@/components/docsite/copyable-token";
+import { convertCssVariablesToObject } from "@/lib/token-utils";
+import { useEffect, useState } from "react";
 
 type Props = {
   content: string;
@@ -19,15 +19,15 @@ type Props = {
 // Helper function to get the current breakpoint name
 const getCurrentBreakpoint = (
   width: number,
-  breakpoints: { [key: string]: string }
+  breakpoints: { [key: string]: string },
 ): string | null => {
   let activeBreakpoint: string | null = null;
 
   const pxBreakpoints: { [key: string]: number } = Object.fromEntries(
     Object.entries(breakpoints).map(([key, value]) => {
-      const remValue = parseFloat(value);
-      return [key, isNaN(remValue) ? 0 : remValue * 16];
-    })
+      const remValue = Number.parseFloat(value);
+      return [key, Number.isNaN(remValue) ? 0 : remValue * 16];
+    }),
   );
 
   const sortedBreakpoints = Object.entries(pxBreakpoints)
@@ -49,7 +49,7 @@ export function BreakpointsClient({ content }: Props) {
   const rawBreakpoints = convertCssVariablesToObject(content, "--breakpoint-");
 
   const filteredBreakpoints = Object.fromEntries(
-    Object.entries(rawBreakpoints).filter(([key]) => key !== "*")
+    Object.entries(rawBreakpoints).filter(([key]) => key !== "*"),
   );
 
   const [windowWidth, setWindowWidth] = useState(0);
@@ -71,14 +71,14 @@ export function BreakpointsClient({ content }: Props) {
       const newWidth = window.innerWidth;
       setWindowWidth(newWidth);
       setCurrentBreakpointName(
-        getCurrentBreakpoint(newWidth, filteredBreakpoints)
+        getCurrentBreakpoint(newWidth, filteredBreakpoints),
       );
     };
 
     if (typeof window !== "undefined") {
       setWindowWidth(window.innerWidth);
       setCurrentBreakpointName(
-        getCurrentBreakpoint(window.innerWidth, filteredBreakpoints)
+        getCurrentBreakpoint(window.innerWidth, filteredBreakpoints),
       );
       window.addEventListener("resize", handleResize);
     }
@@ -93,7 +93,9 @@ export function BreakpointsClient({ content }: Props) {
   return (
     <div className="w-full">
       <div className="mb-2">
-        <p className="text-lg text-muted-foreground font-semibold">Window width: {windowWidth}px</p>
+        <p className="text-lg text-muted-foreground font-semibold">
+          Window width: {windowWidth}px
+        </p>
       </div>
 
       <div className="flex flex-col sm:flex-row items-start sm:items-center gap-2 text-lg mb-10 font-semibold text-muted-foreground">
@@ -102,10 +104,7 @@ export function BreakpointsClient({ content }: Props) {
           const isActive = currentBreakpointName === key;
 
           return (
-            <div
-              key={key}
-              className={isActive ? "block" : "hidden"}
-            >
+            <div key={key} className={isActive ? "block" : "hidden"}>
               {key} - {deviceMap[key] || "N/A"}
             </div>
           );
@@ -127,7 +126,7 @@ export function BreakpointsClient({ content }: Props) {
           </TableHeader>
           <TableBody>
             {Object.entries(filteredBreakpoints).map(([key, value]) => {
-              const pxValue = parseFloat(value) * 16;
+              const pxValue = Number.parseFloat(value) * 16;
 
               return (
                 <TableRow key={key}>
@@ -135,19 +134,13 @@ export function BreakpointsClient({ content }: Props) {
                     <CopyableToken token={key} />
                   </TableCell>
                   <TableCell className="px-4 py-3">
-                    <span className="text-sm">
-                      {deviceMap[key] || "N/A"}
-                    </span>
+                    <span className="text-sm">{deviceMap[key] || "N/A"}</span>
                   </TableCell>
                   <TableCell className="px-4 py-3">
-                    <code className="font-mono text-sm">
-                      {value}
-                    </code>
+                    <code className="font-mono text-sm">{value}</code>
                   </TableCell>
                   <TableCell className="px-4 py-3">
-                    <code className="font-mono text-sm">
-                      {pxValue}px
-                    </code>
+                    <code className="font-mono text-sm">{pxValue}px</code>
                   </TableCell>
                 </TableRow>
               );
@@ -158,4 +151,3 @@ export function BreakpointsClient({ content }: Props) {
     </div>
   );
 }
-

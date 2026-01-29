@@ -1,11 +1,11 @@
 "use client";
 
-import * as React from "react";
 import * as AlertDialogPrimitive from "@radix-ui/react-alert-dialog";
-import { type VariantProps } from "class-variance-authority";
+import type { VariantProps } from "class-variance-authority";
+import type * as React from "react";
 
-import { cn } from "@/lib/utils";
 import { buttonVariants } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 
 function AlertDialog({
   ...props
@@ -38,7 +38,7 @@ function AlertDialogOverlay({
       data-slot="alert-dialog-overlay"
       className={cn(
         "data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 fixed inset-0 z-50 bg-black/50",
-        className
+        className,
       )}
       {...props}
     />

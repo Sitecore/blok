@@ -2,6 +2,8 @@
 
 import { copyToClipboard } from "@/components/docsite/code-block";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+import { Badge } from "@/components/ui/badge";
+import { Card, CardContent } from "@/components/ui/card";
 import {
   Table,
   TableBody,
@@ -15,8 +17,6 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
-import { Card, CardContent } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
 
 const logosData = [
   {
@@ -310,7 +310,7 @@ export default function LogosPage() {
                         <button
                           onClick={() =>
                             copyToClipboard(
-                              `https://delivery-sitecore.sitecorecontenthub.cloud/api/public/content/${filename}`
+                              `https://delivery-sitecore.sitecorecontenthub.cloud/api/public/content/${filename}`,
                             )
                           }
                           className="cursor-pointer h-7 flex items-center"
@@ -331,7 +331,7 @@ export default function LogosPage() {
                         <button
                           onClick={() =>
                             copyToClipboard(
-                              `https://delivery-sitecore.sitecorecontenthub.cloud/api/public/content/${filename}-dark`
+                              `https://delivery-sitecore.sitecorecontenthub.cloud/api/public/content/${filename}-dark`,
                             )
                           }
                           className="cursor-pointer h-7 flex items-center"

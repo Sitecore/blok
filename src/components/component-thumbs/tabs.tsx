@@ -1,5 +1,3 @@
-import * as React from "react";
-
 interface TabsThumbProps {
   className?: string;
 }
@@ -81,4 +79,3 @@ const TabsThumb = ({ className }: TabsThumbProps) => (
 );
 
 export default TabsThumb;
-

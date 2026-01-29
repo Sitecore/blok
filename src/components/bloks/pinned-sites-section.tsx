@@ -116,5 +116,3 @@ export function PinnedSitesSection<T extends SiteData>({
     </div>
   );
 }
-
-
