@@ -67,7 +67,10 @@ test.describe('UI BLOK QA Automation', () => {
 
   test.beforeEach('Base URL', async ({ page }) => {
     // adjust baseURL in playwright config, or use full URL:
-    await page.goto('/', { waitUntil: 'domcontentloaded', timeout: 1200000});
+    // Wait for network to be idle to ensure all components are loaded
+    await page.goto('/', { waitUntil: 'networkidle', timeout: 120000 });
+    // Additional wait to ensure React components are fully rendered
+    await page.waitForLoadState('domcontentloaded');
   });
 
   test('test_Accordion', async ({ page }) => {

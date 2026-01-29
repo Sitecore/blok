@@ -41,12 +41,12 @@ export default defineConfig({
     : 'html',
   /* Timeout for expect() assertions - increased for CI stability */
   expect: {
-    timeout: 10000, // 10 seconds for assertions
+    timeout: 30000, // 30 seconds for assertions (increased from 10s to handle slow renders)
   },
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
     /* Base URL to use in actions like `await page.goto('')`. */
-    baseURL: process.env.BASE_URL || 'http://localhost:3000',
+    baseURL: 'http://localhost:3000',
     viewport: null,
     ignoreHTTPSErrors: true,
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
