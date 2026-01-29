@@ -479,9 +479,7 @@ export const rightSidebarMetadata: Record<string, RightSidebarMetadata> = {
     ],
   },
   filter: {
-    links: {
-      shadcn: "https://ui.shadcn.com/docs/components/filter",
-    },
+    links: {},
     sections: [
       { id: "preview", title: "Preview" },
       { id: "installation", title: "Installation" },
