@@ -89,7 +89,7 @@ function DialogContent({
             className={cn(
               buttonVariants({
                 variant: "ghost",
-                size: "icon",
+                size: "icon-sm",
                 colorScheme: "neutral",
               }),
               "absolute top-2.5 right-4 min-w-0 opacity-70 transition-opacity hover:opacity-100",
@@ -107,7 +107,7 @@ function DialogHeader({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
       data-slot="dialog-header"
-      className={cn("flex flex-col gap-2 text-center sm:text-left", className)}
+      className={cn("flex flex-col gap-0.5 text-center sm:text-left", className)}
       {...props}
     />
   );
@@ -133,7 +133,7 @@ function DialogTitle({
   return (
     <DialogPrimitive.Title
       data-slot="dialog-title"
-      className={cn("pb-5 text-lg leading-none font-semibold", className)}
+      className={cn("text-lg font-semibold", className)}
       {...props}
     />
   );
