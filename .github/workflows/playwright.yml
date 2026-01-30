@@ -50,72 +50,58 @@ jobs:
           ref: QA-Automation_NextFW
           path: app
       
-      # Step 2: Copy Docker files and components-config.json to app directory
-      - name: Copy Docker files and config
+      # Step 2: Verify Docker files exist in app directory (from QA-Automation_NextFW branch)
+      - name: Verify Docker files in app directory
         run: |
-          echo "=== Copying Docker files and configuration ==="
+          echo "=== Verifying Docker files in app directory ==="
+          echo "The QA-Automation_NextFW branch should contain all required files"
+          echo ""
           
-          # Copy components-config.json
-          if [ -f "testing_app/components-config.json" ]; then
-            cp testing_app/components-config.json app/components-config.json
-            echo "✅ Copied components-config.json"
-          else
-            echo "⚠️ components-config.json not found in testing_app, checking app directory..."
-            if [ ! -f "app/components-config.json" ]; then
-              echo "❌ components-config.json not found!"
-              exit 1
-            else
-              echo "✅ components-config.json found in app directory"
-            fi
-          fi
-          
-          # Copy Dockerfile
-          if [ -f "testing_app/Dockerfile" ]; then
-            cp testing_app/Dockerfile app/Dockerfile
-            echo "✅ Copied Dockerfile"
-          else
-            echo "❌ Dockerfile not found in testing_app!"
-            exit 1
-          fi
-          
-          # Copy install-components.sh
-          if [ -f "testing_app/install-components.sh" ]; then
-            cp testing_app/install-components.sh app/install-components.sh
-            echo "✅ Copied install-components.sh"
-          else
-            echo "❌ install-components.sh not found in testing_app!"
-            exit 1
-          fi
-          
-          # Copy .dockerignore
-          if [ -f "testing_app/.dockerignore" ]; then
-            cp testing_app/.dockerignore app/.dockerignore
-            echo "✅ Copied .dockerignore"
-          fi
-      
-      # Step 3: Verify Docker files are in place
-      - name: Verify Docker setup
-        working-directory: ./app
-        run: |
-          echo "=== Verifying Docker setup ==="
-          
-          # Check required files exist
+          # Check required files
           REQUIRED_FILES=("Dockerfile" "install-components.sh" "components-config.json" "components.json" "package.json" "tsconfig.json")
           MISSING_FILES=()
           
           for file in "${REQUIRED_FILES[@]}"; do
-            if [ ! -f "$file" ]; then
-              MISSING_FILES+=("$file")
+            if [ -f "app/$file" ]; then
+              echo "✅ $file found in app directory"
             else
-              echo "✅ $file found"
+              MISSING_FILES+=("$file")
+              echo "❌ $file NOT found in app directory"
             fi
           done
           
+          # Check .dockerignore (optional but recommended)
+          if [ -f "app/.dockerignore" ]; then
+            echo "✅ .dockerignore found in app directory"
+          else
+            echo "⚠️ .dockerignore not found - creating basic one..."
+            echo "node_modules" > app/.dockerignore
+            echo ".next" >> app/.dockerignore
+            echo ".git" >> app/.dockerignore
+            echo "components/ui/" >> app/.dockerignore
+            echo "✅ Created basic .dockerignore"
+          fi
+          
+          # Exit if required files are missing
           if [ ${#MISSING_FILES[@]} -gt 0 ]; then
-            echo "❌ Missing required files:"
+            echo ""
+            echo "❌ Missing required files in QA-Automation_NextFW branch:"
             printf '  - %s\n' "${MISSING_FILES[@]}"
+            echo ""
+            echo "Please commit these files to the QA-Automation_NextFW branch:"
+            echo "  - Dockerfile"
+            echo "  - install-components.sh"
+            echo "  - components-config.json (if not already present)"
             exit 1
           fi
+          
+          echo ""
+          echo "✅ All required files found in app directory"
+      
+      # Step 3: Verify Docker is available
+      - name: Verify Docker is available
+        run: |
+          echo "=== Verifying Docker is available ==="
           
           # Verify Docker is available
           if ! command -v docker &> /dev/null; then
@@ -124,13 +110,6 @@ jobs:
           else
             echo "✅ Docker is available"
             docker --version
-          fi
-          
-          # Check .dockerignore exists (optional but recommended)
-          if [ -f ".dockerignore" ]; then
-            echo "✅ .dockerignore found"
-          else
-            echo "⚠️ .dockerignore not found (components may be copied from repo)"
           fi
           
           echo "✅ Docker setup verified"
