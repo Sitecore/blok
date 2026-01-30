@@ -58,12 +58,7 @@ jobs:
           cache: 'npm'
           cache-dependency-path: app/package-lock.json
       
-      # Step 3: Install dependencies (initial)
-      - name: Install dependencies
-        working-directory: ./app
-        run: npm ci
-      
-      # Step 4: Clean up extra lockfiles
+      # Step 3: Clean up extra lockfiles
       - name: Clean up extra lockfiles
         run: |
           if [ -f "app/app/package-lock.json" ]; then
@@ -74,7 +69,7 @@ jobs:
             echo "✅ No nested lockfiles found"
           fi
       
-      # Step 5: Copy components-config.json to app directory
+      # Step 4: Copy components-config.json to app directory
       - name: Copy components-config.json
         run: |
           if [ -f "testing_app/components-config.json" ]; then
@@ -90,11 +85,12 @@ jobs:
             fi
           fi
       
-      # Step 6: Install components using components-config.json
-      - name: Install Blok components
+      # Step 5: Install components BEFORE npm install (critical for Tailwind scanning)
+      - name: Install Blok components (before dependencies)
         working-directory: ./app
         run: |
-          echo "=== Installing components from configuration ==="
+          echo "=== Installing components BEFORE npm install ==="
+          echo "This ensures components exist when dev server starts, so Tailwind scans them from the beginning"
           echo "Working directory: $(pwd)"
           echo ""
           
@@ -105,13 +101,13 @@ jobs:
           
           echo "Found components-config.json, reading configuration..."
           
-          # Step 1: Install bulk components if enabled
+          # Install bulk components if enabled
           BULK_ENABLED=$(node -p "require('./components-config.json').bulkInstall?.enabled !== false")
           if [ "$BULK_ENABLED" = "true" ]; then
             BULK_URL=$(node -p "require('./components-config.json').bulkInstall?.url || ''")
             if [ -n "$BULK_URL" ] && [ "$BULK_URL" != "undefined" ]; then
               echo ""
-              echo "Step 1: Installing bulk components from: $BULK_URL"
+              echo "Installing bulk components from: $BULK_URL"
               echo "Using --overwrite --yes flags..."
               npx shadcn@latest add "$BULK_URL" --yes --overwrite || true
               echo "✅ Bulk component installation completed"
@@ -120,9 +116,9 @@ jobs:
             echo "Bulk installation is disabled, skipping..."
           fi
           
-          # Step 2: Install all additional components
+          # Install all additional components
           echo ""
-          echo "Step 2: Installing all additional components from components-config.json..."
+          echo "Installing all additional components from components-config.json..."
           echo "Using --overwrite --yes flags for all components..."
           node -e "
             const config = require('./components-config.json');
@@ -142,15 +138,15 @@ jobs:
           done
           echo "✅ Additional component installation completed"
           
-          # Step 3: Wait for installation to complete
+          # Wait for installation to complete
           echo ""
-          echo "Step 3: Waiting for installation to complete..."
+          echo "Waiting for installation to complete..."
           sleep 10
           echo "✅ Wait completed"
           
-          # Step 4: Verify installed components
+          # Verify installed components
           echo ""
-          echo "Step 4: Verifying installed components..."
+          echo "Verifying installed components..."
           if [ -d "components/ui" ]; then
             COMPONENT_COUNT=$(find components/ui -name "*.tsx" 2>/dev/null | wc -l)
             echo "✅ Components installed to: $(pwd)/components/ui"
@@ -163,16 +159,48 @@ jobs:
             echo "❌ Components directory not found at: $(pwd)/components/ui"
             exit 1
           fi
+          
+          # Force filesystem sync to ensure all files are written to disk
+          echo ""
+          echo "Syncing filesystem to ensure all component files are written..."
+          sync 2>/dev/null || true
+          sleep 3
+          echo "✅ Filesystem synced"
       
-      # Step 7: Install dependencies again (after components)
-      - name: Install dependencies after components
+      # Step 5.5: Brief pause before dependency installation
+      - name: Pause before dependency installation
         working-directory: ./app
         run: |
-          echo "Installing dependencies that may have been added by component installation..."
-          npm install
-          echo "✅ Dependencies installation completed"
+          echo "⏳ Brief pause to ensure component files are fully written to disk..."
+          sleep 5
+          echo "✅ Ready to install dependencies"
       
-      # Step 8: Start dev server in background
+      # Step 6: Install ALL dependencies (including new ones from components)
+      - name: Install dependencies (after components)
+        working-directory: ./app
+        run: |
+          echo "Installing all dependencies (including any new ones added by components)..."
+          echo "Using 'npm install' instead of 'npm ci' to handle dependency changes from components"
+          npm install
+          echo "✅ All dependencies installed"
+          
+          # Brief pause to ensure npm install fully completes
+          echo ""
+          echo "⏳ Brief pause to ensure npm install fully completes..."
+          sleep 3
+          sync 2>/dev/null || true
+          echo "✅ Dependencies ready"
+      
+      # Step 6.5: Pause before starting dev server
+      - name: Pause before starting dev server
+        working-directory: ./app
+        run: |
+          echo "⏳ Brief pause before starting dev server..."
+          echo "This ensures all files and dependencies are fully ready"
+          sleep 5
+          echo "✅ Ready to start dev server"
+      
+      # Step 7: Start dev server in background
       - name: Start dev server
         working-directory: ./app
         run: |
@@ -183,7 +211,7 @@ jobs:
           NODE_ENV: development
           PORT: 3000
       
-      # Step 9: Wait for dev server to be ready
+      # Step 8: Wait for dev server to be ready
       - name: Wait for dev server
         run: |
           echo "Waiting for Next.js dev server to start..."
@@ -204,7 +232,7 @@ jobs:
           cat app/dev-server.log || true
           exit 1
       
-      # Step 10: Setup cloudflared tunnel for dev server
+      # Step 9: Setup cloudflared tunnel for dev server
       - name: Expose dev server via tunnel
         id: tunnel-dev
         run: |
