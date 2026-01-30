@@ -89,6 +89,70 @@ jobs:
           cat app/server.log || true
           exit 1
       
+      # Step 7.25: Verify CSS and component styles are being served
+      - name: Verify CSS and component styles
+        run: |
+          echo "=== Verifying CSS and Component Styles ==="
+          echo ""
+          
+          # Check if CSS files are referenced in HTML
+          echo "Checking HTML for CSS links..."
+          HTML_RESPONSE=$(curl -s http://localhost:3000)
+          if echo "$HTML_RESPONSE" | grep -q "\.css\|stylesheet"; then
+            echo "✅ CSS links found in HTML"
+            echo "$HTML_RESPONSE" | grep -o 'href="[^"]*\.css[^"]*"' | head -5
+          else
+            echo "⚠️ No CSS links found in HTML response"
+          fi
+          
+          # Check for component-related CSS variables
+          echo ""
+          echo "Checking for component CSS variables..."
+          if echo "$HTML_RESPONSE" | grep -q "--color-\|--radius\|--background"; then
+            echo "✅ CSS variables found (components should have styles)"
+          else
+            echo "⚠️ CSS variables not found in HTML"
+          fi
+          
+          # Try to fetch a CSS file
+          echo ""
+          echo "Attempting to fetch CSS files..."
+          CSS_URLS=$(echo "$HTML_RESPONSE" | grep -o 'href="[^"]*\.css[^"]*"' | sed 's/href="//;s/"//' | head -3)
+          if [ -n "$CSS_URLS" ]; then
+            for CSS_URL in $CSS_URLS; do
+              # Handle relative URLs
+              if [[ $CSS_URL == /* ]]; then
+                FULL_URL="http://localhost:3000$CSS_URL"
+              else
+                FULL_URL="http://localhost:3000/$CSS_URL"
+              fi
+              echo "  Checking: $FULL_URL"
+              if curl -f -s -I "$FULL_URL" | head -1 | grep -q "200\|304"; then
+                CSS_SIZE=$(curl -s "$FULL_URL" | wc -c)
+                echo "    ✅ CSS file accessible ($CSS_SIZE bytes)"
+              else
+                echo "    ⚠️ CSS file not accessible"
+              fi
+            done
+          fi
+          
+          # Check build output for CSS
+          echo ""
+          echo "Checking build output for CSS files..."
+          if [ -d "app/.next" ]; then
+            CSS_COUNT=$(find app/.next -name "*.css" 2>/dev/null | wc -l)
+            echo "  CSS files in .next: $CSS_COUNT"
+            if [ $CSS_COUNT -gt 0 ]; then
+              echo "  ✅ CSS files found in build output"
+              find app/.next -name "*.css" 2>/dev/null | head -3
+            else
+              echo "  ⚠️ No CSS files found in build output"
+            fi
+          fi
+          
+          echo ""
+          echo "=== Verification Complete ==="
+      
       # Step 7.5: Expose server via public URL using cloudflared
       - name: Expose server via public URL
         id: expose-url
