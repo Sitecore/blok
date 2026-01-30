@@ -1,0 +1,444 @@
+name: Playwright Tests
+
+on:
+  # Run on push (commits) to these branches
+  push:
+    branches: 
+      - main
+      - dev
+      - QA-Automation
+      - QA-Automation_NextFW
+  
+  # Run when PR is opened, updated, or reopened targeting these branches
+  pull_request:
+    branches: 
+      - main
+      - dev
+      - QA-Automation
+      - QA-Automation_NextFW
+    types: [ opened, synchronize, reopened ]
+  
+  # Allow manual trigger from GitHub Actions UI
+  workflow_dispatch:
+
+jobs:
+  # Job to check PR branch build when PR is opened to dev or main
+  check-pr-build:
+    if: github.event_name == 'pull_request' && (github.base_ref == 'dev' || github.base_ref == 'main')
+    uses: ./.github/workflows/pr-build-check.yml
+    with:
+      pr-branch: ${{ github.head_ref }}
+      base-branch: ${{ github.base_ref }}
+      pr-number: ${{ github.event.pull_request.number }}
+      pr-title: ${{ github.event.pull_request.title }}
+      author-name: ${{ github.event.pull_request.user.name || github.event.pull_request.user.login }}
+      author-username: ${{ github.event.pull_request.user.login }}
+    secrets: inherit
+
+  test:
+    timeout-minutes: 60
+    runs-on: ubuntu-latest
+    steps:
+      # Step 0: Checkout repository (needed for composite actions)
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      
+      # Step 1: Checkout QA-Automation_NextFW branch (Next.js app)
+      - name: Checkout Next.js app (QA-Automation_NextFW)
+        uses: actions/checkout@v4
+        with:
+          ref: QA-Automation_NextFW
+          path: app
+      
+      # Step 2-5: Setup and build application using composite action
+      - name: Setup and Build Application
+        id: build-app
+        uses: ./.github/actions/setup-app
+        with:
+          app-path: app
+      
+      # Step 6: Start Next.js server in background
+      - name: Start Next.js server
+        working-directory: ./app
+        run: |
+          npm start > server.log 2>&1 &
+          echo $! > server.pid
+          echo "Server starting with PID: $(cat server.pid)"
+        env:
+          NODE_ENV: production
+          PORT: 3000
+      
+      # Step 7: Wait for server to be ready
+      - name: Wait for server to be ready
+        run: |
+          echo "Waiting for Next.js server to start..."
+          timeout=120
+          elapsed=0
+          while [ $elapsed -lt $timeout ]; do
+            if curl -f -s http://localhost:3000 > /dev/null 2>&1; then
+              echo "✅ Server is ready and responding!"
+              curl -s http://localhost:3000 | head -n 5
+              exit 0
+            fi
+            echo "⏳ Waiting for server... ($elapsed/$timeout seconds)"
+            sleep 3
+            elapsed=$((elapsed + 3))
+          done
+          echo "❌ Server failed to start within $timeout seconds"
+          echo "Server log:"
+          cat app/server.log || true
+          exit 1
+      
+      # Step 8: Checkout QA-Automation branch (tests)
+      - name: Checkout tests (QA-Automation)
+        uses: actions/checkout@v4
+        with:
+          ref: QA-Automation
+          path: tests
+      
+      # Step 9-11: Run tests using composite action
+      - name: Run Playwright Tests
+        id: run-tests
+        uses: ./.github/actions/run-tests
+        with:
+          tests-path: tests
+          base-url: http://localhost:3000
+      
+      # Step 11.6: Get commit/PR author information
+      - name: Get author information
+        id: author-info
+        if: always()
+        run: |
+          if [ "${{ github.event_name }}" == "pull_request" ]; then
+            # For Pull Requests
+            AUTHOR_USERNAME="${{ github.event.pull_request.user.login }}"
+            AUTHOR_NAME="${{ github.event.pull_request.user.name || github.event.pull_request.user.login }}"
+          else
+            # For direct commits/pushes
+            AUTHOR_USERNAME="${{ github.actor }}"
+            AUTHOR_NAME="${{ github.event.head_commit.author.name || github.actor }}"
+          fi
+          
+          echo "username=$AUTHOR_USERNAME" >> $GITHUB_OUTPUT
+          echo "name=$AUTHOR_NAME" >> $GITHUB_OUTPUT
+      
+      # Step 11.7: Generate workflow summary
+      - name: Generate workflow summary
+        if: always()
+        run: |
+          STATUS="${{ steps.run-tests.outputs.status }}"
+          TOTAL="${{ steps.run-tests.outputs.total }}"
+          PASSED="${{ steps.run-tests.outputs.passed }}"
+          FAILED="${{ steps.run-tests.outputs.failed }}"
+          SKIPPED="${{ steps.run-tests.outputs.skipped }}"
+          
+          # Set defaults if empty
+          STATUS="${STATUS:-unknown}"
+          TOTAL="${TOTAL:-0}"
+          PASSED="${PASSED:-0}"
+          FAILED="${FAILED:-0}"
+          SKIPPED="${SKIPPED:-0}"
+          
+          # Determine emoji and text based on status
+          if [ "$STATUS" == "failed" ]; then
+            STATUS_EMOJI="❌"
+            STATUS_TEXT="Failed"
+          elif [ "$STATUS" == "passed" ]; then
+            STATUS_EMOJI="✅"
+            STATUS_TEXT="Passed"
+          else
+            STATUS_EMOJI="⚠️"
+            STATUS_TEXT="Unknown"
+          fi
+          
+          WORKFLOW_RUN_URL="${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+          REPORT_URL="${WORKFLOW_RUN_URL}#artifacts"
+          
+          echo "## Playwright Test Results Summary" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### ${STATUS_EMOJI} Test Status: ${STATUS_TEXT}" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### Test Metrics" >> $GITHUB_STEP_SUMMARY
+          echo "| Metric | Count |" >> $GITHUB_STEP_SUMMARY
+          echo "| --- | --- |" >> $GITHUB_STEP_SUMMARY
+          echo "| **Total Tests** | ${TOTAL} |" >> $GITHUB_STEP_SUMMARY
+          echo "| ✅ **Passed** | ${PASSED} |" >> $GITHUB_STEP_SUMMARY
+          echo "| ❌ **Failed** | ${FAILED} |" >> $GITHUB_STEP_SUMMARY
+          echo "| **Skipped** | ${SKIPPED} |" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### Test Details" >> $GITHUB_STEP_SUMMARY
+          echo "- **Repository**: \`${{ github.repository }}\`" >> $GITHUB_STEP_SUMMARY
+          echo "- **Branch**: \`${{ github.ref_name }}\`" >> $GITHUB_STEP_SUMMARY
+          echo "- **Commit**: \`${{ github.sha }}\`" >> $GITHUB_STEP_SUMMARY
+          echo "- **Author**: ${{ steps.author-info.outputs.name }} (@${{ steps.author-info.outputs.username }})" >> $GITHUB_STEP_SUMMARY
+          echo "- **Workflow**: [${{ github.workflow }}](${WORKFLOW_RUN_URL})" >> $GITHUB_STEP_SUMMARY
+          echo "- **Run Number**: #${{ github.run_number }}" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### Test Report" >> $GITHUB_STEP_SUMMARY
+          echo "- **Playwright Report**: [View Report](${REPORT_URL})" >> $GITHUB_STEP_SUMMARY
+          echo "  - Download the \`playwright-report\` artifact to view the full HTML report" >> $GITHUB_STEP_SUMMARY
+          echo "  - Open \`index.html\` in a browser after downloading" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          
+          if [ "$STATUS" == "failed" ]; then
+            echo "### ⚠️ Action Required" >> $GITHUB_STEP_SUMMARY
+            echo "Some tests have failed. Please review the test results and fix the issues." >> $GITHUB_STEP_SUMMARY
+          elif [ "$STATUS" == "passed" ]; then
+            echo "### All Tests Passed" >> $GITHUB_STEP_SUMMARY
+            echo "All Playwright tests completed successfully!" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "### Status Unknown" >> $GITHUB_STEP_SUMMARY
+            echo "Unable to parse test results. Please check the workflow logs for details." >> $GITHUB_STEP_SUMMARY
+          fi
+      
+      # Step 11.8: Output test status notices
+      - name: Output test status notices
+        if: always()
+        run: |
+          STATUS="${{ steps.run-tests.outputs.status }}"
+          TOTAL="${{ steps.run-tests.outputs.total }}"
+          PASSED="${{ steps.run-tests.outputs.passed }}"
+          FAILED="${{ steps.run-tests.outputs.failed }}"
+          SKIPPED="${{ steps.run-tests.outputs.skipped }}"
+          
+          # Set defaults if empty
+          STATUS="${STATUS:-unknown}"
+          TOTAL="${TOTAL:-0}"
+          PASSED="${PASSED:-0}"
+          FAILED="${FAILED:-0}"
+          SKIPPED="${SKIPPED:-0}"
+          
+          if [ "$STATUS" == "failed" ]; then
+            echo "::error title=Tests Failed::Playwright tests failed. Total: ${TOTAL}, Passed: ${PASSED}, Failed: ${FAILED}, Skipped: ${SKIPPED}"
+            echo "::notice title=Test Results::Total: ${TOTAL} | Passed: ${PASSED} | Failed: ${FAILED} | Skipped: ${SKIPPED}"
+          elif [ "$STATUS" == "passed" ]; then
+            echo "::notice title=Tests Passed::All Playwright tests passed successfully. Total: ${TOTAL}, Passed: ${PASSED}, Skipped: ${SKIPPED}"
+          else
+            echo "::warning title=Test Status Unknown::Unable to parse test results. Total: ${TOTAL}, Passed: ${PASSED}, Failed: ${FAILED}, Skipped: ${SKIPPED}"
+          fi
+          
+          echo "::notice title=Test Report::Download the 'playwright-report' artifact to view the full HTML test report"
+      
+      # Step 11.8.5: Prepare event details for Teams notification
+      - name: Prepare event details
+        id: event-details
+        if: always()
+        run: |
+          if [ "${{ github.event_name }}" == "pull_request" ]; then
+            EVENT_TYPE="Pull Request"
+            EVENT_DETAILS="PR #${{ github.event.pull_request.number }}: ${{ github.event.pull_request.title }}"
+          else
+            EVENT_TYPE="Direct Commit"
+            COMMIT_MSG="${{ github.event.head_commit.message }}"
+            # Truncate if too long
+            if [ ${#COMMIT_MSG} -gt 100 ]; then
+              COMMIT_MSG="${COMMIT_MSG:0:97}..."
+            fi
+            EVENT_DETAILS="Commit: ${COMMIT_MSG}"
+          fi
+          echo "type=${EVENT_TYPE}" >> $GITHUB_OUTPUT
+          echo "details=${EVENT_DETAILS}" >> $GITHUB_OUTPUT
+      
+      # Step 11.9: Send test results to Teams channel
+      - name: Send test results to Teams
+        if: always()
+        uses: ./.github/actions/send-teams-notification
+        with:
+          notification-type: test-results
+          build-status: ${{ steps.build-app.outputs.build-status }}
+          build-exit-code: ${{ steps.build-app.outputs.build-exit-code }}
+          test-status: ${{ steps.run-tests.outputs.status }}
+          total: ${{ steps.run-tests.outputs.total }}
+          passed: ${{ steps.run-tests.outputs.passed }}
+          failed: ${{ steps.run-tests.outputs.failed }}
+          skipped: ${{ steps.run-tests.outputs.skipped }}
+          author-name: ${{ steps.author-info.outputs.name }}
+          author-username: ${{ steps.author-info.outputs.username }}
+          pr-number: ${{ github.event.pull_request.number || '' }}
+          pr-title: ${{ github.event.pull_request.title || '' }}
+          event-type: ${{ steps.event-details.outputs.type }}
+          event-details: ${{ steps.event-details.outputs.details }}
+          webhook-url: ${{ secrets.TEAMS_WEBHOOK_URL }}
+          github-server-url: ${{ github.server_url }}
+          github-repository: ${{ github.repository }}
+          github-ref-name: ${{ github.ref_name }}
+          github-sha: ${{ github.sha }}
+          github-workflow: ${{ github.workflow }}
+          github-run-number: ${{ github.run_number }}
+          github-run-id: ${{ github.run_id }}
+        continue-on-error: true
+      
+      # Step 11.10: Fail workflow if tests failed
+      - name: Fail workflow if tests failed
+        if: always()
+        run: |
+          STATUS="${{ steps.run-tests.outputs.status }}"
+          EXIT_CODE="${{ steps.run-tests.outputs.exit-code }}"
+          
+          # Set default if empty
+          STATUS="${STATUS:-unknown}"
+          EXIT_CODE="${EXIT_CODE:-0}"
+          
+          echo "Test Status: ${STATUS}"
+          echo "Test Exit Code: ${EXIT_CODE}"
+          
+          # Fail the workflow if tests failed
+          if [ "$STATUS" == "failed" ] || [ "$EXIT_CODE" != "0" ]; then
+            echo "❌ Tests failed! Failing workflow..."
+            exit 1
+          else
+            echo "✅ All tests passed!"
+            exit 0
+          fi
+      
+      # Step 12: Cleanup - Stop the server
+      - name: Stop Next.js server
+        if: always()
+        working-directory: ./app
+        run: |
+          echo "Stopping Next.js server..."
+          if [ -f server.pid ]; then
+            PID=$(cat server.pid)
+            echo "Killing process $PID"
+            kill $PID 2>/dev/null || true
+            rm server.pid
+          fi
+          # Also kill any remaining node processes
+          pkill -f "next start" || true
+          pkill -f "node.*next" || true
+          echo "Server stopped"
+      
+      # Step 13-14: Upload artifacts using composite action
+      - name: Upload Test Artifacts
+        uses: ./.github/actions/upload-artifacts
+        with:
+          tests-path: tests
+          app-path: app
+      
+      # Step 15: Comment on PR with test results
+      - name: Comment on PR with test results
+        if: github.event_name == 'pull_request' && always()
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const status = '${{ steps.run-tests.outputs.status }}' || 'unknown';
+            const total = '${{ steps.run-tests.outputs.total }}' || '0';
+            const passed = '${{ steps.run-tests.outputs.passed }}' || '0';
+            const failed = '${{ steps.run-tests.outputs.failed }}' || '0';
+            const skipped = '${{ steps.run-tests.outputs.skipped }}' || '0';
+            const author = '@${{ steps.author-info.outputs.username }}' || '@${{ github.actor }}';
+            const workflowRunUrl = `${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}`;
+            const prUrl = `${{ github.server_url }}/${{ github.repository }}/pull/${{ github.event.pull_request.number }}`;
+            const reportUrl = `${workflowRunUrl}#artifacts`;
+            
+            // Get specific person's GitHub username from secret, or use email-based lookup
+            let specificPerson = '';
+            const notificationUsername = '${{ secrets.NOTIFICATION_USERNAME }}';
+            
+            if (notificationUsername) {
+              specificPerson = `@${notificationUsername}`;
+            } else {
+              // Try to find user by email vishath.amarasinghe@sitecore.com
+              try {
+                const searchResult = await github.rest.search.users({
+                  q: 'vishath.amarasinghe@sitecore.com in:email'
+                });
+                if (searchResult.data.items.length > 0) {
+                  specificPerson = `@${searchResult.data.items[0].login}`;
+                }
+              } catch (e) {
+                // If search fails, mention email in comment
+                specificPerson = 'vishath.amarasinghe@sitecore.com';
+              }
+            }
+            
+            // Determine status emoji and text
+            let statusEmoji, statusText;
+            if (status === 'failed') {
+              statusEmoji = '❌';
+              statusText = 'Failed';
+            } else if (status === 'passed') {
+              statusEmoji = '✅';
+              statusText = 'Passed';
+            } else {
+              statusEmoji = '⚠️';
+              statusText = 'Unknown';
+            }
+            
+            // Build mentions
+            const mentions = specificPerson ? `${author} ${specificPerson}` : author;
+            
+            // Build comment with markdown
+            const comment = `## ${statusEmoji} Playwright Test Results
+            
+            ${mentions}
+            
+            **Status:** ${statusText} | **Workflow:** [${{ github.workflow }}](${workflowRunUrl})
+            
+            | Metric | Count |
+            |--------|-------|
+            | **Total Tests** | ${total} |
+            | ✅ **Passed** | ${passed} |
+            | ❌ **Failed** | ${failed} |
+            | ⏭️ **Skipped** | ${skipped} |
+            
+            ### Details
+            - **Repository:** \`${{ github.repository }}\`
+            - **Branch:** \`${{ github.ref_name }}\`
+            - **Commit:** \`${{ github.sha }}\`
+            - **Author:** ${author}
+            - **Workflow Run:** [View Details](${workflowRunUrl})
+            - **Pull Request:** [View PR](${prUrl})
+            
+            ### Test Report
+            - **Playwright Report:** [Download Report](${reportUrl})
+              - Download the \`playwright-report\` artifact from the workflow run
+              - Extract and open \`index.html\` in a browser to view the full HTML report
+              - The report includes detailed test results, screenshots, and traces
+            
+            ${status === 'failed' || parseInt(failed) > 0 ? '**Some tests failed. Please review the test results and download the report for details.**' : status === 'passed' ? '**All tests passed successfully!**' : '**Unable to parse test results. Please check the workflow logs for details.**'}
+            
+            ---
+            *This is an automated notification from GitHub Actions. Email notifications are sent to mentioned users.*`;
+            
+            // Create comment on PR
+            try {
+              await github.rest.issues.createComment({
+                issue_number: context.issue.number,
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                body: comment
+              });
+            } catch (error) {
+              console.error('Error creating PR comment:', error.message);
+            }
+      
+      # Step 16: Log test results for direct commits
+      - name: Log test results for direct commits
+        if: github.event_name != 'pull_request' && always()
+        run: |
+          STATUS="${{ steps.run-tests.outputs.status }}"
+          TOTAL="${{ steps.run-tests.outputs.total }}"
+          PASSED="${{ steps.run-tests.outputs.passed }}"
+          FAILED="${{ steps.run-tests.outputs.failed }}"
+          SKIPPED="${{ steps.run-tests.outputs.skipped }}"
+          
+          # Set defaults if empty
+          STATUS="${STATUS:-unknown}"
+          TOTAL="${TOTAL:-0}"
+          PASSED="${PASSED:-0}"
+          FAILED="${FAILED:-0}"
+          SKIPPED="${SKIPPED:-0}"
+          
+          echo "## Test Results Summary"
+          echo "Status: ${STATUS}"
+          echo "Total: ${TOTAL}"
+          echo "Passed: ${PASSED}"
+          echo "Failed: ${FAILED}"
+          echo "Skipped: ${SKIPPED}"
+          echo "Author: ${{ steps.author-info.outputs.name }} (@${{ steps.author-info.outputs.username }})"
+          echo "Workflow Run: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+          echo ""
+          echo "Note: GitHub will automatically send email notifications to the commit author."
+          echo "To notify vishath.amarasinghe@sitecore.com, add their GitHub username to NOTIFICATION_USERNAME secret."

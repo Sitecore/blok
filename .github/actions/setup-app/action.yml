@@ -1,0 +1,179 @@
+name: 'Setup and Build Application'
+description: 'Setup Node.js, install dependencies, install components, and build the Next.js application'
+
+inputs:
+  app-path:
+    description: 'Path to the application directory'
+    required: true
+    default: 'app'
+  node-version:
+    description: 'Node.js version to use'
+    required: false
+    default: 'lts/*'
+
+outputs:
+  build-status:
+    description: 'Build status (success or failed)'
+    value: ${{ steps.build.outputs.build-status }}
+  build-exit-code:
+    description: 'Build exit code'
+    value: ${{ steps.build.outputs.build-exit-code }}
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ inputs.node-version }}
+        cache: 'npm'
+        cache-dependency-path: ${{ inputs.app-path }}/package-lock.json
+    
+    - name: Install app dependencies
+      shell: bash
+      working-directory: ./${{ inputs.app-path }}
+      run: npm ci
+    
+    - name: Clean up extra lockfiles
+      shell: bash
+      run: |
+        # Remove any package-lock.json in nested app/ subdirectory that might confuse Next.js
+        # Next.js detects multiple lockfiles and treats them as separate workspaces
+        # This causes path resolution issues with Turbopack
+        if [ -f "${{ inputs.app-path }}/app/package-lock.json" ]; then
+          echo "⚠️ Found nested app/package-lock.json - removing to prevent Next.js workspace confusion"
+          rm -f "${{ inputs.app-path }}/app/package-lock.json"
+          echo "✅ Removed nested lockfile"
+        else
+          echo "✅ No nested lockfiles found"
+        fi
+    
+    - name: Verify components.json location
+      shell: bash
+      working-directory: ./${{ inputs.app-path }}
+      run: |
+        echo "=== Verifying Installation Path ==="
+        echo "Current working directory: $(pwd)"
+        echo ""
+        echo "Checking for components.json:"
+        if [ -f "components.json" ]; then
+          echo "✅ components.json found at: $(pwd)/components.json"
+          echo ""
+          echo "Components will be installed to:"
+          COMPONENTS_PATH=$(node -p "require('./components.json').aliases?.components || '@/components'")
+          echo "  Path from components.json: $COMPONENTS_PATH"
+          echo "  Resolved path: components/ui/ (relative to current directory)"
+        else
+          echo "❌ components.json NOT FOUND in $(pwd)"
+          echo "Looking for components.json in parent directories..."
+          find .. -name "components.json" -type f 2>/dev/null | head -3 || echo "  Not found"
+          exit 1
+        fi
+    
+    - name: Install Blok components
+      shell: bash
+      working-directory: ./${{ inputs.app-path }}
+      run: |
+        echo "=== Installing components from configuration ==="
+        echo "Working directory: $(pwd)"
+        echo ""
+        
+        # Check if components-config.json exists
+        if [ ! -f "components-config.json" ]; then
+          echo "❌ components-config.json not found"
+          exit 1
+        fi
+        
+        echo "Found components-config.json, reading configuration..."
+        
+        # Step 1: Install bulk components if enabled (with --overwrite --yes)
+        BULK_ENABLED=$(node -p "require('./components-config.json').bulkInstall?.enabled !== false")
+        if [ "$BULK_ENABLED" = "true" ]; then
+          BULK_URL=$(node -p "require('./components-config.json').bulkInstall?.url || ''")
+          if [ -n "$BULK_URL" ] && [ "$BULK_URL" != "undefined" ]; then
+            echo ""
+            echo "Step 1: Installing bulk components from: $BULK_URL"
+            echo "Using --overwrite --yes flags..."
+            npx shadcn@latest add "$BULK_URL" --yes --overwrite || true
+            echo "✅ Bulk component installation completed"
+          fi
+        else
+          echo "Bulk installation is disabled, skipping..."
+        fi
+        
+        # Step 2: Install all additional components (with --overwrite --yes)
+        echo ""
+        echo "Step 2: Installing all additional components from components-config.json..."
+        echo "Using --overwrite --yes flags for all components..."
+        node -e "
+          const config = require('./components-config.json');
+          if (config.additionalComponents && Array.isArray(config.additionalComponents)) {
+            config.additionalComponents.forEach(url => {
+              if (typeof url === 'string' && url.trim()) {
+                console.log(url);
+              }
+            });
+          }
+        " | while IFS= read -r componentUrl; do
+          if [ -n "$componentUrl" ]; then
+            echo "  Installing: $componentUrl"
+            npx shadcn@latest add "$componentUrl" --yes --overwrite 2>&1 || echo "    ⚠️ Failed to install (may not exist)"
+            sleep 1
+          fi
+        done
+        echo "✅ Additional component installation completed"
+        
+        # Step 3: Wait for installation to complete
+        echo ""
+        echo "Step 3: Waiting for installation to complete..."
+        sleep 15
+        echo "✅ Wait completed"
+        
+        # Step 4: Verify and list all installed components
+        echo ""
+        echo "Step 4: Verifying installed components..."
+        if [ -d "components/ui" ]; then
+          COMPONENT_COUNT=$(find components/ui -name "*.tsx" 2>/dev/null | wc -l)
+          echo "✅ Components installed to: $(pwd)/components/ui"
+          echo ""
+          echo "Total components installed: $COMPONENT_COUNT"
+          echo ""
+          echo "List of all installed components:"
+          find components/ui -name "*.tsx" | sed 's|components/ui/||' | sed 's|\.tsx||' | sort
+        else
+          echo "❌ Components directory not found at: $(pwd)/components/ui"
+          exit 1
+        fi
+    
+    - name: Install dependencies after component installation
+      shell: bash
+      working-directory: ./${{ inputs.app-path }}
+      run: |
+        echo "Installing dependencies that may have been added by component installation..."
+        npm install
+        echo "Dependencies installation completed"
+    
+    
+    - name: Build Next.js application
+      id: build
+      shell: bash
+      working-directory: ./${{ inputs.app-path }}
+      continue-on-error: true
+      run: |
+        set +e
+        npm run build
+        BUILD_EXIT_CODE=$?
+        echo "build-exit-code=${BUILD_EXIT_CODE}" >> $GITHUB_OUTPUT
+        if [ $BUILD_EXIT_CODE -eq 0 ]; then
+          echo "build-status=success" >> $GITHUB_OUTPUT
+          echo "Build completed successfully"
+        else
+          echo "build-status=failed" >> $GITHUB_OUTPUT
+          echo "Build failed with exit code: $BUILD_EXIT_CODE"
+          echo "=== Build Error Output ==="
+          npm run build 2>&1 | tail -50 || true
+        fi
+        exit $BUILD_EXIT_CODE
+      env:
+        NODE_ENV: production
+

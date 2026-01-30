@@ -1,65 +1,324 @@
-import Image from "next/image";
+"use client";
+import { useEffect } from "react";
 
-export default function Home() {
+
+import { AccordionDemo } from "@/components-demo/accordion-demo"
+import { AlertDemo } from "@/components-demo/alert-demo"
+import { AlertDialogDemo } from "@/components-demo/alert-dialog-demo";
+import { AspectRatioDemo } from "@/components-demo/aspect_ratio-demo";
+import { AvatarDemo } from "@/components-demo/avatar-demo";
+import { BadgeDemo } from "@/components-demo/badge-demo";
+import { BreadcrumbDemo } from "@/components-demo/breadcrumb-demo";
+import { ButtonDemo } from "@/components-demo/button-demo";
+import { CalendarDemo } from "@/components-demo/calendar.demo";
+import { CardDemo } from "@/components-demo/card-demo";
+import { CarouselDemo } from "@/components-demo/carousel-demo";
+import { ChartDemo } from "@/components-demo/chart-demo";
+import { CheckboxDemo } from "@/components-demo/checkbox-demo";
+import { CollapsibleDemo } from "@/components-demo/collapsible-demo";
+import { ComboboxDemo } from "@/components-demo/combobox-domo";
+import { CommandDemo } from "@/components-demo/command-demo";
+import { ContextMenuDemo } from "@/components-demo/context_menu-demo";
+import { DatePickerDemo } from "@/components-demo/date-picker-demo";
+import { DialogDemo } from "@/components-demo/dialog-demo";
+import { DraggableDemo } from "@/components-demo/draggable-demo";
+import { DropdownDemo } from "@/components-demo/dropdown-demo";
+import { EmptyStatesDemo } from "@/components-demo/empty_states-demo";
+import { ErrorStatesDemo } from "@/components-demo/error_states-demo";
+import { IconDemo } from "@/components-demo/icon-demo";
+import { InputDemo } from "@/components-demo/input-demo";
+import { InputOTPDemo } from "@/components-demo/input_otp-demo";
+import { LabelDemo } from "@/components-demo/label-demo";
+import { NavigationMenuDemo } from "@/components-demo/navigation_menu-demo";
+import { PaginationDemo } from "@/components-demo/pagination-demo";
+import { PopoverDemo } from "@/components-demo/popover-demo";
+import { ProgressDemo } from "@/components-demo/progress-demo";
+import { RadioGroupDemo } from "@/components-demo/radio_group-demo";
+import { ResizableDemo } from "@/components-demo/resizable-demo";
+import { ScrollAreaDemo } from "@/components-demo/scroll_area-demo";
+import { SelectDemo } from "@/components-demo/select-demo";
+import { SeparatorDemo } from "@/components-demo/separator-demo";
+import { SheetDemo } from "@/components-demo/sheet-demo";
+import { SidebarDemo } from "@/components-demo/sidebar-demo";
+import { SkeletonDemo } from "@/components-demo/skeleten-demo";
+import { SliderDemo } from "@/components-demo/slider-demo";
+import { SonnerDemo } from "@/components-demo/sonner-demo";
+import { CircularProgressDemo } from "@/components-demo/circular_progress-demo";
+import { StackNavigationDemo } from "@/components-demo/stack_navigation-demo";
+import { SwitchDemo } from "@/components-demo/switch-demo";
+import { TableDemo } from "@/components-demo/table-demo";
+import { TabsDemo } from "@/components-demo/tabs-demo";
+import { TextareaDemo } from "@/components-demo/textarea-demo";
+import { TimePickerDemo } from "@/components-demo/time_picker-demo";
+import { ToggleDemo } from "@/components-demo/toggle-demo";
+import { ToggleGroupDemo } from "@/components-demo/toggle_group-demo";
+import { TooltipDemo } from "@/components-demo/tooltip-demo";
+import { TopbarDemo } from "@/components-demo/topbar-demo";
+import { TimelineDemo } from "@/components-demo/timeline-demo";
+import { SpinnerDemo } from "@/components-demo/spinner-demo";
+import { StepperDemo } from "@/components-demo/stepper-demo";
+import { InputGroupDemo } from "@/components-demo/input-group-demo";
+import { ActionBarDemo } from "@/components-demo/action_bar-demo";
+import { KbdDemo } from "@/components-demo/kbd-demo";
+import { EditableDemo } from "@/components-demo/editable-demo";
+import { SelectReactDemo } from "@/components-demo/select(React)-demo";
+
+export default function SinkPage() {
+
+  useEffect(() => {
+    document.documentElement.setAttribute('data-hydrated', 'true');
+  }, []);
+  
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
+
+    <div className="@container grid flex-1 gap-4 p-4">
+
+      <div>
+        <AccordionDemo />
+      </div>
+    <br />
+      <div>
+        <ActionBarDemo />
+      </div>
+    <br />
+      <div>
+        <AlertDemo variantProp="primary" /> 
+      </div>
+    <br />
+      <div>
+        <AlertDialogDemo />
+      </div>
+    <br />
+      <div>
+        <AspectRatioDemo />
+      </div>
+    <br />
+      <div>
+        <AvatarDemo />
+      </div>
+    <br />
+      <div>
+        <BadgeDemo />
+      </div>
+    <br />
+      <div>
+        <BreadcrumbDemo />
+      </div>
+    <br />
+      <div>
+        <ButtonDemo />
+      </div>
+    <br />
+      <div>
+        <CalendarDemo />
+      </div>
+    <br />
+      <div>
+        <CardDemo />
+      </div>
+    <br />
+      <div>
+        <CarouselDemo />
+      </div>
+    <br />
+      <div>
+        <ChartDemo />
+      </div>
+    <br />
+      <div>
+        <CheckboxDemo />
+      </div>
+    <br />
+      <div>
+        <CircularProgressDemo />
+      </div>
+    <br />
+      <div>
+        <CollapsibleDemo />
+      </div>
+    <br />
+      <div>
+        <ComboboxDemo />
+      </div>
+    <br />
+      <div>
+        <CommandDemo />
+      </div>
+    <br />
+      <div>
+        <ContextMenuDemo />
+      </div>
+    <br />
+      <div>
+        <DatePickerDemo />
+      </div>
+    <br />
+      <div>
+        <DialogDemo />
+      </div>
+    <br />
+      <div>
+        <DraggableDemo />
+      </div>
+    <br />
+      <div>
+        <DropdownDemo />
+      </div>
+    <br />
+      <div>
+        <EditableDemo />
+      </div>
+    <br />
+      <div>
+        <EmptyStatesDemo />
+      </div>
+    <br />
+      <div>
+        <ErrorStatesDemo />
+      </div>
+    <br />
+      <div>
+        <IconDemo />
+      </div>
+    <br />
+      <div>
+        <InputDemo />
+      </div>
+    <br />
+      <div>
+        <InputOTPDemo />
+      </div>
+    <br />
+      <div>
+        <InputGroupDemo />
+      </div>
+    <br />
+      <div>
+        <KbdDemo />
+      </div>
+    <br />
+      <div>
+        <LabelDemo />
+      </div>
+    <br />
+      <div>
+        <NavigationMenuDemo />
+      </div>
+    <br />
+      <div>
+        <PaginationDemo />
+      </div>
+    <br />
+      <div>
+        <PopoverDemo />
+      </div>
+    <br />
+      <div>
+        <ProgressDemo />
+      </div>
+    <br />
+      <div>
+        <RadioGroupDemo />
+      </div>
+    <br />
+      <div>
+        <ResizableDemo />
+      </div>
+    <br />
+      <div>
+        <ScrollAreaDemo />
+      </div>
+    <br />
+      <div>
+        <SelectDemo /> 
+      </div>
+    <br />
+      <div>
+        <SelectReactDemo />
+      </div>
+    <br />
+      <div>
+        <SeparatorDemo />
+      </div>
+    <br />
+      <div>
+        <SheetDemo />
+      </div>
+    <br />
+      <div>
+        <SidebarDemo /> 
+      </div>
+    <br />
+      <div>
+        <SkeletonDemo />
+      </div>
+    <br />
+      <div>
+        <SliderDemo />
+      </div>
+    <br />
+      <div>
+        <SonnerDemo />
+      </div>
+    <br />
+      <div>
+        <SpinnerDemo />
+      </div>
+    <br />
+      <div>
+        <StackNavigationDemo />       
+      </div>
+    <br />
+      <div>
+        <StepperDemo />
+      </div>
+    <br />
+      <div>
+        <SwitchDemo />
+      </div>
+    <br />
+      <div>
+        <TableDemo />
+      </div>
+    <br />
+      <div>
+        <TabsDemo />  
+      </div>
+    <br />
+      <div>
+        <TextareaDemo />  
+      </div>
+    <br />
+      <div>
+        <TimePickerDemo />
+      </div>
+    <br />
+      <div>
+        <TimelineDemo />
+      </div>
+    <br />
+      <div>
+        <ToggleDemo />
+      </div>
+    <br />
+      <div>
+        <ToggleGroupDemo />
+      </div>
+    <br />
+      <div>
+        <TooltipDemo />
+      </div>
+    <br />
+      <div>
+        <TopbarDemo />
+      </div>
+
     </div>
+
+    
+
   );
+
+  
+  
 }

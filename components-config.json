@@ -1,0 +1,9 @@
+{
+    "bulkInstall": {
+      "url": "https://blok.sitecore.com/r/blok-components.json",
+      "enabled": true
+    },
+    "additionalComponents": [
+      
+    ]
+  }
