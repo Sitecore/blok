@@ -89,6 +89,49 @@ jobs:
           cat app/server.log || true
           exit 1
       
+      # Step 7.5: Expose server via public URL using cloudflared
+      - name: Expose server via public URL
+        id: expose-url
+        run: |
+          echo "🌐 Setting up public URL tunnel..."
+          # Download and install cloudflared
+          curl -L --output cloudflared https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-amd64
+          chmod +x cloudflared
+          sudo mv cloudflared /usr/local/bin/ || mv cloudflared /usr/local/bin/
+          
+          # Start cloudflared tunnel in background
+          /usr/local/bin/cloudflared tunnel --url http://localhost:3000 > cloudflared.log 2>&1 &
+          echo $! > cloudflared.pid
+          
+          # Wait for cloudflared to start and extract the URL
+          echo "Waiting for tunnel to be ready..."
+          sleep 5
+          
+          # Extract the public URL from cloudflared output
+          PUBLIC_URL=""
+          for i in {1..30}; do
+            if [ -f cloudflared.log ] && grep -q "https://" cloudflared.log; then
+              PUBLIC_URL=$(grep -oE 'https://[a-zA-Z0-9-]+\.trycloudflare\.com' cloudflared.log | head -1)
+              if [ -n "$PUBLIC_URL" ]; then
+                break
+              fi
+            fi
+            sleep 1
+          done
+          
+          if [ -n "$PUBLIC_URL" ]; then
+            echo "✅ Public URL: $PUBLIC_URL"
+            echo "url=$PUBLIC_URL" >> $GITHUB_OUTPUT
+            echo "::notice title=🌐 Public URL Available::Your site is accessible at: $PUBLIC_URL"
+            echo "## 🌐 Public URL" >> $GITHUB_STEP_SUMMARY
+            echo "Your site is accessible at: **[$PUBLIC_URL]($PUBLIC_URL)**" >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "⚠️ Could not extract public URL, but tunnel may still be running"
+            echo "Check cloudflared.log for details:"
+            cat cloudflared.log || true
+          fi
+      
       # Step 8: Checkout QA-Automation branch (tests)
       - name: Checkout tests (QA-Automation)
         uses: actions/checkout@v4
@@ -291,17 +334,26 @@ jobs:
             exit 0
           fi
       
-      # Step 12: Cleanup - Stop the server
-      - name: Stop Next.js server
+      # Step 12: Cleanup - Stop the server and tunnel
+      - name: Stop Next.js server and tunnel
         if: always()
-        working-directory: ./app
         run: |
+          echo "Stopping cloudflared tunnel..."
+          if [ -f cloudflared.pid ]; then
+            PID=$(cat cloudflared.pid)
+            echo "Killing cloudflared process $PID"
+            kill $PID 2>/dev/null || true
+            rm cloudflared.pid
+          fi
+          pkill -f "cloudflared tunnel" || true
+          echo "Tunnel stopped"
+          
           echo "Stopping Next.js server..."
-          if [ -f server.pid ]; then
-            PID=$(cat server.pid)
+          if [ -f app/server.pid ]; then
+            PID=$(cat app/server.pid)
             echo "Killing process $PID"
             kill $PID 2>/dev/null || true
-            rm server.pid
+            rm app/server.pid
           fi
           # Also kill any remaining node processes
           pkill -f "next start" || true
