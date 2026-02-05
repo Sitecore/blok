@@ -13,8 +13,8 @@ export async function testToggleSquare(page: Page){
     const classList = await boldToggle.getAttribute('class');
     expect(classList).toContain('font-medium');
     expect(classList).toContain('text-neutral-fg');
-    expect(classList).toContain('hover:bg-muted');
-    expect(classList).toContain('hover:text-muted-foreground');
+    expect(classList).toContain('hover:bg-neutral-bg');
+    expect(classList).toContain('hover:text-neutral-fg');
     expect(classList).toContain('data-[state=on]:bg-primary-bg');
     expect(classList).toContain('data-[state=on]:text-primary-fg');
     expect(classList).toContain('outline-none');
@@ -90,8 +90,8 @@ export async function testToggleRounded(page: Page){
     const classList = await boldToggle.getAttribute('class');
     expect(classList).toContain('font-medium');
     expect(classList).toContain('text-neutral-fg');
-    expect(classList).toContain('hover:bg-muted');
-    expect(classList).toContain('hover:text-muted-foreground');
+    expect(classList).toContain('hover:bg-neutral-bg');
+    expect(classList).toContain('hover:text-neutral-fg');
     expect(classList).toContain('data-[state=on]:bg-primary-bg');
     expect(classList).toContain('data-[state=on]:text-primary-fg');
     expect(classList).toContain('outline-none');

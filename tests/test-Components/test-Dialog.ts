@@ -74,3 +74,65 @@ export async function testDialog(page: Page){
     await overlay.click({ position: { x: 10, y: 10 } });
     await expect(dialogContent).not.toBeVisible();
 }
+
+export async function testDialogScrollable(page: Page){
+    // Verify that display dialog trigger button
+    const dialog = page.locator('[id="dialog-scrollable"]');
+    const triggerButton = dialog.getByRole('button', { name: 'Scrollable Content' });
+    await expect(triggerButton).toBeVisible();
+
+    // Verify that open dialog when trigger button is clicked
+    await triggerButton.click();
+    const dialogContent = page.locator('[data-slot="dialog-content"]');
+    await expect(dialogContent).toBeVisible();
+
+    // Verify dialog header
+    const dialogHeader = dialogContent.locator('[data-slot="dialog-header"]');
+    await expect(dialogHeader).toBeVisible();
+    // Verify header tittle
+    await expect(dialogHeader.locator('[data-slot="dialog-title"]')).toContainText('Drive Growth Through Smart Marketing');
+
+    // Verify close (X) button in the header
+    await expect(dialogContent.getByRole('button', { name: 'Close' })).toBeVisible();
+
+    // Verify that close sheet when Close (X) button is clicked
+    await dialogContent.getByRole('button', { name: 'Close' }).click();
+    await expect(dialogContent).not.toBeVisible();
+}
+
+export async function testDialogStickyFooter(page: Page){
+    // Verify that display dialog trigger button
+    const dialog = page.locator('[id="dialog-sticky-footer"]');
+    const triggerButton = dialog.getByRole('button', { name: 'Sticky Footer' });
+    await expect(triggerButton).toBeVisible();
+
+    // Verify that open dialog when trigger button is clicked
+    await triggerButton.click();
+    const dialogContent = page.locator('[data-slot="dialog-content"]');
+    await expect(dialogContent).toBeVisible();
+
+    // Verify dialog header
+    const dialogHeader = dialogContent.locator('[data-slot="dialog-header"]');
+    await expect(dialogHeader).toBeVisible();
+    // Verify header tittle
+    await expect(dialogHeader.locator('[data-slot="dialog-title"]')).toContainText('Drive Growth Through Smart Marketing');
+
+    // Verify close (X) button in the header
+    await expect(dialogContent.getByRole('button', { name: 'Close' }).nth(1)).toBeVisible();
+
+    // Verify sheet footer
+    const dialogFooter = dialogContent.locator('[data-slot="dialog-footer"]');
+    await expect(dialogFooter).toBeVisible();
+    // Verify Cancel button in the footer
+    await expect(dialogFooter.getByRole('button', { name: 'Close' })).toBeVisible();
+
+    // Verify that close sheet when Close (X) button is clicked
+    await dialogContent.getByRole('button', { name: 'Close' }).nth(1).click();
+    await expect(dialogContent).not.toBeVisible();
+
+    // Verify that close Dialog using Close button
+    await triggerButton.click();
+    await expect(dialogContent).toBeVisible();
+    await dialogFooter.getByRole('button', { name: 'Close' }).click();
+    await expect(dialogContent).not.toBeVisible();
+}

@@ -28,9 +28,7 @@ export async function testBreadcrumb(page: Page){
     const separators = page.locator('[data-slot="breadcrumb-separator"]').nth(0);
     await expect(separators).toBeVisible();    
 
-}
 
-export async function testBreadcrumbItemLinks(page: Page){
   // Verify Home link is visible and clickable
     const homeLink = page.locator('[data-slot="breadcrumb-link"]').filter({ hasText: 'Home' });
     await expect(homeLink).toBeVisible();

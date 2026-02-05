@@ -129,5 +129,21 @@ export async function testCardPadding(page: Page){
         expect(classAttributeLG).toBeTruthy();
         expect(classAttributeLG).toContain('px-7 py-7');
         expect(classAttributeLG).toContain('rounded-lg');
+}
 
+export async function testStyledCard(page: Page){
+    // Verify that Styled Card is visible
+    const styledCard = page.locator('[data-slot="card"]').filter({ 
+        has: page.locator('[data-slot="card-title"]', { hasText: 'Briefs tracker' })}).first();
+
+    // Verify that header details are visible
+    await expect(styledCard).toBeVisible();
+    await expect(styledCard.locator('span').filter({ hasText: 'View all briefs' })).toBeVisible();
+    await expect(styledCard.locator('button[data-slot="button"]')).toHaveAttribute('aria-label', 'More options');
+
+    // Verify that content details are visible
+    const contentDetails = styledCard.locator('[data-slot="card-content"]');
+    await expect(contentDetails.locator('h3').filter({ hasText: 'New' })).toBeVisible();
+    await expect(contentDetails.locator('h3').filter({ hasText: 'In progress' })).toBeVisible();
+    await expect(contentDetails.locator('h3').filter({ hasText: 'Approved' })).toBeVisible();
 }

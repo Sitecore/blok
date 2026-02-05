@@ -50,5 +50,68 @@ export async function testAreaChart(page: Page){
     // Find the TrendingUp icon
     const trendingIcon = footerTrendingText.locator('svg'); 
     await expect(trendingIcon).toBeVisible();
+}
 
+export async function testBarChart(page: Page){
+  // Verify that "Bar Chart" title is visible
+  const chartBar = page.locator('[id="chart-bar"]');
+  const cardTitle = chartBar.locator('[data-slot="card-title"]', { hasText: 'Bar Chart - Multiple' });
+  await expect(cardTitle).toBeVisible();
+
+  // Verify that "Bar Chart" card description is visible
+  const cardDescription = chartBar.locator('[data-slot="card-description"]').filter({ 
+    hasText: 'January - June 2024'});
+  await expect(cardDescription).toBeVisible();
+
+  // Verify chart container is visible
+  const chartContainer = chartBar.locator('[data-slot="chart"]');
+  await expect(chartContainer).toBeVisible();
+}
+
+export async function testMixedBarChart(page: Page){
+  // Verify that "Mixed Bar Chart" title is visible
+  const chartMixedBar = page.locator('[id="chart-mixed-bar"]');
+  const cardTitle = chartMixedBar.locator('[data-slot="card-title"]', { hasText: 'Bar Chart - Mixed' });
+  await expect(cardTitle).toBeVisible();
+
+  // Verify that "Mixed Bar Chart" card description is visible
+  const cardDescription = chartMixedBar.locator('[data-slot="card-description"]').filter({ 
+    hasText: 'January - June 2024'});
+  await expect(cardDescription).toBeVisible();
+
+  // Verify chart container is visible
+  const chartContainer = chartMixedBar.locator('[data-slot="chart"]');
+  await expect(chartContainer).toBeVisible();
+}
+
+export async function testLineChart(page: Page){
+  // Verify that "Line Chart" title is visible
+  const chartBar = page.locator('[id="chart-line"]');
+  const cardTitle = chartBar.locator('[data-slot="card-title"]', { hasText: 'Line Chart - Multiple' });
+  await expect(cardTitle).toBeVisible();
+
+  // Verify that "Line Chart" card description is visible
+  const cardDescription = chartBar.locator('[data-slot="card-description"]').filter({ 
+    hasText: 'January - June 2024'});
+  await expect(cardDescription).toBeVisible();
+
+  // Verify chart container is visible
+  const chartContainer = chartBar.locator('[data-slot="chart"]');
+  await expect(chartContainer).toBeVisible();
+}
+
+export async function testPieChart(page: Page){
+  // Verify that "Pie Chart" title is visible
+  const chartBar = page.locator('[id="chart-pie"]');
+  const cardTitle = chartBar.locator('[data-slot="card-title"]', { hasText: 'Pie Chart' });
+  await expect(cardTitle).toBeVisible();
+
+  // Verify that "Pie Chart" card description is visible
+  const cardDescription = chartBar.locator('[data-slot="card-description"]').filter({ 
+    hasText: 'January - June 2024'});
+  await expect(cardDescription).toBeVisible();
+
+  // Verify chart container is visible
+  const chartContainer = chartBar.locator('[data-slot="chart"]');
+  await expect(chartContainer).toBeVisible();
 }

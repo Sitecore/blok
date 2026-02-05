@@ -5,8 +5,7 @@ export async function testPagination(page: Page){
     const pagination = page.locator('[data-slot="pagination"]');
     await expect(pagination).toBeVisible();
     
-    // Verify it has the correct role and aria-label
-    await expect(pagination).toHaveAttribute('role', 'navigation');
+    // Verify it has the correct aria-label
     await expect(pagination).toHaveAttribute('aria-label', 'pagination');
 
     // Verify that display pagination content

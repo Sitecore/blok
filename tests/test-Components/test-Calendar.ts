@@ -10,7 +10,7 @@ export async function testSingleCalendar(page: Page){
     const table = calendar.locator('table');
     await expect(table).toBeVisible();
 
-    // Verify default selected date (June 12, 2025) - check before navigation
+    // Verify default selected date (June 12, 2025)
     // Try to find by data-selected first, fallback to finding by data-day attribute
     let selectedDay = calendar.locator('button[data-selected="true"]');
     const selectedCount = await selectedDay.count();
@@ -117,4 +117,22 @@ export async function testSingleCalendar(page: Page){
     // Verify it's a different day
     const newSelectedDayValue = await newSelectedDay.getAttribute('data-day');
     expect(newSelectedDayValue).not.toBe(todayButton);    
+}
+
+export async function testTwoMonthCalendar(page: Page){
+  await page.reload();
+    // Check that calendar is visible
+    const calendarTwoMonth = page.locator('[id="calendar-range"]');
+    const calendar = calendarTwoMonth.locator('[data-slot="calendar"]');
+    await expect(calendar).toBeVisible();
+
+    // Verify that shows two months in range mode
+    const monthGrids = calendar.first().locator('.rdp-months').locator('.rdp-month');
+    await expect(monthGrids).toHaveCount(2);
+
+    // Verify default range is selected (2025-06-09 to 2025-06-26)
+    const rangeStart = calendar.locator('button[data-day="2025-06-09"][data-range-start="true"]');
+    const rangeEnd = calendar.locator('button[data-day="2025-06-26"][data-range-end="true"]');
+    await expect(rangeStart).toBeVisible();
+    await expect(rangeEnd).toBeVisible();
 }

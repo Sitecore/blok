@@ -1,8 +1,7 @@
 import { test, expect, Page } from '@playwright/test';
 
-export async function testInputOTP(page: Page){
-
-    // Verify that have associated label
+export async function testInputOTPSimple(page: Page){
+    // Verify that display input OTP simple component
     const inputOTPSimple = page.locator('[id="input-otp-simple"]');
     const label = inputOTPSimple.locator('label[for="simple"]');
     await expect(label).toBeVisible();
@@ -64,5 +63,38 @@ export async function testInputOTP(page: Page){
     for (let i = 0; i < 6; i++) {
       await expect(slots.nth(i)).toContainText('');
     }
+}
 
+export async function testInputOTPPattern(page: Page){
+  // Verify that display input OTP digits only component
+  const inputOTPDigitsOnly = page.locator('[id="input-otp-digits-only"]');
+  const label = inputOTPDigitsOnly.locator('label[for="digits-only"]');
+  await expect(label).toBeVisible();
+  await expect(label).toContainText('Digits Only');
+
+  // Verify that display two OTP groups
+  const group = inputOTPDigitsOnly.locator('[data-slot="input-otp-group"]');
+
+  // Verify that OTP group have 6 slots
+  const slots = group.locator('[data-slot="input-otp-slot"]');
+  await expect(slots).toHaveCount(6);
+}
+
+export async function testInputOTPWithSpacing(page: Page){
+  // Verify that display input OTP with spacing component
+  const inputOTPWithSpacing = page.locator('[id="input-otp-with-spacing"]');
+  const label = inputOTPWithSpacing.locator('label[for="with-spacing"]');
+  await expect(label).toBeVisible();
+  await expect(label).toContainText('With Spacing');
+
+  // Verify that display two OTP groups
+  const group = inputOTPWithSpacing.locator('[data-slot="input-otp-group"]');
+
+  // Verify that OTP group have 6 slots
+  const slots = group.locator('[data-slot="input-otp-slot"]');
+  await expect(slots).toHaveCount(4);
+
+  // Verify spaces between slots
+  const spaces = inputOTPWithSpacing.locator('input[data-slot="input-otp"]');
+  await expect(spaces).toHaveAttribute('id', 'with-spacing');
 }

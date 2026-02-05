@@ -8,7 +8,8 @@ export async function testDropdown(page: Page){
 
     // Verify that open dropdown menu when trigger button is clicked
     await triggerButton.click();
-    const dropdownContent = page.locator('[data-slot="dropdown-menu-content"]');
+    const dropdownContent = page.locator('[data-slot="dropdown-menu-content"], [data-radix-popper-content-wrapper]').nth(0);
+    //const dropdownContent = page.locator('[data-slot="dropdown-menu-content"]');
     await expect(dropdownContent).toBeVisible();
 
     // Verify that display dropdown menu label
@@ -52,4 +53,39 @@ export async function testDropdown(page: Page){
     await expect(submenuContent.getByText('Email')).toBeVisible();
     await expect(submenuContent.getByText('Message')).toBeVisible();
     await expect(submenuContent.getByText('More...')).toBeVisible();
+}
+
+export async function testDropdownMenuCheckbox(page: Page){
+    // Verify that display dropdown trigger button
+    const dropdown = page.locator('[id="dropdown-checkboxes"]');
+    const triggerButton = dropdown.locator('[data-slot="dropdown-menu-trigger"]');
+    await expect(triggerButton).toBeVisible();
+}
+
+export async function testDropdownMenuRadioGroup(page: Page){
+    // Verify that display dropdown trigger button
+    const dropdown = page.locator('[id="dropdown-radio-group"]');
+    const triggerButton = dropdown.locator('[data-slot="dropdown-menu-trigger"]');
+    await expect(triggerButton).toBeVisible();
+}
+
+export async function testDropdownMenuWithAvatar(page: Page){
+    // Verify that display dropdown trigger button
+    const dropdown = page.locator('[id="dropdown-avatar"]');
+    const triggerButton = dropdown.locator('[data-slot="dropdown-menu-trigger"]');
+    await expect(triggerButton).toBeVisible();
+}
+
+export async function testDropdownMenuAvatarOnly(page: Page){
+    // Verify that display dropdown trigger button
+    const dropdown = page.locator('[id="dropdown-avatar-only"]');
+    const triggerButton = dropdown.locator('[data-slot="dropdown-menu-trigger"]');
+    await expect(triggerButton).toBeVisible();
+}
+
+export async function testDropdownMenuIconColor(page: Page){
+    // Verify that display dropdown trigger button
+    const dropdown = page.locator('[id="dropdown-icon-only"]');
+    const triggerButton = dropdown.locator('[data-slot="dropdown-menu-trigger"]');
+    await expect(triggerButton).toBeVisible();
 }

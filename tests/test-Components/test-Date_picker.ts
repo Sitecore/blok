@@ -94,5 +94,37 @@ export async function testSingleDatePicker(page: Page){
     expect(buttonText).toBeTruthy();
     expect(buttonText).not.toBe('Pick a date');
     expect(buttonText).toBe('January 15th, 2024');
+}
 
+export async function testDatePickerRange(page: Page){
+  // Verify that date picker button is visible
+  const datePicker = page.locator('[id="date-picker-range"]');
+  const datePickerButton = datePicker.locator('[data-slot="popover-trigger"]');
+  await expect(datePickerButton).toBeVisible();
+  await expect(datePickerButton).toContainText('Jan 20, 2026 - Feb 09, 2026');
+  await expect(datePickerButton.locator('[class="text-muted-foreground"]')).toBeVisible();
+
+  // Verify that open date picker range calendar when button is clicked
+  await datePickerButton.click();
+  const popover = page.locator('[role="dialog"], [data-radix-popper-content-wrapper]').nth(0);
+  const calendar = popover.locator('[data-slot="calendar"]');
+  await expect(calendar).toBeVisible();
+
+  // Verify that select a date range when day is clicked
+    // Click new start day (e.g. June 15)
+    await calendar.locator('button[data-day="2026-01-11"]').click();
+    // Click new end day (e.g. June 20)
+    await calendar.locator('button[data-day="2026-02-02"]').click();
+    // Verify range is reflected
+    await expect(calendar.locator('button[data-day="2026-01-11"][data-range-start="true"]')).toBeVisible();
+    await expect(calendar.locator('button[data-day="2026-02-02"][data-range-end="true"]')).toBeVisible();
+   
+  // Verify that close popover when clicking outside
+  await page.mouse.click(10, 10);
+  await expect(calendar).not.toBeVisible({ timeout: 2000 });
+
+  // Verify that update button text after date selection
+  const buttonText = (await datePickerButton.textContent())?.trim() ?? '';
+  expect(buttonText).not.toBe('Jan 20, 2026 - Feb 09, 2026');
+  expect(buttonText).toBe('Jan 11, 2026 - Feb 02, 2026');
 }

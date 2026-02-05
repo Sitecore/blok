@@ -173,3 +173,46 @@ export async function testNavigationMenu(page: Page){
     await expect(documentationLink).toBeEnabled();
     await expect(documentationLink).toHaveAttribute('href', '#');
 }
+
+export async function testNavigationMenuSecondary(page: Page){
+    // Verify that display navigation menu
+    const navigationMenuSecondary = page.locator('[id="navigation-menu-secondary"]');
+    const navigationMenu = navigationMenuSecondary.locator('[data-slot="navigation-menu"]');
+    await expect(navigationMenu).toBeVisible();
+
+    // Verify that display navigation menu list
+    const navigationMenuList = navigationMenu.locator('[data-slot="navigation-menu-list"]');
+    await expect(navigationMenuList).toBeVisible();
+
+    // Verify that display all navigation menu items
+    const menuItems = navigationMenuList.locator('[data-slot="navigation-menu-item"]');
+    
+    // Should have 3 items (Documentation, List, Simple List, With Icon)
+    const count = await menuItems.count();
+    expect(count).toBe(4);
+
+    // Verify that display "Documentation" link
+    const documentationLink = menuItems.locator('[data-slot="navigation-menu-link"]').filter({ hasText: 'Documentation' });
+    await expect(documentationLink).toBeVisible();
+    await expect(documentationLink).toContainText('Documentation');
+    await expect(documentationLink).toBeEnabled();
+    await expect(documentationLink).toHaveAttribute('href', '#');
+
+    // Verify that display "List" trigger
+    const list = navigationMenuList.locator('[data-slot="navigation-menu-item"]').nth(1);
+    const listTrigger = list.locator('[data-slot="navigation-menu-trigger"]');
+    await expect(listTrigger).toBeVisible();
+    await expect(listTrigger).toContainText('List');
+
+    // Verify that display "Simple List" trigger
+    const simpleList = navigationMenuList.locator('[data-slot="navigation-menu-item"]').nth(2);
+    const simpleListTrigger = simpleList.locator('[data-slot="navigation-menu-trigger"]');
+    await expect(simpleListTrigger).toBeVisible();
+    await expect(simpleListTrigger).toContainText('Simple List');
+
+    // Verify that display "With Icon" trigger
+    const withIcon = navigationMenuList.locator('[data-slot="navigation-menu-item"]').nth(3);
+    const withIconTrigger = withIcon.locator('[data-slot="navigation-menu-trigger"]');
+    await expect(withIconTrigger).toBeVisible();
+    await expect(withIconTrigger).toContainText('With Icon');
+}
