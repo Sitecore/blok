@@ -53,37 +53,38 @@ export function SheetDemo() {
       <h2 className="font-semibold text-4xl wrap-break-words">Sheet</h2>
     <div className="flex w-full max-w-full gap-4">
       <div id="sheet-default">
-        <div className="flex flex-col gap-6 md:flex-row">
-          <Sheet>
-            <SheetTrigger asChild>
-              <Button variant="default">Open</Button>
-            </SheetTrigger>
-            <SheetContent>
-              <SheetHeader>
-                <SheetTitle>Edit profile</SheetTitle>
-                <SheetDescription>
-                  Make changes to your profile here. Click save when you&apos;re done.
-                </SheetDescription>
-              </SheetHeader>
-              <div className="grid flex-1 auto-rows-min gap-6 px-4">
-                <div className="grid gap-3">
-                  <Label htmlFor="sheet-demo-name">Name</Label>
-                  <Input id="sheet-demo-name" defaultValue="Liz" />
-                </div>
-                <div className="grid gap-3">
-                  <Label htmlFor="sheet-demo-username">Username</Label>
-                  <Input id="sheet-demo-username" defaultValue="@liz" />
-                </div>
+      <div className="flex flex-col gap-6 md:flex-row">
+        <Sheet>
+          <SheetTrigger asChild>
+            <Button variant="default">Open</Button>
+          </SheetTrigger>
+          <SheetContent>
+            <SheetHeader>
+              <SheetTitle>Edit profile</SheetTitle>
+              <SheetDescription>
+                Make changes to your profile here. Click save when you&apos;re
+                done.
+              </SheetDescription>
+            </SheetHeader>
+            <div className="grid flex-1 auto-rows-min gap-6 px-4">
+              <div className="grid gap-3">
+                <Label htmlFor="sheet-demo-name">Name</Label>
+                <Input id="sheet-demo-name" defaultValue="Liz" />
               </div>
-              <SheetFooter>
-                <SheetClose asChild>
-                  <Button variant="outline" colorScheme="neutral">Close</Button>
-                </SheetClose>
-                <Button type="submit">Save changes</Button>
-              </SheetFooter>
-            </SheetContent>
-          </Sheet>
-        </div>
+              <div className="grid gap-3">
+                <Label htmlFor="sheet-demo-username">Username</Label>
+                <Input id="sheet-demo-username" defaultValue="@liz" />
+              </div>
+            </div>
+            <SheetFooter>
+              <SheetClose asChild>
+                <Button variant="ghost" colorScheme="neutral">Cancel</Button>
+              </SheetClose>
+              <Button type="submit">Save</Button>
+            </SheetFooter>
+          </SheetContent>
+        </Sheet>
+      </div>
       </div>  
 
       {/* Top Sheet */}

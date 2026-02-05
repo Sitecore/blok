@@ -9,23 +9,32 @@ export function TextareaDemo() {
         <div className="flex flex-col gap-4">
           {/* Basic Textarea */}
           <div id="textarea-basic">
-            <div className="grid gap-2 m-2">
+            <div className="grid gap-2 m-2 w-75">
               <Label htmlFor="basic-textarea">Message</Label>
-              <Textarea id="basic-textarea" aria-label="Message" placeholder="Type your message here." />
+              <Textarea
+                id="basic-textarea"
+                aria-label="Message"
+                placeholder="Type your message here."
+              />
             </div>
           </div>
 
           {/* Invalid Textarea */}
           <div id="textarea-invalid">
-            <div className="grid gap-2 m-2">
-              <Label htmlFor="invalid-textarea">Message</Label>
-              <Textarea id="invalid-textarea" placeholder="Type your message here." aria-label="Message" aria-invalid="true" />
+            <div className="grid gap-2 m-2 w-75">
+              <Label htmlFor="invalid-textarea">Message</Label> 
+              <Textarea
+                id="invalid-textarea"
+                placeholder="Type your message here."
+                aria-label="Message"
+                aria-invalid="true"
+              />
             </div>
           </div>
         
           {/* Textarea with Label */}
           <div id="textarea-with-label">
-            <div className="grid gap-3 m-2">
+            <div className="grid gap-3 m-2 w-75">
               <Label htmlFor="textarea-demo-message">Message</Label>
               <Textarea
                 id="textarea-demo-message"
@@ -38,10 +47,8 @@ export function TextareaDemo() {
 
           {/* Textarea with Label and Description */}
           <div id="textarea-with-label-and-description">
-            <div className="grid gap-3 m-2">
-              <Label htmlFor="textarea-demo-message-2">
-                Message
-              </Label>
+            <div className="grid gap-3 m-2 w-75">
+              <Label htmlFor="textarea-demo-message-2">Message</Label>
               <Textarea
                 id="textarea-demo-message-2"
                 placeholder="Type your message here."
@@ -58,7 +65,7 @@ export function TextareaDemo() {
         <div className="flex flex-col gap-4">
           {/* Disabled Textarea */}
           <div id="textarea-disabled">
-            <div className="grid gap-3 m-2">
+            <div className="grid gap-3 m-2 w-75">
               <Label htmlFor="textarea-demo-disabled">Disabled Textarea</Label>
               <Textarea
                 id="textarea-demo-disabled"
@@ -71,7 +78,7 @@ export function TextareaDemo() {
 
           {/* Small Textarea */}
           <div id="textarea-small">
-            <div className="grid gap-3 m-2">
+            <div className="grid gap-3 m-2 w-75">
               <Label htmlFor="small-textarea">Small (3 rows)</Label>
               <Textarea
                 id="small-textarea"
@@ -85,7 +92,7 @@ export function TextareaDemo() {
 
           {/* Large Textarea */}
           <div id="textarea-large">
-            <div className="grid gap-3 m-2">
+            <div className="grid gap-3 m-2 w-75">
               <Label htmlFor="large-textarea">Large (8 rows)</Label>
               <Textarea
                 id="large-textarea"
@@ -99,7 +106,7 @@ export function TextareaDemo() {
 
           {/* Textarea with Default Value */}
           <div id="textarea-pre-filled">
-            <div className="grid gap-3 m-2">
+            <div className="grid gap-3 m-2 w-75">
               <Label htmlFor="textarea-with-value">Pre-filled Textarea</Label>
               <Textarea
                 id="textarea-with-value"

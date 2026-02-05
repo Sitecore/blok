@@ -44,46 +44,71 @@ export function CardDemo() {
     {/* Elevation Variants */}
       <div className="flex flex-wrap items-center gap-3 p-8">
         {elevationVariants.map((variant) => (
-        <Card key={variant} style="outline" elevation={variant as "none" | "xs" | "sm" | "base" | "md" | "lg"} padding="lg" className="w-[400px]">
-          <CardHeader>
-            <CardTitle>{variant} Elevation</CardTitle>
-            <CardDescription>Style: outline, Elevation: {variant}</CardDescription>
-          </CardHeader>
-          <CardContent>
-          </CardContent>
-          <CardFooter>
-          </CardFooter>
-        </Card>
+          <Card
+            key={variant}
+            style="outline"
+            elevation={variant as "none" | "xs" | "sm" | "base" | "md" | "lg"}
+            padding="lg"
+            className="w-[400px]"
+          >
+            <CardHeader>
+              <CardTitle>{variant} Elevation</CardTitle>
+              <CardDescription>
+                Style: outline, Elevation: {variant}
+              </CardDescription>
+            </CardHeader>
+            <CardContent />
+            <CardFooter />
+          </Card>
         ))}
       </div>
 
     {/* Style Variants */}
       <div className="flex flex-wrap items-center gap-3 p-8">
-          {styleVariants.map((variant) => (
-              <div key={variant} className={cn("p-4", variant === "filled" && "bg-body-bg rounded-lg" )}>
-                  <Card style={variant as "flat" | "outline" | "filled"} elevation="base" padding="lg" className="w-[300px]">
-                      <CardHeader>
-                          <CardTitle>{variant} Style</CardTitle>
-                      </CardHeader>
-                  </Card>
-              </div>
-          ))}
+        {styleVariants.map((variant) => (
+          <div
+            key={variant}
+            className={cn("p-4", variant === "filled" && "bg-body-bg rounded-lg")}
+          >
+            <Card
+              style={variant as "flat" | "outline" | "filled"}
+              elevation="base"
+              padding="lg"
+              className="w-[300px]"
+            >
+              <CardHeader>
+                <CardTitle>{variant} Style</CardTitle>
+              </CardHeader>
+            </Card>
+          </div>
+        ))}
       </div>
 
     {/* Padding Variants */}
       <div className="flex flex-wrap items-center gap-3 p-8">
         {paddingVariants.map((variant) => (
-        <Card key={variant} style="outline" elevation="md" padding={variant as "sm" | "md" | "lg"} className="w-[400px]">
-          <CardHeader>
-            <CardTitle>Padding: {variant}</CardTitle>
-          </CardHeader>
-        </Card>
+          <Card
+            key={variant}
+            style="outline"
+            elevation="md"
+            padding={variant as "sm" | "md" | "lg"}
+            className="w-[400px]"
+          >
+            <CardHeader>
+              <CardTitle>Padding: {variant}</CardTitle>
+            </CardHeader>
+          </Card>
         ))}
       </div>
 
     {/* Style Variants */}
       <div>
-        <Card style="outline" elevation="md" padding="lg" className="w-full max-w-6xl">
+        <Card
+          style="outline"
+          elevation="md"
+          padding="lg"
+          className="w-full max-w-6xl"
+        >
           <CardHeader className="flex flex-row items-center justify-between space-y-0">
             <CardTitle>Briefs tracker</CardTitle>
             <div className="flex items-center gap-3">
@@ -103,57 +128,99 @@ export function CardDemo() {
                 <div className="space-y-3">
                   <div className="flex items-center gap-3 p-4 bg-card border border-border rounded-lg hover:shadow-sm transition-shadow">
                     <div className="w-10 h-10 rounded-lg bg-yellow-500/10 flex items-center justify-center flex-shrink-0">
-                      <Icon path={mdiLightbulbOutline} className="w-5 h-5 text-yellow-600 dark:text-yellow-500" />
+                      <Icon
+                        path={mdiLightbulbOutline}
+                        className="w-5 h-5 text-yellow-600 dark:text-yellow-500"
+                      />
                     </div>
-                    <span className="text-sm text-foreground">Social Media Expansion Plan for Next Q...</span>
+                    <span className="text-sm text-foreground">
+                      Social Media Expansion Plan for Next Q...
+                    </span>
                   </div>
                   <div className="flex items-center gap-3 p-4 bg-card border border-border rounded-lg hover:shadow-sm transition-shadow">
                     <div className="w-10 h-10 rounded-lg bg-blue-500/10 flex items-center justify-center flex-shrink-0">
-                      <Icon path={mdiTrendingUp} className="w-5 h-5 text-blue-600 dark:text-blue-500" />
+                      <Icon
+                        path={mdiTrendingUp}
+                        className="w-5 h-5 text-blue-600 dark:text-blue-500"
+                      />
                     </div>
-                    <span className="text-sm text-foreground">Social Media Engagement Strategy for...</span>
+                    <span className="text-sm text-foreground">
+                      Social Media Engagement Strategy for...
+                    </span>
                   </div>
                   <div className="flex items-center gap-3 p-4 bg-card border border-border rounded-lg hover:shadow-sm transition-shadow">
                     <div className="w-10 h-10 rounded-lg bg-muted flex items-center justify-center flex-shrink-0">
-                      <Icon path={mdiPackageVariant} className="w-5 h-5 text-muted-foreground" />
+                      <Icon
+                        path={mdiPackageVariant}
+                        className="w-5 h-5 text-muted-foreground"
+                      />
                     </div>
-                    <span className="text-sm text-foreground">Comprehensive Social Media Strategy...</span>
+                    <span className="text-sm text-foreground">
+                      Comprehensive Social Media Strategy...
+                    </span>
                   </div>
                   <div className="flex items-center gap-3 p-4 bg-card border border-border rounded-lg hover:shadow-sm transition-shadow">
                     <div className="w-10 h-10 rounded-lg bg-yellow-500/10 flex items-center justify-center flex-shrink-0">
-                      <Icon path={mdiLightbulbOutline} className="w-5 h-5 text-yellow-600 dark:text-yellow-500" />
+                      <Icon
+                        path={mdiLightbulbOutline}
+                        className="w-5 h-5 text-yellow-600 dark:text-yellow-500"
+                      />
                     </div>
-                    <span className="text-sm text-foreground">Audio Innovation Strategy Framework</span>
+                    <span className="text-sm text-foreground">
+                      Audio Innovation Strategy Framework
+                    </span>
                   </div>
                 </div>
               </div>
               {/* In Progress Column */}
               <div className="space-y-3 bg-info-bg p-4 rounded-lg">
-                <h3 className="text-sm font-semibold text-foreground">In progress</h3>
+                <h3 className="text-sm font-semibold text-foreground">
+                  In progress
+                </h3>
                 <div className="space-y-3">
                   <div className="flex items-center gap-3 p-4 bg-card border border-border rounded-lg hover:shadow-sm transition-shadow">
                     <div className="w-10 h-10 rounded-lg bg-blue-500/10 flex items-center justify-center flex-shrink-0">
-                      <Icon path={mdiTrendingUp} className="w-5 h-5 text-blue-600 dark:text-blue-500" />
+                      <Icon
+                        path={mdiTrendingUp}
+                        className="w-5 h-5 text-blue-600 dark:text-blue-500"
+                      />
                     </div>
-                    <span className="text-sm text-foreground">Q2 Social Media Growth Strategy</span>
+                    <span className="text-sm text-foreground">
+                      Q2 Social Media Growth Strategy
+                    </span>
                   </div>
                   <div className="flex items-center gap-3 p-4 bg-card border border-border rounded-lg hover:shadow-sm transition-shadow">
                     <div className="w-10 h-10 rounded-lg bg-yellow-500/10 flex items-center justify-center flex-shrink-0">
-                      <Icon path={mdiLightbulbOutline} className="w-5 h-5 text-yellow-600 dark:text-yellow-500" />
+                      <Icon
+                        path={mdiLightbulbOutline}
+                        className="w-5 h-5 text-yellow-600 dark:text-yellow-500"
+                      />
                     </div>
-                    <span className="text-sm text-foreground">Creative Social Media Content Strategy</span>
+                    <span className="text-sm text-foreground">
+                      Creative Social Media Content Strategy
+                    </span>
                   </div>
                   <div className="flex items-center gap-3 p-4 bg-card border border-border rounded-lg hover:shadow-sm transition-shadow">
                     <div className="w-10 h-10 rounded-lg bg-pink-500/10 flex items-center justify-center flex-shrink-0">
-                      <Icon path={mdiImageOutline} className="w-5 h-5 text-pink-600 dark:text-pink-500" />
+                      <Icon
+                        path={mdiImageOutline}
+                        className="w-5 h-5 text-pink-600 dark:text-pink-500"
+                      />
                     </div>
-                    <span className="text-sm text-foreground">Engagement and Outreach Plan</span>
+                    <span className="text-sm text-foreground">
+                      Engagement and Outreach Plan
+                    </span>
                   </div>
                   <div className="flex items-center gap-3 p-4 bg-card border border-border rounded-lg hover:shadow-sm transition-shadow">
                     <div className="w-10 h-10 rounded-lg bg-pink-500/10 flex items-center justify-center flex-shrink-0">
-                      <Icon path={mdiImageOutline} className="w-5 h-5 text-pink-600 dark:text-pink-500" />
+                      <Icon
+                        path={mdiImageOutline}
+                        className="w-5 h-5 text-pink-600 dark:text-pink-500"
+                      />
                     </div>
-                    <span className="text-sm text-foreground">Social Media Performance Enhancemen...</span>
+                    <span className="text-sm text-foreground">
+                      Social Media Performance Enhancemen...
+                    </span>
                   </div>
                 </div>
               </div>
@@ -163,27 +230,47 @@ export function CardDemo() {
                 <div className="space-y-3">
                   <div className="flex items-center gap-3 p-4 bg-card border border-border rounded-lg hover:shadow-sm transition-shadow">
                     <div className="w-10 h-10 rounded-lg bg-yellow-500/10 flex items-center justify-center flex-shrink-0">
-                      <Icon path={mdiLightbulbOutline} className="w-5 h-5 text-yellow-600 dark:text-yellow-500" />
+                      <Icon
+                        path={mdiLightbulbOutline}
+                        className="w-5 h-5 text-yellow-600 dark:text-yellow-500"
+                      />
                     </div>
-                    <span className="text-sm text-foreground">Social Media Brand Awareness Initiative</span>
+                    <span className="text-sm text-foreground">
+                      Social Media Brand Awareness Initiative
+                    </span>
                   </div>
                   <div className="flex items-center gap-3 p-4 bg-card border border-border rounded-lg hover:shadow-sm transition-shadow">
                     <div className="w-10 h-10 rounded-lg bg-yellow-500/10 flex items-center justify-center flex-shrink-0">
-                      <Icon path={mdiLightbulbOutline} className="w-5 h-5 text-yellow-600 dark:text-yellow-500" />
+                      <Icon
+                        path={mdiLightbulbOutline}
+                        className="w-5 h-5 text-yellow-600 dark:text-yellow-500"
+                      />
                     </div>
-                    <span className="text-sm text-foreground">Target Audience Engagement Strategy...</span>
+                    <span className="text-sm text-foreground">
+                      Target Audience Engagement Strategy...
+                    </span>
                   </div>
                   <div className="flex items-center gap-3 p-4 bg-card border border-border rounded-lg hover:shadow-sm transition-shadow">
                     <div className="w-10 h-10 rounded-lg bg-blue-500/10 flex items-center justify-center flex-shrink-0">
-                      <Icon path={mdiTrendingUp} className="w-5 h-5 text-blue-600 dark:text-blue-500" />
+                      <Icon
+                        path={mdiTrendingUp}
+                        className="w-5 h-5 text-blue-600 dark:text-blue-500"
+                      />
                     </div>
-                    <span className="text-sm text-foreground">Social Media Analytics and Insights Plan</span>
+                    <span className="text-sm text-foreground">
+                      Social Media Analytics and Insights Plan
+                    </span>
                   </div>
                   <div className="flex items-center gap-3 p-4 bg-card border border-border rounded-lg hover:shadow-sm transition-shadow">
                     <div className="w-10 h-10 rounded-lg bg-orange-500/10 flex items-center justify-center flex-shrink-0">
-                      <Icon path={mdiTrophy} className="w-5 h-5 text-orange-600 dark:text-orange-500" />
+                      <Icon
+                        path={mdiTrophy}
+                        className="w-5 h-5 text-orange-600 dark:text-orange-500"
+                      />
                     </div>
-                    <span className="text-sm text-foreground">Social Media Growth and Development...</span>
+                    <span className="text-sm text-foreground">
+                      Social Media Growth and Development...
+                    </span>
                   </div>
                 </div>
               </div>

@@ -59,44 +59,11 @@ export function BadgeDemo() {
         </Badge>
       </div>
 
-      {/* Bold Link Variants */}
-      <div className="flex flex-wrap items-center gap-3">
-        <Badge asChild variant="bold">
-          <a href="#">Bold Link <ArrowRightIcon className="size-3" /></a>
-        </Badge>
-        <Badge asChild variant="bold" colorScheme="primary">
-          <a href="#">Bold Primary Link <ArrowRightIcon className="size-3" /></a>
-        </Badge>
-        <Badge asChild variant="bold" colorScheme="danger">
-          <a href="#">Bold Danger Link <ArrowRightIcon className="size-3" /></a>
-        </Badge>
-      </div>
-
       {/* Closable Variants */}
       <div className="flex flex-wrap items-center gap-3">
         <Badge>Closable Neutral <Icon path={mdiClose} className="size-3" /></Badge>
         <Badge colorScheme="primary">Closable Primary <Icon path={mdiClose} className="size-3" /></Badge>
         <Badge colorScheme="danger">Closable Danger <Icon path={mdiClose} className="size-3" /></Badge>
-      </div>
-
-      {/* Closable Bold */}
-      <div className="flex flex-wrap items-center gap-3">
-        <Badge variant="bold">Closable Bold <Icon path={mdiClose} className="size-3" /></Badge>
-        <Badge variant="bold" colorScheme="primary">Closable Bold Primary <Icon path={mdiClose} className="size-3" /></Badge>
-        <Badge variant="bold" colorScheme="danger">Closable Bold Danger <Icon path={mdiClose} className="size-3" /></Badge>
-      </div>
-
-      {/* Closable Sizes */}
-      <div className="flex flex-wrap items-center gap-3">
-        <Badge size="sm" colorScheme="blue">
-          Small <Icon path={mdiClose} className="size-3" />
-        </Badge>
-        <Badge size="md" colorScheme="teal">
-          Medium <Icon path={mdiClose} className="size-3" />
-        </Badge>
-        <Badge size="lg" colorScheme="pink">
-          Large <Icon path={mdiClose} className="size-3" />
-        </Badge>
       </div>
       
     </div>

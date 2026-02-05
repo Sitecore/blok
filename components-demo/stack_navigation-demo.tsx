@@ -143,7 +143,7 @@ export function StackNavigationDemo  (){
           <div className="w-full border rounded-md bg-background overflow-hidden">
             <div className="border-b">
               <StackNavigation
-                items={navigationItemsTabs}
+                items={navigationItemsTabs} // 'items={navigationItems}' is changed as 'items={navigationItemsTabs}' to avoid the confusion
                 orientation="horizontal"
                 renderItem={renderTabItem}
                 navClassName="justify-start"

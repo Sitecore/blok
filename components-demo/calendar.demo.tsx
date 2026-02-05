@@ -10,7 +10,7 @@ import {
   SelectContent,
   SelectItem,
 } from "@/components/ui/select";
-import { format } from "date-fns";
+import { format, parseISO } from "date-fns";
 
 export function CustomDropdown({
   options = [],
@@ -61,12 +61,12 @@ export function CustomDropdown({
 export function CalendarDemo() {
 
   const [date, setDate] = React.useState<Date | undefined>(
-    new Date(2025, 6, 12),
+    parseISO("2025-06-12"),
   );
 
   const [dateRange, setDateRange] = React.useState<DateRange | undefined>({
-    from: new Date(2025, 5, 9),
-    to: new Date(2025, 5, 26),
+    from: parseISO("2025-06-09"),
+    to: parseISO("2025-06-26"),
   });
     
     return (

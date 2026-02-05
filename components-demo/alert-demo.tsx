@@ -17,6 +17,7 @@ export function AlertDemo({
   return (
     <div className="grid items-start gap-4">
       <h2 className="font-semibold text-4xl wrap-break-words">Alert</h2>
+
       <Alert variant="primary">
         <AlertTitle>Primary Alert</AlertTitle>
         <AlertDescription>
@@ -46,20 +47,20 @@ export function AlertDemo({
       </Alert>
 
       <Alert variant={variantProp}>
-        <AlertTitle>Closable {variantProp} Alert</AlertTitle>
-        <AlertDescription>
-          This is a closable alert with a title and description.
-        </AlertDescription>
-        <Button
-          size="icon-xs"
-          variant="ghost"
-          className="absolute top-2.5 right-3 h-6 shadow-none dark:hover:bg-accent-foreground/10"
-          onClick={() => setIsOpen(false)}
-          aria-label="Close alert"
-        >
-          ✕
-        </Button>
-      </Alert>
+      <AlertTitle>Closable {variantProp} Alert</AlertTitle>
+      <AlertDescription>
+        This is a closable alert with a title and description.
+      </AlertDescription>
+      <Button
+        size="icon-xs"
+        variant="ghost"
+        className="absolute top-2.5 right-3 h-6 shadow-none dark:hover:bg-accent-foreground/10"
+        onClick={() => setIsOpen(false)}
+        aria-label="Close alert"
+      >
+        ✕
+      </Button>
+    </Alert>
 
       <Alert variant={variantProp}>
         <AlertTitle>
