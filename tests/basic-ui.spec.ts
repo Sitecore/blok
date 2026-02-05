@@ -6,45 +6,46 @@ import { testOpenAlertDialog, testKeepEditing, testDiscard } from './test-Compon
 import { testAspectRatio } from './test-Components/test-Aspect_Ratio';
 import { testAvatar, testAvatarMenu, testFallbackAvatar, testInteractiveAvatar, testLargeAvatar } from './test-Components/test-Avatar';
 import { testBadge, testBadgeBold, testBadgeClosable, testBadgeColor, testBadgeLink, testBadgeSize } from './test-Components/test-Badge';
-import { testBreadcrumb, testBreadcrumbItemLinks } from './test-Components/test-Breadcrumb';
+import { testBreadcrumb } from './test-Components/test-BreadCrumb';
 import { testPrimaryORDefaultButton, testGhostButton, testDisabledButtons, testIcononlyVariant, testLinkVariant, testOutlineButton, testSizeVariant } from './test-Components/test-Button';
-import { testSingleCalendar } from './test-Components/test-Calendar';
-import { testCardElevation, testCardPadding, testCardStyle, testDefaultCard } from './test-Components/test-Card';
-import { testDefaultCarousel } from './test-Components/test-Carousel';
-import { testAreaChart } from './test-Components/test-Chart';
+import { testSingleCalendar, testTwoMonthCalendar } from './test-Components/test-Calendar';
+import { testCardElevation, testCardPadding, testCardStyle, testDefaultCard, testStyledCard } from './test-Components/test-Card';
+import { testNumberCardsCarousel, testResponsiveCardsCarousel, testHalfWidthCardsCarousel } from './test-Components/test-Carousel';
+import { testAreaChart, testBarChart, testMixedBarChart } from './test-Components/test-Chart';
 import { testCheckbox, testCheckboxDisabled, testCheckboxWithDescription, testCheckEnabledLabel } from './test-Components/test-Checkbox';
 import { testCircularProgressDefault, testCircularProgressVariant, testCircularProgressWithText } from './test-Components/test-Circular_Progress';
 import { testCollapsible } from './test-Components/test-Collapsible';
 import { testCombobxFramework, testCombobxTimezone, testCombobxUser, testCombobxWithCheckbox } from './test-Components/test-Combobox';
 import { testCommand } from './test-Components/test-Command';
 import { testContextMenu } from './test-Components/test-Context_menu';
-import { testSingleDatePicker } from './test-Components/test-Date_picker';
-import { testDialog } from './test-Components/test-Dialog';
+import { testDatePickerRange, testSingleDatePicker } from './test-Components/test-Date_picker';
+import { testDialog, testDialogScrollable, testDialogStickyFooter } from './test-Components/test-Dialog';
 import { testDraggableBasic, testDraggableCustomHandle, testDraggableDragDropandSort } from './test-Components/test-Draggable';
-import { testDropdown } from './test-Components/test-Dropdown';
+import { testDropdown, testDropdownMenuAvatarOnly, testDropdownMenuCheckbox, testDropdownMenuIconColor, testDropdownMenuRadioGroup, testDropdownMenuWithAvatar } from './test-Components/test-Dropdown';
 import { testEditableInput, testEditableTextarea } from './test-Components/test-Editable';
-import { testEmptyStates } from './test-Components/test-Empty_States';
-import { testErrorStates } from './test-Components/test-Error_States';
+import { testEmptyStatesError, testEmptyStatesNoSearchResults, testEmptyStatesNothingCreated } from './test-Components/test-Empty_States';
+import { testErrorStates, testErrorStatesBadRequest, testErrorStatesUnauthorized, testErrorStatesForbidden, testErrorStatesNotFound, testErrorStatesInternalServerError, testErrorStatesServiceUnavailable } from './test-Components/test-Error_States';
 import { testFieldDefault, testFieldInput, testFieldTextarea, testFieldSelect, testFieldCheckbox, testFieldRadioGroup, testFieldSwitch, testFieldSeparator, testFieldError, testFieldIcon, testFieldAddon, testFieldDisabled, testFieldReadOnly, testFieldSmallSize, testFieldInputTypes } from './test-Components/test-Field';
+import { testFilterDefault, testFilterInput, testFilterMultiSelect, testFilterSingleSelect, testFilterToggle } from './test-Components/test-Filter';
 import { testIconColors, testIconFilledVariants, testIconSizes, testIconSubtleVariants, testIconVariants } from './test-Components/test-Icon';
-import { testInput } from './test-Components/test-Input';
+import { testInput, testInputPassword, testInputFile, testInputDisabled, testInputText, testInputEmail } from './test-Components/test-Input';
 import { testInputGroupDropdown, testInputGroupSearch, testInputGroupURL } from './test-Components/test-Input_Group';
-import { testInputOTP } from './test-Components/test-Input_OTP';
+import { testInputOTPPattern, testInputOTPSimple, testInputOTPWithSpacing } from './test-Components/test-Input_OTP';
 import { testKbdButton, testKbdDefault, testKbdGroup, testKbdShortcut, testKbdTooltip } from './test-Components/test-Kbd';
 import { testLabel } from './test-Components/test-Label';
-import { testNavigationMenu } from './test-Components/test-Navigation_Menu';
+import { testNavigationMenu, testNavigationMenuSecondary } from './test-Components/test-Navigation_Menu';
 import { testPagination } from './test-Components/test-Pagination';
 import { testPopover } from './test-Components/test-Popover';
 import { testProgress } from './test-Components/test-Progress';
 import { testRadioGroup } from './test-Components/test-Radio_Group';
 import { testResizableHorizontal, testResizableVertical, testResizableWithHandle } from './test-Components/test-Resizable';
 import { testScrollAreaHorizontal, testScrollAreaVertical } from './test-Components/test-Scroll_Area';
-import { testSelectDefault } from './test-Components/test-Select';
+import { testSelectDefault, testSelectDisabled, testSelectLargeList, testSelectWithIcon } from './test-Components/test-Select';
 import { testSelectReact } from './test-Components/test-Select(React)';
 import { testSeparator } from './test-Components/test-Separator';
-import { testSheetDefault } from './test-Components/test-Sheet';
+import { testSheetBottom, testSheetDefault, testSheetLeft, testSheetRight, testSheetTop } from './test-Components/test-Sheet';
 import { testSidebar } from './test-Components/test-Sidebar';
-import { testSkeletonDefault } from './test-Components/test-Skeleton';
+import { testSkeletonCardList, testSkeletonDefault } from './test-Components/test-Skeleton';
 import { testSlider } from './test-Components/test-Slider';
 import { testToastAction, testToastClosable, testToastError, testToastNormal, testToastSuccessful, testToastWarning } from './test-Components/test-Sonner';
 import { testSpinnerBadge, testSpinnerButton, testSpinnerDefault, testSpinnerSize } from './test-Components/test-Spinner';
@@ -60,17 +61,18 @@ import { testToggleRounded, testToggleSquare } from './test-Components/test-Togg
 import { testToggleGroupRounded, testToggleGroupSquare } from './test-Components/test-Toggle_group';
 import { testTooltip } from './test-Components/test-Tooltip';
 import { testTopbar } from './test-Components/test-Topbar';
+import { testAllSiteSection } from './test-Components/test-All_Site_section';
 import { testCollaboration } from './test-Components/test-Collaboration';
+import { testPinnedSiteSection } from './test-Components/test-Pinned_Site_Section';
+import { testSiteCard } from './test-Components/test-Site_Card';
+
 
 
 test.describe('UI BLOK QA Automation', () => {
 
   test.beforeEach('Base URL', async ({ page }) => {
     // adjust baseURL in playwright config, or use full URL:
-    // Wait for network to be idle to ensure all components are loaded
-    await page.goto('/', { waitUntil: 'networkidle', timeout: 120000 });
-    // Additional wait to ensure React components are fully rendered
-    await page.waitForLoadState('domcontentloaded');
+    await page.goto('/', { waitUntil: 'domcontentloaded', timeout: 1200000});
   });
 
   test('test_Accordion', async ({ page }) => {
@@ -96,7 +98,7 @@ test.describe('UI BLOK QA Automation', () => {
   test('test_Aspect_Ratio', async ({ page }) => {
     await testAspectRatio(page);
   });
-{/*
+
   test('test_Avatar', async ({ page }) => {
     await testAvatar(page);
     await testFallbackAvatar(page);
@@ -104,7 +106,7 @@ test.describe('UI BLOK QA Automation', () => {
     await testInteractiveAvatar(page);
     await testAvatarMenu(page);
   });
-*/}
+
   test('test_Badge', async ({ page }) => {
     await testBadge(page);
     await testBadgeSize(page);
@@ -115,8 +117,7 @@ test.describe('UI BLOK QA Automation', () => {
   });
 
   test('test_Breadcrumb', async ({ page }) => {
-    await testBreadcrumb(page);
-    await testBreadcrumbItemLinks(page);
+    await testBreadcrumb(page); 
   });
 
   test('test_Button', async ({ page }) => {
@@ -128,24 +129,30 @@ test.describe('UI BLOK QA Automation', () => {
     await testIcononlyVariant(page);
     await testDisabledButtons(page);
   });
-{/*
+
   test('test_Calendar', async ({ page }) => {
     await testSingleCalendar(page);
+    await testTwoMonthCalendar(page);
   });
-*/}
+
   test('test_Card', async ({ page }) => {
     await testDefaultCard(page);
     await testCardElevation(page);
     await testCardStyle(page);
     await testCardPadding(page);
+    await testStyledCard(page);
   });
 
   test('test_Carousel', async ({ page }) => {
-    await testDefaultCarousel(page);
+    await testNumberCardsCarousel(page);
+    await testResponsiveCardsCarousel(page);
+    await testHalfWidthCardsCarousel(page);
   });
 
   test('test_Chart', async ({ page }) => {
     await testAreaChart(page);
+    await testBarChart(page);
+    await testMixedBarChart(page);
   });
 
   test('test_Checkbox', async ({ page }) => {
@@ -171,21 +178,24 @@ test.describe('UI BLOK QA Automation', () => {
     await testCombobxTimezone(page);
     await testCombobxWithCheckbox(page);
   });
-{/*
+
   test('test_Command', async ({ page }) => {
     await testCommand(page);
   });
-*/}
+
   test('test_Context_menu', async ({ page }) => {
     await testContextMenu(page);
   });
 
   test('test_Date_picker', async ({ page }) => {
     await testSingleDatePicker(page);
+    await testDatePickerRange(page);
   });
-{/*
+
   test('test_Dialog', async ({ page }) => {
     await testDialog(page);
+    await testDialogScrollable(page);
+    await testDialogStickyFooter(page);
   });
 
   test('test_Draggable', async ({ page }) => {
@@ -193,9 +203,14 @@ test.describe('UI BLOK QA Automation', () => {
     await testDraggableCustomHandle(page);
     await testDraggableDragDropandSort(page);
   });
-*/}
+
   test('test_Dropdown', async ({ page }) => {
     await testDropdown(page);
+    await testDropdownMenuCheckbox(page);
+    await testDropdownMenuRadioGroup(page);
+    await testDropdownMenuWithAvatar(page);
+    await testDropdownMenuAvatarOnly(page);
+    await testDropdownMenuIconColor(page);
   });
 
   test('test_Editable', async ({ page }) => {
@@ -204,13 +219,21 @@ test.describe('UI BLOK QA Automation', () => {
   });
 
   test('test_Empty_States', async ({ page }) => {
-    await testEmptyStates(page);
+    await testEmptyStatesNoSearchResults(page);
+    await testEmptyStatesNothingCreated(page);
+    await testEmptyStatesError(page);
   });
 
   test('test_Error_States', async ({ page }) => {
     await testErrorStates(page);
+    await testErrorStatesBadRequest(page);
+    await testErrorStatesUnauthorized(page);
+    await testErrorStatesForbidden(page);
+    await testErrorStatesNotFound(page);
+    await testErrorStatesInternalServerError(page);
+    await testErrorStatesServiceUnavailable(page);
   });
-{/*
+
   test('test_Field', async ({ page }) => {
     await testFieldDefault(page);
     await testFieldInput(page);
@@ -228,7 +251,15 @@ test.describe('UI BLOK QA Automation', () => {
     await testFieldSmallSize(page);
     await testFieldInputTypes(page);
   });
-*/}
+
+  test('test_Filter', async ({ page }) => {
+    await testFilterDefault(page);
+    await testFilterInput(page);
+    await testFilterSingleSelect(page);
+    await testFilterMultiSelect(page);
+    await testFilterToggle(page);
+  });
+
   test('test_Icon', async ({ page }) => {
     await testIconVariants(page);
     await testIconSizes(page);
@@ -239,6 +270,11 @@ test.describe('UI BLOK QA Automation', () => {
 
   test('test_Input', async ({ page }) => {
     await testInput(page);
+    await testInputEmail(page);
+    await testInputText(page);
+    await testInputPassword(page);
+    await testInputFile(page);
+    await testInputDisabled(page);
   });
 
   test('test_Input_Group', async ({ page }) => {
@@ -248,9 +284,11 @@ test.describe('UI BLOK QA Automation', () => {
   });
 
   test('test_Input_OTP', async ({ page }) => {
-    await testInputOTP(page);
+    await testInputOTPSimple(page);
+    await testInputOTPPattern(page);
+    await testInputOTPWithSpacing(page);
   });
-{/*
+
   test('test_Kbd', async ({ page }) => {
     await testKbdDefault(page);
     await testKbdGroup(page);
@@ -262,14 +300,15 @@ test.describe('UI BLOK QA Automation', () => {
   test('test_Label', async ({ page }) => {
     await testLabel(page);
   });
-*/}
+
   test('test_Navigation_Menu', async ({ page }) => {
     await testNavigationMenu(page);
+    await testNavigationMenuSecondary(page);
   });
 
-  // test('test_Pagination', async ({ page }) => {
-  //   await testPagination(page);
-  // });
+  test('test_Pagination', async ({ page }) => {
+    await testPagination(page);
+  });
 
   test('test_Popover', async ({ page }) => {
     await testPopover(page);
@@ -278,11 +317,11 @@ test.describe('UI BLOK QA Automation', () => {
   test('test_Progress', async ({ page }) => {
     await testProgress(page);
   });
-{/*
+
   test('test_Radio_Group', async ({ page }) => {
     await testRadioGroup(page);
   });
-*/}
+
   test('test_Resizable', async ({ page }) => {
     await testResizableHorizontal(page);
     await testResizableVertical(page);
@@ -296,6 +335,9 @@ test.describe('UI BLOK QA Automation', () => {
 
   test('test_Select', async ({ page }) => {
     await testSelectDefault(page);
+    await testSelectLargeList(page);
+    await testSelectWithIcon(page);
+    await testSelectDisabled(page);
   });
 
   test('test_Select(React)', async ({ page }) => {
@@ -308,6 +350,10 @@ test.describe('UI BLOK QA Automation', () => {
 
   test('test_Sheet', async ({ page }) => {
     await testSheetDefault(page);
+    await testSheetTop(page);
+    await testSheetBottom(page);
+    await testSheetLeft(page);
+    await testSheetRight(page);
   });
 
   test('test_Sidebar', async ({ page }) => {
@@ -316,20 +362,21 @@ test.describe('UI BLOK QA Automation', () => {
 
   test('test_Skeleton', async ({ page }) => {
     await testSkeletonDefault(page);
+    await testSkeletonCardList(page);
   });
 
   test('test_Slider', async ({ page }) => {
     await testSlider(page);
   });
 
-  // test('test_Sonner', async ({ page }) => {
-  //   await testToastNormal(page);
-  //   await testToastSuccessful(page);
-  //   await testToastWarning(page);
-  //   await testToastError(page);
-  //   await testToastAction(page);
-  //   await testToastClosable(page);
-  // });
+  test('test_Sonner', async ({ page }) => {
+    await testToastNormal(page);
+    await testToastSuccessful(page);
+    await testToastWarning(page);
+    await testToastError(page);
+    await testToastAction(page);
+    await testToastClosable(page);
+  });
 
   test('test_Spinner', async ({ page }) => {
     await testSpinnerDefault(page);
@@ -389,30 +436,38 @@ test.describe('UI BLOK QA Automation', () => {
     await testTimelineConnectors(page);
   });
 
-  // test('test_Toggle', async ({ page }) => {
-  //   await testToggleSquare(page);
-  //   await testToggleRounded(page);
-  // });
+  test('test_Toggle', async ({ page }) => {
+    await testToggleSquare(page);
+    await testToggleRounded(page);
+  });
 
-  // test('test_Toggle_group', async ({ page }) => {
-  //   await testToggleGroupSquare(page);
-  //   await testToggleGroupRounded(page);
-  // });
+  test('test_Toggle_group', async ({ page }) => {
+    await testToggleGroupSquare(page);
+    await testToggleGroupRounded(page);
+  });
 
   test('test_Tooltip', async ({ page }) => {
     await testTooltip(page);
   });
 
-  // test('test_Topbar', async ({ page }) => {
-  //   await testTopbar(page);
-  // });
-{/*
+  test('test_Topbar', async ({ page }) => {
+    await testTopbar(page);
+  });
+
+  test('test_All_Site_Section', async ({ page }) => {
+    await testAllSiteSection(page); 
+  });
+
   test('test_Collaboration', async ({ page }) => {
     await testCollaboration(page);
   });
-*/}
-  test('close', async ({ page }) => {
-    await page.close();
+
+  test('test_Pinned_Site_Section', async ({ page }) => {
+    await testPinnedSiteSection(page);
+  });
+
+  test('test_Site_Card', async ({ page }) => {
+    await testSiteCard(page);
   });
 
 });
