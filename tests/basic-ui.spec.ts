@@ -6,7 +6,7 @@ import { testOpenAlertDialog, testKeepEditing, testDiscard } from './test-Compon
 import { testAspectRatio } from './test-Components/test-Aspect_Ratio';
 import { testAvatar, testAvatarMenu, testFallbackAvatar, testInteractiveAvatar, testLargeAvatar } from './test-Components/test-Avatar';
 import { testBadge, testBadgeBold, testBadgeClosable, testBadgeColor, testBadgeLink, testBadgeSize } from './test-Components/test-Badge';
-import { testBreadcrumb } from './test-Components/test-BreadCrumb';
+import { testBreadcrumb } from './test-Components/test-Breadcrumb';
 import { testPrimaryORDefaultButton, testGhostButton, testDisabledButtons, testIcononlyVariant, testLinkVariant, testOutlineButton, testSizeVariant } from './test-Components/test-Button';
 import { testSingleCalendar, testTwoMonthCalendar } from './test-Components/test-Calendar';
 import { testCardElevation, testCardPadding, testCardStyle, testDefaultCard, testStyledCard } from './test-Components/test-Card';
