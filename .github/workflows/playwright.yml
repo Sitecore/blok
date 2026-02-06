@@ -50,44 +50,257 @@ jobs:
           ref: QA-Automation_NextFW
           path: app
       
-      # Step 2-5: Setup and build application using composite action
-      - name: Setup and Build Application
-        id: build-app
-        uses: ./.github/actions/setup-app
-        with:
-          app-path: app
+      # Step 2: Verify Docker files exist in app directory (from QA-Automation_NextFW branch)
+      - name: Verify Docker files in app directory
+        run: |
+          echo "=== Verifying Docker files in app directory ==="
+          echo "The QA-Automation_NextFW branch should contain all required files"
+          echo ""
+          
+          # Check required files
+          REQUIRED_FILES=("Dockerfile" "install-components.sh" "components-config.json" "components.json" "package.json" "tsconfig.json")
+          MISSING_FILES=()
+          
+          for file in "${REQUIRED_FILES[@]}"; do
+            if [ -f "app/$file" ]; then
+              echo "✅ $file found in app directory"
+            else
+              MISSING_FILES+=("$file")
+              echo "❌ $file NOT found in app directory"
+            fi
+          done
+          
+          # Check .dockerignore (optional but recommended)
+          if [ -f "app/.dockerignore" ]; then
+            echo "✅ .dockerignore found in app directory"
+          else
+            echo "⚠️ .dockerignore not found - creating basic one..."
+            echo "node_modules" > app/.dockerignore
+            echo ".next" >> app/.dockerignore
+            echo ".git" >> app/.dockerignore
+            echo "components/ui/" >> app/.dockerignore
+            echo "✅ Created basic .dockerignore"
+          fi
+          
+          # Exit if required files are missing
+          if [ ${#MISSING_FILES[@]} -gt 0 ]; then
+            echo ""
+            echo "❌ Missing required files in QA-Automation_NextFW branch:"
+            printf '  - %s\n' "${MISSING_FILES[@]}"
+            echo ""
+            echo "Please commit these files to the QA-Automation_NextFW branch:"
+            echo "  - Dockerfile"
+            echo "  - install-components.sh"
+            echo "  - components-config.json (if not already present)"
+            exit 1
+          fi
+          
+          echo ""
+          echo "✅ All required files found in app directory"
       
-      # Step 6: Start Next.js server in background
-      - name: Start Next.js server
+      # Step 3: Verify Docker is available
+      - name: Verify Docker is available
+        run: |
+          echo "=== Verifying Docker is available ==="
+          
+          # Verify Docker is available
+          if ! command -v docker &> /dev/null; then
+            echo "❌ Docker is not available!"
+            exit 1
+          else
+            echo "✅ Docker is available"
+            docker --version
+          fi
+          
+          echo "✅ Docker setup verified"
+      
+      # Step 4: Build Docker image
+      - name: Build Docker image
         working-directory: ./app
         run: |
-          npm start > server.log 2>&1 &
-          echo $! > server.pid
-          echo "Server starting with PID: $(cat server.pid)"
-        env:
-          NODE_ENV: production
-          PORT: 3000
+          echo "=== Building Docker image ==="
+          echo "This will install components and prepare the app in an isolated environment"
+          echo ""
+          echo "Build context: $(pwd)"
+          echo "Files in build context:"
+          ls -la | head -20
+          echo ""
+          
+          # Build with progress output
+          docker build -t nextjs-app:dev --target dev . 2>&1 | tee docker-build.log
+          
+          # Check build success
+          if [ ${PIPESTATUS[0]} -eq 0 ]; then
+            echo "✅ Docker image built successfully"
+            echo ""
+            echo "Image details:"
+            docker images nextjs-app:dev --format "table {{.Repository}}\t{{.Tag}}\t{{.Size}}"
+          else
+            echo "❌ Docker build failed!"
+            echo "Build log (last 50 lines):"
+            tail -50 docker-build.log || true
+            exit 1
+          fi
       
-      # Step 7: Wait for server to be ready
-      - name: Wait for server to be ready
+      # Step 5: Run Docker container
+      - name: Run Docker container
         run: |
-          echo "Waiting for Next.js server to start..."
+          echo "=== Starting Docker container ==="
+          
+          # Remove any existing container with the same name
+          docker rm -f nextjs-dev 2>/dev/null || true
+          
+          # Start container
+          CONTAINER_ID=$(docker run -d \
+            --name nextjs-dev \
+            -p 3000:3000 \
+            nextjs-app:dev)
+          
+          if [ -n "$CONTAINER_ID" ]; then
+            echo "✅ Docker container started"
+            echo "Container ID: $CONTAINER_ID"
+            echo ""
+            echo "Container status:"
+            docker ps -f name=nextjs-dev --format "table {{.Names}}\t{{.Status}}\t{{.Ports}}"
+          else
+            echo "❌ Failed to start Docker container!"
+            exit 1
+          fi
+      
+      # Step 6: Wait for dev server to be ready
+      - name: Wait for dev server
+        run: |
+          echo "Waiting for Next.js dev server to start in Docker container..."
           timeout=120
           elapsed=0
           while [ $elapsed -lt $timeout ]; do
             if curl -f -s http://localhost:3000 > /dev/null 2>&1; then
-              echo "✅ Server is ready and responding!"
+              echo "✅ Dev server is ready and responding!"
               curl -s http://localhost:3000 | head -n 5
               exit 0
             fi
-            echo "⏳ Waiting for server... ($elapsed/$timeout seconds)"
+            echo "⏳ Waiting for dev server... ($elapsed/$timeout seconds)"
             sleep 3
             elapsed=$((elapsed + 3))
           done
-          echo "❌ Server failed to start within $timeout seconds"
-          echo "Server log:"
-          cat app/server.log || true
+          echo "❌ Dev server failed to start within $timeout seconds"
+          echo "Docker container logs:"
+          docker logs nextjs-dev || true
           exit 1
+      
+      # Step 7: Setup cloudflared tunnel for dev server
+      - name: Expose dev server via tunnel
+        id: tunnel-dev
+        run: |
+          echo "🌐 Setting up public URL tunnel for dev server..."
+          
+          # Verify local server is still running
+          if ! curl -f -s http://localhost:3000 > /dev/null 2>&1; then
+            echo "❌ Local dev server is not responding on localhost:3000"
+            exit 1
+          fi
+          echo "✅ Local dev server is running on localhost:3000"
+          
+          # Download and install cloudflared
+          curl -L --output cloudflared https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-amd64
+          chmod +x cloudflared
+          sudo mv cloudflared /usr/local/bin/ || mv cloudflared /usr/local/bin/
+          
+          # Start cloudflared tunnel in background
+          echo "Starting cloudflared tunnel..."
+          /usr/local/bin/cloudflared tunnel --url http://localhost:3000 > cloudflared.log 2>&1 &
+          CLOUDFLARED_PID=$!
+          echo $CLOUDFLARED_PID > cloudflared.pid
+          echo "Cloudflared started with PID: $CLOUDFLARED_PID"
+          
+          # Wait for cloudflared to start and extract the URL
+          echo "Waiting for tunnel to be ready..."
+          sleep 10
+          
+          # Extract the public URL from cloudflared output
+          PUBLIC_URL=""
+          for i in {1..50}; do
+            # Check if cloudflared is still running
+            if ! kill -0 $CLOUDFLARED_PID 2>/dev/null; then
+              echo "⚠️ Cloudflared process died!"
+              echo "Cloudflared log:"
+              cat cloudflared.log || true
+              break
+            fi
+            
+            if [ -f cloudflared.log ]; then
+              # Try multiple URL patterns
+              PUBLIC_URL=$(grep -oE 'https://[a-zA-Z0-9-]+\.trycloudflare\.com' cloudflared.log 2>/dev/null | head -1)
+              
+              # Alternative pattern matching
+              if [ -z "$PUBLIC_URL" ]; then
+                PUBLIC_URL=$(grep -oE 'https://[^[:space:]]+\.trycloudflare\.com' cloudflared.log 2>/dev/null | head -1)
+              fi
+              
+              # Check for "https://" anywhere in the log
+              if [ -z "$PUBLIC_URL" ] && grep -q "https://" cloudflared.log; then
+                PUBLIC_URL=$(grep "https://" cloudflared.log | grep -oE 'https://[^[:space:]]+' | head -1)
+              fi
+              
+              if [ -n "$PUBLIC_URL" ]; then
+                echo "Found URL: $PUBLIC_URL"
+                # Verify the tunnel is actually working by testing the public URL
+                echo "Verifying tunnel is working (attempt $i/50)..."
+                sleep 3
+                
+                # Test the URL multiple times to ensure it's stable
+                SUCCESS_COUNT=0
+                for test_attempt in {1..3}; do
+                  if curl -f -s --max-time 15 "$PUBLIC_URL" > /dev/null 2>&1; then
+                    SUCCESS_COUNT=$((SUCCESS_COUNT + 1))
+                  fi
+                  sleep 1
+                done
+                
+                if [ $SUCCESS_COUNT -ge 2 ]; then
+                  echo "✅ Tunnel is working and responding! ($SUCCESS_COUNT/3 tests passed)"
+                  break
+                else
+                  echo "⏳ Tunnel URL found but not responding yet (only $SUCCESS_COUNT/3 tests passed), waiting..."
+                  sleep 2
+                fi
+              fi
+            fi
+            sleep 1
+          done
+          
+          if [ -n "$PUBLIC_URL" ]; then
+            # Final verification
+            echo "Performing final verification..."
+            VERIFY_COUNT=0
+            for verify_attempt in {1..5}; do
+              if curl -f -s --max-time 15 "$PUBLIC_URL" > /dev/null 2>&1; then
+                VERIFY_COUNT=$((VERIFY_COUNT + 1))
+              fi
+              sleep 1
+            done
+            
+            if [ $VERIFY_COUNT -ge 3 ]; then
+              echo "✅ Public URL is working: $PUBLIC_URL"
+              echo "✅ Verified $VERIFY_COUNT/5 times successfully"
+              echo "url=$PUBLIC_URL" >> $GITHUB_OUTPUT
+              echo "::notice title=🌐 Dev Server URL::Your dev server is accessible at: $PUBLIC_URL"
+              echo "## 🌐 Dev Server URL" >> $GITHUB_STEP_SUMMARY
+              echo "Your dev server is accessible at: **[$PUBLIC_URL]($PUBLIC_URL)**" >> $GITHUB_STEP_SUMMARY
+              echo "" >> $GITHUB_STEP_SUMMARY
+              echo "**Note:** The URL will be active until the workflow completes." >> $GITHUB_STEP_SUMMARY
+              echo "**Status:** ✅ Verified and working" >> $GITHUB_STEP_SUMMARY
+            else
+              echo "⚠️ URL extracted but tunnel verification failed ($VERIFY_COUNT/5 tests passed)"
+              echo "URL: $PUBLIC_URL"
+              echo "url=$PUBLIC_URL" >> $GITHUB_OUTPUT
+              echo "::warning title=🌐 Tunnel URL (Verification Failed)::URL: $PUBLIC_URL - Only $VERIFY_COUNT/5 verification tests passed."
+            fi
+          else
+            echo "⚠️ Could not extract public URL"
+            echo "Cloudflared log:"
+            cat cloudflared.log || true
+          fi
       
       # Step 8: Checkout QA-Automation branch (tests)
       - name: Checkout tests (QA-Automation)
@@ -96,7 +309,7 @@ jobs:
           ref: QA-Automation
           path: tests
       
-      # Step 9-11: Run tests using composite action
+      # Step 9: Run tests using composite action
       - name: Run Playwright Tests
         id: run-tests
         uses: ./.github/actions/run-tests
@@ -245,8 +458,8 @@ jobs:
         uses: ./.github/actions/send-teams-notification
         with:
           notification-type: test-results
-          build-status: ${{ steps.build-app.outputs.build-status }}
-          build-exit-code: ${{ steps.build-app.outputs.build-exit-code }}
+          build-status: success
+          build-exit-code: 0
           test-status: ${{ steps.run-tests.outputs.status }}
           total: ${{ steps.run-tests.outputs.total }}
           passed: ${{ steps.run-tests.outputs.passed }}
@@ -291,22 +504,27 @@ jobs:
             exit 0
           fi
       
-      # Step 12: Cleanup - Stop the server
-      - name: Stop Next.js server
+      # Step 12: Cleanup - Stop Docker container and tunnel
+      - name: Stop Docker container and tunnel
         if: always()
-        working-directory: ./app
         run: |
-          echo "Stopping Next.js server..."
-          if [ -f server.pid ]; then
-            PID=$(cat server.pid)
-            echo "Killing process $PID"
+          echo "Stopping cloudflared tunnel..."
+          if [ -f cloudflared.pid ]; then
+            PID=$(cat cloudflared.pid)
+            echo "Killing cloudflared process $PID"
             kill $PID 2>/dev/null || true
-            rm server.pid
+            rm cloudflared.pid
           fi
-          # Also kill any remaining node processes
-          pkill -f "next start" || true
-          pkill -f "node.*next" || true
-          echo "Server stopped"
+          pkill -f "cloudflared tunnel" || true
+          echo "Tunnel stopped"
+          
+          echo "Stopping Docker container..."
+          docker stop nextjs-dev 2>/dev/null || true
+          docker rm nextjs-dev 2>/dev/null || true
+          echo "✅ Docker container stopped and removed"
+          
+          # Clean up Docker image (optional - comment out if you want to keep it)
+          # docker rmi nextjs-app:dev 2>/dev/null || true
       
       # Step 13-14: Upload artifacts using composite action
       - name: Upload Test Artifacts
