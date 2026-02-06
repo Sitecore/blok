@@ -505,6 +505,7 @@
         "https://blok.sitecore.com/r/empty-states.json",
         "https://blok.sitecore.com/r/error-states.json",
         "https://blok.sitecore.com/r/field.json",
+        "https://blok.sitecore.com/r/filter.json",
         "https://blok.sitecore.com/r/icon.json",
         "https://blok.sitecore.com/r/input.json",
         "https://blok.sitecore.com/r/input-group.json",
