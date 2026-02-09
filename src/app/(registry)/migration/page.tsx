@@ -19,7 +19,7 @@ const MIGRATION_AREAS = [
     ]
   },
   {
-    title: 'Styling & Layout',
+    title: 'Styling & layout',
     items: [
       'All Chakra props must be translated into Tailwind classes.',
       'Layout primitives (Stack, Flex, Grid) require structural changes.',
@@ -35,14 +35,14 @@ const MIGRATION_AREAS = [
     ]
   },
   {
-    title: 'Design Tokens',
+    title: 'Design tokens',
     items: [
       'Chakra token names differ from Blok’s token architecture.',
       'Teams must align tokens with Blok’s official scales.',
     ]
   },
   {
-    title: 'Component Distribution',
+    title: 'Component distribution',
     items: [
       'Instead of importing packages, components are installed from Blok’s registry.',
       'Teams must adjust to owning their component source code.',
@@ -51,7 +51,7 @@ const MIGRATION_AREAS = [
   {
     title: 'Accessibility',
     items: [
-      'shadcn/ui provides primitives closer to native behavior.',
+      'Shadcn/ui provides primitives closer to native behavior.',
       'Teams must validate focus states, keyboard flows, and ARIA rules.',
     ]
   }
@@ -59,53 +59,53 @@ const MIGRATION_AREAS = [
 
 const MIGRATION_PATHS = [
   {
-    title: 'Step 1 — Component Inventory',
+    title: '1. Component inventory',
     description: 'Identify:',
     steps: [
-      'all Chakra components used',
-      'custom Chakra components',
-      'theme extensions',
-      'design system overrides',
+      'All Chakra components used',
+      'Custom Chakra components',
+      'Theme extensions',
+      'Design system overrides',
     ]
   },
   {
-    title: 'Step 2 — Map to Blok Equivalents',
+    title: '2. Map to Blok equivalents',
     description: 'Use Blok docs to find:',
     steps: [
-      'matching components',
-      'gaps requiring new component creation',
+      'Matching components',
+      'Gaps requiring new component creation',
     ]
   },
   {
-    title: 'Step 3 — Introduce Tailwind',
+    title: '3. Introduce Tailwind',
     steps: [
       'Add Tailwind config and Blok base styles',
       'Install required components via the registry',
     ]
   },
   {
-    title: 'Step 4 — Rebuild Components & Screens',
+    title: '4. Rebuild components & screens',
     description: 'Rebuild feature by feature:',
     steps: [
-      'replace Chakra components',
-      'rewrite custom components using shadcn patterns',
-      'apply Tailwind classes',
+      'Replace Chakra components',
+      'Rewrite custom components using shadcn patterns',
+      'Apply Tailwind classes',
     ]
   },
   {
-    title: 'Step 5 — Recreate Theme & Tokens',
+    title: '5. Recreate theme & tokens',
     steps: [
       'Convert Chakra theme tokens into Tailwind equivalents',
       'Remove Chakra-specific theme logic',
     ]
   },
   {
-    title: 'Step 6 — Validate & Test Thoroughly',
+    title: '6. Validate & test thoroughly',
     steps: [
-      'accessibility',
-      'responsive behavior',
-      'component interactions',
-      'visual consistency',
+      'Accessibility',
+      'Responsive behavior',
+      'Component interactions',
+      'Visual consistency',
     ]
   }
 ]
@@ -157,7 +157,7 @@ export default function MigrationPage() {
           </Breadcrumb>
 
           <h1 className="font-semibold text-4xl md:text-4xl mt-10">
-            Migration Guide: From Chakra-based Blok to Tailwind + shadcn Blok
+            Migration guide: from Chakra-based Blok to Tailwind + shadcn Blok
           </h1>
 
           <p className="d w-full ">
@@ -174,14 +174,14 @@ export default function MigrationPage() {
         </div>
       </div>
 
-      <div className="px-4 sm:px-8 md:px-32 max-w-[1250px] mx-auto">
+      <div className="px-4 sm:px-8 md:px-32 max-w-[1250px] mx-auto pb-16 md:pb-24">
         <div className="flex flex-col space-y-3 p-5 md:pt-10 md:px-10">
           <h2 className="font-semibold text-3xl md:text-4xl">
-            Understanding the Technology Shift
+            Understanding the technology shift
           </h2>
 
           <h3 className="mt-4 font-semibold text-2xl md:text-3xl">
-            Why the Migration Matters
+            Why the migration matters
           </h3>
 
           <p>
@@ -199,7 +199,7 @@ export default function MigrationPage() {
         </div>
 
         <div className="flex flex-col space-y-3 p-5 md:pt-10 md:px-10">
-          <h2 className="font-semibold text-3xl  md:text-4xl">Migration Areas You Must Address</h2>
+          <h2 className="font-semibold text-3xl  md:text-4xl">Migration areas you must address</h2>
           <p>
             A successful migration requires work in several areas:
           </p>
@@ -216,20 +216,20 @@ export default function MigrationPage() {
           ))}
 
           <h3 className="mt-4 font-semibold text-2xl md:text-3xl">
-            Coexistence Strategy (If Needed)
+            Coexistence strategy (if needed)
           </h3>
           <p>Chakra and Tailwind can temporarily coexist but cause complexity:</p>
           <ul className="list-disc list-inside space-y-2 ml-6">
-            <li>conflicting resets</li>
-            <li>duplicated components</li>
-            <li>mixed styling patterns</li>
+            <li>Conflicting resets</li>
+            <li>Duplicated components</li>
+            <li>Mixed styling patterns</li>
           </ul>
 
           <p className="mt-2">Full migration is recommended.</p>
         </div>
 
         <div className="flex flex-col space-y-3 p-5 md:pt-10 md:px-10">
-          <h2 className="font-semibold text-3xl  md:text-4xl">Recommended Migration Path</h2>
+          <h2 className="font-semibold text-3xl  md:text-4xl">Recommended migration path</h2>
 
           {MIGRATION_PATHS.map((path) => (
             <div key={path.title}>
@@ -247,7 +247,7 @@ export default function MigrationPage() {
         </div>
 
         <div className="flex flex-col space-y-3 p-5 md:pt-10 md:px-10">
-          <h2 className="font-semibold text-3xl  md:text-4xl">Best Practices for Teams</h2>
+          <h2 className="font-semibold text-3xl  md:text-4xl">Best practices for teams</h2>
           <ul className="list-disc list-inside space-y-2">
             <li>Do not try to recreate the Chakra look and feel.</li>
             <li>Follow Blok’s updated design language and spacing system.</li>
@@ -258,24 +258,26 @@ export default function MigrationPage() {
         </div>
 
         <div className="flex flex-col space-y-3 p-5 md:pt-10 md:px-10">
-          <h2 className="font-semibold text-3xl  md:text-4xl">FAQ (Initial Version)</h2>
-          <Accordion type="single" collapsible>
-            {FAQ.map((faq) => (
-              <AccordionItem key={faq.question} value={faq.question}>
-                <AccordionTrigger>{faq.question}</AccordionTrigger>
-                <AccordionContent>{faq.answer}</AccordionContent>
-              </AccordionItem>
-            ))}
-          </Accordion>
+          <h2 className="font-semibold text-3xl  md:text-4xl">FAQ (initial version)</h2>
+          <div className="[&_[data-slot=accordion-trigger]]:text-base [&_[data-slot=accordion-trigger]]:font-normal [&_[data-slot=accordion-content]]:text-base">
+            <Accordion type="single" collapsible>
+              {FAQ.map((faq) => (
+                <AccordionItem key={faq.question} value={faq.question}>
+                  <AccordionTrigger>{faq.question}</AccordionTrigger>
+                  <AccordionContent>{faq.answer}</AccordionContent>
+                </AccordionItem>
+              ))}
+            </Accordion>
+          </div>
         </div>
 
         <div className="flex flex-col space-y-3 p-5 md:pt-10 md:px-10">
-          <h2 className="font-semibold text-3xl  md:text-4xl">Future Additions</h2>
+          <h2 className="font-semibold text-3xl  md:text-4xl">Future additions</h2>
           <p>This page will evolve with:</p>
           <ul className="list-disc list-inside space-y-2">
-            <li>deeper migration examples</li>
-            <li>team-specific migration playbooks</li>
-            <li>troubleshooting guides</li>
+            <li>Deeper migration examples</li>
+            <li>Team-specific migration playbooks</li>
+            <li>Troubleshooting guides</li>
           </ul>
         </div>
       </div>
