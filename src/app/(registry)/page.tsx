@@ -17,6 +17,7 @@ import { mdiOpenInNew } from "@mdi/js";
 import Icon from "@mdi/react";
 import Link from "next/link";
 
+// Home page for the registry.
 export default function Home() {
   return (
     <main className="w-full bg-subtle-bg">
