@@ -11,7 +11,7 @@ import { Toaster } from "@/components/ui/sonner";
 const baseUrl =
   process.env.NEXT_PUBLIC_REGISTRY_URL || "https://blok.sitecore.com";
 
-// metadata for the page
+// metadata for the page.
 export const metadata: Metadata = {
   metadataBase: new URL(baseUrl),
   title: {
