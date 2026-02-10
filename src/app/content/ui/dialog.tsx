@@ -32,7 +32,7 @@ export default function DialogDemo() {
           </div>
           <div className="grid gap-3">
             <Label htmlFor="username-1">Username</Label>
-            <Input id="name-1" name="username" defaultValue="@liz" />
+            <Input id="username-1" name="username" defaultValue="@liz" />
           </div>
         </div>
         <DialogFooter>
