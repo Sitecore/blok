@@ -157,7 +157,7 @@ export default function MigrationPage() {
           </Breadcrumb>
 
           <h1 className="font-semibold text-4xl md:text-4xl mt-10">
-            Migration guide: from Chakra-based Blok to Tailwind + shadcn Blok
+            Migration Guide: from Chakra-based Blok to Tailwind + shadcn Blok
           </h1>
 
           <p className="d w-full ">
