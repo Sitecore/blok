@@ -285,11 +285,6 @@ jobs:
               echo "✅ Verified $VERIFY_COUNT/5 times successfully"
               echo "url=$PUBLIC_URL" >> $GITHUB_OUTPUT
               echo "::notice title=🌐 Dev Server URL::Your dev server is accessible at: $PUBLIC_URL"
-              echo "## 🌐 Dev Server URL" >> $GITHUB_STEP_SUMMARY
-              echo "Your dev server is accessible at: **[$PUBLIC_URL]($PUBLIC_URL)**" >> $GITHUB_STEP_SUMMARY
-              echo "" >> $GITHUB_STEP_SUMMARY
-              echo "**Note:** The URL will be active until the workflow completes." >> $GITHUB_STEP_SUMMARY
-              echo "**Status:** ✅ Verified and working" >> $GITHUB_STEP_SUMMARY
             else
               echo "⚠️ URL extracted but tunnel verification failed ($VERIFY_COUNT/5 tests passed)"
               echo "URL: $PUBLIC_URL"
