@@ -12,6 +12,7 @@ const HIDDEN_SIDEBAR_PATHS = [
   "/graphics",
   "/resources",
   "/mcp",
+  "/migration",
   "/rtl",
   "/theming/border-radius",
   "/theming/breakpoints",
