@@ -8,8 +8,15 @@ import { DirectionProvider } from "@/components/docsite/direction-provider";
 import { StructuredData } from "@/components/seo/structured-data";
 import { Toaster } from "@/components/ui/sonner";
 
-const baseUrl =
-  process.env.NEXT_PUBLIC_REGISTRY_URL || "https://blok.sitecore.com";
+const baseUrl = (() => {
+  const url =
+    process.env.NEXT_PUBLIC_REGISTRY_URL || "https://blok.sitecore.com";
+  // If URL doesn't start with http:// or https://, add https://
+  if (!url.startsWith("http://") && !url.startsWith("https://")) {
+    return `https://${url}`;
+  }
+  return url;
+})();
 
 export const metadata: Metadata = {
   metadataBase: new URL(baseUrl),
