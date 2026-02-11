@@ -26,6 +26,8 @@ jobs:
   check-build:
     timeout-minutes: 30
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     steps:
       # Checkout repository (needed for composite actions)
       - name: Checkout repository
