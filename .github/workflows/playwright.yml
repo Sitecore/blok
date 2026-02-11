@@ -438,6 +438,8 @@ jobs:
           else
             EVENT_TYPE="Direct Commit"
             COMMIT_MSG="${{ github.event.head_commit.message }}"
+            # Remove newlines and carriage returns, replace with spaces, then clean up multiple spaces
+            COMMIT_MSG=$(printf '%s' "$COMMIT_MSG" | tr '\n\r' ' ' | sed 's/[[:space:]]\+/ /g' | sed 's/^[[:space:]]*//;s/[[:space:]]*$//')
             # Truncate if too long
             if [ ${#COMMIT_MSG} -gt 100 ]; then
               COMMIT_MSG="${COMMIT_MSG:0:97}..."
