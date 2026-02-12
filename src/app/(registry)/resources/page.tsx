@@ -60,7 +60,7 @@ const guidelinesItems = [
         <BlokFoundationsThumb />
       </div>
     ),
-  },
+  }
 ];
 
 const resourcesItems = [
