@@ -67,8 +67,9 @@
     "date-fns": "^4.1.0",
     "embla-carousel-react": "^8.6.0",
     "input-otp": "^1.4.2",
+    "lodash": ">=4.17.23",
     "lucide-react": "^0.506.0",
-    "next": "^15.5.8",
+    "next": ">=15.5.10",
     "next-themes": "^0.4.6",
     "react": "^19.2.0",
     "react-day-picker": "^9.8.1",
@@ -86,6 +87,8 @@
   "devDependencies": {
     "@auth0/auth0-react": "^2.5.0",
     "@auth0/nextjs-auth0": "^4.10.0",
+    "lodash": ">=4.17.23",
+    "next": ">=15.5.10",
     "@biomejs/biome": "1.9.4",
     "@tailwindcss/postcss": "^4.1.11",
     "@testing-library/dom": "^10.4.0",
@@ -109,6 +112,12 @@
     "node": ">=22"
   },
   "overrides": {
-    "react-is": "^19.0.0-rc-69d4b800-20241021"
+    "react-is": "^19.0.0-rc-69d4b800-20241021",
+    "lodash": ">=4.17.23"
+  },
+  "pnpm": {
+    "overrides": {
+      "lodash": ">=4.17.23"
+    }
   }
 }
