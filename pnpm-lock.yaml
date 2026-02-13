@@ -111,11 +111,11 @@ importers:
         specifier: ^1.2.7
         version: 1.2.8(@types/react-dom@19.2.3(@types/react@19.2.7))(@types/react@19.2.7)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
       '@sitecore-marketplace-sdk/client':
-        specifier: ^0.2.0
-        version: 0.2.2
+        specifier: ^0.3.0
+        version: 0.3.2
       '@sitecore-marketplace-sdk/xmc':
-        specifier: ^0.2.1
-        version: 0.2.2(@sitecore-marketplace-sdk/client@0.2.2)
+        specifier: ^0.4.0
+        version: 0.4.0(@sitecore-marketplace-sdk/client@0.3.2)
       '@tanstack/react-table':
         specifier: ^8.21.3
         version: 8.21.3(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
@@ -1651,17 +1651,17 @@ packages:
   '@shikijs/vscode-textmate@10.0.2':
     resolution: {integrity: sha512-83yeghZ2xxin3Nj8z1NMd/NCuca+gsYXswywDy5bHvwlWL8tpTQmzGeUuHd9FC3E/SBEMvzJRwWEOz5gGes9Qg==}
 
-  '@sitecore-marketplace-sdk/client@0.2.2':
-    resolution: {integrity: sha512-exCBXiezo30fIq3RsBGJbIQwy5kf0zs7LPgfMoKBmgfsS3dTBu3TC0/o4q6YQnKLg8iOmGDQMs7dTfnTDK6KWw==}
+  '@sitecore-marketplace-sdk/client@0.3.2':
+    resolution: {integrity: sha512-jSdkeYG4I4CQtOxrzb7Tq2GzhwQEX4K/jODNHgFsYsU4YLpoVFYDot5Z4BngUlCTPN7WFM3bmWyx1hUVjH6rkw==}
     engines: {node: '>=16'}
 
-  '@sitecore-marketplace-sdk/core@0.2.2':
-    resolution: {integrity: sha512-V13V54lwt1ABd66blswJTJlMXZCsMvXWiurtFqF3zqnOOdz3dyHWKPNbDzCS8ZKayg2YnY8BeQ2buwprMQmqpg==}
+  '@sitecore-marketplace-sdk/core@0.3.2':
+    resolution: {integrity: sha512-QdBsrs0Pu2PGdBvWS6UD5crOqQr7C75Ar1zgF8aAca2IZRHVSS4tczXODPtONtWxH5OGI1cW84ziUCnjN6U2VA==}
 
-  '@sitecore-marketplace-sdk/xmc@0.2.2':
-    resolution: {integrity: sha512-HhMHIfV2aqxZGX+3JV8s1PU/XZ4K8WJ0CQsnYM2UnOhTv59SHCUgKiHK/vX9O8niEYs1MeZWyjrkHxNnchB5Ug==}
+  '@sitecore-marketplace-sdk/xmc@0.4.0':
+    resolution: {integrity: sha512-Rf1hd2ksdm8vRjojSrDVoMheKykEjBrABmrJlrBSgAr2vdFnBgLHlqmW3XP1gU5vRM8CaToGd5P8W0Kz2iIYWQ==}
     peerDependencies:
-      '@sitecore-marketplace-sdk/client': 0.2.2
+      '@sitecore-marketplace-sdk/client': 0.3.2
 
   '@standard-schema/utils@0.3.0':
     resolution: {integrity: sha512-e7Mew686owMaPJVNNLs55PUvgz371nKgwsc4vxE49zsODpJEnxgxRo2y/OKrqueavXgZNMDVj3DdHFlaSAeU8g==}
@@ -4443,21 +4443,21 @@ snapshots:
 
   '@shikijs/vscode-textmate@10.0.2': {}
 
-  '@sitecore-marketplace-sdk/client@0.2.2':
+  '@sitecore-marketplace-sdk/client@0.3.2':
     dependencies:
-      '@sitecore-marketplace-sdk/core': 0.2.2
+      '@sitecore-marketplace-sdk/core': 0.3.2
       tslib: 2.8.1
       uuid: 11.1.0
 
-  '@sitecore-marketplace-sdk/core@0.2.2':
+  '@sitecore-marketplace-sdk/core@0.3.2':
     dependencies:
       tslib: 2.8.1
       uuid: 11.1.0
 
-  '@sitecore-marketplace-sdk/xmc@0.2.2(@sitecore-marketplace-sdk/client@0.2.2)':
+  '@sitecore-marketplace-sdk/xmc@0.4.0(@sitecore-marketplace-sdk/client@0.3.2)':
     dependencies:
       '@hey-api/client-fetch': 0.8.3
-      '@sitecore-marketplace-sdk/client': 0.2.2
+      '@sitecore-marketplace-sdk/client': 0.3.2
 
   '@standard-schema/utils@0.3.0': {}
 
