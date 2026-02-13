@@ -24,8 +24,20 @@ Contributing code follows these steps:
 3. Make your changes in the branch with clear, focused commits.
 4. Follow the commit message guidelines to write meaningful commit messages.
 5. Push your branch to your GitHub repository.
-6. Open a pull request (PR) back to the main repository for review.
-7. Engage in the review process, address feedback, and update your PR as needed until it is approved and merged.
+6. Open a pull request (PR) to the **dev branch** for review.
+7. Engage in the review process, address feedback, and update your PR as needed until it is approved.
+
+### Deployment Flow
+
+The usual deployment process follows this workflow:
+
+1. **Raise PR to dev branch** → Submit your pull request targeting the `dev` branch.
+2. **Developer code review** → Your PR undergoes code review by the development team.
+3. **Merge to dev** → After approval, your changes are merged into the `dev` branch.
+4. **QA verification** → The QA team performs overall verification and testing.
+5. **Merge to main/live** → After QA approval, the development team merges the changes to `main` (live) branch.
+
+**Important:** Always raise merge requests to the `dev` branch first. Only after the complete review and QA process will the development team merge changes to `main` (live).
 
 ## Commit Message Guidelines
 
