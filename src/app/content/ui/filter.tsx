@@ -1,6 +1,6 @@
-"use client"
+"use client";
 
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import { FilterBar, type FilterDefinition } from "@/components/ui/filter";
 
 const productOptions = [
@@ -78,18 +78,18 @@ export default function FilterDemo() {
         },
     ];
 
-    const handleChange = (key: string, value: unknown) => {
+    const handleChange = useCallback((key: string, value: unknown) => {
         setFilterValues((prev) => ({ ...prev, [key]: value }));
-    };
+    }, []);
 
-    const handleClearAll = () => {
+    const handleClearAll = useCallback(() => {
         setFilterValues({
             search: "",
             product: "",
             products: [],
             assignedToMe: false,
         });
-    };
+    }, []);
 
     return (
         <FilterBar
