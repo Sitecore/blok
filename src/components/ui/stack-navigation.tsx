@@ -111,12 +111,6 @@ export interface StackNavigationProps {
   header?: ReactNode;
   footer?: ReactNode;
   orientation?: "vertical" | "horizontal";
-  /**
-   * Color scheme for navigation items.
-   * - "neutral": Text/icon always neutral-fg, bg: none → neutral-bg (hover) → neutral-200 (pressing) → neutral-bg (active)
-   * - "primary": Text/icon neutral-fg (default/hover) → primary-fg (pressing/active), bg: none → neutral-bg (hover) → primary-bg (pressing/active)
-   * @default "neutral"
-   */
   colorScheme?: "neutral" | "primary";
   /**
    * For framework-specific routers, user can pass the pathname from their hooks:
