@@ -788,13 +788,11 @@
       "type": "registry:ui",
       "title": "Combobox",
       "description": "Select a value from a list of options.",
-      "dependencies": ["@mdi/js", "lucide-react"],
+      "dependencies": ["@base-ui/react", "@mdi/js", "lucide-react"],
       "registryDependencies": [
         "https://blok.sitecore.com/r/theme.json",
-        "https://blok.sitecore.com/r/avatar.json",
         "https://blok.sitecore.com/r/button.json",
-        "https://blok.sitecore.com/r/command.json",
-        "https://blok.sitecore.com/r/popover.json"
+        "https://blok.sitecore.com/r/input-group.json"
       ],
       "files": [
         {
@@ -1032,10 +1030,7 @@
       "type": "registry:ui",
       "title": "Filter",
       "description": "Filter components including input search, single select, multi select, and toggle filters for filtering data.",
-      "dependencies": [
-        "@mdi/js",
-        "class-variance-authority"
-      ],
+      "dependencies": ["@mdi/js", "class-variance-authority"],
       "registryDependencies": [
         "https://blok.sitecore.com/r/theme.json",
         "https://blok.sitecore.com/r/button.json",
