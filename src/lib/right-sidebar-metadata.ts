@@ -272,8 +272,6 @@ export const rightSidebarMetadata: Record<string, RightSidebarMetadata> = {
           { id: "combobox-clear-button", title: "Clear Button" },
           { id: "combobox-groups", title: "Groups" },
           { id: "combobox-custom-items", title: "Custom Items" },
-          { id: "combobox-invalid", title: "Invalid" },
-          { id: "combobox-disabled", title: "Disabled" },
           { id: "combobox-auto-highlight", title: "Auto Highlight" },
           { id: "combobox-input-group", title: "Input Group" },
         ],

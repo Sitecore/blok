@@ -167,10 +167,8 @@ import CircularProgressVariantsDemo from "@/app/content/ui/circular-progress-var
 import ComboboxAutoHighlightDemo from "@/app/content/ui/combobox-auto-highlight";
 import ComboboxWithClearDemo from "@/app/content/ui/combobox-clear-button";
 import ComboboxWithCustomItemsDemo from "@/app/content/ui/combobox-custom-items";
-import ComboboxDisabledDemo from "@/app/content/ui/combobox-disabled";
 import ComboboxWithGroupsAndSeparatorDemo from "@/app/content/ui/combobox-groups";
 import ComboxboxInputGroupDemo from "@/app/content/ui/combobox-input-group";
-import ComboboxInvalidDemo from "@/app/content/ui/combobox-invalid";
 import ComboboxMultipleDemo from "@/app/content/ui/combobox-multiple";
 import EditableDemo from "@/app/content/ui/editable";
 import EditableTextareaDemo from "@/app/content/ui/editable-textarea";
@@ -510,16 +508,6 @@ export const docsiteRegistry: Record<string, DocsiteRegistryEntry> = {
     name: "combobox-custom-items",
     path: "src/app/content/ui/combobox-custom-items.tsx",
     component: ComboboxWithCustomItemsDemo,
-  },
-  "combobox-invalid": {
-    name: "combobox-invalid",
-    path: "src/app/content/ui/combobox-invalid.tsx",
-    component: ComboboxInvalidDemo,
-  },
-  "combobox-disabled": {
-    name: "combobox-disabled",
-    path: "src/app/content/ui/combobox-disabled.tsx",
-    component: ComboboxDisabledDemo,
   },
   "combobox-auto-highlight": {
     name: "combobox-auto-highlight",

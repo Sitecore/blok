@@ -109,8 +109,6 @@ export const combobox = {
     "Clear Button": { component: "combobox-clear-button" },
     Groups: { component: "combobox-groups" },
     "Custom Items": { component: "combobox-custom-items" },
-    Invalid: { component: "combobox-invalid" },
-    Disabled: { component: "combobox-disabled" },
     "Auto Highlight": { component: "combobox-auto-highlight" },
     "Input Group": { component: "combobox-input-group" },
   },
