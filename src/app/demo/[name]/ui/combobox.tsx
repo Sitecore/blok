@@ -99,7 +99,10 @@ export const combobox = {
     defaultComponent: "combobox",
   },
   usage: {
-    usage: [usage],
+    usage: [
+      `import {\n  Combobox,\n  ComboboxContent,\n  ComboboxEmpty,\n  ComboboxInput,\n  ComboboxItem,\n  ComboboxList,\n} from "@/components/ui/combobox"`,
+      `const frameworks = ["Next.js", "SvelteKit", "Nuxt.js", "Remix", "Astro"]\n\nexport function ExampleCombobox() {\n  return (\n    <Combobox items={frameworks}>\n      <ComboboxInput placeholder="Select a framework" />\n      <ComboboxContent>\n        <ComboboxEmpty>No items found.</ComboboxEmpty>\n        <ComboboxList>\n          {(item) => (\n            <ComboboxItem key={item} value={item}>\n              {item}\n            </ComboboxItem>\n          )}\n        </ComboboxList>\n      </ComboboxContent>\n    </Combobox>\n  )\n}`,
+    ],
   },
   components: {
     Multiple: { component: "combobox-multiple" },
