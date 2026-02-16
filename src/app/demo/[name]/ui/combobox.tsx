@@ -96,15 +96,19 @@ export function ExampleCombobox() {
 export const combobox = {
   name: "combobox",
   preview: {
-    defaultComponent: "combobox-framework",
+    defaultComponent: "combobox",
   },
   usage: {
     usage: [usage],
   },
   components: {
-    "Framework Combobox": { component: "combobox-framework" },
-    "User Combobox": { component: "combobox-user" },
-    "Timezone Combobox": { component: "combobox-timezone" },
-    "Combobox With Checkbox": { component: "combobox-checkbox" },
+    Multiple: { component: "combobox-multiple" },
+    "Clear Button": { component: "combobox-clear-button" },
+    Groups: { component: "combobox-groups" },
+    "Custom Items": { component: "combobox-custom-items" },
+    Invalid: { component: "combobox-invalid" },
+    Disabled: { component: "combobox-disabled" },
+    "Auto Highlight": { component: "combobox-auto-highlight" },
+    "Input Group": { component: "combobox-input-group" },
   },
 };

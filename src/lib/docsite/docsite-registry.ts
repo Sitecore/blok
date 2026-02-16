@@ -50,10 +50,7 @@ import CheckboxWithDescriptionDemo from "@/app/content/ui/checkbox-description";
 import DisabledCheckboxDemo from "@/app/content/ui/checkbox-disabled";
 import EnabledCheckboxLabelDemo from "@/app/content/ui/checkbox-label";
 import CollapsibleDemo from "@/app/content/ui/collapsible";
-import ComboboxWithCheckboxDemo from "@/app/content/ui/combobox-checkbox";
-import FrameworkComboboxDemo from "@/app/content/ui/combobox-framework";
-import TimezoneComboboxDemo from "@/app/content/ui/combobox-timezone";
-import UserComboboxDemo from "@/app/content/ui/combobox-user";
+import ComboboxDemo from "@/app/content/ui/combobox";
 import CommandDemo from "@/app/content/ui/command";
 import ContextMenuDemo from "@/app/content/ui/context-menu";
 import DatePickerSimpleDemo from "@/app/content/ui/date-picker";
@@ -167,6 +164,14 @@ import { ActionBarDemo } from "@/app/content/ui/action-bar";
 import CircularProgressDemo from "@/app/content/ui/circular-progress";
 import CircularProgressWithTextDemo from "@/app/content/ui/circular-progress-text";
 import CircularProgressVariantsDemo from "@/app/content/ui/circular-progress-variants";
+import ComboboxAutoHighlightDemo from "@/app/content/ui/combobox-auto-highlight";
+import ComboboxWithClearDemo from "@/app/content/ui/combobox-clear-button";
+import ComboboxWithCustomItemsDemo from "@/app/content/ui/combobox-custom-items";
+import ComboboxDisabledDemo from "@/app/content/ui/combobox-disabled";
+import ComboboxWithGroupsAndSeparatorDemo from "@/app/content/ui/combobox-groups";
+import ComboxboxInputGroupDemo from "@/app/content/ui/combobox-input-group";
+import ComboboxInvalidDemo from "@/app/content/ui/combobox-invalid";
+import ComboboxMultipleDemo from "@/app/content/ui/combobox-multiple";
 import EditableDemo from "@/app/content/ui/editable";
 import EditableTextareaDemo from "@/app/content/ui/editable-textarea";
 import FieldDemo from "@/app/content/ui/field";
@@ -184,6 +189,11 @@ import FieldWithSeparatorDemo from "@/app/content/ui/field-separator";
 import FieldSmallDemo from "@/app/content/ui/field-small";
 import FieldSwitchDemo from "@/app/content/ui/field-switch";
 import FieldTextareaDemo from "@/app/content/ui/field-textarea";
+import FilterDemo from "@/app/content/ui/filter";
+import FilterInputDemo from "@/app/content/ui/filter-input";
+import FilterMultiSelectDemo from "@/app/content/ui/filter-multi-select";
+import FilterSingleSelectDemo from "@/app/content/ui/filter-single-select";
+import FilterToggleDemo from "@/app/content/ui/filter-toggle";
 import InputGroupDemo from "@/app/content/ui/input-group";
 import InputGroupDropdownDemo from "@/app/content/ui/input-group-dropdown";
 import InputGroupSearchDemo from "@/app/content/ui/input-group-search";
@@ -202,11 +212,6 @@ import TimelineDemo from "@/app/content/ui/timeline";
 import TimelineConnectorVariantsDemo from "@/app/content/ui/timeline-connector-variants";
 import TimelineSizesDemo from "@/app/content/ui/timeline-sizes";
 import TimelineVariantsDemo from "@/app/content/ui/timeline-variants";
-import FilterDemo from "@/app/content/ui/filter";
-import FilterInputDemo from "@/app/content/ui/filter-input";
-import FilterSingleSelectDemo from "@/app/content/ui/filter-single-select";
-import FilterMultiSelectDemo from "@/app/content/ui/filter-multi-select";
-import FilterToggleDemo from "@/app/content/ui/filter-toggle";
 
 export interface DocsiteRegistryEntry {
   name: string;
@@ -481,25 +486,50 @@ export const docsiteRegistry: Record<string, DocsiteRegistryEntry> = {
     path: "src/app/content/ui/collapsible.tsx",
     component: CollapsibleDemo,
   },
-  "combobox-framework": {
-    name: "combobox-framework",
-    path: "src/app/content/ui/combobox-framework.tsx",
-    component: FrameworkComboboxDemo,
+  combobox: {
+    name: "combobox",
+    path: "src/app/content/ui/combobox.tsx",
+    component: ComboboxDemo,
   },
-  "combobox-user": {
-    name: "combobox-user",
-    path: "src/app/content/ui/combobox-user.tsx",
-    component: UserComboboxDemo,
+  "combobox-multiple": {
+    name: "combobox-multiple",
+    path: "src/app/content/ui/combobox-multiple.tsx",
+    component: ComboboxMultipleDemo,
   },
-  "combobox-timezone": {
-    name: "combobox-timezone",
-    path: "src/app/content/ui/combobox-timezone.tsx",
-    component: TimezoneComboboxDemo,
+  "combobox-clear-button": {
+    name: "combobox-clear-button",
+    path: "src/app/content/ui/combobox-clear-button.tsx",
+    component: ComboboxWithClearDemo,
   },
-  "combobox-checkbox": {
-    name: "combobox-checkbox",
-    path: "src/app/content/ui/combobox-checkbox.tsx",
-    component: ComboboxWithCheckboxDemo,
+  "combobox-groups": {
+    name: "combobox-groups",
+    path: "src/app/content/ui/combobox-groups.tsx",
+    component: ComboboxWithGroupsAndSeparatorDemo,
+  },
+  "combobox-custom-items": {
+    name: "combobox-custom-items",
+    path: "src/app/content/ui/combobox-custom-items.tsx",
+    component: ComboboxWithCustomItemsDemo,
+  },
+  "combobox-invalid": {
+    name: "combobox-invalid",
+    path: "src/app/content/ui/combobox-invalid.tsx",
+    component: ComboboxInvalidDemo,
+  },
+  "combobox-disabled": {
+    name: "combobox-disabled",
+    path: "src/app/content/ui/combobox-disabled.tsx",
+    component: ComboboxDisabledDemo,
+  },
+  "combobox-auto-highlight": {
+    name: "combobox-auto-highlight",
+    path: "src/app/content/ui/combobox-auto-highlight.tsx",
+    component: ComboboxAutoHighlightDemo,
+  },
+  "combobox-input-group": {
+    name: "combobox-input-group",
+    path: "src/app/content/ui/combobox-input-group.tsx",
+    component: ComboxboxInputGroupDemo,
   },
   command: {
     name: "command",
@@ -736,31 +766,31 @@ export const docsiteRegistry: Record<string, DocsiteRegistryEntry> = {
     path: "src/app/content/ui/field-input-types.tsx",
     component: FieldInputTypesDemo,
   },
-      "filter": {
-        name: "filter",
-        path: "src/app/content/ui/filter.tsx",
-        component: FilterDemo,
-    },
-    "filter-input": {
-        name: "filter-input",
-        path: "src/app/content/ui/filter-input.tsx",
-        component: FilterInputDemo,
-    },
-    "filter-single-select": {
-        name: "filter-single-select",
-        path: "src/app/content/ui/filter-single-select.tsx",
-        component: FilterSingleSelectDemo,
-    },
-    "filter-multi-select": {
-        name: "filter-multi-select",
-        path: "src/app/content/ui/filter-multi-select.tsx",
-        component: FilterMultiSelectDemo,
-    },
-    "filter-toggle": {
-        name: "filter-toggle",
-        path: "src/app/content/ui/filter-toggle.tsx",
-        component: FilterToggleDemo,
-    },
+  filter: {
+    name: "filter",
+    path: "src/app/content/ui/filter.tsx",
+    component: FilterDemo,
+  },
+  "filter-input": {
+    name: "filter-input",
+    path: "src/app/content/ui/filter-input.tsx",
+    component: FilterInputDemo,
+  },
+  "filter-single-select": {
+    name: "filter-single-select",
+    path: "src/app/content/ui/filter-single-select.tsx",
+    component: FilterSingleSelectDemo,
+  },
+  "filter-multi-select": {
+    name: "filter-multi-select",
+    path: "src/app/content/ui/filter-multi-select.tsx",
+    component: FilterMultiSelectDemo,
+  },
+  "filter-toggle": {
+    name: "filter-toggle",
+    path: "src/app/content/ui/filter-toggle.tsx",
+    component: FilterToggleDemo,
+  },
   icon: {
     name: "icon",
     path: "src/app/content/ui/icon-component.tsx",
