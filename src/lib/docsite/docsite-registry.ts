@@ -168,6 +168,7 @@ import CircularProgressDemo from "@/app/content/ui/circular-progress";
 import CircularProgressWithTextDemo from "@/app/content/ui/circular-progress-text";
 import CircularProgressVariantsDemo from "@/app/content/ui/circular-progress-variants";
 import EditableDemo from "@/app/content/ui/editable";
+import EditableErrorDemo from "@/app/content/ui/editable-error";
 import EditableTextareaDemo from "@/app/content/ui/editable-textarea";
 import FieldDemo from "@/app/content/ui/field";
 import FieldCheckboxDemo from "@/app/content/ui/field-checkbox";
@@ -184,6 +185,11 @@ import FieldWithSeparatorDemo from "@/app/content/ui/field-separator";
 import FieldSmallDemo from "@/app/content/ui/field-small";
 import FieldSwitchDemo from "@/app/content/ui/field-switch";
 import FieldTextareaDemo from "@/app/content/ui/field-textarea";
+import FilterDemo from "@/app/content/ui/filter";
+import FilterInputDemo from "@/app/content/ui/filter-input";
+import FilterMultiSelectDemo from "@/app/content/ui/filter-multi-select";
+import FilterSingleSelectDemo from "@/app/content/ui/filter-single-select";
+import FilterToggleDemo from "@/app/content/ui/filter-toggle";
 import InputGroupDemo from "@/app/content/ui/input-group";
 import InputGroupDropdownDemo from "@/app/content/ui/input-group-dropdown";
 import InputGroupSearchDemo from "@/app/content/ui/input-group-search";
@@ -202,11 +208,6 @@ import TimelineDemo from "@/app/content/ui/timeline";
 import TimelineConnectorVariantsDemo from "@/app/content/ui/timeline-connector-variants";
 import TimelineSizesDemo from "@/app/content/ui/timeline-sizes";
 import TimelineVariantsDemo from "@/app/content/ui/timeline-variants";
-import FilterDemo from "@/app/content/ui/filter";
-import FilterInputDemo from "@/app/content/ui/filter-input";
-import FilterSingleSelectDemo from "@/app/content/ui/filter-single-select";
-import FilterMultiSelectDemo from "@/app/content/ui/filter-multi-select";
-import FilterToggleDemo from "@/app/content/ui/filter-toggle";
 
 export interface DocsiteRegistryEntry {
   name: string;
@@ -606,6 +607,11 @@ export const docsiteRegistry: Record<string, DocsiteRegistryEntry> = {
     path: "src/app/content/ui/editable-textarea.tsx",
     component: EditableTextareaDemo,
   },
+  "editable-error": {
+    name: "editable-error",
+    path: "src/app/content/ui/editable-error.tsx",
+    component: EditableErrorDemo,
+  },
   "empty-states-no-results": {
     name: "empty-states-no-results",
     path: "src/app/content/ui/empty-states-no-search-results.tsx",
@@ -736,31 +742,31 @@ export const docsiteRegistry: Record<string, DocsiteRegistryEntry> = {
     path: "src/app/content/ui/field-input-types.tsx",
     component: FieldInputTypesDemo,
   },
-      "filter": {
-        name: "filter",
-        path: "src/app/content/ui/filter.tsx",
-        component: FilterDemo,
-    },
-    "filter-input": {
-        name: "filter-input",
-        path: "src/app/content/ui/filter-input.tsx",
-        component: FilterInputDemo,
-    },
-    "filter-single-select": {
-        name: "filter-single-select",
-        path: "src/app/content/ui/filter-single-select.tsx",
-        component: FilterSingleSelectDemo,
-    },
-    "filter-multi-select": {
-        name: "filter-multi-select",
-        path: "src/app/content/ui/filter-multi-select.tsx",
-        component: FilterMultiSelectDemo,
-    },
-    "filter-toggle": {
-        name: "filter-toggle",
-        path: "src/app/content/ui/filter-toggle.tsx",
-        component: FilterToggleDemo,
-    },
+  filter: {
+    name: "filter",
+    path: "src/app/content/ui/filter.tsx",
+    component: FilterDemo,
+  },
+  "filter-input": {
+    name: "filter-input",
+    path: "src/app/content/ui/filter-input.tsx",
+    component: FilterInputDemo,
+  },
+  "filter-single-select": {
+    name: "filter-single-select",
+    path: "src/app/content/ui/filter-single-select.tsx",
+    component: FilterSingleSelectDemo,
+  },
+  "filter-multi-select": {
+    name: "filter-multi-select",
+    path: "src/app/content/ui/filter-multi-select.tsx",
+    component: FilterMultiSelectDemo,
+  },
+  "filter-toggle": {
+    name: "filter-toggle",
+    path: "src/app/content/ui/filter-toggle.tsx",
+    component: FilterToggleDemo,
+  },
   icon: {
     name: "icon",
     path: "src/app/content/ui/icon-component.tsx",

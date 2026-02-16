@@ -23,5 +23,6 @@ export const editable = {
   },
   components: {
     Textarea: { component: "editable-textarea" },
+    "Editable with error": { component: "editable-error" },
   },
 };
