@@ -365,7 +365,7 @@ const editablePreviewVariants = cva(
   [
     "cursor-text rounded-md px-2 py-1 transition-colors",
     "hover:bg-neutral-bg",
-    "min-h-[2rem] flex items-center whitespace-pre-line break-words",
+    "min-h-8 flex items-center whitespace-pre-line break-words",
   ].join(" "),
   {
     variants: {
@@ -484,7 +484,7 @@ function EditableInput({ className, ...props }: EditableInputProps) {
         }
       }}
       className={cn(
-        "w-full border-2 bg-transparent dark:bg-transparent focus-visible:ring-0 focus-visible:border-primary transition-colors",
+        "w-full border-2 bg-transparent h-8 dark:bg-transparent focus-visible:ring-0 focus-visible:border-primary transition-colors",
         className,
       )}
       {...props}
