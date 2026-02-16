@@ -848,6 +848,7 @@ export const rightSidebarMetadata: Record<string, RightSidebarMetadata> = {
         children: [
           { id: "stack-navigation-horizontal", title: "Horizontal" },
           { id: "stack-navigation-horizontal-tabs", title: "Horizontal Tabs" },
+          { id: "stack-navigation-color-schemes", title: "Color Schemes" },
         ],
       },
     ],

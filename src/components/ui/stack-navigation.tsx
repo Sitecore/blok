@@ -1,4 +1,5 @@
 import { cn } from "@/lib/utils";
+import { type VariantProps, cva } from "class-variance-authority";
 import type { ReactNode } from "react";
 import * as React from "react";
 
@@ -19,6 +20,87 @@ export type StackNavigationElement =
   | StackNavigationItem
   | StackNavigationDivider;
 
+const stackNavigationItemVariants = cva(
+  [
+    // Base styles
+    "flex flex-col items-center justify-center",
+    "rounded-md transition-colors",
+    "text-3xs font-medium",
+    "cursor-pointer",
+    "no-underline",
+    "relative opacity-100",
+  ].join(" "),
+  {
+    variants: {
+      orientation: {
+        vertical: [
+          "overflow-hidden",
+          "h-14 min-w-14 min-h-14",
+          "p-1.5 gap-1",
+        ].join(" "),
+        horizontal: ["min-w-14 w-fit h-14 p-1.5 gap-1", "overflow-hidden"].join(
+          " ",
+        ),
+      },
+      colorScheme: {
+        neutral: "",
+        primary: "",
+      },
+      isActive: {
+        true: "",
+        false: "",
+      },
+    },
+    compoundVariants: [
+      // Neutral - Default state
+      {
+        colorScheme: "neutral",
+        isActive: false,
+        class: [
+          "text-neutral-fg",
+          "hover:bg-neutral-bg hover:text-neutral-fg",
+          "active:bg-neutral-200 active:text-neutral-fg",
+        ].join(" "),
+      },
+      // Neutral - Active state
+      {
+        colorScheme: "neutral",
+        isActive: true,
+        class: [
+          "bg-neutral-bg text-neutral-fg",
+          "hover:bg-neutral-bg hover:text-neutral-fg",
+          "active:bg-neutral-200 active:text-neutral-fg",
+        ].join(" "),
+      },
+      // Primary - Default state
+      {
+        colorScheme: "primary",
+        isActive: false,
+        class: [
+          "text-neutral-fg",
+          "hover:bg-neutral-bg hover:text-neutral-fg",
+          "active:bg-primary-bg active:text-primary-fg",
+        ].join(" "),
+      },
+      // Primary - Active state
+      {
+        colorScheme: "primary",
+        isActive: true,
+        class: [
+          "bg-primary-bg text-primary-fg",
+          "hover:bg-primary-bg hover:text-primary-fg",
+          "active:bg-primary-bg active:text-primary-fg",
+        ].join(" "),
+      },
+    ],
+    defaultVariants: {
+      orientation: "vertical",
+      colorScheme: "neutral",
+      isActive: false,
+    },
+  },
+);
+
 export interface StackNavigationProps {
   items: StackNavigationElement[];
   renderItem?: (item: StackNavigationItem) => ReactNode;
@@ -29,6 +111,13 @@ export interface StackNavigationProps {
   header?: ReactNode;
   footer?: ReactNode;
   orientation?: "vertical" | "horizontal";
+  /**
+   * Color scheme for navigation items.
+   * - "neutral": Text/icon always neutral-fg, bg: none → neutral-bg (hover) → neutral-200 (pressing) → neutral-bg (active)
+   * - "primary": Text/icon neutral-fg (default/hover) → primary-fg (pressing/active), bg: none → neutral-bg (hover) → primary-bg (pressing/active)
+   * @default "neutral"
+   */
+  colorScheme?: "neutral" | "primary";
   /**
    * For framework-specific routers, user can pass the pathname from their hooks:
    * - TanStack Router: `useLocation().pathname`
@@ -48,17 +137,18 @@ function DefaultNavItem({
   orientation = "vertical",
   pathname,
   onItemClick,
+  colorScheme = "neutral",
 }: {
   item: StackNavigationItem;
   orientation?: "vertical" | "horizontal";
   pathname: string;
+  colorScheme?: "neutral" | "primary";
   onItemClick?: (
     item: StackNavigationItem,
     event: React.MouseEvent<HTMLAnchorElement>,
   ) => undefined | boolean;
 }) {
   const isActive = pathname === item.path;
-
   const isHorizontal = orientation === "horizontal";
 
   const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
@@ -75,33 +165,12 @@ function DefaultNavItem({
       href={item.path}
       onClick={handleClick}
       className={cn(
-        // ---------VERTICAL--------------
-        !isHorizontal &&
-          cn(
-            "flex flex-col items-center justify-center overflow-hidden",
-            "h-14 min-w-14 min-h-14",
-            "p-1.5 gap-1",
-            "rounded-md transition-colors",
-            "text-3xs text-neutral-fg font-medium",
-            "hover:bg-sidebar-accent cursor-pointer",
-            "relative opacity-100",
-            "no-underline",
-            isActive &&
-              "bg-primary-bg text-primary-fg hover:bg-primary-bg hover:text-primary-fg font-medium",
-            item.className,
-          ),
-
-        // --------- HORIZONTAL ---------
-        isHorizontal &&
-          cn(
-            "flex flex-col items-center justify-center",
-            "min-w-14 w-fit h-14 p-1.5 gap-1 rounded-md cursor-pointer overflow-hidden",
-            "text-neutral-fg hover:bg-sidebar-accent transition-colors font-medium",
-            "no-underline",
-            isActive &&
-              "bg-primary-bg text-primary-fg hover:bg-primary-bg hover:text-primary-fg font-medium",
-            item.className,
-          ),
+        stackNavigationItemVariants({
+          orientation,
+          colorScheme,
+          isActive,
+          className: item.className,
+        }),
       )}
       onContextMenu={(e) => e.preventDefault()}
       aria-label={item.name}
@@ -167,6 +236,7 @@ export function StackNavigation({
   header,
   footer,
   orientation = "vertical",
+  colorScheme = "neutral",
   pathname: providedPathname,
   onItemClick,
 }: StackNavigationProps) {
@@ -246,6 +316,7 @@ export function StackNavigation({
                     item={navItem}
                     orientation={orientation}
                     pathname={pathname}
+                    colorScheme={colorScheme}
                     onItemClick={onItemClick}
                   />
                 )}
@@ -264,3 +335,8 @@ export function StackNavigation({
     </aside>
   );
 }
+
+export { stackNavigationItemVariants };
+export type StackNavigationItemVariants = VariantProps<
+  typeof stackNavigationItemVariants
+>;
