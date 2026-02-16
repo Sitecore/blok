@@ -57,6 +57,8 @@ interface UseEditableProps {
   selectAllOnFocus?: boolean;
   /** Activation mode: 'click' or 'dblclick' */
   activationMode?: ActivationMode;
+  /** Error message to display */
+  hasError?: boolean;
   /** Callback when value is submitted */
   onSubmit?: (value: string) => void;
   /** Callback when value changes */
@@ -85,6 +87,7 @@ function useEditable(props: UseEditableProps = {}): UseEditableReturn {
     startWithEditView = false,
     selectAllOnFocus = true,
     activationMode = "click",
+    hasError = false,
     onSubmit,
     onChange,
     onValueChange,
@@ -92,7 +95,9 @@ function useEditable(props: UseEditableProps = {}): UseEditableReturn {
     onEdit,
   } = props;
 
-  const [isEditing, setIsEditing] = React.useState(startWithEditView);
+  const [isEditing, setIsEditing] = React.useState(
+    startWithEditView || hasError,
+  );
   const [internalValue, setInternalValue] = React.useState(defaultValue);
   const [previousValue, setPreviousValue] = React.useState(defaultValue);
   const inputRef = React.useRef<HTMLInputElement | HTMLTextAreaElement | null>(
@@ -114,14 +119,14 @@ function useEditable(props: UseEditableProps = {}): UseEditableReturn {
     if (!isControlled) {
       setInternalValue(previousValue);
     }
-    setIsEditing(false);
+    setIsEditing(hasError || false);
     onCancel?.(previousValue);
-  }, [isControlled, previousValue, onCancel]);
+  }, [isControlled, previousValue, onCancel, hasError]);
 
   const submitEdit = React.useCallback(() => {
-    setIsEditing(false);
+    setIsEditing(hasError || false);
     onSubmit?.(value);
-  }, [value, onSubmit]);
+  }, [value, onSubmit, hasError]);
 
   const handleChange = React.useCallback(
     (newValue: string) => {
@@ -203,6 +208,8 @@ interface EditableProps
   selectAllOnFocus?: boolean;
   /** Activation mode: 'click' or 'dblclick' */
   activationMode?: ActivationMode;
+  /** Error message to display */
+  hasError?: boolean;
   /** Callback when value is submitted */
   onSubmit?: (value: string) => void;
   /** Callback when value changes */
@@ -227,6 +234,7 @@ function Editable({
   startWithEditView = false,
   selectAllOnFocus = true,
   activationMode = "click",
+  hasError = false,
   onSubmit,
   onChange,
   onValueChange,
@@ -235,7 +243,9 @@ function Editable({
   children,
   ...props
 }: EditableProps) {
-  const [isEditing, setIsEditing] = React.useState(startWithEditView);
+  const [isEditing, setIsEditing] = React.useState(
+    startWithEditView || hasError,
+  );
   const [internalValue, setInternalValue] = React.useState(defaultValue);
   const [previousValue, setPreviousValue] = React.useState(defaultValue);
   const inputRef = React.useRef<HTMLInputElement | HTMLTextAreaElement | null>(
@@ -257,14 +267,14 @@ function Editable({
     if (!isControlled) {
       setInternalValue(previousValue);
     }
-    setIsEditing(false);
+    setIsEditing(hasError || false);
     onCancel?.(previousValue);
-  }, [isControlled, previousValue, onCancel]);
+  }, [isControlled, previousValue, onCancel, hasError]);
 
   const submitEdit = React.useCallback(() => {
-    setIsEditing(false);
+    setIsEditing(hasError || false);
     onSubmit?.(value);
-  }, [value, onSubmit]);
+  }, [value, onSubmit, hasError]);
 
   const handleChange = React.useCallback(
     (newValue: string) => {
