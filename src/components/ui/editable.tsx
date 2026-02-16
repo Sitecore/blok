@@ -169,7 +169,7 @@ function useEditable(props: UseEditableProps = {}): UseEditableReturn {
 
 // Editable Root Component
 
-const editableVariants = cva("inline-flex flex-col gap-1", {
+const editableVariants = cva("inline-flex flex-col gap-1 relative", {
   variants: {
     size: {
       sm: "text-sm",
@@ -649,6 +649,47 @@ function EditableSubmitTrigger({
   );
 }
 
+interface EditableErrorProps extends React.HTMLAttributes<HTMLDivElement> {
+  errors?: { message?: string }[];
+}
+
+function EditableError({
+  errors,
+  children,
+  className,
+  ...props
+}: EditableErrorProps) {
+  const errorMessages = errors?.filter(Boolean) || [];
+
+  if (errorMessages.length === 0 && !children) {
+    return null;
+  }
+
+  return (
+    <div
+      role="alert"
+      aria-live="polite"
+      data-slot="editable-error"
+      className={cn(
+        "text-sm text-destructive absolute w-max bg-white rounded-sm shadow-lg py-1 px-2 bottom-[calc(-100%+var(--spacing)*0.5)] cursor-default z-10",
+        className,
+      )}
+      {...props}
+    >
+      {children ||
+        (errorMessages.length === 1 ? (
+          <span>{errorMessages[0]?.message}</span>
+        ) : (
+          <ul className="list-disc list-inside space-y-1">
+            {errorMessages.map((error, index) => (
+              <li key={index}>{error?.message}</li>
+            ))}
+          </ul>
+        ))}
+    </div>
+  );
+}
+
 export {
   Editable,
   EditableRootProvider,
@@ -659,6 +700,7 @@ export {
   EditableEditTrigger,
   EditableCancelTrigger,
   EditableSubmitTrigger,
+  EditableError,
   editableVariants,
   editablePreviewVariants,
   useEditable,
