@@ -1516,7 +1516,7 @@
     {
       "name": "stack-navigation",
       "type": "registry:ui",
-      "title": "Stack navigation",
+      "title": "Navigation (Stack)",
       "description": "A collection of links for navigating websites.",
       "registryDependencies": ["https://blok.sitecore.com/r/theme.json"],
       "dependencies": ["@mdi/js", "class-variance-authority"],

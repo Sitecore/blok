@@ -55,6 +55,7 @@ import SkeletonThumb from "@/components/component-thumbs/skeleton";
 import SliderThumb from "@/components/component-thumbs/slider";
 import SonnerThumb from "@/components/component-thumbs/sonner";
 import SpinnerThumb from "@/components/component-thumbs/spinner";
+import StackNavigationThumb from "@/components/component-thumbs/stack-navigation";
 import StepperThumb from "@/components/component-thumbs/stepper";
 import SwitchThumb from "@/components/component-thumbs/switch";
 import TableThumb from "@/components/component-thumbs/table";
@@ -111,6 +112,7 @@ const componentThumbnails: Record<
   separator: SeparatorThumb,
   sheet: SheetThumb,
   sidebar: SidebarThumb,
+  "stack-navigation": StackNavigationThumb,
   sonner: SonnerThumb,
   skeleton: SkeletonThumb,
   slider: SliderThumb,
