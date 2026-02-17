@@ -47,6 +47,7 @@ export default function StackNavigationHorizontalDemo() {
       items={navigationItems}
       orientation="horizontal"
       colorScheme="neutral"
+      className="shadow-none"
     />
   );
 }
