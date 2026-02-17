@@ -1032,10 +1032,7 @@
       "type": "registry:ui",
       "title": "Filter",
       "description": "Filter components including input search, single select, multi select, and toggle filters for filtering data.",
-      "dependencies": [
-        "@mdi/js",
-        "class-variance-authority"
-      ],
+      "dependencies": ["@mdi/js", "class-variance-authority"],
       "registryDependencies": [
         "https://blok.sitecore.com/r/theme.json",
         "https://blok.sitecore.com/r/button.json",
@@ -1519,10 +1516,10 @@
     {
       "name": "stack-navigation",
       "type": "registry:ui",
-      "title": "Stack navigation",
+      "title": "Navigation (Stack)",
       "description": "A collection of links for navigating websites.",
       "registryDependencies": ["https://blok.sitecore.com/r/theme.json"],
-      "dependencies": ["@mdi/js"],
+      "dependencies": ["@mdi/js", "class-variance-authority"],
       "files": [
         {
           "path": "src/components/ui/stack-navigation.tsx",
