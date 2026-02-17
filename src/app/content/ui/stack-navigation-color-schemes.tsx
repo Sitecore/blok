@@ -52,6 +52,7 @@ export default function StackNavigationColorSchemesDemo() {
           items={navigationItems}
           pathname="/primitives/stack-navigation"
           colorScheme="neutral"
+          className="shadow-none"
         />
       </div>
       <div className="flex flex-col gap-3">
@@ -60,6 +61,7 @@ export default function StackNavigationColorSchemesDemo() {
           items={navigationItems}
           pathname="/primitives/stack-navigation"
           colorScheme="primary"
+          className="shadow-none"
         />
       </div>
     </div>
