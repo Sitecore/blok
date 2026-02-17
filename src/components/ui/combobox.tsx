@@ -64,7 +64,17 @@ function ComboboxInput({
   showClear?: boolean;
 }) {
   return (
-    <InputGroup className={cn("w-auto", className)}>
+    <InputGroup
+      className={cn(
+        "w-auto shadow-none bg-body-bg dark:bg-input/30",
+
+        // Focus state
+        "has-[[data-slot=input-group-control]:focus-visible]:border-2 has-[[data-slot=input-group-control]:focus-visible]:ring-0",
+        "has-[button:focus-visible]:border-2 has-[button:focus-visible]:ring-0",
+
+        className,
+      )}
+    >
       <ComboboxPrimitive.Input
         render={<InputGroupInput disabled={disabled} />}
         {...props}
@@ -76,7 +86,7 @@ function ComboboxInput({
             variant="ghost"
             asChild
             data-slot="input-group-button"
-            className="group-has-data-[slot=combobox-clear]/input-group:hidden data-pressed:bg-transparent"
+            className="rounded-md group-has-data-[slot=combobox-clear]/input-group:hidden data-pressed:bg-transparent"
             disabled={disabled}
           >
             <ComboboxTrigger />
@@ -233,7 +243,14 @@ function ComboboxChips({
     <ComboboxPrimitive.Chips
       data-slot="combobox-chips"
       className={cn(
-        "dark:bg-input/30 border-input focus-within:border-primary focus-within:ring-primary/50 has-aria-invalid:ring-destructive/20 dark:has-aria-invalid:ring-destructive/40 has-aria-invalid:border-destructive dark:has-aria-invalid:border-destructive/50 flex min-h-9 flex-wrap items-center gap-1.5 rounded-md border bg-transparent bg-clip-padding px-2.5 py-1.5 text-sm shadow-xs transition-[color,box-shadow] focus-within:ring-1 has-aria-invalid:ring-1 has-data-[slot=combobox-chip]:px-1.5",
+        "dark:bg-input/30 border-input flex min-h-9 flex-wrap items-center gap-1.5 rounded-md border bg-body-bg bg-clip-padding px-2.5 py-1.5 text-sm shadow-none transition-[color,box-shadow] has-data-[slot=combobox-chip]:px-1.5",
+
+        // Focus state
+        "focus-within:border-2 focus-within:border-primary",
+
+        // Error state
+        "has-aria-invalid:ring-destructive/20 dark:has-aria-invalid:ring-destructive/40 has-aria-invalid:border-destructive dark:has-aria-invalid:border-destructive/50 has-aria-invalid:ring-1",
+
         className,
       )}
       {...props}
