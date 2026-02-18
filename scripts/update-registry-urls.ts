@@ -28,10 +28,11 @@ function updateRegistryUrls(): void {
       const content = readFileSync(fullPath, "utf-8");
       
       // Replace all instances of the hardcoded URL with the dynamic one
-      const processedContent = content.replace(
-        new RegExp(defaultUrl.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"), "g"),
-        baseUrl
-      );
+      // Escape special regex characters to match the URL literally
+      // This ensures dots in hostnames are treated as literal dots, not regex wildcards
+      const escapedUrl = defaultUrl.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+      const urlRegex = new RegExp(escapedUrl, "g");
+      const processedContent = content.replace(urlRegex, baseUrl);
       
       if (content !== processedContent) {
         writeFileSync(fullPath, processedContent, "utf-8");
