@@ -13,14 +13,17 @@ function updateRegistryUrls(): void {
     ? registryUrl
     : `https://${registryUrl}`;
   
-  const defaultUrl = "https://blok.sitecore.com";
+  // Define the default URL pattern with explicit regex escaping for CodeQL compliance
+  // CodeQL requires dots in hostnames to be escaped to prevent matching unintended hosts
+  // Using regex literal with explicit escaping that CodeQL can analyze statically
+  const defaultUrlPattern = /https:\/\/blok\.sitecore\.com/g;
   
   // List of all registry.json files to update
   const registryFiles = [
     "./registries/registry.json",
   ];
 
-  console.log(`🔄 Updating registry URLs from ${defaultUrl} to ${baseUrl}...`);
+  console.log(`🔄 Updating registry URLs from https://blok.sitecore.com to ${baseUrl}...`);
 
   for (const filePath of registryFiles) {
     try {
@@ -28,11 +31,8 @@ function updateRegistryUrls(): void {
       const content = readFileSync(fullPath, "utf-8");
       
       // Replace all instances of the hardcoded URL with the dynamic one
-      // Escape special regex characters to match the URL literally
-      // This ensures dots in hostnames are treated as literal dots, not regex wildcards
-      const escapedUrl = defaultUrl.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-      const urlRegex = new RegExp(escapedUrl, "g");
-      const processedContent = content.replace(urlRegex, baseUrl);
+      // Using pre-defined regex pattern with explicit dot escaping for CodeQL safety
+      const processedContent = content.replace(defaultUrlPattern, baseUrl);
       
       if (content !== processedContent) {
         writeFileSync(fullPath, processedContent, "utf-8");
