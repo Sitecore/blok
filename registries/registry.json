@@ -1695,7 +1695,7 @@
     },
     {
       "name": "topbar",
-      "type": "registry:ui",
+      "type": "registry:block",
       "title": "Topbar",
       "description": "An application top bar for page navigation",
       "registryDependencies": [
@@ -1707,8 +1707,10 @@
       "dependencies": ["@mdi/js"],
       "files": [
         {
-          "path": "src/components/ui/top-bar.tsx",
-          "type": "registry:ui"
+          "path": "src/components/bloks/top-bar.tsx",
+          "type": "registry:block",
+          "target": "src/components/bloks/top-bar.tsx"
+
         },
         {
           "path": "src/lib/icon.tsx",

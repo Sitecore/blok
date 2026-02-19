@@ -157,7 +157,7 @@ import SquareToggleGroupDemo from "@/app/content/ui/toggle-group-square";
 import RoundedToggleDemo from "@/app/content/ui/toggle-rounded";
 import SquareToggleDemo from "@/app/content/ui/toggle-square";
 import TooltipDemo from "@/app/content/ui/tooltip";
-import TopbarDemo from "@/app/content/ui/topbar";
+import TopbarDemo from "@/app/content/bloks/topbar";
 
 import AllSitesSectionDemo from "@/app/content/bloks/all-site-section";
 import CollaborationDemo from "@/app/content/bloks/collaboration";
@@ -1219,7 +1219,7 @@ export const docsiteRegistry: Record<string, DocsiteRegistryEntry> = {
   },
   topbar: {
     name: "topbar",
-    path: "src/app/content/ui/topbar.tsx",
+    path: "src/app/content/bloks/topbar.tsx",
     component: TopbarDemo,
   },
 
