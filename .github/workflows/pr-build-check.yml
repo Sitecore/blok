@@ -55,7 +55,7 @@ jobs:
           
           echo "url=${REGISTRY_URL}" >> $GITHUB_OUTPUT
           echo "type=${REGISTRY_TYPE}" >> $GITHUB_OUTPUT
-          echo "🌐 Using ${REGISTRY_TYPE} registry URL: ${REGISTRY_URL}"
+          echo "Using ${REGISTRY_TYPE} registry URL: ${REGISTRY_URL}"
       
       # Checkout PR branch
       - name: Checkout PR branch
@@ -68,9 +68,9 @@ jobs:
       - name: Update registry URLs
         working-directory: .
         run: |
-          echo "🔄 Updating registry URLs to use: ${{ steps.registry-url.outputs.url }}"
+          echo "Updating registry URLs to use: ${{ steps.registry-url.outputs.url }}"
           NEXT_PUBLIC_REGISTRY_URL="${{ steps.registry-url.outputs.url }}" npm run registry:update-urls || npx tsx scripts/update-registry-urls.ts
-          echo "✅ Registry URLs updated"
+          echo "Registry URLs updated"
         env:
           NEXT_PUBLIC_REGISTRY_URL: ${{ steps.registry-url.outputs.url }}
       

@@ -85,7 +85,7 @@ jobs:
           
           echo "url=${REGISTRY_URL}" >> $GITHUB_OUTPUT
           echo "type=${REGISTRY_TYPE}" >> $GITHUB_OUTPUT
-          echo "🌐 Using ${REGISTRY_TYPE} registry URL: ${REGISTRY_URL}"
+          echo "Using ${REGISTRY_TYPE} registry URL: ${REGISTRY_URL}"
       
       # Step 1: Checkout QA-Automation_NextFW branch (Next.js app)
       - name: Checkout Next.js app (QA-Automation_NextFW)
@@ -101,11 +101,11 @@ jobs:
           CONFIG_FILE="app/components-config.json"
           
           if [ ! -f "$CONFIG_FILE" ]; then
-            echo "⚠️ components-config.json not found, skipping update"
+            echo "components-config.json not found, skipping update"
             exit 0
           fi
           
-          echo "🔄 Updating components-config.json URLs to use: ${REGISTRY_URL}"
+          echo "Updating components-config.json URLs to use: ${REGISTRY_URL}"
           
           # Use Node.js to update the JSON file properly
           node -e "
@@ -143,12 +143,12 @@ jobs:
               
               if (updated) {
                 fs.writeFileSync(configPath, JSON.stringify(config, null, 2) + '\n', 'utf8');
-                console.log('✅ components-config.json updated successfully');
+                console.log('components-config.json updated successfully');
               } else {
-                console.log('ℹ️ No URLs to update in components-config.json');
+                console.log('ℹNo URLs to update in components-config.json');
               }
             } catch (error) {
-              console.error('❌ Error updating components-config.json:', error.message);
+              console.error('Error updating components-config.json:', error.message);
               process.exit(1);
             }
           "
