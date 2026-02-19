@@ -6,6 +6,7 @@ on:
     branches: 
       - main
       - dev
+      - staging
       - QA-Automation
       - QA-Automation_NextFW
   
@@ -14,6 +15,7 @@ on:
     branches: 
       - main
       - dev
+      - staging
       - QA-Automation
       - QA-Automation_NextFW
     types: [ opened, synchronize, reopened ]
@@ -22,9 +24,9 @@ on:
   workflow_dispatch:
 
 jobs:
-  # Job to check PR branch build when PR is opened to dev or main
+  # Job to check PR branch build when PR is opened to dev, staging, or main
   check-pr-build:
-    if: github.event_name == 'pull_request' && (github.base_ref == 'dev' || github.base_ref == 'main')
+    if: github.event_name == 'pull_request' && (github.base_ref == 'dev' || github.base_ref == 'main' || github.base_ref == 'staging')
     uses: ./.github/workflows/pr-build-check.yml
     with:
       pr-branch: ${{ github.head_ref }}
@@ -43,12 +45,108 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
       
+      # Step 0.5: Determine registry URL based on PR branch
+      - name: Determine registry URL
+        id: registry-url
+        run: |
+          # Default to production URL
+          REGISTRY_URL="https://blok.sitecore.com"
+          REGISTRY_TYPE="production"
+          
+          if [ "${{ github.event_name }}" == "pull_request" ]; then
+            BASE_REF="${{ github.base_ref }}"
+            HEAD_REF="${{ github.head_ref }}"
+            
+            # If PR is targeting main, use production URL
+            if [ "$BASE_REF" == "main" ]; then
+              REGISTRY_URL="https://blok.sitecore.com"
+              REGISTRY_TYPE="production"
+            # If PR is targeting staging or dev, use staging URL
+            elif [ "$BASE_REF" == "staging" ] || [ "$BASE_REF" == "dev" ]; then
+              REGISTRY_URL="https://blok-staging.vercel.app"
+              REGISTRY_TYPE="staging"
+            fi
+          else
+            # For direct pushes, check the branch
+            BRANCH="${{ github.ref_name }}"
+            if [ "$BRANCH" == "main" ]; then
+              REGISTRY_URL="https://blok.sitecore.com"
+              REGISTRY_TYPE="production"
+            else
+              REGISTRY_URL="https://blok-staging.vercel.app"
+              REGISTRY_TYPE="staging"
+            fi
+          fi
+          
+          echo "url=${REGISTRY_URL}" >> $GITHUB_OUTPUT
+          echo "type=${REGISTRY_TYPE}" >> $GITHUB_OUTPUT
+          echo "🌐 Using ${REGISTRY_TYPE} registry URL: ${REGISTRY_URL}"
+      
       # Step 1: Checkout QA-Automation_NextFW branch (Next.js app)
       - name: Checkout Next.js app (QA-Automation_NextFW)
         uses: actions/checkout@v4
         with:
           ref: QA-Automation_NextFW
           path: app
+      
+      # Step 1.5: Update components-config.json in app directory
+      - name: Update components-config.json URLs
+        run: |
+          REGISTRY_URL="${{ steps.registry-url.outputs.url }}"
+          CONFIG_FILE="app/components-config.json"
+          
+          if [ ! -f "$CONFIG_FILE" ]; then
+            echo "⚠️ components-config.json not found, skipping update"
+            exit 0
+          fi
+          
+          echo "🔄 Updating components-config.json URLs to use: ${REGISTRY_URL}"
+          
+          # Use Node.js to update the JSON file properly
+          node -e "
+            const fs = require('fs');
+            const configPath = '$CONFIG_FILE';
+            const newUrl = '${REGISTRY_URL}';
+            const oldUrl = 'https://blok.sitecore.com';
+            
+            try {
+              const config = JSON.parse(fs.readFileSync(configPath, 'utf8'));
+              let updated = false;
+              
+              // Update bulkInstall.url if it exists
+              if (config.bulkInstall && config.bulkInstall.url) {
+                if (config.bulkInstall.url.includes(oldUrl)) {
+                  config.bulkInstall.url = config.bulkInstall.url.replace(oldUrl, newUrl);
+                  updated = true;
+                  console.log('✓ Updated bulkInstall.url');
+                }
+              }
+              
+              // Update additionalComponents array URLs
+              if (config.additionalComponents && Array.isArray(config.additionalComponents)) {
+                config.additionalComponents = config.additionalComponents.map(url => {
+                  if (typeof url === 'string' && url.includes(oldUrl)) {
+                    updated = true;
+                    return url.replace(oldUrl, newUrl);
+                  }
+                  return url;
+                });
+                if (updated) {
+                  console.log('✓ Updated additionalComponents URLs');
+                }
+              }
+              
+              if (updated) {
+                fs.writeFileSync(configPath, JSON.stringify(config, null, 2) + '\n', 'utf8');
+                console.log('✅ components-config.json updated successfully');
+              } else {
+                console.log('ℹ️ No URLs to update in components-config.json');
+              }
+            } catch (error) {
+              console.error('❌ Error updating components-config.json:', error.message);
+              process.exit(1);
+            }
+          "
       
       # Step 2: Verify Docker files exist in app directory (from QA-Automation_NextFW branch)
       - name: Verify Docker files in app directory
@@ -374,6 +472,10 @@ jobs:
           echo "| ❌ **Failed** | ${FAILED} |" >> $GITHUB_STEP_SUMMARY
           echo "| **Skipped** | ${SKIPPED} |" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### Component Installation" >> $GITHUB_STEP_SUMMARY
+          echo "- **Registry URL**: \`${{ steps.registry-url.outputs.url }}\`" >> $GITHUB_STEP_SUMMARY
+          echo "- **Registry Type**: ${{ steps.registry-url.outputs.type }}" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
           echo "### Test Details" >> $GITHUB_STEP_SUMMARY
           echo "- **Repository**: \`${{ github.repository }}\`" >> $GITHUB_STEP_SUMMARY
           echo "- **Branch**: \`${{ github.ref_name }}\`" >> $GITHUB_STEP_SUMMARY
@@ -468,6 +570,8 @@ jobs:
           pr-title: ${{ github.event.pull_request.title || '' }}
           event-type: ${{ steps.event-details.outputs.type }}
           event-details: ${{ steps.event-details.outputs.details }}
+          registry-url: ${{ steps.registry-url.outputs.url }}
+          registry-type: ${{ steps.registry-url.outputs.type }}
           webhook-url: ${{ secrets.TEAMS_WEBHOOK_URL }}
           github-server-url: ${{ github.server_url }}
           github-repository: ${{ github.repository }}
@@ -585,6 +689,9 @@ jobs:
             const mentions = specificPerson ? `${author} ${specificPerson}` : author;
             
             // Build comment with markdown
+            const registryUrl = '${{ steps.registry-url.outputs.url }}' || 'https://blok.sitecore.com';
+            const registryType = '${{ steps.registry-url.outputs.type }}' || 'production';
+            
             const comment = `## ${statusEmoji} Playwright Test Results
             
             ${mentions}
@@ -597,6 +704,10 @@ jobs:
             | ✅ **Passed** | ${passed} |
             | ❌ **Failed** | ${failed} |
             | ⏭️ **Skipped** | ${skipped} |
+            
+            ### Component Installation
+            - **Registry URL:** \`${registryUrl}\` (${registryType})
+            - Components were installed and tested using the ${registryType} registry
             
             ### Details
             - **Repository:** \`${{ github.repository }}\`
@@ -652,6 +763,7 @@ jobs:
           echo "Passed: ${PASSED}"
           echo "Failed: ${FAILED}"
           echo "Skipped: ${SKIPPED}"
+          echo "Registry URL: ${{ steps.registry-url.outputs.url }} (${{ steps.registry-url.outputs.type }})"
           echo "Author: ${{ steps.author-info.outputs.name }} (@${{ steps.author-info.outputs.username }})"
           echo "Workflow Run: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
           echo ""
