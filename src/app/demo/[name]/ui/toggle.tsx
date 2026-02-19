@@ -7,7 +7,8 @@ export const toggle = {
     usage: [`import { Toggle } from "@/components/ui/toggle";`, `<Toggle />`],
   },
   components: {
-    Square: { component: "toggle-square" },
-    Rounded: { component: "toggle-rounded" },
+    Sizes: { component: "toggle-sizes" },
+    Variants: { component: "toggle-variants" },
+    "Check Icon": { component: "toggle-check-icon" },
   },
 };

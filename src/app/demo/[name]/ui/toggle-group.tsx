@@ -12,5 +12,7 @@ export const toggleGroup = {
   components: {
     "Square Variant": { component: "toggle-group-square" },
     "Rounded Variant": { component: "toggle-group-rounded" },
+    Sizes: { component: "toggle-group-sizes" },
+    "Outline Variant": { component: "toggle-outline-group" },
   },
 };

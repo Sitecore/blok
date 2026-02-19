@@ -151,10 +151,15 @@ import TextareaWithLabelAndDescriptionDemo from "@/app/content/ui/textarea-label
 import LargeTextareaDemo from "@/app/content/ui/textarea-large";
 import SmallTextareaDemo from "@/app/content/ui/textarea-small";
 import TimePickerDemo from "@/app/content/ui/time-picker";
+import ToggleCheckIconDemo from "@/app/content/ui/toggle-check-icon";
 import RoundedToggleGroupDemo from "@/app/content/ui/toggle-group-rounded";
+import ToggleGroupSizesDemo from "@/app/content/ui/toggle-group-sizes";
 import SquareToggleGroupDemo from "@/app/content/ui/toggle-group-square";
+import ToggleOutlineGroupDemo from "@/app/content/ui/toggle-outline-group";
 import RoundedToggleDemo from "@/app/content/ui/toggle-rounded";
+import ToggleSizesDemo from "@/app/content/ui/toggle-sizes";
 import SquareToggleDemo from "@/app/content/ui/toggle-square";
+import ToggleVariantsDemo from "@/app/content/ui/toggle-variants";
 import TooltipDemo from "@/app/content/ui/tooltip";
 import TopbarDemo from "@/app/content/ui/topbar";
 
@@ -184,6 +189,11 @@ import FieldWithSeparatorDemo from "@/app/content/ui/field-separator";
 import FieldSmallDemo from "@/app/content/ui/field-small";
 import FieldSwitchDemo from "@/app/content/ui/field-switch";
 import FieldTextareaDemo from "@/app/content/ui/field-textarea";
+import FilterDemo from "@/app/content/ui/filter";
+import FilterInputDemo from "@/app/content/ui/filter-input";
+import FilterMultiSelectDemo from "@/app/content/ui/filter-multi-select";
+import FilterSingleSelectDemo from "@/app/content/ui/filter-single-select";
+import FilterToggleDemo from "@/app/content/ui/filter-toggle";
 import InputGroupDemo from "@/app/content/ui/input-group";
 import InputGroupDropdownDemo from "@/app/content/ui/input-group-dropdown";
 import InputGroupSearchDemo from "@/app/content/ui/input-group-search";
@@ -202,11 +212,6 @@ import TimelineDemo from "@/app/content/ui/timeline";
 import TimelineConnectorVariantsDemo from "@/app/content/ui/timeline-connector-variants";
 import TimelineSizesDemo from "@/app/content/ui/timeline-sizes";
 import TimelineVariantsDemo from "@/app/content/ui/timeline-variants";
-import FilterDemo from "@/app/content/ui/filter";
-import FilterInputDemo from "@/app/content/ui/filter-input";
-import FilterSingleSelectDemo from "@/app/content/ui/filter-single-select";
-import FilterMultiSelectDemo from "@/app/content/ui/filter-multi-select";
-import FilterToggleDemo from "@/app/content/ui/filter-toggle";
 
 export interface DocsiteRegistryEntry {
   name: string;
@@ -736,31 +741,31 @@ export const docsiteRegistry: Record<string, DocsiteRegistryEntry> = {
     path: "src/app/content/ui/field-input-types.tsx",
     component: FieldInputTypesDemo,
   },
-      "filter": {
-        name: "filter",
-        path: "src/app/content/ui/filter.tsx",
-        component: FilterDemo,
-    },
-    "filter-input": {
-        name: "filter-input",
-        path: "src/app/content/ui/filter-input.tsx",
-        component: FilterInputDemo,
-    },
-    "filter-single-select": {
-        name: "filter-single-select",
-        path: "src/app/content/ui/filter-single-select.tsx",
-        component: FilterSingleSelectDemo,
-    },
-    "filter-multi-select": {
-        name: "filter-multi-select",
-        path: "src/app/content/ui/filter-multi-select.tsx",
-        component: FilterMultiSelectDemo,
-    },
-    "filter-toggle": {
-        name: "filter-toggle",
-        path: "src/app/content/ui/filter-toggle.tsx",
-        component: FilterToggleDemo,
-    },
+  filter: {
+    name: "filter",
+    path: "src/app/content/ui/filter.tsx",
+    component: FilterDemo,
+  },
+  "filter-input": {
+    name: "filter-input",
+    path: "src/app/content/ui/filter-input.tsx",
+    component: FilterInputDemo,
+  },
+  "filter-single-select": {
+    name: "filter-single-select",
+    path: "src/app/content/ui/filter-single-select.tsx",
+    component: FilterSingleSelectDemo,
+  },
+  "filter-multi-select": {
+    name: "filter-multi-select",
+    path: "src/app/content/ui/filter-multi-select.tsx",
+    component: FilterMultiSelectDemo,
+  },
+  "filter-toggle": {
+    name: "filter-toggle",
+    path: "src/app/content/ui/filter-toggle.tsx",
+    component: FilterToggleDemo,
+  },
   icon: {
     name: "icon",
     path: "src/app/content/ui/icon-component.tsx",
@@ -1205,6 +1210,31 @@ export const docsiteRegistry: Record<string, DocsiteRegistryEntry> = {
     name: "toggle-group-rounded",
     path: "src/app/content/ui/toggle-group-rounded.tsx",
     component: RoundedToggleGroupDemo,
+  },
+  "toggle-sizes": {
+    name: "toggle-sizes",
+    path: "src/app/content/ui/toggle-sizes.tsx",
+    component: ToggleSizesDemo,
+  },
+  "toggle-variants": {
+    name: "toggle-variants",
+    path: "src/app/content/ui/toggle-variants.tsx",
+    component: ToggleVariantsDemo,
+  },
+  "toggle-check-icon": {
+    name: "toggle-check-icon",
+    path: "src/app/content/ui/toggle-check-icon.tsx",
+    component: ToggleCheckIconDemo,
+  },
+  "toggle-group-sizes": {
+    name: "toggle-group-sizes",
+    path: "src/app/content/ui/toggle-group-sizes.tsx",
+    component: ToggleGroupSizesDemo,
+  },
+  "toggle-outline-group": {
+    name: "toggle-outline-group",
+    path: "src/app/content/ui/toggle-outline-group.tsx",
+    component: ToggleOutlineGroupDemo,
   },
   tooltip: {
     name: "tooltip",

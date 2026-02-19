@@ -965,8 +965,9 @@ export const rightSidebarMetadata: Record<string, RightSidebarMetadata> = {
         id: "examples",
         title: "Examples",
         children: [
-          { id: "toggle-square", title: "Square" },
-          { id: "toggle-rounded", title: "Rounded" },
+          { id: "toggle-sizes", title: "Sizes" },
+          { id: "toggle-variants", title: "Variants" },
+          { id: "toggle-check-icon", title: "Check Icon" },
         ],
       },
     ],
@@ -985,6 +986,8 @@ export const rightSidebarMetadata: Record<string, RightSidebarMetadata> = {
         children: [
           { id: "toggle-group-square", title: "Square Variant" },
           { id: "toggle-group-rounded", title: "Rounded Variant" },
+          { id: "toggle-outline-group", title: "Outline Variant" },
+          { id: "toggle-group-sizes", title: "Sizes" },
         ],
       },
     ],
