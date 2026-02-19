@@ -33,12 +33,46 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
       
+      # Determine registry URL based on PR branch
+      - name: Determine registry URL
+        id: registry-url
+        run: |
+          # Default to production URL
+          REGISTRY_URL="https://blok.sitecore.com"
+          REGISTRY_TYPE="production"
+          
+          BASE_REF="${{ inputs.base-branch }}"
+          
+          # If PR is targeting main, use production URL
+          if [ "$BASE_REF" == "main" ]; then
+            REGISTRY_URL="https://blok.sitecore.com"
+            REGISTRY_TYPE="production"
+          # If PR is targeting staging or dev, use staging URL
+          elif [ "$BASE_REF" == "staging" ] || [ "$BASE_REF" == "dev" ]; then
+            REGISTRY_URL="https://blok-staging.vercel.app"
+            REGISTRY_TYPE="staging"
+          fi
+          
+          echo "url=${REGISTRY_URL}" >> $GITHUB_OUTPUT
+          echo "type=${REGISTRY_TYPE}" >> $GITHUB_OUTPUT
+          echo "🌐 Using ${REGISTRY_TYPE} registry URL: ${REGISTRY_URL}"
+      
       # Checkout PR branch
       - name: Checkout PR branch
         uses: actions/checkout@v4
         with:
           ref: ${{ inputs.pr-branch }}
           path: pr-branch
+      
+      # Update registry URLs in the repository before building
+      - name: Update registry URLs
+        working-directory: .
+        run: |
+          echo "🔄 Updating registry URLs to use: ${{ steps.registry-url.outputs.url }}"
+          NEXT_PUBLIC_REGISTRY_URL="${{ steps.registry-url.outputs.url }}" npm run registry:update-urls || npx tsx scripts/update-registry-urls.ts
+          echo "✅ Registry URLs updated"
+        env:
+          NEXT_PUBLIC_REGISTRY_URL: ${{ steps.registry-url.outputs.url }}
       
       - name: Setup and Build PR branch
         id: setup-and-build
@@ -59,6 +93,8 @@ jobs:
           pr-title: ${{ inputs.pr-title }}
           pr-branch: ${{ inputs.pr-branch }}
           base-branch: ${{ inputs.base-branch }}
+          registry-url: ${{ steps.registry-url.outputs.url }}
+          registry-type: ${{ steps.registry-url.outputs.type }}
           webhook-url: ${{ secrets.TEAMS_WEBHOOK_URL }}
           github-server-url: ${{ github.server_url }}
           github-repository: ${{ github.repository }}
