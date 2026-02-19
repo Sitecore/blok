@@ -57,6 +57,8 @@ interface UseEditableProps {
   selectAllOnFocus?: boolean;
   /** Activation mode: 'click' or 'dblclick' */
   activationMode?: ActivationMode;
+  /** Error message to display */
+  hasError?: boolean;
   /** Callback when value is submitted */
   onSubmit?: (value: string) => void;
   /** Callback when value changes */
@@ -85,6 +87,7 @@ function useEditable(props: UseEditableProps = {}): UseEditableReturn {
     startWithEditView = false,
     selectAllOnFocus = true,
     activationMode = "click",
+    hasError = false,
     onSubmit,
     onChange,
     onValueChange,
@@ -92,7 +95,9 @@ function useEditable(props: UseEditableProps = {}): UseEditableReturn {
     onEdit,
   } = props;
 
-  const [isEditing, setIsEditing] = React.useState(startWithEditView);
+  const [isEditing, setIsEditing] = React.useState(
+    startWithEditView || hasError,
+  );
   const [internalValue, setInternalValue] = React.useState(defaultValue);
   const [previousValue, setPreviousValue] = React.useState(defaultValue);
   const inputRef = React.useRef<HTMLInputElement | HTMLTextAreaElement | null>(
@@ -114,14 +119,14 @@ function useEditable(props: UseEditableProps = {}): UseEditableReturn {
     if (!isControlled) {
       setInternalValue(previousValue);
     }
-    setIsEditing(false);
+    setIsEditing(hasError || false);
     onCancel?.(previousValue);
-  }, [isControlled, previousValue, onCancel]);
+  }, [isControlled, previousValue, onCancel, hasError]);
 
   const submitEdit = React.useCallback(() => {
-    setIsEditing(false);
+    setIsEditing(hasError || false);
     onSubmit?.(value);
-  }, [value, onSubmit]);
+  }, [value, onSubmit, hasError]);
 
   const handleChange = React.useCallback(
     (newValue: string) => {
@@ -169,7 +174,7 @@ function useEditable(props: UseEditableProps = {}): UseEditableReturn {
 
 // Editable Root Component
 
-const editableVariants = cva("inline-flex flex-col gap-1", {
+const editableVariants = cva("inline-flex flex-col gap-1 relative", {
   variants: {
     size: {
       sm: "text-sm",
@@ -203,6 +208,8 @@ interface EditableProps
   selectAllOnFocus?: boolean;
   /** Activation mode: 'click' or 'dblclick' */
   activationMode?: ActivationMode;
+  /** Error message to display */
+  hasError?: boolean;
   /** Callback when value is submitted */
   onSubmit?: (value: string) => void;
   /** Callback when value changes */
@@ -227,6 +234,7 @@ function Editable({
   startWithEditView = false,
   selectAllOnFocus = true,
   activationMode = "click",
+  hasError = false,
   onSubmit,
   onChange,
   onValueChange,
@@ -235,7 +243,9 @@ function Editable({
   children,
   ...props
 }: EditableProps) {
-  const [isEditing, setIsEditing] = React.useState(startWithEditView);
+  const [isEditing, setIsEditing] = React.useState(
+    startWithEditView || hasError,
+  );
   const [internalValue, setInternalValue] = React.useState(defaultValue);
   const [previousValue, setPreviousValue] = React.useState(defaultValue);
   const inputRef = React.useRef<HTMLInputElement | HTMLTextAreaElement | null>(
@@ -257,14 +267,14 @@ function Editable({
     if (!isControlled) {
       setInternalValue(previousValue);
     }
-    setIsEditing(false);
+    setIsEditing(hasError || false);
     onCancel?.(previousValue);
-  }, [isControlled, previousValue, onCancel]);
+  }, [isControlled, previousValue, onCancel, hasError]);
 
   const submitEdit = React.useCallback(() => {
-    setIsEditing(false);
+    setIsEditing(hasError || false);
     onSubmit?.(value);
-  }, [value, onSubmit]);
+  }, [value, onSubmit, hasError]);
 
   const handleChange = React.useCallback(
     (newValue: string) => {
@@ -355,7 +365,7 @@ const editablePreviewVariants = cva(
   [
     "cursor-text rounded-md px-2 py-1 transition-colors",
     "hover:bg-neutral-bg",
-    "min-h-[2rem] flex items-center whitespace-pre-line break-words",
+    "min-h-8 flex items-center whitespace-pre-line break-words",
   ].join(" "),
   {
     variants: {
@@ -474,7 +484,7 @@ function EditableInput({ className, ...props }: EditableInputProps) {
         }
       }}
       className={cn(
-        "w-full border-2 bg-transparent dark:bg-transparent focus-visible:ring-0 focus-visible:border-primary transition-colors",
+        "w-full border-2 bg-transparent h-8 dark:bg-transparent focus-visible:ring-0 focus-visible:border-primary transition-colors",
         className,
       )}
       {...props}
@@ -649,6 +659,47 @@ function EditableSubmitTrigger({
   );
 }
 
+interface EditableErrorProps extends React.HTMLAttributes<HTMLDivElement> {
+  errors?: { message?: string }[];
+}
+
+function EditableError({
+  errors,
+  children,
+  className,
+  ...props
+}: EditableErrorProps) {
+  const errorMessages = errors?.filter(Boolean) || [];
+
+  if (errorMessages.length === 0 && !children) {
+    return null;
+  }
+
+  return (
+    <div
+      role="alert"
+      aria-live="polite"
+      data-slot="editable-error"
+      className={cn(
+        "text-sm text-destructive absolute w-max bg-white rounded-sm shadow-lg py-1 px-2 bottom-[calc(-100%+var(--spacing)*0.5)] cursor-default z-10",
+        className,
+      )}
+      {...props}
+    >
+      {children ||
+        (errorMessages.length === 1 ? (
+          <span>{errorMessages[0]?.message}</span>
+        ) : (
+          <ul className="list-disc list-inside space-y-1">
+            {errorMessages.map((error, index) => (
+              <li key={index}>{error?.message}</li>
+            ))}
+          </ul>
+        ))}
+    </div>
+  );
+}
+
 export {
   Editable,
   EditableRootProvider,
@@ -659,6 +710,7 @@ export {
   EditableEditTrigger,
   EditableCancelTrigger,
   EditableSubmitTrigger,
+  EditableError,
   editableVariants,
   editablePreviewVariants,
   useEditable,

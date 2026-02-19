@@ -169,6 +169,7 @@ import CircularProgressDemo from "@/app/content/ui/circular-progress";
 import CircularProgressWithTextDemo from "@/app/content/ui/circular-progress-text";
 import CircularProgressVariantsDemo from "@/app/content/ui/circular-progress-variants";
 import EditableDemo from "@/app/content/ui/editable";
+import EditableErrorDemo from "@/app/content/ui/editable-error";
 import EditableTextareaDemo from "@/app/content/ui/editable-textarea";
 import FieldDemo from "@/app/content/ui/field";
 import FieldCheckboxDemo from "@/app/content/ui/field-checkbox";
@@ -606,6 +607,11 @@ export const docsiteRegistry: Record<string, DocsiteRegistryEntry> = {
     name: "editable-textarea",
     path: "src/app/content/ui/editable-textarea.tsx",
     component: EditableTextareaDemo,
+  },
+  "editable-error": {
+    name: "editable-error",
+    path: "src/app/content/ui/editable-error.tsx",
+    component: EditableErrorDemo,
   },
   "empty-states-no-results": {
     name: "empty-states-no-results",
