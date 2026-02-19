@@ -192,7 +192,6 @@ import FilterSingleSelectDemo from "@/app/content/ui/filter-single-select";
 import FilterToggleDemo from "@/app/content/ui/filter-toggle";
 import InputGroupDemo from "@/app/content/ui/input-group";
 import InputGroupDropdownDemo from "@/app/content/ui/input-group-dropdown";
-import InputGroupSearchDemo from "@/app/content/ui/input-group-search";
 import InputGroupURLDemo from "@/app/content/ui/input-group-url";
 import KbdDemo from "@/app/content/ui/kbd";
 import KbdButtonDemo from "@/app/content/ui/kbd-button";
@@ -826,11 +825,6 @@ export const docsiteRegistry: Record<string, DocsiteRegistryEntry> = {
     name: "input-group",
     path: "src/app/content/ui/input-group.tsx",
     component: InputGroupDemo,
-  },
-  "input-group-search": {
-    name: "input-group-search",
-    path: "src/app/content/ui/input-group-search.tsx",
-    component: InputGroupSearchDemo,
   },
   "input-group-url": {
     name: "input-group-url",
