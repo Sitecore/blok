@@ -33,7 +33,7 @@ const toggleVariants = cva(
 );
 
 // Helper function to check if children contain text
-function hasTextContent(children: React.ReactNode): boolean {
+export function hasTextContent(children: React.ReactNode): boolean {
   if (typeof children === "string" || typeof children === "number") {
     return true;
   }
@@ -56,7 +56,7 @@ function hasTextContent(children: React.ReactNode): boolean {
 }
 
 // Helper function to check if first child is an icon/SVG
-function isFirstChildIcon(children: React.ReactNode): boolean {
+export function isFirstChildIcon(children: React.ReactNode): boolean {
   if (!children) return false;
   const childrenArray = React.Children.toArray(children);
   if (childrenArray.length === 0) return false;
@@ -75,7 +75,7 @@ function isFirstChildIcon(children: React.ReactNode): boolean {
 }
 
 // Helper function to extract the first icon if it exists
-function extractFirstIcon(children: React.ReactNode): {
+export function extractFirstIcon(children: React.ReactNode): {
   icon: React.ReactElement | null;
   rest: React.ReactNode;
 } {

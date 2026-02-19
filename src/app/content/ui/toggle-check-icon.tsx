@@ -12,9 +12,7 @@ export default function ToggleCheckIconDemo() {
   return (
     <div className="flex flex-col gap-8">
       <div className="flex flex-col gap-4">
-        <h3 className="text-sm font-semibold">
-          Text Toggles (Check Icon on Active)
-        </h3>
+        <h3 className="text-sm font-semibold">Text Toggles</h3>
         <div className="flex flex-wrap items-center gap-4">
           <Toggle>Grid view</Toggle>
           <Toggle defaultPressed>List view</Toggle>
@@ -23,9 +21,7 @@ export default function ToggleCheckIconDemo() {
       </div>
 
       <div className="flex flex-col gap-4">
-        <h3 className="text-sm font-semibold">
-          Text Toggles with Left Icon (Animated)
-        </h3>
+        <h3 className="text-sm font-semibold">Text Toggles with Left Icon</h3>
         <div className="flex flex-wrap items-center gap-4">
           <Toggle aria-label="Grid view">
             <Icon path={mdiViewModuleOutline} size={1.1} />
@@ -43,9 +39,7 @@ export default function ToggleCheckIconDemo() {
       </div>
 
       <div className="flex flex-col gap-4">
-        <h3 className="text-sm font-semibold">
-          Icon-Only Toggles (No Check Icon)
-        </h3>
+        <h3 className="text-sm font-semibold">Icon-Only Toggles</h3>
         <div className="flex flex-wrap items-center gap-4">
           <Toggle aria-label="Toggle bold">
             <Icon path={mdiFormatBold} size={1.1} />

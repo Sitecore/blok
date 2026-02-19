@@ -33,7 +33,7 @@ export default function ToggleOutlineGroupDemo() {
         <div className="flex flex-col gap-4">
           <ToggleGroup
             type="single"
-            variant="outline"
+            variant="default"
             defaultValue="list"
             className="p-0.5 gap-0.5 border border-border-color bg-transparent"
           >

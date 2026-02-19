@@ -986,7 +986,6 @@ export const rightSidebarMetadata: Record<string, RightSidebarMetadata> = {
         children: [
           { id: "toggle-group-square", title: "Square Variant" },
           { id: "toggle-group-rounded", title: "Rounded Variant" },
-          { id: "toggle-outline-group", title: "Outline Variant" },
           { id: "toggle-group-sizes", title: "Sizes" },
         ],
       },
