@@ -563,6 +563,9 @@ export const rightSidebarMetadata: Record<string, RightSidebarMetadata> = {
       },
     ],
   },
+  "search-input": {
+    links: {},
+  },
   inputOtp: {
     links: {
       shadcn: "https://ui.shadcn.com/docs/components/input-otp",
