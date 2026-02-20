@@ -20,13 +20,6 @@ export default function SearchInputDefaultDemo() {
         <SearchInputLeftElement>
           <Icon path={mdiMagnify} />
         </SearchInputLeftElement>
-        <SearchInputField placeholder="Search" aria-label="Search" />
-      </SearchInput>
-
-      <SearchInput className="w-96">
-        <SearchInputLeftElement>
-          <Icon path={mdiMagnify} />
-        </SearchInputLeftElement>
         <SearchInputField
           placeholder="Search"
           aria-label="Search"

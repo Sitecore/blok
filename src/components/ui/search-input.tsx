@@ -20,11 +20,11 @@ function SearchInput({ className, ...props }: React.ComponentProps<"div">) {
       data-slot="search-input"
       role="group"
       className={cn(
-        "relative flex w-full items-center rounded-md border border-input shadow-xs transition-[color,box-shadow] outline-none",
+        "relative flex w-full items-center rounded-md border border-input transition-[color,box-shadow] outline-none",
         "h-9 min-w-0",
-        "dark:bg-input/30",
-        // Focus state (matches input primary focus style with border-2)
-        "has-[[data-slot=search-input-control]:focus-visible]:border-2 has-[[data-slot=search-input-control]:focus-visible]:border-primary has-[[data-slot=search-input-control]:focus-visible]:ring-primary/50 has-[[data-slot=search-input-control]:focus-visible]:ring-1",
+        "bg-white dark:bg-input/30",
+        // Focus state (border-2 primary, no ring)
+        "has-[[data-slot=search-input-control]:focus-visible]:border-2 has-[[data-slot=search-input-control]:focus-visible]:border-primary",
         // Error state
         "has-[[data-slot=search-input-control][aria-invalid=true]]:ring-destructive/20 has-[[data-slot=search-input-control][aria-invalid=true]]:border-destructive dark:has-[[data-slot=search-input-control][aria-invalid=true]]:ring-destructive/40",
         className,
@@ -72,7 +72,7 @@ function SearchInputRightElement({
   );
 }
 
-// SearchInputField (the actual input field, similar to InputGroupInput)
+// SearchInputField (the actual input field, identical to Input but without ring)
 const SearchInputField = React.forwardRef<
   HTMLInputElement,
   React.ComponentProps<"input">
@@ -83,7 +83,8 @@ const SearchInputField = React.forwardRef<
       type={type}
       data-slot="search-input-control"
       className={cn(
-        "flex-1 rounded-none border-0 bg-transparent shadow-none focus-visible:ring-0 dark:bg-transparent",
+        "flex-1 rounded-none border-0 bg-transparent shadow-none dark:bg-transparent",
+        "focus-visible:ring-0 focus:ring-0 focus:border-0 focus-visible:border-0",
         "pl-2 pr-2",
         className,
       )}

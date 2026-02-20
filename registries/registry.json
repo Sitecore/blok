@@ -794,7 +794,8 @@
         "https://blok.sitecore.com/r/avatar.json",
         "https://blok.sitecore.com/r/button.json",
         "https://blok.sitecore.com/r/command.json",
-        "https://blok.sitecore.com/r/popover.json"
+        "https://blok.sitecore.com/r/popover.json",
+        "https://blok.sitecore.com/r/search-input.json"
       ],
       "files": [
         {
@@ -1040,7 +1041,8 @@
         "https://blok.sitecore.com/r/select.json",
         "https://blok.sitecore.com/r/popover.json",
         "https://blok.sitecore.com/r/badge.json",
-        "https://blok.sitecore.com/r/checkbox.json"
+        "https://blok.sitecore.com/r/checkbox.json",
+        "https://blok.sitecore.com/r/search-input.json"
       ],
       "files": [
         {
@@ -1733,7 +1735,6 @@
           "path": "src/components/bloks/top-bar.tsx",
           "type": "registry:block",
           "target": "src/components/bloks/top-bar.tsx"
-
         },
         {
           "path": "src/lib/icon.tsx",
