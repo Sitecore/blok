@@ -574,8 +574,8 @@ export const rightSidebarMetadata: Record<string, RightSidebarMetadata> = {
         id: "examples",
         title: "Examples",
         children: [
-          { id: "pattern", title: "Pattern" },
-          { id: "with-spacing", title: "With Spacing" },
+          { id: "inputOtp-pattern", title: "Pattern" },
+          { id: "inputOtp-spacing", title: "With Spacing" },
         ],
       },
     ],
