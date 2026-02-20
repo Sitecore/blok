@@ -1,7 +1,8 @@
 "use client";
 
 import { Icon } from "@/lib/icon";
-import { mdiPlus } from "@mdi/js";
+import { mdiMagnify, mdiPlus } from "@mdi/js";
+import { Command as CommandPrimitive } from "cmdk";
 import { CheckIcon, ChevronDownIcon, ChevronsUpDown } from "lucide-react";
 import * as React from "react";
 
@@ -11,7 +12,6 @@ import {
   Command,
   CommandEmpty,
   CommandGroup,
-  CommandInput,
   CommandItem,
   CommandList,
   CommandSeparator,
@@ -21,7 +21,55 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
+import {
+  SearchInput,
+  SearchInputClearButton,
+  SearchInputField,
+  SearchInputLeftElement,
+  SearchInputRightElement,
+} from "@/components/ui/search-input";
 import { cn } from "@/lib/utils";
+
+// Command-compatible SearchInput wrapper
+function ComboboxSearchInput({
+  placeholder,
+  ...props
+}: React.ComponentProps<typeof CommandPrimitive.Input>) {
+  const [value, setValue] = React.useState("");
+
+  return (
+    <div className="my-2 px-3">
+      <SearchInput>
+        <SearchInputLeftElement>
+          <Icon path={mdiMagnify} />
+        </SearchInputLeftElement>
+        <SearchInputField
+          value={value}
+          onChange={(e) => setValue(e.target.value)}
+          placeholder={placeholder}
+          aria-label={props["aria-label"] || "Search"}
+        />
+        {value && (
+          <SearchInputRightElement>
+            <SearchInputClearButton
+              onClear={() => setValue("")}
+              tooltipLabel="Clear search"
+            />
+          </SearchInputRightElement>
+        )}
+      </SearchInput>
+      {/* Hidden CommandPrimitive.Input for filtering - must be present for Command to work */}
+      <CommandPrimitive.Input
+        value={value}
+        onValueChange={setValue}
+        className="sr-only"
+        aria-hidden="true"
+        tabIndex={-1}
+        {...props}
+      />
+    </div>
+  );
+}
 
 function ComboboxContent({
   className,
@@ -94,7 +142,7 @@ function FrameworkCombobox({ frameworks }: FrameworkComboboxProps) {
       </PopoverTrigger>
       <ComboboxContent className="w-(--radix-popover-trigger-width) p-0">
         <Command>
-          <CommandInput placeholder="Search framework..." />
+          <ComboboxSearchInput placeholder="Search framework..." />
           <CommandList>
             <CommandEmpty>No framework found.</CommandEmpty>
             <CommandGroup>
@@ -166,7 +214,7 @@ function UserCombobox({ users, selectedUserId }: UserComboboxProps) {
       </PopoverTrigger>
       <ComboboxContent className="w-(--radix-popover-trigger-width) p-0">
         <Command>
-          <CommandInput placeholder="Search user..." />
+          <ComboboxSearchInput placeholder="Search user..." />
           <CommandList className="max-h-[300px] pb-12 relative">
             <CommandEmpty>No user found.</CommandEmpty>
             <CommandGroup>
@@ -266,7 +314,7 @@ function TimezoneCombobox({
       </PopoverTrigger>
       <ComboboxContent className="p-0" align="start">
         <Command>
-          <CommandInput placeholder="Search timezone..." />
+          <ComboboxSearchInput placeholder="Search timezone..." />
           <CommandList className="max-h-[300px] pb-12 relative">
             <CommandEmpty>No timezone found.</CommandEmpty>
             {timezones.map((region, index) => (
@@ -343,7 +391,7 @@ function ComboboxWithCheckbox({ frameworks }: FrameworkComboboxProps) {
       </PopoverTrigger>
       <ComboboxContent className="w-[300px] p-0" align="start">
         <Command>
-          <CommandInput placeholder="Search framework..." />
+          <ComboboxSearchInput placeholder="Search framework..." />
           <CommandList>
             <CommandEmpty>No framework found.</CommandEmpty>
             <CommandGroup>

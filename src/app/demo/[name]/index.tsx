@@ -42,6 +42,7 @@ import { progress } from "@/app/demo/[name]/ui/progress";
 import { radioGroup } from "@/app/demo/[name]/ui/radio-group";
 import { resizable } from "@/app/demo/[name]/ui/resizable";
 import { scrollArea } from "@/app/demo/[name]/ui/scroll-area";
+import { searchInput } from "@/app/demo/[name]/ui/search-input";
 import { select } from "@/app/demo/[name]/ui/select";
 import { selectReact } from "@/app/demo/[name]/ui/select-react";
 import { separator } from "@/app/demo/[name]/ui/separator";
@@ -128,6 +129,7 @@ export const demos: { [name: string]: Demo } = {
   input,
   "input-group": inputGroup,
   inputOtp,
+  "search-input": searchInput,
   kbd,
   label,
   "navigation-menu": navigationMenu,
