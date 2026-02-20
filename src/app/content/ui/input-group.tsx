@@ -21,20 +21,11 @@ import {
   mdiChevronDown,
   mdiDotsHorizontal,
   mdiInformationOutline,
-  mdiMagnify,
 } from "@mdi/js";
 
 export default function InputGroupDemo() {
   return (
     <div className="grid w-full max-w-md gap-4 p-2">
-      {/* Search */}
-      <InputGroup>
-        <InputGroupInput placeholder="Search..." aria-label="Search" />
-        <InputGroupAddon>
-          <Icon path={mdiMagnify} size={1} />
-        </InputGroupAddon>
-        <InputGroupAddon align="inline-end">12 results</InputGroupAddon>
-      </InputGroup>
       {/* URL */}
       <InputGroup>
         <InputGroupInput
