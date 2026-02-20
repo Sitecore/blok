@@ -6,11 +6,14 @@ export const stackNavigation = {
   usage: {
     usage: [
       `import { StackNavigation } from "@/components/ui/stack-navigation";`,
-      `<StackNavigation />`,
+      `<StackNavigation items={items} />`,
+      `<StackNavigation items={items} colorScheme="neutral" />`,
+      `<StackNavigation items={items} colorScheme="primary" />`,
     ],
   },
   components: {
     Horizontal: { component: "stack-navigation-horizontal" },
     "Horizontal Tabs": { component: "stack-navigation-horizontal-tabs" },
+    "Color Schemes": { component: "stack-navigation-color-schemes" },
   },
 };

@@ -537,8 +537,7 @@
         "https://blok.sitecore.com/r/timeline.json",
         "https://blok.sitecore.com/r/toggle.json",
         "https://blok.sitecore.com/r/toggle-group.json",
-        "https://blok.sitecore.com/r/tooltip.json",
-        "https://blok.sitecore.com/r/topbar.json"
+        "https://blok.sitecore.com/r/tooltip.json"
       ]
     },
     {
@@ -1513,10 +1512,10 @@
     {
       "name": "stack-navigation",
       "type": "registry:ui",
-      "title": "Stack navigation",
+      "title": "Navigation (Stack)",
       "description": "A collection of links for navigating websites.",
       "registryDependencies": ["https://blok.sitecore.com/r/theme.json"],
-      "dependencies": ["@mdi/js"],
+      "dependencies": ["@mdi/js", "class-variance-authority"],
       "files": [
         {
           "path": "src/components/ui/stack-navigation.tsx",
@@ -1692,7 +1691,7 @@
     },
     {
       "name": "topbar",
-      "type": "registry:ui",
+      "type": "registry:block",
       "title": "Topbar",
       "description": "An application top bar for page navigation",
       "registryDependencies": [
@@ -1704,8 +1703,10 @@
       "dependencies": ["@mdi/js"],
       "files": [
         {
-          "path": "src/components/ui/top-bar.tsx",
-          "type": "registry:ui"
+          "path": "src/components/bloks/top-bar.tsx",
+          "type": "registry:block",
+          "target": "src/components/bloks/top-bar.tsx"
+
         },
         {
           "path": "src/lib/icon.tsx",
