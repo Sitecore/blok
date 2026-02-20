@@ -9,6 +9,5 @@ export const toggle = {
   components: {
     Sizes: { component: "toggle-sizes" },
     Variants: { component: "toggle-variants" },
-    "Check Icon": { component: "toggle-check-icon" },
   },
 };

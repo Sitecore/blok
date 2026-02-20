@@ -967,7 +967,6 @@ export const rightSidebarMetadata: Record<string, RightSidebarMetadata> = {
         children: [
           { id: "toggle-sizes", title: "Sizes" },
           { id: "toggle-variants", title: "Variants" },
-          { id: "toggle-check-icon", title: "Check Icon" },
         ],
       },
     ],

@@ -151,7 +151,6 @@ import TextareaWithLabelAndDescriptionDemo from "@/app/content/ui/textarea-label
 import LargeTextareaDemo from "@/app/content/ui/textarea-large";
 import SmallTextareaDemo from "@/app/content/ui/textarea-small";
 import TimePickerDemo from "@/app/content/ui/time-picker";
-import ToggleCheckIconDemo from "@/app/content/ui/toggle-check-icon";
 import RoundedToggleGroupDemo from "@/app/content/ui/toggle-group-rounded";
 import ToggleGroupSizesDemo from "@/app/content/ui/toggle-group-sizes";
 import SquareToggleGroupDemo from "@/app/content/ui/toggle-group-square";
@@ -1220,11 +1219,6 @@ export const docsiteRegistry: Record<string, DocsiteRegistryEntry> = {
     name: "toggle-variants",
     path: "src/app/content/ui/toggle-variants.tsx",
     component: ToggleVariantsDemo,
-  },
-  "toggle-check-icon": {
-    name: "toggle-check-icon",
-    path: "src/app/content/ui/toggle-check-icon.tsx",
-    component: ToggleCheckIconDemo,
   },
   "toggle-group-sizes": {
     name: "toggle-group-sizes",
