@@ -754,7 +754,7 @@ export const docsiteRegistry: Record<string, DocsiteRegistryEntry> = {
     path: "src/app/content/ui/field-input-types.tsx",
     component: FieldInputTypesDemo,
   },
-  filter: {
+  "filter": {
     name: "filter",
     path: "src/app/content/ui/filter.tsx",
     component: FilterDemo,
