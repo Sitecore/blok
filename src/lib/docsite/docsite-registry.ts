@@ -158,7 +158,7 @@ import SquareToggleGroupDemo from "@/app/content/ui/toggle-group-square";
 import RoundedToggleDemo from "@/app/content/ui/toggle-rounded";
 import SquareToggleDemo from "@/app/content/ui/toggle-square";
 import TooltipDemo from "@/app/content/ui/tooltip";
-import TopbarDemo from "@/app/content/ui/topbar";
+import TopbarDemo from "@/app/content/bloks/topbar";
 
 import AllSitesSectionDemo from "@/app/content/bloks/all-site-section";
 import CollaborationDemo from "@/app/content/bloks/collaboration";
@@ -193,7 +193,6 @@ import FilterSingleSelectDemo from "@/app/content/ui/filter-single-select";
 import FilterToggleDemo from "@/app/content/ui/filter-toggle";
 import InputGroupDemo from "@/app/content/ui/input-group";
 import InputGroupDropdownDemo from "@/app/content/ui/input-group-dropdown";
-import InputGroupSearchDemo from "@/app/content/ui/input-group-search";
 import InputGroupURLDemo from "@/app/content/ui/input-group-url";
 import KbdDemo from "@/app/content/ui/kbd";
 import KbdButtonDemo from "@/app/content/ui/kbd-button";
@@ -833,11 +832,6 @@ export const docsiteRegistry: Record<string, DocsiteRegistryEntry> = {
     path: "src/app/content/ui/input-group.tsx",
     component: InputGroupDemo,
   },
-  "input-group-search": {
-    name: "input-group-search",
-    path: "src/app/content/ui/input-group-search.tsx",
-    component: InputGroupSearchDemo,
-  },
   "input-group-url": {
     name: "input-group-url",
     path: "src/app/content/ui/input-group-url.tsx",
@@ -1225,7 +1219,7 @@ export const docsiteRegistry: Record<string, DocsiteRegistryEntry> = {
   },
   topbar: {
     name: "topbar",
-    path: "src/app/content/ui/topbar.tsx",
+    path: "src/app/content/bloks/topbar.tsx",
     component: TopbarDemo,
   },
 

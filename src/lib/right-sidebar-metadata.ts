@@ -556,7 +556,6 @@ export const rightSidebarMetadata: Record<string, RightSidebarMetadata> = {
         id: "examples",
         title: "Examples",
         children: [
-          { id: "input-group-search", title: "Search" },
           { id: "input-group-url", title: "URL" },
           { id: "input-group-dropdown", title: "Dropdown" },
         ],
@@ -578,8 +577,8 @@ export const rightSidebarMetadata: Record<string, RightSidebarMetadata> = {
         id: "examples",
         title: "Examples",
         children: [
-          { id: "pattern", title: "Pattern" },
-          { id: "with-spacing", title: "With Spacing" },
+          { id: "inputOtp-pattern", title: "Pattern" },
+          { id: "inputOtp-spacing", title: "With Spacing" },
         ],
       },
     ],

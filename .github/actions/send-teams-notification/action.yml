@@ -96,6 +96,14 @@ inputs:
     description: 'GitHub run ID'
     required: false
     default: ''
+  registry-url:
+    description: 'Registry URL used for component installation'
+    required: false
+    default: ''
+  registry-type:
+    description: 'Registry type (production or staging)'
+    required: false
+    default: ''
 
 runs:
   using: 'composite'
@@ -127,6 +135,8 @@ runs:
           PR_TITLE="${{ inputs.pr-title }}"
           PR_BRANCH="${{ inputs.pr-branch }}"
           BASE_BRANCH="${{ inputs.base-branch }}"
+          REGISTRY_URL="${{ inputs.registry-url }}"
+          REGISTRY_TYPE="${{ inputs.registry-type }}"
           PR_URL="${{ inputs.github-server-url }}/${{ inputs.github-repository }}/pull/${PR_NUMBER}"
           WORKFLOW_RUN_URL="${{ inputs.github-server-url }}/${{ inputs.github-repository }}/actions/runs/${{ inputs.github-run-id }}"
           
@@ -140,6 +150,8 @@ runs:
           export PR_TITLE="${PR_TITLE}"
           export PR_BRANCH="${PR_BRANCH}"
           export BASE_BRANCH="${BASE_BRANCH}"
+          export REGISTRY_URL="${REGISTRY_URL}"
+          export REGISTRY_TYPE="${REGISTRY_TYPE}"
           export PR_URL="${PR_URL}"
           export WORKFLOW_RUN_URL="${WORKFLOW_RUN_URL}"
           
@@ -173,6 +185,24 @@ runs:
                         { title: 'PR Branch', value: process.env.PR_BRANCH || '' },
                         { title: 'Target Branch', value: process.env.BASE_BRANCH || '' },
                         { title: 'Author', value: process.env.AUTHOR_NAME || '' }
+                      ]
+                    },
+                    {
+                      type: 'Container',
+                      separator: true,
+                      items: [
+                        {
+                          type: 'TextBlock',
+                          text: 'Component Installation',
+                          weight: 'Bolder'
+                        },
+                        {
+                          type: 'FactSet',
+                          facts: [
+                            { title: 'Registry URL', value: process.env.REGISTRY_URL || 'Not specified' },
+                            { title: 'Registry Type', value: process.env.REGISTRY_TYPE || 'Not specified' }
+                          ]
+                        }
                       ]
                     },
                     {
@@ -302,6 +332,8 @@ runs:
           export EVENT_URL="${EVENT_URL}"
           export EVENT_DETAILS="${EVENT_DETAILS}"
           export PR_NUMBER="${PR_NUMBER:-}"
+          export REGISTRY_URL="${{ inputs.registry-url }}"
+          export REGISTRY_TYPE="${{ inputs.registry-type }}"
           export REPORT_URL="${REPORT_URL}"
           
           node -e "
@@ -420,6 +452,24 @@ runs:
                               { title: 'Name', value: workflowName },
                               { title: 'Run #', value: runNumber.toString() },
                               { title: 'Event', value: eventDetails }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        type: 'Container',
+                        separator: true,
+                        items: [
+                          {
+                            type: 'TextBlock',
+                            text: 'Component Installation',
+                            weight: 'Bolder'
+                          },
+                          {
+                            type: 'FactSet',
+                            facts: [
+                              { title: 'Registry URL', value: process.env.REGISTRY_URL || 'Not specified' },
+                              { title: 'Registry Type', value: process.env.REGISTRY_TYPE || 'Not specified' }
                             ]
                           }
                         ]
