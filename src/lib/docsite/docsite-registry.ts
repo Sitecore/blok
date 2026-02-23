@@ -1,5 +1,6 @@
 import type { ComponentType } from "react";
 
+import TopbarDemo from "@/app/content/bloks/topbar";
 // PRIMITIVES
 import AccordionDemo from "@/app/content/ui/accordion";
 import AlertDemo from "@/app/content/ui/alert";
@@ -50,10 +51,7 @@ import CheckboxWithDescriptionDemo from "@/app/content/ui/checkbox-description";
 import DisabledCheckboxDemo from "@/app/content/ui/checkbox-disabled";
 import EnabledCheckboxLabelDemo from "@/app/content/ui/checkbox-label";
 import CollapsibleDemo from "@/app/content/ui/collapsible";
-import ComboboxWithCheckboxDemo from "@/app/content/ui/combobox-checkbox";
-import FrameworkComboboxDemo from "@/app/content/ui/combobox-framework";
-import TimezoneComboboxDemo from "@/app/content/ui/combobox-timezone";
-import UserComboboxDemo from "@/app/content/ui/combobox-user";
+import ComboboxDemo from "@/app/content/ui/combobox";
 import CommandDemo from "@/app/content/ui/command";
 import ContextMenuDemo from "@/app/content/ui/context-menu";
 import DatePickerSimpleDemo from "@/app/content/ui/date-picker";
@@ -157,7 +155,6 @@ import SquareToggleGroupDemo from "@/app/content/ui/toggle-group-square";
 import RoundedToggleDemo from "@/app/content/ui/toggle-rounded";
 import SquareToggleDemo from "@/app/content/ui/toggle-square";
 import TooltipDemo from "@/app/content/ui/tooltip";
-import TopbarDemo from "@/app/content/ui/topbar";
 
 import AllSitesSectionDemo from "@/app/content/bloks/all-site-section";
 import CollaborationDemo from "@/app/content/bloks/collaboration";
@@ -168,6 +165,12 @@ import { ActionBarDemo } from "@/app/content/ui/action-bar";
 import CircularProgressDemo from "@/app/content/ui/circular-progress";
 import CircularProgressWithTextDemo from "@/app/content/ui/circular-progress-text";
 import CircularProgressVariantsDemo from "@/app/content/ui/circular-progress-variants";
+import ComboboxAutoHighlightDemo from "@/app/content/ui/combobox-auto-highlight";
+import ComboboxWithClearDemo from "@/app/content/ui/combobox-clear-button";
+import ComboboxWithCustomItemsDemo from "@/app/content/ui/combobox-custom-items";
+import ComboboxWithGroupsAndSeparatorDemo from "@/app/content/ui/combobox-groups";
+import ComboxboxInputGroupDemo from "@/app/content/ui/combobox-input-group";
+import ComboboxMultipleDemo from "@/app/content/ui/combobox-multiple";
 import EditableDemo from "@/app/content/ui/editable";
 import EditableTextareaDemo from "@/app/content/ui/editable-textarea";
 import FieldDemo from "@/app/content/ui/field";
@@ -481,25 +484,40 @@ export const docsiteRegistry: Record<string, DocsiteRegistryEntry> = {
     path: "src/app/content/ui/collapsible.tsx",
     component: CollapsibleDemo,
   },
-  "combobox-framework": {
-    name: "combobox-framework",
-    path: "src/app/content/ui/combobox-framework.tsx",
-    component: FrameworkComboboxDemo,
+  combobox: {
+    name: "combobox",
+    path: "src/app/content/ui/combobox.tsx",
+    component: ComboboxDemo,
   },
-  "combobox-user": {
-    name: "combobox-user",
-    path: "src/app/content/ui/combobox-user.tsx",
-    component: UserComboboxDemo,
+  "combobox-multiple": {
+    name: "combobox-multiple",
+    path: "src/app/content/ui/combobox-multiple.tsx",
+    component: ComboboxMultipleDemo,
   },
-  "combobox-timezone": {
-    name: "combobox-timezone",
-    path: "src/app/content/ui/combobox-timezone.tsx",
-    component: TimezoneComboboxDemo,
+  "combobox-clear-button": {
+    name: "combobox-clear-button",
+    path: "src/app/content/ui/combobox-clear-button.tsx",
+    component: ComboboxWithClearDemo,
   },
-  "combobox-checkbox": {
-    name: "combobox-checkbox",
-    path: "src/app/content/ui/combobox-checkbox.tsx",
-    component: ComboboxWithCheckboxDemo,
+  "combobox-groups": {
+    name: "combobox-groups",
+    path: "src/app/content/ui/combobox-groups.tsx",
+    component: ComboboxWithGroupsAndSeparatorDemo,
+  },
+  "combobox-custom-items": {
+    name: "combobox-custom-items",
+    path: "src/app/content/ui/combobox-custom-items.tsx",
+    component: ComboboxWithCustomItemsDemo,
+  },
+  "combobox-auto-highlight": {
+    name: "combobox-auto-highlight",
+    path: "src/app/content/ui/combobox-auto-highlight.tsx",
+    component: ComboboxAutoHighlightDemo,
+  },
+  "combobox-input-group": {
+    name: "combobox-input-group",
+    path: "src/app/content/ui/combobox-input-group.tsx",
+    component: ComboxboxInputGroupDemo,
   },
   command: {
     name: "command",
@@ -1213,7 +1231,7 @@ export const docsiteRegistry: Record<string, DocsiteRegistryEntry> = {
   },
   topbar: {
     name: "topbar",
-    path: "src/app/content/ui/topbar.tsx",
+    path: "src/app/content/bloks/topbar.tsx",
     component: TopbarDemo,
   },
 

@@ -1,13 +1,13 @@
 "use client";
 
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Button } from "@/components/ui/button";
 import Topbar, {
   type NavItem,
   type LogoConfig,
   type RightSideItem,
   type MenuButtonConfig,
-} from "@/components/ui/top-bar";
+} from "@/components/bloks/top-bar";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Button } from "@/components/ui/button";
 import { Icon } from "@/lib/icon";
 import { mdiDotsGrid, mdiHelpCircleOutline } from "@mdi/js";
 
