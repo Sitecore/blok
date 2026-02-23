@@ -1724,7 +1724,8 @@
         "https://blok.sitecore.com/r/button.json",
         "https://blok.sitecore.com/r/tooltip.json",
         "https://blok.sitecore.com/r/checkbox.json",
-        "https://blok.sitecore.com/r/dropdown-menu.json"
+        "https://blok.sitecore.com/r/dropdown-menu.json",
+        "https://blok.sitecore.com/r/label.json"
       ],
       "dependencies": ["@mdi/js"],
       "files": [
