@@ -1128,7 +1128,10 @@
       "title": "Input OTP",
       "description": "A one-time password input component for verification codes.",
       "dependencies": ["@mdi/js", "input-otp"],
-      "registryDependencies": ["https://blok.sitecore.com/r/theme.json"],
+      "registryDependencies": [
+        "https://blok.sitecore.com/r/theme.json",
+        "https://blok.sitecore.com/r/label.json"
+      ],
       "files": [
         {
           "path": "src/components/ui/inputOtp.tsx",
