@@ -1411,7 +1411,7 @@
     {
       "name": "sidebar",
       "type": "registry:ui",
-      "title": "Sidebar",
+      "title": "Navigation (Side)",
       "description": "A styled, simple, reusable sidebar",
       "dependencies": [
         "@mdi/js",
@@ -1706,7 +1706,6 @@
           "path": "src/components/bloks/top-bar.tsx",
           "type": "registry:block",
           "target": "src/components/bloks/top-bar.tsx"
-
         },
         {
           "path": "src/lib/icon.tsx",
