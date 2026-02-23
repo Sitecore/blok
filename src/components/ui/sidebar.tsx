@@ -104,10 +104,7 @@ function Sidebar({
     <div
       data-slot="sidebar"
       data-state={state}
-      className={cn(
-        "bg-sidebar text-sidebar-foreground flex h-full flex-col",
-        className,
-      )}
+      className={cn("text-sidebar-foreground flex h-full flex-col", className)}
       {...props}
     >
       {children}
