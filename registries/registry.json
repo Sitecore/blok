@@ -494,7 +494,6 @@
         "https://blok.sitecore.com/r/checkbox.json",
         "https://blok.sitecore.com/r/circular-progress.json",
         "https://blok.sitecore.com/r/collapsible.json",
-        "https://blok.sitecore.com/r/combobox.json",
         "https://blok.sitecore.com/r/command.json",
         "https://blok.sitecore.com/r/context-menu.json",
         "https://blok.sitecore.com/r/date-picker.json",
@@ -787,13 +786,11 @@
       "type": "registry:ui",
       "title": "Combobox",
       "description": "Select a value from a list of options.",
-      "dependencies": ["@mdi/js", "lucide-react"],
+      "dependencies": ["@base-ui/react", "@mdi/js", "lucide-react"],
       "registryDependencies": [
         "https://blok.sitecore.com/r/theme.json",
-        "https://blok.sitecore.com/r/avatar.json",
         "https://blok.sitecore.com/r/button.json",
-        "https://blok.sitecore.com/r/command.json",
-        "https://blok.sitecore.com/r/popover.json"
+        "https://blok.sitecore.com/r/input-group.json"
       ],
       "files": [
         {
