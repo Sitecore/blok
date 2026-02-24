@@ -13,6 +13,11 @@ export async function testActionBar(page: Page){
     const label = actionBarSection.locator('label[for="action-bar-checkbox"]');
     await expect(label).toBeVisible();
     await expect(label).toHaveText('Show action bar');
+    // Verify class atributes of Label
+    const labelClasses = await label.getAttribute('class');
+    expect(labelClasses).toContain('text-md');
+    expect(labelClasses).toContain('text-neutral-fg');
+    expect(labelClasses).toContain('font-medium');
 
     // Verify that action bar checkbox classes when checkbox is checked
     await checkbox.check();
