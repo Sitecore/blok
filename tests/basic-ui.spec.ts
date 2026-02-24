@@ -60,11 +60,11 @@ import { testTimelineConnectors, testTimelineDefault, testTimelineSizes, testTim
 import { testToggleRounded, testToggleSquare } from './test-Components/test-Toggle';
 import { testToggleGroupRounded, testToggleGroupSquare } from './test-Components/test-Toggle_group';
 import { testTooltip } from './test-Components/test-Tooltip';
-import { testTopbar } from './test-Components/test-Topbar';
 import { testAllSiteSection } from './test-Components/test-All_Site_section';
 import { testCollaboration } from './test-Components/test-Collaboration';
 import { testPinnedSiteSection } from './test-Components/test-Pinned_Site_Section';
 import { testSiteCard } from './test-Components/test-Site_Card';
+import { testTopbar } from './test-Components/test-Topbar';
 
 
 
@@ -450,10 +450,6 @@ test.describe('UI BLOK QA Automation', () => {
     await testTooltip(page);
   });
 
-  test('test_Topbar', async ({ page }) => {
-    await testTopbar(page);
-  });
-
   test('test_All_Site_Section', async ({ page }) => {
     await testAllSiteSection(page); 
   });
@@ -468,6 +464,10 @@ test.describe('UI BLOK QA Automation', () => {
 
   test('test_Site_Card', async ({ page }) => {
     await testSiteCard(page);
+  });
+  
+  test('test_Topbar', async ({ page }) => {
+    await testTopbar(page);
   });
 
 });
