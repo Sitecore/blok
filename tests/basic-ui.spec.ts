@@ -34,6 +34,7 @@ import { testInputOTPPattern, testInputOTPSimple, testInputOTPWithSpacing } from
 import { testKbdButton, testKbdDefault, testKbdGroup, testKbdShortcut, testKbdTooltip } from './test-Components/test-Kbd';
 import { testLabel } from './test-Components/test-Label';
 import { testNavigationMenu, testNavigationMenuSecondary } from './test-Components/test-Navigation_Menu';
+import { testNavigationStackColorSchemes, testNavigationStackHorizontal, testNavigationStackHorizontalTabs, testNavigationStackVertical } from './test-Components/test-Navigation_Stack';
 import { testPagination } from './test-Components/test-Pagination';
 import { testPopover } from './test-Components/test-Popover';
 import { testProgress } from './test-Components/test-Progress';
@@ -49,7 +50,6 @@ import { testSkeletonCardList, testSkeletonDefault } from './test-Components/tes
 import { testSlider } from './test-Components/test-Slider';
 import { testToastAction, testToastClosable, testToastError, testToastNormal, testToastSuccessful, testToastWarning } from './test-Components/test-Sonner';
 import { testSpinnerBadge, testSpinnerButton, testSpinnerDefault, testSpinnerSize } from './test-Components/test-Spinner';
-import { testStackNavigationHorizontal, testStackNavigationHorizontalTabs, testStackNavigationVertical } from './test-Components/test-Stack_Navigation';
 import { testStepper } from './test-Components/test-Stepper';
 import { testSwitchDanger, testSwitchPrimary, testSwitchSuccess } from './test-Components/test-Switch';
 import { testDataTable, testTable } from './test-Components/test-Table';
@@ -306,6 +306,13 @@ test.describe('UI BLOK QA Automation', () => {
     await testNavigationMenuSecondary(page);
   });
 
+  test('test_Navigation_Stack', async ({ page }) => {
+    await testNavigationStackVertical(page);
+    await testNavigationStackHorizontal(page);
+    await testNavigationStackHorizontalTabs(page);
+    await testNavigationStackColorSchemes(page);
+  });
+
   test('test_Pagination', async ({ page }) => {
     await testPagination(page);
   });
@@ -383,12 +390,6 @@ test.describe('UI BLOK QA Automation', () => {
     await testSpinnerSize(page);
     await testSpinnerButton(page);
     await testSpinnerBadge(page);
-  });
-
-  test('test_Stack_Navigation', async ({ page }) => {
-    await testStackNavigationVertical(page);
-    await testStackNavigationHorizontal(page);
-    await testStackNavigationHorizontalTabs(page);
   });
 
   test('test_Stepper', async ({ page }) => {
