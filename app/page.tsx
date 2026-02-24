@@ -36,6 +36,7 @@ import { InputOTPDemo } from "@/components-demo/input_otp-demo";
 import { KbdDemo } from "@/components-demo/kbd-demo";
 import { LabelDemo } from "@/components-demo/label-demo";
 import { NavigationMenuDemo } from "@/components-demo/navigation_menu-demo";
+import { NavigationStackDemo } from "@/components-demo/navigation_stack-demo";
 import { PaginationDemo } from "@/components-demo/pagination-demo";
 import { PopoverDemo } from "@/components-demo/popover-demo";
 import { ProgressDemo } from "@/components-demo/progress-demo";
@@ -51,7 +52,6 @@ import { SkeletonDemo } from "@/components-demo/skeleten-demo";
 import { SliderDemo } from "@/components-demo/slider-demo";
 import { SonnerDemo } from "@/components-demo/sonner-demo";
 import { SpinnerDemo } from "@/components-demo/spinner-demo";
-import { StackNavigationDemo } from "@/components-demo/stack_navigation-demo";
 import { StepperDemo } from "@/components-demo/stepper-demo";
 import { SwitchDemo } from "@/components-demo/switch-demo";
 import { TableDemo } from "@/components-demo/table-demo";
@@ -62,11 +62,11 @@ import { TimelineDemo } from "@/components-demo/timeline-demo";
 import { ToggleDemo } from "@/components-demo/toggle-demo";
 import { ToggleGroupDemo } from "@/components-demo/toggle_group-demo";
 import { TooltipDemo } from "@/components-demo/tooltip-demo";
-import { TopbarDemo } from "@/components-demo/topbar-demo";
 import { AllSitesSectionDemo } from "@/components-demo/all_site_section-demo";
 import { CollaborationDemo } from "@/components-demo/collaboration-demo";
 import { PinnedSitesSectionDemo } from "@/components-demo/pinned_site_section-demo";
 import { SiteCardDemo } from "@/components-demo/site_card-demo";
+import { TopbarDemo } from "@/components-demo/topbar-demo";
 
 
 
@@ -145,7 +145,7 @@ export default function SinkPage() {
       </div>
     <br />
       <div>
-        <ComboboxDemo />
+        <ComboboxDemo /> 
       </div>
     <br />
       <div>
@@ -221,6 +221,10 @@ export default function SinkPage() {
       </div>
     <br />
       <div>
+        <NavigationStackDemo />    
+      </div>
+    <br />
+      <div>
         <PaginationDemo />
       </div>
     <br />
@@ -278,10 +282,6 @@ export default function SinkPage() {
     <br />
       <div>
         <SpinnerDemo />
-      </div>
-    <br />
-      <div>
-        <StackNavigationDemo />       
       </div>
     <br />
       <div>
