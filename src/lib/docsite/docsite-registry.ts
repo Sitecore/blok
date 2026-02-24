@@ -1,5 +1,6 @@
 import type { ComponentType } from "react";
 
+import TopbarDemo from "@/app/content/bloks/topbar";
 // PRIMITIVES
 import AccordionDemo from "@/app/content/ui/accordion";
 import AlertDemo from "@/app/content/ui/alert";
@@ -154,7 +155,6 @@ import SquareToggleGroupDemo from "@/app/content/ui/toggle-group-square";
 import RoundedToggleDemo from "@/app/content/ui/toggle-rounded";
 import SquareToggleDemo from "@/app/content/ui/toggle-square";
 import TooltipDemo from "@/app/content/ui/tooltip";
-import TopbarDemo from "@/app/content/bloks/topbar";
 
 import AllSitesSectionDemo from "@/app/content/bloks/all-site-section";
 import CollaborationDemo from "@/app/content/bloks/collaboration";
@@ -163,8 +163,6 @@ import PinnedSitesSectionDemo from "@/app/content/bloks/pinned-site-section";
 import SiteCardDemo from "@/app/content/bloks/site-card";
 import { ActionBarDemo } from "@/app/content/ui/action-bar";
 import CircularProgressDemo from "@/app/content/ui/circular-progress";
-import CircularProgressWithTextDemo from "@/app/content/ui/circular-progress-text";
-import CircularProgressVariantsDemo from "@/app/content/ui/circular-progress-variants";
 import ComboboxAutoHighlightDemo from "@/app/content/ui/combobox-auto-highlight";
 import ComboboxWithClearDemo from "@/app/content/ui/combobox-clear-button";
 import ComboboxWithCustomItemsDemo from "@/app/content/ui/combobox-custom-items";
@@ -469,16 +467,6 @@ export const docsiteRegistry: Record<string, DocsiteRegistryEntry> = {
     path: "src/app/content/ui/circular-progress.tsx",
     component: CircularProgressDemo,
   },
-  "circular-progress-variants": {
-    name: "circular-progress-variants",
-    path: "src/app/content/ui/circular-progress-variants.tsx",
-    component: CircularProgressVariantsDemo,
-  },
-  "circular-progress-text": {
-    name: "circular-progress-text",
-    path: "src/app/content/ui/circular-progress-text.tsx",
-    component: CircularProgressWithTextDemo,
-  },
   collapsible: {
     name: "collapsible",
     path: "src/app/content/ui/collapsible.tsx",
@@ -754,7 +742,7 @@ export const docsiteRegistry: Record<string, DocsiteRegistryEntry> = {
     path: "src/app/content/ui/field-input-types.tsx",
     component: FieldInputTypesDemo,
   },
-  "filter": {
+  filter: {
     name: "filter",
     path: "src/app/content/ui/filter.tsx",
     component: FilterDemo,

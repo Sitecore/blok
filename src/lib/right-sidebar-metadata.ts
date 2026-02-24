@@ -800,17 +800,6 @@ export const rightSidebarMetadata: Record<string, RightSidebarMetadata> = {
       { id: "preview", title: "Preview" },
       { id: "installation", title: "Installation" },
       { id: "usage", title: "Usage" },
-      {
-        id: "examples",
-        title: "Examples",
-        children: [
-          { id: "circular-progress-variants", title: "Variants" },
-          {
-            id: "circular-progress-text",
-            title: "With Text Circular Progress",
-          },
-        ],
-      },
     ],
   },
   spinner: {
