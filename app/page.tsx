@@ -325,10 +325,6 @@ export default function SinkPage() {
       </div>
     <br />
       <div>
-        <TopbarDemo />
-      </div>
-    <br />
-      <div>
         <AllSitesSectionDemo />
       </div>
     <br />
@@ -342,6 +338,10 @@ export default function SinkPage() {
     <br />
       <div>
         <SiteCardDemo />
+      </div>
+    <br />
+      <div>
+        <TopbarDemo />
       </div>
     </div>
 

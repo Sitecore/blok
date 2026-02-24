@@ -1,18 +1,19 @@
 "use client";
 
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Button } from "@/components/ui/button";
 import Topbar, {
   type NavItem,
   type LogoConfig,
   type RightSideItem,
   type MenuButtonConfig,
-} from "@/components/ui/top-bar";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Button } from "@/components/ui/button";
+} from "@/components/bloks/top-bar";
 import { Icon } from "@/lib/icon";
 import { mdiDotsGrid, mdiHelpCircleOutline } from "@mdi/js";
 
 const defaultLogo: LogoConfig = {
-  light: "https://delivery-sitecore.sitecorecontenthub.cloud/api/public/content/logo-sitecore",
+  light:
+    "https://delivery-sitecore.sitecorecontenthub.cloud/api/public/content/logo-sitecore",
   dark: "https://delivery-sitecore.sitecorecontenthub.cloud/api/public/content/logo-sitecore-dark",
   alt: "Logo",
 };
@@ -37,7 +38,13 @@ const defaultRightSideItems: RightSideItem[] = [
   {
     id: "help",
     content: (
-      <Button variant="ghost" size="icon" colorScheme="neutral" aria-label="Help" asChild>
+      <Button
+        variant="ghost"
+        size="icon"
+        colorScheme="neutral"
+        aria-label="Help"
+        asChild
+      >
         <a href="https://doc.sitecore.com/">
           <Icon path={mdiHelpCircleOutline} size={1} />
         </a>
@@ -61,17 +68,18 @@ const defaultMenuButton: MenuButtonConfig = {
   ariaLabel: "Menu",
 };
 
+
 export function TopbarDemo() {
   return (
     <div id="topbar">
       <h2 className="font-semibold text-4xl wrap-break-words">Topbar</h2>
       <Topbar
-      logo={defaultLogo}
-      brandName="Blok"
-      navigation={defaultNavigation}
-      rightSideItems={defaultRightSideItems}
-      menuButton={defaultMenuButton}
-    />
+        logo={defaultLogo}
+        brandName="Blok"
+        navigation={defaultNavigation}
+        rightSideItems={defaultRightSideItems}
+        menuButton={defaultMenuButton}
+      />
     </div>
   );
 }
