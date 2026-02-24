@@ -172,6 +172,19 @@ export async function testNavigationMenu(page: Page){
     await expect(documentationLink).toContainText('Documentation');
     await expect(documentationLink).toBeEnabled();
     await expect(documentationLink).toHaveAttribute('href', '#');
+
+    // Verify that Navigation active menu items has the expected classes
+    const classList = await componentsTrigger.getAttribute('class');
+    expect(classList).toContain('rounded-md');
+    expect(classList).toContain('text-neutral-fg');
+    expect(classList).toContain('text-md');
+    expect(classList).toContain('font-medium');
+    expect(classList).toContain('hover:bg-neutral-bg');
+    expect(classList).toContain('hover:text-neutral-fg');
+    expect(classList).toContain('[&.active]:bg-primary-bg');
+    expect(classList).toContain('[&.active]:text-primary-fg');
+    expect(classList).toContain('[&.active]:hover:bg-primary-bg');
+    expect(classList).toContain('[&.active]:hover:text-primary-fg');
 }
 
 export async function testNavigationMenuSecondary(page: Page){
@@ -215,4 +228,17 @@ export async function testNavigationMenuSecondary(page: Page){
     const withIconTrigger = withIcon.locator('[data-slot="navigation-menu-trigger"]');
     await expect(withIconTrigger).toBeVisible();
     await expect(withIconTrigger).toContainText('With Icon');
+
+    // Verify that Navigation active menu items has the expected classes
+    const classList = await listTrigger.getAttribute('class');
+    expect(classList).toContain('rounded-md');
+    expect(classList).toContain('text-neutral-fg');
+    expect(classList).toContain('text-md');
+    expect(classList).toContain('font-medium');
+    expect(classList).toContain('hover:bg-neutral-bg');
+    expect(classList).toContain('hover:text-neutral-fg');
+    expect(classList).toContain('[&.active]:bg-primary-bg');
+    expect(classList).toContain('[&.active]:text-primary-fg');
+    expect(classList).toContain('[&.active]:hover:bg-primary-bg');
+    expect(classList).toContain('[&.active]:hover:text-primary-fg');
 }
