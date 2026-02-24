@@ -8,7 +8,7 @@ import { cn } from "@/lib/utils";
 
 const PROGRESS_STYLE_ID = "progress-indeterminate-styles";
 
-// Chakra-style indeterminate: bar is 50% width, slides from left -40% to 100%
+//  bar is 50% width, slides from left -40% to 100%
 const indeterminateKeyframes = `@keyframes progressIndeterminate{0%{left:-40%}100%{left:100%}}`;
 
 function useProgressStyles(needed: boolean | undefined) {
