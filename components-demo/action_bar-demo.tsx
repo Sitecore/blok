@@ -1,6 +1,7 @@
 "use client";
 import { ActionBar } from "@/components/ui/action-bar";
 import { Checkbox } from "@/components/ui/checkbox";
+import { Label } from "@/components/ui/label";
 import {
   mdiArchiveOutline,
   mdiCloudOffOutline,
@@ -63,12 +64,9 @@ export function ActionBarDemo() {
                 checked={isOpen}
                 onCheckedChange={(checked) => setIsOpen(checked === true)}
               />
-              <label
-                htmlFor="action-bar-checkbox"
-                className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 cursor-pointer"
-              >
+              <Label htmlFor="action-bar-checkbox" className="cursor-pointer">
                 Show action bar
-              </label>
+              </Label>
             </div>
             <ActionBar
               isOpen={isOpen}

@@ -7,7 +7,7 @@ import {
 
 export function AccordionDemo() {
   return (
-    <div className="grid gap-4">
+    <div className="grid gap-4"> 
       <h2 className="font-semibold text-4xl wrap-break-words">Accordion</h2>
         <Accordion type="single" collapsible className="w-full">
           <AccordionItem value="item-1">
@@ -29,6 +29,6 @@ export function AccordionDemo() {
             </AccordionContent>
           </AccordionItem>
         </Accordion>
-    </div>
+    </div> 
   )
 }
