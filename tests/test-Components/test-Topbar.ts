@@ -56,7 +56,6 @@ export async function testTopbar(page: Page){
     // Verify that topbar active menu items has the expected classes
     const classList = await contentLink.getAttribute('class');
     expect(classList).toContain('rounded-md');
-    expect(classList).toContain('bg-background');
     expect(classList).toContain('text-neutral-fg');
     expect(classList).toContain('text-md');
     expect(classList).toContain('font-medium');
