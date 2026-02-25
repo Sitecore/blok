@@ -800,17 +800,6 @@ export const rightSidebarMetadata: Record<string, RightSidebarMetadata> = {
       { id: "preview", title: "Preview" },
       { id: "installation", title: "Installation" },
       { id: "usage", title: "Usage" },
-      {
-        id: "examples",
-        title: "Examples",
-        children: [
-          { id: "circular-progress-variants", title: "Variants" },
-          {
-            id: "circular-progress-text",
-            title: "With Text Circular Progress",
-          },
-        ],
-      },
     ],
   },
   spinner: {
@@ -967,8 +956,8 @@ export const rightSidebarMetadata: Record<string, RightSidebarMetadata> = {
         id: "examples",
         title: "Examples",
         children: [
-          { id: "toggle-square", title: "Square" },
-          { id: "toggle-rounded", title: "Rounded" },
+          { id: "toggle-sizes", title: "Sizes" },
+          { id: "toggle-variants", title: "Variants" },
         ],
       },
     ],
@@ -987,6 +976,7 @@ export const rightSidebarMetadata: Record<string, RightSidebarMetadata> = {
         children: [
           { id: "toggle-group-square", title: "Square Variant" },
           { id: "toggle-group-rounded", title: "Rounded Variant" },
+          { id: "toggle-group-sizes", title: "Sizes" },
         ],
       },
     ],
