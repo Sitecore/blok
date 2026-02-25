@@ -6,11 +6,8 @@ export const circularProgress = {
   usage: {
     usage: [
       `import { CircularProgress } from "@/components/ui/circular-progress";`,
-      `<CircularProgress />`,
+      `<CircularProgress value={80} capIsRound />`,
+      `<CircularProgress variant="indeterminate" capIsRound />`,
     ],
-  },
-  components: {
-    Variants: { component: "circular-progress-variants" },
-    "With Text Circular Progress": { component: "circular-progress-text" },
   },
 };
