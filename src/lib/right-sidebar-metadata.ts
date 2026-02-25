@@ -148,6 +148,7 @@ export const rightSidebarMetadata: Record<string, RightSidebarMetadata> = {
           { id: "button-icon-sizing", title: "Icon Sizing" },
           { id: "button-icon-text", title: "Icon with Text" },
           { id: "button-disabled", title: "Disabled States" },
+          { id: "button-loading", title: "Loading" },
         ],
       },
     ],
@@ -817,7 +818,6 @@ export const rightSidebarMetadata: Record<string, RightSidebarMetadata> = {
         title: "Examples",
         children: [
           { id: "spinner-size", title: "Size" },
-          { id: "spinner-button", title: "Button" },
           { id: "spinner-badge", title: "Badge" },
         ],
       },

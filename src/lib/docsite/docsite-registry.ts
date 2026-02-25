@@ -29,6 +29,7 @@ import ButtonColorSchemeDemo from "@/app/content/ui/button-color-schemes";
 import ButtonDisabledDemo from "@/app/content/ui/button-disabled";
 import ButtonIconSizingDemo from "@/app/content/ui/button-icon-sizing";
 import ButtonIconTextDemo from "@/app/content/ui/button-icon-text";
+import ButtonLoadingDemo from "@/app/content/ui/button-loading";
 import ButtonSizingDemo from "@/app/content/ui/button-sizing";
 import ButtonVariantsDemo from "@/app/content/ui/button-variants";
 import CalendarDemo from "@/app/content/ui/calendar";
@@ -205,7 +206,6 @@ import KbdShortcutDemo from "@/app/content/ui/kbd-shortcut";
 import KbdTooltipDemo from "@/app/content/ui/kbd-tooltip";
 import SelectReactDemo from "@/app/content/ui/select-react";
 import SpinnerBadgeDemo from "@/app/content/ui/spinner-badge";
-import SpinnerButtonDemo from "@/app/content/ui/spinner-button";
 import SpinnerSizeDemo from "@/app/content/ui/spinner-size";
 import StepperDemo from "@/app/content/ui/stepper";
 import TimelineDemo from "@/app/content/ui/timeline";
@@ -370,6 +370,11 @@ export const docsiteRegistry: Record<string, DocsiteRegistryEntry> = {
     name: "button-disabled",
     path: "src/app/content/ui/button-disabled.tsx",
     component: ButtonDisabledDemo,
+  },
+  "button-loading": {
+    name: "button-loading",
+    path: "src/app/content/ui/button-loading.tsx",
+    component: ButtonLoadingDemo,
   },
   calendar: {
     name: "calendar",
@@ -1045,11 +1050,6 @@ export const docsiteRegistry: Record<string, DocsiteRegistryEntry> = {
     name: "spinner-size",
     path: "src/app/content/ui/spinner-size.tsx",
     component: SpinnerSizeDemo,
-  },
-  "spinner-button": {
-    name: "spinner-button",
-    path: "src/app/content/ui/spinner-button.tsx",
-    component: SpinnerButtonDemo,
   },
   "spinner-badge": {
     name: "spinner-badge",

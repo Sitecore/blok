@@ -1503,7 +1503,7 @@
       "type": "registry:ui",
       "title": "Spinner",
       "description": "An indicator that can be used to show a loading state.",
-      "dependencies": ["lucide-react"],
+      "dependencies": ["lucide-react", "class-variance-authority"],
       "registryDependencies": ["https://blok.sitecore.com/r/theme.json"],
       "files": [
         {
