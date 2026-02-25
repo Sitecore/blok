@@ -8,6 +8,7 @@
       "https://blok.sitecore.com/r/collaboration.json",
       "https://blok.sitecore.com/r/pinned-site.json",
       "https://blok.sitecore.com/r/site-card.json",
-      "https://blok.sitecore.com/r/topbar.json"
+      "https://blok.sitecore.com/r/topbar.json",
+      "https://blok.sitecore.com/r/combobox.json"
     ]
   }
