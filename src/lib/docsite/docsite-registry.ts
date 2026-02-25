@@ -150,9 +150,13 @@ import LargeTextareaDemo from "@/app/content/ui/textarea-large";
 import SmallTextareaDemo from "@/app/content/ui/textarea-small";
 import TimePickerDemo from "@/app/content/ui/time-picker";
 import RoundedToggleGroupDemo from "@/app/content/ui/toggle-group-rounded";
+import ToggleGroupSizesDemo from "@/app/content/ui/toggle-group-sizes";
 import SquareToggleGroupDemo from "@/app/content/ui/toggle-group-square";
+import ToggleOutlineGroupDemo from "@/app/content/ui/toggle-outline-group";
 import RoundedToggleDemo from "@/app/content/ui/toggle-rounded";
+import ToggleSizesDemo from "@/app/content/ui/toggle-sizes";
 import SquareToggleDemo from "@/app/content/ui/toggle-square";
+import ToggleVariantsDemo from "@/app/content/ui/toggle-variants";
 import TooltipDemo from "@/app/content/ui/tooltip";
 import TopbarDemo from "@/app/content/bloks/topbar";
 
@@ -754,7 +758,7 @@ export const docsiteRegistry: Record<string, DocsiteRegistryEntry> = {
     path: "src/app/content/ui/field-input-types.tsx",
     component: FieldInputTypesDemo,
   },
-  "filter": {
+  filter: {
     name: "filter",
     path: "src/app/content/ui/filter.tsx",
     component: FilterDemo,
@@ -1223,6 +1227,26 @@ export const docsiteRegistry: Record<string, DocsiteRegistryEntry> = {
     name: "toggle-group-rounded",
     path: "src/app/content/ui/toggle-group-rounded.tsx",
     component: RoundedToggleGroupDemo,
+  },
+  "toggle-sizes": {
+    name: "toggle-sizes",
+    path: "src/app/content/ui/toggle-sizes.tsx",
+    component: ToggleSizesDemo,
+  },
+  "toggle-variants": {
+    name: "toggle-variants",
+    path: "src/app/content/ui/toggle-variants.tsx",
+    component: ToggleVariantsDemo,
+  },
+  "toggle-group-sizes": {
+    name: "toggle-group-sizes",
+    path: "src/app/content/ui/toggle-group-sizes.tsx",
+    component: ToggleGroupSizesDemo,
+  },
+  "toggle-outline-group": {
+    name: "toggle-outline-group",
+    path: "src/app/content/ui/toggle-outline-group.tsx",
+    component: ToggleOutlineGroupDemo,
   },
   tooltip: {
     name: "tooltip",
