@@ -9,8 +9,8 @@ export function DatePickerDemo() {
       <h2 className="font-semibold text-4xl wrap-break-words">Date Picker</h2>
 
     <div className="flex w-full max-w-xl gap-4">
-      {/* Single Date Picker */}
-      <div id="date-picker-single">
+      {/* Simple Date Picker */}
+      <div id="date-picker-simple">
         <DatePickerSimple />
       </div>
 
