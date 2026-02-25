@@ -63,6 +63,16 @@ export async function testInputOTPSimple(page: Page){
     for (let i = 0; i < 6; i++) {
       await expect(slots.nth(i)).toContainText('');
     }
+  
+    // Verify that slots have the expected classes
+    const slotsClasses = await slots.nth(0).getAttribute('class');
+    expect(slotsClasses).toContain('bg-white');
+    expect(slotsClasses).toContain('border-input');
+    expect(slotsClasses).toContain('text-md');
+    expect(slotsClasses).toContain('h-9');
+    expect(slotsClasses).toContain('w-9');
+    expect(slotsClasses).toContain('items-center');
+    expect(slotsClasses).toContain('outline-none');
 }
 
 export async function testInputOTPPattern(page: Page){
@@ -78,6 +88,16 @@ export async function testInputOTPPattern(page: Page){
   // Verify that OTP group have 6 slots
   const slots = group.locator('[data-slot="input-otp-slot"]');
   await expect(slots).toHaveCount(6);
+
+  // Verify that slots have the expected classes
+  const slotsClasses = await slots.nth(0).getAttribute('class');
+  expect(slotsClasses).toContain('bg-white');
+  expect(slotsClasses).toContain('border-input');
+  expect(slotsClasses).toContain('text-md');
+  expect(slotsClasses).toContain('h-9');
+  expect(slotsClasses).toContain('w-9');
+  expect(slotsClasses).toContain('items-center');
+  expect(slotsClasses).toContain('outline-none');
 }
 
 export async function testInputOTPWithSpacing(page: Page){
@@ -97,4 +117,14 @@ export async function testInputOTPWithSpacing(page: Page){
   // Verify spaces between slots
   const spaces = inputOTPWithSpacing.locator('input[data-slot="input-otp"]');
   await expect(spaces).toHaveAttribute('id', 'with-spacing');
+
+  // Verify that slots have the expected classes
+  const slotsClasses = await slots.nth(0).getAttribute('class');
+  expect(slotsClasses).toContain('bg-white');
+  expect(slotsClasses).toContain('border-input');
+  expect(slotsClasses).toContain('text-md');
+  expect(slotsClasses).toContain('h-9');
+  expect(slotsClasses).toContain('w-9');
+  expect(slotsClasses).toContain('items-center');
+  expect(slotsClasses).toContain('outline-none');
 }
