@@ -20,7 +20,7 @@ const navigationItems: StackNavigationElement[] = [
     icon: <Icon path={mdiHomeVariantOutline} />,
   },
   {
-    name: "User management",
+    name: "Users",
     path: "#user-management",
     icon: <Icon path={mdiAccountMultipleOutline} />,
   },
@@ -41,12 +41,29 @@ const navigationItems: StackNavigationElement[] = [
   },
 ];
 
-export default function StackNavigationDemo() {
+export default function StackNavigationColorSchemesDemo() {
   return (
-    <StackNavigation
-      items={navigationItems}
-      colorScheme="neutral"
-      className="shadow-none"
-    />
+    <div className="flex gap-8">
+      <div className="flex flex-col gap-3">
+        <h3 className="text-sm font-medium text-muted-foreground">
+          Neutral (default)
+        </h3>
+        <StackNavigation
+          items={navigationItems}
+          pathname="/primitives/stack-navigation"
+          colorScheme="neutral"
+          className="shadow-none"
+        />
+      </div>
+      <div className="flex flex-col gap-3">
+        <h3 className="text-sm font-medium text-muted-foreground">Primary</h3>
+        <StackNavigation
+          items={navigationItems}
+          pathname="/primitives/stack-navigation"
+          colorScheme="primary"
+          className="shadow-none"
+        />
+      </div>
+    </div>
   );
 }

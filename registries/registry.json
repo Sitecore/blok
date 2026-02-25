@@ -494,7 +494,6 @@
         "https://blok.sitecore.com/r/checkbox.json",
         "https://blok.sitecore.com/r/circular-progress.json",
         "https://blok.sitecore.com/r/collapsible.json",
-        "https://blok.sitecore.com/r/combobox.json",
         "https://blok.sitecore.com/r/command.json",
         "https://blok.sitecore.com/r/context-menu.json",
         "https://blok.sitecore.com/r/date-picker.json",
@@ -538,8 +537,7 @@
         "https://blok.sitecore.com/r/timeline.json",
         "https://blok.sitecore.com/r/toggle.json",
         "https://blok.sitecore.com/r/toggle-group.json",
-        "https://blok.sitecore.com/r/tooltip.json",
-        "https://blok.sitecore.com/r/topbar.json"
+        "https://blok.sitecore.com/r/tooltip.json"
       ]
     },
     {
@@ -788,13 +786,11 @@
       "type": "registry:ui",
       "title": "Combobox",
       "description": "Select a value from a list of options.",
-      "dependencies": ["@mdi/js", "lucide-react"],
+      "dependencies": ["@base-ui/react", "@mdi/js", "lucide-react"],
       "registryDependencies": [
         "https://blok.sitecore.com/r/theme.json",
-        "https://blok.sitecore.com/r/avatar.json",
         "https://blok.sitecore.com/r/button.json",
-        "https://blok.sitecore.com/r/command.json",
-        "https://blok.sitecore.com/r/popover.json"
+        "https://blok.sitecore.com/r/input-group.json"
       ],
       "files": [
         {
@@ -1032,10 +1028,7 @@
       "type": "registry:ui",
       "title": "Filter",
       "description": "Filter components including input search, single select, multi select, and toggle filters for filtering data.",
-      "dependencies": [
-        "@mdi/js",
-        "class-variance-authority"
-      ],
+      "dependencies": ["@mdi/js", "class-variance-authority"],
       "registryDependencies": [
         "https://blok.sitecore.com/r/theme.json",
         "https://blok.sitecore.com/r/button.json",
@@ -1131,7 +1124,10 @@
       "title": "Input OTP",
       "description": "A one-time password input component for verification codes.",
       "dependencies": ["@mdi/js", "input-otp"],
-      "registryDependencies": ["https://blok.sitecore.com/r/theme.json"],
+      "registryDependencies": [
+        "https://blok.sitecore.com/r/theme.json",
+        "https://blok.sitecore.com/r/label.json"
+      ],
       "files": [
         {
           "path": "src/components/ui/inputOtp.tsx",
@@ -1418,7 +1414,7 @@
     {
       "name": "sidebar",
       "type": "registry:ui",
-      "title": "Sidebar",
+      "title": "Navigation (Side)",
       "description": "A styled, simple, reusable sidebar",
       "dependencies": [
         "@mdi/js",
@@ -1519,10 +1515,10 @@
     {
       "name": "stack-navigation",
       "type": "registry:ui",
-      "title": "Stack navigation",
+      "title": "Navigation (Stack)",
       "description": "A collection of links for navigating websites.",
       "registryDependencies": ["https://blok.sitecore.com/r/theme.json"],
-      "dependencies": ["@mdi/js"],
+      "dependencies": ["@mdi/js", "class-variance-authority"],
       "files": [
         {
           "path": "src/components/ui/stack-navigation.tsx",
@@ -1698,7 +1694,7 @@
     },
     {
       "name": "topbar",
-      "type": "registry:ui",
+      "type": "registry:block",
       "title": "Topbar",
       "description": "An application top bar for page navigation",
       "registryDependencies": [
@@ -1710,8 +1706,9 @@
       "dependencies": ["@mdi/js"],
       "files": [
         {
-          "path": "src/components/ui/top-bar.tsx",
-          "type": "registry:ui"
+          "path": "src/components/bloks/top-bar.tsx",
+          "type": "registry:block",
+          "target": "src/components/bloks/top-bar.tsx"
         },
         {
           "path": "src/lib/icon.tsx",
@@ -1729,7 +1726,8 @@
         "https://blok.sitecore.com/r/button.json",
         "https://blok.sitecore.com/r/tooltip.json",
         "https://blok.sitecore.com/r/checkbox.json",
-        "https://blok.sitecore.com/r/dropdown-menu.json"
+        "https://blok.sitecore.com/r/dropdown-menu.json",
+        "https://blok.sitecore.com/r/label.json"
       ],
       "dependencies": ["@mdi/js"],
       "files": [

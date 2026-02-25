@@ -42,5 +42,12 @@ const navigationItems: StackNavigationElement[] = [
 ];
 
 export default function StackNavigationHorizontalDemo() {
-  return <StackNavigation items={navigationItems} orientation="horizontal" />;
+  return (
+    <StackNavigation
+      items={navigationItems}
+      orientation="horizontal"
+      colorScheme="neutral"
+      className="shadow-none"
+    />
+  );
 }
