@@ -1,5 +1,6 @@
 import type { ComponentType } from "react";
 
+import TopbarDemo from "@/app/content/bloks/topbar";
 // PRIMITIVES
 import AccordionDemo from "@/app/content/ui/accordion";
 import AlertDemo from "@/app/content/ui/alert";
@@ -28,6 +29,7 @@ import ButtonColorSchemeDemo from "@/app/content/ui/button-color-schemes";
 import ButtonDisabledDemo from "@/app/content/ui/button-disabled";
 import ButtonIconSizingDemo from "@/app/content/ui/button-icon-sizing";
 import ButtonIconTextDemo from "@/app/content/ui/button-icon-text";
+import ButtonLoadingDemo from "@/app/content/ui/button-loading";
 import ButtonSizingDemo from "@/app/content/ui/button-sizing";
 import ButtonVariantsDemo from "@/app/content/ui/button-variants";
 import CalendarDemo from "@/app/content/ui/calendar";
@@ -154,7 +156,6 @@ import SquareToggleGroupDemo from "@/app/content/ui/toggle-group-square";
 import RoundedToggleDemo from "@/app/content/ui/toggle-rounded";
 import SquareToggleDemo from "@/app/content/ui/toggle-square";
 import TooltipDemo from "@/app/content/ui/tooltip";
-import TopbarDemo from "@/app/content/bloks/topbar";
 
 import AllSitesSectionDemo from "@/app/content/bloks/all-site-section";
 import CollaborationDemo from "@/app/content/bloks/collaboration";
@@ -203,7 +204,6 @@ import KbdShortcutDemo from "@/app/content/ui/kbd-shortcut";
 import KbdTooltipDemo from "@/app/content/ui/kbd-tooltip";
 import SelectReactDemo from "@/app/content/ui/select-react";
 import SpinnerBadgeDemo from "@/app/content/ui/spinner-badge";
-import SpinnerButtonDemo from "@/app/content/ui/spinner-button";
 import SpinnerSizeDemo from "@/app/content/ui/spinner-size";
 import StepperDemo from "@/app/content/ui/stepper";
 import TimelineDemo from "@/app/content/ui/timeline";
@@ -368,6 +368,11 @@ export const docsiteRegistry: Record<string, DocsiteRegistryEntry> = {
     name: "button-disabled",
     path: "src/app/content/ui/button-disabled.tsx",
     component: ButtonDisabledDemo,
+  },
+  "button-loading": {
+    name: "button-loading",
+    path: "src/app/content/ui/button-loading.tsx",
+    component: ButtonLoadingDemo,
   },
   calendar: {
     name: "calendar",
@@ -754,7 +759,7 @@ export const docsiteRegistry: Record<string, DocsiteRegistryEntry> = {
     path: "src/app/content/ui/field-input-types.tsx",
     component: FieldInputTypesDemo,
   },
-  "filter": {
+  filter: {
     name: "filter",
     path: "src/app/content/ui/filter.tsx",
     component: FilterDemo,
@@ -1053,11 +1058,6 @@ export const docsiteRegistry: Record<string, DocsiteRegistryEntry> = {
     name: "spinner-size",
     path: "src/app/content/ui/spinner-size.tsx",
     component: SpinnerSizeDemo,
-  },
-  "spinner-button": {
-    name: "spinner-button",
-    path: "src/app/content/ui/spinner-button.tsx",
-    component: SpinnerButtonDemo,
   },
   "spinner-badge": {
     name: "spinner-badge",
