@@ -827,10 +827,7 @@ export const rightSidebarMetadata: Record<string, RightSidebarMetadata> = {
       {
         id: "examples",
         title: "Examples",
-        children: [
-          { id: "spinner-size", title: "Size" },
-          { id: "spinner-badge", title: "Badge" },
-        ],
+        children: [{ id: "spinner-size", title: "Size" }],
       },
     ],
   },
