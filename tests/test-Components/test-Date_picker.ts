@@ -1,8 +1,8 @@
 import { test, expect, Page } from '@playwright/test';
 
-export async function testSingleDatePicker(page: Page){
+export async function testSimpleDatePicker(page: Page){
     // Verify that date picker button is visible
-    const datePicker = page.locator('[id="date-picker-single"]');
+    const datePicker = page.locator('[id="date-picker-simple"]');
     const datePickerButton = datePicker.locator('[data-slot="popover-trigger"]');
     await expect(datePickerButton).toBeVisible();
     await expect(datePickerButton).toContainText('Pick a date');
@@ -48,7 +48,13 @@ export async function testSingleDatePicker(page: Page){
         const found = monthTexts.some(text => monthPattern.test(text));
         expect(found).toBeTruthy();
       }
-    
+
+    // Verify that month dropdown has the expected classes
+    const monthClasses = await monthDropdown.getAttribute('class');
+    expect(monthClasses).toContain('text-sm');
+    expect(monthClasses).toContain('text-neutral-fg');
+    expect(monthClasses).toContain('data-[state=open]:border-2');
+
     // Select a different month (e.g., January)
     const januaryOption = monthdropdownContent.locator('[data-slot="select-item"]').filter({ hasText: /Jan/i }).first();
     if (await januaryOption.count() > 0) {
@@ -65,7 +71,13 @@ export async function testSingleDatePicker(page: Page){
     await expect(yeardropdownContent).toBeVisible();
     const yearOptions = yeardropdownContent.locator('[data-slot="select-item"]');
     const yearcount = await yearOptions.count();
-    expect(yearcount).toBeGreaterThan(0);    
+    expect(yearcount).toBeGreaterThan(0);   
+    
+    // Verify that year dropdown has the expected classes
+    const yearClasses = await yearDropdown.getAttribute('class');
+    expect(yearClasses).toContain('text-sm');
+    expect(yearClasses).toContain('text-neutral-fg');
+    expect(yearClasses).toContain('data-[state=open]:border-2');
 
     // Select a different year (e.g., 2024)
     const otherYearOption = yeardropdownContent.locator('[data-slot="select-item"]').filter({ hasText: /2024/i }).first();
