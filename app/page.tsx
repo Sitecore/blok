@@ -145,7 +145,7 @@ export default function SinkPage() {
       </div>
     <br />
       <div>
-        <ComboboxDemo /> 
+        <ComboboxDemo />
       </div>
     <br />
       <div>
