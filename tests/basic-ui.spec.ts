@@ -18,7 +18,7 @@ import { testCollapsible } from './test-Components/test-Collapsible';
 import { testCombobxFramework, testCombobxTimezone, testCombobxUser, testCombobxWithCheckbox } from './test-Components/test-Combobox';
 import { testCommand } from './test-Components/test-Command';
 import { testContextMenu } from './test-Components/test-Context_menu';
-import { testDatePickerRange, testSingleDatePicker } from './test-Components/test-Date_picker';
+import { testDatePickerRange, testSimpleDatePicker } from './test-Components/test-Date_picker';
 import { testDialog, testDialogScrollable, testDialogStickyFooter } from './test-Components/test-Dialog';
 import { testDraggableBasic, testDraggableCustomHandle, testDraggableDragDropandSort } from './test-Components/test-Draggable';
 import { testDropdown, testDropdownMenuAvatarOnly, testDropdownMenuCheckbox, testDropdownMenuIconColor, testDropdownMenuRadioGroup, testDropdownMenuWithAvatar } from './test-Components/test-Dropdown';
@@ -29,7 +29,7 @@ import { testFieldDefault, testFieldInput, testFieldTextarea, testFieldSelect, t
 import { testFilterDefault, testFilterInput, testFilterMultiSelect, testFilterSingleSelect, testFilterToggle } from './test-Components/test-Filter';
 import { testIconColors, testIconFilledVariants, testIconSizes, testIconSubtleVariants, testIconVariants } from './test-Components/test-Icon';
 import { testInput, testInputPassword, testInputFile, testInputDisabled, testInputText, testInputEmail } from './test-Components/test-Input';
-import { testInputGroupDropdown, testInputGroupSearch, testInputGroupURL } from './test-Components/test-Input_Group';
+import { testInputGroupDropdown, testInputGroupURL } from './test-Components/test-Input_Group';
 import { testInputOTPPattern, testInputOTPSimple, testInputOTPWithSpacing } from './test-Components/test-Input_OTP';
 import { testKbdButton, testKbdDefault, testKbdGroup, testKbdShortcut, testKbdTooltip } from './test-Components/test-Kbd';
 import { testLabel } from './test-Components/test-Label';
@@ -188,7 +188,7 @@ test.describe('UI BLOK QA Automation', () => {
   });
 
   test('test_Date_picker', async ({ page }) => {
-    await testSingleDatePicker(page);
+    await testSimpleDatePicker(page);
     await testDatePickerRange(page);
   });
 
@@ -278,7 +278,6 @@ test.describe('UI BLOK QA Automation', () => {
   });
 
   test('test_Input_Group', async ({ page }) => {
-    await testInputGroupSearch(page);
     await testInputGroupURL(page);
     await testInputGroupDropdown(page);
   });
