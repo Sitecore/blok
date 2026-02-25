@@ -205,7 +205,6 @@ import KbdGroupDemo from "@/app/content/ui/kbd-group";
 import KbdShortcutDemo from "@/app/content/ui/kbd-shortcut";
 import KbdTooltipDemo from "@/app/content/ui/kbd-tooltip";
 import SelectReactDemo from "@/app/content/ui/select-react";
-import SpinnerBadgeDemo from "@/app/content/ui/spinner-badge";
 import SpinnerSizeDemo from "@/app/content/ui/spinner-size";
 import StepperDemo from "@/app/content/ui/stepper";
 import TimelineDemo from "@/app/content/ui/timeline";
@@ -1050,11 +1049,6 @@ export const docsiteRegistry: Record<string, DocsiteRegistryEntry> = {
     name: "spinner-size",
     path: "src/app/content/ui/spinner-size.tsx",
     component: SpinnerSizeDemo,
-  },
-  "spinner-badge": {
-    name: "spinner-badge",
-    path: "src/app/content/ui/spinner-badge.tsx",
-    component: SpinnerBadgeDemo,
   },
   "stack-navigation": {
     name: "stack-navigation",

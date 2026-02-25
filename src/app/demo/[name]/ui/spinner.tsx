@@ -11,6 +11,5 @@ export const spinner = {
   },
   components: {
     Size: { component: "spinner-size" },
-    Badge: { component: "spinner-badge" },
   },
 };
