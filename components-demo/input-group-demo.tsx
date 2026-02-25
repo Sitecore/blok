@@ -25,22 +25,14 @@ export function InputGroupDemo() {
     <div>
       <h2 className="font-semibold text-4xl wrap-break-words">Input Group</h2>
 
-        <div id="inputGroup-search">
-          <div className="grid w-full max-w-md gap-4">
-            <InputGroup>
-              <InputGroupInput placeholder="Search..." aria-label="Search" />
-              <InputGroupAddon>
-                <Icon path={mdiMagnify} size={1} />
-              </InputGroupAddon>
-              <InputGroupAddon align="inline-end">12 results</InputGroupAddon>
-            </InputGroup>
-          </div>
-        </div>
-<br />
         <div id="inputGroup-url">
           <div className="grid w-full max-w-md gap-4">
             <InputGroup>
-              <InputGroupInput placeholder="example.com" className="!pl-1" aria-label="Website URL" />
+              <InputGroupInput
+                placeholder="example.com"
+                className="!pl-1"
+                aria-label="Website URL"
+              />
               <InputGroupAddon>
                 <InputGroupText>https://</InputGroupText>
               </InputGroupAddon>
@@ -65,7 +57,11 @@ export function InputGroupDemo() {
               <InputGroupAddon align="inline-end">
                 <DropdownMenu>
                   <DropdownMenuTrigger asChild>
-                    <InputGroupButton variant="ghost" aria-label="More" size="icon-xs">
+                    <InputGroupButton
+                      variant="ghost"
+                      aria-label="More"
+                      size="icon-xs"
+                    >
                       <Icon path={mdiDotsHorizontal} size={1} />
                     </InputGroupButton>
                   </DropdownMenuTrigger>
@@ -78,12 +74,15 @@ export function InputGroupDemo() {
               </InputGroupAddon>
             </InputGroup>
             <InputGroup>
-              <InputGroupInput placeholder="Enter search query" aria-label="Search query" />
+              <InputGroupInput
+                placeholder="Enter search query"
+                aria-label="Search query"
+              />
               <InputGroupAddon align="inline-end">
                 <DropdownMenu>
                   <DropdownMenuTrigger asChild>
                     <InputGroupButton variant="ghost" className="!pr-1.5 text-xs">
-                      Search In... <Icon path={mdiChevronDown} size={0.5} />
+                      Search In... <Icon path={mdiChevronDown} size={1} />
                     </InputGroupButton>
                   </DropdownMenuTrigger>
                   <DropdownMenuContent align="end">

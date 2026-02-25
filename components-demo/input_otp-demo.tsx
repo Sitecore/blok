@@ -1,5 +1,10 @@
+import {
+  InputOTP,
+  InputOTPGroup,
+  InputOTPSeparator,
+  InputOTPSlot,
+} from "@/components/ui/inputOtp";
 import { Label } from "@/components/ui/label";
-import { InputOTP, InputOTPGroup, InputOTPSeparator, InputOTPSlot } from "@/components/ui/inputOtp";
 
 export function InputOTPDemo() {
   return (
