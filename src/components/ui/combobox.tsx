@@ -66,7 +66,7 @@ function ComboboxInput({
   return (
     <InputGroup
       className={cn(
-        "w-auto shadow-none bg-body-bg dark:bg-input/30",
+        "w-auto shadow-none bg-body-bg dark:bg-input/30 font-semibold text-neutral-fg data-[placeholder]:text-muted-foreground [&_svg:not([class*='text-'])]:text-muted-foreground",
 
         // Focus state
         "has-[[data-slot=input-group-control]:focus-visible]:border-2 has-[[data-slot=input-group-control]:focus-visible]:ring-0",
