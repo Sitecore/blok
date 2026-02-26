@@ -8,12 +8,6 @@ import {
   ComboboxItem,
   ComboboxList,
 } from "@/components/ui/combobox";
-import {
-  Item,
-  ItemContent,
-  ItemDescription,
-  ItemTitle,
-} from "@/components/ui/item";
 
 const countries = [
   { code: "", value: "", continent: "", label: "Select country" },
@@ -80,16 +74,25 @@ export default function ComboboxWithCustomItemsDemo() {
         <ComboboxList>
           {(country: (typeof countries)[number]) => (
             <ComboboxItem key={country.code} value={country}>
-              <Item size="sm" className="p-0">
-                <ItemContent>
-                  <ItemTitle className="whitespace-nowrap">
+              <div data-slot="item" className="bg-transparent p-0 gap-2.5 ">
+                <div
+                  data-slot="item-content"
+                  className="flex flex-1 flex-col gap-1 [&+[data-slot=item-content]]:flex-none"
+                >
+                  <div
+                    data-slot="item-title"
+                    className="flex w-fit items-center gap-2 text-sm leading-snug font-medium whitespace-nowrap"
+                  >
                     {country.label}
-                  </ItemTitle>
-                  <ItemDescription>
+                  </div>
+                  <p
+                    data-slot="item-description"
+                    className="text-muted-foreground line-clamp-2 text-sm leading-normal font-normal text-balance [&>a:hover]:text-primary [&>a]:underline [&>a]:underline-offset-4"
+                  >
                     {country.continent} ({country.code})
-                  </ItemDescription>
-                </ItemContent>
-              </Item>
+                  </p>
+                </div>
+              </div>
             </ComboboxItem>
           )}
         </ComboboxList>
