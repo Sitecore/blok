@@ -1,10 +1,20 @@
 "use client";
 
-import * as React from "react";
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
+import {
+  SearchInput,
+  SearchInputClearButton,
+  SearchInputField,
+  SearchInputLeftElement,
+  SearchInputRightElement,
+} from "@/components/ui/search-input";
 import {
   Select,
   SelectContent,
@@ -14,15 +24,10 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover";
 import { Icon } from "@/lib/icon";
-import { mdiClose, mdiMagnify, mdiChevronDown } from "@mdi/js";
 import { cn } from "@/lib/utils";
-
+import { mdiChevronDown, mdiClose, mdiMagnify } from "@mdi/js";
+import * as React from "react";
 
 export type FilterColorScheme = "neutral" | "primary";
 
@@ -139,7 +144,7 @@ const FilterInput = React.forwardRef<HTMLInputElement, FilterInputProps>(
       helperText,
       "aria-describedby": ariaDescribedBy,
     },
-    ref
+    ref,
   ) => {
     const [internalValue, setInternalValue] = React.useState(defaultValue);
     const isControlled = controlledValue !== undefined;
@@ -167,37 +172,31 @@ const FilterInput = React.forwardRef<HTMLInputElement, FilterInputProps>(
     };
 
     return (
-      <div className={cn("relative", width, className)}>
-        <Icon
-          path={icon}
-          className="absolute top-1/2 left-3 -translate-y-1/2 opacity-50 size-5 pointer-events-none"
-        />
-        <Input
-          ref={ref}
-          type="text"
-          name={name}
-          placeholder={placeholder}
-          aria-label={ariaLabel}
-          aria-describedby={describedBy}
-          autoComplete="off"
-          value={value}
-          onChange={handleChange}
-          disabled={disabled}
-          className="pl-9 pr-10"
-        />
-        {showClear && value && !disabled && (
-          <Button
-            onClick={handleClear}
-            variant="ghost"
-            size="icon-xs"
-            colorScheme="neutral"
-            aria-label="Clear search"
+      <div className={cn(width, className)}>
+        <SearchInput>
+          <SearchInputLeftElement>
+            <Icon path={icon} />
+          </SearchInputLeftElement>
+          <SearchInputField
+            ref={ref}
+            name={name}
+            placeholder={placeholder}
+            aria-label={ariaLabel}
+            aria-describedby={describedBy}
+            autoComplete="off"
+            value={value}
+            onChange={handleChange}
             disabled={disabled}
-            className="absolute top-1/2 right-1 -translate-y-1/2 text-subtle-text hover:text-body-text hover:bg-neutral-bg-active focus:outline-none"
-          >
-            <Icon path={mdiClose} size={0.75} />
-          </Button>
-        )}
+          />
+          {showClear && value && !disabled && (
+            <SearchInputRightElement>
+              <SearchInputClearButton
+                onClear={handleClear}
+                tooltipLabel="Clear search"
+              />
+            </SearchInputRightElement>
+          )}
+        </SearchInput>
         {helperText && (
           <p id={helperId} className="mt-1 text-xs text-muted-foreground">
             {helperText}
@@ -205,7 +204,7 @@ const FilterInput = React.forwardRef<HTMLInputElement, FilterInputProps>(
         )}
       </div>
     );
-  }
+  },
 );
 FilterInput.displayName = "FilterInput";
 
@@ -232,7 +231,7 @@ const FilterSingleSelect = React.forwardRef<
       "aria-describedby": ariaDescribedBy,
       renderOption,
     },
-    ref
+    ref,
   ) => {
     const [internalValue, setInternalValue] = React.useState(defaultValue);
     const isControlled = controlledValue !== undefined;
@@ -295,21 +294,23 @@ const FilterSingleSelect = React.forwardRef<
             <SelectTrigger
               ref={ref}
               aria-describedby={describedBy}
-            className={cn(
-              "*:data-[slot=select-value]:hidden border-border",
-              hasValue && "pr-8 overflow-hidden",
-              hasValue &&
-                isPrimary &&
-                "bg-primary-bg text-primary-fg border-primary",
-              hasValue && showClear && "[&_svg]:hidden"
-            )}
+              className={cn(
+                "*:data-[slot=select-value]:hidden border-border",
+                hasValue && "pr-8 overflow-hidden",
+                hasValue &&
+                  isPrimary &&
+                  "bg-primary-bg text-primary-fg border-primary",
+                hasValue && showClear && "[&_svg]:hidden",
+              )}
             >
               <SelectValue placeholder={placeholder} />
               <span className="flex items-center gap-0.5 pointer-events-none min-w-0 overflow-hidden">
                 <span
                   className={cn(
                     "font-semibold truncate",
-                    hasValue && isPrimary ? "text-primary-fg" : "text-neutral-fg"
+                    hasValue && isPrimary
+                      ? "text-primary-fg"
+                      : "text-neutral-fg",
                   )}
                 >
                   {placeholder}
@@ -320,7 +321,7 @@ const FilterSingleSelect = React.forwardRef<
                       className={cn(
                         hasValue && isPrimary
                           ? "text-primary-fg"
-                          : "text-neutral-fg"
+                          : "text-neutral-fg",
                       )}
                     >
                       :
@@ -330,7 +331,7 @@ const FilterSingleSelect = React.forwardRef<
                         "font-normal truncate min-w-0 ml-0.5",
                         hasValue && isPrimary
                           ? "text-primary-fg"
-                          : "text-neutral-fg"
+                          : "text-neutral-fg",
                       )}
                     >
                       {selectedLabel}
@@ -363,7 +364,7 @@ const FilterSingleSelect = React.forwardRef<
               aria-label="Clear selection"
               className={cn(
                 "absolute right-2 top-1/2 -translate-y-1/2 pointer-events-auto hover:bg-neutral-bg-active",
-                isPrimary && "text-primary-fg"
+                isPrimary && "text-primary-fg",
               )}
             >
               <Icon path={mdiClose} size={0.75} />
@@ -377,7 +378,7 @@ const FilterSingleSelect = React.forwardRef<
         )}
       </div>
     );
-  }
+  },
 );
 FilterSingleSelect.displayName = "FilterSingleSelect";
 
@@ -409,7 +410,7 @@ const FilterMultiSelect = React.forwardRef<
       open: controlledOpen,
       onOpenChange,
     },
-    ref
+    ref,
   ) => {
     const [internalValue, setInternalValue] =
       React.useState<string[]>(defaultValue);
@@ -493,9 +494,7 @@ const FilterMultiSelect = React.forwardRef<
 
     return (
       <div className={cn("relative inline-flex w-fit flex-col", className)}>
-        {name && (
-          <input type="hidden" name={name} value={values.join(",")} />
-        )}
+        {name && <input type="hidden" name={name} value={values.join(",")} />}
         <div className="relative inline-flex w-fit">
           <Popover open={open} onOpenChange={handleOpenChange}>
             <PopoverTrigger asChild>
@@ -509,7 +508,7 @@ const FilterMultiSelect = React.forwardRef<
                   hasValues && "pr-8 overflow-hidden",
                   hasValues &&
                     isPrimary &&
-                    "bg-primary-bg text-primary-fg border-primary hover:bg-primary-bg hover:text-primary-fg"
+                    "bg-primary-bg text-primary-fg border-primary hover:bg-primary-bg hover:text-primary-fg",
                 )}
               >
                 <span className="flex items-center gap-0.5 pointer-events-none min-w-0 overflow-hidden flex-wrap">
@@ -518,7 +517,7 @@ const FilterMultiSelect = React.forwardRef<
                       "font-semibold truncate",
                       hasValues && isPrimary
                         ? "text-primary-fg"
-                        : "text-neutral-fg"
+                        : "text-neutral-fg",
                     )}
                   >
                     {placeholder}
@@ -532,36 +531,38 @@ const FilterMultiSelect = React.forwardRef<
                       {values.length}
                     </Badge>
                   )}
-                  {hasValues && !showSelectedCount && displayMode === "text" && (
-                    <>
-                      <span
-                        className={cn(
-                          hasValues && isPrimary
-                            ? "text-primary-fg"
-                            : "text-neutral-fg"
-                        )}
-                      >
-                        :
-                      </span>
-                      <span
-                        className={cn(
-                          "font-normal truncate min-w-0 ml-0.5",
-                          hasValues && isPrimary
-                            ? "text-primary-fg"
-                            : "text-neutral-fg"
-                        )}
-                      >
-                        {getDisplayText(selectedLabels)}
-                      </span>
-                    </>
-                  )}
+                  {hasValues &&
+                    !showSelectedCount &&
+                    displayMode === "text" && (
+                      <>
+                        <span
+                          className={cn(
+                            hasValues && isPrimary
+                              ? "text-primary-fg"
+                              : "text-neutral-fg",
+                          )}
+                        >
+                          :
+                        </span>
+                        <span
+                          className={cn(
+                            "font-normal truncate min-w-0 ml-0.5",
+                            hasValues && isPrimary
+                              ? "text-primary-fg"
+                              : "text-neutral-fg",
+                          )}
+                        >
+                          {getDisplayText(selectedLabels)}
+                        </span>
+                      </>
+                    )}
                   {hasValues && displayMode === "badge" && (
                     <>
                       <span className="text-neutral-fg">:</span>
                       <span className="flex items-center gap-1.5 flex-wrap min-w-0 ml-0.5">
                         {values.slice(0, maxDisplayItems).map((val) => {
                           const label = options.find(
-                            (opt) => opt.value === val
+                            (opt) => opt.value === val,
                           )?.label;
                           if (!label) return null;
                           return (
@@ -581,7 +582,10 @@ const FilterMultiSelect = React.forwardRef<
                                 onKeyDown={(e) => {
                                   if (e.key === "Enter" || e.key === " ") {
                                     e.preventDefault();
-                                    handleRemoveBadge(val, e as unknown as React.MouseEvent);
+                                    handleRemoveBadge(
+                                      val,
+                                      e as unknown as React.MouseEvent,
+                                    );
                                   }
                                 }}
                                 aria-label={`Remove ${label}`}
@@ -620,7 +624,11 @@ const FilterMultiSelect = React.forwardRef<
               className="w-(--radix-popover-trigger-width) p-1"
               align="start"
             >
-              <div className="p-1" role="group" aria-label={groupLabel || placeholder}>
+              <div
+                className="p-1"
+                role="group"
+                aria-label={groupLabel || placeholder}
+              >
                 {groupLabel && (
                   <div className="px-2 py-1.5 text-xs font-semibold uppercase text-muted-foreground">
                     {groupLabel}
@@ -631,7 +639,7 @@ const FilterMultiSelect = React.forwardRef<
                     key={option.value}
                     className={cn(
                       "flex items-start gap-2 px-2 py-1.5 text-sm rounded-sm cursor-pointer hover:bg-accent/50",
-                      option.disabled && "opacity-50 cursor-not-allowed"
+                      option.disabled && "opacity-50 cursor-not-allowed",
                     )}
                   >
                     <Checkbox
@@ -655,7 +663,7 @@ const FilterMultiSelect = React.forwardRef<
               aria-label="Clear all selections"
               className={cn(
                 "absolute right-2 top-1/2 -translate-y-1/2 pointer-events-auto hover:bg-neutral-bg-active",
-                isPrimary && "text-primary-fg"
+                isPrimary && "text-primary-fg",
               )}
             >
               <Icon path={mdiClose} size={0.75} />
@@ -669,7 +677,7 @@ const FilterMultiSelect = React.forwardRef<
         )}
       </div>
     );
-  }
+  },
 );
 FilterMultiSelect.displayName = "FilterMultiSelect";
 
@@ -690,7 +698,7 @@ const FilterToggle = React.forwardRef<HTMLButtonElement, FilterToggleProps>(
       helperText,
       "aria-describedby": ariaDescribedBy,
     },
-    ref
+    ref,
   ) => {
     const [internalActive, setInternalActive] = React.useState(defaultActive);
     const isControlled = controlledActive !== undefined;
@@ -738,7 +746,7 @@ const FilterToggle = React.forwardRef<HTMLButtonElement, FilterToggleProps>(
             active &&
               isPrimary &&
               "bg-primary-bg text-primary-fg border-primary hover:bg-primary-bg hover:text-primary-fg",
-            className
+            className,
           )}
         >
           <span className="font-medium">{label}</span>
@@ -756,7 +764,11 @@ const FilterToggle = React.forwardRef<HTMLButtonElement, FilterToggleProps>(
               }}
               aria-label={`Remove ${label} filter`}
             >
-              <Icon path={mdiClose} size={0.75} className="pointer-events-none" />
+              <Icon
+                path={mdiClose}
+                size={0.75}
+                className="pointer-events-none"
+              />
             </span>
           )}
         </Button>
@@ -767,7 +779,7 @@ const FilterToggle = React.forwardRef<HTMLButtonElement, FilterToggleProps>(
         )}
       </div>
     );
-  }
+  },
 );
 FilterToggle.displayName = "FilterToggle";
 
@@ -838,7 +850,7 @@ function FilterBar({
           ? "flex-row flex-wrap items-center"
           : "flex-col items-start",
         gap,
-        className
+        className,
       )}
     >
       {filters.map(renderFilter)}
@@ -857,7 +869,6 @@ function FilterBar({
   );
 }
 
-
 export {
   FilterInput,
   FilterSingleSelect,
@@ -865,4 +876,3 @@ export {
   FilterToggle,
   FilterBar,
 };
-

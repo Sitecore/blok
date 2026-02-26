@@ -46,6 +46,7 @@ import RadioThumb from "@/components/component-thumbs/radio";
 import RadioGroupThumb from "@/components/component-thumbs/radio-group";
 import ResizableThumb from "@/components/component-thumbs/resizable";
 import ScrollAreaThumb from "@/components/component-thumbs/scroll-area";
+import SearchInputThumb from "@/components/component-thumbs/search-input";
 import SelectThumb from "@/components/component-thumbs/select";
 import SeparatorThumb from "@/components/component-thumbs/separator";
 import SheetThumb from "@/components/component-thumbs/sheet";
@@ -108,6 +109,7 @@ const componentThumbnails: Record<
   "radio-group": RadioGroupThumb,
   resizable: ResizableThumb,
   "scroll-area": ScrollAreaThumb,
+  "search-input": SearchInputThumb,
   select: SelectThumb,
   separator: SeparatorThumb,
   sheet: SheetThumb,

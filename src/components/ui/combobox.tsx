@@ -1,6 +1,6 @@
 "use client";
 
-import { Combobox as ComboboxPrimitive } from "@base-ui/react";
+import { Combobox as ComboboxPrimitive } from "@base-ui/react/combobox";
 import { CheckIcon, ChevronDownIcon, XIcon } from "lucide-react";
 import * as React from "react";
 
@@ -66,7 +66,7 @@ function ComboboxInput({
   return (
     <InputGroup
       className={cn(
-        "w-fit min-w-[8rem] shadow-none bg-body-bg dark:bg-input/30",
+        "w-auto shadow-none bg-body-bg dark:bg-input/30 font-semibold text-neutral-fg data-[placeholder]:text-muted-foreground [&_svg:not([class*='text-'])]:text-muted-foreground",
 
         // Focus state
         "has-[[data-slot=input-group-control]:focus-visible]:border-2 has-[[data-slot=input-group-control]:focus-visible]:ring-0",

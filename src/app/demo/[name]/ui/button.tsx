@@ -16,5 +16,6 @@ export const button = {
     "Icon Sizing": { component: "button-icon-sizing" },
     "Icon with Text": { component: "button-icon-text" },
     "Disabled States": { component: "button-disabled" },
+    Loading: { component: "button-loading" },
   },
 };

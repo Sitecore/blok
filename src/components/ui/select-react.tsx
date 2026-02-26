@@ -139,7 +139,7 @@ function SelectReact<
         // Dark mode
         "dark:bg-input/30 dark:hover:bg-input/50",
         // Remove default react-select background
-        "bg-transparent",
+        "bg-body-bg",
         className,
       ),
     placeholder: () => "text-muted-foreground",
@@ -160,7 +160,7 @@ function SelectReact<
     option: ({ isFocused, isSelected, isDisabled: optionDisabled }) =>
       cn(
         // Base styles matching SelectItem
-        "relative flex w-full cursor-default items-center gap-2 rounded-sm py-1.5 px-2 text-sm outline-hidden select-none",
+        "relative flex w-full cursor-default items-center gap-2 rounded-sm py-1.5 px-2 !text-sm outline-hidden select-none",
         // Hover/focus state
         isFocused && "bg-accent text-accent-foreground",
         // Selected state

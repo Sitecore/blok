@@ -148,6 +148,7 @@ export const rightSidebarMetadata: Record<string, RightSidebarMetadata> = {
           { id: "button-icon-sizing", title: "Icon Sizing" },
           { id: "button-icon-text", title: "Icon with Text" },
           { id: "button-disabled", title: "Disabled States" },
+          { id: "button-loading", title: "Loading" },
         ],
       },
     ],
@@ -564,6 +565,9 @@ export const rightSidebarMetadata: Record<string, RightSidebarMetadata> = {
       },
     ],
   },
+  "search-input": {
+    links: {},
+  },
   inputOtp: {
     links: {
       shadcn: "https://ui.shadcn.com/docs/components/input-otp",
@@ -800,17 +804,6 @@ export const rightSidebarMetadata: Record<string, RightSidebarMetadata> = {
       { id: "preview", title: "Preview" },
       { id: "installation", title: "Installation" },
       { id: "usage", title: "Usage" },
-      {
-        id: "examples",
-        title: "Examples",
-        children: [
-          { id: "circular-progress-variants", title: "Variants" },
-          {
-            id: "circular-progress-text",
-            title: "With Text Circular Progress",
-          },
-        ],
-      },
     ],
   },
   spinner: {
@@ -826,11 +819,7 @@ export const rightSidebarMetadata: Record<string, RightSidebarMetadata> = {
       {
         id: "examples",
         title: "Examples",
-        children: [
-          { id: "spinner-size", title: "Size" },
-          { id: "spinner-button", title: "Button" },
-          { id: "spinner-badge", title: "Badge" },
-        ],
+        children: [{ id: "spinner-size", title: "Size" }],
       },
     ],
   },
@@ -967,8 +956,8 @@ export const rightSidebarMetadata: Record<string, RightSidebarMetadata> = {
         id: "examples",
         title: "Examples",
         children: [
-          { id: "toggle-square", title: "Square" },
-          { id: "toggle-rounded", title: "Rounded" },
+          { id: "toggle-sizes", title: "Sizes" },
+          { id: "toggle-variants", title: "Variants" },
         ],
       },
     ],
@@ -987,6 +976,7 @@ export const rightSidebarMetadata: Record<string, RightSidebarMetadata> = {
         children: [
           { id: "toggle-group-square", title: "Square Variant" },
           { id: "toggle-group-rounded", title: "Rounded Variant" },
+          { id: "toggle-group-sizes", title: "Sizes" },
         ],
       },
     ],

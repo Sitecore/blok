@@ -693,7 +693,9 @@ export default function IconsPage() {
               {iconsData.map(({ mdi, usage, icon, code }) => (
                 <TableRow key={mdi}>
                   <TableCell className="w-28 px-4">
-                    <Suspense fallback={<CircularProgress size="sm" />}>
+                    <Suspense
+                      fallback={<CircularProgress isIndeterminate size="sm" />}
+                    >
                       <Tooltip>
                         <TooltipTrigger asChild>
                           <button
@@ -781,7 +783,9 @@ export default function IconsPage() {
               {iconLogos.map(({ icon, product, path }) => (
                 <TableRow key={icon}>
                   <TableCell className="w-36 px-4">
-                    <Suspense fallback={<CircularProgress size="sm" />}>
+                    <Suspense
+                      fallback={<CircularProgress isIndeterminate size="sm" />}
+                    >
                       <Tooltip>
                         <TooltipTrigger asChild>
                           <button

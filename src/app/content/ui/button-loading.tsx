@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Spinner } from "@/components/ui/spinner";
 
-export default function SpinnerButtonDemo() {
+export default function ButtonLoadingDemo() {
   return (
     <div className="flex flex-col items-center gap-4">
       <Button disabled size="sm">
