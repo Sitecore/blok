@@ -8,13 +8,19 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { Input } from "@/components/ui/input";
 import {
   NavigationMenu,
   NavigationMenuItem,
   NavigationMenuList,
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
+import {
+  SearchInput,
+  SearchInputClearButton,
+  SearchInputField,
+  SearchInputLeftElement,
+  SearchInputRightElement,
+} from "@/components/ui/search-input";
 import { appConfig } from "@/config/config";
 import { externalLinks } from "@/config/links";
 import { navItems, searchableItems } from "@/config/nav";
@@ -464,20 +470,27 @@ export default function TopBar() {
             role="search"
             ref={searchRef}
           >
-            <Icon
-              path={mdiMagnify}
-              size={0.9}
-              className="absolute top-1/2 left-3 -translate-y-1/2 text-muted-foreground"
-            />
-            <Input
-              placeholder="Search Blok"
-              className="h-9 pr-3 pl-10"
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              onFocus={() => searchQuery.trim() && setShowSearchResults(true)}
-              onKeyDown={handleKeyDown}
-              ref={inputRef}
-            />
+            <SearchInput className="h-9">
+              <SearchInputLeftElement>
+                <Icon path={mdiMagnify} size={0.9} />
+              </SearchInputLeftElement>
+              <SearchInputField
+                placeholder="Search Blok"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                onFocus={() => searchQuery.trim() && setShowSearchResults(true)}
+                onKeyDown={handleKeyDown}
+                ref={inputRef}
+              />
+              {searchQuery && (
+                <SearchInputRightElement>
+                  <SearchInputClearButton
+                    onClear={() => setSearchQuery("")}
+                    tooltipLabel="Clear search"
+                  />
+                </SearchInputRightElement>
+              )}
+            </SearchInput>
 
             {showSearchResults && (
               <div className="absolute top-full left-0 right-0 mt-1 bg-popover border border-border rounded-lg z-50 max-h-96 overflow-y-auto animate-in fade-in-0 slide-in-from-top-2 duration-200 min-w-[300px] max-w-[90vw] sm:min-w-[350px] sm:max-w-[600px] lg:min-w-[400px] lg:max-w-[700px] xl:max-w-[800px]">

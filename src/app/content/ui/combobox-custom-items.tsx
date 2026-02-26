@@ -78,7 +78,7 @@ export default function ComboboxWithCustomItemsDemo() {
       <ComboboxContent>
         <ComboboxEmpty>No countries found.</ComboboxEmpty>
         <ComboboxList>
-          {(country) => (
+          {(country: (typeof countries)[number]) => (
             <ComboboxItem key={country.code} value={country}>
               <Item size="sm" className="p-0">
                 <ItemContent>

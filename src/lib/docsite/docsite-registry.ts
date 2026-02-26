@@ -110,6 +110,7 @@ import ResizableHandleDemo from "@/app/content/ui/resizable-handle";
 import VerticalResizableDemo from "@/app/content/ui/resizable-vertical";
 import ScrollAreaDemo from "@/app/content/ui/scroll-area";
 import HorizontalScrollAreaDemo from "@/app/content/ui/scroll-area-horizontal";
+import SearchInputDefaultDemo from "@/app/content/ui/search-input-default";
 import SelectDemo from "@/app/content/ui/select";
 import DisabledSelectDemo from "@/app/content/ui/select-disabled";
 import SelectWithIconDemo from "@/app/content/ui/select-icon";
@@ -834,6 +835,11 @@ export const docsiteRegistry: Record<string, DocsiteRegistryEntry> = {
     name: "input-disabled",
     path: "src/app/content/ui/input-disabled.tsx",
     component: DisabledInputDemo,
+  },
+  "search-input": {
+    name: "search-input",
+    path: "src/app/content/ui/search-input-default.tsx",
+    component: SearchInputDefaultDemo,
   },
   "input-group": {
     name: "input-group",
