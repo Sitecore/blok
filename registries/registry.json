@@ -508,6 +508,7 @@
         "https://blok.sitecore.com/r/icon.json",
         "https://blok.sitecore.com/r/input.json",
         "https://blok.sitecore.com/r/input-group.json",
+        "https://blok.sitecore.com/r/search-input.json",
         "https://blok.sitecore.com/r/inputOtp.json",
         "https://blok.sitecore.com/r/kbd.json",
         "https://blok.sitecore.com/r/label.json",
@@ -790,7 +791,9 @@
       "registryDependencies": [
         "https://blok.sitecore.com/r/theme.json",
         "https://blok.sitecore.com/r/button.json",
-        "https://blok.sitecore.com/r/input-group.json"
+        "https://blok.sitecore.com/r/command.json",
+        "https://blok.sitecore.com/r/popover.json",
+        "https://blok.sitecore.com/r/search-input.json"
       ],
       "files": [
         {
@@ -1036,7 +1039,8 @@
         "https://blok.sitecore.com/r/select.json",
         "https://blok.sitecore.com/r/popover.json",
         "https://blok.sitecore.com/r/badge.json",
-        "https://blok.sitecore.com/r/checkbox.json"
+        "https://blok.sitecore.com/r/checkbox.json",
+        "https://blok.sitecore.com/r/search-input.json"
       ],
       "files": [
         {
@@ -1072,6 +1076,29 @@
         {
           "path": "src/components/ui/input.tsx",
           "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "search-input",
+      "type": "registry:ui",
+      "title": "Search input",
+      "description": "A customizable search input component with composable left and right elements.",
+      "dependencies": ["@mdi/js"],
+      "registryDependencies": [
+        "https://blok.sitecore.com/r/theme.json",
+        "https://blok.sitecore.com/r/input.json",
+        "https://blok.sitecore.com/r/button.json",
+        "https://blok.sitecore.com/r/tooltip.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui/search-input.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "src/lib/icon.tsx",
+          "type": "registry:lib"
         }
       ]
     },
@@ -1765,7 +1792,7 @@
         "https://blok.sitecore.com/r/avatar.json",
         "https://blok.sitecore.com/r/button.json",
         "https://blok.sitecore.com/r/card.json",
-        "https://blok.sitecore.com/r/input-group.json",
+        "https://blok.sitecore.com/r/search-input.json",
         "https://blok.sitecore.com/r/popover.json",
         "https://blok.sitecore.com/r/icon.json"
       ],

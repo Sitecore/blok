@@ -4,15 +4,17 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import {
-  InputGroup,
-  InputGroupAddon,
-  InputGroupInput,
-} from "@/components/ui/input-group";
-import {
   Popover,
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
+import {
+  SearchInput,
+  SearchInputClearButton,
+  SearchInputField,
+  SearchInputLeftElement,
+  SearchInputRightElement,
+} from "@/components/ui/search-input";
 import { Icon } from "@/lib/icon";
 import { mdiAccountPlusOutline, mdiClose, mdiMagnify, mdiPlus } from "@mdi/js";
 import type * as React from "react";
@@ -380,18 +382,28 @@ export function Collaboration<T extends User = User>({
 
                     <div className="pb-2">
                       <div className="mb-3">
-                        <InputGroup>
-                          <InputGroupAddon>
+                        <SearchInput>
+                          <SearchInputLeftElement>
                             <Icon path={mdiMagnify} size={0.9} />
-                          </InputGroupAddon>
-                          <InputGroupInput
-                            type="text"
+                          </SearchInputLeftElement>
+                          <SearchInputField
                             placeholder={searchPlaceholder}
                             value={searchQuery}
                             onChange={handleSearchChange}
                             autoFocus
                           />
-                        </InputGroup>
+                          {searchQuery && (
+                            <SearchInputRightElement>
+                              <SearchInputClearButton
+                                onClear={() => {
+                                  setSearchQuery("");
+                                  onSearch?.("");
+                                }}
+                                tooltipLabel="Clear search"
+                              />
+                            </SearchInputRightElement>
+                          )}
+                        </SearchInput>
                       </div>
 
                       <div className="space-y-1 max-h-48 overflow-y-auto">
