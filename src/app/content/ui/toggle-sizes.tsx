@@ -8,13 +8,13 @@ export default function ToggleSizesDemo() {
       {/* Icon-only toggles in descending order */}
       <div className="flex flex-wrap items-center justify-center gap-3">
         <Toggle aria-label="Toggle bold" size="default">
-          <Icon path={mdiFormatBold} size={1.1} />
+          <Icon path={mdiFormatBold} />
         </Toggle>
         <Toggle aria-label="Toggle bold" size="sm">
-          <Icon path={mdiFormatBold} size={1.1} />
+          <Icon path={mdiFormatBold} />
         </Toggle>
         <Toggle aria-label="Toggle bold" size="xs">
-          <Icon path={mdiFormatBold} size={1.1} />
+          <Icon path={mdiFormatBold} />
         </Toggle>
       </div>
 
@@ -28,15 +28,15 @@ export default function ToggleSizesDemo() {
       {/* Icon+text toggles in descending order */}
       <div className="flex flex-wrap items-center justify-center gap-3">
         <Toggle aria-label="Grid view" size="default">
-          <Icon path={mdiViewModuleOutline} size={1.1} />
+          <Icon path={mdiViewModuleOutline} />
           Grid view
         </Toggle>
         <Toggle aria-label="Grid view" size="sm">
-          <Icon path={mdiViewModuleOutline} size={1.1} />
+          <Icon path={mdiViewModuleOutline} />
           Grid view
         </Toggle>
         <Toggle aria-label="Grid view" size="xs">
-          <Icon path={mdiViewModuleOutline} size={1.1} />
+          <Icon path={mdiViewModuleOutline} />
           Grid view
         </Toggle>
       </div>
