@@ -13,7 +13,7 @@ import { testCardElevation, testCardPadding, testCardStyle, testDefaultCard, tes
 import { testNumberCardsCarousel, testResponsiveCardsCarousel, testHalfWidthCardsCarousel } from './test-Components/test-Carousel';
 import { testAreaChart, testBarChart, testMixedBarChart } from './test-Components/test-Chart';
 import { testCheckbox, testCheckboxDisabled, testCheckboxWithDescription, testCheckEnabledLabel } from './test-Components/test-Checkbox';
-import { testCircularProgressDefault, testCircularProgressVariant, testCircularProgressWithText } from './test-Components/test-Circular_Progress';
+import { testCircularProgress } from './test-Components/test-Circular_Progress';
 import { testCollapsible } from './test-Components/test-Collapsible';
 import { testCombobxFramework, testCombobxTimezone, testCombobxUser, testCombobxWithCheckbox } from './test-Components/test-Combobox';
 import { testCommand } from './test-Components/test-Command';
@@ -163,9 +163,7 @@ test.describe('UI BLOK QA Automation', () => {
   });
 
   test('test_Circular_Progress', async ({ page }) => {
-    await testCircularProgressDefault(page);
-    await testCircularProgressVariant(page);
-    await testCircularProgressWithText(page);
+    await testCircularProgress(page);
   });
 
   test('test_Collapsible', async ({ page }) => {
