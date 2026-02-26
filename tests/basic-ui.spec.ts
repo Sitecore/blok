@@ -34,6 +34,7 @@ import { testInputOTPPattern, testInputOTPSimple, testInputOTPWithSpacing } from
 import { testKbdButton, testKbdDefault, testKbdGroup, testKbdShortcut, testKbdTooltip } from './test-Components/test-Kbd';
 import { testLabel } from './test-Components/test-Label';
 import { testNavigationMenu, testNavigationMenuSecondary } from './test-Components/test-Navigation_Menu';
+import { testNavigationSide } from './test-Components/test-Navigation_Side';
 import { testNavigationStackColorSchemes, testNavigationStackHorizontal, testNavigationStackHorizontalTabs, testNavigationStackVertical } from './test-Components/test-Navigation_Stack';
 import { testPagination } from './test-Components/test-Pagination';
 import { testPopover } from './test-Components/test-Popover';
@@ -45,7 +46,6 @@ import { testSelectDefault, testSelectDisabled, testSelectLargeList, testSelectW
 import { testSelectReact } from './test-Components/test-Select(React)';
 import { testSeparator } from './test-Components/test-Separator';
 import { testSheetBottom, testSheetDefault, testSheetLeft, testSheetRight, testSheetTop } from './test-Components/test-Sheet';
-import { testSidebar } from './test-Components/test-Sidebar';
 import { testSkeletonCardList, testSkeletonDefault } from './test-Components/test-Skeleton';
 import { testSlider } from './test-Components/test-Slider';
 import { testToastAction, testToastClosable, testToastError, testToastNormal, testToastSuccessful, testToastWarning } from './test-Components/test-Sonner';
@@ -305,6 +305,10 @@ test.describe('UI BLOK QA Automation', () => {
     await testNavigationMenuSecondary(page);
   });
 
+  test('test_Navigation_Side', async ({ page }) => {
+    await testNavigationSide(page);
+  });
+
   test('test_Navigation_Stack', async ({ page }) => {
     await testNavigationStackVertical(page);
     await testNavigationStackHorizontal(page);
@@ -360,10 +364,6 @@ test.describe('UI BLOK QA Automation', () => {
     await testSheetBottom(page);
     await testSheetLeft(page);
     await testSheetRight(page);
-  });
-
-  test('test_Sidebar', async ({ page }) => {
-    await testSidebar(page);
   });
 
   test('test_Skeleton', async ({ page }) => {
