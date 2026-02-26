@@ -1,16 +1,26 @@
-import { Sidebar, SidebarContent, SidebarHeader, SidebarMenu, SidebarMenuItem, SidebarMenuButton, SidebarProvider } from "@/components/ui/sidebar";
-import { mdiHome, mdiAccount, mdiCog } from "@mdi/js";
+import {
+  Sidebar,
+  SidebarContent,
+  SidebarHeader,
+  SidebarMenu,
+  SidebarMenuButton,
+  SidebarMenuItem,
+  SidebarProvider,
+} from "@/components/ui/sidebar";
 import { Icon } from "@/lib/icon";
+import { mdiAccount, mdiCog, mdiHome } from "@mdi/js";
 
-export function SidebarDemo() {
+export function NavigationSideDemo() {
   return (
     <div>
-      <h2 className="font-semibold text-4xl wrap-break-words">Sidebar</h2>
-    <div className="flex h-[350px] w-full">
+      <h2 className="font-semibold text-4xl wrap-break-words">Navigation (Side)</h2>
+      <div className="flex h-[350px] w-full">
       <SidebarProvider>
         <Sidebar className="w-64 px-2 py-6">
           <SidebarHeader>
-            <div className="py-1.5 text-sm font-semibold uppercase text-subtle-text">Navigation</div>
+            <div className="py-1.5 text-sm font-semibold uppercase text-subtle-text">
+              Navigation
+            </div>
           </SidebarHeader>
           <SidebarContent>
             <SidebarMenu>

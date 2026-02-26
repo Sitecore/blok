@@ -36,6 +36,7 @@ import { InputOTPDemo } from "@/components-demo/input_otp-demo";
 import { KbdDemo } from "@/components-demo/kbd-demo";
 import { LabelDemo } from "@/components-demo/label-demo";
 import { NavigationMenuDemo } from "@/components-demo/navigation_menu-demo";
+import { NavigationSideDemo } from "@/components-demo/navigation(Side)";
 import { NavigationStackDemo } from "@/components-demo/navigation_stack-demo";
 import { PaginationDemo } from "@/components-demo/pagination-demo";
 import { PopoverDemo } from "@/components-demo/popover-demo";
@@ -47,7 +48,6 @@ import { SelectDemo } from "@/components-demo/select-demo";
 import { SelectReactDemo } from "@/components-demo/select(React)-demo";
 import { SeparatorDemo } from "@/components-demo/separator-demo";
 import { SheetDemo } from "@/components-demo/sheet-demo";
-import { SidebarDemo } from "@/components-demo/sidebar-demo";
 import { SkeletonDemo } from "@/components-demo/skeleten-demo";
 import { SliderDemo } from "@/components-demo/slider-demo";
 import { SonnerDemo } from "@/components-demo/sonner-demo";
@@ -221,6 +221,10 @@ export default function SinkPage() {
       </div>
     <br />
       <div>
+        <NavigationSideDemo /> 
+      </div>
+    <br />
+      <div>
         <NavigationStackDemo />    
       </div>
     <br />
@@ -262,10 +266,6 @@ export default function SinkPage() {
     <br />
       <div>
         <SheetDemo />
-      </div>
-    <br />
-      <div>
-        <SidebarDemo /> 
       </div>
     <br />
       <div>
