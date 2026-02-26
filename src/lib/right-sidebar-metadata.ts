@@ -340,7 +340,10 @@ export const rightSidebarMetadata: Record<string, RightSidebarMetadata> = {
       {
         id: "examples",
         title: "Examples",
-        children: [{ id: "editable-textarea", title: "Textarea" }],
+        children: [
+          { id: "editable-textarea", title: "Textarea" },
+          { id: "editable-error", title: "Editable with errors" },
+        ],
       },
     ],
   },
