@@ -1,5 +1,6 @@
 'use client';
 import { Button } from "@/components/ui/button";
+import { Spinner } from "@/components/ui/spinner";
 import { mdiInformationOutline } from "@mdi/js";
 import { Icon } from "@/lib/icon";
 
@@ -95,7 +96,24 @@ export function ButtonDemo() {
             Disabled Link
           </Button>
         </div>
-        
+      <br />
+        {/* Loading Buttons */}
+        <div className="flex flex-col items-center gap-4">
+          <Button disabled size="sm">
+            <Spinner />
+            Loading...
+          </Button>
+          <Button variant="outline" disabled size="sm">
+            <Spinner />
+            Please wait
+          </Button>
+          <Button variant="ghost" disabled size="sm">
+            <Spinner />
+            Processing
+          </Button>
+        </div>
+
+
     </div>
   )
 }    
