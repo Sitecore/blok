@@ -45,7 +45,7 @@ import { RadioGroupDemo } from "@/components-demo/radio_group-demo";
 import { ResizableDemo } from "@/components-demo/resizable-demo";
 import { ScrollAreaDemo } from "@/components-demo/scroll_area-demo";
 import { SelectDemo } from "@/components-demo/select-demo";
-import { SelectReactDemo } from "@/components-demo/select(React)-demo";
+import { SelectReactDemo } from "@/components-demo/select_react_select-demo";
 import { SeparatorDemo } from "@/components-demo/separator-demo";
 import { SheetDemo } from "@/components-demo/sheet-demo";
 import { SkeletonDemo } from "@/components-demo/skeleten-demo";
