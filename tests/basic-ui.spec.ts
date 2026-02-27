@@ -57,7 +57,7 @@ import { testTabsDefault, testTabsLine, testTabsLineIcons, testTabsSoftRounded, 
 import { testTextareaBasic, testTextareaDisabled, testTextareaInvalid, testTextareaLarge, testTextareaSmall, testTextareaWithDefaultValue, testTextareaWithLabel, testTextareaWithLabelAndDescription } from './test-Components/test-Textarea';
 import { testTimePicker } from './test-Components/test-Time_picker';
 import { testTimelineConnectors, testTimelineDefault, testTimelineSizes, testTimelineVariant } from './test-Components/test-Timeline';
-import { testToggleRounded, testToggleSquare } from './test-Components/test-Toggle';
+import { testToggleDefault, testToggleSize, testToggleVariant } from './test-Components/test-Toggle';
 import { testToggleGroupRounded, testToggleGroupSquare } from './test-Components/test-Toggle_group';
 import { testTooltip } from './test-Components/test-Tooltip';
 import { testAllSiteSection } from './test-Components/test-All_Site_section';
@@ -434,8 +434,9 @@ test.describe('UI BLOK QA Automation', () => {
   });
 
   test('test_Toggle', async ({ page }) => {
-    await testToggleSquare(page);
-    await testToggleRounded(page);
+    await testToggleDefault(page);
+    await testToggleSize(page);
+    await testToggleVariant(page);
   });
 
   test('test_Toggle_group', async ({ page }) => {
