@@ -43,7 +43,7 @@ import { testRadioGroup } from './test-Components/test-Radio_Group';
 import { testResizableHorizontal, testResizableVertical, testResizableWithHandle } from './test-Components/test-Resizable';
 import { testScrollAreaHorizontal, testScrollAreaVertical } from './test-Components/test-Scroll_Area';
 import { testSelectDefault, testSelectDisabled, testSelectLargeList, testSelectWithIcon } from './test-Components/test-Select';
-import { testSelectReact } from './test-Components/test-Select(React)';
+import { testSelectReact } from './test-Components/test-Select_React';
 import { testSeparator } from './test-Components/test-Separator';
 import { testSheetBottom, testSheetDefault, testSheetLeft, testSheetRight, testSheetTop } from './test-Components/test-Sheet';
 import { testSkeletonCardList, testSkeletonDefault } from './test-Components/test-Skeleton';
@@ -349,7 +349,7 @@ test.describe('UI BLOK QA Automation', () => {
     await testSelectDisabled(page);
   });
 
-  test('test_Select(React)', async ({ page }) => {
+  test('test_Select_React', async ({ page }) => {
     await testSelectReact(page);
   });
 
