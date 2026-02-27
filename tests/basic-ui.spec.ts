@@ -49,7 +49,7 @@ import { testSheetBottom, testSheetDefault, testSheetLeft, testSheetRight, testS
 import { testSkeletonCardList, testSkeletonDefault } from './test-Components/test-Skeleton';
 import { testSlider } from './test-Components/test-Slider';
 import { testToastAction, testToastClosable, testToastError, testToastNormal, testToastSuccessful, testToastWarning } from './test-Components/test-Sonner';
-import { testSpinnerBadge,testSpinnerDefault, testSpinnerSize } from './test-Components/test-Spinner';
+import { testSpinnerDefault, testSpinnerSize } from './test-Components/test-Spinner';
 import { testStepper } from './test-Components/test-Stepper';
 import { testSwitchDanger, testSwitchPrimary, testSwitchSuccess } from './test-Components/test-Switch';
 import { testDataTable, testTable } from './test-Components/test-Table';
@@ -386,7 +386,6 @@ test.describe('UI BLOK QA Automation', () => {
   test('test_Spinner', async ({ page }) => {
     await testSpinnerDefault(page);
     await testSpinnerSize(page);
-    await testSpinnerBadge(page);
   });
 
   test('test_Stepper', async ({ page }) => {

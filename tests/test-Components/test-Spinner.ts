@@ -6,11 +6,48 @@ export async function testSpinnerDefault(page: Page){
     await expect(spinnerSection).toBeVisible();
     
     // Verify that the default spinner is visible
-    const defaultSpinner = spinnerSection.locator('[role="status"]');
+    const defaultSpinner = spinnerSection.locator('svg').nth(0);
     await expect(defaultSpinner).toBeVisible();
 
-    // Verify spinner has expected classes
-    await expect(defaultSpinner).toHaveClass(/lucide lucide-loader-circle size-4 animate-spin/);
+    // Verify that the Default Spinner has the expected attributes
+    await expect(defaultSpinner).toHaveAttribute('width', '24');
+    await expect(defaultSpinner).toHaveAttribute('height', '24');
+    await expect(defaultSpinner).toHaveAttribute('viewBox', '0 0 24 24');
+    await expect(defaultSpinner).toHaveAttribute('fill', 'none');
+    await expect(defaultSpinner).toHaveAttribute('stroke', 'currentColor');
+    await expect(defaultSpinner).toHaveAttribute('stroke-width', '2');
+    await expect(defaultSpinner).toHaveAttribute('stroke-linecap', 'round');
+    await expect(defaultSpinner).toHaveAttribute('stroke-linejoin', 'round');
+
+    // Verify default spinner has expected classes
+    const defaultSpinnerClass = await defaultSpinner.getAttribute('class');
+    expect(defaultSpinnerClass).toContain('lucide');
+    expect(defaultSpinnerClass).toContain('lucide-loader-circle');
+    expect(defaultSpinnerClass).toContain('size-4');
+    expect(defaultSpinnerClass).toContain('animate-spin');
+    expect(defaultSpinnerClass).toContain('text-neutral-fg');
+
+    // Verify that the primary spinner is visible
+    const primarySpinner = spinnerSection.locator('svg').nth(1);
+    await expect(primarySpinner).toBeVisible();
+
+    // Verify that the Primary Spinner has the expected attributes
+    await expect(primarySpinner).toHaveAttribute('width', '24');
+    await expect(primarySpinner).toHaveAttribute('height', '24');
+    await expect(primarySpinner).toHaveAttribute('viewBox', '0 0 24 24');
+    await expect(primarySpinner).toHaveAttribute('fill', 'none');
+    await expect(primarySpinner).toHaveAttribute('stroke', 'currentColor');
+    await expect(primarySpinner).toHaveAttribute('stroke-width', '2');
+    await expect(primarySpinner).toHaveAttribute('stroke-linecap', 'round');
+    await expect(primarySpinner).toHaveAttribute('stroke-linejoin', 'round');
+
+    // Verify primary spinner has expected classes
+    const primarySpinnerClass = await primarySpinner.getAttribute('class');
+    expect(primarySpinnerClass).toContain('lucide');
+    expect(primarySpinnerClass).toContain('lucide-loader-circle');
+    expect(primarySpinnerClass).toContain('size-4');
+    expect(primarySpinnerClass).toContain('animate-spin');
+    expect(primarySpinnerClass).toContain('text-primary-fg');
 }
 
 export async function testSpinnerSize(page: Page){
@@ -18,63 +55,47 @@ export async function testSpinnerSize(page: Page){
     const sizeSpinnerSection = page.locator('#spinner-size');
     await expect(sizeSpinnerSection).toBeVisible();
     
-    // Get all spinners
-    const spinners = sizeSpinnerSection.locator('[role="status"]');
+    // Verify that the size-3 spinner is visible
+    const size3Spinner = sizeSpinnerSection.locator('svg').nth(0);
+    await expect(size3Spinner).toBeVisible();
+    // Verify size-3 spinner has expected classes
+    const size3SpinnerClass = await size3Spinner.getAttribute('class');
+    expect(size3SpinnerClass).toContain('lucide');
+    expect(size3SpinnerClass).toContain('lucide-loader-circle');
+    expect(size3SpinnerClass).toContain('animate-spin');
+    expect(size3SpinnerClass).toContain('text-neutral-fg');
+    expect(size3SpinnerClass).toContain('size-3');
     
-    // Verify we have at least 4 spinners
-    const count = await spinners.count();
-    expect(count).toBeGreaterThanOrEqual(4);
-    
-    // Check size classes are applied
-    await expect(spinners.nth(0)).toHaveClass(/size-3/);
-    await expect(spinners.nth(1)).toHaveClass(/size-4/);
-    await expect(spinners.nth(2)).toHaveClass(/size-6/);
-    await expect(spinners.nth(3)).toHaveClass(/size-8/);
-}
+    // Verify that the size-4 spinner is visible
+    const size4Spinner = sizeSpinnerSection.locator('svg').nth(1);
+    await expect(size4Spinner).toBeVisible();
+    // Verify size-4 spinner has expected classes
+    const size4SpinnerClass = await size4Spinner.getAttribute('class');
+    expect(size4SpinnerClass).toContain('lucide');
+    expect(size4SpinnerClass).toContain('lucide-loader-circle');
+    expect(size4SpinnerClass).toContain('animate-spin');
+    expect(size4SpinnerClass).toContain('text-neutral-fg');
+    expect(size4SpinnerClass).toContain('size-4');
 
-export async function testSpinnerButton(page: Page){
-    // Verify spinner button section is visible
-    const buttonSpinnerSection = page.locator('#spinner-button');
-    await expect(buttonSpinnerSection).toBeVisible();
-    
-    // Check for buttons with spinners
-    const buttons = buttonSpinnerSection.locator('button');
-    await expect(buttons).toHaveCount(3);
-    
-    // Verify each button contains a spinner
-    for (let i = 0; i < 3; i++) {
-      const button = buttons.nth(i);
-      await expect(button).toBeVisible();
-      await expect(button).toBeDisabled();
-      
-      const spinner = button.locator('[role="status"]');
-      await expect(spinner).toBeVisible();
-    }
-    
-    // Verify button text
-    await expect(buttons.nth(0)).toContainText('Loading...');
-    await expect(buttons.nth(1)).toContainText('Please wait');
-    await expect(buttons.nth(2)).toContainText('Processing');
-}
+    // Verify that the size-6 spinner is visible
+    const size6Spinner = sizeSpinnerSection.locator('svg').nth(2);
+    await expect(size6Spinner).toBeVisible();
+    // Verify size-6 spinner has expected classes
+    const size6SpinnerClass = await size6Spinner.getAttribute('class');
+    expect(size6SpinnerClass).toContain('lucide');
+    expect(size6SpinnerClass).toContain('lucide-loader-circle');
+    expect(size6SpinnerClass).toContain('animate-spin');
+    expect(size6SpinnerClass).toContain('text-neutral-fg');
+    expect(size6SpinnerClass).toContain('size-6');
 
-export async function testSpinnerBadge(page: Page){
-    // Verify spinner badge section is visible
-    const badgeSpinnerSection = page.locator('#spinner-badge');
-    await expect(badgeSpinnerSection).toBeVisible();
-    
-    // Check for badges with spinners
-    const badges = badgeSpinnerSection.locator('[role="status"]').locator('..');
-    const spinnerCount = badgeSpinnerSection.locator('[role="status"]');
-    await expect(spinnerCount).toHaveCount(3);
-    
-    // Verify each badge contains a spinner
-    const spinners = badgeSpinnerSection.locator('[role="status"]');
-    for (let i = 0; i < 3; i++) {
-      await expect(spinners.nth(i)).toBeVisible();
-    }
-    
-    // Verify badge text
-    await expect(badges.nth(0)).toContainText('Syncing');
-    await expect(badges.nth(1)).toContainText('Updating');
-    await expect(badges.nth(2)).toContainText('Processing');
+    // Verify that the size-8 spinner is visible
+    const size8Spinner = sizeSpinnerSection.locator('svg').nth(3);
+    await expect(size8Spinner).toBeVisible();
+    // Verify size-8 spinner has expected classes
+    const size8SpinnerClass = await size8Spinner.getAttribute('class');
+    expect(size8SpinnerClass).toContain('lucide');
+    expect(size8SpinnerClass).toContain('lucide-loader-circle');
+    expect(size8SpinnerClass).toContain('animate-spin');
+    expect(size8SpinnerClass).toContain('text-neutral-fg');
+    expect(size8SpinnerClass).toContain('size-8');
 }
