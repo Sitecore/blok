@@ -92,3 +92,47 @@ export async function testToggleGroupRounded(page: Page){
     await expect(missedToggle).toHaveAttribute('data-state', 'on');
     await expect(allToggle).toHaveAttribute('data-state', 'off');
 }
+
+export async function testToggleGroupSizes(page: Page){
+    // verify that Icon sizes toggles is visible
+    const iconSizesToggles = page.locator('[id="toggle-group-sizes"]');
+    await expect(iconSizesToggles).toBeVisible();
+
+    // verify that Icon size default toggle is visible
+    const iconSizeDefaultToggle = iconSizesToggles.locator('[data-slot="toggle-group"] , [data-size="default"]').nth(0);
+    await expect(iconSizeDefaultToggle).toBeVisible();
+    await expect(iconSizeDefaultToggle).toBeEnabled();
+    await iconSizeDefaultToggle.click();
+    await expect(iconSizeDefaultToggle).toHaveAttribute('data-size', 'default');
+    // verify that Icon size small toggle is visible
+    const iconSizeSmallToggle = iconSizesToggles.locator('[data-slot="toggle-group"][data-size="sm"]').nth(0);
+    await expect(iconSizeSmallToggle).toBeVisible();
+    await expect(iconSizeSmallToggle).toBeEnabled();
+    await iconSizeSmallToggle.click();
+    await expect(iconSizeSmallToggle).toHaveAttribute('data-size', 'sm');
+    // verify that Icon size extra small toggle is visible
+    const iconSizeExtraSmallToggle = iconSizesToggles.locator('[data-slot="toggle-group"][data-size="xs"]').nth(0);
+    await expect(iconSizeExtraSmallToggle).toBeVisible();
+    await expect(iconSizeExtraSmallToggle).toBeEnabled();
+    await iconSizeExtraSmallToggle.click();
+    await expect(iconSizeExtraSmallToggle).toHaveAttribute('data-size', 'xs');
+
+    // verify that Icon with Text size default toggle is visible
+    const iconWithTextSizeDefaultToggle = iconSizesToggles.locator('[data-slot="toggle-group"] , [data-size="default"]').nth(1);
+    await expect(iconWithTextSizeDefaultToggle).toBeVisible(); 
+    await expect(iconWithTextSizeDefaultToggle).toBeEnabled();
+    await iconWithTextSizeDefaultToggle.click();
+    await expect(iconWithTextSizeDefaultToggle).toHaveAttribute('data-size', 'default');
+    // verify that Icon with Text size small toggle is visible
+    const iconWithTextSizeSmallToggle = iconSizesToggles.locator('[data-slot="toggle-group"][data-size="sm"]').nth(1);
+    await expect(iconWithTextSizeSmallToggle).toBeVisible();
+    await expect(iconWithTextSizeSmallToggle).toBeEnabled();
+    await iconWithTextSizeSmallToggle.click();
+    await expect(iconWithTextSizeSmallToggle).toHaveAttribute('data-size', 'sm');
+    // verify that Icon with Text size extra small toggle is visible
+    const iconWithTextSizeExtraSmallToggle = iconSizesToggles.locator('[data-slot="toggle-group"][data-size="xs"]').nth(1);
+    await expect(iconWithTextSizeExtraSmallToggle).toBeVisible();   
+    await expect(iconWithTextSizeExtraSmallToggle).toBeEnabled();
+    await iconWithTextSizeExtraSmallToggle.click();
+    await expect(iconWithTextSizeExtraSmallToggle).toHaveAttribute('data-size', 'xs');
+}
