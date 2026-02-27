@@ -7,7 +7,7 @@ import { testAspectRatio } from './test-Components/test-Aspect_Ratio';
 import { testAvatar, testAvatarMenu, testFallbackAvatar, testInteractiveAvatar, testLargeAvatar } from './test-Components/test-Avatar';
 import { testBadge, testBadgeBold, testBadgeClosable, testBadgeColor, testBadgeLink, testBadgeSize } from './test-Components/test-Badge';
 import { testBreadcrumb } from './test-Components/test-Breadcrumb';
-import { testPrimaryORDefaultButton, testGhostButton, testDisabledButtons, testIcononlyVariant, testLinkVariant, testOutlineButton, testSizeVariant } from './test-Components/test-Button';
+import { testPrimaryORDefaultButton, testGhostButton, testDisabledButtons, testIcononlyVariant, testLinkVariant, testOutlineButton, testSizeVariant, testLoadingButton } from './test-Components/test-Button';
 import { testSingleCalendar, testTwoMonthCalendar } from './test-Components/test-Calendar';
 import { testCardElevation, testCardPadding, testCardStyle, testDefaultCard, testStyledCard } from './test-Components/test-Card';
 import { testNumberCardsCarousel, testResponsiveCardsCarousel, testHalfWidthCardsCarousel } from './test-Components/test-Carousel';
@@ -49,7 +49,7 @@ import { testSheetBottom, testSheetDefault, testSheetLeft, testSheetRight, testS
 import { testSkeletonCardList, testSkeletonDefault } from './test-Components/test-Skeleton';
 import { testSlider } from './test-Components/test-Slider';
 import { testToastAction, testToastClosable, testToastError, testToastNormal, testToastSuccessful, testToastWarning } from './test-Components/test-Sonner';
-import { testSpinnerBadge, testSpinnerButton, testSpinnerDefault, testSpinnerSize } from './test-Components/test-Spinner';
+import { testSpinnerBadge,testSpinnerDefault, testSpinnerSize } from './test-Components/test-Spinner';
 import { testStepper } from './test-Components/test-Stepper';
 import { testSwitchDanger, testSwitchPrimary, testSwitchSuccess } from './test-Components/test-Switch';
 import { testDataTable, testTable } from './test-Components/test-Table';
@@ -128,6 +128,7 @@ test.describe('UI BLOK QA Automation', () => {
     await testSizeVariant(page);
     await testIcononlyVariant(page);
     await testDisabledButtons(page);
+    await testLoadingButton(page);
   });
 
   test('test_Calendar', async ({ page }) => {
@@ -385,7 +386,6 @@ test.describe('UI BLOK QA Automation', () => {
   test('test_Spinner', async ({ page }) => {
     await testSpinnerDefault(page);
     await testSpinnerSize(page);
-    await testSpinnerButton(page);
     await testSpinnerBadge(page);
   });
 

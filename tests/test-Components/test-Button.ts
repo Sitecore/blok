@@ -150,3 +150,92 @@ export async function testDisabledButtons(page: Page){
     const opacity = await disablebtn.evaluate((el) => getComputedStyle(el as HTMLElement).opacity);
     expect(parseFloat(opacity)).toBeLessThan(1);
 }
+
+export async function testLoadingButton(page: Page){
+  // Verify loading button is visible
+  const buttonSpinnerLoading = page.getByRole('button', { name: 'Loading...' }).first();
+  await expect(buttonSpinnerLoading).toBeVisible();
+
+  // Verify that the loading button has the correct classes
+  const loadingClass = await buttonSpinnerLoading.getAttribute('class');
+  expect(loadingClass).toContain('text-md');
+  expect(loadingClass).toContain('font-semibold');
+  expect(loadingClass).toContain('[&_svg]:pointer-events-none');
+  expect(loadingClass).toContain('h-8');
+  expect(loadingClass).toContain('min-w-8');
+  expect(loadingClass).toContain('px-3');
+  expect(loadingClass).toContain('rounded-4xl');
+  expect(loadingClass).toContain('bg-primary');
+
+  // Verify that the loading button spinner is visible and has the expected attributes
+  const loadingSpinner = buttonSpinnerLoading.locator('[role="status"]');
+  await expect(loadingSpinner).toBeVisible();
+  await expect(loadingSpinner).toHaveAttribute('width', '24');
+  await expect(loadingSpinner).toHaveAttribute('height', '24');
+  await expect(loadingSpinner).toHaveAttribute('viewBox', '0 0 24 24');
+  await expect(loadingSpinner).toHaveAttribute('fill', 'none');
+  await expect(loadingSpinner).toHaveAttribute('stroke', 'currentColor');
+  await expect(loadingSpinner).toHaveAttribute('stroke-width', '2');
+  await expect(loadingSpinner).toHaveAttribute('stroke-linecap', 'round');
+  await expect(loadingSpinner).toHaveAttribute('stroke-linejoin', 'round');
+  await expect(loadingSpinner).toHaveAttribute('class', 'lucide lucide-loader-circle size-4 animate-spin text-neutral-fg');
+  
+  // Verify please wait button is visible
+  const buttonSpinnerWait = page.getByRole('button', { name: 'Please wait' }).first();
+  await expect(buttonSpinnerWait).toBeVisible();
+
+  // Verify that the please wait button has the correct classes
+  const waitClass = await buttonSpinnerWait.getAttribute('class');
+  expect(waitClass).toContain('text-md');
+  expect(waitClass).toContain('font-semibold');
+  expect(waitClass).toContain('[&_svg]:pointer-events-none');
+  expect(waitClass).toContain('focus-visible:border-primary');
+  expect(waitClass).toContain('h-8');
+  expect(waitClass).toContain('min-w-8');
+  expect(waitClass).toContain('px-3');
+  expect(waitClass).toContain('rounded-4xl');
+  expect(waitClass).toContain('border');
+  expect(waitClass).toContain('text-neutral-fg');
+
+  // Verify that the loading button spinner is visible and has the expected attributes
+  const waitSpinner = buttonSpinnerWait.locator('[role="status"]');
+  await expect(waitSpinner).toBeVisible();
+  await expect(waitSpinner).toHaveAttribute('width', '24');
+  await expect(waitSpinner).toHaveAttribute('height', '24');
+  await expect(waitSpinner).toHaveAttribute('viewBox', '0 0 24 24');
+  await expect(waitSpinner).toHaveAttribute('fill', 'none');
+  await expect(waitSpinner).toHaveAttribute('stroke', 'currentColor');
+  await expect(waitSpinner).toHaveAttribute('stroke-width', '2');
+  await expect(waitSpinner).toHaveAttribute('stroke-linecap', 'round');
+  await expect(waitSpinner).toHaveAttribute('stroke-linejoin', 'round');
+  await expect(waitSpinner).toHaveAttribute('class', 'lucide lucide-loader-circle size-4 animate-spin text-neutral-fg');
+
+  // Verify processing button is visible
+  const buttonSpinnerProcessing = page.getByRole('button', { name: 'Processing' }).first();
+  await expect(buttonSpinnerProcessing).toBeVisible();
+
+  // Verify that the processing button has the correct classes
+  const processingClass = await buttonSpinnerProcessing.getAttribute('class');
+  expect(processingClass).toContain('text-md');
+  expect(processingClass).toContain('font-semibold');
+  expect(processingClass).toContain('[&_svg]:pointer-events-none');
+  expect(processingClass).toContain('bg-transparent');
+  expect(processingClass).toContain('h-8');
+  expect(processingClass).toContain('min-w-8');
+  expect(processingClass).toContain('px-3');
+  expect(processingClass).toContain('rounded-4xl');
+  expect(processingClass).toContain('text-neutral-fg');
+
+  // Verify that the loading button spinner is visible and has the expected attributes
+  const processingSpinner = buttonSpinnerProcessing.locator('[role="status"]');
+  await expect(processingSpinner).toBeVisible();
+  await expect(processingSpinner).toHaveAttribute('width', '24');
+  await expect(processingSpinner).toHaveAttribute('height', '24');
+  await expect(processingSpinner).toHaveAttribute('viewBox', '0 0 24 24');
+  await expect(processingSpinner).toHaveAttribute('fill', 'none');
+  await expect(processingSpinner).toHaveAttribute('stroke', 'currentColor');
+  await expect(processingSpinner).toHaveAttribute('stroke-width', '2');
+  await expect(processingSpinner).toHaveAttribute('stroke-linecap', 'round');
+  await expect(processingSpinner).toHaveAttribute('stroke-linejoin', 'round');
+  await expect(processingSpinner).toHaveAttribute('class', 'lucide lucide-loader-circle size-4 animate-spin text-neutral-fg');
+}
