@@ -1,6 +1,13 @@
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 import { Icon } from "@/lib/icon";
-import { mdiFormatBold, mdiFormatItalic, mdiFormatUnderline } from "@mdi/js";
+import {
+  mdiFormatBold,
+  mdiFormatItalic,
+  mdiFormatUnderline,
+  mdiViewColumnOutline,
+  mdiViewListOutline,
+  mdiViewModuleOutline,
+} from "@mdi/js";
 
 export function ToggleGroupDemo() {
   return (
@@ -54,6 +61,163 @@ export function ToggleGroupDemo() {
             </ToggleGroupItem>
           </ToggleGroup>
         </div>
+
+        {/* Sizes Toggle Group */}
+        <div id="toggle-group-sizes">
+          <div className="flex flex-col gap-4">
+            {/* Icon-only toggle groups in descending order */}
+            <div className="flex flex-wrap items-center justify-center gap-3">
+              <ToggleGroup
+                type="multiple"
+                size="default"
+                variant="default"
+                className="p-0.5 gap-0.5 border border-border-color bg-transparent"
+              >
+                <ToggleGroupItem
+                  value="bold"
+                  aria-label="Toggle bold"
+                  className="w-10"
+                >
+                  <Icon path={mdiFormatBold} size={1.1} />
+                </ToggleGroupItem>
+                <ToggleGroupItem
+                  value="italic"
+                  aria-label="Toggle italic"
+                  className="w-10"
+                >
+                  <Icon path={mdiFormatItalic} size={1.1} />
+                </ToggleGroupItem>
+                <ToggleGroupItem
+                  value="underline"
+                  aria-label="Toggle underline"
+                  className="w-10"
+                >
+                  <Icon path={mdiFormatUnderline} size={1.1} />
+                </ToggleGroupItem>
+              </ToggleGroup>
+              <ToggleGroup
+                type="multiple"
+                size="sm"
+                variant="default"
+                className="p-0.5 gap-0.5 border border-border-color bg-transparent"
+              >
+                <ToggleGroupItem
+                  value="bold-sm"
+                  aria-label="Toggle bold"
+                  className="w-10"
+                >
+                  <Icon path={mdiFormatBold} size={1.1} />
+                </ToggleGroupItem>
+                <ToggleGroupItem
+                  value="italic-sm"
+                  aria-label="Toggle italic"
+                  className="w-10"
+                >
+                  <Icon path={mdiFormatItalic} size={1.1} />
+                </ToggleGroupItem>
+                <ToggleGroupItem
+                  value="underline-sm"
+                  aria-label="Toggle underline"
+                  className="w-10"
+                >
+                  <Icon path={mdiFormatUnderline} size={1.1} />
+                </ToggleGroupItem>
+              </ToggleGroup>
+              <ToggleGroup
+                type="multiple"
+                size="xs"
+                variant="default"
+                className="p-0.5 gap-0.5 border border-border-color bg-transparent"
+              >
+                <ToggleGroupItem
+                  value="bold-xs"
+                  aria-label="Toggle bold"
+                  className="w-10"
+                >
+                  <Icon path={mdiFormatBold} size={1.1} />
+                </ToggleGroupItem>
+                <ToggleGroupItem
+                  value="italic-xs"
+                  aria-label="Toggle italic"
+                  className="w-10"
+                >
+                  <Icon path={mdiFormatItalic} size={1.1} />
+                </ToggleGroupItem>
+                <ToggleGroupItem
+                  value="underline-xs"
+                  aria-label="Toggle underline"
+                  className="w-10"
+                >
+                  <Icon path={mdiFormatUnderline} size={1.1} />
+                </ToggleGroupItem>
+              </ToggleGroup>
+            </div>
+            {/* Text toggle groups in descending order */}
+            <div className="flex flex-wrap items-center justify-center gap-3">
+              <ToggleGroup
+                type="single"
+                size="default"
+                variant="default"
+                defaultValue="list"
+                className="p-0.5 gap-0.5 border border-border-color bg-transparent"
+              >
+                <ToggleGroupItem value="grid" aria-label="Grid view">
+                  <Icon path={mdiViewModuleOutline} size={1.1} />
+                  Grid view
+                </ToggleGroupItem>
+                <ToggleGroupItem value="list" aria-label="List view">
+                  <Icon path={mdiViewListOutline} size={1.1} />
+                  List view
+                </ToggleGroupItem>
+                <ToggleGroupItem value="board" aria-label="Board view">
+                  <Icon path={mdiViewColumnOutline} size={1.1} />
+                  Board view
+                </ToggleGroupItem>
+              </ToggleGroup>
+              <ToggleGroup
+                type="single"
+                size="sm"
+                variant="default"
+                defaultValue="list-sm"
+                className="p-0.5 gap-0.5 border border-border-color bg-transparent"
+              >
+                <ToggleGroupItem value="grid-sm" aria-label="Grid view">
+                  <Icon path={mdiViewModuleOutline} size={1.1} />
+                  Grid view
+                </ToggleGroupItem>
+                <ToggleGroupItem value="list-sm" aria-label="List view">
+                  <Icon path={mdiViewListOutline} size={1.1} />
+                  List view
+                </ToggleGroupItem>
+                <ToggleGroupItem value="board-sm" aria-label="Board view">
+                  <Icon path={mdiViewColumnOutline} size={1.1} />
+                  Board view
+                </ToggleGroupItem>
+              </ToggleGroup>
+              <ToggleGroup
+                type="single"
+                size="xs"
+                variant="default"
+                defaultValue="list-xs"
+                className="p-0.5 gap-0.5 border border-border-color bg-transparent"
+              >
+                <ToggleGroupItem value="grid-xs" aria-label="Grid view">
+                  <Icon path={mdiViewModuleOutline} size={1.1} />
+                  Grid view
+                </ToggleGroupItem>
+                <ToggleGroupItem value="list-xs" aria-label="List view">
+                  <Icon path={mdiViewListOutline} size={1.1} />
+                  List view
+                </ToggleGroupItem>
+                <ToggleGroupItem value="board-xs" aria-label="Board view">
+                  <Icon path={mdiViewColumnOutline} size={1.1} />
+                  Board view
+                </ToggleGroupItem>
+              </ToggleGroup>
+            </div>
+          </div>
+        </div>
+
       </div>
     </div>
   );
