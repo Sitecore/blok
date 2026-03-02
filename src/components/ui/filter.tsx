@@ -568,7 +568,7 @@ const FilterMultiSelect = React.forwardRef<
                           return (
                             <Badge
                               key={val}
-                              colorScheme="primary"
+                              colorScheme="neutral"
                               size="sm"
                               style={{ minHeight: "1.5rem" }}
                               className="overflow-visible!"
