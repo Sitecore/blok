@@ -281,7 +281,7 @@ const FilterSingleSelect = React.forwardRef<
               ref={ref}
               aria-describedby={describedBy}
               className={cn(
-                "bg-white *:data-[slot=select-value]:hidden border-border",
+                "bg-white *:data-[slot=select-value]:hidden border-border cursor-pointer",
                 hasValue && "pr-8 overflow-hidden",
                 open && "bg-primary-bg text-primary-fg border-primary",
                 hasValue && showClear && "[&_svg]:hidden",
