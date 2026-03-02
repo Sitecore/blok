@@ -234,8 +234,10 @@ const FilterSingleSelect = React.forwardRef<
     ref,
   ) => {
     const [internalValue, setInternalValue] = React.useState(defaultValue);
+    const [internalOpen, setInternalOpen] = React.useState(false);
     const isControlled = controlledValue !== undefined;
     const value = isControlled ? controlledValue : internalValue;
+    const open = internalOpen;
     const helperId = React.useId();
     const describedBy = helperText
       ? ariaDescribedBy
@@ -246,6 +248,10 @@ const FilterSingleSelect = React.forwardRef<
     const selectedLabel = value
       ? options.find((opt) => opt.value === value)?.label
       : "";
+
+    const handleOpenChange = (newOpen: boolean) => {
+      setInternalOpen(newOpen);
+    };
 
     const handleChange = (newValue: string) => {
       if (!isControlled) {
@@ -288,6 +294,7 @@ const FilterSingleSelect = React.forwardRef<
           <Select
             value={value}
             onValueChange={handleChange}
+            onOpenChange={handleOpenChange}
             disabled={disabled}
             name={name}
           >
@@ -297,8 +304,8 @@ const FilterSingleSelect = React.forwardRef<
               className={cn(
                 "bg-white *:data-[slot=select-value]:hidden border-border",
                 hasValue && "pr-8 overflow-hidden",
-                hasValue &&
-                  isPrimary &&
+                isPrimary &&
+                  open &&
                   "bg-primary-bg text-primary-fg border-primary",
                 hasValue && showClear && "[&_svg]:hidden",
               )}
@@ -308,9 +315,8 @@ const FilterSingleSelect = React.forwardRef<
                 <span
                   className={cn(
                     "font-semibold truncate",
-                    hasValue && isPrimary
-                      ? "text-primary-fg"
-                      : "text-neutral-fg",
+                    "text-neutral-fg",
+                    isPrimary && open && "text-primary-fg",
                   )}
                 >
                   {placeholder}
@@ -319,9 +325,8 @@ const FilterSingleSelect = React.forwardRef<
                   <>
                     <span
                       className={cn(
-                        hasValue && isPrimary
-                          ? "text-primary-fg"
-                          : "text-neutral-fg",
+                        "text-neutral-fg",
+                        isPrimary && open && "text-primary-fg",
                       )}
                     >
                       :
@@ -329,9 +334,8 @@ const FilterSingleSelect = React.forwardRef<
                     <span
                       className={cn(
                         "font-normal truncate min-w-0 ml-0.5",
-                        hasValue && isPrimary
-                          ? "text-primary-fg"
-                          : "text-neutral-fg",
+                        "text-neutral-fg",
+                        isPrimary && open && "text-primary-fg",
                       )}
                     >
                       {selectedLabel}
@@ -361,12 +365,9 @@ const FilterSingleSelect = React.forwardRef<
               onClick={handleClear}
               variant="ghost"
               size="icon-xs"
-              colorScheme={isPrimary ? "primary" : "neutral"}
+              colorScheme="neutral"
               aria-label="Clear selection"
-              className={cn(
-                "absolute right-2 top-1/2 -translate-y-1/2 pointer-events-auto hover:bg-neutral-bg-active",
-                isPrimary && "text-primary-fg",
-              )}
+              className="absolute right-2 top-1/2 -translate-y-1/2 pointer-events-auto hover:bg-neutral-bg-active"
             >
               <Icon path={mdiClose} size={0.75} />
             </Button>
@@ -507,8 +508,8 @@ const FilterMultiSelect = React.forwardRef<
                 className={cn(
                   "bg-white w-fit justify-between rounded-md px-3 py-2 h-10",
                   hasValues && "pr-8 overflow-hidden",
-                  hasValues &&
-                    isPrimary &&
+                  isPrimary &&
+                    open &&
                     "bg-primary-bg text-primary-fg border-primary hover:bg-primary-bg hover:text-primary-fg",
                 )}
               >
@@ -516,16 +517,15 @@ const FilterMultiSelect = React.forwardRef<
                   <span
                     className={cn(
                       "font-semibold truncate",
-                      hasValues && isPrimary
-                        ? "text-primary-fg"
-                        : "text-neutral-fg",
+                      "text-neutral-fg",
+                      isPrimary && open && "text-primary-fg",
                     )}
                   >
                     {placeholder}
                   </span>
                   {hasValues && showSelectedCount && displayMode === "text" && (
                     <Badge
-                      colorScheme={isPrimary ? "primary" : "neutral"}
+                      colorScheme={isPrimary && open ? "primary" : "neutral"}
                       size="sm"
                       className="ml-1.5"
                     >
@@ -538,9 +538,8 @@ const FilterMultiSelect = React.forwardRef<
                       <>
                         <span
                           className={cn(
-                            hasValues && isPrimary
-                              ? "text-primary-fg"
-                              : "text-neutral-fg",
+                            "text-neutral-fg",
+                            isPrimary && open && "text-primary-fg",
                           )}
                         >
                           :
@@ -548,9 +547,8 @@ const FilterMultiSelect = React.forwardRef<
                         <span
                           className={cn(
                             "font-normal truncate min-w-0 ml-0.5",
-                            hasValues && isPrimary
-                              ? "text-primary-fg"
-                              : "text-neutral-fg",
+                            "text-neutral-fg",
+                            isPrimary && open && "text-primary-fg",
                           )}
                         >
                           {getDisplayText(selectedLabels)}
@@ -660,12 +658,9 @@ const FilterMultiSelect = React.forwardRef<
               onClick={handleClear}
               variant="ghost"
               size="icon-xs"
-              colorScheme={isPrimary ? "primary" : "neutral"}
+              colorScheme="neutral"
               aria-label="Clear all selections"
-              className={cn(
-                "absolute right-2 top-1/2 -translate-y-1/2 pointer-events-auto hover:bg-neutral-bg-active",
-                isPrimary && "text-primary-fg",
-              )}
+              className="absolute right-2 top-1/2 -translate-y-1/2 pointer-events-auto hover:bg-neutral-bg-active"
             >
               <Icon path={mdiClose} size={0.75} />
             </Button>
