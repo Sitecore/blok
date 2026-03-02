@@ -483,8 +483,9 @@ const FilterMultiSelect = React.forwardRef<
                 className={cn(
                   "bg-white w-fit justify-between rounded-md px-3 py-2 h-10",
                   hasValues && "pr-8 overflow-hidden",
-                  open &&
-                    "bg-primary-bg text-primary-fg border-primary hover:bg-primary-bg hover:text-primary-fg",
+                  open && "bg-primary-bg text-primary-fg border-primary",
+                  !open && "hover:bg-white hover:text-neutral-fg",
+                  open && "hover:bg-primary-bg hover:text-primary-fg",
                 )}
               >
                 <span className="flex items-center gap-0.5 pointer-events-none min-w-0 overflow-hidden flex-wrap">
