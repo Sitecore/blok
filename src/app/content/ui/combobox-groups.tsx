@@ -56,11 +56,11 @@ export default function ComboboxWithGroupsAndSeparatorDemo() {
       <ComboboxContent>
         <ComboboxEmpty>No timezones found.</ComboboxEmpty>
         <ComboboxList>
-          {(group, index) => (
+          {(group: (typeof timezones)[number], index: number) => (
             <ComboboxGroup key={group.value} items={group.items}>
               <ComboboxLabel>{group.value}</ComboboxLabel>
               <ComboboxCollection>
-                {(item) => (
+                {(item: string) => (
                   <ComboboxItem key={item} value={item}>
                     {item}
                   </ComboboxItem>

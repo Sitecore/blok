@@ -104,10 +104,7 @@ function Sidebar({
     <div
       data-slot="sidebar"
       data-state={state}
-      className={cn(
-        "bg-sidebar text-sidebar-foreground flex h-full flex-col",
-        className,
-      )}
+      className={cn("text-sidebar-foreground flex h-full flex-col", className)}
       {...props}
     >
       {children}
@@ -229,13 +226,13 @@ function SidebarMenuItem({ className, ...props }: React.ComponentProps<"li">) {
 }
 
 const sidebarMenuButtonVariants = cva(
-  "peer/menu-button flex w-full items-center gap-2 overflow-hidden rounded-md text-md px-2.5 text-left text-neutral-fg outline-hidden ring-sidebar-ring transition-[width,height,padding] hover:bg-sidebar-accent focus-visible:ring-2 active:bg-sidebar-accent active:text-sidebar-accent-foreground disabled:pointer-events-none disabled:opacity-50 group-has-data-[sidebar=menu-action]/menu-item:pr-8 aria-disabled:pointer-events-none aria-disabled:opacity-50 data-[active=true]:bg-primary-bg data-[active=true]:font-medium data-[active=true]:text-primary-fg data-[state=open]:hover:bg-sidebar-accent data-[state=open]:hover:text-sidebar-accent-foreground [&>span:last-child]:truncate [&>svg]:size-[22px] [&>svg]:shrink-0 [&>svg]:text-neutral-fg data-[active=true]:[&>svg]:text-primary-fg",
+  "peer/menu-button flex w-full items-center gap-2 overflow-hidden rounded-md text-md px-2.5 text-left text-neutral-fg outline-hidden ring-sidebar-ring transition-[width,height,padding] hover:bg-neutral-bg focus-visible:ring-2 active:bg-sidebar-accent active:text-sidebar-accent-foreground disabled:pointer-events-none disabled:opacity-50 group-has-data-[sidebar=menu-action]/menu-item:pr-8 aria-disabled:pointer-events-none aria-disabled:opacity-50 data-[active=true]:bg-primary-bg data-[active=true]:font-medium data-[active=true]:text-primary-fg data-[state=open]:hover:bg-neutral-bg data-[state=open]:hover:text-sidebar-accent-foreground [&>span:last-child]:truncate [&>svg]:size-[22px] [&>svg]:shrink-0 [&>svg]:text-neutral-fg data-[active=true]:[&>svg]:text-primary-fg",
   {
     variants: {
       variant: {
         default: "",
         outline:
-          "bg-background shadow-[0_0_0_1px_hsl(var(--sidebar-border))] hover:bg-sidebar-accent hover:text-sidebar-accent-foreground hover:shadow-[0_0_0_1px_hsl(var(--sidebar-accent))]",
+          "bg-background shadow-[0_0_0_1px_hsl(var(--sidebar-border))] hover:bg-neutral-bg hover:text-sidebar-accent-foreground hover:shadow-[0_0_0_1px_hsl(var(--sidebar-accent))]",
       },
       size: {
         default: "h-10",

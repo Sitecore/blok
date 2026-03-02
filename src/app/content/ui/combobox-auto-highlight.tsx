@@ -24,7 +24,7 @@ export default function ComboboxAutoHighlightDemo() {
       <ComboboxContent>
         <ComboboxEmpty>No items found.</ComboboxEmpty>
         <ComboboxList>
-          {(item) => (
+          {(item: string) => (
             <ComboboxItem key={item} value={item}>
               {item}
             </ComboboxItem>

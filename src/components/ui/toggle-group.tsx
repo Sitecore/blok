@@ -11,7 +11,7 @@ const ToggleGroupContext = React.createContext<
   VariantProps<typeof toggleVariants>
 >({
   size: "default",
-  variant: "square",
+  variant: "default",
 });
 
 function ToggleGroup({
@@ -22,19 +22,23 @@ function ToggleGroup({
   ...props
 }: React.ComponentProps<typeof ToggleGroupPrimitive.Root> &
   VariantProps<typeof toggleVariants>) {
+  // Prevent outline variant from being used in toggle groups
+  // Use default variant if outline is specified
+  const resolvedVariant = variant === "outline" ? "default" : variant;
+
   return (
     <ToggleGroupPrimitive.Root
       data-slot="toggle-group"
-      data-variant={variant}
+      data-variant={resolvedVariant}
       data-size={size}
       className={cn(
         `group/toggle-group flex w-fit items-center`,
-        variant === "rounded" ? "rounded-full" : "rounded-md", // Apply variant-specific styles
+        resolvedVariant === "rounded" ? "rounded-full" : "rounded-md", // Apply variant-specific styles
         className,
       )}
       {...props}
     >
-      <ToggleGroupContext.Provider value={{ variant, size }}>
+      <ToggleGroupContext.Provider value={{ variant: resolvedVariant, size }}>
         {children}
       </ToggleGroupContext.Provider>
     </ToggleGroupPrimitive.Root>
@@ -51,14 +55,20 @@ function ToggleGroupItem({
   VariantProps<typeof toggleVariants>) {
   const context = React.useContext(ToggleGroupContext);
 
+  // Prevent outline variant from being used in toggle groups
+  // Use default variant if outline is specified
+  const resolvedVariant = context.variant || variant;
+  const finalVariant =
+    resolvedVariant === "outline" ? "default" : resolvedVariant;
+
   return (
     <ToggleGroupPrimitive.Item
       data-slot="toggle-group-item"
-      data-variant={context.variant || variant}
+      data-variant={finalVariant}
       data-size={context.size || size}
       className={cn(
         toggleVariants({
-          variant: context.variant || variant,
+          variant: finalVariant,
           size: context.size || size,
         }),
         "min-w-0 flex-1 shrink-0 shadow-none focus:z-10 focus-visible:z-10",

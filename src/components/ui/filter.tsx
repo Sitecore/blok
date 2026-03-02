@@ -10,6 +10,18 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
+import {
+  SearchInput,
+  SearchInputClearButton,
+  SearchInputField,
+  SearchInputLeftElement,
+  SearchInputRightElement,
+} from "@/components/ui/search-input";
+import {
   Select,
   SelectContent,
   SelectGroup,
@@ -22,6 +34,8 @@ import { Icon } from "@/lib/icon";
 import { cn } from "@/lib/utils";
 import { mdiChevronDown, mdiClose, mdiMagnify } from "@mdi/js";
 import * as React from "react";
+
+export type FilterColorScheme = "neutral" | "primary";
 
 export interface FilterOption {
   value: string;
@@ -173,11 +187,16 @@ const FilterInput = React.forwardRef<HTMLInputElement, FilterInputProps>(
             colorScheme="neutral"
             aria-label="Clear search"
             disabled={disabled}
-            className="absolute top-1/2 right-1 -translate-y-1/2 text-subtle-text hover:text-body-text hover:bg-neutral-bg-active focus:outline-none"
-          >
-            <Icon path={mdiClose} size={0.75} />
-          </Button>
-        )}
+          />
+          {showClear && value && !disabled && (
+            <SearchInputRightElement>
+              <SearchInputClearButton
+                onClear={handleClear}
+                tooltipLabel="Clear search"
+              />
+            </SearchInputRightElement>
+          )}
+        </SearchInput>
         {helperText && (
           <p id={helperId} className="mt-1 text-xs text-muted-foreground">
             {helperText}

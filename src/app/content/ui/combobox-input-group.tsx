@@ -61,11 +61,11 @@ export default function ComboxboxInputGroupDemo() {
       <ComboboxContent alignOffset={-28} className="w-60">
         <ComboboxEmpty>No timezones found.</ComboboxEmpty>
         <ComboboxList>
-          {(group) => (
+          {(group: (typeof timezones)[number]) => (
             <ComboboxGroup key={group.value} items={group.items}>
               <ComboboxLabel>{group.value}</ComboboxLabel>
               <ComboboxCollection>
-                {(item) => (
+                {(item: string) => (
                   <ComboboxItem key={item} value={item}>
                     {item}
                   </ComboboxItem>

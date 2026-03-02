@@ -34,7 +34,7 @@ export default function ComboboxMultipleDemo() {
     >
       <ComboboxChips ref={anchor} className="w-full max-w-xs">
         <ComboboxValue>
-          {(values) => (
+          {(values: readonly string[]) => (
             <React.Fragment>
               {values.map((value: string) => (
                 <ComboboxChip key={value}>{value}</ComboboxChip>
@@ -47,7 +47,7 @@ export default function ComboboxMultipleDemo() {
       <ComboboxContent anchor={anchor}>
         <ComboboxEmpty>No items found.</ComboboxEmpty>
         <ComboboxList>
-          {(item) => (
+          {(item: string) => (
             <ComboboxItem key={item} value={item}>
               {item}
             </ComboboxItem>
