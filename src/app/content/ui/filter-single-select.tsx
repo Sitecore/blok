@@ -11,23 +11,13 @@ const productOptions = [
 ];
 
 export default function FilterSingleSelectDemo() {
-  const [defaultValue, setDefaultValue] = useState<string>("");
-  const [primaryValue, setPrimaryValue] = useState<string>("");
+  const [value, setValue] = useState<string>("");
 
   return (
     <div className="flex flex-col gap-4">
-      {/* Single Select */}
       <FilterSingleSelect
-        value={defaultValue}
-        onChange={setDefaultValue}
-        options={productOptions}
-        placeholder="Select a product"
-        groupLabel="Products"
-      />
-      {/* Single Select */}
-      <FilterSingleSelect
-        value={primaryValue}
-        onChange={setPrimaryValue}
+        value={value}
+        onChange={setValue}
         options={productOptions}
         placeholder="Select a product"
         groupLabel="Products"
