@@ -1,5 +1,6 @@
 import type { ComponentType } from "react";
 
+import TopbarDemo from "@/app/content/bloks/topbar";
 // PRIMITIVES
 import AccordionDemo from "@/app/content/ui/accordion";
 import AlertDemo from "@/app/content/ui/alert";
@@ -154,7 +155,6 @@ import SquareToggleGroupDemo from "@/app/content/ui/toggle-group-square";
 import RoundedToggleDemo from "@/app/content/ui/toggle-rounded";
 import SquareToggleDemo from "@/app/content/ui/toggle-square";
 import TooltipDemo from "@/app/content/ui/tooltip";
-import TopbarDemo from "@/app/content/bloks/topbar";
 
 import AllSitesSectionDemo from "@/app/content/bloks/all-site-section";
 import CollaborationDemo from "@/app/content/bloks/collaboration";
@@ -192,7 +192,6 @@ import FilterDemo from "@/app/content/ui/filter";
 import FilterInputDemo from "@/app/content/ui/filter-input";
 import FilterMultiSelectDemo from "@/app/content/ui/filter-multi-select";
 import FilterSingleSelectDemo from "@/app/content/ui/filter-single-select";
-import FilterToggleDemo from "@/app/content/ui/filter-toggle";
 import InputGroupDemo from "@/app/content/ui/input-group";
 import InputGroupDropdownDemo from "@/app/content/ui/input-group-dropdown";
 import InputGroupURLDemo from "@/app/content/ui/input-group-url";
@@ -754,7 +753,7 @@ export const docsiteRegistry: Record<string, DocsiteRegistryEntry> = {
     path: "src/app/content/ui/field-input-types.tsx",
     component: FieldInputTypesDemo,
   },
-  "filter": {
+  filter: {
     name: "filter",
     path: "src/app/content/ui/filter.tsx",
     component: FilterDemo,
@@ -773,11 +772,6 @@ export const docsiteRegistry: Record<string, DocsiteRegistryEntry> = {
     name: "filter-multi-select",
     path: "src/app/content/ui/filter-multi-select.tsx",
     component: FilterMultiSelectDemo,
-  },
-  "filter-toggle": {
-    name: "filter-toggle",
-    path: "src/app/content/ui/filter-toggle.tsx",
-    component: FilterToggleDemo,
   },
   icon: {
     name: "icon",

@@ -493,7 +493,6 @@ export const rightSidebarMetadata: Record<string, RightSidebarMetadata> = {
           { id: "filter-input", title: "Filter Input" },
           { id: "filter-single-select", title: "Filter Single Select" },
           { id: "filter-multi-select", title: "Filter Multi Select" },
-          { id: "filter-toggle", title: "Filter Toggle" },
         ],
       },
     ],

@@ -23,8 +23,6 @@ import { cn } from "@/lib/utils";
 import { mdiChevronDown, mdiClose, mdiMagnify } from "@mdi/js";
 import * as React from "react";
 
-export type FilterColorScheme = "neutral" | "primary";
-
 export interface FilterOption {
   value: string;
   label: string;
@@ -55,7 +53,6 @@ export interface FilterSingleSelectProps {
   options: FilterOption[];
   placeholder?: string;
   groupLabel?: string;
-  colorScheme?: FilterColorScheme;
   showClear?: boolean;
   className?: string;
   disabled?: boolean;
@@ -72,7 +69,6 @@ export interface FilterMultiSelectProps {
   options: FilterOption[];
   placeholder?: string;
   groupLabel?: string;
-  colorScheme?: FilterColorScheme;
   displayMode?: "text" | "badge";
   maxDisplayItems?: number;
   showClear?: boolean;
@@ -87,25 +83,10 @@ export interface FilterMultiSelectProps {
   onOpenChange?: (open: boolean) => void;
 }
 
-export interface FilterToggleProps {
-  active?: boolean;
-  defaultActive?: boolean;
-  onChange?: (active: boolean) => void;
-  label: string;
-  colorScheme?: FilterColorScheme;
-  showClose?: boolean;
-  className?: string;
-  disabled?: boolean;
-  name?: string;
-  helperText?: string;
-  "aria-describedby"?: string;
-}
-
 export type FilterDefinition =
   | { type: "input"; key: string; props: FilterInputProps }
   | { type: "single-select"; key: string; props: FilterSingleSelectProps }
-  | { type: "multi-select"; key: string; props: FilterMultiSelectProps }
-  | { type: "toggle"; key: string; props: FilterToggleProps };
+  | { type: "multi-select"; key: string; props: FilterMultiSelectProps };
 
 export interface FilterBarProps {
   filters: FilterDefinition[];
@@ -222,7 +203,6 @@ const FilterSingleSelect = React.forwardRef<
       options,
       placeholder = "Select an option",
       groupLabel,
-      colorScheme = "neutral",
       showClear = true,
       className,
       disabled = false,
@@ -268,7 +248,6 @@ const FilterSingleSelect = React.forwardRef<
       onChange?.("");
     };
 
-    const isPrimary = colorScheme === "primary";
     const hasValue = Boolean(value);
 
     const renderOptionContent = (option: FilterOption) => {
@@ -304,9 +283,7 @@ const FilterSingleSelect = React.forwardRef<
               className={cn(
                 "bg-white *:data-[slot=select-value]:hidden border-border",
                 hasValue && "pr-8 overflow-hidden",
-                isPrimary &&
-                  open &&
-                  "bg-primary-bg text-primary-fg border-primary",
+                open && "bg-primary-bg text-primary-fg border-primary",
                 hasValue && showClear && "[&_svg]:hidden",
               )}
             >
@@ -316,7 +293,7 @@ const FilterSingleSelect = React.forwardRef<
                   className={cn(
                     "font-semibold truncate",
                     "text-neutral-fg",
-                    isPrimary && open && "text-primary-fg",
+                    open && "text-primary-fg",
                   )}
                 >
                   {placeholder}
@@ -326,7 +303,7 @@ const FilterSingleSelect = React.forwardRef<
                     <span
                       className={cn(
                         "text-neutral-fg",
-                        isPrimary && open && "text-primary-fg",
+                        open && "text-primary-fg",
                       )}
                     >
                       :
@@ -335,7 +312,7 @@ const FilterSingleSelect = React.forwardRef<
                       className={cn(
                         "font-normal truncate min-w-0 ml-0.5",
                         "text-neutral-fg",
-                        isPrimary && open && "text-primary-fg",
+                        open && "text-primary-fg",
                       )}
                     >
                       {selectedLabel}
@@ -398,7 +375,6 @@ const FilterMultiSelect = React.forwardRef<
       options,
       placeholder = "Select options",
       groupLabel,
-      colorScheme = "neutral",
       displayMode = "text",
       maxDisplayItems = 3,
       showClear = true,
@@ -491,7 +467,6 @@ const FilterMultiSelect = React.forwardRef<
       return option.label;
     };
 
-    const isPrimary = colorScheme === "primary";
     const hasValues = values.length > 0;
 
     return (
@@ -508,8 +483,7 @@ const FilterMultiSelect = React.forwardRef<
                 className={cn(
                   "bg-white w-fit justify-between rounded-md px-3 py-2 h-10",
                   hasValues && "pr-8 overflow-hidden",
-                  isPrimary &&
-                    open &&
+                  open &&
                     "bg-primary-bg text-primary-fg border-primary hover:bg-primary-bg hover:text-primary-fg",
                 )}
               >
@@ -518,14 +492,14 @@ const FilterMultiSelect = React.forwardRef<
                     className={cn(
                       "font-semibold truncate",
                       "text-neutral-fg",
-                      isPrimary && open && "text-primary-fg",
+                      open && "text-primary-fg",
                     )}
                   >
                     {placeholder}
                   </span>
                   {hasValues && showSelectedCount && displayMode === "text" && (
                     <Badge
-                      colorScheme={isPrimary && open ? "primary" : "neutral"}
+                      colorScheme={open ? "primary" : "neutral"}
                       size="sm"
                       className="ml-1.5"
                     >
@@ -539,7 +513,7 @@ const FilterMultiSelect = React.forwardRef<
                         <span
                           className={cn(
                             "text-neutral-fg",
-                            isPrimary && open && "text-primary-fg",
+                            open && "text-primary-fg",
                           )}
                         >
                           :
@@ -548,7 +522,7 @@ const FilterMultiSelect = React.forwardRef<
                           className={cn(
                             "font-normal truncate min-w-0 ml-0.5",
                             "text-neutral-fg",
-                            isPrimary && open && "text-primary-fg",
+                            open && "text-primary-fg",
                           )}
                         >
                           {getDisplayText(selectedLabels)}
@@ -567,7 +541,7 @@ const FilterMultiSelect = React.forwardRef<
                           return (
                             <Badge
                               key={val}
-                              colorScheme="primary"
+                              colorScheme="neutral"
                               size="sm"
                               style={{ minHeight: "1.5rem" }}
                               className="overflow-visible!"
@@ -677,108 +651,6 @@ const FilterMultiSelect = React.forwardRef<
 );
 FilterMultiSelect.displayName = "FilterMultiSelect";
 
-// FILTER TOGGLE COMPONENT
-
-const FilterToggle = React.forwardRef<HTMLButtonElement, FilterToggleProps>(
-  (
-    {
-      active: controlledActive,
-      defaultActive = false,
-      onChange,
-      label,
-      colorScheme = "neutral",
-      showClose = false,
-      className,
-      disabled = false,
-      name,
-      helperText,
-      "aria-describedby": ariaDescribedBy,
-    },
-    ref,
-  ) => {
-    const [internalActive, setInternalActive] = React.useState(defaultActive);
-    const isControlled = controlledActive !== undefined;
-    const active = isControlled ? controlledActive : internalActive;
-    const helperId = React.useId();
-    const describedBy = helperText
-      ? ariaDescribedBy
-        ? `${helperId} ${ariaDescribedBy}`
-        : helperId
-      : ariaDescribedBy;
-
-    const handleToggle = () => {
-      const newActive = !active;
-      if (!isControlled) {
-        setInternalActive(newActive);
-      }
-      onChange?.(newActive);
-    };
-
-    const handleClose = (e: React.MouseEvent) => {
-      e.stopPropagation();
-      if (!isControlled) {
-        setInternalActive(false);
-      }
-      onChange?.(false);
-    };
-
-    const isPrimary = colorScheme === "primary";
-
-    return (
-      <div className="inline-flex flex-col">
-        {name && (
-          <input type="hidden" name={name} value={active ? "true" : "false"} />
-        )}
-        <Button
-          ref={ref}
-          onClick={handleToggle}
-          variant="outline"
-          disabled={disabled}
-          aria-pressed={active}
-          aria-describedby={describedBy}
-          className={cn(
-            "bg-white w-fit rounded-md px-3 py-2 h-9",
-            active && !isPrimary && "bg-neutral-bg",
-            active &&
-              isPrimary &&
-              "bg-primary-bg text-primary-fg border-primary hover:bg-primary-bg hover:text-primary-fg",
-            className,
-          )}
-        >
-          <span className="font-medium">{label}</span>
-          {showClose && active && (
-            <span
-              role="button"
-              tabIndex={0}
-              className="cursor-pointer rounded-full p-0.5 hover:bg-neutral-bg-active flex items-center justify-center focus:outline-none focus:ring-1 focus:ring-ring"
-              onClick={handleClose}
-              onKeyDown={(e) => {
-                if (e.key === "Enter" || e.key === " ") {
-                  e.preventDefault();
-                  handleClose(e as unknown as React.MouseEvent);
-                }
-              }}
-              aria-label={`Remove ${label} filter`}
-            >
-              <Icon
-                path={mdiClose}
-                size={0.75}
-                className="pointer-events-none"
-              />
-            </span>
-          )}
-        </Button>
-        {helperText && (
-          <p id={helperId} className="mt-1 text-xs text-muted-foreground">
-            {helperText}
-          </p>
-        )}
-      </div>
-    );
-  },
-);
-FilterToggle.displayName = "FilterToggle";
-
 // FILTER BAR COMPONENT (Composable Layout)
 
 function FilterBar({
@@ -824,15 +696,6 @@ function FilterBar({
             onChange={(value) => onChange?.(filter.key, value)}
           />
         );
-      case "toggle":
-        return (
-          <FilterToggle
-            key={filterKey}
-            {...filter.props}
-            active={filterValue as boolean | undefined}
-            onChange={(value) => onChange?.(filter.key, value)}
-          />
-        );
       default:
         return null;
     }
@@ -865,10 +728,4 @@ function FilterBar({
   );
 }
 
-export {
-  FilterInput,
-  FilterSingleSelect,
-  FilterMultiSelect,
-  FilterToggle,
-  FilterBar,
-};
+export { FilterInput, FilterSingleSelect, FilterMultiSelect, FilterBar };
