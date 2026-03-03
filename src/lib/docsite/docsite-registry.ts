@@ -196,7 +196,6 @@ import FilterDemo from "@/app/content/ui/filter";
 import FilterInputDemo from "@/app/content/ui/filter-input";
 import FilterMultiSelectDemo from "@/app/content/ui/filter-multi-select";
 import FilterSingleSelectDemo from "@/app/content/ui/filter-single-select";
-import FilterToggleDemo from "@/app/content/ui/filter-toggle";
 import InputGroupDemo from "@/app/content/ui/input-group";
 import InputGroupDropdownDemo from "@/app/content/ui/input-group-dropdown";
 import InputGroupURLDemo from "@/app/content/ui/input-group-url";
@@ -770,11 +769,6 @@ export const docsiteRegistry: Record<string, DocsiteRegistryEntry> = {
     name: "filter-multi-select",
     path: "src/app/content/ui/filter-multi-select.tsx",
     component: FilterMultiSelectDemo,
-  },
-  "filter-toggle": {
-    name: "filter-toggle",
-    path: "src/app/content/ui/filter-toggle.tsx",
-    component: FilterToggleDemo,
   },
   icon: {
     name: "icon",
