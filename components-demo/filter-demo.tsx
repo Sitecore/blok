@@ -1,7 +1,7 @@
 "use client";
 
+import { FilterBar, type FilterDefinition, FilterInput, FilterSingleSelect, FilterMultiSelect } from "@/components/ui/filter";
 import { useState } from "react";
-import { FilterBar, type FilterDefinition, FilterInput, FilterSingleSelect, FilterMultiSelect, FilterToggle } from "@/components/ui/filter";
 
 const productOptions = [
   { value: "XMCloud", label: "XM Cloud" },
@@ -29,53 +29,48 @@ const extendedProductOptions = [
   { value: "Headless", label: "Headless CMS" },
 ];
 
+const productOptionsSingleSelect = [
+  { value: "XMCloud", label: "XM Cloud" },
+  { value: "contentHub", label: "Content Hub" },
+  { value: "CDP", label: "CDP" },
+  { value: "Blok", label: "Blok", disabled: true },
+];
+
 export function FilterDemo() {
 
   const [filterValues, setFilterValues] = useState<Record<string, unknown>>({
     search: "",
     product: "",
     products: [],
-    assignedToMe: false,
   });
 
   const filters: FilterDefinition[] = [
     {
-        type: "input",
-        key: "search",
-        props: {
-            placeholder: "Search...",
-            ariaLabel: "Search",
-            width: "w-64",
-        },
+      type: "input",
+      key: "search",
+      props: {
+        placeholder: "Search...",
+        ariaLabel: "Search",
+        width: "w-64",
+      },
     },
     {
-        type: "single-select",
-        key: "product",
-        props: {
-            options: productOptions,
-            placeholder: "Select a product",
-            groupLabel: "Products",
-            colorScheme: "primary",
-        },
+      type: "single-select",
+      key: "product",
+      props: {
+        options: productOptions,
+        placeholder: "Select a product",
+        groupLabel: "Products",
+      },
     },
     {
-        type: "multi-select",
-        key: "products",
-        props: {
-            options: extendedProductOptions,
-            placeholder: "Select products",
-            groupLabel: "Products",
-            colorScheme: "primary",
-        },
-    },
-    {
-        type: "toggle",
-        key: "assignedToMe",
-        props: {
-            label: "Assigned to me",
-            colorScheme: "primary",
-            showClose: true,
-        },
+      type: "multi-select",
+      key: "products",
+      props: {
+        options: extendedProductOptions,
+        placeholder: "Select products",
+        groupLabel: "Products",
+      },
     },
   ];
 
@@ -85,24 +80,18 @@ export function FilterDemo() {
 
   const handleClearAll = () => {
     setFilterValues({
-        search: "",
-        product: "",
-        products: [],
-        assignedToMe: false,
+      search: "",
+      product: "",
+      products: [],
     });
   };
 
   const [value, setValue] = useState("");
+  
+  const [valueSingleSelect, setValueSingleSelect] = useState<string>("");
 
-  const [defaultValue, setDefaultValue] = useState<string>("");
-  const [primaryValue, setPrimaryValue] = useState<string>("");
-
-  const [defaultValues, setDefaultValues] = useState<string[]>([]);
   const [primaryValues, setPrimaryValues] = useState<string[]>([]);
   const [badgeValues, setBadgeValues] = useState<string[]>([]);
-
-  const [defaultActive, setDefaultActive] = useState(false);
-  const [primaryActive, setPrimaryActive] = useState(false);
   
   return (
 
@@ -111,17 +100,17 @@ export function FilterDemo() {
 
       <div id='filter-default'>
         <FilterBar
-            filters={filters}
-            values={filterValues}
-            onChange={handleChange}
-            onClearAll={handleClearAll}
-            showClearAll
-            clearAllText="Clear all"
+          filters={filters}
+          values={filterValues}
+          onChange={handleChange}
+          onClearAll={handleClearAll}
+          showClearAll
+          clearAllText="Clear all"
         />
       </div>
 
       <div id='filter-input'>
-        <FilterInput
+      <FilterInput
             value={value}
             onChange={setValue}
             placeholder="Search..."
@@ -130,78 +119,36 @@ export function FilterDemo() {
       </div>
 
       <div id='filter-single-select'>
-        <div className="flex gap-4">
-            {/* Default Single Select */}
-            <FilterSingleSelect
-                value={defaultValue}
-                onChange={setDefaultValue}
-                options={productOptions}
-                placeholder="Select a product"
-                groupLabel="Products"
-                colorScheme="neutral"
-            />
-            {/* Primary Single Select */}
-            <FilterSingleSelect
-                value={primaryValue}
-                onChange={setPrimaryValue}
-                options={productOptions}
-                placeholder="Select a product"
-                groupLabel="Products"
-                colorScheme="primary"
-            />
+        <div className="flex flex-col gap-4">
+          <FilterSingleSelect
+            value={valueSingleSelect} // Single select value
+            onChange={setValueSingleSelect} // Single select onChange
+            options={productOptionsSingleSelect} // Single select options
+            placeholder="Select a product"
+            groupLabel="Products"
+          />
         </div>
       </div>
 
       <div id='filter-multi-select'>
-        <div className="flex gap-4">
-            {/* Default Multi Select */}
-            <FilterMultiSelect
-                value={defaultValues}
-                onChange={setDefaultValues}
-                options={extendedProductOptions}
-                placeholder="Select products"
-                groupLabel="Products"
-                colorScheme="neutral"
-            />
-            {/* Primary Multi Select */}
-            <FilterMultiSelect
-                value={primaryValues}
-                onChange={setPrimaryValues}
-                options={extendedProductOptions}
-                placeholder="Select products"
-                groupLabel="Products"
-                colorScheme="primary"
-            />
-            {/* Badge Multi Select */}
-            <FilterMultiSelect
-                value={badgeValues}
-                onChange={setBadgeValues}
-                options={extendedProductOptions}
-                placeholder="Select products"
-                groupLabel="Products"
-                displayMode="badge"
-                colorScheme="neutral"
-            />
-        </div>
-      </div>
-
-      <div id='filter-toggle'>
-        <div className="flex gap-4">
-            {/* Default Toggle */}
-            <FilterToggle
-                active={defaultActive}
-                onChange={setDefaultActive}
-                label="Assigned to me"
-                colorScheme="neutral"
-            />
-            {/* Primary Toggle with Close */}
-            <FilterToggle
-                active={primaryActive}
-                onChange={setPrimaryActive}
-                label="Assigned to me"
-                colorScheme="primary"
-                showClose
-            />
+        <div className="flex flex-col gap-4">
+          {/* Primary Multi Select */}
+          <FilterMultiSelect
+            value={primaryValues}
+            onChange={setPrimaryValues}
+            options={extendedProductOptions}
+            placeholder="Select products"
+            groupLabel="Products"
+          />
+          {/* Badge Multi Select */}
+          <FilterMultiSelect
+            value={badgeValues}
+            onChange={setBadgeValues}
+            options={extendedProductOptions}
+            placeholder="Select products"
+            groupLabel="Products"
+            displayMode="badge"
+          />
         </div>
       </div>
 
