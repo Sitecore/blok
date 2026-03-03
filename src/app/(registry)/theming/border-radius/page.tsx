@@ -55,7 +55,7 @@ export default function BorderRadiusPage() {
                     />
                   </TableCell>
                   <TableCell className="px-4 py-3">
-                    <CopyableToken token={key} />
+                    <CopyableToken token={key} page="theming/border-radius" />
                   </TableCell>
                   <TableCell className="px-4 py-3">
                     <code className="font-mono text-sm">{value}</code>

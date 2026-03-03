@@ -109,7 +109,7 @@ export default function SizesPage() {
             {SIZES_DATA.map((item) => (
               <TableRow key={item.token}>
                 <TableCell className="px-4 py-3">
-                  <CopyableToken token={item.token} />
+                  <CopyableToken token={item.token} page="theming/sizes" />
                 </TableCell>
                 <TableCell className="px-4 py-3">
                   <code className="font-mono text-sm">{item.value}</code>

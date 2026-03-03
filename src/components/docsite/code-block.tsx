@@ -1,21 +1,29 @@
 "use client";
 
-import { Check } from "lucide-react";
-import { useEffect, useState } from "react";
-
 import { Button } from "@/components/ui/button";
+import { TELEMETRY_EVENTS, track } from "@/lib/telemetry";
 import { mdiClipboardOutline } from "@mdi/js";
 import Icon from "@mdi/react";
 import { cva } from "class-variance-authority";
+import { Check } from "lucide-react";
+import { useEffect, useState } from "react";
 
 export async function copyToClipboard(value: string) {
   await navigator.clipboard.writeText(value);
+}
+
+/** Optional context for copy_code telemetry on non-demo pages (e.g. home, rtl, mcp). */
+export interface CopyCodeContextProps {
+  location?: string;
+  page_path?: string;
 }
 
 export interface CodeblocksProps {
   variant?: "outline" | "filled";
   code: string;
   showLineNumbers?: boolean;
+  /** When set, copy triggers copy_code event. */
+  copyCodeContext?: CopyCodeContextProps;
 }
 
 const codeBlockVariants = cva("mt-16 sm:mt-0 flex rounded-lg", {
@@ -34,6 +42,7 @@ export function Codeblocks({
   variant,
   code,
   showLineNumbers = true,
+  copyCodeContext,
 }: CodeblocksProps) {
   const [hasCopied, setHasCopied] = useState(false);
 
@@ -47,16 +56,21 @@ export function Codeblocks({
     }
   }, [hasCopied]);
 
+  const handleCopy = () => {
+    copyToClipboard(code);
+    setHasCopied(true);
+    if (copyCodeContext?.location ?? copyCodeContext?.page_path) {
+      track(TELEMETRY_EVENTS.copy_code, { ...copyCodeContext });
+    }
+  };
+
   return (
     <div className="relative" dir="ltr">
       <div className="absolute top-1 right-3 flex gap-2" dir="ltr">
         <Button
           size="icon-sm"
           variant="ghost"
-          onClick={() => {
-            copyToClipboard(code);
-            setHasCopied(true);
-          }}
+          onClick={handleCopy}
           aria-label={
             hasCopied ? "Code copied to clipboard" : "Copy code to clipboard"
           }

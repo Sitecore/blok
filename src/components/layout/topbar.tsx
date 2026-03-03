@@ -25,6 +25,7 @@ import { appConfig } from "@/config/config";
 import { externalLinks } from "@/config/links";
 import { navItems, searchableItems } from "@/config/nav";
 import { getRegistryItem } from "@/lib/registry";
+import { TELEMETRY_EVENTS, track } from "@/lib/telemetry";
 import registry from "@/registry";
 import {
   mdiCircleHalfFull,
@@ -96,6 +97,8 @@ export default function TopBar() {
       document.documentElement.classList.remove("dark");
       localStorage.setItem("theme", "light");
     }
+
+    track(TELEMETRY_EVENTS.topbar_theme_toggle, { theme: themeStr });
 
     // change theme inside iframe
     const iframe = document.getElementById(
@@ -254,8 +257,15 @@ export default function TopBar() {
         e.preventDefault();
         if (selectedIndex >= 0 && selectedIndex < searchResults.length) {
           const result = searchResults[selectedIndex];
+          handleSearchResultClick(result, selectedIndex);
           window.location.href = result.href;
-          handleSearchResultClick();
+        } else if (searchQuery.trim() && searchResults.length === 0) {
+          // User searched but no results – track the query
+          track(TELEMETRY_EVENTS.topbar_search_query, {
+            query: searchQuery.trim(),
+            query_length: searchQuery.length,
+            results_count: 0,
+          });
         }
         break;
       case "Escape":
@@ -267,7 +277,20 @@ export default function TopBar() {
     }
   };
 
-  const handleSearchResultClick = () => {
+  const handleSearchResultClick = (result?: SearchResult, index?: number) => {
+    if (result != null && index != null) {
+      track(TELEMETRY_EVENTS.topbar_search_query, {
+        query: searchQuery.trim(),
+        query_length: searchQuery.length,
+        results_count: searchResults.length,
+      });
+      track(TELEMETRY_EVENTS.topbar_search_result_click, {
+        result_type: result.type,
+        result_name: result.name,
+        result_href: result.href,
+        index,
+      });
+    }
     setShowSearchResults(false);
     setSearchQuery("");
     setSelectedIndex(-1);
@@ -379,7 +402,14 @@ export default function TopBar() {
                   <NavigationMenuItem key={item.name}>
                     <Link
                       href={item.href}
-                      onClick={() => setClickedHref(item.href)}
+                      onClick={() => {
+                        setClickedHref(item.href);
+                        track(TELEMETRY_EVENTS.topbar_nav_click, {
+                          link: item.href,
+                          label: item.name,
+                          is_mobile: false,
+                        });
+                      }}
                       className={`${navigationMenuTriggerStyle()} ${
                         isActive ? "active" : ""
                       }`}
@@ -446,7 +476,14 @@ export default function TopBar() {
                     <DropdownMenuItem asChild key={item.name}>
                       <Link
                         href={item.href}
-                        onClick={() => setClickedHref(item.href)}
+                        onClick={() => {
+                          setClickedHref(item.href);
+                          track(TELEMETRY_EVENTS.topbar_nav_click, {
+                            link: item.href,
+                            label: item.name,
+                            is_mobile: true,
+                          });
+                        }}
                         className={`${
                           isActive
                             ? "bg-primary-background text-primary-fg hover:bg-primary-background hover:text-primary-fg"
@@ -504,7 +541,7 @@ export default function TopBar() {
                       <Link
                         key={`${result.type}-${result.name}`}
                         href={result.href}
-                        onClick={handleSearchResultClick}
+                        onClick={() => handleSearchResultClick(result, index)}
                         className={`flex items-start gap-3 p-3 rounded-md transition-colors ${
                           index === selectedIndex
                             ? "bg-primary-background border border-primary"
@@ -600,6 +637,12 @@ export default function TopBar() {
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-1"
+              onClick={() =>
+                track(TELEMETRY_EVENTS.topbar_link_click, {
+                  type: "chakra_version",
+                  href: externalLinks?.Block_site_old || "",
+                })
+              }
             >
               <Icon path={mdiOpenInNew} size={0.9} />
               {appConfig?.blockVersion}
@@ -617,6 +660,12 @@ export default function TopBar() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="View GitHub repository"
+              onClick={() =>
+                track(TELEMETRY_EVENTS.topbar_link_click, {
+                  type: "github",
+                  href: externalLinks?.Block_github || "",
+                })
+              }
             >
               <Icon path={mdiGithub} size={1} />
             </a>

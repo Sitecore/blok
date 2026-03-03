@@ -2,17 +2,33 @@
 
 import { Button } from "@/components/ui/button";
 import { Icon } from "@/lib/icon";
+import { TELEMETRY_EVENTS, track } from "@/lib/telemetry";
 import { cn } from "@/lib/utils";
 import { mdiClipboardOutline } from "@mdi/js";
 import { Check } from "lucide-react";
+import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import * as shiki from "shiki";
+
+/** Optional context for copy_code telemetry (e.g. section, page_name, example_id). */
+export interface CopyCodeContext {
+  section?: string;
+  page_name?: string;
+  package_manager?: string;
+  example_id?: string;
+  example_title?: string;
+  position?: string;
+  location?: string;
+  page_path?: string;
+}
 
 interface CodeBlockProps {
   code: string;
   lang?: string;
   showLineNumbers?: boolean;
   className?: string;
+  /** When set, copy triggers copy_code event with this context (and component_name/block_name from pathname). */
+  copyCodeContext?: CopyCodeContext;
 }
 
 export function CodeBlock({
@@ -20,7 +36,9 @@ export function CodeBlock({
   lang = "tsx",
   showLineNumbers = true,
   className,
+  copyCodeContext,
 }: CodeBlockProps) {
+  const pathname = usePathname();
   const [copied, setCopied] = useState(false);
   const [html, setHtml] = useState<string>("");
   const [isDark, setIsDark] = useState(false);
@@ -73,6 +91,19 @@ export function CodeBlock({
     await navigator.clipboard.writeText(code);
     setCopied(true);
     setTimeout(() => setCopied(false), 1500);
+    if (copyCodeContext) {
+      const payload: Record<string, unknown> = {
+        ...copyCodeContext,
+      };
+      if (copyCodeContext.page_name && pathname) {
+        if (pathname.startsWith("/primitives/")) {
+          payload.component_name = copyCodeContext.page_name;
+        } else if (pathname.startsWith("/bloks/")) {
+          payload.block_name = copyCodeContext.page_name;
+        }
+      }
+      track(TELEMETRY_EVENTS.copy_code, payload);
+    }
   }
 
   return (

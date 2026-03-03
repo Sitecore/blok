@@ -131,7 +131,7 @@ export function BreakpointsClient({ content }: Props) {
               return (
                 <TableRow key={key}>
                   <TableCell className="px-4 py-3">
-                    <CopyableToken token={key} />
+                    <CopyableToken token={key} page="theming/breakpoints" />
                   </TableCell>
                   <TableCell className="px-4 py-3">
                     <span className="text-sm">{deviceMap[key] || "N/A"}</span>
