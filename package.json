@@ -116,11 +116,13 @@
   },
   "overrides": {
     "react-is": "^19.0.0-rc-69d4b800-20241021",
-    "lodash": ">=4.17.23"
+    "lodash": ">=4.17.23",
+    "rollup": ">=4.59.0"
   },
   "pnpm": {
     "overrides": {
-      "lodash": ">=4.17.23"
+      "lodash": ">=4.17.23",
+      "rollup": ">=4.59.0"
     }
   }
 }
