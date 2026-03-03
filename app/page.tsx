@@ -44,6 +44,7 @@ import { ProgressDemo } from "@/components-demo/progress-demo";
 import { RadioGroupDemo } from "@/components-demo/radio_group-demo";
 import { ResizableDemo } from "@/components-demo/resizable-demo";
 import { ScrollAreaDemo } from "@/components-demo/scroll_area-demo";
+import { SearchInputDemo } from "@/components-demo/search_input-demo";
 import { SelectDemo } from "@/components-demo/select-demo";
 import { SelectReactDemo } from "@/components-demo/select_react_select-demo";
 import { SeparatorDemo } from "@/components-demo/separator-demo";
@@ -250,6 +251,10 @@ export default function SinkPage() {
     <br />
       <div>
         <ScrollAreaDemo />
+      </div>
+    <br />
+      <div>
+        <SearchInputDemo />
       </div>
     <br />
       <div>
