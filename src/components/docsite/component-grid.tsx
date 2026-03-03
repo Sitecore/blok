@@ -14,6 +14,8 @@ interface ComponentGridProps {
   getHref?: (component: Component) => string;
   className?: string;
   useThumbnails?: boolean;
+  /** Called when a card is clicked (e.g. for telemetry). */
+  onCardClick?: (component: Component) => void;
 }
 
 export function ComponentGrid({
@@ -22,6 +24,7 @@ export function ComponentGrid({
   getHref,
   className,
   useThumbnails = true,
+  onCardClick,
 }: ComponentGridProps) {
   return (
     <div
@@ -54,6 +57,7 @@ export function ComponentGrid({
             title={component.title}
             href={href}
             preview={preview}
+            onCardClick={onCardClick ? () => onCardClick(component) : undefined}
           />
         );
       })}

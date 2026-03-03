@@ -10,6 +10,8 @@ interface ComponentGridCardProps {
   href?: string;
   preview?: React.ReactNode;
   className?: string;
+  /** Called when the card link is clicked (e.g. for telemetry). */
+  onCardClick?: () => void;
 }
 
 export function PlaceholderImage() {
@@ -37,6 +39,7 @@ export function ComponentGridCard({
   href,
   preview,
   className,
+  onCardClick,
 }: ComponentGridCardProps) {
   const content = (
     <Card
@@ -77,7 +80,7 @@ export function ComponentGridCard({
     }
 
     return (
-      <Link href={href} className="block h-full">
+      <Link href={href} className="block h-full" onClick={onCardClick}>
         {content}
       </Link>
     );

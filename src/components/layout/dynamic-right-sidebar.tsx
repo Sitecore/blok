@@ -42,7 +42,21 @@ export function DynamicRightSidebar() {
   const segments = pathname.split("/").filter(Boolean);
   const pageName = segments[segments.length - 1] || "";
 
+  const pageType =
+    pathname.startsWith("/primitives/") && segments.length >= 2
+      ? ("primitive" as const)
+      : pathname.startsWith("/bloks/") && segments.length >= 2
+        ? ("blok" as const)
+        : undefined;
+
   const metadata = getRightSidebarMetadata(pageName);
 
-  return <RightSidebar sections={metadata.sections} links={metadata.links} />;
+  return (
+    <RightSidebar
+      sections={metadata.sections}
+      links={metadata.links}
+      pageName={pageName}
+      pageType={pageType}
+    />
+  );
 }

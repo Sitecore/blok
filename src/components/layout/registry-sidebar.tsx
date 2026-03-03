@@ -13,6 +13,7 @@ import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { graphicsItems, themingItems } from "@/config/nav";
 import { getBlocks, getComponents, getRegistryItem } from "@/lib/registry";
+import { TELEMETRY_EVENTS, track } from "@/lib/telemetry";
 import { useDirection } from "@radix-ui/react-direction";
 import { Menu, X } from "lucide-react";
 import Link from "next/link";
@@ -153,7 +154,14 @@ export function RegistrySidebar() {
                     className="h-10 font-medium text-md text-neutral-fg hover:bg-gray-100 hover:dark:bg-gray-700 data-[active=true]:text-primary-fg data-[active=true]:bg-primary-background"
                   >
                     <Link
-                      onClick={() => setOpenMobile(false)}
+                      onClick={() => {
+                        setOpenMobile(false);
+                        track(TELEMETRY_EVENTS.sidebar_nav_click, {
+                          path: `/primitives/${item.name}`,
+                          label: item.title,
+                          section: "components",
+                        });
+                      }}
                       href={`/primitives/${item.name}`}
                     >
                       {item.title}
@@ -171,7 +179,14 @@ export function RegistrySidebar() {
                     className="h-10 font-medium text-md text-neutral-fg hover:bg-gray-100 hover:dark:bg-gray-700 data-[active=true]:text-primary-fg data-[active=true]:bg-primary-background"
                   >
                     <Link
-                      onClick={() => setOpenMobile(false)}
+                      onClick={() => {
+                        setOpenMobile(false);
+                        track(TELEMETRY_EVENTS.sidebar_nav_click, {
+                          path: `/bloks/${item.name}`,
+                          label: item.title,
+                          section: "blocks",
+                        });
+                      }}
                       href={`/bloks/${item.name}`}
                     >
                       {item.title}
@@ -188,7 +203,17 @@ export function RegistrySidebar() {
                     isActive={pathname === item.path}
                     className="h-10 font-medium text-md text-neutral-fg hover:bg-gray-100 hover:dark:bg-gray-700 data-[active=true]:text-primary-fg data-[active=true]:bg-primary-background"
                   >
-                    <Link onClick={() => setOpenMobile(false)} href={item.path}>
+                    <Link
+                      onClick={() => {
+                        setOpenMobile(false);
+                        track(TELEMETRY_EVENTS.sidebar_nav_click, {
+                          path: item.path,
+                          label: item.title,
+                          section: "theming",
+                        });
+                      }}
+                      href={item.path}
+                    >
                       {item.title}
                     </Link>
                   </SidebarMenuButton>
@@ -203,7 +228,17 @@ export function RegistrySidebar() {
                     isActive={pathname === item.path}
                     className="h-10 font-medium text-md text-neutral-fg hover:bg-gray-100 hover:dark:bg-gray-700 data-[active=true]:text-primary-fg data-[active=true]:bg-primary-background"
                   >
-                    <Link onClick={() => setOpenMobile(false)} href={item.path}>
+                    <Link
+                      onClick={() => {
+                        setOpenMobile(false);
+                        track(TELEMETRY_EVENTS.sidebar_nav_click, {
+                          path: item.path,
+                          label: item.title,
+                          section: "graphics",
+                        });
+                      }}
+                      href={item.path}
+                    >
                       {item.title}
                     </Link>
                   </SidebarMenuButton>

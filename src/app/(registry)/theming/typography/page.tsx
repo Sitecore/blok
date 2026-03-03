@@ -82,7 +82,10 @@ export default function TypographyPage() {
               {fonts.map((font) => (
                 <TableRow key={font.token}>
                   <TableCell className="px-3 py-3">
-                    <CopyableToken token={font.token} />
+                    <CopyableToken
+                      token={font.token}
+                      page="theming/typography"
+                    />
                   </TableCell>
                   <TableCell className="px-3 py-3">
                     <code className="font-mono text-xs break-all">
@@ -111,7 +114,10 @@ export default function TypographyPage() {
               {fontWeights.map((weight) => (
                 <TableRow key={weight.token}>
                   <TableCell className="px-4 py-3">
-                    <CopyableToken token={weight.token} />
+                    <CopyableToken
+                      token={weight.token}
+                      page="theming/typography"
+                    />
                   </TableCell>
                   <TableCell className="px-4 py-3">
                     <code className="font-mono text-sm">{weight.value}</code>
@@ -142,7 +148,7 @@ export default function TypographyPage() {
               {Object.entries(typography).map(([key, value]) => (
                 <TableRow key={key}>
                   <TableCell className="px-4 py-3">
-                    <CopyableToken token={key} />
+                    <CopyableToken token={key} page="theming/typography" />
                   </TableCell>
                   <TableCell className="px-4 py-3">
                     <code className="font-mono text-sm">{value}</code>
