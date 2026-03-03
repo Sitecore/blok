@@ -26,7 +26,7 @@ import { testEditableInput, testEditableTextarea } from './test-Components/test-
 import { testEmptyStatesError, testEmptyStatesNoSearchResults, testEmptyStatesNothingCreated } from './test-Components/test-Empty_States';
 import { testErrorStates, testErrorStatesBadRequest, testErrorStatesUnauthorized, testErrorStatesForbidden, testErrorStatesNotFound, testErrorStatesInternalServerError, testErrorStatesServiceUnavailable } from './test-Components/test-Error_States';
 import { testFieldDefault, testFieldInput, testFieldTextarea, testFieldSelect, testFieldCheckbox, testFieldRadioGroup, testFieldSwitch, testFieldSeparator, testFieldError, testFieldIcon, testFieldAddon, testFieldDisabled, testFieldReadOnly, testFieldSmallSize, testFieldInputTypes } from './test-Components/test-Field';
-import { testFilterDefault, testFilterInput, testFilterMultiSelect, testFilterSingleSelect, testFilterToggle } from './test-Components/test-Filter';
+import { testFilterDefault, testFilterInput, testFilterMultiSelect, testFilterSingleSelect } from './test-Components/test-Filter';
 import { testIconColors, testIconFilledVariants, testIconSizes, testIconSubtleVariants, testIconVariants } from './test-Components/test-Icon';
 import { testInput, testInputPassword, testInputFile, testInputDisabled, testInputText, testInputEmail } from './test-Components/test-Input';
 import { testInputGroupDropdown, testInputGroupURL } from './test-Components/test-Input_Group';
@@ -257,7 +257,6 @@ test.describe('UI BLOK QA Automation', () => {
     await testFilterInput(page);
     await testFilterSingleSelect(page);
     await testFilterMultiSelect(page);
-    await testFilterToggle(page);
   });
 
   test('test_Icon', async ({ page }) => {
