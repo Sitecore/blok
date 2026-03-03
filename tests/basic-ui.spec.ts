@@ -42,6 +42,7 @@ import { testProgress } from './test-Components/test-Progress';
 import { testRadioGroup } from './test-Components/test-Radio_Group';
 import { testResizableHorizontal, testResizableVertical, testResizableWithHandle } from './test-Components/test-Resizable';
 import { testScrollAreaHorizontal, testScrollAreaVertical } from './test-Components/test-Scroll_Area';
+import { testSearchInput } from './test-Components/test-Search_Input';
 import { testSelectDefault, testSelectDisabled, testSelectLargeList, testSelectWithIcon } from './test-Components/test-Select';
 import { testSelectReact } from './test-Components/test-Select_React';
 import { testSeparator } from './test-Components/test-Separator';
@@ -340,6 +341,10 @@ test.describe('UI BLOK QA Automation', () => {
   test('test_Scroll_Area', async ({ page }) => {
     await testScrollAreaVertical(page);
     await testScrollAreaHorizontal(page);
+  });
+
+  test('test_Search_Input', async ({ page }) => {
+    await testSearchInput(page);
   });
 
   test('test_Select', async ({ page }) => {
