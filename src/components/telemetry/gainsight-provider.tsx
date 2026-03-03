@@ -2,11 +2,27 @@
 
 import { useEffect } from "react";
 
-/**
- * Gainsight PX – Task 1 is the tag (added in root layout <head>).
- * This provider only sets globalContext for anonymous docs.
- * Task 2 (identify) is required when you have auth – add aptrinsic("identify", userFields, accountFields) at the auth point. See docs/telemetry/event-models.md.
- */
+function ensureAnonymousUserId(): string | null {
+  if (typeof window === "undefined") return null;
+
+  const storageKey = "pxAnonUserId";
+
+  try {
+    let id = window.localStorage.getItem(storageKey);
+    if (!id) {
+      if (typeof crypto !== "undefined" && "randomUUID" in crypto) {
+        id = crypto.randomUUID();
+      } else {
+        id = `anon-${Date.now()}-${Math.random().toString(16).slice(2)}`;
+      }
+      window.localStorage.setItem(storageKey, id);
+    }
+    return id;
+  } catch {
+    return null;
+  }
+}
+
 export function GainsightProvider({
   children,
 }: {
@@ -14,6 +30,16 @@ export function GainsightProvider({
 }) {
   useEffect(() => {
     if (typeof window === "undefined" || !window.aptrinsic) return;
+
+    const anonId = ensureAnonymousUserId();
+    if (anonId) {
+      window.aptrinsic("identify", {
+        // id: anonId,
+        plan: "blok_docs_anonymous",
+        source: "blok-site",
+      });
+    }
+
     window.aptrinsic("set", "globalContext", {
       App: "Blok Docs",
       Hostname: window.location.hostname,

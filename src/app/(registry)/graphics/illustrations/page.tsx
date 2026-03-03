@@ -15,6 +15,7 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
+import { TELEMETRY_EVENTS, track } from "@/lib/telemetry";
 
 const illustrationsData = [
   {
@@ -368,11 +369,14 @@ export default function IllustrationsPage() {
                     <Tooltip>
                       <TooltipTrigger asChild>
                         <button
-                          onClick={() =>
-                            copyToClipboard(
-                              `https://delivery-sitecore.sitecorecontenthub.cloud/api/public/content/spot-${name}`,
-                            )
-                          }
+                          onClick={() => {
+                            const url = `https://delivery-sitecore.sitecorecontenthub.cloud/api/public/content/spot-${name}`;
+                            copyToClipboard(url);
+                            track(TELEMETRY_EVENTS.copy_url, {
+                              page: "illustrations",
+                              href: url,
+                            });
+                          }}
                           className="cursor-pointer flex items-center"
                         >
                           <img
@@ -389,11 +393,14 @@ export default function IllustrationsPage() {
                     <Tooltip>
                       <TooltipTrigger asChild>
                         <button
-                          onClick={() =>
-                            copyToClipboard(
-                              `https://delivery-sitecore.sitecorecontenthub.cloud/api/public/content/spot-${name}-neutral`,
-                            )
-                          }
+                          onClick={() => {
+                            const url = `https://delivery-sitecore.sitecorecontenthub.cloud/api/public/content/spot-${name}-neutral`;
+                            copyToClipboard(url);
+                            track(TELEMETRY_EVENTS.copy_url, {
+                              page: "illustrations",
+                              href: url,
+                            });
+                          }}
                           className="cursor-pointer flex items-center"
                         >
                           <img

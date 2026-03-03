@@ -61,6 +61,10 @@ export default async function DemoPage({
                 component={componentDemo(
                   React.createElement(entry.Component as ComponentType<any>),
                 )}
+                componentName={name}
+                section="examples"
+                exampleId={component.component as string}
+                exampleTitle={title}
               />
               {component.post}
             </div>
@@ -80,6 +84,8 @@ export default async function DemoPage({
         component={componentDemo(
           React.createElement(defaultEntry.Component as ComponentType<any>),
         )}
+        componentName={name}
+        section="main"
       />
       {preview.post}
 
@@ -87,7 +93,7 @@ export default async function DemoPage({
       <div id="installation" className="flex flex-col gap-3">
         <h2 className="font-semibold text-3xl">Installation</h2>
         {installation?.pre}
-        <InstallationCodeBlock registryUrl={registryUrl} />
+        <InstallationCodeBlock registryUrl={registryUrl} componentName={name} />
         {installation?.post}
       </div>
 
@@ -97,7 +103,11 @@ export default async function DemoPage({
           <h2 className="font-semibold text-3xl">Usage</h2>
           {usage.pre}
           {usage.usage.map((code: string, index: number) => (
-            <CodeBlock key={index} code={code} />
+            <CodeBlock
+              key={index}
+              code={code}
+              copyCodeContext={{ section: "usage", page_name: name }}
+            />
           ))}
           {usage.post}
         </div>

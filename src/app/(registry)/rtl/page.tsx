@@ -144,6 +144,7 @@ export default function RTLPage() {
             showLineNumbers={false}
             code="npm install @radix-ui/react-direction"
             variant="outline"
+            copyCodeContext={{ location: "rtl", page_path: "/rtl" }}
           />
         </div>
 

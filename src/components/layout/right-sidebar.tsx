@@ -1,5 +1,6 @@
 "use client";
 
+import { TELEMETRY_EVENTS, track } from "@/lib/telemetry";
 import { cn } from "@/lib/utils";
 import { mdiOpenInNew } from "@mdi/js";
 import Icon from "@mdi/react";
@@ -24,18 +25,37 @@ export interface RightSidebarLinks {
   [key: string]: string | undefined;
 }
 
+type PageType = "primitive" | "blok";
+
 interface RightSidebarProps {
   sections?: TocSection[];
   links?: RightSidebarLinks;
   children?: React.ReactNode;
+  /** Component/blok slug when on a detail page (e.g. "button", "alert"). */
+  pageName?: string;
+  /** Whether this is a primitive or blok detail page. */
+  pageType?: PageType;
+}
+
+function buildPageContext(pageName?: string, pageType?: PageType) {
+  if (!pageName || !pageType) return {};
+  return {
+    page_name: pageName,
+    page_type: pageType,
+    ...(pageType === "primitive" && { component_name: pageName }),
+    ...(pageType === "blok" && { block_name: pageName }),
+  };
 }
 
 export function RightSidebar({
   sections = [],
   links,
   children,
+  pageName,
+  pageType,
 }: RightSidebarProps) {
   const [activeId, setActiveId] = useState<string>("");
+  const pageContext = buildPageContext(pageName, pageType);
 
   useEffect(() => {
     if (sections.length === 0) return;
@@ -66,7 +86,12 @@ export function RightSidebar({
     return () => observer.disconnect();
   }, [sections]);
 
-  const scrollToSection = (id: string) => {
+  const scrollToSection = (id: string, title: string) => {
+    track(TELEMETRY_EVENTS.right_sidebar_toc_click, {
+      section_id: id,
+      title,
+      ...pageContext,
+    });
     const element = document.getElementById(id);
     if (element) {
       const offset = 80;
@@ -97,6 +122,13 @@ export function RightSidebar({
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-2 text-md font-semibold text-muted-foreground hover:text-foreground transition-colors"
+              onClick={() =>
+                track(TELEMETRY_EVENTS.right_sidebar_link_click, {
+                  type: "shadcn",
+                  href: links.shadcn,
+                  ...pageContext,
+                })
+              }
             >
               <Icon path={mdiOpenInNew} size={0.8} />
               <span>Shadcn docs</span>
@@ -108,6 +140,13 @@ export function RightSidebar({
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-2 text-md font-semibold text-muted-foreground hover:text-foreground transition-colors"
+              onClick={() =>
+                track(TELEMETRY_EVENTS.right_sidebar_link_click, {
+                  type: "rules",
+                  href: links.rules,
+                  ...pageContext,
+                })
+              }
             >
               <Icon path={mdiOpenInNew} size={0.8} />
               <span>Rules</span>
@@ -119,6 +158,13 @@ export function RightSidebar({
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-2 text-md font-semibold text-muted-foreground hover:text-foreground transition-colors"
+              onClick={() =>
+                track(TELEMETRY_EVENTS.right_sidebar_link_click, {
+                  type: "github",
+                  href: links.github,
+                  ...pageContext,
+                })
+              }
             >
               <Icon path={mdiOpenInNew} size={0.8} />
               <span>GitHub</span>
@@ -130,6 +176,13 @@ export function RightSidebar({
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-2 text-md font-semibold text-muted-foreground hover:text-foreground transition-colors"
+              onClick={() =>
+                track(TELEMETRY_EVENTS.right_sidebar_link_click, {
+                  type: "documentation",
+                  href: links.documentation,
+                  ...pageContext,
+                })
+              }
             >
               <Icon path={mdiOpenInNew} size={0.8} />
               <span>Documentation</span>
@@ -141,6 +194,13 @@ export function RightSidebar({
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-2 text-md font-semibold text-muted-foreground hover:text-foreground transition-colors"
+              onClick={() =>
+                track(TELEMETRY_EVENTS.right_sidebar_link_click, {
+                  type: "figma",
+                  href: links.figma,
+                  ...pageContext,
+                })
+              }
             >
               <Icon path={mdiOpenInNew} size={0.8} />
               <span>Open in Figma</span>
@@ -152,6 +212,13 @@ export function RightSidebar({
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-2 text-md font-semibold text-muted-foreground hover:text-foreground transition-colors"
+              onClick={() =>
+                track(TELEMETRY_EVENTS.right_sidebar_link_click, {
+                  type: "confluence",
+                  href: links.confluence,
+                  ...pageContext,
+                })
+              }
             >
               <Icon path={mdiOpenInNew} size={0.8} />
               <span>Confluence docs</span>
@@ -163,6 +230,13 @@ export function RightSidebar({
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-2 text-md font-semibold text-muted-foreground hover:text-foreground transition-colors"
+              onClick={() =>
+                track(TELEMETRY_EVENTS.right_sidebar_link_click, {
+                  type: "v1Docs",
+                  href: links.v1Docs,
+                  ...pageContext,
+                })
+              }
             >
               <Icon path={mdiOpenInNew} size={0.8} />
               <span>Blok v1 docs</span>
@@ -174,6 +248,13 @@ export function RightSidebar({
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-2 text-md font-semibold text-muted-foreground hover:text-foreground transition-colors"
+              onClick={() =>
+                track(TELEMETRY_EVENTS.right_sidebar_link_click, {
+                  type: "website",
+                  href: links.website,
+                  ...pageContext,
+                })
+              }
             >
               <Icon path={mdiOpenInNew} size={0.8} />
               <span>Website</span>
@@ -193,7 +274,7 @@ export function RightSidebar({
               <li key={section.id}>
                 <button
                   type="button"
-                  onClick={() => scrollToSection(section.id)}
+                  onClick={() => scrollToSection(section.id, section.title)}
                   className={cn(
                     "block w-full text-start text-md font-semibold transition-colors hover:text-foreground",
                     activeId === section.id
@@ -209,7 +290,7 @@ export function RightSidebar({
                       <li key={child.id}>
                         <button
                           type="button"
-                          onClick={() => scrollToSection(child.id)}
+                          onClick={() => scrollToSection(child.id, child.title)}
                           className={cn(
                             "block w-full text-start text-md font-semibold transition-colors hover:text-foreground",
                             activeId === child.id

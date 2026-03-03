@@ -82,7 +82,7 @@ export default function SpacingPage() {
               return (
                 <TableRow key={item.name}>
                   <TableCell className="px-4 py-3">
-                    <CopyableToken token={item.name} />
+                    <CopyableToken token={item.name} page="theming/spacing" />
                   </TableCell>
                   <TableCell className="px-4 py-3">
                     <code className="font-mono text-sm">{item.spacing}</code>

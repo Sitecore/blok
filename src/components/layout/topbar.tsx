@@ -259,6 +259,13 @@ export default function TopBar() {
           const result = searchResults[selectedIndex];
           handleSearchResultClick(result, selectedIndex);
           window.location.href = result.href;
+        } else if (searchQuery.trim() && searchResults.length === 0) {
+          // User searched but no results – track the query
+          track(TELEMETRY_EVENTS.topbar_search_query, {
+            query: searchQuery.trim(),
+            query_length: searchQuery.length,
+            results_count: 0,
+          });
         }
         break;
       case "Escape":
@@ -272,6 +279,11 @@ export default function TopBar() {
 
   const handleSearchResultClick = (result?: SearchResult, index?: number) => {
     if (result != null && index != null) {
+      track(TELEMETRY_EVENTS.topbar_search_query, {
+        query: searchQuery.trim(),
+        query_length: searchQuery.length,
+        results_count: searchResults.length,
+      });
       track(TELEMETRY_EVENTS.topbar_search_result_click, {
         result_type: result.type,
         result_name: result.name,

@@ -1,4 +1,5 @@
 "use client";
+
 import { copyToClipboard } from "@/components/docsite/code-block";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { CircularProgress } from "@/components/ui/circular-progress";
@@ -16,6 +17,7 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import { Icon } from "@/lib/icon";
+import { TELEMETRY_EVENTS, track } from "@/lib/telemetry";
 import * as mdiIcons from "@mdi/js";
 import { Suspense } from "react";
 import * as logoIcons from "./logo-icons";
@@ -699,7 +701,14 @@ export default function IconsPage() {
                       <Tooltip>
                         <TooltipTrigger asChild>
                           <button
-                            onClick={() => copyToClipboard(code || "")}
+                            onClick={() => {
+                              copyToClipboard(code || "");
+                              track(TELEMETRY_EVENTS.copy_icon_code, {
+                                page: "icons",
+                                type: "mdi",
+                                icon: code || "",
+                              });
+                            }}
                             className="cursor-pointer inline-flex items-center justify-center w-8 h-8 hover:bg-muted rounded transition-colors"
                           >
                             <Icon
@@ -727,7 +736,14 @@ export default function IconsPage() {
                     <Tooltip>
                       <TooltipTrigger asChild>
                         <button
-                          onClick={() => copyToClipboard(code || "")}
+                          onClick={() => {
+                            copyToClipboard(code || "");
+                            track(TELEMETRY_EVENTS.copy_icon_code, {
+                              page: "icons",
+                              type: "mdi",
+                              icon: code || "",
+                            });
+                          }}
                           className="cursor-pointer bg-muted px-2 py-1 rounded text-sm hover:bg-muted/80 transition-colors inline-block"
                         >
                           {code}
@@ -789,7 +805,14 @@ export default function IconsPage() {
                       <Tooltip>
                         <TooltipTrigger asChild>
                           <button
-                            onClick={() => copyToClipboard(icon)}
+                            onClick={() => {
+                              copyToClipboard(icon);
+                              track(TELEMETRY_EVENTS.copy_icon_code, {
+                                page: "icons",
+                                type: "icon",
+                                icon,
+                              });
+                            }}
                             className="cursor-pointer inline-flex items-center justify-center w-8 h-8 hover:bg-muted rounded transition-colors"
                           >
                             <Icon
@@ -808,7 +831,14 @@ export default function IconsPage() {
                     <Tooltip>
                       <TooltipTrigger asChild>
                         <code
-                          onClick={() => copyToClipboard(icon)}
+                          onClick={() => {
+                            copyToClipboard(icon);
+                            track(TELEMETRY_EVENTS.copy_icon_code, {
+                              page: "icons",
+                              type: "icon",
+                              icon,
+                            });
+                          }}
                           className="cursor-pointer bg-muted px-2 py-1 rounded text-sm hover:bg-muted/80 transition-colors inline-block"
                         >
                           {icon}
