@@ -94,13 +94,13 @@ export async function testCollaboration(page: Page){
     await expect(closeButtonAddUsers).toBeVisible();
 
     // Verify that display "Search" input in add users popover
-    const searchInputAddUsers = popoverCardAddUsers.locator('[data-slot="input-group"]');
+    const searchInputAddUsers = popoverCardAddUsers.locator('[data-slot="search-input"]');
     await expect(searchInputAddUsers).toBeVisible();
     // Verify that display search icon in search input
-    const searchIcon = searchInputAddUsers.locator('[data-slot="input-group-addon"]');
+    const searchIcon = searchInputAddUsers.locator('[data-slot="search-input-left-element"]');
     await expect(searchIcon).toBeVisible();
     // Verify that display search input section in search input
-    const searchInputSection = searchInputAddUsers.locator('[data-slot="input-group-control"]');
+    const searchInputSection = searchInputAddUsers.locator('[data-slot="search-input-control"]');
     await expect(searchInputSection).toBeVisible();
 
     // Verify that previously removed user is displayed in add users popover
