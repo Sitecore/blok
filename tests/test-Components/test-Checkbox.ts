@@ -1,10 +1,19 @@
 import { test, expect, Page } from '@playwright/test';
 
 export async function testCheckbox(page: Page){
-    // Verify that checkbox is visible
+    // Verify that default checkbox section is visible
     const checkbox = page.locator('[id="checkbox-default"]');
-    const defaultCheckbox = checkbox.locator('[data-slot="checkbox"][id="terms"]');
+
+    // Verify that default checkbox is visible
+    const defaultCheckbox = checkbox.locator('button[data-slot="checkbox"][id="terms"]');
     await expect(defaultCheckbox).toBeVisible();
+
+    // Verify that checkbox has class attributes
+    const checkboxClasses = await defaultCheckbox.getAttribute('class');
+    expect(checkboxClasses).toContain('border-input');
+    expect(checkboxClasses).toContain('data-[state=checked]:bg-primary');
+    expect(checkboxClasses).toContain('data-[state=checked]:border-primary');
+    expect(checkboxClasses).toContain('rounded-[4px]');
 
     // Verify that checkbox is not checked initially
     await expect(defaultCheckbox).not.toBeChecked();
@@ -17,19 +26,33 @@ export async function testCheckbox(page: Page){
     await defaultCheckbox.click();
     await expect(defaultCheckbox).not.toBeChecked();
 
-    // Verify that checkbox has label text
-    await expect(defaultCheckbox).toHaveAttribute('aria-label', 'Accept terms and conditions');
+    // Verify that display label text
+    const label = checkbox.locator('label[data-slot="label"][for="terms"]');
+    await expect(label).toBeVisible();
+
+    // Verify that label has class attributes
+    const labelClasses = await label.getAttribute('class');
+    expect(labelClasses).toContain('text-md');
+    expect(labelClasses).toContain('text-neutral-fg');
+    expect(labelClasses).toContain('font-medium');
+
+    // Verify that label has text
+    await expect(label).toHaveText('Accept terms and conditions');
 }
 
 export async function testCheckboxWithDescription(page: Page){
     // Verify that checkbox with description is visible
     const checkbox = page.locator('[id="checkbox-description"]');
+
+    // Verify that checkbox is visible
     const descriptionCheckbox = checkbox.locator('[data-slot="checkbox"][id="terms-2"]');
     await expect(descriptionCheckbox).toBeVisible();
 
+    // Verify that checkbox has label text
+    await expect(checkbox.locator('label[data-slot="label"][for="terms-2"]')).toHaveText('Accept terms and conditions');
+
     // Verify that checkbox has description
-    const checkboxDescription = page.locator('div.grid.gap-2').filter({ has: page.locator('label[for="terms-2"]') }).locator('p.text-muted-foreground');
-    await expect(checkboxDescription).toContainText('By clicking this checkbox, you agree to the terms and conditions.');
+    await expect(checkbox.locator('p')).toHaveText('By clicking this checkbox, you agree to the terms and conditions.');
 }
 
 export async function testCheckboxDisabled(page: Page){
@@ -41,20 +64,21 @@ export async function testCheckboxDisabled(page: Page){
 
 export async function testCheckEnabledLabel(page: Page){
     // Verify that checkbox is enabled and has label text
-    const checkboxEnabledLabel = page.locator('[data-slot="checkbox"][id="toggle-2"]');
+    const checkbox = page.locator('[id="checkbox-enabled-label"]');
+    await expect(checkbox).toBeVisible();
+    const checkboxEnabledLabel = checkbox.locator('[data-slot="checkbox"][id="toggle-2"]');
     await expect(checkboxEnabledLabel).toBeVisible();
 
     // Verify that checkbox has label text
     await expect(checkboxEnabledLabel).toHaveAttribute('aria-label', 'Enable notifications');
+    await expect(checkbox.locator('p').nth(0)).toHaveText('Enable notifications');
 
     // Verify that checkbox has description
-    const descriptionEnabledLabel = page.locator('p.text-muted-foreground.text-sm').filter({
-        hasText: 'You can enable or disable notifications at any time.'});  
-    await expect(descriptionEnabledLabel).toBeVisible();  
+    await expect(checkbox.locator('p').nth(1)).toHaveText('You can enable or disable notifications at any time.');
 
     // Verify that checkable by clicking the label
-    const label = page.locator('[data-slot="label"]').nth(3);
-    await expect(label).toBeVisible();
-    await label.click();
+    await checkboxEnabledLabel.click();
     await expect(checkboxEnabledLabel).not.toBeChecked();
+    await checkboxEnabledLabel.click();
+    await expect(checkboxEnabledLabel).toBeChecked();
 }
