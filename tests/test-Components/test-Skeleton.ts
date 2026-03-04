@@ -11,7 +11,7 @@ export async function testSkeletonDefault(page: Page){
     // Verify it has the correct classes
     const classes = await circularAvatarSkeleton.getAttribute('class');
     expect(classes).toContain('animate-pulse');
-    expect(classes).toContain('bg-accent');
+    expect(classes).toContain('bg-neutral-50');
     expect(classes).toContain('rounded-full');
 
     // Verify that have correct skeleton structure - rectangular avatar skeleton
@@ -22,7 +22,7 @@ export async function testSkeletonDefault(page: Page){
     const classes1 = await rectangularAvatarSkeleton1.getAttribute('class');
     expect(classes1).toContain('animate-pulse');
     expect(classes1).toContain('rounded-md');
-    expect(classes1).toContain('bg-accent');
+    expect(classes1).toContain('bg-neutral-50');
     expect(classes1).toContain('h-4');
     expect(classes1).toContain('w-[150px]');
 
@@ -33,7 +33,7 @@ export async function testSkeletonDefault(page: Page){
     const classes2 = await rectangularAvatarSkeleton2.getAttribute('class');
     expect(classes2).toContain('animate-pulse');
     expect(classes2).toContain('rounded-md');
-    expect(classes2).toContain('bg-accent');
+    expect(classes2).toContain('bg-neutral-50');
     expect(classes2).toContain('h-4');
     expect(classes2).toContain('w-[100px]');
 }
@@ -66,7 +66,7 @@ export async function testSkeletonCardList(page: Page){
     const classes1 = await rectangularAvatarSkeleton1.getAttribute('class');
     expect(classes1).toContain('animate-pulse');
     expect(classes1).toContain('rounded-md');
-    expect(classes1).toContain('bg-accent');
+    expect(classes1).toContain('bg-neutral-50');
     expect(classes1).toContain('h-4');
     expect(classes1).toContain('w-2/3');
 
@@ -77,7 +77,7 @@ export async function testSkeletonCardList(page: Page){
     const classes2 = await rectangularAvatarSkeleton2.getAttribute('class');
     expect(classes2).toContain('animate-pulse');
     expect(classes2).toContain('rounded-md');
-    expect(classes2).toContain('bg-accent');
+    expect(classes2).toContain('bg-neutral-50');
     expect(classes2).toContain('h-4');
     expect(classes2).toContain('w-1/2');
 
@@ -93,7 +93,7 @@ export async function testSkeletonCardList(page: Page){
     const Skeletonclasses1 = await skeleton.getAttribute('class');
     expect(Skeletonclasses1).toContain('animate-pulse');
     expect(Skeletonclasses1).toContain('rounded-md');
-    expect(Skeletonclasses1).toContain('bg-accent');
+    expect(Skeletonclasses1).toContain('bg-neutral-50');
     expect(Skeletonclasses1).toContain('aspect-square');
     expect(Skeletonclasses1).toContain('w-full');
 }
