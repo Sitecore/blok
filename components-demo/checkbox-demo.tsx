@@ -35,7 +35,7 @@ export function CheckboxDemo() {
             </div>
 
         {/* Checkbox with Enabled Label */}
-            <div>
+            <div id="checkbox-enabled-label">
             <Label className="hover:bg-accent/50 flex items-start gap-3 rounded-lg border p-3 has-[[aria-checked=true]]:border-info-fg has-[[aria-checked=true]]:bg-info-bg dark:has-[[aria-checked=true]]:border-info-fg dark:has-[[aria-checked=true]]:bg-info-bg">
               <Checkbox
                 id="toggle-2"
