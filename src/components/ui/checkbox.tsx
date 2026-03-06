@@ -2,7 +2,7 @@
 
 import { Icon } from "@/lib/icon";
 import { mdiCheck } from "@mdi/js";
-import * as CheckboxPrimitive from "@radix-ui/react-checkbox";
+import { Checkbox as CheckboxPrimitive } from "radix-ui";
 import type * as React from "react";
 
 import { cn } from "@/lib/utils";

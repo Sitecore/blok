@@ -1,5 +1,5 @@
-import { Slot } from "@radix-ui/react-slot";
 import { type VariantProps, cva } from "class-variance-authority";
+import { Slot as SlotPrimitive } from "radix-ui";
 import type * as React from "react";
 
 import { cn } from "@/lib/utils";
@@ -49,8 +49,7 @@ const buttonVariants = cva(
         // New icon-specific sizes
         "icon-lg": "size-12 rounded-full",
         "icon-sm": "size-8 rounded-full",
-        "icon-xs":
-          "size-6 rounded-full [&>svg]:!w-[18px] [&>svg]:!h-[18px]",
+        "icon-xs": "size-6 rounded-full [&>svg]:!w-[18px] [&>svg]:!h-[18px]",
       },
       colorScheme: {
         primary: "",
@@ -178,7 +177,7 @@ function Button({
   VariantProps<typeof buttonVariants> & {
     asChild?: boolean;
   }) {
-  const Comp = asChild ? Slot : "button";
+  const Comp = asChild ? SlotPrimitive.Slot : "button";
 
   let resolvedColorSchemeFinal = colorScheme;
 

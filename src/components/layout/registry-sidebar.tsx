@@ -14,11 +14,13 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { graphicsItems, themingItems } from "@/config/nav";
 import { getBlocks, getComponents, getRegistryItem } from "@/lib/registry";
 import { TELEMETRY_EVENTS, track } from "@/lib/telemetry";
-import { useDirection } from "@radix-ui/react-direction";
 import { Menu, X } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { Direction } from "radix-ui";
 import { useMemo } from "react";
+
+const { useDirection } = Direction;
 
 const componentItems = getComponents();
 const blockItems = getBlocks();

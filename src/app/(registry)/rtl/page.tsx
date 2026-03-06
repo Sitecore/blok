@@ -5,7 +5,7 @@ import Link from "next/link";
 
 const DirectionProviderCode = `"use client";
 
-import { DirectionProvider as RadixDirectionProvider } from "@radix-ui/react-direction";
+import { Direction } from "radix-ui";
 import { useEffect, useState } from "react";
 import { getDirectionFromLanguage, getBrowserLanguage } from "@/lib/direction-utils";
 
@@ -21,10 +21,12 @@ export function DirectionProvider({ children }: { children: React.ReactNode }) {
     document.documentElement.setAttribute("lang", browserLang);
   }, []);
 
-  return <RadixDirectionProvider dir={dir}>{children}</RadixDirectionProvider>;
+  return <Direction.DirectionProvider dir={dir}>{children}</Direction.DirectionProvider>;
 }`;
 
-const UseDirectionCode = `import { useDirection } from "@radix-ui/react-direction";
+const UseDirectionCode = `import { Direction } from "radix-ui";
+
+const { useDirection } = Direction;
 
 export function MyComponent() {
   const direction = useDirection();
@@ -142,7 +144,7 @@ export default function RTLPage() {
           <p>Install the required dependency from your command line:</p>
           <Codeblocks
             showLineNumbers={false}
-            code="npm install @radix-ui/react-direction"
+            code="pnpm add radix-ui"
             variant="outline"
             copyCodeContext={{ location: "rtl", page_path: "/rtl" }}
           />
@@ -291,7 +293,7 @@ export default function RTLPage() {
                 </code>{" "}
                 hook from{" "}
                 <code className="inline text-sm tabular-nums bg-muted px-1 rounded">
-                  @radix-ui/react-direction
+                  radix-ui
                 </code>{" "}
                 (see Examples section below).
               </p>
@@ -306,13 +308,13 @@ export default function RTLPage() {
             <div>
               <h3 className="font-semibold text-xl mb-2">Basic Usage</h3>
               <CodeBlock
-                code={`import { DirectionProvider as RadixDirectionProvider } from "@radix-ui/react-direction";
+                code={`import { Direction } from "radix-ui";
 
 export default function App() {
   return (
-    <RadixDirectionProvider dir="rtl">
+    <Direction.DirectionProvider dir="rtl">
       {/* Your app content */}
-    </RadixDirectionProvider>
+    </Direction.DirectionProvider>
   );
 }`}
                 lang="tsx"
@@ -326,8 +328,10 @@ export default function App() {
                 Using the Hook in Components
               </h3>
               <CodeBlock
-                code={`import { useDirection } from "@radix-ui/react-direction";
+                code={`import { Direction } from "radix-ui";
 import { cn } from "@/lib/utils";
+
+const { useDirection } = Direction;
 
 export function Sidebar() {
   const direction = useDirection();

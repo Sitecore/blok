@@ -2,7 +2,7 @@
 
 import { Icon } from "@/lib/icon";
 import { mdiClose } from "@mdi/js";
-import * as SheetPrimitive from "@radix-ui/react-dialog";
+import { Dialog as SheetPrimitive } from "radix-ui";
 import type * as React from "react";
 
 import { buttonVariants } from "@/components/ui/button";

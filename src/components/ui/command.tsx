@@ -2,8 +2,8 @@
 
 import { Icon } from "@/lib/icon";
 import { mdiClose, mdiMagnify } from "@mdi/js";
-import * as DialogPrimitive from "@radix-ui/react-dialog";
 import { Command as CommandPrimitive } from "cmdk";
+import { Dialog as DialogPrimitive } from "radix-ui";
 import * as React from "react";
 
 import { Button } from "@/components/ui/button";

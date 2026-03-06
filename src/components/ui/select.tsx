@@ -2,7 +2,7 @@
 
 import { Icon } from "@/lib/icon";
 import { mdiCheck, mdiChevronDown, mdiChevronUp } from "@mdi/js";
-import * as SelectPrimitive from "@radix-ui/react-select";
+import { Select as SelectPrimitive } from "radix-ui";
 import type * as React from "react";
 
 import { cn } from "@/lib/utils";
