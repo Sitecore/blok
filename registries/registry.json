@@ -494,7 +494,6 @@
         "https://blok.sitecore.com/r/checkbox.json",
         "https://blok.sitecore.com/r/circular-progress.json",
         "https://blok.sitecore.com/r/collapsible.json",
-        "https://blok.sitecore.com/r/combobox.json",
         "https://blok.sitecore.com/r/command.json",
         "https://blok.sitecore.com/r/context-menu.json",
         "https://blok.sitecore.com/r/date-picker.json",
@@ -509,6 +508,7 @@
         "https://blok.sitecore.com/r/icon.json",
         "https://blok.sitecore.com/r/input.json",
         "https://blok.sitecore.com/r/input-group.json",
+        "https://blok.sitecore.com/r/search-input.json",
         "https://blok.sitecore.com/r/inputOtp.json",
         "https://blok.sitecore.com/r/kbd.json",
         "https://blok.sitecore.com/r/label.json",
@@ -538,8 +538,7 @@
         "https://blok.sitecore.com/r/timeline.json",
         "https://blok.sitecore.com/r/toggle.json",
         "https://blok.sitecore.com/r/toggle-group.json",
-        "https://blok.sitecore.com/r/tooltip.json",
-        "https://blok.sitecore.com/r/topbar.json"
+        "https://blok.sitecore.com/r/tooltip.json"
       ]
     },
     {
@@ -548,7 +547,7 @@
       "title": "Accordion",
       "description": "A vertically stacked set of interactive headings that each reveal a section of content.",
       "registryDependencies": ["https://blok.sitecore.com/r/theme.json"],
-      "dependencies": ["@radix-ui/react-accordion", "@mdi/js"],
+      "dependencies": ["radix-ui", "@mdi/js"],
       "files": [
         {
           "path": "src/components/ui/accordion.tsx",
@@ -565,10 +564,7 @@
       "type": "registry:ui",
       "title": "Alert dialog",
       "description": "A modal dialog that interrupts the user with important content and expects a response.",
-      "dependencies": [
-        "@radix-ui/react-alert-dialog",
-        "class-variance-authority"
-      ],
+      "dependencies": ["radix-ui", "class-variance-authority"],
       "registryDependencies": [
         "https://blok.sitecore.com/r/theme.json",
         "https://blok.sitecore.com/r/button.json"
@@ -604,7 +600,7 @@
       "title": "Aspect ratio",
       "description": "Displays content within a desired ratio.",
       "registryDependencies": ["https://blok.sitecore.com/r/theme.json"],
-      "dependencies": ["@radix-ui/react-aspect-ratio"],
+      "dependencies": ["radix-ui"],
       "files": [
         {
           "path": "src/components/ui/aspect-ratio.tsx",
@@ -618,7 +614,7 @@
       "title": "Avatar",
       "description": "An image element with a fallback for representing the user.",
       "registryDependencies": ["https://blok.sitecore.com/r/theme.json"],
-      "dependencies": ["@radix-ui/react-avatar"],
+      "dependencies": ["radix-ui"],
       "files": [
         {
           "path": "src/components/ui/avatar.tsx",
@@ -632,7 +628,7 @@
       "title": "Badge",
       "description": "Displays a small count or status indicator.",
       "registryDependencies": ["https://blok.sitecore.com/r/theme.json"],
-      "dependencies": ["@radix-ui/react-slot", "class-variance-authority"],
+      "dependencies": ["radix-ui", "class-variance-authority"],
       "files": [
         {
           "path": "src/components/ui/badge.tsx",
@@ -646,7 +642,7 @@
       "title": "Breadcrumb",
       "description": "Displays the path to the current resource using a hierarchy of links.",
       "registryDependencies": ["https://blok.sitecore.com/r/theme.json"],
-      "dependencies": ["@radix-ui/react-slot", "@mdi/js"],
+      "dependencies": ["radix-ui", "@mdi/js"],
       "files": [
         {
           "path": "src/components/ui/breadcrumb.tsx",
@@ -663,7 +659,7 @@
       "type": "registry:ui",
       "title": "Button",
       "description": "Allows users to take actions with a single click or tap.",
-      "dependencies": ["@radix-ui/react-slot", "class-variance-authority"],
+      "dependencies": ["radix-ui", "class-variance-authority"],
       "registryDependencies": ["https://blok.sitecore.com/r/theme.json"],
       "files": [
         {
@@ -757,7 +753,7 @@
       "title": "Checkbox",
       "description": "Allows users to select multiple items from a list of options.",
       "registryDependencies": ["https://blok.sitecore.com/r/theme.json"],
-      "dependencies": ["@radix-ui/react-checkbox", "@mdi/js"],
+      "dependencies": ["radix-ui", "@mdi/js"],
       "files": [
         {
           "path": "src/components/ui/checkbox.tsx",
@@ -775,7 +771,7 @@
       "title": "Collapsible",
       "description": "An interactive component which expands/collapses a panel.",
       "registryDependencies": ["https://blok.sitecore.com/r/theme.json"],
-      "dependencies": ["@radix-ui/react-collapsible"],
+      "dependencies": ["radix-ui"],
       "files": [
         {
           "path": "src/components/ui/collapsible.tsx",
@@ -788,22 +784,16 @@
       "type": "registry:ui",
       "title": "Combobox",
       "description": "Select a value from a list of options.",
-      "dependencies": ["@mdi/js", "lucide-react"],
+      "dependencies": ["@base-ui/react", "lucide-react"],
       "registryDependencies": [
         "https://blok.sitecore.com/r/theme.json",
-        "https://blok.sitecore.com/r/avatar.json",
         "https://blok.sitecore.com/r/button.json",
-        "https://blok.sitecore.com/r/command.json",
-        "https://blok.sitecore.com/r/popover.json"
+        "https://blok.sitecore.com/r/input-group.json"
       ],
       "files": [
         {
           "path": "src/components/ui/combobox.tsx",
           "type": "registry:ui"
-        },
-        {
-          "path": "src/lib/icon.tsx",
-          "type": "registry:lib"
         }
       ]
     },
@@ -834,7 +824,7 @@
       "title": "Context menu",
       "description": "Displays a menu to the user, such as a set of actions or functions, triggered by a button.",
       "registryDependencies": ["https://blok.sitecore.com/r/theme.json"],
-      "dependencies": ["@radix-ui/react-context-menu", "@mdi/js"],
+      "dependencies": ["radix-ui", "@mdi/js"],
       "files": [
         {
           "path": "src/components/ui/context-menu.tsx",
@@ -897,7 +887,7 @@
       "type": "registry:ui",
       "title": "Dialog",
       "description": "A modal dialog that interrupts the user with important content.",
-      "dependencies": ["@mdi/js", "@radix-ui/react-dialog"],
+      "dependencies": ["@mdi/js", "radix-ui"],
       "registryDependencies": [
         "https://blok.sitecore.com/r/theme.json",
         "https://blok.sitecore.com/r/button.json"
@@ -961,7 +951,7 @@
       "type": "registry:ui",
       "title": "Dropdown",
       "description": "Displays a menu to the user triggered by a button.",
-      "dependencies": ["@mdi/js", "@radix-ui/react-dropdown-menu"],
+      "dependencies": ["@mdi/js", "radix-ui"],
       "registryDependencies": ["https://blok.sitecore.com/r/theme.json"],
       "files": [
         {
@@ -1032,10 +1022,7 @@
       "type": "registry:ui",
       "title": "Filter",
       "description": "Filter components including input search, single select, multi select, and toggle filters for filtering data.",
-      "dependencies": [
-        "@mdi/js",
-        "class-variance-authority"
-      ],
+      "dependencies": ["@mdi/js", "class-variance-authority"],
       "registryDependencies": [
         "https://blok.sitecore.com/r/theme.json",
         "https://blok.sitecore.com/r/button.json",
@@ -1043,7 +1030,8 @@
         "https://blok.sitecore.com/r/select.json",
         "https://blok.sitecore.com/r/popover.json",
         "https://blok.sitecore.com/r/badge.json",
-        "https://blok.sitecore.com/r/checkbox.json"
+        "https://blok.sitecore.com/r/checkbox.json",
+        "https://blok.sitecore.com/r/search-input.json"
       ],
       "files": [
         {
@@ -1079,6 +1067,29 @@
         {
           "path": "src/components/ui/input.tsx",
           "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "search-input",
+      "type": "registry:ui",
+      "title": "Search input",
+      "description": "A customizable search input component with composable left and right elements.",
+      "dependencies": ["@mdi/js"],
+      "registryDependencies": [
+        "https://blok.sitecore.com/r/theme.json",
+        "https://blok.sitecore.com/r/input.json",
+        "https://blok.sitecore.com/r/button.json",
+        "https://blok.sitecore.com/r/tooltip.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui/search-input.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "src/lib/icon.tsx",
+          "type": "registry:lib"
         }
       ]
     },
@@ -1131,7 +1142,10 @@
       "title": "Input OTP",
       "description": "A one-time password input component for verification codes.",
       "dependencies": ["@mdi/js", "input-otp"],
-      "registryDependencies": ["https://blok.sitecore.com/r/theme.json"],
+      "registryDependencies": [
+        "https://blok.sitecore.com/r/theme.json",
+        "https://blok.sitecore.com/r/label.json"
+      ],
       "files": [
         {
           "path": "src/components/ui/inputOtp.tsx",
@@ -1162,7 +1176,7 @@
       "title": "Label",
       "description": "Renders an accessible label associated with controls.",
       "registryDependencies": ["https://blok.sitecore.com/r/theme.json"],
-      "dependencies": ["@radix-ui/react-label"],
+      "dependencies": ["radix-ui"],
       "files": [
         {
           "path": "src/components/ui/label.tsx",
@@ -1176,11 +1190,7 @@
       "title": "Navigation menu",
       "description": "A collection of links for navigating websites.",
       "registryDependencies": ["https://blok.sitecore.com/r/theme.json"],
-      "dependencies": [
-        "@mdi/js",
-        "@radix-ui/react-navigation-menu",
-        "class-variance-authority"
-      ],
+      "dependencies": ["@mdi/js", "radix-ui", "class-variance-authority"],
       "files": [
         {
           "path": "src/components/ui/navigation-menu.tsx",
@@ -1201,7 +1211,7 @@
         "https://blok.sitecore.com/r/theme.json",
         "https://blok.sitecore.com/r/button.json"
       ],
-      "dependencies": ["@radix-ui/react-popover", "@mdi/js"],
+      "dependencies": ["radix-ui", "@mdi/js"],
       "files": [
         {
           "path": "src/components/ui/pagination.tsx",
@@ -1283,7 +1293,7 @@
       "title": "Progress",
       "description": "Displays an indicator showing the completion progress of a task, typically displayed as a progress bar.",
       "registryDependencies": ["https://blok.sitecore.com/r/theme.json"],
-      "dependencies": ["@radix-ui/react-progress"],
+      "dependencies": ["radix-ui"],
       "files": [
         {
           "path": "src/components/ui/progress.tsx",
@@ -1297,7 +1307,7 @@
       "title": "Radio group",
       "description": "A set of checkable buttons—known as radio buttons—where no more than one of the buttons can be checked at a time.",
       "registryDependencies": ["https://blok.sitecore.com/r/theme.json"],
-      "dependencies": ["@radix-ui/react-radio-group", "@mdi/js"],
+      "dependencies": ["radix-ui", "@mdi/js"],
       "files": [
         {
           "path": "src/components/ui/radio-group.tsx",
@@ -1333,7 +1343,7 @@
       "title": "Scroll area",
       "description": "Augments native scroll functionality for custom, cross-browser styling.",
       "registryDependencies": ["https://blok.sitecore.com/r/theme.json"],
-      "dependencies": ["@radix-ui/react-scroll-area"],
+      "dependencies": ["radix-ui"],
       "files": [
         {
           "path": "src/components/ui/scroll-area.tsx",
@@ -1346,7 +1356,7 @@
       "type": "registry:ui",
       "title": "Select",
       "description": "Displays a list of options for the user to pick from—triggered by a button.",
-      "dependencies": ["@radix-ui/react-select", "@mdi/js"],
+      "dependencies": ["radix-ui", "@mdi/js"],
       "registryDependencies": ["https://blok.sitecore.com/r/theme.json"],
       "files": [
         {
@@ -1385,7 +1395,7 @@
       "type": "registry:ui",
       "title": "Separator",
       "description": "Visually or semantically separates content.",
-      "dependencies": ["@radix-ui/react-separator"],
+      "dependencies": ["radix-ui"],
       "registryDependencies": ["https://blok.sitecore.com/r/theme.json"],
       "files": [
         {
@@ -1399,7 +1409,7 @@
       "type": "registry:ui",
       "title": "Sheet",
       "description": "A side panel containing content or editable fields.",
-      "dependencies": ["@radix-ui/react-dialog", "@mdi/js"],
+      "dependencies": ["radix-ui", "@mdi/js"],
       "registryDependencies": [
         "https://blok.sitecore.com/r/button.json",
         "https://blok.sitecore.com/r/theme.json"
@@ -1418,13 +1428,9 @@
     {
       "name": "sidebar",
       "type": "registry:ui",
-      "title": "Sidebar",
+      "title": "Navigation (Side)",
       "description": "A styled, simple, reusable sidebar",
-      "dependencies": [
-        "@mdi/js",
-        "class-variance-authority",
-        "@radix-ui/react-slot"
-      ],
+      "dependencies": ["@mdi/js", "class-variance-authority", "radix-ui"],
       "registryDependencies": [
         "https://blok.sitecore.com/r/theme.json",
         "https://blok.sitecore.com/r/tooltip.json",
@@ -1463,7 +1469,7 @@
       "title": "Slider",
       "description": "An input where the user selects a value from within a given range.",
       "registryDependencies": ["https://blok.sitecore.com/r/theme.json"],
-      "dependencies": ["@radix-ui/react-slider"],
+      "dependencies": ["radix-ui"],
       "files": [
         {
           "path": "src/components/ui/slider.tsx",
@@ -1507,7 +1513,7 @@
       "type": "registry:ui",
       "title": "Spinner",
       "description": "An indicator that can be used to show a loading state.",
-      "dependencies": ["lucide-react"],
+      "dependencies": ["lucide-react", "class-variance-authority"],
       "registryDependencies": ["https://blok.sitecore.com/r/theme.json"],
       "files": [
         {
@@ -1519,10 +1525,10 @@
     {
       "name": "stack-navigation",
       "type": "registry:ui",
-      "title": "Stack navigation",
+      "title": "Navigation (Stack)",
       "description": "A collection of links for navigating websites.",
       "registryDependencies": ["https://blok.sitecore.com/r/theme.json"],
-      "dependencies": ["@mdi/js"],
+      "dependencies": ["@mdi/js", "class-variance-authority"],
       "files": [
         {
           "path": "src/components/ui/stack-navigation.tsx",
@@ -1539,7 +1545,7 @@
       "type": "registry:ui",
       "title": "Switch",
       "description": "A control that allows the user to toggle between checked and not checked.",
-      "dependencies": ["@radix-ui/react-switch", "class-variance-authority"],
+      "dependencies": ["radix-ui", "class-variance-authority"],
       "registryDependencies": [
         "https://blok.sitecore.com/r/theme.json",
         "https://blok.sitecore.com/r/label.json"
@@ -1584,11 +1590,7 @@
       "type": "registry:ui",
       "title": "Tabs",
       "description": "A set of layered sections of content known as tab panels that are displayed one at a time.",
-      "dependencies": [
-        "@radix-ui/react-tabs",
-        "class-variance-authority",
-        "@mdi/js"
-      ],
+      "dependencies": ["radix-ui", "class-variance-authority", "@mdi/js"],
       "registryDependencies": ["https://blok.sitecore.com/r/theme.json"],
       "files": [
         {
@@ -1644,11 +1646,7 @@
         "https://blok.sitecore.com/r/theme.json",
         "https://blok.sitecore.com/r/toggle.json"
       ],
-      "dependencies": [
-        "@radix-ui/react-toggle-group",
-        "@mdi/js",
-        "class-variance-authority"
-      ],
+      "dependencies": ["radix-ui", "@mdi/js", "class-variance-authority"],
       "files": [
         {
           "path": "src/components/ui/toggle-group.tsx",
@@ -1666,7 +1664,7 @@
       "title": "Tooltip",
       "description": "A popup that displays information related to an element when the element receives keyboard focus or the mouse hovers over it.",
       "registryDependencies": ["https://blok.sitecore.com/r/theme.json"],
-      "dependencies": ["@radix-ui/react-tooltip"],
+      "dependencies": ["radix-ui"],
       "files": [
         {
           "path": "src/components/ui/tooltip.tsx",
@@ -1680,11 +1678,7 @@
       "title": "Toggle",
       "description": "A two-state button that can be either on or off.",
       "registryDependencies": ["https://blok.sitecore.com/r/theme.json"],
-      "dependencies": [
-        "@radix-ui/react-toggle",
-        "@mdi/js",
-        "class-variance-authority"
-      ],
+      "dependencies": ["radix-ui", "@mdi/js", "class-variance-authority"],
       "files": [
         {
           "path": "src/components/ui/toggle.tsx",
@@ -1698,7 +1692,7 @@
     },
     {
       "name": "topbar",
-      "type": "registry:ui",
+      "type": "registry:block",
       "title": "Topbar",
       "description": "An application top bar for page navigation",
       "registryDependencies": [
@@ -1710,8 +1704,9 @@
       "dependencies": ["@mdi/js"],
       "files": [
         {
-          "path": "src/components/ui/top-bar.tsx",
-          "type": "registry:ui"
+          "path": "src/components/bloks/top-bar.tsx",
+          "type": "registry:block",
+          "target": "src/components/bloks/top-bar.tsx"
         },
         {
           "path": "src/lib/icon.tsx",
@@ -1729,7 +1724,8 @@
         "https://blok.sitecore.com/r/button.json",
         "https://blok.sitecore.com/r/tooltip.json",
         "https://blok.sitecore.com/r/checkbox.json",
-        "https://blok.sitecore.com/r/dropdown-menu.json"
+        "https://blok.sitecore.com/r/dropdown-menu.json",
+        "https://blok.sitecore.com/r/label.json"
       ],
       "dependencies": ["@mdi/js"],
       "files": [
@@ -1749,7 +1745,7 @@
       "title": "Popover",
       "description": "Displays content in an overlay, triggered by a button.",
       "registryDependencies": ["https://blok.sitecore.com/r/theme.json"],
-      "dependencies": ["@radix-ui/react-popover"],
+      "dependencies": ["radix-ui"],
       "files": [
         {
           "path": "src/components/ui/popover.tsx",
@@ -1767,7 +1763,7 @@
         "https://blok.sitecore.com/r/avatar.json",
         "https://blok.sitecore.com/r/button.json",
         "https://blok.sitecore.com/r/card.json",
-        "https://blok.sitecore.com/r/input-group.json",
+        "https://blok.sitecore.com/r/search-input.json",
         "https://blok.sitecore.com/r/popover.json",
         "https://blok.sitecore.com/r/icon.json"
       ],

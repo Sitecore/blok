@@ -51,6 +51,16 @@ const guidelinesItems = [
       </div>
     ),
   },
+  {
+    name: "migration",
+    title: "Migration Guide",
+    href: "/migration",
+    preview: (
+      <div className="w-full h-full flex items-center justify-center p-4">
+        <BlokFoundationsThumb />
+      </div>
+    ),
+  }
 ];
 
 const resourcesItems = [

@@ -1,7 +1,9 @@
 "use client";
+
 import { ComponentGrid } from "@/components/docsite/component-grid";
 import { getComponents } from "@/lib/registry";
 import type { Component } from "@/lib/registry";
+import { TELEMETRY_EVENTS, track } from "@/lib/telemetry";
 
 export default function ComponentsPage() {
   const components = getComponents();
@@ -46,6 +48,13 @@ export default function ComponentsPage() {
               <ComponentGrid
                 components={components}
                 getHref={(component) => `/primitives/${component.name}`}
+                onCardClick={(component) =>
+                  track(TELEMETRY_EVENTS.registry_card_click, {
+                    name: component.name,
+                    type: "primitive",
+                    href: `/primitives/${component.name}`,
+                  })
+                }
               />
             </div>
           ))}

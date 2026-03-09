@@ -177,7 +177,7 @@ export function ColorsClient({ content }: Props) {
                   />
                 </TableCell>
                 <TableCell className="px-4 py-3">
-                  <CopyableToken token={key} />
+                  <CopyableToken token={key} page="theming/colors" />
                 </TableCell>
                 <TableCell className="px-4 py-3">
                   <code className="font-mono text-sm">{formattedLight}</code>

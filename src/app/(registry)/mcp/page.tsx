@@ -172,6 +172,7 @@ export default function MCPPage() {
                 showLineNumbers={false}
                 code={`npx shadcn@latest mcp init --client claude`}
                 variant="outline"
+                copyCodeContext={{ location: "mcp", page_path: "/mcp" }}
               />
 
               <p className="mt-2">
@@ -210,6 +211,7 @@ export default function MCPPage() {
                 showLineNumbers={false}
                 code={`npx shadcn@latest mcp init --client cursor`}
                 variant="outline"
+                copyCodeContext={{ location: "mcp", page_path: "/mcp" }}
               />
 
               <p className="mt-2">
@@ -238,6 +240,7 @@ export default function MCPPage() {
                 showLineNumbers={false}
                 code={`npx shadcn@latest mcp init --client vscode`}
                 variant="outline"
+                copyCodeContext={{ location: "mcp", page_path: "/mcp" }}
               />
 
               <p className="mt-2">
@@ -266,6 +269,7 @@ export default function MCPPage() {
                 showLineNumbers={false}
                 code={`npx shadcn@latest mcp init --client codex`}
                 variant="outline"
+                copyCodeContext={{ location: "mcp", page_path: "/mcp" }}
               />
 
               <p className="mt-2">

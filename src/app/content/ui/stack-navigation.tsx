@@ -42,5 +42,11 @@ const navigationItems: StackNavigationElement[] = [
 ];
 
 export default function StackNavigationDemo() {
-  return <StackNavigation items={navigationItems} />;
+  return (
+    <StackNavigation
+      items={navigationItems}
+      colorScheme="neutral"
+      className="shadow-none"
+    />
+  );
 }

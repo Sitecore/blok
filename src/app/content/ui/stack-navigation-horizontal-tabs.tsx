@@ -96,16 +96,14 @@ export default function StackNavigationHorizontalTabsDemo() {
   };
 
   return (
-    <div className="w-full border rounded-md bg-background overflow-hidden">
-      <div className="border-b">
-        <StackNavigation
-          items={navigationItems}
-          orientation="horizontal"
-          renderItem={renderTabItem}
-          navClassName="justify-start"
-          className="shadow-none"
-        />
-      </div>
+    <div className="w-full bg-background overflow-hidden">
+      <StackNavigation
+        items={navigationItems}
+        orientation="horizontal"
+        renderItem={renderTabItem}
+        navClassName="justify-start"
+        className="shadow-none"
+      />
       <div className="w-150">{tabContent[activeTab]}</div>
     </div>
   );

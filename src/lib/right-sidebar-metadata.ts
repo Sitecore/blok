@@ -148,6 +148,7 @@ export const rightSidebarMetadata: Record<string, RightSidebarMetadata> = {
           { id: "button-icon-sizing", title: "Icon Sizing" },
           { id: "button-icon-text", title: "Icon with Text" },
           { id: "button-disabled", title: "Disabled States" },
+          { id: "button-loading", title: "Loading" },
         ],
       },
     ],
@@ -268,10 +269,12 @@ export const rightSidebarMetadata: Record<string, RightSidebarMetadata> = {
         id: "examples",
         title: "Examples",
         children: [
-          { id: "combobox-framework", title: "Framework Combobox" },
-          { id: "combobox-user", title: "User Combobox" },
-          { id: "combobox-timezone", title: "Timezone Combobox" },
-          { id: "combobox-checkbox", title: "Combobox With Checkbox" },
+          { id: "combobox-multiple", title: "Multiple" },
+          { id: "combobox-clear-button", title: "Clear Button" },
+          { id: "combobox-groups", title: "Groups" },
+          { id: "combobox-custom-items", title: "Custom Items" },
+          { id: "combobox-auto-highlight", title: "Auto Highlight" },
+          { id: "combobox-input-group", title: "Input Group" },
         ],
       },
     ],
@@ -491,7 +494,6 @@ export const rightSidebarMetadata: Record<string, RightSidebarMetadata> = {
           { id: "filter-input", title: "Filter Input" },
           { id: "filter-single-select", title: "Filter Single Select" },
           { id: "filter-multi-select", title: "Filter Multi Select" },
-          { id: "filter-toggle", title: "Filter Toggle" },
         ],
       },
     ],
@@ -556,12 +558,14 @@ export const rightSidebarMetadata: Record<string, RightSidebarMetadata> = {
         id: "examples",
         title: "Examples",
         children: [
-          { id: "input-group-search", title: "Search" },
           { id: "input-group-url", title: "URL" },
           { id: "input-group-dropdown", title: "Dropdown" },
         ],
       },
     ],
+  },
+  "search-input": {
+    links: {},
   },
   inputOtp: {
     links: {
@@ -575,8 +579,8 @@ export const rightSidebarMetadata: Record<string, RightSidebarMetadata> = {
         id: "examples",
         title: "Examples",
         children: [
-          { id: "pattern", title: "Pattern" },
-          { id: "with-spacing", title: "With Spacing" },
+          { id: "inputOtp-pattern", title: "Pattern" },
+          { id: "inputOtp-spacing", title: "With Spacing" },
         ],
       },
     ],
@@ -799,17 +803,6 @@ export const rightSidebarMetadata: Record<string, RightSidebarMetadata> = {
       { id: "preview", title: "Preview" },
       { id: "installation", title: "Installation" },
       { id: "usage", title: "Usage" },
-      {
-        id: "examples",
-        title: "Examples",
-        children: [
-          { id: "circular-progress-variants", title: "Variants" },
-          {
-            id: "circular-progress-text",
-            title: "With Text Circular Progress",
-          },
-        ],
-      },
     ],
   },
   spinner: {
@@ -825,11 +818,7 @@ export const rightSidebarMetadata: Record<string, RightSidebarMetadata> = {
       {
         id: "examples",
         title: "Examples",
-        children: [
-          { id: "spinner-size", title: "Size" },
-          { id: "spinner-button", title: "Button" },
-          { id: "spinner-badge", title: "Badge" },
-        ],
+        children: [{ id: "spinner-size", title: "Size" }],
       },
     ],
   },
@@ -848,6 +837,7 @@ export const rightSidebarMetadata: Record<string, RightSidebarMetadata> = {
         children: [
           { id: "stack-navigation-horizontal", title: "Horizontal" },
           { id: "stack-navigation-horizontal-tabs", title: "Horizontal Tabs" },
+          { id: "stack-navigation-color-schemes", title: "Color Schemes" },
         ],
       },
     ],
@@ -965,8 +955,8 @@ export const rightSidebarMetadata: Record<string, RightSidebarMetadata> = {
         id: "examples",
         title: "Examples",
         children: [
-          { id: "toggle-square", title: "Square" },
-          { id: "toggle-rounded", title: "Rounded" },
+          { id: "toggle-sizes", title: "Sizes" },
+          { id: "toggle-variants", title: "Variants" },
         ],
       },
     ],
@@ -985,6 +975,7 @@ export const rightSidebarMetadata: Record<string, RightSidebarMetadata> = {
         children: [
           { id: "toggle-group-square", title: "Square Variant" },
           { id: "toggle-group-rounded", title: "Rounded Variant" },
+          { id: "toggle-group-sizes", title: "Sizes" },
         ],
       },
     ],

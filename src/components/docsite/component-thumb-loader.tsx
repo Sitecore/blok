@@ -46,6 +46,7 @@ import RadioThumb from "@/components/component-thumbs/radio";
 import RadioGroupThumb from "@/components/component-thumbs/radio-group";
 import ResizableThumb from "@/components/component-thumbs/resizable";
 import ScrollAreaThumb from "@/components/component-thumbs/scroll-area";
+import SearchInputThumb from "@/components/component-thumbs/search-input";
 import SelectThumb from "@/components/component-thumbs/select";
 import SeparatorThumb from "@/components/component-thumbs/separator";
 import SheetThumb from "@/components/component-thumbs/sheet";
@@ -55,6 +56,7 @@ import SkeletonThumb from "@/components/component-thumbs/skeleton";
 import SliderThumb from "@/components/component-thumbs/slider";
 import SonnerThumb from "@/components/component-thumbs/sonner";
 import SpinnerThumb from "@/components/component-thumbs/spinner";
+import StackNavigationThumb from "@/components/component-thumbs/stack-navigation";
 import StepperThumb from "@/components/component-thumbs/stepper";
 import SwitchThumb from "@/components/component-thumbs/switch";
 import TableThumb from "@/components/component-thumbs/table";
@@ -107,10 +109,12 @@ const componentThumbnails: Record<
   "radio-group": RadioGroupThumb,
   resizable: ResizableThumb,
   "scroll-area": ScrollAreaThumb,
+  "search-input": SearchInputThumb,
   select: SelectThumb,
   separator: SeparatorThumb,
   sheet: SheetThumb,
   sidebar: SidebarThumb,
+  "stack-navigation": StackNavigationThumb,
   sonner: SonnerThumb,
   skeleton: SkeletonThumb,
   slider: SliderThumb,

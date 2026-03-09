@@ -5,18 +5,24 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
+import { TELEMETRY_EVENTS, track } from "@/lib/telemetry";
 
 interface CopyableTokenProps {
   token: string;
+  /** Telemetry: page/section (e.g. "theming/colors"). */
+  page?: string;
 }
 
 async function copyToClipboard(value: string) {
   await navigator.clipboard.writeText(value);
 }
 
-export function CopyableToken({ token }: CopyableTokenProps) {
+export function CopyableToken({ token, page }: CopyableTokenProps) {
   const handleCopy = async () => {
     await copyToClipboard(token);
+    if (page) {
+      track(TELEMETRY_EVENTS.copy_token, { token, page });
+    }
   };
 
   return (

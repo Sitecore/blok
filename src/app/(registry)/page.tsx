@@ -13,6 +13,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { externalLinks } from "@/config/links";
+import { TELEMETRY_EVENTS, track } from "@/lib/telemetry";
 import { mdiOpenInNew } from "@mdi/js";
 import Icon from "@mdi/react";
 import Link from "next/link";
@@ -53,6 +54,9 @@ export default function Home() {
             <Button
               size="lg"
               onClick={() => {
+                track(TELEMETRY_EVENTS.home_get_started_click, {
+                  target_id: "step-1",
+                });
                 const element = document.getElementById("step-1");
                 element?.scrollIntoView({ behavior: "smooth" });
               }}
@@ -60,7 +64,16 @@ export default function Home() {
               Get started
             </Button>
             <Button size="lg" variant="outline" asChild>
-              <Link href="/primitives">Browse primitives</Link>
+              <Link
+                href="/primitives"
+                onClick={() =>
+                  track(TELEMETRY_EVENTS.home_browse_primitives_click, {
+                    href: "/primitives",
+                  })
+                }
+              >
+                Browse primitives
+              </Link>
             </Button>
           </div>
         </div>
@@ -104,6 +117,13 @@ export default function Home() {
                     href="https://nodejs.org/"
                     target="_blank"
                     rel="noopener noreferrer"
+                    onClick={() =>
+                      track(TELEMETRY_EVENTS.home_prerequisite_link_click, {
+                        name: "Node.js 16+",
+                        href: "https://nodejs.org/",
+                        label: "Download",
+                      })
+                    }
                   >
                     Download
                     <Icon path={mdiOpenInNew} className="size-4" />
@@ -180,6 +200,13 @@ export default function Home() {
                     href="https://tailwindcss.com/docs/installation"
                     target="_blank"
                     rel="noopener noreferrer"
+                    onClick={() =>
+                      track(TELEMETRY_EVENTS.home_prerequisite_link_click, {
+                        name: "TailwindCSS",
+                        href: "https://tailwindcss.com/docs/installation",
+                        label: "Setup guide",
+                      })
+                    }
                   >
                     Setup guide
                     <Icon path={mdiOpenInNew} className="size-4" />
@@ -198,6 +225,11 @@ export default function Home() {
                 className="hover:underline break-words text-primary-fg font-semibold"
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={() =>
+                  track(TELEMETRY_EVENTS.home_shadcn_tip_link_click, {
+                    href: "https://ui.shadcn.com/docs/installation",
+                  })
+                }
               >
                 shadcn/ui
               </a>
@@ -217,7 +249,11 @@ export default function Home() {
             Run the shadcn/ui initialization command in your project's root
             folder:
           </p>
-          <Codeblocks code="npx shadcn@latest init" showLineNumbers={false} />
+          <Codeblocks
+            code="npx shadcn@latest init"
+            showLineNumbers={false}
+            copyCodeContext={{ location: "home", page_path: "/" }}
+          />
           <p>
             During initialization, choose a base color when prompted. The CLI
             will then:
@@ -252,6 +288,7 @@ export default function Home() {
           <Codeblocks
             code={`npx shadcn@latest add https://${process.env.NEXT_PUBLIC_REGISTRY_URL}/r/button.json`}
             showLineNumbers={false}
+            copyCodeContext={{ location: "home", page_path: "/" }}
           />
           <Alert variant="primary" className="items-start">
             <AlertDescription className="flex flex-col gap-3 text-lg">
@@ -263,6 +300,7 @@ export default function Home() {
                 <Codeblocks
                   code={`npx shadcn@latest add https://${process.env.NEXT_PUBLIC_REGISTRY_URL}/r/blok-components.json`}
                   showLineNumbers={false}
+                  copyCodeContext={{ location: "home", page_path: "/" }}
                 />
               </div>
               <p className="max-w-full">
@@ -318,7 +356,11 @@ export default function MyComponent() {
             Step 4: Run your application
           </h2>
           <p>Start the development server:</p>
-          <Codeblocks code="npm run dev" showLineNumbers={false} />
+          <Codeblocks
+            code="npm run dev"
+            showLineNumbers={false}
+            copyCodeContext={{ location: "home", page_path: "/" }}
+          />
           <p className="">
             Your application is now running with functional Blok components.
           </p>

@@ -44,7 +44,7 @@ export const ListLanguagesFromClientSdk = () => {
     };
 
     try {
-      const languagesResponse = await client.query("xmc.xmapp.listLanguages", {
+      const languagesResponse = await client.query("xmc.sites.listLanguages", {
         params: data,
       });
       console.log("languages from client", languagesResponse);

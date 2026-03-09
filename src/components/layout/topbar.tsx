@@ -8,17 +8,24 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { Input } from "@/components/ui/input";
 import {
   NavigationMenu,
   NavigationMenuItem,
   NavigationMenuList,
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
+import {
+  SearchInput,
+  SearchInputClearButton,
+  SearchInputField,
+  SearchInputLeftElement,
+  SearchInputRightElement,
+} from "@/components/ui/search-input";
 import { appConfig } from "@/config/config";
 import { externalLinks } from "@/config/links";
 import { navItems, searchableItems } from "@/config/nav";
 import { getRegistryItem } from "@/lib/registry";
+import { TELEMETRY_EVENTS, track } from "@/lib/telemetry";
 import registry from "@/registry";
 import {
   mdiCircleHalfFull,
@@ -90,6 +97,8 @@ export default function TopBar() {
       document.documentElement.classList.remove("dark");
       localStorage.setItem("theme", "light");
     }
+
+    track(TELEMETRY_EVENTS.topbar_theme_toggle, { theme: themeStr });
 
     // change theme inside iframe
     const iframe = document.getElementById(
@@ -248,8 +257,15 @@ export default function TopBar() {
         e.preventDefault();
         if (selectedIndex >= 0 && selectedIndex < searchResults.length) {
           const result = searchResults[selectedIndex];
+          handleSearchResultClick(result, selectedIndex);
           window.location.href = result.href;
-          handleSearchResultClick();
+        } else if (searchQuery.trim() && searchResults.length === 0) {
+          // User searched but no results – track the query
+          track(TELEMETRY_EVENTS.topbar_search_query, {
+            query: searchQuery.trim(),
+            query_length: searchQuery.length,
+            results_count: 0,
+          });
         }
         break;
       case "Escape":
@@ -261,7 +277,20 @@ export default function TopBar() {
     }
   };
 
-  const handleSearchResultClick = () => {
+  const handleSearchResultClick = (result?: SearchResult, index?: number) => {
+    if (result != null && index != null) {
+      track(TELEMETRY_EVENTS.topbar_search_query, {
+        query: searchQuery.trim(),
+        query_length: searchQuery.length,
+        results_count: searchResults.length,
+      });
+      track(TELEMETRY_EVENTS.topbar_search_result_click, {
+        result_type: result.type,
+        result_name: result.name,
+        result_href: result.href,
+        index,
+      });
+    }
     setShowSearchResults(false);
     setSearchQuery("");
     setSelectedIndex(-1);
@@ -373,7 +402,14 @@ export default function TopBar() {
                   <NavigationMenuItem key={item.name}>
                     <Link
                       href={item.href}
-                      onClick={() => setClickedHref(item.href)}
+                      onClick={() => {
+                        setClickedHref(item.href);
+                        track(TELEMETRY_EVENTS.topbar_nav_click, {
+                          link: item.href,
+                          label: item.name,
+                          is_mobile: false,
+                        });
+                      }}
                       className={`${navigationMenuTriggerStyle()} ${
                         isActive ? "active" : ""
                       }`}
@@ -440,7 +476,14 @@ export default function TopBar() {
                     <DropdownMenuItem asChild key={item.name}>
                       <Link
                         href={item.href}
-                        onClick={() => setClickedHref(item.href)}
+                        onClick={() => {
+                          setClickedHref(item.href);
+                          track(TELEMETRY_EVENTS.topbar_nav_click, {
+                            link: item.href,
+                            label: item.name,
+                            is_mobile: true,
+                          });
+                        }}
                         className={`${
                           isActive
                             ? "bg-primary-background text-primary-fg hover:bg-primary-background hover:text-primary-fg"
@@ -464,20 +507,27 @@ export default function TopBar() {
             role="search"
             ref={searchRef}
           >
-            <Icon
-              path={mdiMagnify}
-              size={0.9}
-              className="absolute top-1/2 left-3 -translate-y-1/2 text-muted-foreground"
-            />
-            <Input
-              placeholder="Search Blok"
-              className="h-9 pr-3 pl-10"
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              onFocus={() => searchQuery.trim() && setShowSearchResults(true)}
-              onKeyDown={handleKeyDown}
-              ref={inputRef}
-            />
+            <SearchInput className="h-9">
+              <SearchInputLeftElement>
+                <Icon path={mdiMagnify} size={0.9} />
+              </SearchInputLeftElement>
+              <SearchInputField
+                placeholder="Search Blok"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                onFocus={() => searchQuery.trim() && setShowSearchResults(true)}
+                onKeyDown={handleKeyDown}
+                ref={inputRef}
+              />
+              {searchQuery && (
+                <SearchInputRightElement>
+                  <SearchInputClearButton
+                    onClear={() => setSearchQuery("")}
+                    tooltipLabel="Clear search"
+                  />
+                </SearchInputRightElement>
+              )}
+            </SearchInput>
 
             {showSearchResults && (
               <div className="absolute top-full left-0 right-0 mt-1 bg-popover border border-border rounded-lg z-50 max-h-96 overflow-y-auto animate-in fade-in-0 slide-in-from-top-2 duration-200 min-w-[300px] max-w-[90vw] sm:min-w-[350px] sm:max-w-[600px] lg:min-w-[400px] lg:max-w-[700px] xl:max-w-[800px]">
@@ -491,7 +541,7 @@ export default function TopBar() {
                       <Link
                         key={`${result.type}-${result.name}`}
                         href={result.href}
-                        onClick={handleSearchResultClick}
+                        onClick={() => handleSearchResultClick(result, index)}
                         className={`flex items-start gap-3 p-3 rounded-md transition-colors ${
                           index === selectedIndex
                             ? "bg-primary-background border border-primary"
@@ -587,6 +637,12 @@ export default function TopBar() {
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-1"
+              onClick={() =>
+                track(TELEMETRY_EVENTS.topbar_link_click, {
+                  type: "chakra_version",
+                  href: externalLinks?.Block_site_old || "",
+                })
+              }
             >
               <Icon path={mdiOpenInNew} size={0.9} />
               {appConfig?.blockVersion}
@@ -604,6 +660,12 @@ export default function TopBar() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="View GitHub repository"
+              onClick={() =>
+                track(TELEMETRY_EVENTS.topbar_link_click, {
+                  type: "github",
+                  href: externalLinks?.Block_github || "",
+                })
+              }
             >
               <Icon path={mdiGithub} size={1} />
             </a>

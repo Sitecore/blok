@@ -17,6 +17,7 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
+import { TELEMETRY_EVENTS, track } from "@/lib/telemetry";
 
 const logosData = [
   {
@@ -308,11 +309,14 @@ export default function LogosPage() {
                     <Tooltip>
                       <TooltipTrigger asChild>
                         <button
-                          onClick={() =>
-                            copyToClipboard(
-                              `https://delivery-sitecore.sitecorecontenthub.cloud/api/public/content/${filename}`,
-                            )
-                          }
+                          onClick={() => {
+                            const url = `https://delivery-sitecore.sitecorecontenthub.cloud/api/public/content/${filename}`;
+                            copyToClipboard(url);
+                            track(TELEMETRY_EVENTS.copy_url, {
+                              page: "logos",
+                              href: url,
+                            });
+                          }}
                           className="cursor-pointer h-7 flex items-center"
                         >
                           <img
@@ -329,11 +333,14 @@ export default function LogosPage() {
                     <Tooltip>
                       <TooltipTrigger asChild>
                         <button
-                          onClick={() =>
-                            copyToClipboard(
-                              `https://delivery-sitecore.sitecorecontenthub.cloud/api/public/content/${filename}-dark`,
-                            )
-                          }
+                          onClick={() => {
+                            const url = `https://delivery-sitecore.sitecorecontenthub.cloud/api/public/content/${filename}-dark`;
+                            copyToClipboard(url);
+                            track(TELEMETRY_EVENTS.copy_url, {
+                              page: "logos",
+                              href: url,
+                            });
+                          }}
                           className="cursor-pointer h-7 flex items-center"
                         >
                           <img

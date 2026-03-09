@@ -10,22 +10,16 @@ export const inputGroup = {
   InputGroupAddon,
   InputGroupButton,
   InputGroupInput,
-} from "@/components/ui/input-group";
-import { Icon } from "@/lib/icon";
-import { mdiMagnify } from "@mdi/js";`,
+} from "@/components/ui/input-group";`,
       `<InputGroup>
-  <InputGroupInput placeholder="Search..." />
+  <InputGroupInput placeholder="Enter text..." />
   <InputGroupAddon>
-    <Icon path={mdiMagnify} size={1} />
-  </InputGroupAddon>
-  <InputGroupAddon align="inline-end">
-    <InputGroupButton>Search</InputGroupButton>
+    <InputGroupButton>Action</InputGroupButton>
   </InputGroupAddon>
 </InputGroup>`,
     ],
   },
   components: {
-    Search: { component: "input-group-search" },
     URL: { component: "input-group-url" },
     Dropdown: { component: "input-group-dropdown" },
   },

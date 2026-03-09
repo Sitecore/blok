@@ -2,8 +2,8 @@
 
 import { Icon } from "@/lib/icon";
 import { mdiClose } from "@mdi/js";
-import * as DialogPrimitive from "@radix-ui/react-dialog";
-import * as React from "react";
+import { Dialog as DialogPrimitive } from "radix-ui";
+import type * as React from "react";
 
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -67,8 +67,6 @@ function DialogContent({
     full: "w-screen h-screen max-w-none max-h-none rounded-none p-0",
   };
 
-
-
   return (
     <DialogPortal data-slot="dialog-portal">
       <DialogOverlay />
@@ -85,19 +83,19 @@ function DialogContent({
         {...props}
       >
         {children}
-          <DialogPrimitive.Close
-            className={cn(
-              buttonVariants({
-                variant: "ghost",
-                size: "icon-sm",
-                colorScheme: "neutral",
-              }),
-              "absolute top-2.5 right-4 min-w-0 opacity-70 transition-opacity hover:opacity-100",
-            )}
-          >
-            <Icon path={mdiClose} size={0.9} />
-            <span className="sr-only">Close</span>
-          </DialogPrimitive.Close>
+        <DialogPrimitive.Close
+          className={cn(
+            buttonVariants({
+              variant: "ghost",
+              size: "icon-sm",
+              colorScheme: "neutral",
+            }),
+            "absolute top-2.5 right-4 min-w-0 opacity-70 transition-opacity hover:opacity-100",
+          )}
+        >
+          <Icon path={mdiClose} size={0.9} />
+          <span className="sr-only">Close</span>
+        </DialogPrimitive.Close>
       </DialogPrimitive.Content>
     </DialogPortal>
   );
@@ -107,7 +105,10 @@ function DialogHeader({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
       data-slot="dialog-header"
-      className={cn("flex flex-col gap-0.5 text-center sm:text-left", className)}
+      className={cn(
+        "flex flex-col gap-0.5 text-center sm:text-left",
+        className,
+      )}
       {...props}
     />
   );

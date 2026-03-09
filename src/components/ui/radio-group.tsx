@@ -2,7 +2,7 @@
 
 import { Icon } from "@/lib/icon";
 import { mdiCircle } from "@mdi/js";
-import * as RadioGroupPrimitive from "@radix-ui/react-radio-group";
+import { RadioGroup as RadioGroupPrimitive } from "radix-ui";
 import type * as React from "react";
 
 import { cn } from "@/lib/utils";

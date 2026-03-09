@@ -53,7 +53,7 @@ export default function ShadowsPage() {
                       />
                     </TableCell>
                     <TableCell className="px-4 py-3">
-                      <CopyableToken token={key} />
+                      <CopyableToken token={key} page="theming/shadows" />
                     </TableCell>
                     <TableCell className="px-4 py-3">
                       <code className="font-mono text-sm">{value}</code>

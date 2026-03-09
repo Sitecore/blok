@@ -4,7 +4,7 @@ import {
   getBrowserLanguage,
   getDirectionFromLanguage,
 } from "@/lib/direction-utils";
-import { DirectionProvider as RadixDirectionProvider } from "@radix-ui/react-direction";
+import { Direction as RadixDirection } from "radix-ui";
 import { useEffect, useState } from "react";
 
 export function DirectionProvider({ children }: { children: React.ReactNode }) {
@@ -43,5 +43,9 @@ export function DirectionProvider({ children }: { children: React.ReactNode }) {
     };
   }, []);
 
-  return <RadixDirectionProvider dir={dir}>{children}</RadixDirectionProvider>;
+  return (
+    <RadixDirection.DirectionProvider dir={dir}>
+      {children}
+    </RadixDirection.DirectionProvider>
+  );
 }

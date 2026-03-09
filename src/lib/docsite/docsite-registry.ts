@@ -1,5 +1,6 @@
 import type { ComponentType } from "react";
 
+import TopbarDemo from "@/app/content/bloks/topbar";
 // PRIMITIVES
 import AccordionDemo from "@/app/content/ui/accordion";
 import AlertDemo from "@/app/content/ui/alert";
@@ -28,6 +29,7 @@ import ButtonColorSchemeDemo from "@/app/content/ui/button-color-schemes";
 import ButtonDisabledDemo from "@/app/content/ui/button-disabled";
 import ButtonIconSizingDemo from "@/app/content/ui/button-icon-sizing";
 import ButtonIconTextDemo from "@/app/content/ui/button-icon-text";
+import ButtonLoadingDemo from "@/app/content/ui/button-loading";
 import ButtonSizingDemo from "@/app/content/ui/button-sizing";
 import ButtonVariantsDemo from "@/app/content/ui/button-variants";
 import CalendarDemo from "@/app/content/ui/calendar";
@@ -50,10 +52,7 @@ import CheckboxWithDescriptionDemo from "@/app/content/ui/checkbox-description";
 import DisabledCheckboxDemo from "@/app/content/ui/checkbox-disabled";
 import EnabledCheckboxLabelDemo from "@/app/content/ui/checkbox-label";
 import CollapsibleDemo from "@/app/content/ui/collapsible";
-import ComboboxWithCheckboxDemo from "@/app/content/ui/combobox-checkbox";
-import FrameworkComboboxDemo from "@/app/content/ui/combobox-framework";
-import TimezoneComboboxDemo from "@/app/content/ui/combobox-timezone";
-import UserComboboxDemo from "@/app/content/ui/combobox-user";
+import ComboboxDemo from "@/app/content/ui/combobox";
 import CommandDemo from "@/app/content/ui/command";
 import ContextMenuDemo from "@/app/content/ui/context-menu";
 import DatePickerSimpleDemo from "@/app/content/ui/date-picker";
@@ -111,6 +110,7 @@ import ResizableHandleDemo from "@/app/content/ui/resizable-handle";
 import VerticalResizableDemo from "@/app/content/ui/resizable-vertical";
 import ScrollAreaDemo from "@/app/content/ui/scroll-area";
 import HorizontalScrollAreaDemo from "@/app/content/ui/scroll-area-horizontal";
+import SearchInputDefaultDemo from "@/app/content/ui/search-input-default";
 import SelectDemo from "@/app/content/ui/select";
 import DisabledSelectDemo from "@/app/content/ui/select-disabled";
 import SelectWithIconDemo from "@/app/content/ui/select-icon";
@@ -130,6 +130,7 @@ import SonnerSuccessDemo from "@/app/content/ui/sonner-success";
 import SonnerWarningDemo from "@/app/content/ui/sonner-warning";
 import SpinnerDemo from "@/app/content/ui/spinner";
 import StackNavigationDemo from "@/app/content/ui/stack-navigation";
+import StackNavigationColorSchemesDemo from "@/app/content/ui/stack-navigation-color-schemes";
 import StackNavigationHorizontalDemo from "@/app/content/ui/stack-navigation-horizontal";
 import StackNavigationHorizontalTabsDemo from "@/app/content/ui/stack-navigation-horizontal-tabs";
 import SwitchDemo from "@/app/content/ui/switch";
@@ -152,11 +153,14 @@ import LargeTextareaDemo from "@/app/content/ui/textarea-large";
 import SmallTextareaDemo from "@/app/content/ui/textarea-small";
 import TimePickerDemo from "@/app/content/ui/time-picker";
 import RoundedToggleGroupDemo from "@/app/content/ui/toggle-group-rounded";
+import ToggleGroupSizesDemo from "@/app/content/ui/toggle-group-sizes";
 import SquareToggleGroupDemo from "@/app/content/ui/toggle-group-square";
+import ToggleOutlineGroupDemo from "@/app/content/ui/toggle-outline-group";
 import RoundedToggleDemo from "@/app/content/ui/toggle-rounded";
+import ToggleSizesDemo from "@/app/content/ui/toggle-sizes";
 import SquareToggleDemo from "@/app/content/ui/toggle-square";
+import ToggleVariantsDemo from "@/app/content/ui/toggle-variants";
 import TooltipDemo from "@/app/content/ui/tooltip";
-import TopbarDemo from "@/app/content/ui/topbar";
 
 import AllSitesSectionDemo from "@/app/content/bloks/all-site-section";
 import CollaborationDemo from "@/app/content/bloks/collaboration";
@@ -165,8 +169,12 @@ import PinnedSitesSectionDemo from "@/app/content/bloks/pinned-site-section";
 import SiteCardDemo from "@/app/content/bloks/site-card";
 import { ActionBarDemo } from "@/app/content/ui/action-bar";
 import CircularProgressDemo from "@/app/content/ui/circular-progress";
-import CircularProgressWithTextDemo from "@/app/content/ui/circular-progress-text";
-import CircularProgressVariantsDemo from "@/app/content/ui/circular-progress-variants";
+import ComboboxAutoHighlightDemo from "@/app/content/ui/combobox-auto-highlight";
+import ComboboxWithClearDemo from "@/app/content/ui/combobox-clear-button";
+import ComboboxWithCustomItemsDemo from "@/app/content/ui/combobox-custom-items";
+import ComboboxWithGroupsAndSeparatorDemo from "@/app/content/ui/combobox-groups";
+import ComboxboxInputGroupDemo from "@/app/content/ui/combobox-input-group";
+import ComboboxMultipleDemo from "@/app/content/ui/combobox-multiple";
 import EditableDemo from "@/app/content/ui/editable";
 import EditableTextareaDemo from "@/app/content/ui/editable-textarea";
 import FieldDemo from "@/app/content/ui/field";
@@ -184,9 +192,12 @@ import FieldWithSeparatorDemo from "@/app/content/ui/field-separator";
 import FieldSmallDemo from "@/app/content/ui/field-small";
 import FieldSwitchDemo from "@/app/content/ui/field-switch";
 import FieldTextareaDemo from "@/app/content/ui/field-textarea";
+import FilterDemo from "@/app/content/ui/filter";
+import FilterInputDemo from "@/app/content/ui/filter-input";
+import FilterMultiSelectDemo from "@/app/content/ui/filter-multi-select";
+import FilterSingleSelectDemo from "@/app/content/ui/filter-single-select";
 import InputGroupDemo from "@/app/content/ui/input-group";
 import InputGroupDropdownDemo from "@/app/content/ui/input-group-dropdown";
-import InputGroupSearchDemo from "@/app/content/ui/input-group-search";
 import InputGroupURLDemo from "@/app/content/ui/input-group-url";
 import KbdDemo from "@/app/content/ui/kbd";
 import KbdButtonDemo from "@/app/content/ui/kbd-button";
@@ -194,19 +205,12 @@ import KbdGroupDemo from "@/app/content/ui/kbd-group";
 import KbdShortcutDemo from "@/app/content/ui/kbd-shortcut";
 import KbdTooltipDemo from "@/app/content/ui/kbd-tooltip";
 import SelectReactDemo from "@/app/content/ui/select-react";
-import SpinnerBadgeDemo from "@/app/content/ui/spinner-badge";
-import SpinnerButtonDemo from "@/app/content/ui/spinner-button";
 import SpinnerSizeDemo from "@/app/content/ui/spinner-size";
 import StepperDemo from "@/app/content/ui/stepper";
 import TimelineDemo from "@/app/content/ui/timeline";
 import TimelineConnectorVariantsDemo from "@/app/content/ui/timeline-connector-variants";
 import TimelineSizesDemo from "@/app/content/ui/timeline-sizes";
 import TimelineVariantsDemo from "@/app/content/ui/timeline-variants";
-import FilterDemo from "@/app/content/ui/filter";
-import FilterInputDemo from "@/app/content/ui/filter-input";
-import FilterSingleSelectDemo from "@/app/content/ui/filter-single-select";
-import FilterMultiSelectDemo from "@/app/content/ui/filter-multi-select";
-import FilterToggleDemo from "@/app/content/ui/filter-toggle";
 
 export interface DocsiteRegistryEntry {
   name: string;
@@ -366,6 +370,11 @@ export const docsiteRegistry: Record<string, DocsiteRegistryEntry> = {
     path: "src/app/content/ui/button-disabled.tsx",
     component: ButtonDisabledDemo,
   },
+  "button-loading": {
+    name: "button-loading",
+    path: "src/app/content/ui/button-loading.tsx",
+    component: ButtonLoadingDemo,
+  },
   calendar: {
     name: "calendar",
     path: "src/app/content/ui/calendar.tsx",
@@ -466,40 +475,45 @@ export const docsiteRegistry: Record<string, DocsiteRegistryEntry> = {
     path: "src/app/content/ui/circular-progress.tsx",
     component: CircularProgressDemo,
   },
-  "circular-progress-variants": {
-    name: "circular-progress-variants",
-    path: "src/app/content/ui/circular-progress-variants.tsx",
-    component: CircularProgressVariantsDemo,
-  },
-  "circular-progress-text": {
-    name: "circular-progress-text",
-    path: "src/app/content/ui/circular-progress-text.tsx",
-    component: CircularProgressWithTextDemo,
-  },
   collapsible: {
     name: "collapsible",
     path: "src/app/content/ui/collapsible.tsx",
     component: CollapsibleDemo,
   },
-  "combobox-framework": {
-    name: "combobox-framework",
-    path: "src/app/content/ui/combobox-framework.tsx",
-    component: FrameworkComboboxDemo,
+  combobox: {
+    name: "combobox",
+    path: "src/app/content/ui/combobox.tsx",
+    component: ComboboxDemo,
   },
-  "combobox-user": {
-    name: "combobox-user",
-    path: "src/app/content/ui/combobox-user.tsx",
-    component: UserComboboxDemo,
+  "combobox-multiple": {
+    name: "combobox-multiple",
+    path: "src/app/content/ui/combobox-multiple.tsx",
+    component: ComboboxMultipleDemo,
   },
-  "combobox-timezone": {
-    name: "combobox-timezone",
-    path: "src/app/content/ui/combobox-timezone.tsx",
-    component: TimezoneComboboxDemo,
+  "combobox-clear-button": {
+    name: "combobox-clear-button",
+    path: "src/app/content/ui/combobox-clear-button.tsx",
+    component: ComboboxWithClearDemo,
   },
-  "combobox-checkbox": {
-    name: "combobox-checkbox",
-    path: "src/app/content/ui/combobox-checkbox.tsx",
-    component: ComboboxWithCheckboxDemo,
+  "combobox-groups": {
+    name: "combobox-groups",
+    path: "src/app/content/ui/combobox-groups.tsx",
+    component: ComboboxWithGroupsAndSeparatorDemo,
+  },
+  "combobox-custom-items": {
+    name: "combobox-custom-items",
+    path: "src/app/content/ui/combobox-custom-items.tsx",
+    component: ComboboxWithCustomItemsDemo,
+  },
+  "combobox-auto-highlight": {
+    name: "combobox-auto-highlight",
+    path: "src/app/content/ui/combobox-auto-highlight.tsx",
+    component: ComboboxAutoHighlightDemo,
+  },
+  "combobox-input-group": {
+    name: "combobox-input-group",
+    path: "src/app/content/ui/combobox-input-group.tsx",
+    component: ComboxboxInputGroupDemo,
   },
   command: {
     name: "command",
@@ -736,31 +750,26 @@ export const docsiteRegistry: Record<string, DocsiteRegistryEntry> = {
     path: "src/app/content/ui/field-input-types.tsx",
     component: FieldInputTypesDemo,
   },
-      "filter": {
-        name: "filter",
-        path: "src/app/content/ui/filter.tsx",
-        component: FilterDemo,
-    },
-    "filter-input": {
-        name: "filter-input",
-        path: "src/app/content/ui/filter-input.tsx",
-        component: FilterInputDemo,
-    },
-    "filter-single-select": {
-        name: "filter-single-select",
-        path: "src/app/content/ui/filter-single-select.tsx",
-        component: FilterSingleSelectDemo,
-    },
-    "filter-multi-select": {
-        name: "filter-multi-select",
-        path: "src/app/content/ui/filter-multi-select.tsx",
-        component: FilterMultiSelectDemo,
-    },
-    "filter-toggle": {
-        name: "filter-toggle",
-        path: "src/app/content/ui/filter-toggle.tsx",
-        component: FilterToggleDemo,
-    },
+  filter: {
+    name: "filter",
+    path: "src/app/content/ui/filter.tsx",
+    component: FilterDemo,
+  },
+  "filter-input": {
+    name: "filter-input",
+    path: "src/app/content/ui/filter-input.tsx",
+    component: FilterInputDemo,
+  },
+  "filter-single-select": {
+    name: "filter-single-select",
+    path: "src/app/content/ui/filter-single-select.tsx",
+    component: FilterSingleSelectDemo,
+  },
+  "filter-multi-select": {
+    name: "filter-multi-select",
+    path: "src/app/content/ui/filter-multi-select.tsx",
+    component: FilterMultiSelectDemo,
+  },
   icon: {
     name: "icon",
     path: "src/app/content/ui/icon-component.tsx",
@@ -821,15 +830,15 @@ export const docsiteRegistry: Record<string, DocsiteRegistryEntry> = {
     path: "src/app/content/ui/input-disabled.tsx",
     component: DisabledInputDemo,
   },
+  "search-input": {
+    name: "search-input",
+    path: "src/app/content/ui/search-input-default.tsx",
+    component: SearchInputDefaultDemo,
+  },
   "input-group": {
     name: "input-group",
     path: "src/app/content/ui/input-group.tsx",
     component: InputGroupDemo,
-  },
-  "input-group-search": {
-    name: "input-group-search",
-    path: "src/app/content/ui/input-group-search.tsx",
-    component: InputGroupSearchDemo,
   },
   "input-group-url": {
     name: "input-group-url",
@@ -1041,16 +1050,6 @@ export const docsiteRegistry: Record<string, DocsiteRegistryEntry> = {
     path: "src/app/content/ui/spinner-size.tsx",
     component: SpinnerSizeDemo,
   },
-  "spinner-button": {
-    name: "spinner-button",
-    path: "src/app/content/ui/spinner-button.tsx",
-    component: SpinnerButtonDemo,
-  },
-  "spinner-badge": {
-    name: "spinner-badge",
-    path: "src/app/content/ui/spinner-badge.tsx",
-    component: SpinnerBadgeDemo,
-  },
   "stack-navigation": {
     name: "stack-navigation",
     path: "src/app/content/ui/stack-navigation.tsx",
@@ -1065,6 +1064,11 @@ export const docsiteRegistry: Record<string, DocsiteRegistryEntry> = {
     name: "stack-navigation-horizontal-tabs",
     path: "src/app/content/ui/stack-navigation-horizontal-tabs.tsx",
     component: StackNavigationHorizontalTabsDemo,
+  },
+  "stack-navigation-color-schemes": {
+    name: "stack-navigation-color-schemes",
+    path: "src/app/content/ui/stack-navigation-color-schemes.tsx",
+    component: StackNavigationColorSchemesDemo,
   },
   stepper: {
     name: "stepper",
@@ -1206,6 +1210,26 @@ export const docsiteRegistry: Record<string, DocsiteRegistryEntry> = {
     path: "src/app/content/ui/toggle-group-rounded.tsx",
     component: RoundedToggleGroupDemo,
   },
+  "toggle-sizes": {
+    name: "toggle-sizes",
+    path: "src/app/content/ui/toggle-sizes.tsx",
+    component: ToggleSizesDemo,
+  },
+  "toggle-variants": {
+    name: "toggle-variants",
+    path: "src/app/content/ui/toggle-variants.tsx",
+    component: ToggleVariantsDemo,
+  },
+  "toggle-group-sizes": {
+    name: "toggle-group-sizes",
+    path: "src/app/content/ui/toggle-group-sizes.tsx",
+    component: ToggleGroupSizesDemo,
+  },
+  "toggle-outline-group": {
+    name: "toggle-outline-group",
+    path: "src/app/content/ui/toggle-outline-group.tsx",
+    component: ToggleOutlineGroupDemo,
+  },
   tooltip: {
     name: "tooltip",
     path: "src/app/content/ui/tooltip.tsx",
@@ -1213,7 +1237,7 @@ export const docsiteRegistry: Record<string, DocsiteRegistryEntry> = {
   },
   topbar: {
     name: "topbar",
-    path: "src/app/content/ui/topbar.tsx",
+    path: "src/app/content/bloks/topbar.tsx",
     component: TopbarDemo,
   },
 

@@ -8,8 +8,15 @@ import { DirectionProvider } from "@/components/docsite/direction-provider";
 import { StructuredData } from "@/components/seo/structured-data";
 import { Toaster } from "@/components/ui/sonner";
 
-const baseUrl =
-  process.env.NEXT_PUBLIC_REGISTRY_URL || "https://blok.sitecore.com";
+const baseUrl = (() => {
+  const url =
+    process.env.NEXT_PUBLIC_REGISTRY_URL || "https://blok.sitecore.com";
+  // If URL doesn't start with http:// or https://, add https://
+  if (!url.startsWith("http://") && !url.startsWith("https://")) {
+    return `https://${url}`;
+  }
+  return url;
+})();
 
 export const metadata: Metadata = {
   metadataBase: new URL(baseUrl),
@@ -78,6 +85,8 @@ export const metadata: Metadata = {
   },
 };
 
+const gainsightPxTag = process.env.NEXT_PUBLIC_GAINSIGHT_PX_TAG?.trim() || "";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -89,6 +98,16 @@ export default function RootLayout({
       style={{ fontFamily: "'Inter', 'Segoe UI', system-ui" }}
       className="bg-subtle-bg text-foreground"
     >
+      <head>
+        {gainsightPxTag ? (
+          <script
+            type="text/javascript"
+            dangerouslySetInnerHTML={{
+              __html: `(function(n,t,a,e,co){var i="aptrinsic";n[i]=n[i]||function(){(n[i].q=n[i].q||[]).push(arguments)};n[i].p=e;n[i].c=co;var r=t.createElement("script");r.async=!0;r.src=a+"?a="+e;var c=t.getElementsByTagName("script")[0];c.parentNode.insertBefore(r,c);})(window,document,"https://web-sdk-eu.aptrinsic.com/api/aptrinsic.js","${gainsightPxTag.replace(/\\/g, "\\\\").replace(/"/g, '\\"')}");`,
+            }}
+          />
+        ) : null}
+      </head>
       <body className="flex grow">
         <StructuredData />
         <DirectionProvider>

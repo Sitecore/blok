@@ -130,7 +130,7 @@ Use `@version` to specify the version of your registry item.
 ```json title="registry-item.json" showLineNumbers
 {
   "dependencies": [
-    "@radix-ui/react-accordion",
+    "radix-ui",
     "zod",
     "lucide-react",
     "name@1.0.2"

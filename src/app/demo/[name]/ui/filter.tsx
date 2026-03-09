@@ -9,7 +9,6 @@ export const filter = {
   FilterInput,
   FilterSingleSelect,
   FilterMultiSelect,
-  FilterToggle,
   FilterBar,
   type FilterDefinition,
 } from "@/components/ui/filter";`,
@@ -37,16 +36,14 @@ export function FilterSingleSelectDemo() {
       options={productOptions}
       placeholder="Select a product"
       groupLabel="Products"
-      colorScheme="primary"
     />
   );
-}`
+}`,
     ],
   },
   components: {
-    "Filter Input": { component: "filter-input", },
-    "Filter Single Select": { component: "filter-single-select", },
-    "Filter Multi Select": { component: "filter-multi-select", },
-    "Filter Toggle": { component: "filter-toggle", },
+    "Filter Input": { component: "filter-input" },
+    "Filter Single Select": { component: "filter-single-select" },
+    "Filter Multi Select": { component: "filter-multi-select" },
   },
 };

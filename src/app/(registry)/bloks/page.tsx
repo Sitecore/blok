@@ -2,6 +2,7 @@
 
 import { ComponentGrid } from "@/components/docsite/component-grid";
 import { getBlocks } from "@/lib/registry";
+import { TELEMETRY_EVENTS, track } from "@/lib/telemetry";
 
 export default function BlocksPage() {
   const blocks = getBlocks();
@@ -17,6 +18,13 @@ export default function BlocksPage() {
         <ComponentGrid
           components={blocks}
           getHref={(block) => `/bloks/${block.name}`}
+          onCardClick={(block) =>
+            track(TELEMETRY_EVENTS.registry_card_click, {
+              name: block.name,
+              type: "blok",
+              href: `/bloks/${block.name}`,
+            })
+          }
         />
       </div>
     </div>

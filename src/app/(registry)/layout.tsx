@@ -12,6 +12,8 @@ import {
   RegistrySidebar,
 } from "@/components/layout/registry-sidebar";
 import TopBar from "@/components/layout/topbar";
+import { GainsightProvider } from "@/components/telemetry/gainsight-provider";
+import { PageViewTracker } from "@/components/telemetry/page-view-tracker";
 import { Toaster } from "@/components/ui/sonner";
 
 export default function RegistryLayout({
@@ -20,7 +22,8 @@ export default function RegistryLayout({
   children: ReactNode;
 }>) {
   return (
-    <>
+    <GainsightProvider>
+      <PageViewTracker />
       <div className="flex min-h-screen flex-col w-full bg-sidebar">
         <header
           className="fixed top-0 left-0 right-0 z-50 border-b bg-background border-border w-full"
@@ -53,6 +56,6 @@ export default function RegistryLayout({
         </div>
         <Toaster />
       </div>
-    </>
+    </GainsightProvider>
   );
 }
