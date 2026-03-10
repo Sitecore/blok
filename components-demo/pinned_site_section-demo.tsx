@@ -23,7 +23,8 @@ import {
   PinOff,
   Settings,
 } from "lucide-react";
-import { useState } from "react";
+import { useCallback, useState } from "react";
+
 export interface SitePermissions {
   canAdmin: boolean;
   canCreate: boolean;
@@ -56,6 +57,7 @@ export interface SiteFavoritesResponse {
   hosts: SiteHost[];
   portfolioAccess?: SitePermissions;
 }
+
 // Mock data for pinned sites (from API)
 const mockPinnedSites: SiteFavoritesResponse[] = [
   {
@@ -259,7 +261,7 @@ export function PinnedSitesSectionDemo() {
   const [currentSiteId, setCurrentSiteId] = useState<string>("");
   const [newSiteName, setNewSiteName] = useState("");
   const [duplicateSiteName, setDuplicateSiteName] = useState("");
-  const handlePin = (siteId: string) => {
+  const handlePin = useCallback((siteId: string) => {
     setPinnedSiteIds((prev) => [...prev, siteId]);
     // TODO: Add your API call here to persist to database
     // Example:
@@ -268,8 +270,8 @@ export function PinnedSitesSectionDemo() {
     //   body: JSON.stringify({ siteId }),
     // });
     console.log(`Pinned site: ${siteId}`);
-  };
-  const handleUnpin = (siteId: string) => {
+  }, []);
+  const handleUnpin = useCallback((siteId: string) => {
     setPinnedSiteIds((prev) => prev.filter((id) => id !== siteId));
     // TODO: Add your API call here to remove from database
     // Example:
@@ -277,9 +279,9 @@ export function PinnedSitesSectionDemo() {
     //   method: 'DELETE',
     // });
     console.log(`Unpinned site: ${siteId}`);
-  };
+  }, []);
   // Handlers for page builder action
-  const handlePageBuilder = (site: SiteFavoritesResponse) => {
+  const handlePageBuilder = useCallback((site: SiteFavoritesResponse) => {
     console.log(
       `Opening page builder for site: ${site.displayName} (${site.id})`,
     );
@@ -288,27 +290,29 @@ export function PinnedSitesSectionDemo() {
     // router.push(`/collection/${site.collectionId}/sites/${site.id}/page-builder`);
     // Or with window.location:
     // window.location.href = `/collection/${site.collectionId}/sites/${site.id}/page-builder`;
-  };
+  }, []);
   // Handlers for dashboard action
-  const handleDashboard = (site: SiteFavoritesResponse) => {
+  const handleDashboard = useCallback((site: SiteFavoritesResponse) => {
     console.log(`Opening dashboard for site: ${site.displayName} (${site.id})`);
+  
     // TODO: Add your navigation logic here
     // Example with Next.js router:
     // router.push(`/collection/${site.collectionId}/sites/${site.id}/dashboard`);
-  };
+  }, []);
   // Handlers for settings action
-  const handleSettings = (site: SiteFavoritesResponse) => {
+  const handleSettings = useCallback((site: SiteFavoritesResponse) => {
     console.log(`Opening settings for site: ${site.displayName} (${site.id})`);
+  
     // TODO: Add your navigation logic here
     // Example with Next.js router:
     // router.push(`/collection/${site.collectionId}/sites/${site.id}/settings`);
-  };
+  }, []);
   // Handlers for rename action
-  const handleRename = (siteId: string, currentName: string) => {
+  const handleRename = useCallback((siteId: string, currentName: string) => {
     setCurrentSiteId(siteId);
     setNewSiteName(currentName);
     setRenameDialogOpen(true);
-  };
+  }, []);
   const handleRenameSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     console.log(`Renaming site ${currentSiteId} to: ${newSiteName}`);
@@ -320,11 +324,11 @@ export function PinnedSitesSectionDemo() {
     setRenameDialogOpen(false);
   };
   // Handlers for duplicate action
-  const handleDuplicate = (siteId: string, suggestedName: string) => {
+  const handleDuplicate = useCallback((siteId: string, suggestedName: string) => {
     setCurrentSiteId(siteId);
     setDuplicateSiteName(suggestedName);
     setDuplicateDialogOpen(true);
-  };
+  }, []);
   const handleDuplicateSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     console.log(`Duplicating site ${currentSiteId} as: ${duplicateSiteName}`);
@@ -336,7 +340,7 @@ export function PinnedSitesSectionDemo() {
     setDuplicateDialogOpen(false);
   };
   // Footer buttons factory - used by both sections
-  const getFooterButtons = (site: SiteFavoritesResponse) => [
+  const getFooterButtons = useCallback((site: SiteFavoritesResponse) => [
     {
       icon: <FileEdit className="h-3.5 w-3.5" />,
       label: "Page builder",
@@ -347,12 +351,10 @@ export function PinnedSitesSectionDemo() {
       label: "Dashboard",
       onClick: () => handleDashboard(site),
     },
-  ];
+  ], [handlePageBuilder, handleDashboard]);
   // Dropdown actions factory - used by All Sites section
-  const getDropdownActions = (
-    site: SiteFavoritesResponse,
-    isPinned: boolean,
-  ) => [
+  const getDropdownActions = useCallback(
+    (site: SiteFavoritesResponse, isPinned: boolean) => [
     {
       icon: <Settings className="mr-2 h-4 w-4" />,
       label: "Settings",
@@ -382,8 +384,9 @@ export function PinnedSitesSectionDemo() {
         handleDuplicate(site.id, `${site.displayName || site.name} (Copy)`),
       show: site.permissions.canCreate,
     },
-  ];
-
+  ],
+    [handleSettings, handlePin, handleUnpin, handleRename, handleDuplicate],
+  );
   
   return (
 
@@ -392,91 +395,91 @@ export function PinnedSitesSectionDemo() {
 
       <div id="pinned-site-section">
       <>
-      <div className="space-y-6">
-        <PinnedSitesSection
-          allSites={mockAllSites}
-          pinnedSiteIds={pinnedSiteIds}
-          onUnpin={handleUnpin}
-          getFooterButtons={getFooterButtons}
-        />
-        <AllSitesSection
-          allSites={mockAllSites}
-          pinnedSiteIds={pinnedSiteIds}
-          getFooterButtons={getFooterButtons}
-          getDropdownActions={getDropdownActions}
-        />
-      </div>
-      {/* Rename Dialog */}
-      <Dialog open={renameDialogOpen} onOpenChange={setRenameDialogOpen}>
-        <DialogContent>
-          <form onSubmit={handleRenameSubmit}>
-            <DialogHeader>
-              <DialogTitle>Rename Site</DialogTitle>
-              <DialogDescription>
-                Enter a new name for your site. This will update the display
-                name.
-              </DialogDescription>
-            </DialogHeader>
-            <div className="grid gap-4 py-4">
-              <div className="grid gap-3">
-                <Label htmlFor="site-name">Site Name</Label>
-                <Input
-                  id="site-name"
-                  name="siteName"
-                  value={newSiteName}
-                  onChange={(e) => setNewSiteName(e.target.value)}
-                  placeholder="Enter site name"
-                  autoComplete="off"
-                />
+        <div className="space-y-6">
+          <PinnedSitesSection
+            allSites={mockAllSites}
+            pinnedSiteIds={pinnedSiteIds}
+            onUnpin={handleUnpin}
+            getFooterButtons={getFooterButtons}
+          />
+          <AllSitesSection
+            allSites={mockAllSites}
+            pinnedSiteIds={pinnedSiteIds}
+            getFooterButtons={getFooterButtons}
+            getDropdownActions={getDropdownActions}
+          />
+        </div>
+        {/* Rename Dialog */}
+        <Dialog open={renameDialogOpen} onOpenChange={setRenameDialogOpen}>
+          <DialogContent>
+            <form onSubmit={handleRenameSubmit}>
+              <DialogHeader>
+                <DialogTitle>Rename Site</DialogTitle>
+                <DialogDescription>
+                  Enter a new name for your site. This will update the display
+                  name.
+                </DialogDescription>
+              </DialogHeader>
+              <div className="grid gap-4 py-4">
+                <div className="grid gap-3">
+                  <Label htmlFor="site-name">Site Name</Label>
+                  <Input
+                    id="site-name"
+                    name="siteName"
+                    value={newSiteName}
+                    onChange={(e) => setNewSiteName(e.target.value)}
+                    placeholder="Enter site name"
+                    autoComplete="off"
+                  />
+                </div>
               </div>
-            </div>
-            <DialogFooter>
-              <DialogClose asChild>
-                <Button type="button" variant="ghost" colorScheme="neutral">
-                  Cancel
-                </Button>
-              </DialogClose>
-              <Button type="submit">Rename</Button>
-            </DialogFooter>
-          </form>
-        </DialogContent>
-      </Dialog>
-      {/* Duplicate Dialog */}
-      <Dialog open={duplicateDialogOpen} onOpenChange={setDuplicateDialogOpen}>
-        <DialogContent>
-          <form onSubmit={handleDuplicateSubmit}>
-            <DialogHeader>
-              <DialogTitle>Duplicate Site</DialogTitle>
-              <DialogDescription>
-                Create a copy of this site with a new name. All content and
-                settings will be duplicated.
-              </DialogDescription>
-            </DialogHeader>
-            <div className="grid gap-4 py-4">
-              <div className="grid gap-3">
-                <Label htmlFor="duplicate-name">New Site Name</Label>
-                <Input
-                  id="duplicate-name"
-                  name="newSiteName"
-                  value={duplicateSiteName}
-                  onChange={(e) => setDuplicateSiteName(e.target.value)}
-                  placeholder="Enter new site name"
-                  autoComplete="off"
-                />
+              <DialogFooter>
+                <DialogClose asChild>
+                  <Button type="button" variant="ghost" colorScheme="neutral">
+                    Cancel
+                  </Button>
+                </DialogClose>
+                <Button type="submit">Rename</Button>
+              </DialogFooter>
+            </form>
+          </DialogContent>
+        </Dialog>
+        {/* Duplicate Dialog */}
+        <Dialog open={duplicateDialogOpen} onOpenChange={setDuplicateDialogOpen}>
+          <DialogContent>
+            <form onSubmit={handleDuplicateSubmit}>
+              <DialogHeader>
+                <DialogTitle>Duplicate Site</DialogTitle>
+                <DialogDescription>
+                  Create a copy of this site with a new name. All content and
+                  settings will be duplicated.
+                </DialogDescription>
+              </DialogHeader>
+              <div className="grid gap-4 py-4">
+                <div className="grid gap-3">
+                  <Label htmlFor="duplicate-name">New Site Name</Label>
+                  <Input
+                    id="duplicate-name"
+                    name="newSiteName"
+                    value={duplicateSiteName}
+                    onChange={(e) => setDuplicateSiteName(e.target.value)}
+                    placeholder="Enter new site name"
+                    autoComplete="off"
+                  />
+                </div>
               </div>
-            </div>
-            <DialogFooter>
-              <DialogClose asChild>
-                <Button type="button" variant="ghost" colorScheme="neutral">
-                  Cancel
-                </Button>
-              </DialogClose>
-              <Button type="submit">Duplicate</Button>
-            </DialogFooter>
-          </form>
-        </DialogContent>
-      </Dialog>
-    </>
+              <DialogFooter>
+                <DialogClose asChild>
+                  <Button type="button" variant="ghost" colorScheme="neutral">
+                    Cancel
+                  </Button>
+                </DialogClose>
+                <Button type="submit">Duplicate</Button>
+              </DialogFooter>
+            </form>
+          </DialogContent>
+        </Dialog>
+      </>
       </div>
 
     </div>

@@ -64,12 +64,14 @@ export function DialogDemo() {
             </div>
             <div className="grid gap-3">
               <Label htmlFor="username-1">Username</Label>
-              <Input id="name-1" name="username" defaultValue="@liz" />
+              <Input id="username-1" name="username" defaultValue="@liz" />
             </div>
           </div>
           <DialogFooter>
             <DialogClose asChild>
-              <Button variant="ghost" colorScheme="neutral">Cancel</Button>
+              <Button variant="ghost" colorScheme="neutral">
+                Cancel
+              </Button>
             </DialogClose>
             <Button type="submit">Save changes</Button>
           </DialogFooter>
@@ -89,12 +91,12 @@ export function DialogDemo() {
           </DialogHeader>
           <div className="-mx-6 max-h-[500px] overflow-y-auto px-6 text-sm">
             {marketingInspirationContent.map((item, index) => (
-            <div key={index}>
-              <h4 className="mb-2 text-sm leading-none font-medium">
-                {item.title}
-              </h4>
-              <p className="mb-4 leading-normal">{item.content}</p>
-            </div>
+              <div key={index}>
+                <h4 className="mb-2 text-sm leading-none font-medium">
+                  {item.title}
+                </h4>
+                <p className="mb-4 leading-normal">{item.content}</p>
+              </div>
             ))}
           </div>
         </DialogContent>
@@ -113,12 +115,12 @@ export function DialogDemo() {
           </DialogHeader>
           <div className="-mx-6 max-h-[500px] overflow-y-auto px-6 text-sm">
             {marketingInspirationContent.map((item, index) => (
-            <div key={index}>
-              <h4 className="mb-2 text-sm leading-none font-medium">
-                {item.title}
-              </h4>
-              <p className="mb-4 leading-normal">{item.content}</p>
-            </div>
+              <div key={index}>
+                <h4 className="mb-2 text-sm leading-none font-medium">
+                  {item.title}
+                </h4>
+                <p className="mb-4 leading-normal">{item.content}</p>
+              </div>
             ))}
           </div>
           <DialogFooter>

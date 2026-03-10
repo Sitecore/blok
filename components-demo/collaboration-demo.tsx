@@ -1,7 +1,7 @@
 "use client";
 
-import { useState } from "react";
 import { Collaboration, type User } from "@/components/bloks/collaboration";
+import { useCallback, useState } from "react";
 
 const currentUser: User = {
   id: "current",
@@ -36,18 +36,18 @@ export function CollaborationDemo() {
   // Start with multiple users to show overflow behavior (maxDisplayAvatars=3)
   const [addedUsers, setAddedUsers] = useState<User[]>([
     currentUser,
-    availableUsers[0], 
-    availableUsers[1], 
-    availableUsers[2], 
+    availableUsers[0],
+    availableUsers[1],
+    availableUsers[2],
   ]);
 
-  const handleAddUser = (user: User) => {
+  const handleAddUser = useCallback((user: User) => {
     setAddedUsers((prev) => [...prev, user]);
-  };
+  }, []);
 
-  const handleRemoveUser = (userId: string) => {
+  const handleRemoveUser = useCallback((userId: string) => {
     setAddedUsers((prev) => prev.filter((u) => u.id !== userId));
-  };
+  }, []);
   
   return (
 
