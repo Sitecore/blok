@@ -34,7 +34,7 @@ export async function testDialog(page: Page){
     await expect(usernameLabel).toBeVisible();
     
     // Check for Username input field
-    const usernameInput = dialogContent.locator('input#name-1[name="username"]');
+    const usernameInput = dialogContent.locator('input[name="username"]');
     await expect(usernameInput).toBeVisible();
     await expect(usernameInput).toHaveValue('@liz');
 
