@@ -69,6 +69,7 @@ import { topbar } from "@/app/demo/[name]/ui/topbar";
 import { allSite } from "@/app/demo/[name]/bloks/all-site";
 import { collaboration } from "@/app/demo/[name]/bloks/collaboration";
 import { pinnedSite } from "@/app/demo/[name]/bloks/pinned-site";
+import { sidebarRhs } from "@/app/demo/[name]/bloks/sidebar-rhs";
 import { siteCard } from "@/app/demo/[name]/bloks/site-card";
 
 interface Demo {
@@ -167,4 +168,5 @@ export const demos: { [name: string]: Demo } = {
   "site-card": siteCard,
   "pinned-site": pinnedSite,
   collaboration,
+  "sidebar-rhs": sidebarRhs,
 };

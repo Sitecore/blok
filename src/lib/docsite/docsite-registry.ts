@@ -165,6 +165,11 @@ import TooltipDemo from "@/app/content/ui/tooltip";
 import AllSitesSectionDemo from "@/app/content/bloks/all-site-section";
 import CollaborationDemo from "@/app/content/bloks/collaboration";
 import PinnedSitesSectionDemo from "@/app/content/bloks/pinned-site-section";
+import SidebarRHSDemo from "@/app/content/bloks/sidebar-rhs";
+import SidebarRHSBriefDemo from "@/app/content/bloks/sidebar-rhs-brief";
+import SidebarRHSBriefTypeDemo from "@/app/content/bloks/sidebar-rhs-brief-type";
+import SidebarRHSContentDemo from "@/app/content/bloks/sidebar-rhs-content";
+import SidebarRHSHeadingWithTabsDemo from "@/app/content/bloks/sidebar-rhs-heading-with-tabs";
 // BLOKS
 import SiteCardDemo from "@/app/content/bloks/site-card";
 import { ActionBarDemo } from "@/app/content/ui/action-bar";
@@ -1261,5 +1266,30 @@ export const docsiteRegistry: Record<string, DocsiteRegistryEntry> = {
     name: "pinned-site",
     path: "src/app/content/bloks/pinned-site-section.tsx",
     component: PinnedSitesSectionDemo,
+  },
+  "sidebar-rhs": {
+    name: "sidebar-rhs",
+    path: "src/app/content/bloks/sidebar-rhs.tsx",
+    component: SidebarRHSDemo,
+  },
+  "sidebar-rhs-heading-with-tabs": {
+    name: "sidebar-rhs-heading-with-tabs",
+    path: "src/app/content/bloks/sidebar-rhs-heading-with-tabs.tsx",
+    component: SidebarRHSHeadingWithTabsDemo,
+  },
+  "sidebar-rhs-brief": {
+    name: "sidebar-rhs-brief",
+    path: "src/app/content/bloks/sidebar-rhs-brief.tsx",
+    component: SidebarRHSBriefDemo,
+  },
+  "sidebar-rhs-brief-type": {
+    name: "sidebar-rhs-brief-type",
+    path: "src/app/content/bloks/sidebar-rhs-brief-type.tsx",
+    component: SidebarRHSBriefTypeDemo,
+  },
+  "sidebar-rhs-content": {
+    name: "sidebar-rhs-content",
+    path: "src/app/content/bloks/sidebar-rhs-content.tsx",
+    component: SidebarRHSContentDemo,
   },
 };

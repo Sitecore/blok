@@ -1775,6 +1775,25 @@
           "target": "src/components/bloks/collaboration.tsx"
         }
       ]
+    },
+    {
+      "name": "sidebar-rhs",
+      "type": "registry:block",
+      "title": "Sidebar RHS",
+      "description": "A right-hand side sidebar that can be collapsed and docked/undocked",
+      "registryDependencies": [
+        "https://blok.sitecore.com/r/theme.json",
+        "https://blok.sitecore.com/r/button.json",
+        "https://blok.sitecore.com/r/draggable.json"
+      ],
+      "dependencies": ["@mdi/js", "@dnd-kit/utilities"],
+      "files": [
+        {
+          "path": "src/components/bloks/sidebar-rhs.tsx",
+          "type": "registry:block",
+          "target": "src/components/bloks/sidebar-rhs.tsx"
+        }
+      ]
     }
   ]
 }
