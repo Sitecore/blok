@@ -31,7 +31,6 @@ export function track(
     return;
   }
   try {
-    console.log("Tracking event:", eventName, eventData);
     window.aptrinsic("track", eventName, eventData ?? {});
   } catch (e) {
     console.error(`[Telemetry] Failed to track "${eventName}":`, e);

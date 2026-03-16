@@ -3,7 +3,6 @@
 import { SidebarRHS, SidebarRHSProvider } from "@/components/bloks/sidebar-rhs";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
-import { Checkbox } from "@/components/ui/checkbox";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -15,7 +14,6 @@ import {
   EditablePreview,
   EditableTextarea,
 } from "@/components/ui/editable";
-import { Input } from "@/components/ui/input";
 import {
   SearchInput,
   SearchInputField,
@@ -37,7 +35,6 @@ import {
   mdiLayers,
   mdiMagnify,
   mdiReplyOutline,
-  mdiTrashCanOutline,
   mdiViewDashboard,
 } from "@mdi/js";
 import { useState } from "react";
@@ -69,53 +66,6 @@ function ExpandableDescription() {
           {isExpanded ? "Read less" : "Read more"}
         </button>
       )}
-    </div>
-  );
-}
-
-function TodoSection() {
-  const [todoChecked, setTodoChecked] = useState(true);
-  const [newTodoChecked, setNewTodoChecked] = useState(false);
-
-  return (
-    <div className="flex flex-col gap-3">
-      <h3 className="text-sm font-semibold">To do</h3>
-      <div className="space-y-3">
-        {/* Completed Todo Item */}
-        <div className="flex items-center gap-2 group">
-          <Checkbox
-            checked={todoChecked}
-            onCheckedChange={(checked) => setTodoChecked(checked === true)}
-            className="shrink-0"
-          />
-          <span className="text-sm flex-1">
-            <Badge size="sm" colorScheme="neutral" className="mr-1">
-              @Anne Schmeler
-            </Badge>
-            please review
-          </span>
-          <button
-            className="opacity-0 group-hover:opacity-100 transition-opacity shrink-0 text-muted-foreground hover:text-foreground"
-            aria-label="Delete todo"
-          >
-            <Icon path={mdiTrashCanOutline} size={0.9} />
-          </button>
-        </div>
-
-        {/* Add New Todo Input */}
-        <div className="flex items-center gap-2">
-          <Checkbox
-            checked={newTodoChecked}
-            onCheckedChange={(checked) => setNewTodoChecked(checked === true)}
-            className="shrink-0"
-          />
-          <Input
-            type="text"
-            placeholder="Add new to-do, type @ to mention someone"
-            className="flex-1 border-0 bg-transparent px-0 py-0 h-auto text-sm placeholder:text-muted-foreground focus-visible:ring-0 focus-visible:ring-offset-0"
-          />
-        </div>
-      </div>
     </div>
   );
 }
@@ -526,7 +476,7 @@ export default function SidebarRHSBriefTypeDemo() {
   );
 
   return (
-    <div className="h-[550px]">
+    <div className="h-screen">
       <SidebarRHSProvider>
         <div className="w-full h-full flex bg-body-bg">
           {/* Main content area */}

@@ -69,7 +69,7 @@ function ExpandableDescription() {
   );
 }
 
-function TodoSection() {
+function OverviewSection() {
   const [todoChecked, setTodoChecked] = useState(true);
   const [newTodoChecked, setNewTodoChecked] = useState(false);
 
@@ -440,7 +440,7 @@ function SidebarContent({ activeTab }: { activeTab: string }) {
         <ExpandableDescription />
 
         {/* To do Section */}
-        <TodoSection />
+        <OverviewSection />
       </div>
     ),
     "/versions": (
@@ -526,7 +526,7 @@ export default function SidebarRHSContentDemo() {
   );
 
   return (
-    <div className="h-[550px]">
+    <div className="h-screen">
       <SidebarRHSProvider>
         <div className="w-full h-full flex bg-body-bg">
           {/* Main content area */}
