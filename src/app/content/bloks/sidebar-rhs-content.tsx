@@ -1,28 +1,13 @@
 "use client";
 
 import { SidebarRHS, SidebarRHSProvider } from "@/components/bloks/sidebar-rhs";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
 import {
   type ChartConfig,
   ChartContainer,
   ChartTooltip,
   ChartTooltipContent,
 } from "@/components/ui/chart";
-import { Checkbox } from "@/components/ui/checkbox";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import { Input } from "@/components/ui/input";
 import {
   StackNavigation,
   type StackNavigationElement,
@@ -32,16 +17,10 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Icon } from "@/lib/icon";
 import { cn } from "@/lib/utils";
 import {
-  mdiArchiveOutline,
   mdiChartBar,
-  mdiClockOutline,
   mdiContentCopy,
-  mdiDotsHorizontal,
   mdiInformationOutline,
   mdiLayers,
-  mdiPencilOutline,
-  mdiPlus,
-  mdiTrashCanOutline,
   mdiViewDashboard,
   mdiViewListOutline,
 } from "@mdi/js";
@@ -75,207 +54,6 @@ function ExpandableDescription() {
           {isExpanded ? "Read less" : "Read more"}
         </button>
       )}
-    </div>
-  );
-}
-
-function TodoSection() {
-  const [todoChecked, setTodoChecked] = useState(true);
-  const [newTodoChecked, setNewTodoChecked] = useState(false);
-
-  return (
-    <div className="flex flex-col gap-3">
-      <h3 className="text-sm font-semibold">To do</h3>
-      <div className="space-y-3">
-        {/* Completed Todo Item */}
-        <div className="flex items-center gap-2 group">
-          <Checkbox
-            checked={todoChecked}
-            onCheckedChange={(checked) => setTodoChecked(checked === true)}
-            className="shrink-0"
-          />
-          <span className="text-sm flex-1">
-            <Badge size="sm" colorScheme="neutral" className="mr-1">
-              @Anne Schmeler
-            </Badge>
-            please review
-          </span>
-          <button
-            className="opacity-0 group-hover:opacity-100 transition-opacity shrink-0 text-muted-foreground hover:text-foreground"
-            aria-label="Delete todo"
-          >
-            <Icon path={mdiTrashCanOutline} size={0.9} />
-          </button>
-        </div>
-
-        {/* Add New Todo Input */}
-        <div className="flex items-center gap-2">
-          <Checkbox
-            checked={newTodoChecked}
-            onCheckedChange={(checked) => setNewTodoChecked(checked === true)}
-            className="shrink-0"
-          />
-          <Input
-            type="text"
-            placeholder="Add new to-do, type @ to mention someone"
-            className="flex-1 border-0 bg-transparent px-0 py-0 h-auto text-sm placeholder:text-muted-foreground focus-visible:ring-0 focus-visible:ring-offset-0"
-          />
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function VersionsSection() {
-  const versions = [
-    {
-      id: "v5",
-      title: "Final + Typo fixes",
-      version: "v5",
-      status: "Published on Nov 17, 2024",
-      icon: mdiClockOutline,
-      iconBg: "bg-green-100 dark:bg-green-900",
-      iconColor: "text-green-600 dark:text-green-400",
-      isActive: true,
-    },
-    {
-      id: "v4",
-      title: "Final content",
-      version: "v4",
-      status: "Archived on Nov 16, 2024",
-      icon: mdiArchiveOutline,
-      iconBg: "bg-gray-100 dark:bg-gray-800",
-      iconColor: "text-gray-600 dark:text-gray-400",
-      isActive: false,
-    },
-    {
-      id: "v3",
-      title: "Idiation",
-      version: "v3",
-      status: "Last updated on Nov 3, 2024",
-      icon: mdiPencilOutline,
-      iconBg: "bg-gray-100 dark:bg-gray-800",
-      iconColor: "text-gray-600 dark:text-gray-400",
-      isActive: false,
-    },
-    {
-      id: "v2",
-      title: "initial design",
-      version: "v2",
-      status: "Last updated on Nov 1, 2024",
-      icon: mdiPencilOutline,
-      iconBg: "bg-gray-100 dark:bg-gray-800",
-      iconColor: "text-gray-600 dark:text-gray-400",
-      isActive: false,
-    },
-    {
-      id: "v1",
-      title: "First draft",
-      version: "v1",
-      status: "Last updated on Nov 1, 2024",
-      icon: mdiPencilOutline,
-      iconBg: "bg-gray-100 dark:bg-gray-800",
-      iconColor: "text-gray-600 dark:text-gray-400",
-      isActive: false,
-    },
-  ];
-
-  return (
-    <div className="flex flex-col gap-4">
-      {/* Header with Create button */}
-      <div className="flex items-center justify-between">
-        <h3 className="text-sm font-semibold">Versions</h3>
-        <Button
-          variant="ghost"
-          size="sm"
-          className="text-primary hover:text-primary text-sm"
-        >
-          <Icon path={mdiPlus} className="mr-1.5" size={0.9} />
-          Create version
-        </Button>
-      </div>
-
-      {/* Versions Accordion */}
-      <Accordion type="single" collapsible className="w-full">
-        {versions.map((version) => (
-          <AccordionItem
-            key={version.id}
-            value={version.id}
-            className={cn(
-              version.isActive && "border border-primary rounded-md",
-            )}
-          >
-            <AccordionTrigger
-              className="px-3 py-3 hover:no-underline"
-              actions={
-                <DropdownMenu>
-                  <DropdownMenuTrigger asChild>
-                    <Button
-                      variant="ghost"
-                      size="icon-xs"
-                      className="h-6 w-6 p-1"
-                    >
-                      <Icon
-                        path={mdiDotsHorizontal}
-                        className="size-4 text-muted-foreground"
-                      />
-                    </Button>
-                  </DropdownMenuTrigger>
-                  <DropdownMenuContent align="end">
-                    <DropdownMenuItem>Edit</DropdownMenuItem>
-                    <DropdownMenuItem>Duplicate</DropdownMenuItem>
-                    <DropdownMenuItem>Archive</DropdownMenuItem>
-                  </DropdownMenuContent>
-                </DropdownMenu>
-              }
-            >
-              <div className="flex items-start gap-3 flex-1 min-w-0">
-                {/* Icon */}
-                <div
-                  className={cn(
-                    "shrink-0 size-8 rounded-full flex items-center justify-center",
-                    version.iconBg,
-                  )}
-                >
-                  <Icon
-                    path={version.icon}
-                    className={cn("size-4", version.iconColor)}
-                  />
-                </div>
-
-                {/* Content */}
-                <div className="flex-1 min-w-0 text-left">
-                  <div className="flex items-baseline gap-2 mb-0.5 flex-wrap">
-                    <span className="text-sm font-semibold text-foreground break-words">
-                      {version.title}
-                    </span>
-                    <span className="text-sm text-muted-foreground shrink-0">
-                      {version.version}
-                    </span>
-                  </div>
-                  <p className="text-xs text-muted-foreground break-words">
-                    {version.status}
-                  </p>
-                </div>
-              </div>
-            </AccordionTrigger>
-            <AccordionContent className="px-3 pb-3">
-              <p className="text-sm text-muted-foreground">
-                {version.id === "v5" &&
-                  "This version includes final content review and correction of all typographical errors identified during the publishing process."}
-                {version.id === "v4" &&
-                  "Finalized content version with all approved changes and stakeholder feedback incorporated."}
-                {version.id === "v3" &&
-                  "Early iteration exploring different content approaches and ideation concepts."}
-                {version.id === "v2" &&
-                  "initial design and early content structure for review and feedback."}
-                {version.id === "v1" &&
-                  "First draft version created as the starting point for content development."}
-              </p>
-            </AccordionContent>
-          </AccordionItem>
-        ))}
-      </Accordion>
     </div>
   );
 }
@@ -746,7 +524,7 @@ export default function SidebarRHSContentDemo() {
   );
 
   return (
-    <div className="h-[550px]">
+    <div className="h-screen">
       <SidebarRHSProvider>
         <div className="w-full h-full flex bg-body-bg">
           {/* Main content area */}
