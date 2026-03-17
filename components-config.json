@@ -3,7 +3,7 @@
       "url": "https://blok.sitecore.com/r/blok-components.json",
       "enabled": true
     },
-    "additionalComponents": [
+    "additionalComponents": [ 
       "https://blok.sitecore.com/r/all-site.json",
       "https://blok.sitecore.com/r/collaboration.json",
       "https://blok.sitecore.com/r/pinned-site.json",
