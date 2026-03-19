@@ -1,25 +1,33 @@
 "use client";
 
-import { FilterMultiSelect } from "@/components/ui/filter";
+import {
+  FilterMultiSelect,
+  type FilterSingleSelectGroup,
+} from "@/components/ui/filter";
 import { useState } from "react";
 
-const extendedProductOptions = [
-  { value: "XMCloud", label: "XM Cloud" },
-  { value: "contentHub", label: "Content Hub" },
-  { value: "CDP", label: "CDP" },
-  { value: "Blok", label: "Blok", disabled: true },
-  { value: "OrderCloud", label: "Order cloud" },
-  { value: "SitecoreXP", label: "Sitecore XP" },
-  { value: "SitecoreXM", label: "Sitecore XM" },
-  { value: "Send", label: "Send" },
-  { value: "Discover", label: "Discover" },
-  { value: "Connect", label: "Connect" },
-  { value: "Personalize", label: "Personalize" },
-  { value: "ContentOps", label: "Content operations" },
-  { value: "Commerce", label: "Sitecore commerce" },
-  { value: "Forms", label: "Sitecore forms" },
-  { value: "JSS", label: "JavaScript services" },
-  { value: "Headless", label: "Headless CMS" },
+const FILTER_DEMO_AB_GROUPS: FilterSingleSelectGroup[] = [
+  {
+    label: "A GROUP TITLE",
+    options: [
+      { value: "a-a", label: "A item" },
+      { value: "a-b", label: "B item" },
+      { value: "a-c", label: "C item" },
+      { value: "a-d", label: "D item" },
+      { value: "a-e", label: "E item" },
+    ],
+  },
+  {
+    label: "B GROUP TITLE",
+    options: [
+      { value: "b-a", label: "A item" },
+      { value: "b-b", label: "B item" },
+      { value: "b-c", label: "C item" },
+      { value: "b-d", label: "D item" },
+      { value: "b-e", label: "E item" },
+      { value: "b-f", label: "F item" },
+    ],
+  },
 ];
 
 export default function FilterMultiSelectDemo() {
@@ -28,21 +36,19 @@ export default function FilterMultiSelectDemo() {
 
   return (
     <div className="flex flex-col gap-4">
-      {/* Primary Multi Select */}
       <FilterMultiSelect
         value={primaryValues}
         onChange={setPrimaryValues}
-        options={extendedProductOptions}
-        placeholder="Select products"
-        groupLabel="Products"
+        options={[]}
+        placeholder="Multi-select filter"
+        groups={FILTER_DEMO_AB_GROUPS}
       />
-      {/* Badge Multi Select */}
       <FilterMultiSelect
         value={badgeValues}
         onChange={setBadgeValues}
-        options={extendedProductOptions}
-        placeholder="Select products"
-        groupLabel="Products"
+        options={[]}
+        placeholder="Multi-select filter"
+        groups={FILTER_DEMO_AB_GROUPS}
         displayMode="badge"
       />
     </div>
