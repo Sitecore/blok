@@ -56,6 +56,8 @@ export default function TopBar() {
   const [showSearchResults, setShowSearchResults] = useState(false);
   const [selectedIndex, setSelectedIndex] = useState(-1);
   const [clickedHref, setClickedHref] = useState<string | null>(null);
+  /** Radix dropdown IDs must not SSR; defer mount to avoid useId / hydration mismatch. */
+  const [mobileNavMounted, setMobileNavMounted] = useState(false);
   const searchRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -65,6 +67,10 @@ export default function TopBar() {
       setClickedHref(null);
     }
   }, [pathname, clickedHref]);
+
+  useEffect(() => {
+    setMobileNavMounted(true);
+  }, []);
 
   // Check initial theme and listen for changes
   useEffect(() => {
@@ -339,7 +345,7 @@ export default function TopBar() {
   };
 
   return (
-    <header className="w-full bg-background border-b border-border">
+    <div className="w-full bg-background border-b border-border">
       <div className="flex items-center justify-between h-12 px-4">
         {/* Left: Logo + Navigation */}
         <div className="flex items-center gap-4">
@@ -422,81 +428,94 @@ export default function TopBar() {
             </NavigationMenuList>
           </NavigationMenu>
 
-          {/* Mobile Nav Dropdown */}
+          {/* Mobile Nav: mount Radix after hydration so trigger ids match (no SSR/client useId drift). */}
           <div className="lg:hidden">
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  aria-label="Open navigation menu"
-                >
-                  <Icon path={mdiMenu} size={1} />
-                </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent align="start">
-                {navItems.map((item) => {
-                  const normalizedPathname = pathname.replace(/\/$/, "") || "/";
-                  const normalizedHref = item.href.replace(/\/$/, "") || "/";
-                  let isActive =
-                    normalizedPathname === normalizedHref ||
-                    (normalizedHref !== "/" &&
-                      normalizedPathname.startsWith(`${normalizedHref}/`)) ||
-                    clickedHref === item.href;
+            {mobileNavMounted ? (
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    aria-label="Open navigation menu"
+                  >
+                    <Icon path={mdiMenu} size={1} />
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="start">
+                  {navItems.map((item) => {
+                    const normalizedPathname =
+                      pathname.replace(/\/$/, "") || "/";
+                    const normalizedHref = item.href.replace(/\/$/, "") || "/";
+                    let isActive =
+                      normalizedPathname === normalizedHref ||
+                      (normalizedHref !== "/" &&
+                        normalizedPathname.startsWith(`${normalizedHref}/`)) ||
+                      clickedHref === item.href;
 
-                  // Special handling for registry pages
-                  if (pathname.startsWith("/registry/")) {
-                    const segments = pathname.split("/").filter(Boolean);
-                    const itemName = segments[segments.length - 1];
+                    // Special handling for registry pages
+                    if (pathname.startsWith("/registry/")) {
+                      const segments = pathname.split("/").filter(Boolean);
+                      const itemName = segments[segments.length - 1];
 
-                    if (itemName) {
-                      const registryItem = getRegistryItem(itemName);
+                      if (itemName) {
+                        const registryItem = getRegistryItem(itemName);
 
-                      if (registryItem) {
-                        // If this is a UI component and we're checking "Primitives"
-                        if (
-                          item.name === "Primitives" &&
-                          registryItem.type === "registry:ui"
-                        ) {
-                          isActive = true;
-                        }
-                        // If this is a block/component and we're checking "Bloks"
-                        else if (
-                          item.name === "Bloks" &&
-                          (registryItem.type === "registry:block" ||
-                            registryItem.type === "registry:component")
-                        ) {
-                          isActive = true;
+                        if (registryItem) {
+                          // If this is a UI component and we're checking "Primitives"
+                          if (
+                            item.name === "Primitives" &&
+                            registryItem.type === "registry:ui"
+                          ) {
+                            isActive = true;
+                          }
+                          // If this is a block/component and we're checking "Bloks"
+                          else if (
+                            item.name === "Bloks" &&
+                            (registryItem.type === "registry:block" ||
+                              registryItem.type === "registry:component")
+                          ) {
+                            isActive = true;
+                          }
                         }
                       }
                     }
-                  }
 
-                  return (
-                    <DropdownMenuItem asChild key={item.name}>
-                      <Link
-                        href={item.href}
-                        onClick={() => {
-                          setClickedHref(item.href);
-                          track(TELEMETRY_EVENTS.topbar_nav_click, {
-                            link: item.href,
-                            label: item.name,
-                            is_mobile: true,
-                          });
-                        }}
-                        className={`${
-                          isActive
-                            ? "bg-primary-background text-primary-fg hover:bg-primary-background hover:text-primary-fg"
-                            : "hover:bg-muted hover:text-foreground"
-                        }`}
-                      >
-                        {item.name}
-                      </Link>
-                    </DropdownMenuItem>
-                  );
-                })}
-              </DropdownMenuContent>
-            </DropdownMenu>
+                    return (
+                      <DropdownMenuItem asChild key={item.name}>
+                        <Link
+                          href={item.href}
+                          onClick={() => {
+                            setClickedHref(item.href);
+                            track(TELEMETRY_EVENTS.topbar_nav_click, {
+                              link: item.href,
+                              label: item.name,
+                              is_mobile: true,
+                            });
+                          }}
+                          className={`${
+                            isActive
+                              ? "bg-primary-background text-primary-fg hover:bg-primary-background hover:text-primary-fg"
+                              : "hover:bg-muted hover:text-foreground"
+                          }`}
+                        >
+                          {item.name}
+                        </Link>
+                      </DropdownMenuItem>
+                    );
+                  })}
+                </DropdownMenuContent>
+              </DropdownMenu>
+            ) : (
+              <Button
+                variant="ghost"
+                size="icon"
+                aria-label="Open navigation menu"
+                className="pointer-events-none"
+                tabIndex={-1}
+              >
+                <Icon path={mdiMenu} size={1} />
+              </Button>
+            )}
           </div>
         </div>
 
@@ -682,6 +701,6 @@ export default function TopBar() {
           </Button>
         </div>
       </div>
-    </header>
+    </div>
   );
 }
