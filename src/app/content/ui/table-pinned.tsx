@@ -68,7 +68,7 @@ export default function TablePinnedDemo() {
             <TableHead className="relative z-0">Label</TableHead>
             <TableHead className="relative z-0">Label</TableHead>
             <TableHead className="relative z-0">Label</TableHead>
-            <TableHead className="relative z-0 text-right">Actions</TableHead>
+            <TableHead className="relative z-0 text-right" aria-hidden />
           </TableRow>
         </TableHeader>
         <TableBody>

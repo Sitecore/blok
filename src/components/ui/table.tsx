@@ -49,7 +49,7 @@ export interface TableProps extends React.ComponentProps<"table"> {
   maxHeight?: string | number;
   /** Number of columns to pin (sticky) on horizontal scroll. */
   pinnedColumnsCount?: number;
-  /** Additional class for the outer table container (rounded-xl, bg-body-bg, border applied by default). */
+  /** Additional classes for the outer wrapper (e.g. `border border-border`). Base: rounded-xl, bg-body-bg. */
   containerClassName?: string;
 }
 
@@ -87,7 +87,7 @@ function Table({
       <div
         data-slot="table-container"
         className={cn(
-          "relative w-full overflow-hidden rounded-xl border border-border bg-body-bg",
+          "relative w-full overflow-hidden rounded-xl bg-body-bg",
           hasVerticalScroll && "flex flex-col",
           containerClassName,
         )}

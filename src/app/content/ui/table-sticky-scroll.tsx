@@ -168,7 +168,7 @@ export default function TableStickyScrollDemo() {
             <TableHead>Label</TableHead>
             <TableHead>Label</TableHead>
             <TableHead>Label</TableHead>
-            <TableHead className="text-right">Actions</TableHead>
+            <TableHead className="text-right" aria-hidden />
           </TableRow>
         </TableHeader>
         <TableBody>
