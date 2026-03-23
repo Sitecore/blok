@@ -21,7 +21,8 @@ const filterOptions = [
 ];
 
 export default function DashboardWidgetTwoColumnDemo() {
-  const [filterValue, setFilterValue] = useState<string>("");
+  const [notificationsFilter, setNotificationsFilter] = useState<string>("");
+  const [analyticsFilter, setAnalyticsFilter] = useState<string>("");
 
   return (
     <div className="min-h-[400px] w-[960px] max-w-full rounded-lg">
@@ -75,8 +76,8 @@ export default function DashboardWidgetTwoColumnDemo() {
             </DashboardWidgetHeader>
             <DashboardWidgetToolbar>
               <FilterSingleSelect
-                value={filterValue}
-                onChange={setFilterValue}
+                value={notificationsFilter}
+                onChange={setNotificationsFilter}
                 options={filterOptions}
                 placeholder="Filter"
                 className="w-fit"
@@ -138,8 +139,8 @@ export default function DashboardWidgetTwoColumnDemo() {
             </DashboardWidgetHeader>
             <DashboardWidgetToolbar>
               <FilterSingleSelect
-                value={filterValue}
-                onChange={setFilterValue}
+                value={analyticsFilter}
+                onChange={setAnalyticsFilter}
                 options={filterOptions}
                 placeholder="Filter"
                 className="w-fit"
