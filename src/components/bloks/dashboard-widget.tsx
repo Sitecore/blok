@@ -59,8 +59,8 @@ export interface DashboardWidgetProps {
 const DASHBOARD_WIDGET_SPECS = {
   hoverablePadding: "p-1", // 4px inner padding for hoverable items
   nameDescriptionGap: "gap-1.5", // 6px
-  descriptionFilterGap: "gap-3.5", // 14px
-  filterContentGap: "gap-6", // 24px
+  descriptionFilterGap: "gap-4", // 16px
+  filterContentGap: "gap-4", // 16px
 } as const;
 
 export function DashboardWidget({
@@ -102,7 +102,7 @@ export function DashboardWidget({
         className,
       )}
     >
-      <div className="flex flex-col w-full">
+      <div className="flex flex-col flex-1 w-full">
         {/* Header: Title + Description (left) | Action (top right) */}
         <div className="flex items-start justify-between gap-4">
           <div
@@ -177,7 +177,7 @@ export function DashboardWidget({
 
         {/* Filter: 14px below description, right-aligned */}
         {filter && (
-          <div className="flex justify-end mt-3.5">
+          <div className="flex justify-end mt-4">
             <FilterSingleSelect
               value={filter.value}
               onChange={filter.onChange}
@@ -191,7 +191,7 @@ export function DashboardWidget({
 
         {/* Content: 24px below filter (or description/name if no filter) */}
         {children && (
-          <div className="mt-6 min-h-[120px] rounded-lg bg-subtle-bg overflow-hidden">
+          <div className="mt-4 min-h-[120px] flex-1 flex items-center justify-center rounded-lg bg-subtle-bg overflow-hidden">
             {children}
           </div>
         )}

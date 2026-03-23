@@ -6,7 +6,7 @@ export default function DashboardWidgetMarketplaceAppsDemo() {
   return (
     <div className="w-[960px] max-w-full">
       <DashboardWidget
-        name="Marketplace app"
+        name="Sitecore Search"
         icon={
           <div className="h-8 w-8 rounded bg-subtle-bg border border-border" />
         }

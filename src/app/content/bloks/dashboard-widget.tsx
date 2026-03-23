@@ -4,9 +4,9 @@ import { DashboardWidget } from "@/components/bloks/dashboard-widget";
 import { useState } from "react";
 
 const filterOptions = [
-  { value: "filter1", label: "filter1" },
-  { value: "filter2", label: "filter2" },
-  { value: "filter3", label: "filter3" },
+  { value: "all", label: "All projects" },
+  { value: "active", label: "Active" },
+  { value: "archived", label: "Archived" },
 ];
 
 export default function DashboardWidgetDemo() {
@@ -15,10 +15,10 @@ export default function DashboardWidgetDemo() {
   return (
     <div className="w-[960px] max-w-full">
       <DashboardWidget
-        name="The name"
-        description="Small explanation on something or other"
+        name="Projects"
+        description="Overview of your recent projects and their status"
         goToHref="#"
-        onGoTo={() => console.log("Go to The name")}
+        onGoTo={() => console.log("Go to Projects")}
         filter={{
           value: filterValue,
           onChange: setFilterValue,

@@ -4,9 +4,9 @@ import { DashboardWidget } from "@/components/bloks/dashboard-widget";
 import { useState } from "react";
 
 const filterOptions = [
-  { value: "filter1", label: "filter1" },
-  { value: "filter2", label: "filter2" },
-  { value: "filter3", label: "filter3" },
+  { value: "7d", label: "Last 7 days" },
+  { value: "30d", label: "Last 30 days" },
+  { value: "90d", label: "Last 90 days" },
 ];
 
 export default function DashboardWidgetTwoColumnDemo() {
@@ -29,10 +29,10 @@ export default function DashboardWidgetTwoColumnDemo() {
             </div>
           </DashboardWidget>
           <DashboardWidget
-            name="The name"
-            description="Small explanation on something or other"
+            name="Notifications"
+            description="Unread alerts and updates from your team"
             goToHref="#"
-            onGoTo={() => console.log("Go to The name")}
+            onGoTo={() => console.log("Go to Notifications")}
             filter={{
               value: filterValue,
               onChange: setFilterValue,
@@ -42,7 +42,7 @@ export default function DashboardWidgetTwoColumnDemo() {
             variant="white-bg-small"
           >
             <div className="flex h-40 items-center justify-center text-sm text-muted-foreground">
-              Widget content area
+              Notifications content
             </div>
           </DashboardWidget>
         </div>
