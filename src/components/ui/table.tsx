@@ -47,7 +47,7 @@ export interface TableProps extends React.ComponentProps<"table"> {
   maxWidth?: string | number;
   /** Max height of the scrollable body. Enables vertical scroll with sticky header. */
   maxHeight?: string | number;
-  /** Number of columns to pin (sticky) on horizontal scroll (e.g. 1 for checkbox column, 2 for checkbox + first data column). */
+  /** Number of columns to pin (sticky) on horizontal scroll. */
   pinnedColumnsCount?: number;
   /** Additional class for the outer table container (rounded-xl, bg-body-bg, border applied by default). */
   containerClassName?: string;
@@ -75,6 +75,7 @@ function Table({
   }
 
   const hasVerticalScroll = Boolean(maxHeight);
+  const hasHorizontalScroll = maxWidth != null;
   const ctx: TableContextValue = {
     size,
     stickyHeader: stickyHeader && hasVerticalScroll,
@@ -95,6 +96,7 @@ function Table({
         <div
           className={cn(
             "w-full",
+            hasHorizontalScroll && "isolate",
             hasVerticalScroll && "min-h-0 flex-1 overflow-y-auto",
             hasVerticalScroll && maxWidth == null
               ? "overflow-x-hidden"
@@ -104,7 +106,11 @@ function Table({
           <table
             data-slot="table"
             data-table-size={size}
-            className={cn("w-full caption-bottom text-sm", className)}
+            className={cn(
+              "w-full caption-bottom text-sm",
+              hasHorizontalScroll && "border-separate border-spacing-0",
+              className,
+            )}
             style={style}
             {...props}
           />
@@ -189,7 +195,7 @@ function TableHead({
       data-slot="table-head"
       data-checkbox-column={checkboxColumn || undefined}
       className={cn(
-        "whitespace-nowrap text-left align-middle font-medium text-foreground",
+        "whitespace-nowrap text-left align-middle font-medium text-neutral-fg",
         sizeStyles,
         "[&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px]",
         checkboxColumn && "w-12",
