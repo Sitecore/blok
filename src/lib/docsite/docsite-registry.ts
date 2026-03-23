@@ -166,8 +166,11 @@ import AllSitesSectionDemo from "@/app/content/bloks/all-site-section";
 import CollaborationDemo from "@/app/content/bloks/collaboration";
 // BLOKS
 import DashboardWidgetDemo from "@/app/content/bloks/dashboard-widget";
+import DashboardWidgetGrayBgLargeDemo from "@/app/content/bloks/dashboard-widget-gray-bg-large";
+import DashboardWidgetMarketplaceAppsDemo from "@/app/content/bloks/dashboard-widget-marketplace-apps";
 import DashboardWidgetTwoColumnDemo from "@/app/content/bloks/dashboard-widget-two-column";
-import DashboardWidgetTwoColumnWithSidebarDemo from "@/app/content/bloks/dashboard-widget-two-column-with-sidebar";
+import DashboardWidgetWhiteBgSmallDemo from "@/app/content/bloks/dashboard-widget-white-bg-small";
+
 import PinnedSitesSectionDemo from "@/app/content/bloks/pinned-site-section";
 import SidebarRHSDemo from "@/app/content/bloks/sidebar-rhs";
 import SidebarRHSBriefDemo from "@/app/content/bloks/sidebar-rhs-brief";
@@ -1255,15 +1258,25 @@ export const docsiteRegistry: Record<string, DocsiteRegistryEntry> = {
     path: "src/app/content/bloks/dashboard-widget.tsx",
     component: DashboardWidgetDemo,
   },
+  "dashboard-widget-gray-bg-large": {
+    name: "dashboard-widget-gray-bg-large",
+    path: "src/app/content/bloks/dashboard-widget-gray-bg-large.tsx",
+    component: DashboardWidgetGrayBgLargeDemo,
+  },
+  "dashboard-widget-white-bg-small": {
+    name: "dashboard-widget-white-bg-small",
+    path: "src/app/content/bloks/dashboard-widget-white-bg-small.tsx",
+    component: DashboardWidgetWhiteBgSmallDemo,
+  },
+  "dashboard-widget-marketplace-apps": {
+    name: "dashboard-widget-marketplace-apps",
+    path: "src/app/content/bloks/dashboard-widget-marketplace-apps.tsx",
+    component: DashboardWidgetMarketplaceAppsDemo,
+  },
   "dashboard-widget-two-column": {
     name: "dashboard-widget-two-column",
     path: "src/app/content/bloks/dashboard-widget-two-column.tsx",
     component: DashboardWidgetTwoColumnDemo,
-  },
-  "dashboard-widget-two-column-with-sidebar": {
-    name: "dashboard-widget-two-column-with-sidebar",
-    path: "src/app/content/bloks/dashboard-widget-two-column-with-sidebar.tsx",
-    component: DashboardWidgetTwoColumnWithSidebarDemo,
   },
   "site-card": {
     name: "site-card",

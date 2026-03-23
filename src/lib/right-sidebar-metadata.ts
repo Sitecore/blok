@@ -1073,12 +1073,20 @@ export const rightSidebarMetadata: Record<string, RightSidebarMetadata> = {
         title: "Examples",
         children: [
           {
-            id: "dashboard-widget-two-column",
-            title: "Two-column layout",
+            id: "dashboard-widget-gray-bg-large",
+            title: "Gray bg large",
           },
           {
-            id: "dashboard-widget-two-column-with-sidebar",
-            title: "Two-column layout with Sidebar RHS",
+            id: "dashboard-widget-white-bg-small",
+            title: "White bg small",
+          },
+          {
+            id: "dashboard-widget-marketplace-apps",
+            title: "Marketplace apps",
+          },
+          {
+            id: "dashboard-widget-two-column",
+            title: "Two-column layout",
           },
         ],
       },

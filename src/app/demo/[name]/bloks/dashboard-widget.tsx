@@ -10,9 +10,9 @@ export const dashboardWidget = {
     ],
   },
   components: {
+    "Gray bg large": { component: "dashboard-widget-gray-bg-large" },
+    "White bg small": { component: "dashboard-widget-white-bg-small" },
+    "Marketplace apps": { component: "dashboard-widget-marketplace-apps" },
     "Two-column layout": { component: "dashboard-widget-two-column" },
-    "Two-column layout with Sidebar RHS": {
-      component: "dashboard-widget-two-column-with-sidebar",
-    },
   },
 };

@@ -13,7 +13,7 @@ export default function DashboardWidgetTwoColumnDemo() {
   const [filterValue, setFilterValue] = useState<string>("");
 
   return (
-    <div className="min-h-[400px] w-[960px] max-w-full rounded-lg p-6">
+    <div className="min-h-[400px] w-[960px] max-w-full rounded-lg">
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-[2fr_1fr]">
         {/* Row 1 */}
         <DashboardWidget
