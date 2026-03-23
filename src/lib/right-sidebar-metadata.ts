@@ -748,6 +748,21 @@ export const rightSidebarMetadata: Record<string, RightSidebarMetadata> = {
       figma:
         "https://www.figma.com/design/x0CUbrC5Kjcuk64VPCnbgz/Blok-Components?m=auto&node-id=6990-12387&t=NScvPldB3fxBBWL8-1",
     },
+    sections: [
+      { id: "preview", title: "Preview" },
+      { id: "installation", title: "Installation" },
+      { id: "usage", title: "Usage" },
+      {
+        id: "examples",
+        title: "Examples",
+        children: [
+          { id: "sidebar-default", title: "Default" },
+          { id: "sidebar-leading-icon", title: "Leading Icon" },
+          { id: "sidebar-trailing-icon", title: "Trailing Icon" },
+          { id: "sidebar-icon-combination", title: "Icon Combination" },
+        ],
+      },
+    ],
   },
   skeleton: {
     links: {
