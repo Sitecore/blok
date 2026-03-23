@@ -95,9 +95,10 @@ export function DashboardWidget({
       style={isGrayBg ? "filled" : "outline"}
       padding="md"
       className={cn(
-        "flex flex-col overflow-hidden",
+        "flex flex-col overflow-hidden w-full",
         isGrayBg && "bg-neutral-50",
-        isSmallVariant && "w-full max-w-[360px]",
+        isSmallVariant && "max-w-[420px]",
+        !isSmallVariant && "min-w-[420px]",
         className,
       )}
     >

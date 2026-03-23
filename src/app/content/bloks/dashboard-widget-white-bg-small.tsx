@@ -14,25 +14,23 @@ export default function DashboardWidgetWhiteBgSmallDemo() {
 
   return (
     <div className="w-[960px] max-w-full">
-      <div className="max-w-sm">
-        <DashboardWidget
-          name="The name"
-          description="Small explanation on something or other"
-          goToHref="#"
-          onGoTo={() => console.log("Go to The name (RHS)")}
-          filter={{
-            value: filterValue,
-            onChange: setFilterValue,
-            options: filterOptions,
-            placeholder: "Filter",
-          }}
-          variant="white-bg-small"
-        >
-          <div className="flex items-center justify-center h-32 text-muted-foreground text-sm">
-            Widget content area
-          </div>
-        </DashboardWidget>
-      </div>
+      <DashboardWidget
+        name="The name"
+        description="Small explanation on something or other"
+        goToHref="#"
+        onGoTo={() => console.log("Go to The name (RHS)")}
+        filter={{
+          value: filterValue,
+          onChange: setFilterValue,
+          options: filterOptions,
+          placeholder: "Filter",
+        }}
+        variant="white-bg-small"
+      >
+        <div className="flex items-center justify-center h-32 text-muted-foreground text-sm">
+          Widget content area
+        </div>
+      </DashboardWidget>
     </div>
   );
 }
