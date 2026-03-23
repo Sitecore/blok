@@ -34,14 +34,14 @@ function DashboardWidget({
       padding="md"
       data-slot="dashboard-widget"
       className={cn(
-        "flex flex-col overflow-hidden w-full",
+        "overflow-hidden w-full",
         isGrayBg && "bg-neutral-50",
         isSmallVariant && "max-w-[420px]",
         !isSmallVariant && "min-w-[420px]",
         className,
       )}
     >
-      <div className="flex flex-col flex-1 w-full">{children}</div>
+      <div className="flex flex-col flex-1">{children}</div>
     </Card>
   );
 }
@@ -98,10 +98,7 @@ function DashboardWidgetAction({
   return (
     <div
       data-slot="dashboard-widget-action"
-      className={cn(
-        "col-start-2 row-start-1 justify-self-end shrink-0",
-        className,
-      )}
+      className={cn("col-start-2 row-start-1", className)}
       {...props}
     />
   );
