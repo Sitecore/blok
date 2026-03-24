@@ -216,6 +216,10 @@ import TimelineDemo from "@/app/content/ui/timeline";
 import TimelineConnectorVariantsDemo from "@/app/content/ui/timeline-connector-variants";
 import TimelineSizesDemo from "@/app/content/ui/timeline-sizes";
 import TimelineVariantsDemo from "@/app/content/ui/timeline-variants";
+import SidebarDefaultDemo from "@/app/content/ui/sidebar-default";
+import SidebarLeadingIconDemo from "@/app/content/ui/sidebar-leading-icon";
+import SidebarTrailingIconDemo from "@/app/content/ui/sidebar-trailing-icon";
+import SidebarIconCombinationDemo from "@/app/content/ui/sidebar-icon-combination";
 
 export interface DocsiteRegistryEntry {
   name: string;
@@ -999,6 +1003,26 @@ export const docsiteRegistry: Record<string, DocsiteRegistryEntry> = {
     name: "sidebar",
     path: "src/app/content/ui/sidebar.tsx",
     component: SidebarDemo,
+  },
+  "sidebar-default": {
+    name: "sidebar-default",
+    path: "src/app/content/ui/sidebar-default.tsx",
+    component: SidebarDefaultDemo,
+  },
+  "sidebar-leading-icon": {
+    name: "sidebar-leading-icon",
+    path: "src/app/content/ui/sidebar-leading-icon.tsx",
+    component: SidebarLeadingIconDemo,
+  },
+  "sidebar-trailing-icon": {
+    name: "sidebar-trailing-icon",
+    path: "src/app/content/ui/sidebar-trailing-icon.tsx",
+    component: SidebarTrailingIconDemo,
+  },
+  "sidebar-icon-combination": {
+    name: "sidebar-icon-combination",
+    path: "src/app/content/ui/sidebar-icon-combination.tsx",
+    component: SidebarIconCombinationDemo,
   },
   skeleton: {
     name: "skeleton",

@@ -1,7 +1,9 @@
 import {
   Sidebar,
   SidebarContent,
-  SidebarHeader,
+  SidebarGroup,
+  SidebarGroupContent,
+  SidebarGroupLabel,
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
@@ -14,33 +16,36 @@ export default function SidebarDemo() {
   return (
     <div className="flex h-[350px] w-full">
       <SidebarProvider>
-        <Sidebar className="w-64 px-2 py-6">
-          <SidebarHeader>
-            <div className="py-1.5 text-sm font-semibold uppercase text-subtle-text">
-              Navigation
-            </div>
-          </SidebarHeader>
+        <Sidebar className="w-62">
           <SidebarContent>
-            <SidebarMenu>
-              <SidebarMenuItem>
-                <SidebarMenuButton isActive>
-                  <Icon path={mdiHome} />
-                  <span>Home</span>
-                </SidebarMenuButton>
-              </SidebarMenuItem>
-              <SidebarMenuItem>
-                <SidebarMenuButton>
-                  <Icon path={mdiAccount} />
-                  <span>Profile</span>
-                </SidebarMenuButton>
-              </SidebarMenuItem>
-              <SidebarMenuItem>
-                <SidebarMenuButton>
-                  <Icon path={mdiCog} />
-                  <span>Settings</span>
-                </SidebarMenuButton>
-              </SidebarMenuItem>
-            </SidebarMenu>
+            <SidebarGroup>
+              <SidebarGroupLabel>Navigation</SidebarGroupLabel>
+
+              <SidebarGroupContent>
+                <SidebarMenu>
+                  <SidebarMenuItem>
+                    <SidebarMenuButton isActive>
+                      <Icon path={mdiHome} />
+                      <span>Home</span>
+                    </SidebarMenuButton>
+                  </SidebarMenuItem>
+
+                  <SidebarMenuItem>
+                    <SidebarMenuButton>
+                      <Icon path={mdiAccount} />
+                      <span>Profile</span>
+                    </SidebarMenuButton>
+                  </SidebarMenuItem>
+
+                  <SidebarMenuItem>
+                    <SidebarMenuButton disabled>
+                      <Icon path={mdiCog} />
+                      <span>Settings</span>
+                    </SidebarMenuButton>
+                  </SidebarMenuItem>
+                </SidebarMenu>
+              </SidebarGroupContent>
+            </SidebarGroup>
           </SidebarContent>
         </Sidebar>
       </SidebarProvider>

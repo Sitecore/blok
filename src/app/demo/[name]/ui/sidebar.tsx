@@ -9,4 +9,10 @@ export const sidebar = {
       `<Sidebar>\n <SidebarHeader />\n <SidebarContent>\n  <SidebarGroup />\n  <SidebarGroup />\n </SidebarContent>\n <SidebarFooter />\n</Sidebar>`,
     ],
   },
+  components: {
+    "Default": { component: "sidebar-default" },
+    "With Leading Icon": { component: "sidebar-leading-icon" },
+    "With Trailing Icon": { component: "sidebar-trailing-icon" },
+    "With Icon Combination": { component: "sidebar-icon-combination" },
+  },
 };
