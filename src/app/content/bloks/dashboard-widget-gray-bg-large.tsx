@@ -14,10 +14,10 @@ export default function DashboardWidgetGrayBgLargeDemo() {
     <div className="w-[960px] max-w-full">
       <DashboardWidget type="gray-bg-large">
         <DashboardWidgetHeader>
-          <DashboardWidgetTitle>Pinned channels</DashboardWidgetTitle>
+          <DashboardWidgetTitle>Pinned widget</DashboardWidgetTitle>
           <DashboardWidgetAction>
             <Button variant="ghost" size="xs" colorScheme="neutral" asChild>
-              <a href="#">Go to Pinned channels</a>
+              <a href="#">Go to Pinned widget</a>
             </Button>
           </DashboardWidgetAction>
         </DashboardWidgetHeader>
