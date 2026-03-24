@@ -30,7 +30,7 @@ function DashboardWidget({
 
   return (
     <Card
-      style={isGrayBg ? "filled" : "outline"}
+      style={isGrayBg ? "filled" : "flat"}
       padding="md"
       data-slot="dashboard-widget"
       className={cn(
