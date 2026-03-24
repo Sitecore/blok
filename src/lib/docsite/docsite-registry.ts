@@ -167,10 +167,7 @@ import CollaborationDemo from "@/app/content/bloks/collaboration";
 // BLOKS
 import DashboardWidgetDemo from "@/app/content/bloks/dashboard-widget";
 import DashboardWidgetGrayBgLargeDemo from "@/app/content/bloks/dashboard-widget-gray-bg-large";
-import DashboardWidgetMarketplaceAppsDemo from "@/app/content/bloks/dashboard-widget-marketplace-apps";
-import DashboardWidgetTwoColumnDemo from "@/app/content/bloks/dashboard-widget-two-column";
 import DashboardWidgetWhiteBgLargeDemo from "@/app/content/bloks/dashboard-widget-white-bg-large";
-import DashboardWidgetWhiteBgSmallDemo from "@/app/content/bloks/dashboard-widget-white-bg-small";
 
 import PinnedSitesSectionDemo from "@/app/content/bloks/pinned-site-section";
 import SidebarRHSDemo from "@/app/content/bloks/sidebar-rhs";
@@ -1268,21 +1265,6 @@ export const docsiteRegistry: Record<string, DocsiteRegistryEntry> = {
     name: "dashboard-widget-gray-bg-large",
     path: "src/app/content/bloks/dashboard-widget-gray-bg-large.tsx",
     component: DashboardWidgetGrayBgLargeDemo,
-  },
-  "dashboard-widget-white-bg-small": {
-    name: "dashboard-widget-white-bg-small",
-    path: "src/app/content/bloks/dashboard-widget-white-bg-small.tsx",
-    component: DashboardWidgetWhiteBgSmallDemo,
-  },
-  "dashboard-widget-marketplace-apps": {
-    name: "dashboard-widget-marketplace-apps",
-    path: "src/app/content/bloks/dashboard-widget-marketplace-apps.tsx",
-    component: DashboardWidgetMarketplaceAppsDemo,
-  },
-  "dashboard-widget-two-column": {
-    name: "dashboard-widget-two-column",
-    path: "src/app/content/bloks/dashboard-widget-two-column.tsx",
-    component: DashboardWidgetTwoColumnDemo,
   },
   "site-card": {
     name: "site-card",

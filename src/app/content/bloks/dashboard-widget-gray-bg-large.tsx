@@ -8,7 +8,6 @@ import {
   DashboardWidgetTitle,
 } from "@/components/bloks/dashboard-widget";
 import { Button } from "@/components/ui/button";
-import { ChevronRight } from "lucide-react";
 
 export default function DashboardWidgetGrayBgLargeDemo() {
   return (
@@ -17,17 +16,8 @@ export default function DashboardWidgetGrayBgLargeDemo() {
         <DashboardWidgetHeader>
           <DashboardWidgetTitle>Pinned channels</DashboardWidgetTitle>
           <DashboardWidgetAction>
-            <Button
-              variant="link"
-              size="sm"
-              colorScheme="primary"
-              className="text-sm font-medium -m-1 p-1"
-              asChild
-            >
-              <a href="#">
-                Go to Pinned channels
-                <ChevronRight className="ml-0.5 h-4 w-4" />
-              </a>
+            <Button variant="ghost" size="sm" colorScheme="neutral" asChild>
+              <a href="#">Go to Pinned channels</a>
             </Button>
           </DashboardWidgetAction>
         </DashboardWidgetHeader>

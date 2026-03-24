@@ -1080,18 +1080,6 @@ export const rightSidebarMetadata: Record<string, RightSidebarMetadata> = {
             id: "dashboard-widget-gray-bg-large",
             title: "Gray bg large",
           },
-          {
-            id: "dashboard-widget-white-bg-small",
-            title: "White bg small",
-          },
-          {
-            id: "dashboard-widget-marketplace-apps",
-            title: "Marketplace apps",
-          },
-          {
-            id: "dashboard-widget-two-column",
-            title: "Two-column layout",
-          },
         ],
       },
     ],

@@ -11,7 +11,6 @@ import {
 } from "@/components/bloks/dashboard-widget";
 import { Button } from "@/components/ui/button";
 import { FilterSingleSelect } from "@/components/ui/filter";
-import { ChevronRight } from "lucide-react";
 import { useState } from "react";
 
 const filterOptions = [
@@ -32,17 +31,8 @@ export default function DashboardWidgetWhiteBgLargeDemo() {
             Overview of your recent projects and their status
           </DashboardWidgetDescription>
           <DashboardWidgetAction>
-            <Button
-              variant="link"
-              size="sm"
-              colorScheme="primary"
-              className="text-sm font-medium -m-1 p-1"
-              asChild
-            >
-              <a href="#">
-                Go to Projects
-                <ChevronRight className="ml-0.5 h-4 w-4" />
-              </a>
+            <Button variant="ghost" size="sm" colorScheme="neutral" asChild>
+              <a href="#">Go to Projects</a>
             </Button>
           </DashboardWidgetAction>
         </DashboardWidgetHeader>

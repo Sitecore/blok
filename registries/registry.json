@@ -1250,7 +1250,7 @@
       "name": "dashboard-widget",
       "type": "registry:block",
       "title": "Dashboard widget",
-      "description": "Card-based dashboard widget with header, optional description, filters, and content area. Supports gray/white background variants and RHS layout.",
+      "description": "Card-based dashboard widget with header, optional description, filters, and content area. Supports gray/white background types.",
       "registryDependencies": [
         "https://blok.sitecore.com/r/theme.json",
         "https://blok.sitecore.com/r/button.json",

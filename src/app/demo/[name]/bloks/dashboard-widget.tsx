@@ -19,8 +19,8 @@ export const dashboardWidget = {
     <DashboardWidgetTitle>Widget name</DashboardWidgetTitle>
     <DashboardWidgetDescription>Optional description</DashboardWidgetDescription>
     <DashboardWidgetAction>
-      <Button variant="link" size="sm" colorScheme="primary" asChild>
-        <a href="/path">Go to Widget name <ChevronRight /></a>
+      <Button variant="ghost" size="sm" colorScheme="neutral" asChild>
+        <a href="/path">Go to Widget name</a>
       </Button>
     </DashboardWidgetAction>
   </DashboardWidgetHeader>
@@ -36,8 +36,5 @@ export const dashboardWidget = {
   components: {
     "White bg large": { component: "dashboard-widget-white-bg-large" },
     "Gray bg large": { component: "dashboard-widget-gray-bg-large" },
-    "White bg small": { component: "dashboard-widget-white-bg-small" },
-    "Marketplace apps": { component: "dashboard-widget-marketplace-apps" },
-    "Two-column layout": { component: "dashboard-widget-two-column" },
   },
 };
