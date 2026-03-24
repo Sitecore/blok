@@ -18,7 +18,7 @@ export default function DashboardWidgetDemo() {
             Overview of your recent projects and their status
           </DashboardWidgetDescription>
           <DashboardWidgetAction>
-            <Button variant="ghost" size="sm" colorScheme="neutral" asChild>
+            <Button variant="ghost" size="xs" colorScheme="neutral" asChild>
               <a href="#">Go to Projects</a>
             </Button>
           </DashboardWidgetAction>

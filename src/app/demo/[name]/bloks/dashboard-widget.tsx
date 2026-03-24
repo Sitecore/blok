@@ -19,7 +19,7 @@ export const dashboardWidget = {
     <DashboardWidgetTitle>Widget name</DashboardWidgetTitle>
     <DashboardWidgetDescription>Optional description</DashboardWidgetDescription>
     <DashboardWidgetAction>
-      <Button variant="ghost" size="sm" colorScheme="neutral" asChild>
+      <Button variant="ghost" size="xs" colorScheme="neutral" asChild>
         <a href="/path">Go to Widget name</a>
       </Button>
     </DashboardWidgetAction>

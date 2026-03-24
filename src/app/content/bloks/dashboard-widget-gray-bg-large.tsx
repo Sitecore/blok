@@ -16,7 +16,7 @@ export default function DashboardWidgetGrayBgLargeDemo() {
         <DashboardWidgetHeader>
           <DashboardWidgetTitle>Pinned channels</DashboardWidgetTitle>
           <DashboardWidgetAction>
-            <Button variant="ghost" size="sm" colorScheme="neutral" asChild>
+            <Button variant="ghost" size="xs" colorScheme="neutral" asChild>
               <a href="#">Go to Pinned channels</a>
             </Button>
           </DashboardWidgetAction>
