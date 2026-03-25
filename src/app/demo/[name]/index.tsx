@@ -68,6 +68,7 @@ import { topbar } from "@/app/demo/[name]/ui/topbar";
 // BLOKS
 import { allSite } from "@/app/demo/[name]/bloks/all-site";
 import { collaboration } from "@/app/demo/[name]/bloks/collaboration";
+import { dashboardWidget } from "@/app/demo/[name]/bloks/dashboard-widget";
 import { pinnedSite } from "@/app/demo/[name]/bloks/pinned-site";
 import { sidebarRhs } from "@/app/demo/[name]/bloks/sidebar-rhs";
 import { siteCard } from "@/app/demo/[name]/bloks/site-card";
@@ -165,6 +166,7 @@ export const demos: { [name: string]: Demo } = {
 
   // BLOKS
   "all-site": allSite,
+  "dashboard-widget": dashboardWidget,
   "site-card": siteCard,
   "pinned-site": pinnedSite,
   collaboration,

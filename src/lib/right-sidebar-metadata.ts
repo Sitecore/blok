@@ -1092,6 +1092,28 @@ export const rightSidebarMetadata: Record<string, RightSidebarMetadata> = {
   "site-card": {
     links: {},
   },
+  "dashboard-widget": {
+    links: {},
+    sections: [
+      { id: "preview", title: "Preview" },
+      { id: "installation", title: "Installation" },
+      { id: "usage", title: "Usage" },
+      {
+        id: "examples",
+        title: "Examples",
+        children: [
+          {
+            id: "dashboard-widget-white-bg-large",
+            title: "White widget",
+          },
+          {
+            id: "dashboard-widget-gray-bg-large",
+            title: "Gray widget",
+          },
+        ],
+      },
+    ],
+  },
   // ===== THEMING-SPECIFIC METADATA =====
 
   // "theming-colors": {
