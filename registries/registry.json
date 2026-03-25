@@ -1437,7 +1437,8 @@
         "https://blok.sitecore.com/r/skeleton.json",
         "https://blok.sitecore.com/r/separator.json",
         "https://blok.sitecore.com/r/input.json",
-        "https://blok.sitecore.com/r/button.json"
+        "https://blok.sitecore.com/r/button.json",
+        "https://blok.sitecore.com/r/sheet.json"
       ],
       "files": [
         {
@@ -1447,6 +1448,10 @@
         {
           "path": "src/lib/icon.tsx",
           "type": "registry:lib"
+        },
+        {
+          "path": "src/hooks/use-mobile.ts",
+          "type": "registry:hook"
         }
       ]
     },
