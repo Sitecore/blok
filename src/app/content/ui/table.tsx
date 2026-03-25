@@ -7,64 +7,66 @@ import {
   TableRow,
 } from "@/components/ui/table";
 
-const featureTable = [
+const rows = [
   {
-    feature: "Personalization",
-    description:
-      "Deliver tailored experiences based on user behavior and preferences.",
-    benefit: "Increase engagement and conversion rates.",
-    useCase: "Personalized product recommendations on e-commerce sites.",
+    id: 1,
+    product: "Blok",
+    category: "Developer experience",
+    status: "GA",
+    workspaces: "18",
+    tier: "Standard",
   },
   {
-    feature: "Composable DXP",
-    description: "Modular architecture for flexibility and scalability.",
-    benefit: "Faster innovation and reduced time-to-market.",
-    useCase: "Launching new microsites without disrupting existing systems.",
+    id: 2,
+    product: "Component Builder",
+    category: "Composable authoring",
+    status: "Preview",
+    workspaces: "6",
+    tier: "Enterprise",
   },
   {
-    feature: "Content Management",
-    description:
-      "Centralized platform for creating and managing digital content.",
-    benefit: "Consistent brand messaging across channels.",
-    useCase: "Managing global campaigns with localized content.",
+    id: 3,
+    product: "Sitecore AI",
+    category: "AI & intelligent automation",
+    status: "Beta",
+    workspaces: "42",
+    tier: "Add-on",
   },
   {
-    feature: "AI-Powered Insights",
-    description: "Predictive analytics and automated recommendations.",
-    benefit: "Smarter decisions and optimized campaigns.",
-    useCase: "Using AI to optimize ad spend and predict customer churn.",
+    id: 4,
+    product: "XM Cloud",
+    category: "Composable DXP",
+    status: "GA",
+    workspaces: "31",
+    tier: "Enterprise",
   },
 ];
 
 export default function TableDemo() {
   return (
-    <Table>
-      <TableHeader>
-        <TableRow>
-          <TableHead className="w-[150px]">Feature</TableHead>
-          <TableHead className="w-[300px]">Description</TableHead>
-          <TableHead className="w-[250px]">Benefit</TableHead>
-          <TableHead className="text-left w-[300px]">Use case</TableHead>
-        </TableRow>
-      </TableHeader>
-      <TableBody>
-        {featureTable.map((item, index) => (
-          <TableRow key={index}>
-            <TableCell className="font-medium break-words whitespace-normal">
-              {item.feature}
-            </TableCell>
-            <TableCell className="break-words whitespace-normal">
-              {item.description}
-            </TableCell>
-            <TableCell className="break-words whitespace-normal">
-              {item.benefit}
-            </TableCell>
-            <TableCell className="text-left break-words whitespace-normal">
-              {item.useCase}
-            </TableCell>
+    <div className="w-full max-w-3xl">
+      <Table>
+        <TableHeader>
+          <TableRow>
+            <TableHead>Product</TableHead>
+            <TableHead>Category</TableHead>
+            <TableHead>Status</TableHead>
+            <TableHead className="text-right">Teams</TableHead>
+            <TableHead className="text-right">Entitlement</TableHead>
           </TableRow>
-        ))}
-      </TableBody>
-    </Table>
+        </TableHeader>
+        <TableBody>
+          {rows.map((row) => (
+            <TableRow key={row.id}>
+              <TableCell className="font-medium">{row.product}</TableCell>
+              <TableCell>{row.category}</TableCell>
+              <TableCell>{row.status}</TableCell>
+              <TableCell className="text-right">{row.workspaces}</TableCell>
+              <TableCell className="text-right">{row.tier}</TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
+    </div>
   );
 }

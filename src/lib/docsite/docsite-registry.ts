@@ -137,7 +137,10 @@ import SwitchDemo from "@/app/content/ui/switch";
 import SwitchDangerDemo from "@/app/content/ui/switch-danger";
 import SwitchSuccessDemo from "@/app/content/ui/switch-success";
 import TableDemo from "@/app/content/ui/table";
-import { DataTableDemo } from "@/app/content/ui/table-data";
+import TableLgDemo from "@/app/content/ui/table-lg";
+import TablePinnedDemo from "@/app/content/ui/table-pinned";
+import TableSmDemo from "@/app/content/ui/table-sm";
+import TableStickyScrollDemo from "@/app/content/ui/table-sticky-scroll";
 import TabsDemo from "@/app/content/ui/tabs";
 import TabsWithIconsDemo from "@/app/content/ui/tabs-icons";
 import TabsLineVariantDemo from "@/app/content/ui/tabs-line";
@@ -1124,10 +1127,25 @@ export const docsiteRegistry: Record<string, DocsiteRegistryEntry> = {
     path: "src/app/content/ui/table.tsx",
     component: TableDemo,
   },
-  "table-data": {
-    name: "table-data",
-    path: "src/app/content/ui/table-data.tsx",
-    component: DataTableDemo,
+  "table-lg": {
+    name: "table-lg",
+    path: "src/app/content/ui/table-lg.tsx",
+    component: TableLgDemo,
+  },
+  "table-pinned": {
+    name: "table-pinned",
+    path: "src/app/content/ui/table-pinned.tsx",
+    component: TablePinnedDemo,
+  },
+  "table-sm": {
+    name: "table-sm",
+    path: "src/app/content/ui/table-sm.tsx",
+    component: TableSmDemo,
+  },
+  "table-sticky-scroll": {
+    name: "table-sticky-scroll",
+    path: "src/app/content/ui/table-sticky-scroll.tsx",
+    component: TableStickyScrollDemo,
   },
   tabs: {
     name: "tabs",

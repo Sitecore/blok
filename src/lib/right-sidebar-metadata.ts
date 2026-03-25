@@ -890,7 +890,9 @@ export const rightSidebarMetadata: Record<string, RightSidebarMetadata> = {
     links: {
       shadcn: "https://ui.shadcn.com/docs/components/table",
       figma:
-        "https://www.figma.com/design/x0CUbrC5Kjcuk64VPCnbgz/Blok-Components?m=auto&node-id=6748-14476&t=NScvPldB3fxBBWL8-1",
+        "https://www.figma.com/design/liab04R7gzEYiK1AtveQ6q/Blok?m=auto&node-id=8769-14689&t=ibDyUmE486XYfSEr-1",
+      platformPatterns:
+        "https://www.figma.com/design/n8ChYyFGZENvDIu9Wn4Qvm/%F0%9F%8D%A2-Platform-patterns?node-id=213-26296&t=uX2Skywrdq7CSQr1-1",
     },
     sections: [
       { id: "preview", title: "Preview" },
@@ -899,7 +901,12 @@ export const rightSidebarMetadata: Record<string, RightSidebarMetadata> = {
       {
         id: "examples",
         title: "Examples",
-        children: [{ id: "table-data", title: "Data table" }],
+        children: [
+          { id: "table-sm", title: "Small" },
+          { id: "table-lg", title: "Large" },
+          { id: "table-sticky-scroll", title: "Sticky header & scroll" },
+          { id: "table-pinned", title: "Scroll & pin" },
+        ],
       },
     ],
   },
