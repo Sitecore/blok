@@ -2,48 +2,38 @@
 
 import {
   FilterMultiSelect,
-  type FilterOption,
   FilterSingleSelect,
   type FilterSingleSelectGroup,
 } from "@/components/ui/filter";
 import { useState } from "react";
 
-const FILTER_DEMO_AB_GROUPS: FilterSingleSelectGroup[] = [
+const BLOCKCN_FILTER_GROUPS: FilterSingleSelectGroup[] = [
   {
-    label: "A GROUP TITLE",
+    label: "Platform & commerce",
     options: [
-      { value: "a-a", label: "A item" },
-      { value: "a-b", label: "B item" },
-      { value: "a-c", label: "C item" },
-      { value: "a-d", label: "D item" },
-      { value: "a-e", label: "E item" },
+      { value: "XMCloud", label: "XM Cloud" },
+      { value: "contentHub", label: "Content Hub" },
+      { value: "CDP", label: "CDP" },
+      { value: "Blok", label: "Blok", disabled: true },
+      { value: "OrderCloud", label: "Order cloud" },
+      { value: "SitecoreXP", label: "Sitecore XP" },
+      { value: "SitecoreXM", label: "Sitecore XM" },
+      { value: "Send", label: "Send" },
     ],
   },
   {
-    label: "B GROUP TITLE",
+    label: "Experience & content",
     options: [
-      { value: "b-a", label: "A item" },
-      { value: "b-b", label: "B item" },
-      { value: "b-c", label: "C item" },
-      { value: "b-d", label: "D item" },
-      { value: "b-e", label: "E item" },
-      { value: "b-f", label: "F item" },
+      { value: "Discover", label: "Discover" },
+      { value: "Connect", label: "Connect" },
+      { value: "Personalize", label: "Personalize" },
+      { value: "ContentOps", label: "Content operations" },
+      { value: "Commerce", label: "Sitecore commerce" },
+      { value: "Forms", label: "Sitecore forms" },
+      { value: "JSS", label: "JavaScript services" },
+      { value: "Headless", label: "Headless CMS" },
     ],
   },
-];
-
-const FILTER_DEMO_ITEMS_A_TO_K: FilterOption[] = [
-  { value: "a", label: "A item" },
-  { value: "b", label: "B item" },
-  { value: "c", label: "C item" },
-  { value: "d", label: "D item" },
-  { value: "e", label: "E item" },
-  { value: "f", label: "F item" },
-  { value: "g", label: "G item" },
-  { value: "h", label: "H item" },
-  { value: "i", label: "I item" },
-  { value: "j", label: "J item" },
-  { value: "k", label: "K item" },
 ];
 
 export default function FilterWithSearchDemo() {
@@ -55,7 +45,8 @@ export default function FilterWithSearchDemo() {
       <FilterSingleSelect
         value={singleValue}
         onChange={setSingleValue}
-        options={FILTER_DEMO_ITEMS_A_TO_K}
+        options={[]}
+        groups={BLOCKCN_FILTER_GROUPS}
         placeholder="Single select filter with search"
         searchable
         searchPlaceholder="Search"
@@ -67,7 +58,7 @@ export default function FilterWithSearchDemo() {
         onChange={setMultiValues}
         options={[]}
         placeholder="Multi select filter with search"
-        groups={FILTER_DEMO_AB_GROUPS}
+        groups={BLOCKCN_FILTER_GROUPS}
         searchable
         searchPlaceholder="Search"
         noResultsText="No results found"

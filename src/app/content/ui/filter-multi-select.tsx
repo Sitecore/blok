@@ -6,26 +6,31 @@ import {
 } from "@/components/ui/filter";
 import { useState } from "react";
 
-const FILTER_DEMO_AB_GROUPS: FilterSingleSelectGroup[] = [
+const BLOCKCN_FILTER_GROUPS: FilterSingleSelectGroup[] = [
   {
-    label: "A GROUP TITLE",
+    label: "Platform & commerce",
     options: [
-      { value: "a-a", label: "A item" },
-      { value: "a-b", label: "B item" },
-      { value: "a-c", label: "C item" },
-      { value: "a-d", label: "D item" },
-      { value: "a-e", label: "E item" },
+      { value: "XMCloud", label: "XM Cloud" },
+      { value: "contentHub", label: "Content Hub" },
+      { value: "CDP", label: "CDP" },
+      { value: "Blok", label: "Blok", disabled: true },
+      { value: "OrderCloud", label: "Order cloud" },
+      { value: "SitecoreXP", label: "Sitecore XP" },
+      { value: "SitecoreXM", label: "Sitecore XM" },
+      { value: "Send", label: "Send" },
     ],
   },
   {
-    label: "B GROUP TITLE",
+    label: "Experience & content",
     options: [
-      { value: "b-a", label: "A item" },
-      { value: "b-b", label: "B item" },
-      { value: "b-c", label: "C item" },
-      { value: "b-d", label: "D item" },
-      { value: "b-e", label: "E item" },
-      { value: "b-f", label: "F item" },
+      { value: "Discover", label: "Discover" },
+      { value: "Connect", label: "Connect" },
+      { value: "Personalize", label: "Personalize" },
+      { value: "ContentOps", label: "Content operations" },
+      { value: "Commerce", label: "Sitecore commerce" },
+      { value: "Forms", label: "Sitecore forms" },
+      { value: "JSS", label: "JavaScript services" },
+      { value: "Headless", label: "Headless CMS" },
     ],
   },
 ];
@@ -41,14 +46,14 @@ export default function FilterMultiSelectDemo() {
         onChange={setPrimaryValues}
         options={[]}
         placeholder="Multi-select filter"
-        groups={FILTER_DEMO_AB_GROUPS}
+        groups={BLOCKCN_FILTER_GROUPS}
       />
       <FilterMultiSelect
         value={badgeValues}
         onChange={setBadgeValues}
         options={[]}
         placeholder="Multi-select filter"
-        groups={FILTER_DEMO_AB_GROUPS}
+        groups={BLOCKCN_FILTER_GROUPS}
         displayMode="badge"
       />
     </div>
