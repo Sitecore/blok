@@ -85,7 +85,6 @@ function DropdownMenuItem({
   );
 }
 
-/** Column for title + optional description inside `DropdownMenuItem`. */
 function DropdownMenuItemText({
   className,
   ...props
