@@ -1247,6 +1247,26 @@
       ]
     },
     {
+      "name": "dashboard-widget",
+      "type": "registry:block",
+      "title": "Dashboard widget",
+      "description": "Card-based dashboard widget with header, optional description, filters, and content area. Supports gray/white background types.",
+      "registryDependencies": [
+        "https://blok.sitecore.com/r/theme.json",
+        "https://blok.sitecore.com/r/button.json",
+        "https://blok.sitecore.com/r/card.json",
+        "https://blok.sitecore.com/r/filter.json"
+      ],
+      "dependencies": ["lucide-react"],
+      "files": [
+        {
+          "path": "src/components/bloks/dashboard-widget.tsx",
+          "target": "src/components/bloks/dashboard-widget.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
       "name": "all-site",
       "type": "registry:block",
       "title": "All site section",

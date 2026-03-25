@@ -149,6 +149,45 @@ function ComboboxList({ className, ...props }: ComboboxPrimitive.List.Props) {
   );
 }
 
+function ComboboxItemText({
+  className,
+  ...props
+}: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="combobox-item-text"
+      className={cn("flex min-w-0 flex-1 flex-col gap-0.5", className)}
+      {...props}
+    />
+  );
+}
+
+function ComboboxItemTitle({
+  className,
+  ...props
+}: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="combobox-item-title"
+      className={cn("text-sm font-semibold leading-tight", className)}
+      {...props}
+    />
+  );
+}
+
+function ComboboxItemDescription({
+  className,
+  ...props
+}: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="combobox-item-description"
+      className={cn("text-xs leading-snug text-subtle-text", className)}
+      {...props}
+    />
+  );
+}
+
 function ComboboxItem({
   className,
   children,
@@ -159,6 +198,8 @@ function ComboboxItem({
       data-slot="combobox-item"
       className={cn(
         "data-highlighted:bg-accent data-highlighted:text-accent-foreground relative flex w-full cursor-default items-center gap-2 rounded-sm py-1.5 pr-8 pl-2 text-sm outline-hidden select-none data-[disabled]:pointer-events-none data-[disabled]:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
+        "has-data-[slot=combobox-item-description]:items-start",
+        "has-data-[slot=combobox-item-description]:[&>svg:first-child]:mt-0.5",
         className,
       )}
       {...props}
@@ -313,6 +354,9 @@ export {
   ComboboxContent,
   ComboboxList,
   ComboboxItem,
+  ComboboxItemText,
+  ComboboxItemTitle,
+  ComboboxItemDescription,
   ComboboxGroup,
   ComboboxLabel,
   ComboboxCollection,

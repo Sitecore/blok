@@ -22,6 +22,7 @@ import { cn } from "@/lib/utils";
 export type SelectReactOption = {
   value: string;
   label: string;
+  description?: string;
   disabled?: boolean;
   icon?: React.ReactNode;
 };
@@ -94,13 +95,36 @@ function CustomOption<
   Group extends GroupBase<Option>,
 >(props: OptionProps<Option, IsMulti, Group>) {
   const { isSelected, data } = props;
+  const hasDescription = Boolean(data.description);
   return (
     <components.Option {...props}>
-      <div className="flex w-full items-center gap-2">
-        {data.icon && <span className="shrink-0">{data.icon}</span>}
-        <span className="flex-1">{props.children}</span>
+      <div
+        className={cn(
+          "flex w-full gap-2",
+          hasDescription ? "items-start py-1" : "items-center",
+        )}
+      >
+        {data.icon && (
+          <span className={cn("shrink-0", hasDescription && "mt-0.5")}>
+            {data.icon}
+          </span>
+        )}
+        <span className="min-w-0 flex-1">
+          {hasDescription ? (
+            <span className="flex flex-col gap-0.5">
+              <span className="text-sm font-semibold leading-tight">
+                {data.label}
+              </span>
+              <span className="text-xs leading-snug text-subtle-text">
+                {data.description}
+              </span>
+            </span>
+          ) : (
+            props.children
+          )}
+        </span>
         {isSelected && (
-          <span className="shrink-0">
+          <span className={cn("shrink-0", hasDescription && "mt-0.5")}>
             <Icon path={mdiCheck} className="size-4" />
           </span>
         )}
@@ -157,10 +181,11 @@ function SelectReact<
         "data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95",
       ),
     menuList: () => "p-1 max-h-[300px]",
-    option: ({ isFocused, isSelected, isDisabled: optionDisabled }) =>
+    option: ({ isFocused, isSelected, isDisabled: optionDisabled, data }) =>
       cn(
         // Base styles matching SelectItem
-        "relative flex w-full cursor-default items-center gap-2 rounded-sm py-1.5 px-2 !text-sm outline-hidden select-none",
+        "relative flex w-full cursor-default gap-2 rounded-sm py-1.5 px-2 !text-sm outline-hidden select-none",
+        data.description ? "items-start" : "items-center",
         // Hover/focus state
         isFocused && "bg-accent text-accent-foreground",
         // Selected state

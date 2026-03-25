@@ -17,5 +17,8 @@ export const dropdownMenu = {
     "Dropdown Menu With Avatar": { component: "dropdown-menu-avatar" },
     "Dropdown Menu Avatar Only": { component: "dropdown-menu-avatar-only" },
     "Dropdown Menu Icon Color": { component: "dropdown-menu-icon-color" },
+    "Dropdown Menu With Description": {
+      component: "dropdown-menu-with-description",
+    },
   },
 };

@@ -7,7 +7,12 @@ const productOptions: SelectReactOption[] = [
   { value: "XMCloud", label: "XM Cloud" },
   { value: "contentHub", label: "Content Hub" },
   { value: "CDP", label: "CDP" },
-  { value: "Blok", label: "Blok", disabled: true },
+  {
+    value: "Blok",
+    label: "Blok",
+    description:
+      "Sitecore design system for building consistent product experiences.",
+  },
 ];
 
 export default function SelectReactDemo() {

@@ -111,5 +111,6 @@ export const combobox = {
     "Custom Items": { component: "combobox-custom-items" },
     "Auto Highlight": { component: "combobox-auto-highlight" },
     "Input Group": { component: "combobox-input-group" },
+    "Combobox With Description": { component: "combobox-with-description" },
   },
 };

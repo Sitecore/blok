@@ -24,6 +24,7 @@ import CollapsibleThumb from "@/components/component-thumbs/collapsible";
 import ComboboxThumb from "@/components/component-thumbs/combobox";
 import CommandThumb from "@/components/component-thumbs/command";
 import ContextMenuThumb from "@/components/component-thumbs/context-menu";
+import DashboardWidgetThumb from "@/components/component-thumbs/dashboard-widget";
 import DatePickerThumb from "@/components/component-thumbs/date-picker";
 import DialogThumb from "@/components/component-thumbs/dialog";
 import DraggableThumb from "@/components/component-thumbs/draggable";
@@ -92,6 +93,7 @@ const componentThumbnails: Record<
   combobox: ComboboxThumb,
   command: CommandThumb,
   "context-menu": ContextMenuThumb,
+  "dashboard-widget": DashboardWidgetThumb,
   "date-picker": DatePickerThumb,
   draggable: DraggableThumb,
   drawer: DrawerThumb,
