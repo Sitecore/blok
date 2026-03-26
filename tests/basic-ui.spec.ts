@@ -34,7 +34,7 @@ import { testInputOTPPattern, testInputOTPSimple, testInputOTPWithSpacing } from
 import { testKbdButton, testKbdDefault, testKbdGroup, testKbdShortcut, testKbdTooltip } from './test-Components/test-Kbd';
 import { testLabel } from './test-Components/test-Label';
 import { testNavigationMenu, testNavigationMenuSecondary } from './test-Components/test-Navigation_Menu';
-import { testNavigationSide } from './test-Components/test-Navigation_Side';
+import { testNavigationSideDefault, testNavigationSideIconCombination, testNavigationSideLeadingIcon, testNavigationSidePreview, testNavigationSideTrailingIcon } from './test-Components/test-Navigation_Side';
 import { testNavigationStackColorSchemes, testNavigationStackHorizontal, testNavigationStackHorizontalTabs, testNavigationStackVertical } from './test-Components/test-Navigation_Stack';
 import { testPagination } from './test-Components/test-Pagination';
 import { testPopover } from './test-Components/test-Popover';
@@ -308,7 +308,11 @@ test.describe('UI BLOK QA Automation', () => {
   });
 
   test('test_Navigation_Side', async ({ page }) => {
-    await testNavigationSide(page);
+    await testNavigationSidePreview(page);
+    await testNavigationSideDefault(page);
+    await testNavigationSideLeadingIcon(page);
+    await testNavigationSideTrailingIcon(page);
+    await testNavigationSideIconCombination(page);
   });
 
   test('test_Navigation_Stack', async ({ page }) => {
