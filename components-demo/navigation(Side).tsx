@@ -16,7 +16,7 @@ import { mdiAccount, mdiCog, mdiHome, mdiOpenInNew } from "@mdi/js";
 export function NavigationSideDemo() {
   return (
     <div>
-      <h2 className="font-semibold text-4xl wrap-break-words">Navigation (Side)</h2>
+      <h2 className="font-semibold text-4xl wrap-break-words">Navigation(Side)</h2>
       <div className="flex w-full max-w-full gap-4">
       
       <div id="side-preview">
