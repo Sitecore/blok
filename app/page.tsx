@@ -223,7 +223,7 @@ export default function SinkPage() {
       </div>
     <br />
       <div>
-        <NavigationSideDemo />
+        <NavigationSideDemo /> 
       </div>
     <br />
       <div>
