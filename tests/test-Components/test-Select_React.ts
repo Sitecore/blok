@@ -26,8 +26,8 @@ export async function testSelectReact(page: Page){
     await expect(dropdown.getByRole('option', { name: 'CDP' })).toBeVisible();
     await expect(dropdown.getByRole('option', { name: 'Blok' })).toBeVisible();
 
-    // Verify it's visible and disabled
-    await expect(dropdown.getByRole('option', { name: 'Blok' })).toBeDisabled();
+    //Verify that Blok option has description
+    await expect(dropdown.getByRole('option', { name: 'Blok' }).locator('span').nth(3)).toHaveText('Sitecore design system for building consistent product experiences.');
 
     // Verify that select an option from dropdown
     await dropdown.getByRole('option', { name: 'Content Hub' }).click();
