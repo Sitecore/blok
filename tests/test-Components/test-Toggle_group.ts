@@ -26,6 +26,7 @@ export async function testToggleGroupSquare(page: Page){
     expect(classList).toContain('whitespace-nowrap');
     expect(classList).toContain('bg-transparent');
     expect(classList).toContain('rounded-md');
+    expect(classList).toContain('cursor-pointer');
 
     // Verify that toggle italic toggle with text
     const italicToggle = toggleGroupSquare.locator('button[aria-label="Toggle italic"]');
@@ -81,6 +82,7 @@ export async function testToggleGroupRounded(page: Page){
     expect(classList).toContain('whitespace-nowrap');
     expect(classList).toContain('bg-transparent');
     expect(classList).toContain('rounded-full');
+    expect(classList).toContain('cursor-pointer');
 
     // Verify that support single selection in rounded toggle group
     // When click all toggle, missed toggle should be off
