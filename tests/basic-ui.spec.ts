@@ -15,7 +15,7 @@ import { testAreaChart, testBarChart, testMixedBarChart } from './test-Component
 import { testCheckbox, testCheckboxDisabled, testCheckboxWithDescription, testCheckEnabledLabel } from './test-Components/test-Checkbox';
 import { testCircularProgress } from './test-Components/test-Circular_Progress';
 import { testCollapsible } from './test-Components/test-Collapsible';
-import { testCombobxAutoHighlight, testCombobxClearButton, testCombobxCustomItems, testCombobxGroups, testCombobxInputGroup, testCombobxMultiple } from './test-Components/test-Combobox';
+import { testCombobxAutoHighlight, testCombobxClearButton, testCombobxCustomItems, testCombobxGroups, testCombobxInputGroup, testCombobxMultiple, testCombobxWithDescription } from './test-Components/test-Combobox';
 import { testCommand } from './test-Components/test-Command';
 import { testContextMenu } from './test-Components/test-Context_menu';
 import { testDatePickerRange, testSimpleDatePicker } from './test-Components/test-Date_picker';
@@ -180,6 +180,7 @@ test.describe('UI BLOK QA Automation', () => {
     await testCombobxCustomItems(page);
     await testCombobxAutoHighlight(page);
     await testCombobxInputGroup(page);
+    await testCombobxWithDescription(page);
   });
 
   test('test_Command', async ({ page }) => {

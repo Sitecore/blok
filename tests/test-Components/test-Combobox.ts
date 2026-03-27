@@ -193,7 +193,7 @@ export async function testCombobxAutoHighlight(page: Page){
 
     // Verify that selected item is auto highlighted
     await itemNextJs.click();
-    await expect(itemNextJs).toHaveAttribute('data-selected');
+    await expect(itemNextJs.locator('span')).toHaveAttribute('data-selected');
     
     // Verify that close combobox auto highlight content
     await expect(comboboxCustomItemContent).not.toBeVisible();
@@ -235,4 +235,174 @@ export async function testCombobxInputGroup(page: Page){
 
     // Verify that close combobox input group content
     await expect(comboboxInputGroupContent).not.toBeVisible(); 
+}
+
+export async function testCombobxWithDescription(page: Page){
+    // Verify that display combobox with description
+    const comboboxWithDescription = page.locator('[id="combobox-with-description"]');
+    await expect(comboboxWithDescription).toBeVisible();
+
+    // Verify that display description trigger is visible
+    const descriptionTrigger = comboboxWithDescription.locator('[data-slot="input-group"][role="group"]').nth(0);
+    await expect(descriptionTrigger).toBeVisible();
+
+    // Verify class attributes of description trigger
+    const classListDescriptionTrigger = await descriptionTrigger.getAttribute('class');
+    expect(classListDescriptionTrigger).toContain('rounded-md');
+    expect(classListDescriptionTrigger).toContain('font-semibold');
+    expect(classListDescriptionTrigger).toContain('text-neutral-fg');
+    expect(classListDescriptionTrigger).toContain('bg-body-bg');
+
+    // Verify that description trigger has input group control
+    const inputGroupControl = descriptionTrigger.locator('[data-slot="input-group-control"]');
+    await expect(inputGroupControl).toBeVisible();
+    await expect(inputGroupControl).toHaveAttribute('autocomplete', 'off');
+    await expect(inputGroupControl).toHaveAttribute('spellcheck', 'false');
+    await expect(inputGroupControl).toHaveAttribute('autocorrect', 'off');
+    await expect(inputGroupControl).toHaveAttribute('autocapitalize', 'none');
+    await expect(inputGroupControl).toHaveAttribute('role', 'combobox');
+    await expect(inputGroupControl).toHaveAttribute('aria-expanded', 'false');
+    await expect(inputGroupControl).toHaveAttribute('aria-haspopup', 'listbox');
+    await expect(inputGroupControl).toHaveAttribute('aria-autocomplete', 'list');
+    await expect(inputGroupControl).toHaveAttribute('placeholder', 'XM Cloud Authoring');
+    await expect(inputGroupControl).toHaveAttribute('type', 'text');
+
+    // Verify that description trigger has input group addon button
+    const inputGroupAddon = descriptionTrigger.locator('[data-slot="input-group-addon"]');
+    await expect(inputGroupAddon).toBeVisible();
+    const inputGroupAddonButton = inputGroupAddon.locator('[data-slot="input-group-button"]');
+    await expect(inputGroupAddonButton).toBeVisible();
+    
+    // Verify class attributes of input group addon button
+    const classListInputGroupAddonButton = await inputGroupAddonButton.getAttribute('class');
+    expect(classListInputGroupAddonButton).toContain('font-semibold');
+    expect(classListInputGroupAddonButton).toContain('cursor-pointer');
+    expect(classListInputGroupAddonButton).toContain('bg-transparent');
+    expect(classListInputGroupAddonButton).toContain('text-neutral-fg');
+    expect(classListInputGroupAddonButton).toContain('hover:text-neutral-fg');
+    expect(classListInputGroupAddonButton).toContain('active:bg-neutral-bg-active');
+    expect(classListInputGroupAddonButton).toContain('items-center');
+    expect(classListInputGroupAddonButton).toContain('rounded-full');
+
+    // Verify combobox content is visible when click input group addon button
+    await inputGroupAddonButton.click();
+    const comboboxContent = page.locator('[data-slot="combobox-content"]');
+    await expect(comboboxContent).toBeVisible();
+
+    // Verify that combobx items are visible
+    const itemXMCloudAuthoring = comboboxContent.locator('[data-slot="combobox-list"]');
+    await expect(itemXMCloudAuthoring).toBeVisible();
+
+    // Verify that XM Cloud item is visible
+    const XMCloud = itemXMCloudAuthoring.locator('[data-slot="combobox-item"]').nth(0);
+    await expect(XMCloud).toBeVisible();
+    await expect(XMCloud.locator('[data-slot="combobox-item-title"]')).toHaveText('XM Cloud');
+    await expect(XMCloud.locator('[data-slot="combobox-item-description"]')).toHaveText('Cloud-native Sitecore CMS with managed hosting, previews, and deployments.');
+
+    // Verify that Component Builder item is visible
+    const ComponentBuilder = itemXMCloudAuthoring.locator('[data-slot="combobox-item"]').nth(1);
+    await expect(ComponentBuilder).toBeVisible();
+    await expect(ComponentBuilder.locator('[data-slot="combobox-item-title"]')).toHaveText('Component Builder');
+    await expect(ComponentBuilder.locator('[data-slot="combobox-item-description"]')).toHaveText('Front-end-as-a-service style guide and visual component prototyping for your brand.');
+
+    // Verify that XMC Forms item is visible
+    const XMCForms = itemXMCloudAuthoring.locator('[data-slot="combobox-item"]').nth(2);
+    await expect(XMCForms).toBeVisible();
+    await expect(XMCForms.locator('[data-slot="combobox-item-title"]')).toHaveText('XMC Forms');
+    await expect(XMCForms.locator('[data-slot="combobox-item-description"]')).toHaveText('Design clear, on-brand forms for use directly on the page.');
+
+    // Verify that Page builder item is visible
+    const PageBuilder = itemXMCloudAuthoring.locator('[data-slot="combobox-item"]').nth(3);
+    await expect(PageBuilder).toBeVisible();
+    await expect(PageBuilder.locator('[data-slot="combobox-item-title"]')).toHaveText('Page builder');
+    await expect(PageBuilder.locator('[data-slot="combobox-item-description"]')).toHaveText('Create and edit pages visually, with layout, content, and multi-user authoring in one place.');
+
+    // Verify that close combobox content when select item
+    await XMCloud.click();
+    await expect(comboboxContent).not.toBeVisible();
+    await expect(inputGroupControl).toHaveAttribute('value', 'XM Cloud');
+
+    // Verify that display description with icon trigger is visible
+    const descriptionWithIconTrigger = comboboxWithDescription.locator('[data-slot="input-group"][role="group"]').nth(1);
+    await expect(descriptionWithIconTrigger).toBeVisible();
+
+    // Verify class attributes of description with icon trigger
+    const classListDescriptionWithIconTrigger = await descriptionWithIconTrigger.getAttribute('class');
+    expect(classListDescriptionWithIconTrigger).toContain('rounded-md');
+    expect(classListDescriptionWithIconTrigger).toContain('font-semibold');
+    expect(classListDescriptionWithIconTrigger).toContain('text-neutral-fg');
+    expect(classListDescriptionWithIconTrigger).toContain('bg-body-bg');
+
+    // Verify that description trigger has input group control
+    const inputGroupControlWithIcon = descriptionWithIconTrigger.locator('[data-slot="input-group-control"]');  
+    await expect(inputGroupControlWithIcon).toBeVisible();
+    await expect(inputGroupControlWithIcon).toHaveAttribute('autocomplete', 'off');
+    await expect(inputGroupControlWithIcon).toHaveAttribute('spellcheck', 'false');
+    await expect(inputGroupControlWithIcon).toHaveAttribute('autocorrect', 'off');
+    await expect(inputGroupControlWithIcon).toHaveAttribute('autocapitalize', 'none');
+    await expect(inputGroupControlWithIcon).toHaveAttribute('role', 'combobox');
+    await expect(inputGroupControlWithIcon).toHaveAttribute('aria-expanded', 'false');
+    await expect(inputGroupControlWithIcon).toHaveAttribute('aria-haspopup', 'listbox');
+    await expect(inputGroupControlWithIcon).toHaveAttribute('aria-autocomplete', 'list');
+    await expect(inputGroupControlWithIcon).toHaveAttribute('placeholder', 'Platform & Data');
+    await expect(inputGroupControlWithIcon).toHaveAttribute('type', 'text');
+
+    // Verify that description trigger has input group addon button
+    const inputGroupAddonWithIcon = descriptionWithIconTrigger.locator('[data-slot="input-group-addon"]');
+    await expect(inputGroupAddonWithIcon).toBeVisible();
+    const inputGroupAddonButtonWithIcon = inputGroupAddonWithIcon.locator('[data-slot="input-group-button"]');
+    await expect(inputGroupAddonButtonWithIcon).toBeVisible();
+
+    // Verify class attributes of input group addon button
+    const classListInputGroupAddonButtonWithIcon = await inputGroupAddonButtonWithIcon.getAttribute('class');   
+    expect(classListInputGroupAddonButtonWithIcon).toContain('font-semibold');
+    expect(classListInputGroupAddonButtonWithIcon).toContain('cursor-pointer');
+    expect(classListInputGroupAddonButtonWithIcon).toContain('bg-transparent');
+    expect(classListInputGroupAddonButtonWithIcon).toContain('text-neutral-fg');
+    expect(classListInputGroupAddonButtonWithIcon).toContain('hover:text-neutral-fg');
+    expect(classListInputGroupAddonButtonWithIcon).toContain('active:bg-neutral-bg-active');
+    expect(classListInputGroupAddonButtonWithIcon).toContain('items-center');
+    expect(classListInputGroupAddonButtonWithIcon).toContain('rounded-full');
+
+    // Verify combobox content is visible when click input group addon button
+    await inputGroupAddonButtonWithIcon.click();
+    const comboboxContentWithIcon = page.locator('[data-slot="combobox-content"]');
+    await expect(comboboxContentWithIcon).toBeVisible();
+
+    // Verify that combobx items are visible
+    const itemPlatformData = comboboxContentWithIcon.locator('[data-slot="combobox-list"]');
+    await expect(itemPlatformData).toBeVisible();
+
+    // Verify that Experience Edge item is visible
+    const ExperienceEdge = itemPlatformData.locator('[data-slot="combobox-item"]').nth(0);
+    await expect(ExperienceEdge).toBeVisible();
+    await expect(ExperienceEdge.locator('svg')).toBeVisible();
+    await expect(ExperienceEdge.locator('[data-slot="combobox-item-title"]')).toHaveText('Experience Edge');
+    await expect(ExperienceEdge.locator('[data-slot="combobox-item-description"]')).toHaveText('Deliver structured content over GraphQL and the CDN for headless experiences.');
+
+    // Verify that Blok item is visible
+    const Blok = itemPlatformData.locator('[data-slot="combobox-item"]').nth(1);
+    await expect(Blok).toBeVisible();
+    await expect(Blok.locator('svg')).toBeVisible();
+    await expect(Blok.locator('[data-slot="combobox-item-title"]')).toHaveText('Blok');
+    await expect(Blok.locator('[data-slot="combobox-item-description"]')).toHaveText('Sitecore design system for building consistent product experiences.');
+
+    // Verify that Sitecore Search item is visible
+    const SitecoreSearch = itemPlatformData.locator('[data-slot="combobox-item"]').nth(2);
+    await expect(SitecoreSearch).toBeVisible();
+    await expect(SitecoreSearch.locator('svg')).toBeVisible();
+    await expect(SitecoreSearch.locator('[data-slot="combobox-item-title"]')).toHaveText('Sitecore Search');
+    await expect(SitecoreSearch.locator('[data-slot="combobox-item-description"]')).toHaveText('Unified search across content and commerce to power discovery on your sites.');
+
+    // Verify that Sitecore CDP item is visible
+    const SitecoreCDP = itemPlatformData.locator('[data-slot="combobox-item"]').nth(3);
+    await expect(SitecoreCDP).toBeVisible();
+    await expect(SitecoreCDP.locator('svg')).toBeVisible();
+    await expect(SitecoreCDP.locator('[data-slot="combobox-item-title"]')).toHaveText('Sitecore CDP');
+    await expect(SitecoreCDP.locator('[data-slot="combobox-item-description"]')).toHaveText('Unify customer profiles and activate audiences across marketing channels.');
+
+    // Verify that close combobox content when select item
+    await Blok.click();
+    await expect(comboboxContentWithIcon).not.toBeVisible();
+    await expect(inputGroupControlWithIcon).toHaveAttribute('value', 'Blok');
 }
