@@ -24,8 +24,8 @@ export async function testActionBar(page: Page){
     const checkboxClasses = await checkbox.locator('[data-slot="checkbox-indicator"]').getAttribute('class');
     expect(checkboxClasses).toContain('data-[state=checked]:border-info-fg data-[state=checked]:bg-info-fg data-[state=checked]:text-inverse-text dark:data-[state=checked]:border-info-fg dark:data-[state=checked]:bg-info-fg');
     
-    // Verify that action bar is visible when checkbox is checked
-    const actionBar = page.locator('[class*="translate-y-0"]').first();
+    // Verify that action bar is visible when checkbox is checked 
+    const actionBar = actionBarSection.locator('[class*="translate-y-0"]').first();
     await expect(actionBar).toBeVisible();
 
     // Verify that Cancel tooltip trigger is visible
@@ -94,5 +94,5 @@ export async function testActionBar(page: Page){
 
     // Verify that close action bar when cancel button is clicked
     await tooltipTriggerCancel.click();
-    await expect(actionBar).not.toBeVisible({ timeout: 2000 });
+    await expect(actionBar).not.toBeVisible();
 }
