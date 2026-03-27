@@ -2,11 +2,11 @@ import { test, expect, Page } from '@playwright/test';
 
 export async function testActionBar(page: Page){
     // Verify that display action bar section with all elements
-    const actionBarSection = page.locator('#action-bar');
+    const actionBarSection = page.locator('[id="action-bar"]');
     await expect(actionBarSection).toBeVisible();
 
     // Verify Action bar checkbox
-    const checkbox = actionBarSection.locator('[data-slot="checkbox"]');
+    const checkbox = actionBarSection.locator('button[data-slot="checkbox"]');
     await expect(checkbox).toBeVisible();
 
     // Verify Action bar label
