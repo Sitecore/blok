@@ -21,7 +21,7 @@ import { testContextMenu } from './test-Components/test-Context_menu';
 import { testDatePickerRange, testSimpleDatePicker } from './test-Components/test-Date_picker';
 import { testDialog, testDialogScrollable, testDialogStickyFooter } from './test-Components/test-Dialog';
 import { testDraggableBasic, testDraggableCustomHandle, testDraggableDragDropandSort } from './test-Components/test-Draggable';
-import { testDropdown, testDropdownMenuAvatarOnly, testDropdownMenuCheckbox, testDropdownMenuIconColor, testDropdownMenuRadioGroup, testDropdownMenuWithAvatar } from './test-Components/test-Dropdown';
+import { testDropdown, testDropdownMenuAvatarOnly, testDropdownMenuCheckbox, testDropdownMenuIconColor, testDropdownMenuRadioGroup, testDropdownMenuWithAvatar, testDropdownMenuWithDescription } from './test-Components/test-Dropdown';
 import { testEditableInput, testEditableTextarea } from './test-Components/test-Editable';
 import { testEmptyStatesError, testEmptyStatesNoSearchResults, testEmptyStatesNothingCreated } from './test-Components/test-Empty_States';
 import { testErrorStates, testErrorStatesBadRequest, testErrorStatesUnauthorized, testErrorStatesForbidden, testErrorStatesNotFound, testErrorStatesInternalServerError, testErrorStatesServiceUnavailable } from './test-Components/test-Error_States';
@@ -215,6 +215,7 @@ test.describe('UI BLOK QA Automation', () => {
     await testDropdownMenuWithAvatar(page);
     await testDropdownMenuAvatarOnly(page);
     await testDropdownMenuIconColor(page);
+    await testDropdownMenuWithDescription(page);
   });
 
   test('test_Editable', async ({ page }) => {
