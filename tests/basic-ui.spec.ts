@@ -53,7 +53,7 @@ import { testToastAction, testToastClosable, testToastError, testToastNormal, te
 import { testSpinnerDefault, testSpinnerSize } from './test-Components/test-Spinner';
 import { testStepper } from './test-Components/test-Stepper';
 import { testSwitchDanger, testSwitchPrimary, testSwitchSuccess } from './test-Components/test-Switch';
-import { testDataTable, testTable } from './test-Components/test-Table';
+import { testTable, testTableLarge, testTableScrollAndPin, testTableSmall, testTableStickyHeaderAndScroll } from './test-Components/test-Table';
 import { testTabsDefault, testTabsLine, testTabsLineIcons, testTabsSoftRounded, testTabsSoftRoundedIcons } from './test-Components/test-Tabs';
 import { testTextareaBasic, testTextareaDisabled, testTextareaInvalid, testTextareaLarge, testTextareaSmall, testTextareaWithDefaultValue, testTextareaWithLabel, testTextareaWithLabelAndDescription } from './test-Components/test-Textarea';
 import { testTimePicker } from './test-Components/test-Time_picker';
@@ -413,7 +413,10 @@ test.describe('UI BLOK QA Automation', () => {
 
   test('test_Table', async ({ page }) => {
     await testTable(page);
-    await testDataTable(page);
+    await testTableSmall(page);
+    await testTableLarge(page);
+    await testTableStickyHeaderAndScroll(page);
+    await testTableScrollAndPin(page);
   });
 
   test('test_Tabs', async ({ page }) => {
