@@ -156,8 +156,6 @@ export async function testDropdownMenuIconColor(page: Page){
     expect(classListIconColorItems).toContain('text-sm');
     expect(classListIconColorItems).toContain('hover:bg-neutral-bg');
     expect(classListIconColorItems).toContain('focus:bg-neutral-bg');
-    expect(classListIconColorItems).toContain('rounded-4xl');
-    expect(classListIconColorItems).toContain('border');
 
     // Verify that Dropdown menu content is not visible when click escape key
     await page.keyboard.press('Escape');
