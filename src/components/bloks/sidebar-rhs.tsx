@@ -369,7 +369,7 @@ export function SidebarRHS({
 
   // Handle drag for undocked sidebar using @dnd-kit
   const handleDragStartUndocked = useCallback(
-    (event: DragStartEvent) => {
+    (_event: DragStartEvent) => {
       // Get the actual element position from the DOM
       const element = draggableElementRef.current;
       if (element) {
