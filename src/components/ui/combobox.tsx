@@ -285,6 +285,7 @@ function ComboboxChips({
   return (
     <ComboboxPrimitive.Chips
       data-slot="combobox-chips"
+      aria-label="Combobox chips"
       className={cn(
         "dark:bg-input/30 border-input flex min-h-9 flex-wrap items-center gap-1.5 rounded-md border bg-body-bg bg-clip-padding px-2.5 py-1.5 text-sm shadow-none transition-[color,box-shadow] has-data-[slot=combobox-chip]:px-1.5",
 
