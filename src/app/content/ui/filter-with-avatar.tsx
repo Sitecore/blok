@@ -1,7 +1,10 @@
 "use client";
 
+import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import {
   FilterMultiSelect,
+  type FilterOption,
+  FilterSingleSelect,
   type FilterSingleSelectGroup,
 } from "@/components/ui/filter";
 import { useState } from "react";
@@ -35,26 +38,49 @@ const BLOCKCN_FILTER_GROUPS: FilterSingleSelectGroup[] = [
   },
 ];
 
-export default function FilterMultiSelectDemo() {
-  const [primaryValues, setPrimaryValues] = useState<string[]>([]);
-  const [badgeValues, setBadgeValues] = useState<string[]>([]);
+/** Renders option with small circular avatar (initial) + label, for dropdown rows. */
+function renderOptionWithAvatar(option: FilterOption) {
+  const initial = option.label.charAt(0).toUpperCase();
+  return (
+    <span className="flex items-center gap-2 min-w-0">
+      <Avatar className="size-6 shrink-0 rounded-full bg-violet-100 dark:bg-violet-900/40">
+        <AvatarFallback className="rounded-full bg-violet-100 text-violet-700 text-xs font-medium dark:bg-violet-900/40 dark:text-violet-300">
+          {initial}
+        </AvatarFallback>
+      </Avatar>
+      <span className="truncate">{option.label}</span>
+    </span>
+  );
+}
+
+export default function FilterWithAvatarDemo() {
+  const [singleValue, setSingleValue] = useState<string>("");
+  const [multiValues, setMultiValues] = useState<string[]>([]);
 
   return (
     <div className="flex flex-col gap-4">
-      <FilterMultiSelect
-        value={primaryValues}
-        onChange={setPrimaryValues}
+      <FilterSingleSelect
+        value={singleValue}
+        onChange={setSingleValue}
         options={[]}
-        placeholder="Multi-select filter"
+        placeholder="Single select filter"
         groups={BLOCKCN_FILTER_GROUPS}
+        searchable
+        showSearch={false}
+        noResultsText="No results found"
+        renderOption={renderOptionWithAvatar}
       />
+
       <FilterMultiSelect
-        value={badgeValues}
-        onChange={setBadgeValues}
+        value={multiValues}
+        onChange={setMultiValues}
         options={[]}
         placeholder="Multi-select filter"
         groups={BLOCKCN_FILTER_GROUPS}
-        displayMode="badge"
+        searchable
+        showSearch={false}
+        noResultsText="No results found"
+        renderOption={renderOptionWithAvatar}
       />
     </div>
   );

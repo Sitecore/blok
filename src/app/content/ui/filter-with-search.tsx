@@ -2,6 +2,7 @@
 
 import {
   FilterMultiSelect,
+  FilterSingleSelect,
   type FilterSingleSelectGroup,
 } from "@/components/ui/filter";
 import { useState } from "react";
@@ -35,26 +36,32 @@ const BLOCKCN_FILTER_GROUPS: FilterSingleSelectGroup[] = [
   },
 ];
 
-export default function FilterMultiSelectDemo() {
-  const [primaryValues, setPrimaryValues] = useState<string[]>([]);
-  const [badgeValues, setBadgeValues] = useState<string[]>([]);
+export default function FilterWithSearchDemo() {
+  const [singleValue, setSingleValue] = useState<string>("");
+  const [multiValues, setMultiValues] = useState<string[]>([]);
 
   return (
     <div className="flex flex-col gap-4">
-      <FilterMultiSelect
-        value={primaryValues}
-        onChange={setPrimaryValues}
+      <FilterSingleSelect
+        value={singleValue}
+        onChange={setSingleValue}
         options={[]}
-        placeholder="Multi-select filter"
         groups={BLOCKCN_FILTER_GROUPS}
+        placeholder="Single select filter with search"
+        searchable
+        searchPlaceholder="Search"
+        noResultsText="No results found"
       />
+
       <FilterMultiSelect
-        value={badgeValues}
-        onChange={setBadgeValues}
+        value={multiValues}
+        onChange={setMultiValues}
         options={[]}
-        placeholder="Multi-select filter"
+        placeholder="Multi select filter with search"
         groups={BLOCKCN_FILTER_GROUPS}
-        displayMode="badge"
+        searchable
+        searchPlaceholder="Search"
+        noResultsText="No results found"
       />
     </div>
   );

@@ -39,7 +39,9 @@ export default function SheetDemo() {
           </div>
           <SheetFooter>
             <SheetClose asChild>
-              <Button variant="ghost" colorScheme="neutral">Cancel</Button>
+              <Button variant="ghost" colorScheme="neutral">
+                Cancel
+              </Button>
             </SheetClose>
             <Button type="submit">Save</Button>
           </SheetFooter>

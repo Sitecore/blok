@@ -212,6 +212,8 @@ import FilterDemo from "@/app/content/ui/filter";
 import FilterInputDemo from "@/app/content/ui/filter-input";
 import FilterMultiSelectDemo from "@/app/content/ui/filter-multi-select";
 import FilterSingleSelectDemo from "@/app/content/ui/filter-single-select";
+import FilterWithAvatarDemo from "@/app/content/ui/filter-with-avatar";
+import FilterWithSearchDemo from "@/app/content/ui/filter-with-search";
 import InputGroupDemo from "@/app/content/ui/input-group";
 import InputGroupDropdownDemo from "@/app/content/ui/input-group-dropdown";
 import InputGroupURLDemo from "@/app/content/ui/input-group-url";
@@ -799,6 +801,16 @@ export const docsiteRegistry: Record<string, DocsiteRegistryEntry> = {
     name: "filter-multi-select",
     path: "src/app/content/ui/filter-multi-select.tsx",
     component: FilterMultiSelectDemo,
+  },
+  "filter-with-search": {
+    name: "filter-with-search",
+    path: "src/app/content/ui/filter-with-search.tsx",
+    component: FilterWithSearchDemo,
+  },
+  "filter-with-avatar": {
+    name: "filter-with-avatar",
+    path: "src/app/content/ui/filter-with-avatar.tsx",
+    component: FilterWithAvatarDemo,
   },
   icon: {
     name: "icon",

@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "npm run registry:build && next dev --turbopack",
+    "dev:strict": "npm run lint && npm run registry:build && next dev --turbopack",
     "build": "npm run registry:build && next build",
     "start": "next start",
     "lint": "biome check",
@@ -19,9 +20,7 @@
     "prepare": "husky"
   },
   "lint-staged": {
-    "*.{js,jsx,ts,tsx,json,css,md}": [
-      "biome check --write --no-errors-on-unmatched"
-    ]
+    "*": "biome check --write --no-errors-on-unmatched --files-ignore-unknown=true"
   },
   "dependencies": {
     "@base-ui/react": "^1.2.0",
