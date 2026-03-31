@@ -24,15 +24,15 @@ export default function FieldInputTypesDemo() {
             <Input id="field-color" type="color" autoComplete="off" />
           </Field>
           <Field>
-            <FieldLabel>Date Picker</FieldLabel>
-            <DatePickerSimple />
+            <FieldLabel htmlFor="field-date">Date Picker</FieldLabel>
+            <DatePickerSimple id="field-date" />
             <FieldDescription>
               Select a single date using the Blok date picker.
             </FieldDescription>
           </Field>
           <Field>
-            <FieldLabel>Date Range Picker</FieldLabel>
-            <DatePickerWithRange />
+            <FieldLabel htmlFor="field-date-range">Date Range Picker</FieldLabel>
+            <DatePickerWithRange id="field-date-range" />
             <FieldDescription>
               Select a date range using the Blok date picker.
             </FieldDescription>
@@ -62,8 +62,8 @@ export default function FieldInputTypesDemo() {
             <Input id="field-tel" type="tel" name="tel" autoComplete="tel" placeholder="Enter phone number" />
           </Field>
           <Field>
-            <FieldLabel>Time Picker</FieldLabel>
-            <TimePicker placeholder="Pick a time" />
+            <FieldLabel htmlFor="field-time">Time Picker</FieldLabel>
+            <TimePicker id="field-time" placeholder="Pick a time" />
             <FieldDescription>
               Select time using dropdown selects for hour, minute, and period.
             </FieldDescription>
