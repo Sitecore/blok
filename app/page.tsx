@@ -65,6 +65,7 @@ import { ToggleGroupDemo } from "@/components-demo/toggle_group-demo";
 import { TooltipDemo } from "@/components-demo/tooltip-demo";
 import { AllSitesSectionDemo } from "@/components-demo/all_site_section-demo";
 import { CollaborationDemo } from "@/components-demo/collaboration-demo";
+import { DashboardWidgetDemo } from "@/components-demo/dashboard-widget-demo";
 import { PinnedSitesSectionDemo } from "@/components-demo/pinned_site_section-demo";
 import { SidebarRHSDemo } from "@/components-demo/sidebar_rhs-demo";
 import { SiteCardDemo } from "@/components-demo/site_card-demo";
@@ -336,6 +337,10 @@ export default function SinkPage() {
     <br />
       <div>
         <CollaborationDemo />
+      </div>
+    <br />
+      <div>
+        <DashboardWidgetDemo />
       </div>
     <br />
       <div>
