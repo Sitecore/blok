@@ -6,7 +6,7 @@ export async function testActionBar(page: Page){
     await expect(actionBarSection).toBeVisible();
 
     // Verify Action bar checkbox
-    const checkbox = actionBarSection.locator('button[data-slot="checkbox"]');
+    const checkbox = actionBarSection.locator('button[data-slot="checkbox"][id="action-bar-checkbox"]');
     await expect(checkbox).toBeVisible();
 
     // Verify Action bar label
@@ -20,7 +20,7 @@ export async function testActionBar(page: Page){
     expect(labelClasses).toContain('font-medium');
 
     // Verify that action bar checkbox classes when checkbox is checked
-    await checkbox.check();
+    await checkbox.click();
     const checkboxClasses = await checkbox.locator('[data-slot="checkbox-indicator"]').getAttribute('class');
     expect(checkboxClasses).toContain('data-[state=checked]:border-info-fg data-[state=checked]:bg-info-fg data-[state=checked]:text-inverse-text dark:data-[state=checked]:border-info-fg dark:data-[state=checked]:bg-info-fg');
     
