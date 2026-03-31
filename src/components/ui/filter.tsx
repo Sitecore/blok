@@ -387,6 +387,7 @@ const FilterSingleSelect = React.forwardRef<
                 <button
                   ref={ref}
                   type="button"
+                  aria-label="Select an option"
                   aria-describedby={describedBy}
                   aria-expanded={open}
                   disabled={disabled}

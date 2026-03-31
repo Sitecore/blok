@@ -19,6 +19,7 @@ export function CustomDropdown({
   disabled,
   name,
   id,
+  "aria-label": ariaLabel,
 }: DropdownProps) {
   return (
     <Select
@@ -35,7 +36,7 @@ export function CustomDropdown({
       <SelectTrigger
         id={id}
         size="sm"
-        aria-label={value ? undefined : "Select an option"}
+        aria-label={ariaLabel}
         className="z-50 px-3 text-sm [&_svg:not([class*='text-'])]:text-accent-foreground bg-transparent dark:bg-transparent dark:hover:bg-transparent"
       >
         <SelectValue />

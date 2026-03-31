@@ -73,6 +73,7 @@ function SortableFieldItem({
         <Button
           variant="ghost"
           size="icon"
+          aria-label="Delete field"
           className="h-8 w-8 opacity-0 group-hover:opacity-100 text-muted-foreground hover:text-danger-fg hover:bg-danger-bg"
           onClick={() => onDelete?.(item.id)}
         >
@@ -83,6 +84,7 @@ function SortableFieldItem({
         <Button
           variant="ghost"
           size="icon"
+          aria-label="Expand/Collapse field"
           className="h-8 w-8 text-muted-foreground hover:text-foreground"
         >
           <ChevronDown className="w-4 h-4" />
