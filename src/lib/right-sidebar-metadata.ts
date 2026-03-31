@@ -654,6 +654,19 @@ export const rightSidebarMetadata: Record<string, RightSidebarMetadata> = {
         "https://www.figma.com/design/x0CUbrC5Kjcuk64VPCnbgz/Blok-Components?m=auto&node-id=7069-16457&t=NScvPldB3fxBBWL8-1",
     },
   },
+  "prompt-input": {
+    links: {},
+    sections: [
+      { id: "preview", title: "Preview" },
+      { id: "installation", title: "Installation" },
+      { id: "usage", title: "Usage" },
+      {
+        id: "examples",
+        title: "Examples",
+        children: [{ id: "prompt-input-floating", title: "Floating" }],
+      },
+    ],
+  },
   "radio-group": {
     links: {
       shadcn: "https://ui.shadcn.com/docs/components/radio-group",

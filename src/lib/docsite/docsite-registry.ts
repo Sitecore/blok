@@ -174,6 +174,8 @@ import DashboardWidgetGrayBgLargeDemo from "@/app/content/bloks/dashboard-widget
 import DashboardWidgetWhiteBgLargeDemo from "@/app/content/bloks/dashboard-widget-white-bg-large";
 
 import PinnedSitesSectionDemo from "@/app/content/bloks/pinned-site-section";
+import PromptInputDemo from "@/app/content/bloks/prompt-input";
+import PromptInputFloatingDemo from "@/app/content/bloks/prompt-input-floating";
 import SidebarRHSDemo from "@/app/content/bloks/sidebar-rhs";
 import SidebarRHSBriefDemo from "@/app/content/bloks/sidebar-rhs-brief";
 import SidebarRHSBriefTypeDemo from "@/app/content/bloks/sidebar-rhs-brief-type";
@@ -1339,6 +1341,16 @@ export const docsiteRegistry: Record<string, DocsiteRegistryEntry> = {
     name: "pinned-site",
     path: "src/app/content/bloks/pinned-site-section.tsx",
     component: PinnedSitesSectionDemo,
+  },
+  "prompt-input": {
+    name: "prompt-input",
+    path: "src/app/content/bloks/prompt-input.tsx",
+    component: PromptInputDemo,
+  },
+  "prompt-input-floating": {
+    name: "prompt-input-floating",
+    path: "src/app/content/bloks/prompt-input-floating.tsx",
+    component: PromptInputFloatingDemo,
   },
   "sidebar-rhs": {
     name: "sidebar-rhs",
