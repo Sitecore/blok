@@ -63,6 +63,7 @@ import { testToggleGroupRounded, testToggleGroupSquare, testToggleGroupSizes } f
 import { testTooltip } from './test-Components/test-Tooltip';
 import { testAllSiteSection } from './test-Components/test-All_Site_section';
 import { testCollaboration } from './test-Components/test-Collaboration';
+import { testDashboardGrayWidget, testDashboardWhiteWidget, testDashboardWidget } from './test-Components/test-Dashboard_widget';
 import { testPinnedSiteSection } from './test-Components/test-Pinned_Site_Section';
 import { testSidebarRHS, testSidebarRHSBrief, testSidebarRHSBriefType, testSidebarRHSContent, testSidebarRHSTabs } from './test-Components/test-Sidebar_RHS';
 import { testSiteCard } from './test-Components/test-Site_Card';
@@ -474,6 +475,12 @@ test.describe('UI BLOK QA Automation', () => {
   test('test_Collaboration', async ({ page }) => {
     await testCollaboration(page);
   });
+
+  test('test_Dashboard_Widget', async ({ page }) => {
+    await testDashboardWidget(page);
+    await testDashboardWhiteWidget(page);
+    await testDashboardGrayWidget(page);
+  })
 
   test('test_Pinned_Site_Section', async ({ page }) => {
     await testPinnedSiteSection(page);
