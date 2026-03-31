@@ -30,23 +30,22 @@ export async function testFilterDefault(page: Page){
     const singleFilterButton = singleFilter.locator('button[data-slot="select-trigger"]');
     await expect(singleFilterButton).toBeVisible();
     // Verify that display single filter dropdown content
-    await expect(singleFilter).toContainText('Select a product');
+    await expect(singleFilter.locator('[data-slot="select-value"]').first()).toContainText('Single select filter');
     // Verify that display single filter options
     await singleFilterButton.click();
     const defaultSelectContent = page.locator('[role="dialog"], [data-radix-popper-content-wrapper]').nth(0);
     await expect(defaultSelectContent).toBeVisible();
     // Verify the group label is visible
-    await expect(defaultSelectContent.getByText('Products')).toBeVisible();
+    await expect(defaultSelectContent.getByText('PLATFORM & COMMERCE')).toBeVisible();
     // Verify options are visible
     await expect(defaultSelectContent.getByRole('option', { name: 'XM Cloud' })).toBeVisible();
     await expect(defaultSelectContent.getByRole('option', { name: 'Content Hub' })).toBeVisible();
     await expect(defaultSelectContent.getByRole('option', { name: 'CDP' })).toBeVisible();
-    await expect(defaultSelectContent.getByRole('option', { name: 'Blok' })).toBeVisible();
     // Verify that select an option from default select
     // Select "XM Cloud"
     await defaultSelectContent.getByRole('option', { name: 'XM Cloud' }).click();
     // Verify the selected value is displayed
-    await expect(singleFilter).toContainText('Select a product:XM Cloud');
+    await expect(singleFilter).toContainText('Single select filter:XM Cloud');
     // Verify that close select dropdown content
     await expect(defaultSelectContent).not.toBeVisible();
 
@@ -57,7 +56,7 @@ export async function testFilterDefault(page: Page){
     const multiSelectFilterButton = multiSelectFilter.locator('button[data-slot="popover-trigger"]');
     await expect(multiSelectFilterButton).toBeVisible();
     // Verify that display multi select filter dropdown content
-    await expect(multiSelectFilter).toContainText('Select products');
+    await expect(multiSelectFilter).toContainText('Multi-select filter');
     // Verify that display multi select filter options
     await multiSelectFilterButton.click();
     const multiSelectContent = page.locator('[role="dialog"], [data-radix-popper-content-wrapper]').first();
@@ -78,7 +77,7 @@ export async function testFilterDefault(page: Page){
     await multiSelectFilterButton.click();
     await expect(multiSelectContent).not.toBeVisible();
     // Verify the selected value is displayed
-    await expect(multiSelectFilter).toContainText('Select products:XM Cloud, Sitecore XM');
+    await expect(multiSelectFilter).toContainText('Multi-select filter:XM Cloud, Sitecore XM');
 
     // Verify that Clear all filter is visible
     const clearAllFilter = defaultFilter.locator('[data-slot="button"]').nth(2);
@@ -132,39 +131,31 @@ export async function testFilterSingleSelect(page: Page){
     const singleFilter = page.locator('[id="filter-single-select"]');
     await expect(singleFilter).toBeVisible();
 
-    // Verify that display default single filter
-    const defaultSingleFilter = singleFilter.locator('[class="relative inline-flex w-fit flex-col"]').nth(0);
-    await expect(defaultSingleFilter).toBeVisible();
-    await expect(defaultSingleFilter).toContainText('Select a product');
-    // Verify that display default single filter button
-    const defaultFilterButton = defaultSingleFilter.locator('button[data-slot="select-trigger"]');
-    await expect(defaultFilterButton).toBeVisible();
-    // Verify that display default single filter dropdown content
-    await expect(defaultSingleFilter).toContainText('Select a product');
-    // Verify that display default single filter options
-    await defaultFilterButton.click();
+    // Verify that display single filter button
+    const singleFilterButton = singleFilter.locator('button[data-slot="select-trigger"]');
+    await expect(singleFilterButton).toBeVisible();
+    // Verify that display single filter dropdown content
+    await expect(singleFilter.locator('[data-slot="select-value"]').first()).toContainText('Single select filter');
+    // Verify that display single filter options
+    await singleFilterButton.click();
     const defaultSelectContent = page.locator('[role="dialog"], [data-radix-popper-content-wrapper]').nth(0);
     await expect(defaultSelectContent).toBeVisible();
     // Verify the group label is visible
-    await expect(defaultSelectContent.getByText('Products')).toBeVisible();
+    await expect(defaultSelectContent.getByText('PLATFORM & COMMERCE')).toBeVisible();
     // Verify options are visible
     await expect(defaultSelectContent.getByRole('option', { name: 'XM Cloud' })).toBeVisible();
     await expect(defaultSelectContent.getByRole('option', { name: 'Content Hub' })).toBeVisible();
     await expect(defaultSelectContent.getByRole('option', { name: 'CDP' })).toBeVisible();
-    await expect(defaultSelectContent.getByRole('option', { name: 'Blok' })).toBeVisible();
-    // Verify that select an option from default single filter dropdown content
+    // Verify that select an option from default select
     // Select "XM Cloud"
     await defaultSelectContent.getByRole('option', { name: 'XM Cloud' }).click();
     // Verify the selected value is displayed
-    await expect(defaultSingleFilter).toContainText('Select a product:XM Cloud');
+    await expect(singleFilter).toContainText('Single select filter:XM Cloud');
     // Verify that close select dropdown content
     await expect(defaultSelectContent).not.toBeVisible();
-    // Verify that clear selection button is visible for default single filter
-    const defaultClearButton = defaultSingleFilter.locator('button[data-slot="button"][aria-label="Clear selection"]');
-    await expect(defaultClearButton).toBeVisible();
 
     // Verify that single select filter has the expected classes
-    const classListSingle = await defaultFilterButton.getAttribute('class');
+    const classListSingle = await singleFilterButton.getAttribute('class');
     expect(classListSingle).toContain('text-md');
     expect(classListSingle).toContain('text-neutral-fg');
     expect(classListSingle).toContain('font-semibold');
@@ -179,22 +170,22 @@ export async function testFilterMultiSelect(page: Page){
     await expect(multiFilter).toBeVisible();
 
     // Verify that display default multi select filter
-    const defaultMultiSelectFilter = multiFilter.locator('[class="relative inline-flex w-fit flex-col"]').nth(0);
-    await expect(defaultMultiSelectFilter).toBeVisible();
-    // Verify that display default multi select filter button
-    const defaultMultiSelectFilterButton = defaultMultiSelectFilter.locator('button[data-slot="popover-trigger"]');
-    await expect(defaultMultiSelectFilterButton).toBeVisible();    
-    // Verify that display default multi select filter dropdown content
-    await expect(defaultMultiSelectFilter).toContainText('Select products');
-    // Verify that display default multi select filter options
-    await defaultMultiSelectFilterButton.click();
-    const defaultMultiSelectContent = page.locator('[role="dialog"], [data-radix-popper-content-wrapper]').first();
-    await expect(defaultMultiSelectContent).toBeVisible();
+    const multiSelectFilter = multiFilter.locator('[class="relative inline-flex w-fit flex-col"]').nth(0);
+    await expect(multiSelectFilter).toBeVisible();
+    // Verify that display multi select filter button
+    const multiSelectFilterButton = multiSelectFilter.locator('button[data-slot="popover-trigger"]');
+    await expect(multiSelectFilterButton).toBeVisible();
+    // Verify that display multi select filter dropdown content
+    await expect(multiSelectFilter).toContainText('Multi-select filter');
+    // Verify that display multi select filter options
+    await multiSelectFilterButton.click();
+    const multiSelectContent = page.locator('[role="dialog"], [data-radix-popper-content-wrapper]').first();
+    await expect(multiSelectContent).toBeVisible();
     // Wait for popover to be stable (helps in headless where positioning can lag)
     await page.waitForTimeout(400);
     // Verify that select options from multi select
-    const xmCloudCheckbox = defaultMultiSelectContent.getByRole('checkbox', { name: 'XM Cloud' });
-    const sitecoreXmCheckbox = defaultMultiSelectContent.getByRole('checkbox', { name: 'Sitecore XM' });
+    const xmCloudCheckbox = multiSelectContent.getByRole('checkbox', { name: 'XM Cloud' });
+    const sitecoreXmCheckbox = multiSelectContent.getByRole('checkbox', { name: 'Sitecore XM' });
     await expect(xmCloudCheckbox).toBeVisible();
     await expect(sitecoreXmCheckbox).toBeVisible();
     // JS click avoids "outside viewport" in headless (popover uses fixed positioning)
@@ -203,10 +194,10 @@ export async function testFilterMultiSelect(page: Page){
     await sitecoreXmCheckbox.evaluate((el: HTMLElement) => el.click());
     await expect(sitecoreXmCheckbox).toBeChecked();
     // Verify that close select dropdown content
-    await defaultMultiSelectFilterButton.click();
-    await expect(defaultMultiSelectContent).not.toBeVisible();
+    await multiSelectFilterButton.click();
+    await expect(multiSelectContent).not.toBeVisible();
     // Verify the selected value is displayed
-    await expect(defaultMultiSelectFilter).toContainText('Select products:XM Cloud, Sitecore XM');
+    await expect(multiSelectFilter).toContainText('Multi-select filter:XM Cloud, Sitecore XM');
 
     // Verify that display badge multi select filter
     const badgeMultiSelectFilter = multiFilter.locator('[class="relative inline-flex w-fit flex-col"]').nth(1);
@@ -215,7 +206,7 @@ export async function testFilterMultiSelect(page: Page){
     const badgeMultiSelectFilterButton = badgeMultiSelectFilter.locator('button[data-slot="popover-trigger"]');
     await expect(badgeMultiSelectFilterButton).toBeVisible();    
     // Verify that display badge multi select filter dropdown content
-    await expect(badgeMultiSelectFilter).toContainText('Select products');    
+    await expect(badgeMultiSelectFilter).toContainText('Multi-select filter');    
     // Verify that display badge multi select filter options
     await badgeMultiSelectFilterButton.click();
     const badgeMultiSelectContent = page.locator('[role="dialog"], [data-radix-popper-content-wrapper]').first();
@@ -236,7 +227,7 @@ export async function testFilterMultiSelect(page: Page){
     await page.keyboard.press('Escape');
     await expect(badgeMultiSelectContent).not.toBeVisible();
     // Verify the selected value is displayed
-    await expect(badgeMultiSelectFilter).toContainText('Select products:CDPSitecore forms');
+    await expect(badgeMultiSelectFilter).toContainText('Multi-select filter:CDPSitecore forms');
     // Verify that selected options are displayed as badges
     const CDPbadge = badgeMultiSelectFilter.locator('span[data-slot="badge"]').nth(0);
     await expect(CDPbadge).toBeVisible();
@@ -250,4 +241,149 @@ export async function testFilterMultiSelect(page: Page){
     expect(classListBadge).toContain('font-normal');
     expect(classListBadge).toContain('bg-neutral-bg');
     expect(classListBadge).toContain('text-neutral-fg');
+}
+
+export async function testFilterWithSearch(page: Page){
+    // Verify that search filter section is visible 
+    const searchFilter = page.locator('[id="filter-with-search"]');
+    await expect(searchFilter).toBeVisible();
+
+    // Verify that display single select filter
+    const singleSelectFilter = searchFilter.locator('[class="relative inline-flex w-fit flex-col"]').nth(0);
+    await expect(singleSelectFilter).toBeVisible();
+    // Verify that display single select filter button
+    const singleSelectFilterButton = singleSelectFilter.locator('button[data-slot="popover-trigger"]');
+    await expect(singleSelectFilterButton).toBeVisible();
+    // Verify that display single select filter dropdown content
+    await expect(singleSelectFilter).toContainText('Single select filter with search');
+    // Verify that display single select filter options
+    await singleSelectFilterButton.click();
+    const singleSelectContent = page.locator('[role="dialog"], [data-radix-popper-content-wrapper]').first();
+    await expect(singleSelectContent).toBeVisible();
+    // Wait for popover to be stable (helps in headless where positioning can lag)
+    await page.waitForTimeout(400);
+    // Verify that filter search input has the input control
+    const searchInputControlSingle = singleSelectContent.locator('[data-slot="search-input-control"]');
+    await expect(searchInputControlSingle).toBeVisible();
+    /// Verify options are visible
+    await expect(singleSelectContent.getByRole('option', { name: 'XM Cloud' })).toBeVisible();
+    await expect(singleSelectContent.getByRole('option', { name: 'Content Hub' })).toBeVisible();
+    await expect(singleSelectContent.getByRole('option', { name: 'CDP' })).toBeVisible();
+    // Verify that typing in search updates value in the input
+    await searchInputControlSingle.fill('CDP');
+    await expect(searchInputControlSingle).toHaveValue('CDP');
+    // Select "XM Cloud"
+    await singleSelectContent.getByRole('option', { name: 'CDP' }).click();
+    // Verify that close select dropdown content
+    await singleSelectFilterButton.click();
+    await expect(singleSelectContent).not.toBeVisible();
+    // Verify the selected value is displayed
+    await expect(singleSelectFilter).toContainText('Single select filter with search:CDP');
+
+    // Verify that display badge multi select filter
+    const badgeMultiSelectFilter = searchFilter.locator('[class="relative inline-flex w-fit flex-col"]').nth(1);
+    await expect(badgeMultiSelectFilter).toBeVisible();
+    // Verify that display badge multi select filter button
+    const badgeMultiSelectFilterButton = badgeMultiSelectFilter.locator('button[data-slot="popover-trigger"]');
+    await expect(badgeMultiSelectFilterButton).toBeVisible();    
+    // Verify that display badge multi select filter dropdown content
+    await expect(badgeMultiSelectFilter).toContainText('Multi select filter with search');    
+    // Verify that display badge multi select filter options
+    await badgeMultiSelectFilterButton.click();
+    const badgeMultiSelectContent = page.locator('[role="dialog"], [data-radix-popper-content-wrapper]').first();
+    await expect(badgeMultiSelectContent).toBeVisible();
+    // Wait for popover to be stable (helps in headless where positioning can lag)
+    await page.waitForTimeout(400);
+    // Verify that filter search input has the input control
+    const searchInputControlBadge = badgeMultiSelectContent.locator('[data-slot="search-input-control"]');
+    await expect(searchInputControlBadge).toBeVisible();
+    // Verify that select options from multi select
+    const CDPCheckbox = badgeMultiSelectContent.getByRole('checkbox', { name: 'CDP' });
+    const sitecoreFormCheckbox = badgeMultiSelectContent.getByRole('checkbox', { name: 'Sitecore forms' });
+    await expect(CDPCheckbox).toBeVisible();
+    await expect(sitecoreFormCheckbox).toBeVisible();
+    // Select "CDP"
+    await searchInputControlBadge.fill('CDP');
+    await expect(searchInputControlBadge).toHaveValue('CDP');
+    await CDPCheckbox.click();
+    // Clear search input
+    await (badgeMultiSelectContent.locator('[data-slot="search-input-right-element"]')).click();
+    // Select "Sitecore forms"
+    await searchInputControlBadge.fill('Sitecore forms');
+    await expect(searchInputControlBadge).toHaveValue('Sitecore forms');
+    await sitecoreFormCheckbox.click();
+    // Close dropdown with Escape to avoid clicking trigger (which can hit CDP checkbox and uncheck it)
+    await page.keyboard.press('Escape');
+    await expect(badgeMultiSelectContent).not.toBeVisible();
+    // Verify the selected value is displayed
+    await expect(badgeMultiSelectFilter).toContainText('Multi select filter with search:CDP, Sitecore forms');
+}
+
+export async function testFilterWithImage(page: Page){
+    // Verify that Image/Avatar filter section is visible 
+    const imageFilter = page.locator('[id="filter-with-image"]');
+    await expect(imageFilter).toBeVisible();
+    
+    // Verify that display single filter button
+    const singleFilterButton = imageFilter.locator('button[data-slot="popover-trigger"]').nth(0);
+    await expect(singleFilterButton).toBeVisible();
+    // Verify that display single filter dropdown content
+    await expect(singleFilterButton).toContainText('Single select filter');
+    // Verify that display single filter options
+    await singleFilterButton.click();
+    const defaultSelectContent = page.locator('[role="dialog"], [data-radix-popper-content-wrapper]').nth(0);
+    await expect(defaultSelectContent).toBeVisible();
+    // Verify options are visible with image/avatar
+    const imageSelectOptions = defaultSelectContent.locator('[aria-label="Single select filter"]');
+    // Verify that XM Cloud option is visible
+    await expect(imageSelectOptions.locator('[data-slot="avatar"]').nth(0)).toBeVisible();
+    const xmCloudOption = imageSelectOptions.locator('button').nth(0);
+    await expect(xmCloudOption).toContainText('XM Cloud');
+    // Select "XM Cloud"
+    await xmCloudOption.click();
+    // Verify that close select dropdown content
+    await singleFilterButton.click();
+    // Verify the selected value is displayed
+    await expect(singleFilterButton).toContainText('Single select filter:XM Cloud');
+    // Verify that close select dropdown content
+    await expect(defaultSelectContent).not.toBeVisible();
+    // Verify that single select filter has the expected classes
+    const classListSingle = await singleFilterButton.getAttribute('class');
+    expect(classListSingle).toContain('text-md');
+    expect(classListSingle).toContain('text-neutral-fg');
+    expect(classListSingle).toContain('font-semibold');
+    expect(classListSingle).toContain('bg-body-bg');
+    expect(classListSingle).toContain('whitespace-nowrap');
+    expect(classListSingle).toContain('data-[state=open]:border-2');
+
+    // Verify that display multi select filter with image/avatar
+    const multiSelectFilter = imageFilter.locator('[class="relative inline-flex w-fit flex-col"]').nth(1);
+    await expect(multiSelectFilter).toBeVisible();
+    // Verify that display badge multi select filter button
+    const multiSelectFilterButton = multiSelectFilter.locator('button[data-slot="popover-trigger"]');
+    await expect(multiSelectFilterButton).toBeVisible();
+    const clearButton = multiSelectFilter.locator('button[aria-label="Clear all selections"]');
+    await expect(clearButton).toBeVisible();
+    await clearButton.click();
+    // Verify that display badge multi select filter dropdown content
+    await expect(multiSelectFilter).toContainText('Multi-select filter');    
+    // Verify that display badge multi select filter options
+    await multiSelectFilterButton.click();
+    const multiSelectContent = page.locator('[role="dialog"], [data-radix-popper-content-wrapper]').first();
+    await expect(multiSelectContent).toBeVisible();
+    // Wait for popover to be stable (helps in headless where positioning can lag)
+    await page.waitForTimeout(400);
+    // Verify that filter search input has the input control
+    const searchInputControlMulti = multiSelectContent.locator('[aria-label="Multi-select filter"]');
+    await expect(searchInputControlMulti).toBeVisible();
+    // Verify that select options from multi select
+    const CDPCheckbox = multiSelectContent.getByRole('checkbox', { name: 'CDP' });
+    const sitecoreFormCheckbox = multiSelectContent.getByRole('checkbox', { name: 'Sitecore forms' });
+    await CDPCheckbox.click();
+    await sitecoreFormCheckbox.click();
+    // Close dropdown with Escape to avoid clicking trigger (which can hit CDP checkbox and uncheck it)
+    await page.keyboard.press('Escape');
+    await expect(multiSelectContent).not.toBeVisible();
+    // Verify the selected value is displayed
+    await expect(multiSelectFilter).toContainText('Multi-select filter:CDP, Sitecore forms');
 }
