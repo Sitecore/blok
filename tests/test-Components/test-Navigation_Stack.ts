@@ -98,12 +98,16 @@ export async function testNavigationStackHorizontalTabs(page: Page){
         }),
     ).toBeVisible();
 
-    // Stable targets on the element that owns onClick (avoids sidebar overlays catching span clicks)
-    const versionsTab = horizontalTabsNav.getByTestId("stack-horizontal-tab-versions");
-    const usageTab = horizontalTabsNav.getByTestId("stack-horizontal-tab-usage");
+    // Prefer test ids (local Next demo); CI often hits an app build without those attrs — fall back to nav shape + title
+    const tabCell = horizontalTabsNav.locator("aside nav > div > div");
+    const versionsTab = horizontalTabsNav
+        .getByTestId("stack-horizontal-tab-versions")
+        .or(tabCell.filter({ has: horizontalTabsNav.getByTitle("Versions") }));
+    const usageTab = horizontalTabsNav
+        .getByTestId("stack-horizontal-tab-usage")
+        .or(tabCell.filter({ has: horizontalTabsNav.getByTitle("Usage") }));
     await versionsTab.waitFor({ state: "attached", timeout: STACK_TABS_PANEL_MS });
     await usageTab.waitFor({ state: "attached", timeout: STACK_TABS_PANEL_MS });
-    // Native DOM click on the handler element (force click can miss React onClick in some overlay cases)
     await versionsTab.evaluate((el: HTMLElement) => el.click());
     await expect(navigationContent.getByRole('heading', { name: 'Versions' })).toBeVisible();
     await expect(
