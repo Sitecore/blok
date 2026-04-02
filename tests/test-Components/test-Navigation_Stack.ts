@@ -61,11 +61,7 @@ export async function testNavigationStackHorizontal(page: Page){
 /** Horizontal tabs demo: panel mounts with the nav; under parallel workers + slow CPU, allow extra time */
 const STACK_TABS_PANEL_MS = 60_000;
 
-/**
- * GitHub Actions builds the app in Docker with registry `components/ui` (see Dockerfile + .dockerignore).
- * Installed `StackNavigation` markup can differ (e.g. no `nav > div > div` wrapper), but label spans still
- * use `title={item.name}`. Walk up to `<a>` or `.cursor-pointer` and click — works for both shapes.
- */
+
 async function clickStackHorizontalTabByTitle(
     horizontalTabsNav: Locator,
     title: string,
