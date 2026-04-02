@@ -1,4 +1,4 @@
-import { test, expect, Page } from '@playwright/test';
+import { test, expect, Page, type Locator } from '@playwright/test';
 
 export async function testNavigationStackVertical(page: Page){
     // Verify vertical navigation exists
@@ -61,6 +61,31 @@ export async function testNavigationStackHorizontal(page: Page){
 /** Horizontal tabs demo: panel mounts with the nav; under parallel workers + slow CPU, allow extra time */
 const STACK_TABS_PANEL_MS = 60_000;
 
+/**
+ * GitHub Actions builds the app in Docker with registry `components/ui` (see Dockerfile + .dockerignore).
+ * Installed `StackNavigation` markup can differ (e.g. no `nav > div > div` wrapper), but label spans still
+ * use `title={item.name}`. Walk up to `<a>` or `.cursor-pointer` and click — works for both shapes.
+ */
+async function clickStackHorizontalTabByTitle(
+    horizontalTabsNav: Locator,
+    title: string,
+    timeoutMs: number,
+): Promise<void> {
+    const label = horizontalTabsNav.locator(`[title="${title}"]`);
+    await label.waitFor({ state: "attached", timeout: timeoutMs });
+    await label.evaluate((el: HTMLElement) => {
+        let n: HTMLElement | null = el;
+        while (n && n !== document.body) {
+            if (n.tagName === "A" || n.classList.contains("cursor-pointer")) {
+                n.click();
+                return;
+            }
+            n = n.parentElement;
+        }
+        el.click();
+    });
+}
+
 export async function testNavigationStackHorizontalTabs(page: Page){
     // Verify horizontal tabs navigation exists
     const horizontalTabsNav = page.locator('[id="stack-navigation-horizontal-tabs"]');
@@ -98,17 +123,7 @@ export async function testNavigationStackHorizontalTabs(page: Page){
         }),
     ).toBeVisible();
 
-    // Prefer test ids (local Next demo); CI often hits an app build without those attrs — fall back to nav shape + title
-    const tabCell = horizontalTabsNav.locator("aside nav > div > div");
-    const versionsTab = horizontalTabsNav
-        .getByTestId("stack-horizontal-tab-versions")
-        .or(tabCell.filter({ has: horizontalTabsNav.getByTitle("Versions") }));
-    const usageTab = horizontalTabsNav
-        .getByTestId("stack-horizontal-tab-usage")
-        .or(tabCell.filter({ has: horizontalTabsNav.getByTitle("Usage") }));
-    await versionsTab.waitFor({ state: "attached", timeout: STACK_TABS_PANEL_MS });
-    await usageTab.waitFor({ state: "attached", timeout: STACK_TABS_PANEL_MS });
-    await versionsTab.evaluate((el: HTMLElement) => el.click());
+    await clickStackHorizontalTabByTitle(horizontalTabsNav, "Versions", STACK_TABS_PANEL_MS);
     await expect(navigationContent.getByRole('heading', { name: 'Versions' })).toBeVisible();
     await expect(
         navigationContent.locator('p', {
@@ -116,7 +131,7 @@ export async function testNavigationStackHorizontalTabs(page: Page){
         }),
     ).toBeVisible();
 
-    await usageTab.evaluate((el: HTMLElement) => el.click());
+    await clickStackHorizontalTabByTitle(horizontalTabsNav, "Usage", STACK_TABS_PANEL_MS);
     await expect(navigationContent.getByRole('heading', { name: 'Usage' })).toBeVisible();
     await expect(
         navigationContent.locator('p', {
