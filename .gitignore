@@ -19,6 +19,10 @@
 .DS_Store
 *.pem
 
+# Windows: tools that write log path "NUL" relative to cwd can create a real file named NUL
+# (e.g. BrowserStack MCP server JSON logs); ignore so it is never committed.
+/NUL
+
 # debug
 npm-debug.log*
 yarn-debug.log*
@@ -36,5 +40,12 @@ yarn-error.log*
 next-env.d.ts
 
 .idea
+
+# BrowserStack MCP credentials (copy from .cursor/mcp.json.example)
+.cursor/mcp.json
+
+# BrowserStack Local (node bindings log)
+local.log
+browserstack-local.log
 
 /public/r
