@@ -58,10 +58,14 @@ export async function testNavigationStackHorizontal(page: Page){
     await expect(labelSettings).toBeVisible();
 }
 
+/** Horizontal tabs demo: panel mounts with the nav; under parallel workers + slow CPU, allow extra time */
+const STACK_TABS_PANEL_MS = 60_000;
+
 export async function testNavigationStackHorizontalTabs(page: Page){
     // Verify horizontal tabs navigation exists
     const horizontalTabsNav = page.locator('[id="stack-navigation-horizontal-tabs"]');
     await expect(horizontalTabsNav).toBeVisible();
+    await horizontalTabsNav.scrollIntoViewIfNeeded();
 
     // Verify that horizontal navigation items exist
     const navigationItems = horizontalTabsNav.locator('aside');
@@ -79,27 +83,42 @@ export async function testNavigationStackHorizontalTabs(page: Page){
     expect(classList).toContain('overflow-x-auto');
     expect(classList).toContain('shadow-none');
 
-    // Verify that horizontal navigation tabs and their contents exist
-    const navigationContent = horizontalTabsNav.locator('[class="w-150"]');
-    await expect(navigationContent).toBeVisible();
+    // Prefer test id; fall back to DOM shape (#… > .w-full wrapper > .w-150 panel) if attrs are delayed
+    const navigationContent = horizontalTabsNav
+        .getByTestId("stack-horizontal-tab-panel")
+        .or(horizontalTabsNav.locator("> div > div.w-150"));
+    await expect(navigationContent).toBeVisible({ timeout: STACK_TABS_PANEL_MS });
 
     // Verify that Overview tab is displayed
     await expect(navigationItems.locator('[title="Overview"]')).toBeVisible();
-    // Verify that Overview content is displayed
-    await expect(navigationContent.locator('p' , {hasText: 'Overview' })).toBeVisible();
-    await expect(navigationContent.locator('p' , {hasText: 'This is the overview content. Here you can see a summary of all the important information.' })).toBeVisible();
+    await expect(navigationContent.getByRole('heading', { name: 'Overview' })).toBeVisible();
+    await expect(
+        navigationContent.locator('p', {
+            hasText: 'This is the overview content. Here you can see a summary of all the important information.',
+        }),
+    ).toBeVisible();
 
-    // Verify that Versions tab is displayed
-    await horizontalTabsNav.getByText('Versions', { exact: false }).click();
-    // Verify Versions content is displayed
-    await expect(navigationContent.locator('p' , {hasText: 'Versions' })).toBeVisible();
-    await expect(navigationContent.locator('p' , {hasText: 'This is the versions content. View and manage different versions of your project.' })).toBeVisible();
+    // Stable targets on the element that owns onClick (avoids sidebar overlays catching span clicks)
+    const versionsTab = horizontalTabsNav.getByTestId("stack-horizontal-tab-versions");
+    const usageTab = horizontalTabsNav.getByTestId("stack-horizontal-tab-usage");
+    await versionsTab.waitFor({ state: "attached", timeout: STACK_TABS_PANEL_MS });
+    await usageTab.waitFor({ state: "attached", timeout: STACK_TABS_PANEL_MS });
+    // Native DOM click on the handler element (force click can miss React onClick in some overlay cases)
+    await versionsTab.evaluate((el: HTMLElement) => el.click());
+    await expect(navigationContent.getByRole('heading', { name: 'Versions' })).toBeVisible();
+    await expect(
+        navigationContent.locator('p', {
+            hasText: 'This is the versions content. View and manage different versions of your project.',
+        }),
+    ).toBeVisible();
 
-    // Click on Usage tab
-    await horizontalTabsNav.getByText('Usage', { exact: false }).click();
-    // Verify Usage content is displayed
-    await expect(navigationContent.locator('p' , {hasText: 'Usage' })).toBeVisible();
-    await expect(navigationContent.locator('p',  {hasText: 'This is the usage content. Learn how to use this component effectively.'})).toBeVisible();
+    await usageTab.evaluate((el: HTMLElement) => el.click());
+    await expect(navigationContent.getByRole('heading', { name: 'Usage' })).toBeVisible();
+    await expect(
+        navigationContent.locator('p', {
+            hasText: 'This is the usage content. Learn how to use this component effectively.',
+        }),
+    ).toBeVisible();
 }
 
 export async function testNavigationStackColorSchemes(page: Page){

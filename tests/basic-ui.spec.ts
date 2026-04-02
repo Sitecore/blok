@@ -74,8 +74,9 @@ import { testTopbar } from './test-Components/test-Topbar';
 test.describe('UI BLOK QA Automation', () => {
 
   test.beforeEach('Base URL', async ({ page }) => {
-    // adjust baseURL in playwright config, or use full URL:
-    await page.goto('/', { waitUntil: 'domcontentloaded', timeout: 1200000});
+    await page.goto('/', { waitUntil: 'load', timeout: 120000 });
+    // Next sink page sets this in app/page.tsx after client hydration
+    await page.locator('html[data-hydrated="true"]').waitFor({ timeout: 120000 });
   });
 
   test('test_Accordion', async ({ page }) => {
