@@ -21,7 +21,7 @@ function SearchInput({ className, ...props }: React.ComponentProps<"div">) {
       role="group"
       className={cn(
         "relative flex w-full items-center rounded-md border border-input transition-[color,box-shadow] outline-none",
-        "h-9 min-w-0",
+        "h-10 min-w-0",
         "bg-white dark:bg-input/30",
         // Focus state (border-2 primary, no ring)
         "has-[[data-slot=search-input-control]:focus-visible]:border-2 has-[[data-slot=search-input-control]:focus-visible]:border-primary",
