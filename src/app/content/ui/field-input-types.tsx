@@ -25,14 +25,14 @@ export default function FieldInputTypesDemo() {
           </Field>
           <Field>
             <FieldLabel>Date Picker</FieldLabel>
-            <DatePickerSimple />
+            <DatePickerSimple placeholder="Select a date" />
             <FieldDescription>
               Select a single date using the Blok date picker.
             </FieldDescription>
           </Field>
           <Field>
             <FieldLabel>Date Range Picker</FieldLabel>
-            <DatePickerWithRange />
+            <DatePickerWithRange placeholder="Select a date range" />
             <FieldDescription>
               Select a date range using the Blok date picker.
             </FieldDescription>
