@@ -67,12 +67,12 @@ export function CustomDropdown({
   );
 }
 
-function DatePickerSimple() {
+function DatePickerSimple({ id }: { id?: string }) {
   const [date, setDate] = React.useState<Date>();
 
   return (
     <Popover>
-      <PopoverTrigger asChild>
+      <PopoverTrigger id={id} asChild>
         <Button
           variant={"outline"}
           colorScheme={"neutral"}
@@ -103,7 +103,7 @@ function DatePickerSimple() {
   );
 }
 
-function DatePickerWithRange() {
+function DatePickerWithRange({ id }: { id?: string }) {
   const [date, setDate] = React.useState<DateRange | undefined>({
     from: new Date(new Date().getFullYear(), 0, 20),
     to: addDays(new Date(new Date().getFullYear(), 0, 20), 20),
@@ -111,7 +111,7 @@ function DatePickerWithRange() {
 
   return (
     <Popover>
-      <PopoverTrigger asChild>
+      <PopoverTrigger id={id} asChild>
         <Button
           id="date"
           variant={"outline"}

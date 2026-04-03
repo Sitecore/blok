@@ -29,6 +29,8 @@ export default function FieldInputWithAddonDemo() {
               </InputGroupAddon>
               <InputGroupInput
                 id="field-input-addon"
+                name="tel"
+                autoComplete="tel"
                 placeholder="Enter phone number"
               />
             </InputGroup>
