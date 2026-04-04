@@ -1,82 +1,25 @@
 # BrowserStack accessibility scan
 
-**Last update:** 2026-04-02T09:38:17.876Z
+**Last update:** 2026-04-03T11:34:42.706Z
 
 ## Scan
 
 | Field | Value |
 | --- | --- |
-| Name | `blokcn-2026-04-02T09-33-12-097Z` |
+| Name | `Blokcn-scan-2026-04-03T11-33-17-183Z` |
 | Region | us |
-| URLs scanned | 90 URLs (first: http://localhost:3000/) |
-| API `urlList` sent | 90 URLs (first: http://bs-local.com:3000/) |
-| Scan project id | 3590720 |
-| Scan run id | 1653802 |
-| Status | failed or incomplete |
+| Pages (localhost) | http://localhost:3000/theming |
+| Scan project id | 3595058 |
+| Scan run id | 1657553 |
+| Status | completed |
 
-## URLs (this run)
-
-- http://localhost:3000/
-- http://localhost:3000/bloks
-- http://localhost:3000/bloks/all-site
-- http://localhost:3000/bloks/collaboration
-- http://localhost:3000/bloks/dashboard-widget
-- http://localhost:3000/bloks/pinned-site
-- http://localhost:3000/bloks/sidebar-rhs
-- http://localhost:3000/bloks/site-card
-- http://localhost:3000/bloks/topbar
-- http://localhost:3000/graphics
-- http://localhost:3000/graphics/favicons
-- http://localhost:3000/graphics/icons
-- http://localhost:3000/graphics/illustrations
-- http://localhost:3000/graphics/logos
-- http://localhost:3000/mcp
-- http://localhost:3000/migration
-- http://localhost:3000/primitives
-- http://localhost:3000/primitives/accordion
-- http://localhost:3000/primitives/action-bar
-- http://localhost:3000/primitives/alert
-- http://localhost:3000/primitives/alert-dialog
-- http://localhost:3000/primitives/aspect-ratio
-- http://localhost:3000/primitives/avatar
-- http://localhost:3000/primitives/badge
-- http://localhost:3000/primitives/breadcrumb
-- http://localhost:3000/primitives/button
-- http://localhost:3000/primitives/calendar
-- http://localhost:3000/primitives/card
-- http://localhost:3000/primitives/carousel
-- http://localhost:3000/primitives/chart
-- http://localhost:3000/primitives/checkbox
-- http://localhost:3000/primitives/circular-progress
-- http://localhost:3000/primitives/collapsible
-- http://localhost:3000/primitives/combobox
-- http://localhost:3000/primitives/command
-- http://localhost:3000/primitives/context-menu
-- http://localhost:3000/primitives/date-picker
-- http://localhost:3000/primitives/dialog
-- http://localhost:3000/primitives/draggable
-- http://localhost:3000/primitives/dropdown-menu
-- http://localhost:3000/primitives/editable
-- http://localhost:3000/primitives/empty-states
-- http://localhost:3000/primitives/error-states
-- http://localhost:3000/primitives/field
-- http://localhost:3000/primitives/filter
-- http://localhost:3000/primitives/icon
-- http://localhost:3000/primitives/input
-- http://localhost:3000/primitives/input-group
-- http://localhost:3000/primitives/inputOtp
-- http://localhost:3000/primitives/kbd
-- … and 40 more
+*The Website Scanner API sends the same pages as `bs-local.com` for the Local tunnel; in your browser they are **localhost** (e.g. `http://localhost:3000`).*
 
 ## Dashboard
 
-Open the report: [BrowserStack Website Scanner — blokcn-2026-04-02T09-33-12-097Z](https://scanner.browserstack.com/site-scanner/scan-details/blokcn-2026-04-02T09-33-12-097Z)
+Open the report: [BrowserStack Website Scanner — Blokcn-scan-2026-04-03T11-33-17-183Z](https://scanner.browserstack.com/site-scanner/scan-details/Blokcn-scan-2026-04-03T11-33-17-183Z)
 
 In the app: **Accessibility Testing** → **Website scan** → select this scan → **Scan runs**.
-
-## Error
-
-Timed out after 300000ms waiting for scan completion. Check the dashboard for scan run 1653802.
 
 ## Settings (this run)
 

@@ -8,8 +8,13 @@
  * Set BROWSERSTACK_A11Y_URL (or A11Y_SCAN_URL) to the site root, e.g. http://localhost:3000
  * (localhost:3000 without a scheme is accepted — http:// is assumed.)
  * By default, all app routes under src/app are discovered and scanned (static + dynamic).
- * Single-page mode: set BROWSERSTACK_A11Y_DISCOVER=0, or use a URL with a path (not only /).
+ * Single-page mode: pass a path as the first CLI argument, e.g. pnpm run browserstack:a11y -- /theming
+ *   (or set BROWSERSTACK_A11Y_DISCOVER=0, or use a URL with a path only).
+ * On success the BrowserStack Website Scanner dashboard opens (unless BROWSERSTACK_A11Y_OPEN_BROWSER=0).
  * Optional: BROWSERSTACK_A11Y_OPEN_BROWSER=0 to skip opening the browser.
+ * Timeouts: BROWSERSTACK_LOCAL_START_TIMEOUT_MS (default 120000), BROWSERSTACK_A11Y_FETCH_TIMEOUT_MS (default 60000).
+ * Polling: BROWSERSTACK_A11Y_POLL_MS overrides wait-for-completion; otherwise multi-URL scans use a longer default (~2 min per URL, min 15 min, max 4 h).
+ * Scan name defaults to Blokcn-scan plus an ISO timestamp so each run is unique (API rejects duplicate names). Set BROWSERSTACK_A11Y_SCAN_NAME for a fixed name (remove the old scan in BrowserStack first if you reuse it).
  */
 
 import { spawn } from "node:child_process";
@@ -25,9 +30,15 @@ import { join, resolve } from "node:path";
 import { setTimeout as delay } from "node:timers/promises";
 import { Local } from "browserstack-local";
 
-import { getBlocks, getComponents } from "../src/lib/registry";
-
 const _cwd = process.cwd();
+
+/** Lazy-load registry so the script prints progress before heavy imports. */
+async function loadRegistry(): Promise<{
+  getBlocks: () => { name: string }[];
+  getComponents: () => { name: string }[];
+}> {
+  return import("../src/lib/registry");
+}
 const SCAN_DOC = resolve(_cwd, "docs", "a11y", "browserstack-scan.md");
 
 /** Dashboard: Website Scanner report for this scan (same pattern as BrowserStack tooling). */
@@ -63,12 +74,13 @@ function writeScanDoc(params: {
   scanName: string;
   region: string;
   scannedUrls: string[];
-  apiUrlsSent: string[];
   scanId?: number;
   scanRunId?: number;
   dashboardUrl: string;
   completed: boolean;
   errorMessage?: string;
+  /** When true, add a note that the API uses bs-local.com for the same pages. */
+  localPagesShownAsLocalhost?: boolean;
 }): void {
   mkdirSync(resolve(_cwd, "docs", "a11y"), { recursive: true });
   const id = params.scanId !== undefined ? String(params.scanId) : "—";
@@ -78,10 +90,6 @@ function writeScanDoc(params: {
     n === 1
       ? params.scannedUrls[0]
       : `${n} URLs (first: ${params.scannedUrls[0]})`;
-  const apiSummary =
-    params.apiUrlsSent.length === 1
-      ? params.apiUrlsSent[0]
-      : `${params.apiUrlsSent.length} URLs (first: ${params.apiUrlsSent[0]})`;
   const lines = [
     "# BrowserStack accessibility scan",
     "",
@@ -93,13 +101,18 @@ function writeScanDoc(params: {
     "| --- | --- |",
     `| Name | \`${params.scanName.replace(/`/g, "\\`")}\` |`,
     `| Region | ${params.region} |`,
-    `| URLs scanned | ${scannedSummary} |`,
-    `| API \`urlList\` sent | ${apiSummary} |`,
+    `| Pages (localhost) | ${scannedSummary} |`,
     `| Scan project id | ${id} |`,
     `| Scan run id | ${runId} |`,
     `| Status | ${params.completed ? "completed" : "failed or incomplete"} |`,
     "",
   ];
+  if (params.localPagesShownAsLocalhost) {
+    lines.push(
+      "*The Website Scanner API sends the same pages as `bs-local.com` for the Local tunnel; in your browser they are **localhost** (e.g. `http://localhost:3000`).*",
+      "",
+    );
+  }
   if (n > 1) {
     const cap = 50;
     lines.push("## URLs (this run)", "");
@@ -174,6 +187,55 @@ const REGION_API_BASE: Record<Region, string> = {
   eu: "https://accessibility-eu.browserstack.com",
   in: "https://accessibility-in.browserstack.com",
 };
+
+function fetchTimeoutMs(): number {
+  const n = Number(process.env.BROWSERSTACK_A11Y_FETCH_TIMEOUT_MS);
+  return Number.isFinite(n) && n > 0 ? n : 60_000;
+}
+
+function localStartTimeoutMs(): number {
+  const n = Number(process.env.BROWSERSTACK_LOCAL_START_TIMEOUT_MS);
+  return Number.isFinite(n) && n > 0 ? n : 120_000;
+}
+
+/**
+ * Website Scanner can take a long time for many URLs; default 5 min is too short for large scans.
+ */
+function defaultPollTimeoutMs(urlCount: number): number {
+  if (urlCount <= 1) {
+    return 600_000; // 10 min — single page
+  }
+  const perUrlMs = 120_000; // ~2 min per URL (heuristic)
+  const minMs = 900_000; // 15 min minimum for any multi-URL run
+  const maxMs = 14_400_000; // 4 h cap
+  return Math.min(maxMs, Math.max(minMs, urlCount * perUrlMs));
+}
+
+function withTimeout<T>(
+  promise: Promise<T>,
+  ms: number,
+  label: string,
+): Promise<T> {
+  return new Promise((resolve, reject) => {
+    const timer = setTimeout(() => {
+      reject(
+        new Error(
+          `${label} timed out after ${ms}ms. If BrowserStack Local never connects, check firewall/network and your access key; or set BROWSERSTACK_A11Y_SKIP_LOCAL_START=1 and run the Local binary yourself with the same BROWSERSTACK_LOCAL_IDENTIFIER.`,
+        ),
+      );
+    }, ms);
+    promise.then(
+      (v) => {
+        clearTimeout(timer);
+        resolve(v);
+      },
+      (e: unknown) => {
+        clearTimeout(timer);
+        reject(e);
+      },
+    );
+  });
+}
 
 /**
  * `new URL()` requires a scheme. Values like `localhost:3000` (common in .env) throw "Invalid URL"
@@ -328,12 +390,16 @@ function expandPageLocations(
   return paths;
 }
 
-function discoverProjectUrlPaths(): string[] {
+async function discoverProjectUrlPaths(): Promise<string[]> {
   const appRoot = resolve(_cwd, "src/app");
   if (!existsSync(appRoot)) {
     throw new Error(`Expected Next.js app dir at ${appRoot}`);
   }
+  console.log(
+    "Discovering routes under src/app (set BROWSERSTACK_A11Y_DISCOVER=0 for a single URL only)…",
+  );
   const demoSlugs = extractDemoRouteSlugs();
+  const { getBlocks, getComponents } = await loadRegistry();
   const blokNames = getBlocks().map((b) => b.name);
   const primitiveNames = getComponents().map((c) => c.name);
   const locations = walkAppDirs(appRoot, []);
@@ -343,7 +409,9 @@ function discoverProjectUrlPaths(): string[] {
     blokNames,
     primitiveNames,
   );
-  return [...new Set(paths)].sort((a, b) => a.localeCompare(b));
+  const sorted = [...new Set(paths)].sort((a, b) => a.localeCompare(b));
+  console.log(`Discovered ${sorted.length} route(s).`);
+  return sorted;
 }
 
 /** Origin only (scheme + host + port). `URL#host` already includes the port — do not append `u.port` again. */
@@ -352,14 +420,77 @@ function originFromUrl(url: string): string {
   return `${u.protocol}//${u.host}`;
 }
 
+function printBrowserstackCliHelp(): void {
+  console.log(`browserstack-a11y-scan — Website Scanner (BrowserStack)
+
+Usage:
+  pnpm run browserstack:a11y
+      Scan every discovered route (multi-page). Opens dashboard when the run finishes.
+
+  pnpm run browserstack:a11y -- <path-or-full-url>
+      Single page only (path is joined to BROWSERSTACK_A11Y_URL origin, or LOCAL_A11Y_BASE).
+      Opens the same dashboard when the scan completes.
+
+Examples:
+  pnpm run browserstack:a11y -- /theming
+  pnpm run browserstack:a11y -- demo/button
+  pnpm run browserstack:a11y -- http://localhost:3000/primitives/input
+
+Env: BROWSERSTACK_USERNAME, BROWSERSTACK_ACCESS_KEY, BROWSERSTACK_A11Y_URL (default origin http://localhost:3000).
+`);
+}
+
+/**
+ * First CLI argument (if present): scan exactly that page and skip route discovery.
+ * Accepts a path (/foo), path without leading slash (foo), or a full URL.
+ */
+function applyCliPagePathArg(argv: string[]): void {
+  const filtered = argv.filter((a) => a !== "--");
+  let pathArg: string | undefined;
+  for (const a of filtered) {
+    if (a === "--help" || a === "-h") {
+      printBrowserstackCliHelp();
+      process.exit(0);
+    }
+    if (!a.startsWith("-")) {
+      pathArg = a;
+      break;
+    }
+  }
+  if (pathArg === undefined) return;
+
+  const trimmed = pathArg.trim();
+  if (!trimmed) return;
+
+  if (/^[a-zA-Z][a-zA-Z0-9+.-]*:/.test(trimmed)) {
+    process.env.BROWSERSTACK_A11Y_URL = normalizeScanUrl(trimmed);
+    process.env.BROWSERSTACK_A11Y_DISCOVER = "0";
+    console.log(`Single-page scan (CLI): ${process.env.BROWSERSTACK_A11Y_URL}`);
+    return;
+  }
+
+  const baseRaw =
+    process.env.BROWSERSTACK_A11Y_URL?.trim() ||
+    process.env.A11Y_SCAN_URL?.trim() ||
+    process.env.LOCAL_A11Y_BASE?.trim() ||
+    "http://localhost:3000";
+  const normalized = normalizeScanUrl(baseRaw);
+  const origin = originFromUrl(normalized);
+  const pathPart = trimmed.startsWith("/") ? trimmed : `/${trimmed}`;
+  const merged = joinOriginPath(origin, pathPart);
+  process.env.BROWSERSTACK_A11Y_URL = merged;
+  process.env.BROWSERSTACK_A11Y_DISCOVER = "0";
+  console.log(`Single-page scan (CLI): ${merged}`);
+}
+
 /**
  * Multi-page: discover all routes when scan URL is a site root (path / or empty) and
  * BROWSERSTACK_A11Y_DISCOVER is not "0". Otherwise a single URL is scanned.
  */
-function resolveScanUrls(scanUrl: string): {
+async function resolveScanUrls(scanUrl: string): Promise<{
   urls: string[];
   mode: "single" | "multi";
-} {
+}> {
   let u: URL;
   try {
     u = new URL(scanUrl);
@@ -377,7 +508,7 @@ function resolveScanUrls(scanUrl: string): {
     return { urls: [scanUrl], mode: "single" };
   }
   const base = originFromUrl(scanUrl);
-  const paths = discoverProjectUrlPaths();
+  const paths = await discoverProjectUrlPaths();
   const urls = paths.map((p) => joinOriginPath(base, p));
   return { urls, mode: "multi" };
 }
@@ -453,14 +584,28 @@ async function createScan(
   body: Record<string, unknown>,
 ): Promise<CreateScanResponse> {
   const url = `${baseUrl}/api/website-scanner/v1/scans`;
-  const res = await fetch(url, {
-    method: "POST",
-    headers: {
-      Authorization: authHeader,
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(body),
-  });
+  let res: Response;
+  try {
+    res = await fetch(url, {
+      method: "POST",
+      headers: {
+        Authorization: authHeader,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(body),
+      signal: AbortSignal.timeout(fetchTimeoutMs()),
+    });
+  } catch (e) {
+    if (
+      e instanceof Error &&
+      (e.name === "AbortError" || e.message.includes("abort"))
+    ) {
+      throw new Error(
+        `Create scan request timed out after ${fetchTimeoutMs()}ms. Set BROWSERSTACK_A11Y_FETCH_TIMEOUT_MS to increase.`,
+      );
+    }
+    throw e;
+  }
   const text = await res.text();
   let json: CreateScanResponse;
   try {
@@ -484,9 +629,23 @@ async function getScanRunStatus(
   scanRunId: number,
 ): Promise<StatusResponse> {
   const url = `${baseUrl}/api/website-scanner/v1/scans/${scanId}/scan_runs/${scanRunId}/status`;
-  const res = await fetch(url, {
-    headers: { Authorization: authHeader },
-  });
+  let res: Response;
+  try {
+    res = await fetch(url, {
+      headers: { Authorization: authHeader },
+      signal: AbortSignal.timeout(fetchTimeoutMs()),
+    });
+  } catch (e) {
+    if (
+      e instanceof Error &&
+      (e.name === "AbortError" || e.message.includes("abort"))
+    ) {
+      throw new Error(
+        `Status request timed out after ${fetchTimeoutMs()}ms. Set BROWSERSTACK_A11Y_FETCH_TIMEOUT_MS to increase.`,
+      );
+    }
+    throw e;
+  }
   const text = await res.text();
   let json: StatusResponse;
   try {
@@ -507,6 +666,8 @@ async function getScanRunStatus(
 }
 
 async function main(): Promise<void> {
+  applyCliPagePathArg(process.argv.slice(2));
+
   const username = process.env.BROWSERSTACK_USERNAME;
   const accessKey = process.env.BROWSERSTACK_ACCESS_KEY;
   if (!username || !accessKey) {
@@ -539,7 +700,7 @@ async function main(): Promise<void> {
   let urls: string[];
   let scanMode: "single" | "multi";
   try {
-    ({ urls, mode: scanMode } = resolveScanUrls(scanUrl));
+    ({ urls, mode: scanMode } = await resolveScanUrls(scanUrl));
   } catch (e) {
     console.error(e instanceof Error ? e.message : e);
     process.exit(1);
@@ -577,19 +738,27 @@ async function main(): Promise<void> {
         "browserstack-local.log",
       );
       localTunnel = tunnel;
-      await new Promise<void>((resolveStart, rejectStart) => {
-        tunnel.start(
-          {
-            key: accessKey,
-            username,
-            localIdentifier,
-          },
-          (err?: Error) => {
-            if (err) rejectStart(err);
-            else resolveStart();
-          },
-        );
-      });
+      const startMs = localStartTimeoutMs();
+      console.log(
+        `Connecting BrowserStack Local (timeout ${startMs / 1000}s) — ensure nothing else is blocking this access key’s tunnel…`,
+      );
+      await withTimeout(
+        new Promise<void>((resolveStart, rejectStart) => {
+          tunnel.start(
+            {
+              key: accessKey,
+              username,
+              localIdentifier,
+            },
+            (err?: Error) => {
+              if (err) rejectStart(err);
+              else resolveStart();
+            },
+          );
+        }),
+        startMs,
+        "BrowserStack Local",
+      );
       startedLocalTunnel = true;
       console.log(
         "BrowserStack Local tunnel connected (this script will stop it when finished).",
@@ -603,7 +772,7 @@ async function main(): Promise<void> {
 
   const scanName =
     process.env.BROWSERSTACK_A11Y_SCAN_NAME?.trim() ||
-    `blokcn-${new Date().toISOString().replace(/[:.]/g, "-")}`;
+    `Blokcn-scan-${new Date().toISOString().replace(/[:.]/g, "-")}`;
 
   const apiUrls = urls.map((u) => toScannerApiUrl(u));
   const dashboardUrl = scannerDashboardUrl(scanName);
@@ -645,7 +814,7 @@ async function main(): Promise<void> {
   }
   if (apiUrls[0] !== urls[0]) {
     console.log(
-      `API urlList uses ${BS_LOCAL_DOMAIN} for localhost (BrowserStack Website Scanner).`,
+      `Pages are your app at localhost; the API uses ${BS_LOCAL_DOMAIN} for the Local tunnel (required by Website Scanner).`,
     );
   }
 
@@ -666,10 +835,17 @@ async function main(): Promise<void> {
       console.log(`URL count: ${created.data.urlCount}`);
     }
 
-    const maxWaitMs = Number(process.env.BROWSERSTACK_A11Y_POLL_MS) || 300_000;
+    const envPoll = Number(process.env.BROWSERSTACK_A11Y_POLL_MS);
+    const maxWaitMs =
+      Number.isFinite(envPoll) && envPoll > 0
+        ? envPoll
+        : defaultPollTimeoutMs(urls.length);
     const intervalMs =
       Number(process.env.BROWSERSTACK_A11Y_POLL_INTERVAL_MS) || 5_000;
     const start = Date.now();
+    console.log(
+      `Waiting for scan to finish (max ${Math.round(maxWaitMs / 60_000)} min; set BROWSERSTACK_A11Y_POLL_MS to override)…`,
+    );
 
     while (Date.now() - start < maxWaitMs) {
       const status = await getScanRunStatus(
@@ -685,11 +861,11 @@ async function main(): Promise<void> {
           scanName,
           region,
           scannedUrls: urls,
-          apiUrlsSent: apiUrls,
           scanId,
           scanRunId,
           dashboardUrl,
           completed: true,
+          localPagesShownAsLocalhost: isLocalhostUrl(urls[0] ?? ""),
         });
         openInBrowser(dashboardUrl);
         console.log(`Dashboard: ${dashboardUrl}`);
@@ -701,12 +877,12 @@ async function main(): Promise<void> {
           scanName,
           region,
           scannedUrls: urls,
-          apiUrlsSent: apiUrls,
           scanId,
           scanRunId,
           dashboardUrl,
           completed: false,
           errorMessage: err,
+          localPagesShownAsLocalhost: isLocalhostUrl(urls[0] ?? ""),
         });
         openInBrowser(dashboardUrl);
         throw new Error(err);
@@ -717,17 +893,17 @@ async function main(): Promise<void> {
       await delay(intervalMs);
     }
 
-    const err = `Timed out after ${maxWaitMs}ms waiting for scan completion. Check the dashboard for scan run ${scanRunId}.`;
+    const err = `Stopped waiting after ${Math.round(maxWaitMs / 60_000)} min — the scan may still be processing on BrowserStack (especially with many URLs). Open the dashboard for scan run ${scanRunId} or set BROWSERSTACK_A11Y_POLL_MS higher.`;
     writeScanDoc({
       scanName,
       region,
       scannedUrls: urls,
-      apiUrlsSent: apiUrls,
       scanId,
       scanRunId,
       dashboardUrl,
       completed: false,
       errorMessage: err,
+      localPagesShownAsLocalhost: isLocalhostUrl(urls[0] ?? ""),
     });
     openInBrowser(dashboardUrl);
     throw new Error(err);
@@ -738,10 +914,10 @@ async function main(): Promise<void> {
         scanName,
         region,
         scannedUrls: urls,
-        apiUrlsSent: apiUrls,
         dashboardUrl,
         completed: false,
         errorMessage: msg,
+        localPagesShownAsLocalhost: isLocalhostUrl(urls[0] ?? ""),
       });
     }
     throw e;
