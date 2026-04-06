@@ -48,6 +48,110 @@ interface SearchResult {
   title?: string;
 }
 
+/**
+ * Radix DropdownMenu assigns unstable `id`s via React `useId()`. Rendering it
+ * only after mount avoids SSR/client drift (and reduces noise when extensions
+ * touch the DOM before hydration). Placeholder matches layout until ready.
+ */
+function MobileNavDropdown({
+  pathname,
+  clickedHref,
+  setClickedHref,
+}: {
+  pathname: string;
+  clickedHref: string | null;
+  setClickedHref: (href: string | null) => void;
+}) {
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) {
+    return (
+      <Button
+        variant="ghost"
+        size="icon"
+        aria-label="Open navigation menu"
+        className="pointer-events-none"
+        tabIndex={-1}
+        type="button"
+      >
+        <Icon path={mdiMenu} size={1} />
+      </Button>
+    );
+  }
+
+  return (
+    <DropdownMenu>
+      <DropdownMenuTrigger asChild>
+        <Button variant="ghost" size="icon" aria-label="Open navigation menu">
+          <Icon path={mdiMenu} size={1} />
+        </Button>
+      </DropdownMenuTrigger>
+      <DropdownMenuContent align="start">
+        {navItems.map((item) => {
+          const normalizedPathname = pathname.replace(/\/$/, "") || "/";
+          const normalizedHref = item.href.replace(/\/$/, "") || "/";
+          let isActive =
+            normalizedPathname === normalizedHref ||
+            (normalizedHref !== "/" &&
+              normalizedPathname.startsWith(`${normalizedHref}/`)) ||
+            clickedHref === item.href;
+
+          if (pathname.startsWith("/registry/")) {
+            const segments = pathname.split("/").filter(Boolean);
+            const itemName = segments[segments.length - 1];
+
+            if (itemName) {
+              const registryItem = getRegistryItem(itemName);
+
+              if (registryItem) {
+                if (
+                  item.name === "Primitives" &&
+                  registryItem.type === "registry:ui"
+                ) {
+                  isActive = true;
+                } else if (
+                  item.name === "Bloks" &&
+                  (registryItem.type === "registry:block" ||
+                    registryItem.type === "registry:component")
+                ) {
+                  isActive = true;
+                }
+              }
+            }
+          }
+
+          return (
+            <DropdownMenuItem asChild key={item.name}>
+              <Link
+                href={item.href}
+                onClick={() => {
+                  setClickedHref(item.href);
+                  track(TELEMETRY_EVENTS.topbar_nav_click, {
+                    link: item.href,
+                    label: item.name,
+                    is_mobile: true,
+                  });
+                }}
+                className={`${
+                  isActive
+                    ? "bg-primary-background text-primary-fg hover:bg-primary-background hover:text-primary-fg"
+                    : "hover:bg-muted hover:text-foreground"
+                }`}
+              >
+                {item.name}
+              </Link>
+            </DropdownMenuItem>
+          );
+        })}
+      </DropdownMenuContent>
+    </DropdownMenu>
+  );
+}
+
 export default function TopBar() {
   const pathname = usePathname();
   const [isDark, setIsDark] = useState(false);
@@ -422,81 +526,13 @@ export default function TopBar() {
             </NavigationMenuList>
           </NavigationMenu>
 
-          {/* Mobile Nav Dropdown */}
+          {/* Mobile Nav Dropdown — client-only Radix to avoid hydration id drift */}
           <div className="lg:hidden">
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  aria-label="Open navigation menu"
-                >
-                  <Icon path={mdiMenu} size={1} />
-                </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent align="start">
-                {navItems.map((item) => {
-                  const normalizedPathname = pathname.replace(/\/$/, "") || "/";
-                  const normalizedHref = item.href.replace(/\/$/, "") || "/";
-                  let isActive =
-                    normalizedPathname === normalizedHref ||
-                    (normalizedHref !== "/" &&
-                      normalizedPathname.startsWith(`${normalizedHref}/`)) ||
-                    clickedHref === item.href;
-
-                  // Special handling for registry pages
-                  if (pathname.startsWith("/registry/")) {
-                    const segments = pathname.split("/").filter(Boolean);
-                    const itemName = segments[segments.length - 1];
-
-                    if (itemName) {
-                      const registryItem = getRegistryItem(itemName);
-
-                      if (registryItem) {
-                        // If this is a UI component and we're checking "Primitives"
-                        if (
-                          item.name === "Primitives" &&
-                          registryItem.type === "registry:ui"
-                        ) {
-                          isActive = true;
-                        }
-                        // If this is a block/component and we're checking "Bloks"
-                        else if (
-                          item.name === "Bloks" &&
-                          (registryItem.type === "registry:block" ||
-                            registryItem.type === "registry:component")
-                        ) {
-                          isActive = true;
-                        }
-                      }
-                    }
-                  }
-
-                  return (
-                    <DropdownMenuItem asChild key={item.name}>
-                      <Link
-                        href={item.href}
-                        onClick={() => {
-                          setClickedHref(item.href);
-                          track(TELEMETRY_EVENTS.topbar_nav_click, {
-                            link: item.href,
-                            label: item.name,
-                            is_mobile: true,
-                          });
-                        }}
-                        className={`${
-                          isActive
-                            ? "bg-primary-background text-primary-fg hover:bg-primary-background hover:text-primary-fg"
-                            : "hover:bg-muted hover:text-foreground"
-                        }`}
-                      >
-                        {item.name}
-                      </Link>
-                    </DropdownMenuItem>
-                  );
-                })}
-              </DropdownMenuContent>
-            </DropdownMenu>
+            <MobileNavDropdown
+              pathname={pathname}
+              clickedHref={clickedHref}
+              setClickedHref={setClickedHref}
+            />
           </div>
         </div>
 

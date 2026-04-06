@@ -10,7 +10,7 @@ export const sidebar = {
     ],
   },
   components: {
-    "Default": { component: "sidebar-default" },
+    Default: { component: "sidebar-default" },
     "With Leading Icon": { component: "sidebar-leading-icon" },
     "With Trailing Icon": { component: "sidebar-trailing-icon" },
     "With Icon Combination": { component: "sidebar-icon-combination" },
