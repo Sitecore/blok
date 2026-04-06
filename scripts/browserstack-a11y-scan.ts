@@ -1,22 +1,3 @@
-/**
- * BrowserStack Website Scanner — start an accessibility scan, wait for completion,
- * write details to docs/a11y/browserstack-scan.md, and open the BrowserStack dashboard.
- *
- * Requires BROWSERSTACK_USERNAME and BROWSERSTACK_ACCESS_KEY.
- * Loads `.env` then `.env.local` (Next-style precedence).
- *
- * Set BROWSERSTACK_A11Y_URL (or A11Y_SCAN_URL) to the site root, e.g. http://localhost:3000
- * (localhost:3000 without a scheme is accepted — http:// is assumed.)
- * By default, all app routes under src/app are discovered and scanned (static + dynamic).
- * Single-page mode: pass a path as the first CLI argument, e.g. pnpm run browserstack:a11y -- /theming
- *   (or set BROWSERSTACK_A11Y_DISCOVER=0, or use a URL with a path only).
- * On success the BrowserStack Website Scanner dashboard opens (unless BROWSERSTACK_A11Y_OPEN_BROWSER=0).
- * Optional: BROWSERSTACK_A11Y_OPEN_BROWSER=0 to skip opening the browser.
- * Timeouts: BROWSERSTACK_LOCAL_START_TIMEOUT_MS (default 120000), BROWSERSTACK_A11Y_FETCH_TIMEOUT_MS (default 60000).
- * Polling: BROWSERSTACK_A11Y_POLL_MS overrides wait-for-completion; otherwise multi-URL scans use a longer default (~2 min per URL, min 15 min, max 4 h).
- * Scan name defaults to Blokcn-scan plus an ISO timestamp so each run is unique (API rejects duplicate names). Set BROWSERSTACK_A11Y_SCAN_NAME for a fixed name (remove the old scan in BrowserStack first if you reuse it).
- */
-
 import { spawn } from "node:child_process";
 import { randomUUID } from "node:crypto";
 import {
@@ -32,7 +13,6 @@ import { Local } from "browserstack-local";
 
 const _cwd = process.cwd();
 
-/** Lazy-load registry so the script prints progress before heavy imports. */
 async function loadRegistry(): Promise<{
   getBlocks: () => { name: string }[];
   getComponents: () => { name: string }[];
@@ -41,7 +21,7 @@ async function loadRegistry(): Promise<{
 }
 const SCAN_DOC = resolve(_cwd, "docs", "a11y", "browserstack-scan.md");
 
-/** Dashboard: Website Scanner report for this scan (same pattern as BrowserStack tooling). */
+/** Dashboard: Website Scanner report for this scan */
 function scannerDashboardUrl(scanName: string): string {
   const base =
     process.env.BROWSERSTACK_A11Y_DASHBOARD_BASE?.trim() ||
@@ -70,6 +50,15 @@ function openInBrowser(url: string): void {
   child.unref();
 }
 
+type JiraScanDocInfo =
+  | { kind: "created"; key: string; browseUrl: string }
+  | { kind: "skipped"; reason: string }
+  | { kind: "error"; message: string };
+
+function escapeMdTableCell(text: string): string {
+  return text.replace(/\|/g, "\\|").replace(/\r?\n/g, " ");
+}
+
 function writeScanDoc(params: {
   scanName: string;
   region: string;
@@ -79,8 +68,8 @@ function writeScanDoc(params: {
   dashboardUrl: string;
   completed: boolean;
   errorMessage?: string;
-  /** When true, add a note that the API uses bs-local.com for the same pages. */
   localPagesShownAsLocalhost?: boolean;
+  jira?: JiraScanDocInfo;
 }): void {
   mkdirSync(resolve(_cwd, "docs", "a11y"), { recursive: true });
   const id = params.scanId !== undefined ? String(params.scanId) : "—";
@@ -132,6 +121,29 @@ function writeScanDoc(params: {
     "In the app: **Accessibility Testing** → **Website scan** → select this scan → **Scan runs**.",
     "",
   );
+  if (params.jira) {
+    lines.push("## Jira", "", "| Field | Value |", "| --- | --- |");
+    if (params.jira.kind === "created") {
+      lines.push(
+        "| Status | Created |",
+        `| Issue | [\`${params.jira.key}\`](${params.jira.browseUrl}) |`,
+        `| Browse | ${params.jira.browseUrl} |`,
+        "",
+      );
+    } else if (params.jira.kind === "skipped") {
+      lines.push(
+        "| Status | Skipped |",
+        `| Reason | ${escapeMdTableCell(params.jira.reason)} |`,
+        "",
+      );
+    } else {
+      lines.push(
+        "| Status | Error |",
+        `| Message | ${escapeMdTableCell(params.jira.message)} |`,
+        "",
+      );
+    }
+  }
   if (params.errorMessage) {
     lines.push("## Error", "", params.errorMessage, "");
   }
@@ -147,7 +159,6 @@ function writeScanDoc(params: {
   console.log(`Wrote ${SCAN_DOC}`);
 }
 
-/** Minimal .env loader (no dotenv dep); matches Next-style precedence: .env then .env.local overrides. */
 function parseEnvLine(line: string): [string, string] | undefined {
   const trimmed = line.trim();
   if (!trimmed || trimmed.startsWith("#")) return undefined;
@@ -198,16 +209,13 @@ function localStartTimeoutMs(): number {
   return Number.isFinite(n) && n > 0 ? n : 120_000;
 }
 
-/**
- * Website Scanner can take a long time for many URLs; default 5 min is too short for large scans.
- */
 function defaultPollTimeoutMs(urlCount: number): number {
   if (urlCount <= 1) {
-    return 600_000; // 10 min — single page
+    return 600_000;
   }
-  const perUrlMs = 120_000; // ~2 min per URL (heuristic)
-  const minMs = 900_000; // 15 min minimum for any multi-URL run
-  const maxMs = 14_400_000; // 4 h cap
+  const perUrlMs = 120_000;
+  const minMs = 900_000;
+  const maxMs = 14_400_000;
   return Math.min(maxMs, Math.max(minMs, urlCount * perUrlMs));
 }
 
@@ -237,11 +245,6 @@ function withTimeout<T>(
   });
 }
 
-/**
- * `new URL()` requires a scheme. Values like `localhost:3000` (common in .env) throw "Invalid URL"
- * unless we prepend http:// or https://.
- * Also strip BOM / zero-width chars (copy-paste, UTF-8 quirks); trim() alone is not enough.
- */
 function normalizeScanUrl(raw: string): string {
   const t = raw.replace(/\uFEFF|\u200B|\u200C|\u200D|\u2060/g, "").trim();
   if (!t) return t;
@@ -251,7 +254,6 @@ function normalizeScanUrl(raw: string): string {
   return `http://${t}`;
 }
 
-/** Resolve pathname (e.g. `/theming`) against base origin; collapse `///` and surface bad paths. */
 function joinOriginPath(baseOrigin: string, pathname: string): string {
   const collapsed = (pathname || "/").replace(/\/+/g, "/");
   const pathOnly = collapsed.startsWith("/") ? collapsed : `/${collapsed}`;
@@ -279,7 +281,6 @@ function getRegion(): Region {
   return "us";
 }
 
-/** Slugs for `/demo/[name]` — parsed from the demos object (avoid importing demos, which loads React). */
 function extractDemoRouteSlugs(): string[] {
   const p = resolve(_cwd, "src/app/demo/[name]/index.tsx");
   if (!existsSync(p)) {
@@ -414,7 +415,6 @@ async function discoverProjectUrlPaths(): Promise<string[]> {
   return sorted;
 }
 
-/** Origin only (scheme + host + port). `URL#host` already includes the port — do not append `u.port` again. */
 function originFromUrl(url: string): string {
   const u = new URL(url);
   return `${u.protocol}//${u.host}`;
@@ -427,44 +427,51 @@ Usage:
   pnpm run browserstack:a11y
       Scan every discovered route (multi-page). Opens dashboard when the run finishes.
 
-  pnpm run browserstack:a11y -- <path-or-full-url>
-      Single page only (path is joined to BROWSERSTACK_A11Y_URL origin, or LOCAL_A11Y_BASE).
-      Opens the same dashboard when the scan completes.
+  pnpm run browserstack:a11y -- <path-or-full-url> [<path-or-full-url> ...]
+      One or more pages in a single scan. Paths are joined to BROWSERSTACK_A11Y_URL origin
+      (or LOCAL_A11Y_BASE). If the first token is a full URL, later path-only tokens use that URL’s origin.
 
 Examples:
   pnpm run browserstack:a11y -- /theming
+  pnpm run browserstack:a11y --/theming
+      (same as above if you omit the space before the path)
+  pnpm run browserstack:a11y -- /theming /demo/button /primitives/input
+      Scan several routes in one BrowserStack job.
   pnpm run browserstack:a11y -- demo/button
   pnpm run browserstack:a11y -- http://localhost:3000/primitives/input
 
 Env: BROWSERSTACK_USERNAME, BROWSERSTACK_ACCESS_KEY, BROWSERSTACK_A11Y_URL (default origin http://localhost:3000).
+Optional Jira: set JIRA_BASE_URL, JIRA_EMAIL, JIRA_API_TOKEN, JIRA_PROJECT_KEY (issues only after a successful scan).
 `);
 }
 
-/**
- * First CLI argument (if present): scan exactly that page and skip route discovery.
- * Accepts a path (/foo), path without leading slash (foo), or a full URL.
- */
-function applyCliPagePathArg(argv: string[]): void {
-  const filtered = argv.filter((a) => a !== "--");
-  let pathArg: string | undefined;
+function collectCliPathTokens(filtered: string[]): string[] {
+  const tokens: string[] = [];
   for (const a of filtered) {
     if (a === "--help" || a === "-h") {
       printBrowserstackCliHelp();
       process.exit(0);
     }
-    if (!a.startsWith("-")) {
-      pathArg = a;
-      break;
+    if (a.startsWith("--/")) {
+      tokens.push(a.slice(2));
+      continue;
     }
+    if (a.startsWith("-")) {
+      continue;
+    }
+    tokens.push(a);
   }
-  if (pathArg === undefined) return;
+  return tokens;
+}
 
+function applySingleCliPageToken(pathArg: string): void {
   const trimmed = pathArg.trim();
   if (!trimmed) return;
 
   if (/^[a-zA-Z][a-zA-Z0-9+.-]*:/.test(trimmed)) {
     process.env.BROWSERSTACK_A11Y_URL = normalizeScanUrl(trimmed);
     process.env.BROWSERSTACK_A11Y_DISCOVER = "0";
+    process.env.BROWSERSTACK_A11Y_EXPLICIT_URLS = undefined;
     console.log(`Single-page scan (CLI): ${process.env.BROWSERSTACK_A11Y_URL}`);
     return;
   }
@@ -480,17 +487,88 @@ function applyCliPagePathArg(argv: string[]): void {
   const merged = joinOriginPath(origin, pathPart);
   process.env.BROWSERSTACK_A11Y_URL = merged;
   process.env.BROWSERSTACK_A11Y_DISCOVER = "0";
+  process.env.BROWSERSTACK_A11Y_EXPLICIT_URLS = undefined;
   console.log(`Single-page scan (CLI): ${merged}`);
 }
 
-/**
- * Multi-page: discover all routes when scan URL is a site root (path / or empty) and
- * BROWSERSTACK_A11Y_DISCOVER is not "0". Otherwise a single URL is scanned.
- */
+function applyMultiCliPageTokens(tokens: string[]): void {
+  const baseRaw =
+    process.env.BROWSERSTACK_A11Y_URL?.trim() ||
+    process.env.A11Y_SCAN_URL?.trim() ||
+    process.env.LOCAL_A11Y_BASE?.trim() ||
+    "http://localhost:3000";
+
+  const first = tokens[0].trim();
+  const urls: string[] = [];
+
+  if (/^[a-zA-Z][a-zA-Z0-9+.-]*:/.test(first)) {
+    const firstUrl = normalizeScanUrl(first);
+    urls.push(firstUrl);
+    const origin = originFromUrl(firstUrl);
+    for (let i = 1; i < tokens.length; i++) {
+      const t = tokens[i].trim();
+      if (/^[a-zA-Z][a-zA-Z0-9+.-]*:/.test(t)) {
+        urls.push(normalizeScanUrl(t));
+      } else {
+        const pathPart = t.startsWith("/") ? t : `/${t}`;
+        urls.push(joinOriginPath(origin, pathPart));
+      }
+    }
+  } else {
+    const normalized = normalizeScanUrl(baseRaw);
+    const origin = originFromUrl(normalized);
+    for (const t of tokens) {
+      const trimmed = t.trim();
+      if (/^[a-zA-Z][a-zA-Z0-9+.-]*:/.test(trimmed)) {
+        urls.push(normalizeScanUrl(trimmed));
+      } else {
+        const pathPart = trimmed.startsWith("/") ? trimmed : `/${trimmed}`;
+        urls.push(joinOriginPath(origin, pathPart));
+      }
+    }
+  }
+
+  process.env.BROWSERSTACK_A11Y_URL = urls[0];
+  process.env.BROWSERSTACK_A11Y_EXPLICIT_URLS = JSON.stringify(urls);
+  process.env.BROWSERSTACK_A11Y_DISCOVER = "0";
+  console.log(`Multi-page scan (CLI, ${urls.length} URLs): ${urls.join(", ")}`);
+}
+
+function applyCliPagePathArg(argv: string[]): void {
+  const filtered = argv.filter((a) => a !== "--");
+  const tokens = collectCliPathTokens(filtered);
+  if (tokens.length === 0) {
+    return;
+  }
+  if (tokens.length === 1) {
+    applySingleCliPageToken(tokens[0]);
+    return;
+  }
+  applyMultiCliPageTokens(tokens);
+}
+
 async function resolveScanUrls(scanUrl: string): Promise<{
   urls: string[];
   mode: "single" | "multi";
 }> {
+  const explicitRaw = process.env.BROWSERSTACK_A11Y_EXPLICIT_URLS?.trim();
+  if (explicitRaw) {
+    try {
+      const parsed = JSON.parse(explicitRaw) as unknown;
+      if (
+        Array.isArray(parsed) &&
+        parsed.length > 0 &&
+        parsed.every((x) => typeof x === "string")
+      ) {
+        const urls = parsed as string[];
+        return {
+          urls,
+          mode: urls.length > 1 ? "multi" : "single",
+        };
+      }
+    } catch {}
+  }
+
   let u: URL;
   try {
     u = new URL(scanUrl);
@@ -530,10 +608,6 @@ function isLocalhostUrl(url: string): boolean {
   }
 }
 
-/**
- * Website Scanner rejects raw localhost in `urlList`. BrowserStack maps local hosts to bs-local.com
- * when BrowserStack Local is running.
- */
 function toScannerApiUrl(url: string): string {
   try {
     const parsed = new URL(url);
@@ -556,6 +630,268 @@ function toScannerApiUrl(url: string): string {
 
 function basicAuthHeader(username: string, accessKey: string): string {
   return `Basic ${Buffer.from(`${username}:${accessKey}`).toString("base64")}`;
+}
+
+function jiraBasicAuthHeader(email: string, apiToken: string): string {
+  return `Basic ${Buffer.from(`${email}:${apiToken}`).toString("base64")}`;
+}
+
+function normalizeJiraBaseUrl(raw: string): string {
+  const t = raw.trim().replace(/\/+$/, "");
+  if (!t) return t;
+  if (!/^https?:\/\//i.test(t)) {
+    return `https://${t}`;
+  }
+  return t;
+}
+
+function envTruthy(name: string): boolean {
+  const v = process.env[name]?.trim().toLowerCase();
+  return v === "1" || v === "true" || v === "yes";
+}
+
+function jiraExplicitlyDisabled(): boolean {
+  const v = process.env.JIRA_CREATE_ISSUE?.trim().toLowerCase();
+  return v === "0" || v === "false" || v === "no" || v === "off";
+}
+
+function jiraCredentialsComplete(): boolean {
+  return !!(
+    process.env.JIRA_BASE_URL?.trim() &&
+    process.env.JIRA_EMAIL?.trim() &&
+    process.env.JIRA_API_TOKEN?.trim() &&
+    process.env.JIRA_PROJECT_KEY?.trim()
+  );
+}
+
+function jiraCreateIssueRequested(): boolean {
+  if (jiraExplicitlyDisabled()) return false;
+  if (envTruthy("JIRA_CREATE_ISSUE")) return true;
+  return jiraCredentialsComplete();
+}
+
+function jiraFetchTimeoutMs(): number {
+  const n = Number(process.env.JIRA_FETCH_TIMEOUT_MS);
+  return Number.isFinite(n) && n > 0 ? n : 30_000;
+}
+
+function parseJiraLabels(): string[] | undefined {
+  const raw = process.env.JIRA_LABELS?.trim();
+  if (!raw) return undefined;
+  const labels = raw
+    .split(",")
+    .map((s) => s.trim())
+    .filter(Boolean);
+  return labels.length > 0 ? labels : undefined;
+}
+
+interface JiraAdfDoc {
+  type: "doc";
+  version: 1;
+  content: unknown[];
+}
+
+function jiraAdfDescription(params: {
+  intro: string;
+  lines: string[];
+  linkLabel: string;
+  linkUrl: string;
+}): JiraAdfDoc {
+  const content: unknown[] = [
+    {
+      type: "paragraph",
+      content: [{ type: "text", text: params.intro }],
+    },
+  ];
+  for (const line of params.lines) {
+    content.push({
+      type: "paragraph",
+      content: [{ type: "text", text: line }],
+    });
+  }
+  content.push({
+    type: "paragraph",
+    content: [
+      { type: "text", text: `${params.linkLabel}: ` },
+      {
+        type: "text",
+        text: params.linkUrl,
+        marks: [{ type: "link", attrs: { href: params.linkUrl } }],
+      },
+    ],
+  });
+  return { type: "doc", version: 1, content };
+}
+
+interface JiraCreateIssueApiResponse {
+  id: string;
+  key: string;
+  self: string;
+}
+
+function truncateJiraSummary(text: string, max = 240): string {
+  if (text.length <= max) return text;
+  return `${text.slice(0, Math.max(0, max - 1))}…`;
+}
+
+async function postJiraIssueApi(params: {
+  scanName: string;
+  region: string;
+  scannedUrls: string[];
+  scanId?: number;
+  scanRunId?: number;
+  dashboardUrl: string;
+}): Promise<JiraCreateIssueApiResponse> {
+  const baseRaw = process.env.JIRA_BASE_URL?.trim();
+  const email = process.env.JIRA_EMAIL?.trim();
+  const apiToken = process.env.JIRA_API_TOKEN?.trim();
+  const projectKey = process.env.JIRA_PROJECT_KEY?.trim();
+  const issueType = process.env.JIRA_ISSUE_TYPE?.trim() || "Task";
+  const priorityName = process.env.JIRA_PRIORITY_NAME?.trim();
+
+  if (!baseRaw || !email || !apiToken || !projectKey) {
+    throw new Error("Jira configuration incomplete.");
+  }
+
+  const baseUrl = normalizeJiraBaseUrl(baseRaw);
+  const browseBase = `${baseUrl}/browse`;
+  const summary = truncateJiraSummary(`[A11y scan] ${params.scanName}`);
+
+  const n = params.scannedUrls.length;
+  const urlSummary =
+    n === 1
+      ? params.scannedUrls[0]
+      : `${n} URLs (first: ${params.scannedUrls[0]})`;
+
+  const lines: string[] = [
+    `Region: ${params.region}`,
+    `Pages: ${urlSummary}`,
+    `Scan project id: ${params.scanId ?? "—"}`,
+    `Scan run id: ${params.scanRunId ?? "—"}`,
+    "Status: completed",
+  ];
+
+  const intro = "BrowserStack Website Scanner finished successfully.";
+
+  const description = jiraAdfDescription({
+    intro,
+    lines,
+    linkLabel: "BrowserStack dashboard",
+    linkUrl: params.dashboardUrl,
+  });
+
+  const fields: Record<string, unknown> = {
+    project: { key: projectKey },
+    summary,
+    description,
+    issuetype: { name: issueType },
+  };
+
+  const labels = parseJiraLabels();
+  if (labels) {
+    fields.labels = labels;
+  }
+  if (priorityName) {
+    fields.priority = { name: priorityName };
+  }
+
+  const auth = jiraBasicAuthHeader(email, apiToken);
+  const apiUrl = `${baseUrl}/rest/api/3/issue`;
+  const timeoutMs = jiraFetchTimeoutMs();
+
+  let res: Response;
+  try {
+    res = await fetch(apiUrl, {
+      method: "POST",
+      headers: {
+        Authorization: auth,
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      body: JSON.stringify({ fields }),
+      signal: AbortSignal.timeout(timeoutMs),
+    });
+  } catch (e) {
+    const msg = e instanceof Error ? e.message : String(e);
+    throw new Error(`Jira create issue request failed: ${msg}`);
+  }
+
+  const text = await res.text();
+  let json: unknown;
+  try {
+    json = JSON.parse(text) as Record<string, unknown>;
+  } catch {
+    throw new Error(
+      `Jira create issue: invalid JSON (${res.status}): ${text.slice(0, 400)}`,
+    );
+  }
+
+  if (!res.ok) {
+    const errObj = json as {
+      errorMessages?: string[];
+      errors?: Record<string, string>;
+    };
+    const detail =
+      errObj.errorMessages?.join("; ") ||
+      (errObj.errors && JSON.stringify(errObj.errors)) ||
+      text.slice(0, 500);
+    throw new Error(`Jira create issue failed (${res.status}): ${detail}`);
+  }
+
+  const created = json as JiraCreateIssueApiResponse;
+  if (!created.key) {
+    throw new Error(
+      `Jira create issue: unexpected response: ${text.slice(0, 400)}`,
+    );
+  }
+  console.log(
+    `Jira issue created: ${created.key} (${browseBase}/${created.key})`,
+  );
+  return created;
+}
+
+/** Only runs after BrowserStack reports scan status `completed` (no Jira on failed or timed-out scans). */
+async function runJiraIntegration(params: {
+  scanName: string;
+  region: string;
+  scannedUrls: string[];
+  scanId?: number;
+  scanRunId?: number;
+  dashboardUrl: string;
+}): Promise<JiraScanDocInfo | undefined> {
+  if (!jiraCreateIssueRequested()) {
+    return undefined;
+  }
+
+  const baseRaw = process.env.JIRA_BASE_URL?.trim();
+  const email = process.env.JIRA_EMAIL?.trim();
+  const apiToken = process.env.JIRA_API_TOKEN?.trim();
+  const projectKey = process.env.JIRA_PROJECT_KEY?.trim();
+
+  if (!baseRaw || !email || !apiToken || !projectKey) {
+    console.warn(
+      [
+        "Jira integration is enabled but Jira is not fully configured.",
+        "Set JIRA_BASE_URL, JIRA_EMAIL, JIRA_API_TOKEN, and JIRA_PROJECT_KEY (see script header).",
+      ].join(" "),
+    );
+    return {
+      kind: "skipped",
+      reason:
+        "Jira integration is enabled but JIRA_BASE_URL, JIRA_EMAIL, JIRA_API_TOKEN, and JIRA_PROJECT_KEY must all be set.",
+    };
+  }
+
+  try {
+    const created = await postJiraIssueApi(params);
+    const baseUrl = normalizeJiraBaseUrl(baseRaw);
+    const browseUrl = `${baseUrl}/browse/${created.key}`;
+    return { kind: "created", key: created.key, browseUrl };
+  } catch (e) {
+    const msg = e instanceof Error ? e.message : String(e);
+    console.warn(`Jira: ${msg} (scan result is unchanged.)`);
+    return { kind: "error", message: msg };
+  }
 }
 
 interface CreateScanResponse {
@@ -818,10 +1154,13 @@ async function main(): Promise<void> {
     );
   }
 
+  let scanId: number | undefined;
+  let scanRunId: number | undefined;
+
   try {
     const created = await createScan(baseUrl, authHeader, payload);
-    const scanId = created.data?.id;
-    const scanRunId = created.data?.scanRunId;
+    scanId = created.data?.id;
+    scanRunId = created.data?.scanRunId;
 
     if (scanId === undefined || scanRunId === undefined) {
       throw new Error(
@@ -857,6 +1196,14 @@ async function main(): Promise<void> {
       const state = status.data?.status;
       if (state === "completed") {
         console.log("Scan status: completed");
+        const jiraDoc = await runJiraIntegration({
+          scanName,
+          region,
+          scannedUrls: urls,
+          scanId,
+          scanRunId,
+          dashboardUrl,
+        });
         writeScanDoc({
           scanName,
           region,
@@ -866,6 +1213,7 @@ async function main(): Promise<void> {
           dashboardUrl,
           completed: true,
           localPagesShownAsLocalhost: isLocalhostUrl(urls[0] ?? ""),
+          jira: jiraDoc,
         });
         openInBrowser(dashboardUrl);
         console.log(`Dashboard: ${dashboardUrl}`);
@@ -914,6 +1262,8 @@ async function main(): Promise<void> {
         scanName,
         region,
         scannedUrls: urls,
+        scanId,
+        scanRunId,
         dashboardUrl,
         completed: false,
         errorMessage: msg,
