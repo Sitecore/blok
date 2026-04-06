@@ -257,7 +257,12 @@ function PromptInput({
   );
 
   const hasFiles = files.length > 0;
-  const isFloatingInline = variant === "floating" && !isMultiline && !hasFiles;
+  /** Single-line floating: one horizontal row for toolbar + textarea + actions. */
+  const floatingSingleLine = variant === "floating" && !isMultiline;
+  /** No attachments — entire form is that single row. */
+  const floatingPureInline = floatingSingleLine && !hasFiles;
+  /** Attachments on first row, then same centered row as `floatingPureInline`. */
+  const floatingAttachmentsRow = floatingSingleLine && hasFiles;
 
   return (
     <PromptInputContext.Provider
@@ -287,10 +292,12 @@ function PromptInput({
           "group/prompt-input relative bg-white dark:bg-input/30 border transition-shadow",
           "focus-within:border-primary focus-within:ring-1 focus-within:ring-primary/50",
           variant === "default" && "flex flex-col w-full rounded-xl",
-          isFloatingInline &&
+          floatingPureInline &&
             "flex flex-row items-center gap-2 w-full max-w-2xl rounded-xl shadow-lg px-3 py-2",
+          floatingAttachmentsRow &&
+            "flex flex-row flex-wrap items-center gap-x-2 gap-y-2 w-full max-w-2xl rounded-xl shadow-lg px-3 pb-2 pt-0",
           variant === "floating" &&
-            !isFloatingInline &&
+            !floatingSingleLine &&
             "flex flex-col w-full max-w-2xl rounded-xl shadow-lg",
           className,
         )}
@@ -325,15 +332,23 @@ function PromptInputHeader({
   ...props
 }: React.ComponentProps<"div">) {
   const { variant, isMultiline, files } = usePromptInputContext();
-  const isFloatingInline =
+  const hideHeader =
     variant === "floating" && !isMultiline && files.length === 0;
 
-  if (isFloatingInline) return null;
+  if (hideHeader) return null;
+
+  const floatingSingleLine = variant === "floating" && !isMultiline;
 
   return (
     <div
       data-slot="prompt-input-header"
-      className={cn("px-3 pt-3", className)}
+      className={cn(
+        "pt-3",
+        floatingSingleLine && files.length > 0
+          ? "w-full min-w-full shrink-0 basis-full px-0"
+          : "px-3",
+        className,
+      )}
       {...props}
     >
       {children}
@@ -346,17 +361,16 @@ function PromptInputHeader({
 // ---------------------------------------------------------------------------
 
 function PromptInputBody({ className, ...props }: React.ComponentProps<"div">) {
-  const { variant, isMultiline, files } = usePromptInputContext();
-  const isFloatingInline =
-    variant === "floating" && !isMultiline && files.length === 0;
+  const { variant, isMultiline } = usePromptInputContext();
+  const floatingSingleLine = variant === "floating" && !isMultiline;
 
   return (
     <div
       data-slot="prompt-input-body"
       className={cn(
         "flex-1",
-        isFloatingInline ? "min-w-0" : "px-4",
-        variant === "floating" && !isFloatingInline && "pt-3",
+        floatingSingleLine ? "min-w-0" : "px-4",
+        variant === "floating" && !floatingSingleLine && "pt-3",
         className,
       )}
       {...props}
@@ -474,16 +488,15 @@ function PromptInputFooter({
   className,
   ...props
 }: React.ComponentProps<"div">) {
-  const { variant, isMultiline, files } = usePromptInputContext();
-  const isFloatingInline =
-    variant === "floating" && !isMultiline && files.length === 0;
+  const { variant, isMultiline } = usePromptInputContext();
+  const floatingSingleLine = variant === "floating" && !isMultiline;
 
   return (
     <div
       data-slot="prompt-input-footer"
       className={cn(
         "flex items-center gap-2",
-        isFloatingInline ? "shrink-0" : "justify-between px-3 pb-3",
+        floatingSingleLine ? "shrink-0" : "justify-between px-3 pb-3",
         className,
       )}
       {...props}
@@ -509,8 +522,9 @@ function PromptInputToolbar({
   className,
   ...props
 }: PromptInputToolbarProps) {
-  const { variant, isMultiline, files } = usePromptInputContext();
-  const isFloatingColumn = isMultiline || files.length > 0;
+  const { variant, isMultiline } = usePromptInputContext();
+  /** Only multiline floating moves the + button to the footer toolbar. */
+  const isFloatingColumn = isMultiline;
 
   if (variant === "floating") {
     if (inline && isFloatingColumn) return null;
@@ -787,18 +801,22 @@ function PromptInputAttachmentBadge({
     <Badge
       colorScheme="neutral"
       size="lg"
-      className="min-h-13 shrink-0 gap-2 overflow-visible! py-1.5"
+      className="relative min-h-13 shrink-0 gap-2 overflow-visible! py-1.5"
       style={{ width: PROMPT_INPUT_ATTACHMENT_BADGE_WIDTH_PX }}
       data-slot="prompt-input-attachment-chip"
     >
       <AttachmentDocLeadingIcon kind={docKind} />
-      <div className="flex min-w-0 flex-1 flex-col justify-center gap-0.5 leading-tight">
+      <div className="flex min-w-0 flex-1 flex-col justify-center gap-0.5 pr-5 leading-tight">
         <span className="truncate text-xs font-medium">{file.name}</span>
         <span className="text-[10px] text-muted-foreground">
           {formatAttachmentSize(file.size)}
         </span>
       </div>
-      <AttachmentRemoveControl fileName={file.name} onRemove={onRemove} />
+      <AttachmentRemoveControl
+        fileName={file.name}
+        onRemove={onRemove}
+        className="absolute -right-1 -top-1 z-10 border bg-background shadow-sm"
+      />
     </Badge>
   );
 }
