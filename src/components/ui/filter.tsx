@@ -447,7 +447,7 @@ const FilterSingleSelect = React.forwardRef<
               >
                 {searchable && showSearch && (
                   <div className="mb-2">
-                    <SearchInput className="h-9 border-border has-[[data-slot=search-input-control]:focus-visible]:border-primary">
+                    <SearchInput className="h-10 border-border has-[[data-slot=search-input-control]:focus-visible]:border-primary">
                       <SearchInputLeftElement>
                         <Icon
                           path={mdiMagnify}
@@ -1010,7 +1010,7 @@ const FilterMultiSelect = React.forwardRef<
             >
               {searchable && showSearch && (
                 <div className="mb-2">
-                  <SearchInput className="h-9 border-border has-[[data-slot=search-input-control]:focus-visible]:border-primary">
+                  <SearchInput className="h-10 border-border has-[[data-slot=search-input-control]:focus-visible]:border-primary">
                     <SearchInputLeftElement>
                       <Icon
                         path={mdiMagnify}
