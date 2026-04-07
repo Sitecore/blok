@@ -4,16 +4,16 @@ import type * as React from "react";
 import { cn } from "@/lib/utils";
 
 const cardVariants = cva(
-  "flex flex-col gap-6 rounded-xl border transition-shadow",
+  "flex flex-col gap-6 border transition-shadow focus-visible:outline-none",
   {
     variants: {
       elevation: {
         none: "shadow-none",
-        xs: "shadow-xs",
-        sm: "shadow-sm",
-        base: "shadow-base",
-        md: "shadow-md",
-        lg: "shadow-lg",
+        xs: "shadow-xs hover:shadow-sm focus-visible:shadow-sm",
+        sm: "shadow-sm hover:shadow-base focus-visible:shadow-base",
+        base: "shadow-base hover:shadow-md focus-visible:shadow-md",
+        md: "shadow-md hover:shadow-lg focus-visible:shadow-lg",
+        lg: "shadow-lg hover:shadow-xl focus-visible:shadow-xl",
       },
       style: {
         flat: "bg-body-bg border-transparent",
@@ -31,6 +31,12 @@ const cardVariants = cva(
       style: "flat",
       padding: "lg",
     },
+    compoundVariants: [
+      {
+        style: "outline",
+        class: "shadow-none hover:shadow-base focus-visible:shadow-base",
+      },
+    ],
   },
 );
 

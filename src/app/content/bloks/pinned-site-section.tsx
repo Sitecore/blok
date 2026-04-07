@@ -308,7 +308,7 @@ export default function PinnedSitesSectionDemo() {
   // Handlers for dashboard action
   const handleDashboard = useCallback((site: SiteFavoritesResponse) => {
     console.log(`Opening dashboard for site: ${site.displayName} (${site.id})`);
-  
+
     // TODO: Add your navigation logic here
     // Example with Next.js router:
     // router.push(`/collection/${site.collectionId}/sites/${site.id}/dashboard`);
@@ -317,7 +317,7 @@ export default function PinnedSitesSectionDemo() {
   // Handlers for settings action
   const handleSettings = useCallback((site: SiteFavoritesResponse) => {
     console.log(`Opening settings for site: ${site.displayName} (${site.id})`);
-  
+
     // TODO: Add your navigation logic here
     // Example with Next.js router:
     // router.push(`/collection/${site.collectionId}/sites/${site.id}/settings`);
@@ -344,11 +344,14 @@ export default function PinnedSitesSectionDemo() {
   };
 
   // Handlers for duplicate action
-  const handleDuplicate = useCallback((siteId: string, suggestedName: string) => {
-    setCurrentSiteId(siteId);
-    setDuplicateSiteName(suggestedName);
-    setDuplicateDialogOpen(true);
-  }, []);
+  const handleDuplicate = useCallback(
+    (siteId: string, suggestedName: string) => {
+      setCurrentSiteId(siteId);
+      setDuplicateSiteName(suggestedName);
+      setDuplicateDialogOpen(true);
+    },
+    [],
+  );
 
   const handleDuplicateSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -364,52 +367,55 @@ export default function PinnedSitesSectionDemo() {
   };
 
   // Footer buttons factory - used by both sections
-  const getFooterButtons = useCallback((site: SiteFavoritesResponse) => [
-    {
-      icon: <FileEdit className="h-3.5 w-3.5" />,
-      label: "Page builder",
-      onClick: () => handlePageBuilder(site),
-    },
-    {
-      icon: <LayoutGrid className="h-3.5 w-3.5" />,
-      label: "Dashboard",
-      onClick: () => handleDashboard(site),
-    },
-  ], [handlePageBuilder, handleDashboard]);
+  const getFooterButtons = useCallback(
+    (site: SiteFavoritesResponse) => [
+      {
+        icon: <FileEdit className="h-3.5 w-3.5" />,
+        label: "Page builder",
+        onClick: () => handlePageBuilder(site),
+      },
+      {
+        icon: <LayoutGrid className="h-3.5 w-3.5" />,
+        label: "Dashboard",
+        onClick: () => handleDashboard(site),
+      },
+    ],
+    [handlePageBuilder, handleDashboard],
+  );
 
   // Dropdown actions factory - used by All Sites section
   const getDropdownActions = useCallback(
     (site: SiteFavoritesResponse, isPinned: boolean) => [
-    {
-      icon: <Settings className="mr-2 h-4 w-4" />,
-      label: "Settings",
-      onClick: () => handleSettings(site),
-      show: true,
-    },
-    {
-      icon: isPinned ? (
-        <PinOff className="mr-2 h-4 w-4" />
-      ) : (
-        <Pin className="mr-2 h-4 w-4" />
-      ),
-      label: isPinned ? "Unpin Site" : "Pin Site",
-      onClick: () => (isPinned ? handleUnpin(site.id) : handlePin(site.id)),
-      show: true,
-    },
-    {
-      icon: <Edit className="mr-2 h-4 w-4" />,
-      label: "Rename",
-      onClick: () => handleRename(site.id, site.displayName || site.name),
-      show: site.permissions.canRename,
-    },
-    {
-      icon: <Copy className="mr-2 h-4 w-4" />,
-      label: "Duplicate",
-      onClick: () =>
-        handleDuplicate(site.id, `${site.displayName || site.name} (Copy)`),
-      show: site.permissions.canCreate,
-    },
-  ],
+      {
+        icon: <Settings className="mr-2 h-4 w-4" />,
+        label: "Settings",
+        onClick: () => handleSettings(site),
+        show: true,
+      },
+      {
+        icon: isPinned ? (
+          <PinOff className="mr-2 h-4 w-4" />
+        ) : (
+          <Pin className="mr-2 h-4 w-4" />
+        ),
+        label: isPinned ? "Unpin Site" : "Pin Site",
+        onClick: () => (isPinned ? handleUnpin(site.id) : handlePin(site.id)),
+        show: true,
+      },
+      {
+        icon: <Edit className="mr-2 h-4 w-4" />,
+        label: "Rename",
+        onClick: () => handleRename(site.id, site.displayName || site.name),
+        show: site.permissions.canRename,
+      },
+      {
+        icon: <Copy className="mr-2 h-4 w-4" />,
+        label: "Duplicate",
+        onClick: () =>
+          handleDuplicate(site.id, `${site.displayName || site.name} (Copy)`),
+        show: site.permissions.canCreate,
+      },
+    ],
     [handleSettings, handlePin, handleUnpin, handleRename, handleDuplicate],
   );
 

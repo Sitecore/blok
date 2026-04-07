@@ -142,6 +142,7 @@ function SelectReact<
   className,
   isDisabled,
   instanceId,
+  components: userComponents,
   ...props
 }: SelectReactProps<Option, IsMulti, Group>) {
   // Generate a stable ID to prevent hydration mismatches
@@ -281,7 +282,7 @@ function SelectReact<
         MultiValueContainer,
         MultiValueRemove,
         Option: CustomOption as typeof components.Option,
-        ...props.components,
+        ...userComponents,
       }}
       isDisabled={isDisabled}
       isOptionDisabled={(option) => !!(option as SelectReactOption).disabled}
