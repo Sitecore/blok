@@ -68,7 +68,7 @@ export default function ComboboxWithCustomItemsDemo() {
       items={countries.filter((country) => country.code !== "")}
       itemToStringValue={(country: (typeof countries)[number]) => country.label}
     >
-      <ComboboxInput placeholder="Search countries..." />
+      <ComboboxInput placeholder="Search countries..." clear-aria-label="Clear combobox" aria-label="Search countries..." />
       <ComboboxContent>
         <ComboboxEmpty>No countries found.</ComboboxEmpty>
         <ComboboxList>

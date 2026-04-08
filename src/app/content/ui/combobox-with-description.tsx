@@ -81,7 +81,7 @@ export default function ComboboxWithDescriptionDemo() {
           items={itemsAuthoring}
           itemToStringValue={(item: ProductItem) => item.label}
         >
-          <ComboboxInput placeholder="XM Cloud Authoring" className="w-72" />
+          <ComboboxInput placeholder="XM Cloud Authoring" className="w-72" clear-aria-label="Clear combobox" aria-label="XM Cloud Authoring" />
           <ComboboxContent className="min-w-[22rem]">
             <ComboboxEmpty>No results found.</ComboboxEmpty>
             <ComboboxList>
@@ -105,7 +105,7 @@ export default function ComboboxWithDescriptionDemo() {
           items={itemsPlatform}
           itemToStringValue={(item: ProductItem) => item.label}
         >
-          <ComboboxInput placeholder="Platform & Data" className="w-72" />
+          <ComboboxInput placeholder="Platform & Data" className="w-72" clear-aria-label="Clear combobox" aria-label="Platform & Data" />
           <ComboboxContent className="min-w-[22rem]">
             <ComboboxEmpty>No results found.</ComboboxEmpty>
             <ComboboxList>

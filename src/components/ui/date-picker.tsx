@@ -135,7 +135,7 @@ function DatePickerSimple(props: DatePickerSimpleProps) {
 
   return (
     <Popover>
-      <PopoverTrigger asChild>
+      <PopoverTrigger id={id} asChild>
         <Button
           type="button"
           id={id}
@@ -253,7 +253,7 @@ function DatePickerWithRange(props: DatePickerWithRangeProps) {
 
   return (
     <Popover>
-      <PopoverTrigger asChild>
+      <PopoverTrigger id={id} asChild>
         <Button
           type="button"
           id={id}
