@@ -21,6 +21,8 @@ export default function InputGroupURLDemo() {
           placeholder="example.com"
           className="!pl-1"
           aria-label="Website URL"
+          name="url"
+          autoComplete="url"
         />
         <InputGroupAddon>
           <InputGroupText>https://</InputGroupText>
