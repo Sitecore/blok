@@ -1,23 +1,33 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry.json",
-  "name": "sitecore marketplace",
+  "name": "Sitecore Marketplace",
   "homepage": "https://blok.sitecore.com",
   "items": [
     {
       "name": "quickstart",
       "type": "registry:block",
-      "title": "Quickstart for React SPA Sitecore marketplace apps with marketplace sdk",
-      "description": "A quickstart for next.js Sitecore marketplace apps with marketplace sdk",
+      "title": "Quickstart for React/Vite Sitecore Marketplace apps",
+      "description": "A quickstart for React/Vite Sitecore Marketplace apps with the Marketplace SDK",
       "dependencies": ["@sitecore-marketplace-sdk/client"],
+      "registryDependencies": [
+        "https://blok.sitecore.com/r/badge.json",
+        "https://blok.sitecore.com/r/card.json",
+        "https://blok.sitecore.com/r/collapsible.json"
+      ],
       "files": [
         {
           "path": "src/marketplace/react/components/providers/marketplace.tsx",
-          "type": "registry:file",
-          "target": "app/providers/marketplace.tsx"
+          "type": "registry:component",
+          "target": "components/providers/marketplace.tsx"
         },
         {
-          "path": "src/marketplace/react/components/examples/example.tsx",
-          "type": "registry:file",
+          "path": "src/marketplace/react/components/examples/built-in-auth/application-context.tsx",
+          "type": "registry:component",
+          "target": "components/examples/built-in-auth/application-context.tsx"
+        },
+        {
+          "path": "src/marketplace/react/components/examples/built-in-auth/example.tsx",
+          "type": "registry:page",
           "target": "app/page.tsx"
         }
       ]
@@ -25,29 +35,76 @@
     {
       "name": "quickstart-with-xmc",
       "type": "registry:block",
-      "title": "Examples for React SPA Sitecore marketplace apps with marketplace sdk",
-      "description": "Examples for next.js Sitecore marketplace apps with marketplace sdk",
+      "title": "Quickstart for React/Vite with XMC API examples",
+      "description": "A quickstart for React/Vite Sitecore Marketplace apps with XMC client-side API examples",
       "dependencies": ["@sitecore-marketplace-sdk/xmc"],
+      "registryDependencies": [
+        "https://blok.sitecore.com/r/marketplace/react/quickstart.json",
+        "https://blok.sitecore.com/r/button.json",
+        "https://blok.sitecore.com/r/alert.json",
+        "https://blok.sitecore.com/r/skeleton.json",
+        "https://blok.sitecore.com/r/separator.json"
+      ],
+      "files": [
+        {
+          "path": "src/marketplace/react/components/providers/marketplace-w-xmc.tsx",
+          "type": "registry:component",
+          "target": "components/providers/marketplace.tsx"
+        },
+        {
+          "path": "src/marketplace/react/components/examples/built-in-auth/with-xmc/list-languages.tsx",
+          "type": "registry:component",
+          "target": "components/examples/built-in-auth/with-xmc/list-languages.tsx"
+        },
+        {
+          "path": "src/marketplace/react/components/examples/built-in-auth/with-xmc/example.tsx",
+          "type": "registry:page",
+          "target": "app/page.tsx"
+        }
+      ]
+    },
+    {
+      "name": "quickstart-with-custom-auth",
+      "type": "registry:block",
+      "title": "Quickstart for React/Vite with Auth0 SPA",
+      "description": "Auth0 client-side authentication for Sitecore Marketplace apps on Vite. This is SPA auth only—no Next.js middleware, route handlers, or server sessions.",
+      "dependencies": ["@auth0/auth0-react"],
       "registryDependencies": [
         "https://blok.sitecore.com/r/marketplace/react/quickstart.json"
       ],
       "files": [
         {
-          "path": "src/marketplace/react/components/providers/marketplace-w-xmc.tsx",
+          "path": "src/marketplace/react/vite-env.d.ts",
           "type": "registry:file",
-          "target": "components/providers/marketplace.tsx"
+          "target": "vite-env.d.ts"
         },
         {
-          "path": "src/marketplace/react/components/examples/with-xmc/list-languages.tsx",
+          "path": "src/marketplace/react/lib/auth/env.ts",
           "type": "registry:file",
-          "target": "components/examples/with-xmc/list-languages.tsx"
+          "target": "lib/auth/env.ts"
         },
         {
-          "path": "src/marketplace/react/components/examples/with-xmc/example.tsx",
-          "type": "registry:file",
-          "target": "app/page.tsx"
+          "path": "src/marketplace/react/components/providers/auth.tsx",
+          "type": "registry:component",
+          "target": "components/providers/auth.tsx"
+        },
+        {
+          "path": "src/marketplace/react/components/providers/with-custom-auth.tsx",
+          "type": "registry:component",
+          "target": "components/providers/with-custom-auth.tsx"
         }
-      ]
+      ],
+      "envVars": {
+        "VITE_AUTH0_DOMAIN": "https://auth.sitecorecloud.io",
+        "VITE_AUTH0_AUDIENCE": "https://api-webapp.sitecorecloud.io",
+        "VITE_AUTH0_SCOPE": "openid profile email offline_access",
+        "VITE_AUTH0_CLIENT_ID": "your-marketplace-client-id",
+        "VITE_SITECORE_APP_ID": "your-app-id",
+        "VITE_APP_BASE_URL": "https://localhost:5173",
+        "VITE_SITECORE_ORGANIZATION_ID": "your-organization-id",
+        "VITE_SITECORE_TENANT_ID": "marketplace-app-tenant-id-after-installation"
+      },
+      "docs": "Use HTTPS in development (e.g. vite-plugin-mkcert or a reverse proxy). Wrap your root with MarketplaceAppProvidersWithCustomAuth from components/providers/with-custom-auth instead of MarketplaceProvider alone. Set all VITE_* variables in .env. XMC examples in this registry use the Marketplace SDK from the browser only (quickstart-with-xmc); there is no server-side or backend-proxy block."
     }
   ]
 }
