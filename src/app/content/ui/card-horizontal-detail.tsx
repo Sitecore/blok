@@ -207,12 +207,12 @@ export default function CardHorizontalDetailDemo() {
           <HorizontalDetailCard
             variant="search"
             mediaInset={false}
-            imageSrc="/card-search.svg"
+            imageSrc="/Card-search.svg"
           />
           <HorizontalDetailCard
             variant="pdf"
             mediaInset={false}
-            imageSrc="/card-pdf.svg"
+            imageSrc="/Card-pdf.svg"
           />
         </div>
       </section>
