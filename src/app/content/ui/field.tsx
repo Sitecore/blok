@@ -21,14 +21,14 @@ export default function FieldDemo() {
         <FieldGroup>
           <Field orientation="responsive">
             <FieldLabel htmlFor="field-name">Full name</FieldLabel>
-            <Input id="field-name" name="name" autoComplete="name" placeholder="Vijithan Ramalingam" />
+            <Input id="field-name" placeholder="Vijithan Ramalingam" />
             <FieldDescription>
               This appears on invoices and emails.
             </FieldDescription>
           </Field>
           <Field>
             <FieldLabel htmlFor="field-username">Username</FieldLabel>
-            <Input id="field-username" name="username" autoComplete="username" aria-invalid />
+            <Input id="field-username" aria-invalid />
             <FieldError>Choose another username.</FieldError>
           </Field>
           <Field orientation="horizontal">

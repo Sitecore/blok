@@ -19,8 +19,6 @@ export default function FieldWithErrorDemo() {
             <Input
               id="field-error-email"
               type="email"
-              name="email"
-              autoComplete="email"
               aria-invalid
               placeholder="Enter email"
             />

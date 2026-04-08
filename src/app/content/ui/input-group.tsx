@@ -32,8 +32,6 @@ export default function InputGroupDemo() {
           placeholder="example.com"
           className="!pl-1"
           aria-label="Website URL"
-          name="url"
-          autoComplete="url"
         />
         <InputGroupAddon>
           <InputGroupText>https://</InputGroupText>
@@ -51,7 +49,7 @@ export default function InputGroupDemo() {
       </InputGroup>
       {/* Dropdown */}
       <InputGroup>
-        <InputGroupInput autoComplete="off" placeholder="Enter file name" aria-label="File name" />
+        <InputGroupInput placeholder="Enter file name" aria-label="File name" />
         <InputGroupAddon align="inline-end">
           <DropdownMenu>
             <DropdownMenuTrigger asChild>

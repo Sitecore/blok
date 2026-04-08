@@ -26,8 +26,6 @@ export default function FieldInputWithIconDemo() {
               <InputGroupInput
                 id="field-input-icon"
                 type="tel"
-                name="tel"
-                autoComplete="tel"
                 placeholder="Enter phone number"
               />
               <InputGroupAddon>

@@ -17,7 +17,7 @@ export default function InputGroupDropdownDemo() {
   return (
     <div className="grid w-full max-w-md gap-4">
       <InputGroup>
-        <InputGroupInput autoComplete="off" placeholder="Enter file name" aria-label="File name" />
+        <InputGroupInput placeholder="Enter file name" aria-label="File name" />
         <InputGroupAddon align="inline-end">
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
