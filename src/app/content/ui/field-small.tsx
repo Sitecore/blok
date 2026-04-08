@@ -35,6 +35,7 @@ export default function FieldSmallDemo() {
               id="field-sm-input"
               className="h-8 text-sm"
               placeholder="Small input"
+              autoComplete="off"
             />
             <FieldDescription>
               This Input has the prop size="sm" enabled
@@ -70,6 +71,8 @@ export default function FieldSmallDemo() {
                 id="field-sm-addon"
                 className="h-8 text-sm"
                 placeholder="Small input"
+                name="tel"
+                autoComplete="tel"
               />
             </InputGroup>
           </Field>

@@ -51,6 +51,7 @@ export default function FilterWithSearchDemo() {
         searchable
         searchPlaceholder="Search"
         noResultsText="No results found"
+        aria-label="Select an option"
       />
 
       <FilterMultiSelect
