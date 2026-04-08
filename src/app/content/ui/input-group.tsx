@@ -39,7 +39,7 @@ export default function InputGroupDemo() {
         <InputGroupAddon align="inline-end">
           <Tooltip>
             <TooltipTrigger asChild>
-              <InputGroupButton className="rounded-full" size="icon-xs">
+              <InputGroupButton className="rounded-full" size="icon-xs" aria-label="Information">
                 <Icon path={mdiInformationOutline} size={0.9} />
               </InputGroupButton>
             </TooltipTrigger>
