@@ -30,6 +30,7 @@ import {
   createContext,
   useCallback,
   useContext,
+  useEffect,
   useId,
   useLayoutEffect,
   useRef,
@@ -75,6 +76,14 @@ interface PromptInputContextValue {
   multiple?: boolean;
   maxFiles?: number;
   maxFileSize?: number;
+  /** Inline voice capture: waveform in the text area; stop on the submit control. */
+  isRecording: boolean;
+  recordingDurationSec: number;
+  recordingAnalyser: AnalyserNode | null;
+  startVoiceRecording: () => Promise<void>;
+  cancelVoiceRecording: () => void;
+  confirmVoiceRecording: () => void;
+  recordingError: string | null;
 }
 
 const PromptInputContext = createContext<PromptInputContextValue | null>(null);
@@ -118,6 +127,70 @@ export const PROMPT_INPUT_FORM_MIN_WIDTH_PX =
   3 * 6 +
   48;
 
+/** Vertical bars in the recording waveform. */
+const VOICE_WAVE_BAR_COUNT = 52;
+
+function pickAudioMimeType(): string {
+  const candidates = ["audio/webm;codecs=opus", "audio/webm", "audio/mp4"];
+  for (const t of candidates) {
+    if (
+      typeof MediaRecorder !== "undefined" &&
+      MediaRecorder.isTypeSupported(t)
+    ) {
+      return t;
+    }
+  }
+  return "";
+}
+
+/** Centered vertical frequency bars scaling from the middle. */
+function PromptInputVoiceWaveform({
+  analyser,
+}: { analyser: AnalyserNode | null }) {
+  const barRefs = useRef<(HTMLDivElement | null)[]>([]);
+
+  useEffect(() => {
+    if (!analyser) return;
+    const data = new Uint8Array(analyser.frequencyBinCount);
+    let raf = 0;
+    const tick = () => {
+      analyser.getByteFrequencyData(data);
+      const n = VOICE_WAVE_BAR_COUNT;
+      for (let i = 0; i < n; i++) {
+        const t = i / (n - 1 || 1);
+        const idx = Math.floor(t * (data.length - 1));
+        const raw = data[idx] ?? 0;
+        const v = raw / 255;
+        const eased = v ** 0.65;
+        const scale = 0.12 + eased * 0.88;
+        const el = barRefs.current[i];
+        if (el) el.style.transform = `scaleY(${scale})`;
+      }
+      raf = requestAnimationFrame(tick);
+    };
+    raf = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(raf);
+  }, [analyser]);
+
+  return (
+    <div
+      className="flex min-w-0 flex-1 items-center justify-center gap-[3px] px-1"
+      aria-hidden
+    >
+      {Array.from({ length: VOICE_WAVE_BAR_COUNT }, (_, i) => (
+        <div
+          key={i}
+          ref={(el) => {
+            barRefs.current[i] = el;
+          }}
+          className="h-7 w-0.5 shrink-0 origin-center rounded-full bg-primary dark:bg-primary/45"
+          style={{ transform: "scaleY(0.12)" }}
+        />
+      ))}
+    </div>
+  );
+}
+
 // ---------------------------------------------------------------------------
 // PromptInput (root)
 // ---------------------------------------------------------------------------
@@ -147,12 +220,28 @@ function PromptInput({
   className,
   children,
   style,
+  onKeyDown,
   ...props
 }: PromptInputProps) {
   const [files, setFiles] = useState<PromptInputFile[]>([]);
   const [isMultiline, setIsMultiline] = useState(false);
+  const [isRecording, setIsRecording] = useState(false);
+  const [recordingDurationSec, setRecordingDurationSec] = useState(0);
+  const [recordingAnalyser, setRecordingAnalyser] =
+    useState<AnalyserNode | null>(null);
+  const [recordingError, setRecordingError] = useState<string | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
+  const voiceStreamRef = useRef<MediaStream | null>(null);
+  const voiceAudioContextRef = useRef<AudioContext | null>(null);
+  const voiceMediaRecorderRef = useRef<MediaRecorder | null>(null);
+  const voiceChunksRef = useRef<Blob[]>([]);
+  const voiceDiscardRef = useRef(false);
+  const voiceMimeRef = useRef("");
+  const voiceDurationTimerRef = useRef<ReturnType<typeof setInterval> | null>(
+    null,
+  );
+  const voiceStartingRef = useRef(false);
 
   const addFiles = useCallback(
     (incoming: FileList | File[]) => {
@@ -228,9 +317,159 @@ function PromptInput({
     fileInputRef.current?.click();
   }, []);
 
+  const cleanupVoiceResources = useCallback(() => {
+    voiceStreamRef.current?.getTracks().forEach((t) => t.stop());
+    voiceStreamRef.current = null;
+    const ctx = voiceAudioContextRef.current;
+    voiceAudioContextRef.current = null;
+    if (ctx && ctx.state !== "closed") {
+      void ctx.close().catch(() => {});
+    }
+    voiceMediaRecorderRef.current = null;
+    setRecordingAnalyser(null);
+  }, []);
+
+  const startVoiceRecording = useCallback(async () => {
+    if (
+      voiceStartingRef.current ||
+      voiceMediaRecorderRef.current?.state === "recording"
+    ) {
+      return;
+    }
+    voiceStartingRef.current = true;
+    setRecordingError(null);
+    voiceDiscardRef.current = false;
+    try {
+      const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+      voiceStreamRef.current = stream;
+
+      const audioCtx = new AudioContext();
+      voiceAudioContextRef.current = audioCtx;
+      if (audioCtx.state === "suspended") {
+        await audioCtx.resume();
+      }
+      const source = audioCtx.createMediaStreamSource(stream);
+      const analyser = audioCtx.createAnalyser();
+      analyser.fftSize = 512;
+      analyser.smoothingTimeConstant = 0.72;
+      source.connect(analyser);
+      setRecordingAnalyser(analyser);
+
+      const mime = pickAudioMimeType();
+      voiceMimeRef.current = mime;
+      const recorder = mime
+        ? new MediaRecorder(stream, { mimeType: mime })
+        : new MediaRecorder(stream);
+      voiceMediaRecorderRef.current = recorder;
+      voiceChunksRef.current = [];
+
+      recorder.ondataavailable = (e) => {
+        if (e.data.size > 0) voiceChunksRef.current.push(e.data);
+      };
+
+      recorder.onstop = () => {
+        if (voiceDurationTimerRef.current) {
+          clearInterval(voiceDurationTimerRef.current);
+          voiceDurationTimerRef.current = null;
+        }
+
+        const discard = voiceDiscardRef.current;
+        const chunks = voiceChunksRef.current;
+        voiceChunksRef.current = [];
+        const usedMime = voiceMimeRef.current;
+
+        cleanupVoiceResources();
+        setIsRecording(false);
+        setRecordingDurationSec(0);
+        voiceMimeRef.current = "";
+
+        if (discard || chunks.length === 0) {
+          return;
+        }
+
+        const blobType = usedMime || chunks[0]?.type || "audio/webm";
+        const blob = new Blob(chunks, { type: blobType });
+        const ext = blobType.includes("mp4") ? "m4a" : "webm";
+        const file = new File([blob], `Voice message.${ext}`, {
+          type: blob.type || blobType,
+        });
+        addFiles([file]);
+      };
+
+      recorder.start(120);
+      setIsRecording(true);
+      setRecordingDurationSec(0);
+      voiceDurationTimerRef.current = setInterval(() => {
+        setRecordingDurationSec((s) => s + 1);
+      }, 1000);
+    } catch (e) {
+      const msg =
+        e instanceof Error ? e.message : "Microphone access was denied.";
+      setRecordingError(msg);
+      cleanupVoiceResources();
+      setIsRecording(false);
+      setRecordingDurationSec(0);
+    } finally {
+      voiceStartingRef.current = false;
+    }
+  }, [addFiles, cleanupVoiceResources]);
+
+  const cancelVoiceRecording = useCallback(() => {
+    voiceDiscardRef.current = true;
+    if (voiceDurationTimerRef.current) {
+      clearInterval(voiceDurationTimerRef.current);
+      voiceDurationTimerRef.current = null;
+    }
+    const rec = voiceMediaRecorderRef.current;
+    if (rec && rec.state !== "inactive") {
+      rec.stop();
+    } else {
+      cleanupVoiceResources();
+      voiceChunksRef.current = [];
+      setIsRecording(false);
+      setRecordingDurationSec(0);
+    }
+  }, [cleanupVoiceResources]);
+
+  const confirmVoiceRecording = useCallback(() => {
+    voiceDiscardRef.current = false;
+    if (voiceDurationTimerRef.current) {
+      clearInterval(voiceDurationTimerRef.current);
+      voiceDurationTimerRef.current = null;
+    }
+    const rec = voiceMediaRecorderRef.current;
+    if (rec && rec.state === "recording") {
+      rec.stop();
+    }
+  }, []);
+
+  useEffect(() => {
+    return () => {
+      voiceDiscardRef.current = true;
+      if (voiceDurationTimerRef.current) {
+        clearInterval(voiceDurationTimerRef.current);
+        voiceDurationTimerRef.current = null;
+      }
+      const rec = voiceMediaRecorderRef.current;
+      if (rec && rec.state !== "inactive") {
+        try {
+          rec.stop();
+        } catch {
+          /* ignore */
+        }
+      }
+      voiceStreamRef.current?.getTracks().forEach((t) => t.stop());
+      const ctx = voiceAudioContextRef.current;
+      if (ctx && ctx.state !== "closed") {
+        void ctx.close().catch(() => {});
+      }
+    };
+  }, []);
+
   const handleSubmit = useCallback(
     (e: FormEvent) => {
       e.preventDefault();
+      if (isRecording) return;
       const text = textareaRef.current?.value?.trim() ?? "";
       if (!text && files.length === 0) return;
 
@@ -243,7 +482,7 @@ function PromptInput({
       setIsMultiline(false);
       clearFiles();
     },
-    [files, onSubmit, clearFiles],
+    [files, onSubmit, clearFiles, isRecording],
   );
 
   const handleFileInput = useCallback(
@@ -281,6 +520,13 @@ function PromptInput({
         multiple,
         maxFiles,
         maxFileSize,
+        isRecording,
+        recordingDurationSec,
+        recordingAnalyser,
+        startVoiceRecording,
+        cancelVoiceRecording,
+        confirmVoiceRecording,
+        recordingError,
       }}
     >
       <form
@@ -288,6 +534,15 @@ function PromptInput({
         data-variant={variant}
         data-multiline={isMultiline || undefined}
         onSubmit={handleSubmit}
+        data-recording={isRecording || undefined}
+        onKeyDown={(e) => {
+          onKeyDown?.(e);
+          if (e.defaultPrevented) return;
+          if (isRecording && e.key === "Escape") {
+            e.preventDefault();
+            cancelVoiceRecording();
+          }
+        }}
         className={cn(
           "group/prompt-input relative bg-white dark:bg-input/30 border transition-shadow",
           "focus-within:border-primary focus-within:ring-1 focus-within:ring-primary/50",
@@ -397,8 +652,15 @@ function PromptInputTextarea({
   onKeyDown,
   ...props
 }: PromptInputTextareaProps) {
-  const { textareaRef, variant, setIsMultiline, isMultiline } =
-    usePromptInputContext();
+  const {
+    textareaRef,
+    variant,
+    setIsMultiline,
+    isMultiline,
+    isRecording,
+    recordingAnalyser,
+    recordingError,
+  } = usePromptInputContext();
   const id = useId();
   const inlineWidthRef = useRef(0);
 
@@ -456,27 +718,54 @@ function PromptInputTextarea({
     [onKeyDown],
   );
 
+  if (isRecording) {
+    return (
+      <div
+        data-slot="prompt-input-voice-meter"
+        className={cn(
+          "flex w-full min-w-0 items-center",
+          variant === "default" && "py-3",
+          variant === "floating" && "py-0",
+        )}
+        style={{
+          minHeight: `${resolvedMinHeight}px`,
+          maxHeight: `${resolvedMaxHeight}px`,
+        }}
+        aria-label="Recording audio"
+      >
+        <PromptInputVoiceWaveform analyser={recordingAnalyser} />
+      </div>
+    );
+  }
+
   return (
-    <Textarea
-      ref={textareaRef}
-      id={id}
-      data-slot="prompt-input-textarea"
-      rows={1}
-      placeholder={placeholder}
-      className={cn(
-        "w-full resize-none border-0 bg-transparent shadow-none ring-0 focus:ring-0 focus-visible:ring-0 focus-visible:border-0 rounded-none min-h-0 overflow-y-auto px-0",
-        variant === "default" && "py-3",
-        variant === "floating" && "py-0",
-        className,
-      )}
-      style={{
-        minHeight: `${resolvedMinHeight}px`,
-        maxHeight: `${resolvedMaxHeight}px`,
-      }}
-      onInput={handleInput}
-      onKeyDown={handleKeyDown}
-      {...props}
-    />
+    <>
+      {recordingError ? (
+        <p className="pb-1.5 text-xs text-destructive" role="alert">
+          {recordingError}
+        </p>
+      ) : null}
+      <Textarea
+        ref={textareaRef}
+        id={id}
+        data-slot="prompt-input-textarea"
+        rows={1}
+        placeholder={placeholder}
+        className={cn(
+          "w-full resize-none border-0 bg-transparent shadow-none ring-0 focus:ring-0 focus-visible:ring-0 focus-visible:border-0 rounded-none min-h-0 overflow-y-auto px-0",
+          variant === "default" && "py-3",
+          variant === "floating" && "py-0",
+          className,
+        )}
+        style={{
+          minHeight: `${resolvedMinHeight}px`,
+          maxHeight: `${resolvedMaxHeight}px`,
+        }}
+        onInput={handleInput}
+        onKeyDown={handleKeyDown}
+        {...props}
+      />
+    </>
   );
 }
 
@@ -617,9 +906,10 @@ function PromptInputButton({
 function PromptInputAttachButton({
   className,
   tooltip = "Add attachment",
+  disabled,
   ...props
 }: Omit<PromptInputButtonProps, "onClick">) {
-  const { openFileDialog } = usePromptInputContext();
+  const { openFileDialog, isRecording } = usePromptInputContext();
 
   return (
     <PromptInputButton
@@ -627,6 +917,7 @@ function PromptInputAttachButton({
       onClick={openFileDialog}
       className={cn("shrink-0", className)}
       {...props}
+      disabled={disabled || isRecording}
     >
       <Icon path={mdiPlus} className="size-5" />
     </PromptInputButton>
@@ -646,9 +937,33 @@ function PromptInputSubmit({
   status = "ready",
   className,
   disabled,
+  onClick,
   ...props
 }: PromptInputSubmitProps) {
+  const { isRecording, confirmVoiceRecording } = usePromptInputContext();
+
   const isStreaming = status === "submitted" || status === "streaming";
+
+  if (isRecording) {
+    return (
+      <Button
+        type="button"
+        variant="default"
+        size="icon-sm"
+        data-slot="prompt-input-submit"
+        disabled={disabled}
+        className={cn("shrink-0", className)}
+        aria-label="Stop recording"
+        {...props}
+        onClick={(e) => {
+          onClick?.(e);
+          if (!e.defaultPrevented) confirmVoiceRecording();
+        }}
+      >
+        <Icon path={mdiSquare} className="h-4! w-4! shrink-0" />
+      </Button>
+    );
+  }
 
   return (
     <Button
@@ -659,9 +974,10 @@ function PromptInputSubmit({
       disabled={disabled}
       className={cn("shrink-0", className)}
       {...props}
+      onClick={onClick}
     >
       {isStreaming ? (
-        <Icon path={mdiSquare} className="size-3" />
+        <Icon path={mdiSquare} className="h-4! w-4! shrink-0" />
       ) : (
         <Icon path={mdiArrowUp} className="size-5" />
       )}
@@ -934,10 +1250,23 @@ function PromptInputAttachments({
 function PromptInputMicButton({
   className,
   tooltip = "Voice input",
+  onClick,
+  disabled,
   ...props
 }: PromptInputButtonProps) {
+  const { startVoiceRecording, isRecording } = usePromptInputContext();
+
   return (
-    <PromptInputButton tooltip={tooltip} className={className} {...props}>
+    <PromptInputButton
+      tooltip={tooltip}
+      className={className}
+      onClick={(e) => {
+        onClick?.(e);
+        void startVoiceRecording();
+      }}
+      {...props}
+      disabled={disabled || isRecording}
+    >
       <Icon path={mdiMicrophone} className="size-5" />
     </PromptInputButton>
   );
