@@ -26,12 +26,14 @@ interface TimeValue {
 }
 
 interface TimePickerProps {
+  id?: string;
   value?: TimeValue;
   onChange?: (value: TimeValue) => void;
   placeholder?: string;
 }
 
 export function TimePicker({
+  id,
   value,
   onChange,
   placeholder = "Pick a time",
@@ -74,7 +76,7 @@ export function TimePicker({
 
   return (
     <Popover open={isOpen} onOpenChange={setIsOpen}>
-      <PopoverTrigger asChild>
+      <PopoverTrigger id={id} asChild>
         <Button
           variant={"outline"}
           colorScheme={"neutral"}

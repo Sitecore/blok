@@ -103,6 +103,7 @@ function OverviewSection() {
           />
           <Input
             type="text"
+            autoComplete="off"
             placeholder="Add new to-do, type @ to mention someone"
             className="flex-1 border-0 bg-transparent px-0 py-0 h-auto text-sm placeholder:text-muted-foreground focus-visible:ring-0 focus-visible:ring-offset-0"
           />

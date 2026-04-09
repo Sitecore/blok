@@ -32,6 +32,8 @@ export default function InputGroupDemo() {
           placeholder="example.com"
           className="!pl-1"
           aria-label="Website URL"
+          name="url"
+          autoComplete="url"
         />
         <InputGroupAddon>
           <InputGroupText>https://</InputGroupText>
@@ -39,7 +41,11 @@ export default function InputGroupDemo() {
         <InputGroupAddon align="inline-end">
           <Tooltip>
             <TooltipTrigger asChild>
-              <InputGroupButton className="rounded-full" size="icon-xs">
+              <InputGroupButton
+                className="rounded-full"
+                size="icon-xs"
+                aria-label="Information"
+              >
                 <Icon path={mdiInformationOutline} size={0.9} />
               </InputGroupButton>
             </TooltipTrigger>
@@ -49,7 +55,11 @@ export default function InputGroupDemo() {
       </InputGroup>
       {/* Dropdown */}
       <InputGroup>
-        <InputGroupInput placeholder="Enter file name" aria-label="File name" />
+        <InputGroupInput
+          autoComplete="off"
+          placeholder="Enter file name"
+          aria-label="File name"
+        />
         <InputGroupAddon align="inline-end">
           <DropdownMenu>
             <DropdownMenuTrigger asChild>

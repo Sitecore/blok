@@ -20,7 +20,11 @@ const frameworks = [
 export default function ComboboxDemo() {
   return (
     <Combobox items={frameworks}>
-      <ComboboxInput placeholder="Select a framework" />
+      <ComboboxInput
+        placeholder="Select a framework"
+        clear-aria-label="Clear combobox"
+        aria-label="Select a framework"
+      />
       <ComboboxContent>
         <ComboboxEmpty>No items found.</ComboboxEmpty>
         <ComboboxList>
