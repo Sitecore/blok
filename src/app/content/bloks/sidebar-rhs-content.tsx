@@ -392,10 +392,13 @@ function StatisticsSection() {
       <div className="grid grid-cols-[auto_auto] gap-4">
         {/* Total Variants */}
         <div className="flex flex-col gap-1 min-w-0">
-          <label className="text-xs uppercase text-muted-foreground">
+          <label
+            htmlFor="total-variants"
+            className="text-xs uppercase text-muted-foreground"
+          >
             Total Variants
           </label>
-          <div className="flex items-baseline gap-2">
+          <div id="total-variants" className="flex items-baseline gap-2">
             <span className="text-2xl font-bold text-foreground shrink-0">
               18
             </span>
@@ -420,10 +423,15 @@ function StatisticsSection() {
 
         {/* Sites */}
         <div className="flex flex-col gap-1 shrink-0">
-          <label className="text-xs uppercase text-muted-foreground">
+          <label
+            htmlFor="sites"
+            className="text-xs uppercase text-muted-foreground"
+          >
             Sites
           </label>
-          <span className="text-2xl font-bold text-foreground">3</span>
+          <span id="sites" className="text-2xl font-bold text-foreground">
+            3
+          </span>
         </div>
       </div>
     </div>

@@ -15,8 +15,10 @@ export default function FieldRadioGroupDemo() {
         <FieldLegend>Payment Method</FieldLegend>
         <FieldGroup>
           <Field>
-            <FieldLabel>Select payment method</FieldLabel>
-            <RadioGroup defaultValue="card">
+            <FieldLabel htmlFor="field-radio-group">
+              Select payment method
+            </FieldLabel>
+            <RadioGroup defaultValue="card" id="field-radio-group">
               <Field orientation="horizontal">
                 <RadioGroupItem value="card" id="field-radio-card" />
                 <FieldLabel htmlFor="field-radio-card" className="font-normal">

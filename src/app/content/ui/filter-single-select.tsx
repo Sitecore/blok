@@ -46,6 +46,7 @@ export default function FilterSingleSelectDemo() {
         options={[]}
         placeholder="Single select filter"
         groups={BLOCKCN_FILTER_GROUPS}
+        aria-label="Select an option"
       />
     </div>
   );

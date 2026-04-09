@@ -14,5 +14,12 @@ export const card = {
     Style: { component: "card-style" },
     Padding: { component: "card-padding" },
     "Styled Card": { component: "card-styled" },
+    "Large & Compact (Padding / Sans padding)": { component: "card-versions" },
+    "Vertical Detail Card": { component: "card-vertical" },
+    "Vertical Medium Card": { component: "card-vertical-medium" },
+    "Vertical Small Card": { component: "card-vertical-small" },
+    "Horizontal Detail Card": { component: "card-horizontal-detail" },
+    "Horizontal Normal Card": { component: "card-horizontal-normal" },
+    "Horizontal Small Card": { component: "card-horizontal-small" },
   },
 };

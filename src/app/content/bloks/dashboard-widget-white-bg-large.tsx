@@ -43,6 +43,7 @@ export default function DashboardWidgetWhiteBgLargeDemo() {
             options={filterOptions}
             placeholder="Filter"
             className="w-fit"
+            aria-label="Select an option"
           />
         </DashboardWidgetToolbar>
         <DashboardWidgetContent>
