@@ -32,18 +32,12 @@ export default function ComboboxMultipleDemo() {
       items={frameworks}
       defaultValue={[frameworks[0]]}
     >
-      <ComboboxChips
-        ref={anchor}
-        className="w-full max-w-xs"
-        aria-label="Combobox chips"
-      >
+      <ComboboxChips ref={anchor} className="w-full max-w-xs">
         <ComboboxValue>
           {(values: readonly string[]) => (
             <React.Fragment>
               {values.map((value: string) => (
-                <ComboboxChip key={value} aria-label="Remove chip">
-                  {value}
-                </ComboboxChip>
+                <ComboboxChip key={value}>{value}</ComboboxChip>
               ))}
               <ComboboxChipsInput />
             </React.Fragment>

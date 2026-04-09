@@ -5,8 +5,13 @@ export const searchInput = {
   },
   usage: {
     usage: [
-      `import {\n  SearchInput,\n  SearchInputLeftElement,\n  SearchInputField,\n  SearchInputRightElement,\n  SearchInputClearButton,\n} from "@/components/ui/search-input";`,
-      `<SearchInput>\n  <SearchInputLeftElement>\n    <Icon path={mdiMagnify} /> // You can use any icon from the icon library\n  </SearchInputLeftElement>\n  <SearchInputField placeholder="Search" />\n</SearchInput>`,
+      `import { SearchInput, SearchInputLeftElement, SearchInputField, SearchInputRightElement, SearchInputClearButton } from "@/components/ui/search-input";`,
+      `<SearchInput>
+  <SearchInputLeftElement>
+    <Icon path={mdiMagnify} /> // You can use any icon from the icon library
+  </SearchInputLeftElement>
+  <SearchInputField placeholder="Search" />
+</SearchInput>`,
     ],
   },
 };

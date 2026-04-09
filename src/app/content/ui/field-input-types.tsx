@@ -21,20 +21,18 @@ export default function FieldInputTypesDemo() {
         <FieldGroup>
           <Field>
             <FieldLabel htmlFor="field-color">Input color</FieldLabel>
-            <Input id="field-color" type="color" autoComplete="off" />
+            <Input id="field-color" type="color" />
           </Field>
           <Field>
-            <FieldLabel htmlFor="field-date">Date Picker</FieldLabel>
-            <DatePickerSimple id="field-date" />
+            <FieldLabel>Date Picker</FieldLabel>
+            <DatePickerSimple placeholder="Select a date" />
             <FieldDescription>
               Select a single date using the Blok date picker.
             </FieldDescription>
           </Field>
           <Field>
-            <FieldLabel htmlFor="field-date-range">
-              Date Range Picker
-            </FieldLabel>
-            <DatePickerWithRange id="field-date-range" />
+            <FieldLabel>Date Range Picker</FieldLabel>
+            <DatePickerWithRange placeholder="Select a date range" />
             <FieldDescription>
               Select a date range using the Blok date picker.
             </FieldDescription>
@@ -53,12 +51,7 @@ export default function FieldInputTypesDemo() {
           </Field>
           <Field>
             <FieldLabel htmlFor="field-number">Input number</FieldLabel>
-            <Input
-              id="field-number"
-              type="number"
-              autoComplete="off"
-              placeholder="Enter number"
-            />
+            <Input id="field-number" type="number" placeholder="Enter number" />
           </Field>
           <Field>
             <FieldLabel htmlFor="field-search">Input search</FieldLabel>
@@ -66,17 +59,11 @@ export default function FieldInputTypesDemo() {
           </Field>
           <Field>
             <FieldLabel htmlFor="field-tel">Input tel</FieldLabel>
-            <Input
-              id="field-tel"
-              type="tel"
-              name="tel"
-              autoComplete="tel"
-              placeholder="Enter phone number"
-            />
+            <Input id="field-tel" type="tel" placeholder="Enter phone number" />
           </Field>
           <Field>
-            <FieldLabel htmlFor="field-time">Time Picker</FieldLabel>
-            <TimePicker id="field-time" placeholder="Pick a time" />
+            <FieldLabel>Time Picker</FieldLabel>
+            <TimePicker placeholder="Pick a time" />
             <FieldDescription>
               Select time using dropdown selects for hour, minute, and period.
             </FieldDescription>
@@ -86,8 +73,6 @@ export default function FieldInputTypesDemo() {
             <Input
               id="field-url"
               type="url"
-              name="url"
-              autoComplete="url"
               placeholder="https://example.com"
             />
           </Field>

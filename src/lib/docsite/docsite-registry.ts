@@ -36,16 +36,9 @@ import CalendarDemo from "@/app/content/ui/calendar";
 import MultipleCalendarDemo from "@/app/content/ui/calendar-multiple";
 import CardDefaultDemo from "@/app/content/ui/card";
 import CardElevationDemo from "@/app/content/ui/card-elevation";
-import CardHorizontalDetailDemo from "@/app/content/ui/card-horizontal-detail";
-import CardHorizontalNormalDemo from "@/app/content/ui/card-horizontal-normal";
-import CardHorizontalSmallDemo from "@/app/content/ui/card-horizontal-small";
 import CardPaddingDemo from "@/app/content/ui/card-padding";
 import CardStyleDemo from "@/app/content/ui/card-style";
 import CardStyledDemo from "@/app/content/ui/card-styled";
-import CardVersionsDemo from "@/app/content/ui/card-versions";
-import CardVerticalDemo from "@/app/content/ui/card-vertical";
-import CardVerticalMediumDemo from "@/app/content/ui/card-vertical-medium";
-import CardVerticalSmallDemo from "@/app/content/ui/card-vertical-small";
 import CarouselDemo from "@/app/content/ui/carousel";
 import CarouselNegativeMarginDemo from "@/app/content/ui/carousel-negative-margin";
 import CarouselStartAlignedDemo from "@/app/content/ui/carousel-start-aligned";
@@ -436,41 +429,6 @@ export const docsiteRegistry: Record<string, DocsiteRegistryEntry> = {
     name: "card-styled",
     path: "src/app/content/ui/card-styled.tsx",
     component: CardStyledDemo,
-  },
-  "card-versions": {
-    name: "card-versions",
-    path: "src/app/content/ui/card-versions.tsx",
-    component: CardVersionsDemo,
-  },
-  "card-vertical": {
-    name: "card-vertical",
-    path: "src/app/content/ui/card-vertical.tsx",
-    component: CardVerticalDemo,
-  },
-  "card-vertical-medium": {
-    name: "card-vertical-medium",
-    path: "src/app/content/ui/card-vertical-medium.tsx",
-    component: CardVerticalMediumDemo,
-  },
-  "card-vertical-small": {
-    name: "card-vertical-small",
-    path: "src/app/content/ui/card-vertical-small.tsx",
-    component: CardVerticalSmallDemo,
-  },
-  "card-horizontal-detail": {
-    name: "card-horizontal-detail",
-    path: "src/app/content/ui/card-horizontal-detail.tsx",
-    component: CardHorizontalDetailDemo,
-  },
-  "card-horizontal-normal": {
-    name: "card-horizontal-normal",
-    path: "src/app/content/ui/card-horizontal-normal.tsx",
-    component: CardHorizontalNormalDemo,
-  },
-  "card-horizontal-small": {
-    name: "card-horizontal-small",
-    path: "src/app/content/ui/card-horizontal-small.tsx",
-    component: CardHorizontalSmallDemo,
   },
   carousel: {
     name: "carousel",

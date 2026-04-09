@@ -21,8 +21,6 @@ export default function InputGroupURLDemo() {
           placeholder="example.com"
           className="!pl-1"
           aria-label="Website URL"
-          name="url"
-          autoComplete="url"
         />
         <InputGroupAddon>
           <InputGroupText>https://</InputGroupText>
@@ -30,7 +28,7 @@ export default function InputGroupURLDemo() {
         <InputGroupAddon align="inline-end">
           <Tooltip>
             <TooltipTrigger asChild>
-              <InputGroupButton size="icon-xs" aria-label="Information">
+              <InputGroupButton size="icon-xs">
                 <Icon path={mdiInformationOutline} size={0.9} />
               </InputGroupButton>
             </TooltipTrigger>

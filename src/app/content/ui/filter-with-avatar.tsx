@@ -64,7 +64,6 @@ export default function FilterWithAvatarDemo() {
         onChange={setSingleValue}
         options={[]}
         placeholder="Single select filter"
-        aria-label="Select an option"
         groups={BLOCKCN_FILTER_GROUPS}
         searchable
         showSearch={false}

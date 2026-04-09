@@ -39,16 +39,11 @@ function ComboboxTrigger({
   );
 }
 
-function ComboboxClear({
-  className,
-  "aria-label": ariaLabel,
-  ...props
-}: ComboboxPrimitive.Clear.Props) {
+function ComboboxClear({ className, ...props }: ComboboxPrimitive.Clear.Props) {
   return (
     <ComboboxPrimitive.Clear
       data-slot="combobox-clear"
       render={<InputGroupButton variant="ghost" size="icon-xs" />}
-      aria-label={ariaLabel}
       className={cn(className)}
       {...props}
     >
@@ -63,13 +58,10 @@ function ComboboxInput({
   disabled = false,
   showTrigger = true,
   showClear = false,
-  "clear-aria-label": clearAriaLabel,
-  "aria-label": ariaLabel,
   ...props
 }: ComboboxPrimitive.Input.Props & {
   showTrigger?: boolean;
   showClear?: boolean;
-  "clear-aria-label"?: string;
 }) {
   return (
     <InputGroup
@@ -93,7 +85,6 @@ function ComboboxInput({
             size="icon-xs"
             variant="ghost"
             asChild
-            aria-label={ariaLabel}
             data-slot="input-group-button"
             className="group-has-data-[slot=combobox-clear]/input-group:hidden data-pressed:bg-transparent"
             disabled={disabled}
@@ -101,9 +92,7 @@ function ComboboxInput({
             <ComboboxTrigger />
           </InputGroupButton>
         )}
-        {showClear && (
-          <ComboboxClear disabled={disabled} aria-label={clearAriaLabel} />
-        )}
+        {showClear && <ComboboxClear disabled={disabled} />}
       </InputGroupAddon>
       {children}
     </InputGroup>
@@ -288,14 +277,12 @@ function ComboboxSeparator({
 
 function ComboboxChips({
   className,
-  "aria-label": ariaLabel,
   ...props
 }: React.ComponentPropsWithRef<typeof ComboboxPrimitive.Chips> &
   ComboboxPrimitive.Chips.Props) {
   return (
     <ComboboxPrimitive.Chips
       data-slot="combobox-chips"
-      aria-label={ariaLabel}
       className={cn(
         "dark:bg-input/30 border-input flex min-h-9 flex-wrap items-center gap-1.5 rounded-md border bg-body-bg bg-clip-padding px-2.5 py-1.5 text-sm shadow-none transition-[color,box-shadow] has-data-[slot=combobox-chip]:px-1.5",
 
@@ -316,7 +303,6 @@ function ComboboxChip({
   className,
   children,
   showRemove = true,
-  "aria-label": ariaLabel,
   ...props
 }: ComboboxPrimitive.Chip.Props & {
   showRemove?: boolean;
@@ -336,7 +322,6 @@ function ComboboxChip({
           render={<Button variant="ghost" size="icon-xs" />}
           className="-ml-1 opacity-50 hover:opacity-100"
           data-slot="combobox-chip-remove"
-          aria-label={ariaLabel}
         >
           <XIcon className="pointer-events-none" />
         </ComboboxPrimitive.ChipRemove>

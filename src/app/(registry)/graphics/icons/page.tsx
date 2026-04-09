@@ -709,7 +709,6 @@ export default function IconsPage() {
                                 icon: code || "",
                               });
                             }}
-                            aria-label={`Copy MDI code for ${mdi}`}
                             className="cursor-pointer inline-flex items-center justify-center w-8 h-8 hover:bg-muted rounded transition-colors"
                           >
                             <Icon

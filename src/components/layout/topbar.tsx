@@ -555,14 +555,14 @@ export default function TopBar() {
                 onKeyDown={handleKeyDown}
                 ref={inputRef}
               />
-              <SearchInputRightElement className="min-w-8 shrink-0">
-                {searchQuery ? (
+              {searchQuery && (
+                <SearchInputRightElement>
                   <SearchInputClearButton
                     onClear={() => setSearchQuery("")}
                     tooltipLabel="Clear search"
                   />
-                ) : null}
-              </SearchInputRightElement>
+                </SearchInputRightElement>
+              )}
             </SearchInput>
 
             {showSearchResults && (
@@ -666,13 +666,13 @@ export default function TopBar() {
           {/* TODO: Hidden till migration is complete */}
           <Button
             variant="ghost"
-            asChild
-            className="hidden min-h-10 min-w-6 items-center gap-1 px-3 py-2 hover:bg-muted active:bg-muted sm:inline-flex"
+            className="hidden items-center gap-1 sm:flex hover:bg-muted active:bg-muted"
           >
             <a
               href={externalLinks?.Block_site_old || ""}
               target="_blank"
               rel="noopener noreferrer"
+              className="flex items-center gap-1"
               onClick={() =>
                 track(TELEMETRY_EVENTS.topbar_link_click, {
                   type: "chakra_version",
@@ -680,7 +680,7 @@ export default function TopBar() {
                 })
               }
             >
-              <Icon path={mdiOpenInNew} size={0.9} aria-hidden />
+              <Icon path={mdiOpenInNew} size={0.9} />
               {appConfig?.blockVersion}
             </a>
           </Button>
@@ -703,7 +703,7 @@ export default function TopBar() {
                 })
               }
             >
-              <Icon path={mdiGithub} size={1} aria-hidden />
+              <Icon path={mdiGithub} size={1} />
             </a>
           </Button>
 

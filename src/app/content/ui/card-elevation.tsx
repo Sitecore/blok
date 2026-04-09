@@ -15,6 +15,7 @@ export default function CardElevationDemo() {
       {elevationVariants.map((variant) => (
         <Card
           key={variant}
+          style="outline"
           elevation={variant as "none" | "xs" | "sm" | "base" | "md" | "lg"}
           padding="lg"
           className="w-[400px]"
