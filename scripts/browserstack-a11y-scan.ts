@@ -1,12 +1,7 @@
-import { spawn } from "node:child_process";
+import { execFileSync, spawn } from "node:child_process";
 import { randomUUID } from "node:crypto";
-import {
-  existsSync,
-  mkdirSync,
-  readFileSync,
-  readdirSync,
-  writeFileSync,
-} from "node:fs";
+import { existsSync, readFileSync, readdirSync } from "node:fs";
+import { homedir } from "node:os";
 import { join, resolve } from "node:path";
 import { setTimeout as delay } from "node:timers/promises";
 import { Local } from "browserstack-local";
@@ -19,8 +14,6 @@ async function loadRegistry(): Promise<{
 }> {
   return import("../src/lib/registry");
 }
-const SCAN_DOC = resolve(_cwd, "docs", "a11y", "browserstack-scan.md");
-
 /** Dashboard: Website Scanner report for this scan */
 function scannerDashboardUrl(scanName: string): string {
   const base =
@@ -54,118 +47,6 @@ type JiraScanDocInfo =
   | { kind: "created"; key: string; browseUrl: string }
   | { kind: "skipped"; reason: string }
   | { kind: "error"; message: string };
-
-function escapeMdTableCell(text: string): string {
-  return text
-    .replace(/\\/g, "\\\\")
-    .replace(/\|/g, "\\|")
-    .replace(/\r?\n/g, " ");
-}
-
-function escapeMarkdownCode(value: string): string {
-  // Escape backslashes first, then backticks, for safe use in Markdown code spans.
-  return value.replace(/\\/g, "\\\\").replace(/`/g, "\\`");
-}
-
-function writeScanDoc(params: {
-  scanName: string;
-  region: string;
-  scannedUrls: string[];
-  scanId?: number;
-  scanRunId?: number;
-  dashboardUrl: string;
-  completed: boolean;
-  errorMessage?: string;
-  localPagesShownAsLocalhost?: boolean;
-  jira?: JiraScanDocInfo;
-}): void {
-  mkdirSync(resolve(_cwd, "docs", "a11y"), { recursive: true });
-  const id = params.scanId !== undefined ? String(params.scanId) : "—";
-  const runId = params.scanRunId !== undefined ? String(params.scanRunId) : "—";
-  const n = params.scannedUrls.length;
-  const scannedSummary =
-    n === 1
-      ? params.scannedUrls[0]
-      : `${n} URLs (first: ${params.scannedUrls[0]})`;
-  const lines = [
-    "# BrowserStack accessibility scan",
-    "",
-    `**Last update:** ${new Date().toISOString()}`,
-    "",
-    "## Scan",
-    "",
-    "| Field | Value |",
-    "| --- | --- |",
-    `| Name | \`${escapeMarkdownCode(params.scanName)}\` |`,
-    `| Region | ${params.region} |`,
-    `| Pages (localhost) | ${scannedSummary} |`,
-    `| Scan project id | ${id} |`,
-    `| Scan run id | ${runId} |`,
-    `| Status | ${params.completed ? "completed" : "failed or incomplete"} |`,
-    "",
-  ];
-  if (params.localPagesShownAsLocalhost) {
-    lines.push(
-      "*The Website Scanner API sends the same pages as `bs-local.com` for the Local tunnel; in your browser they are **localhost** (e.g. `http://localhost:3000`).*",
-      "",
-    );
-  }
-  if (n > 1) {
-    const cap = 50;
-    lines.push("## URLs (this run)", "");
-    for (const u of params.scannedUrls.slice(0, cap)) {
-      lines.push(`- ${u}`);
-    }
-    if (n > cap) {
-      lines.push(`- … and ${n - cap} more`);
-    }
-    lines.push("");
-  }
-  lines.push(
-    "## Dashboard",
-    "",
-    `Open the report: [BrowserStack Website Scanner — ${params.scanName}](${params.dashboardUrl})`,
-    "",
-    "In the app: **Accessibility Testing** → **Website scan** → select this scan → **Scan runs**.",
-    "",
-  );
-  if (params.jira) {
-    lines.push("## Jira", "", "| Field | Value |", "| --- | --- |");
-    if (params.jira.kind === "created") {
-      lines.push(
-        "| Status | Created |",
-        `| Issue | [\`${params.jira.key}\`](${params.jira.browseUrl}) |`,
-        `| Browse | ${params.jira.browseUrl} |`,
-        "",
-      );
-    } else if (params.jira.kind === "skipped") {
-      lines.push(
-        "| Status | Skipped |",
-        `| Reason | ${escapeMdTableCell(params.jira.reason)} |`,
-        "",
-      );
-    } else {
-      lines.push(
-        "| Status | Error |",
-        `| Message | ${escapeMdTableCell(params.jira.message)} |`,
-        "",
-      );
-    }
-  }
-  if (params.errorMessage) {
-    lines.push("## Error", "", params.errorMessage, "");
-  }
-  lines.push(
-    "## Settings (this run)",
-    "",
-    "- WCAG: **2.1 AA** (`wcag21aa`)",
-    "- Advanced rules: **on**",
-    "- Needs review: **on**",
-    "",
-  );
-  writeFileSync(SCAN_DOC, `${lines.join("\n")}\n`, "utf8");
-  console.log(`Wrote ${SCAN_DOC}`);
-}
 
 function parseEnvLine(line: string): [string, string] | undefined {
   const trimmed = line.trim();
@@ -225,6 +106,48 @@ function defaultPollTimeoutMs(urlCount: number): number {
   const minMs = 900_000;
   const maxMs = 14_400_000;
   return Math.min(maxMs, Math.max(minMs, urlCount * perUrlMs));
+}
+
+function isEbusyError(e: unknown): boolean {
+  if (typeof e !== "object" || e === null) return false;
+  const code = (e as NodeJS.ErrnoException).code;
+  if (code === "EBUSY") return true;
+  const msg = e instanceof Error ? e.message : String(e);
+  return /\bEBUSY\b/i.test(msg);
+}
+
+/** Windows: true if BrowserStack Local is already running (locks the binary / causes EBUSY). */
+function isBrowserStackLocalProcessRunningWin32(): boolean {
+  if (process.platform !== "win32") return false;
+  try {
+    const out = execFileSync(
+      "tasklist",
+      ["/FI", "IMAGENAME eq BrowserStackLocal.exe"],
+      { encoding: "utf8", windowsHide: true },
+    );
+    return out.includes("BrowserStackLocal.exe");
+  } catch {
+    return false;
+  }
+}
+
+function browserStackLocalBinaryPath(): string {
+  return join(homedir(), ".browserstack", "BrowserStackLocal.exe");
+}
+
+function printBrowserStackLocalBusyHelp(): void {
+  const bin = browserStackLocalBinaryPath();
+  console.error(
+    [
+      "BrowserStack Local could not open its Windows binary (EBUSY: file busy or locked). Typical causes:",
+      "  • Another BrowserStack Local is still running — end BrowserStackLocal.exe in Task Manager, or:",
+      `      taskkill /IM BrowserStackLocal.exe /F`,
+      "  • A second scan started before the first finished (only one tunnel per machine is safe).",
+      `  • Antivirus briefly locked: ${bin}`,
+      "",
+      "Or skip auto-start and use your own tunnel: set BROWSERSTACK_A11Y_SKIP_LOCAL_START=1 and BROWSERSTACK_LOCAL_IDENTIFIER to match your running Local.",
+    ].join("\n"),
+  );
 }
 
 function withTimeout<T>(
@@ -1074,39 +997,87 @@ async function main(): Promise<void> {
         "Using your existing BrowserStack Local tunnel (manual mode). Ensure it is running with this localIdentifier.",
       );
     } else {
-      localIdentifier =
-        process.env.BROWSERSTACK_LOCAL_IDENTIFIER?.trim() || randomUUID();
-      const tunnel = new Local();
-      (tunnel as unknown as { logfile: string }).logfile = resolve(
-        _cwd,
-        "browserstack-local.log",
-      );
-      localTunnel = tunnel;
-      const startMs = localStartTimeoutMs();
-      console.log(
-        `Connecting BrowserStack Local (timeout ${startMs / 1000}s) — ensure nothing else is blocking this access key’s tunnel…`,
-      );
-      await withTimeout(
-        new Promise<void>((resolveStart, rejectStart) => {
-          tunnel.start(
-            {
-              key: accessKey,
-              username,
-              localIdentifier,
-            },
-            (err?: Error) => {
-              if (err) rejectStart(err);
-              else resolveStart();
-            },
+      const envLocalId = process.env.BROWSERSTACK_LOCAL_IDENTIFIER?.trim();
+      localIdentifier = envLocalId || randomUUID();
+
+      const win32LocalAlreadyRunning =
+        process.platform === "win32" &&
+        isBrowserStackLocalProcessRunningWin32();
+
+      if (win32LocalAlreadyRunning && !envLocalId) {
+        console.error(
+          [
+            "BrowserStack Local (BrowserStackLocal.exe) is already running on this PC.",
+            "Stop it first (Task Manager → end BrowserStackLocal.exe, or in PowerShell: taskkill /IM BrowserStackLocal.exe /F),",
+            "or set BROWSERSTACK_LOCAL_IDENTIFIER to the same value as your running tunnel so this script can reuse it without starting a second Local.",
+            "(You can also set BROWSERSTACK_A11Y_SKIP_LOCAL_START=1 with that identifier.)",
+          ].join("\n"),
+        );
+        process.exit(1);
+      }
+
+      const reuseExistingTunnel =
+        win32LocalAlreadyRunning && Boolean(envLocalId);
+
+      if (reuseExistingTunnel) {
+        console.log(
+          [
+            "BrowserStack Local is already running — using BROWSERSTACK_LOCAL_IDENTIFIER from your environment and not starting a second tunnel.",
+            "(It must match the --local-identifier of the process that is already running.)",
+          ].join(" "),
+        );
+      } else {
+        const tunnel = new Local();
+        (tunnel as unknown as { logfile: string }).logfile = resolve(
+          _cwd,
+          "browserstack-local.log",
+        );
+        localTunnel = tunnel;
+        const startMs = localStartTimeoutMs();
+        console.log(
+          `Connecting BrowserStack Local (timeout ${startMs / 1000}s) — ensure nothing else is blocking this access key’s tunnel…`,
+        );
+        try {
+          await withTimeout(
+            new Promise<void>((resolveStart, rejectStart) => {
+              const onUncaught = (err: Error) => {
+                process.removeListener("uncaughtException", onUncaught);
+                if (isEbusyError(err)) {
+                  rejectStart(err);
+                  return;
+                }
+                setImmediate(() => {
+                  throw err;
+                });
+              };
+              process.once("uncaughtException", onUncaught);
+              tunnel.start(
+                {
+                  key: accessKey,
+                  username,
+                  localIdentifier,
+                },
+                (err?: Error) => {
+                  process.removeListener("uncaughtException", onUncaught);
+                  if (err) rejectStart(err);
+                  else resolveStart();
+                },
+              );
+            }),
+            startMs,
+            "BrowserStack Local",
           );
-        }),
-        startMs,
-        "BrowserStack Local",
-      );
-      startedLocalTunnel = true;
-      console.log(
-        "BrowserStack Local tunnel connected (this script will stop it when finished).",
-      );
+        } catch (e: unknown) {
+          if (isEbusyError(e)) {
+            printBrowserStackLocalBusyHelp();
+          }
+          throw e;
+        }
+        startedLocalTunnel = true;
+        console.log(
+          "BrowserStack Local tunnel connected (this script will stop it when finished).",
+        );
+      }
     }
   }
 
@@ -1204,24 +1175,13 @@ async function main(): Promise<void> {
       const state = status.data?.status;
       if (state === "completed") {
         console.log("Scan status: completed");
-        const jiraDoc = await runJiraIntegration({
+        await runJiraIntegration({
           scanName,
           region,
           scannedUrls: urls,
           scanId,
           scanRunId,
           dashboardUrl,
-        });
-        writeScanDoc({
-          scanName,
-          region,
-          scannedUrls: urls,
-          scanId,
-          scanRunId,
-          dashboardUrl,
-          completed: true,
-          localPagesShownAsLocalhost: isLocalhostUrl(urls[0] ?? ""),
-          jira: jiraDoc,
         });
         openInBrowser(dashboardUrl);
         console.log(`Dashboard: ${dashboardUrl}`);
@@ -1229,17 +1189,6 @@ async function main(): Promise<void> {
       }
       if (state === "failed") {
         const err = "Scan status: failed";
-        writeScanDoc({
-          scanName,
-          region,
-          scannedUrls: urls,
-          scanId,
-          scanRunId,
-          dashboardUrl,
-          completed: false,
-          errorMessage: err,
-          localPagesShownAsLocalhost: isLocalhostUrl(urls[0] ?? ""),
-        });
         openInBrowser(dashboardUrl);
         throw new Error(err);
       }
@@ -1250,35 +1199,8 @@ async function main(): Promise<void> {
     }
 
     const err = `Stopped waiting after ${Math.round(maxWaitMs / 60_000)} min — the scan may still be processing on BrowserStack (especially with many URLs). Open the dashboard for scan run ${scanRunId} or set BROWSERSTACK_A11Y_POLL_MS higher.`;
-    writeScanDoc({
-      scanName,
-      region,
-      scannedUrls: urls,
-      scanId,
-      scanRunId,
-      dashboardUrl,
-      completed: false,
-      errorMessage: err,
-      localPagesShownAsLocalhost: isLocalhostUrl(urls[0] ?? ""),
-    });
     openInBrowser(dashboardUrl);
     throw new Error(err);
-  } catch (e) {
-    const msg = e instanceof Error ? e.message : String(e);
-    if (!existsSync(SCAN_DOC)) {
-      writeScanDoc({
-        scanName,
-        region,
-        scannedUrls: urls,
-        scanId,
-        scanRunId,
-        dashboardUrl,
-        completed: false,
-        errorMessage: msg,
-        localPagesShownAsLocalhost: isLocalhostUrl(urls[0] ?? ""),
-      });
-    }
-    throw e;
   } finally {
     if (startedLocalTunnel && localTunnel) {
       await new Promise<void>((resolveStop) => {
