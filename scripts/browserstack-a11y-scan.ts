@@ -3,6 +3,7 @@ import { randomUUID } from "node:crypto";
 import { existsSync, readFileSync, readdirSync } from "node:fs";
 import { homedir } from "node:os";
 import { join, resolve } from "node:path";
+import { createInterface } from "node:readline/promises";
 import { setTimeout as delay } from "node:timers/promises";
 import { Local } from "browserstack-local";
 
@@ -373,6 +374,8 @@ Examples:
 
 Env: BROWSERSTACK_USERNAME, BROWSERSTACK_ACCESS_KEY, BROWSERSTACK_A11Y_URL (default origin http://localhost:3000).
 Optional Jira: set JIRA_BASE_URL, JIRA_EMAIL, JIRA_API_TOKEN, JIRA_PROJECT_KEY (issues only after a successful scan).
+  In an interactive terminal you are prompted y/n to create the issue; set JIRA_SKIP_PROMPT=1 or CI=true to skip the prompt
+  (then JIRA_CREATE_ISSUE=1 or full Jira env vars control creation as before).
 `);
 }
 
@@ -601,6 +604,26 @@ function jiraCreateIssueRequested(): boolean {
   return jiraCredentialsComplete();
 }
 
+/** When true, the user is asked in the terminal whether to create a Jira issue (after a successful scan). */
+function jiraUseInteractivePrompt(): boolean {
+  if (envTruthy("JIRA_SKIP_PROMPT")) return false;
+  if (envTruthy("CI")) return false;
+  return process.stdin.isTTY === true;
+}
+
+async function promptYesNo(question: string): Promise<boolean> {
+  const rl = createInterface({
+    input: process.stdin,
+    output: process.stdout,
+  });
+  try {
+    const answer = (await rl.question(question)).trim().toLowerCase();
+    return answer === "y" || answer === "yes";
+  } finally {
+    rl.close();
+  }
+}
+
 function jiraFetchTimeoutMs(): number {
   const n = Number(process.env.JIRA_FETCH_TIMEOUT_MS);
   return Number.isFinite(n) && n > 0 ? n : 30_000;
@@ -792,6 +815,16 @@ async function runJiraIntegration(params: {
 }): Promise<JiraScanDocInfo | undefined> {
   if (!jiraCreateIssueRequested()) {
     return undefined;
+  }
+
+  if (jiraCredentialsComplete() && jiraUseInteractivePrompt()) {
+    const create = await promptYesNo(
+      "Create a Jira task for this completed scan? [y/N] ",
+    );
+    if (!create) {
+      console.log("Skipping Jira issue creation.");
+      return { kind: "skipped", reason: "Declined at interactive prompt." };
+    }
   }
 
   const baseRaw = process.env.JIRA_BASE_URL?.trim();
