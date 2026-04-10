@@ -17,6 +17,7 @@
     "registry_marketplace_next:build": "npx tsx scripts/build-registry.ts registries/marketplace/next/registry-config.ts",
     "registry_marketplace_react:build": "npx tsx scripts/build-registry.ts registries/marketplace/react/registry-config.ts",
     "registry:build": "npm run registry:update-urls && npm run registry_core:build && npm run registry_marketplace_next:build && npm run registry_marketplace_react:build",
+    "browserstack:a11y": "npx tsx scripts/browserstack-a11y-scan.ts",
     "prepare": "husky"
   },
   "lint-staged": {
@@ -71,6 +72,7 @@
     "@types/node": "^22.16.3",
     "@types/react": "^19.2.7",
     "@types/react-dom": "^19.2.3",
+    "browserstack-local": "1.5.12",
     "husky": "^9.1.7",
     "jsdom": "^25.0.1",
     "lint-staged": "^16.2.7",
