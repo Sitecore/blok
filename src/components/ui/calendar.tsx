@@ -23,13 +23,9 @@ function Calendar({
   buttonVariant = "ghost",
   formatters,
   components,
-  labels,
-  monthDropdownAriaLabel,
   ...props
 }: React.ComponentProps<typeof DayPicker> & {
   buttonVariant?: React.ComponentProps<typeof Button>["variant"];
-  /** Sets `labels.labelMonthDropdown` for dropdown caption layouts (month `<select>` / custom trigger). */
-  monthDropdownAriaLabel?: string;
 }) {
   const defaultClassNames = getDefaultClassNames();
 
@@ -38,12 +34,6 @@ function Calendar({
       showOutsideDays={showOutsideDays}
       className={cn("p-3", className)}
       captionLayout={captionLayout}
-      labels={{
-        ...labels,
-        ...(monthDropdownAriaLabel != null && !labels?.labelMonthDropdown
-          ? { labelMonthDropdown: () => monthDropdownAriaLabel }
-          : {}),
-      }}
       formatters={{
         formatMonthDropdown: (date) =>
           date.toLocaleString("default", { month: "short" }),
