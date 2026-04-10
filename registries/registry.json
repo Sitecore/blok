@@ -742,8 +742,7 @@
       "files": [
         {
           "path": "src/components/ui/chart.tsx",
-          "type": "registry:file",
-          "target": "src/components/ui/chart.tsx"
+          "type": "registry:ui"
         }
       ]
     },
