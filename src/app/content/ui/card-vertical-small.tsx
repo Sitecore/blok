@@ -1,3 +1,4 @@
+import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Icon } from "@/lib/icon";
@@ -81,17 +82,19 @@ function VerticalSmallCard({
         <span className="truncate text-sm font-semibold text-foreground">
           Lorem ipsum
         </span>
-        <button
+        <Button
           type="button"
-          className="shrink-0 rounded p-0.5 hover:bg-muted"
+          variant="ghost"
+          className="h-auto! min-h-0! w-auto! min-w-0! max-w-min! shrink-0! gap-0! rounded! p-0 shadow-none hover:bg-muted"
+          size="icon-xs"
           aria-label="More options"
         >
           <Icon
             path={mdiDotsHorizontal}
-            size={0.9}
+            size={0.7}
             className="size-4 text-neutral-fg"
           />
-        </button>
+        </Button>
       </CardContent>
     </Card>
   );

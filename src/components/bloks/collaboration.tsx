@@ -282,9 +282,13 @@ export function Collaboration<T extends User = User>({
       {/* First Popover: Avatar -> Users Card */}
       <Popover open={isUsersOpen} onOpenChange={handleUsersOpenChange}>
         <PopoverTrigger asChild>
-          <button className="focus:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded-full">
+          <Button
+            type="button"
+            variant="ghost"
+            className="h-auto min-h-0 w-fit rounded-full p-0 focus-visible:ring-2 focus-visible:ring-primary"
+          >
             <AvatarTrigger users={users} maxDisplay={maxDisplayAvatars} />
-          </button>
+          </Button>
         </PopoverTrigger>
 
         <PopoverContent
