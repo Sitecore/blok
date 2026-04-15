@@ -5,6 +5,7 @@ import {
 } from "@mdi/js";
 
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import {
   Card,
   CardAction,
@@ -93,13 +94,15 @@ function VerticalMediumCard({
             </div>
           )}
           {defaults.showClose && (
-            <button
+            <Button
               type="button"
-              className="absolute right-3 top-3 flex size-8 items-center justify-center rounded-full bg-black/60 text-white hover:bg-black/70"
+              variant="ghost"
+              size="icon-sm"
+              className="absolute right-3 top-3 size-8 rounded-full border-0 bg-black/60 p-0 text-white shadow-none transition-none hover:!bg-black/60 hover:!text-white active:!bg-black/60"
               aria-label="Close"
             >
-              <Icon path={mdiClose} size={0.9} className="size-4" />
-            </button>
+              <Icon path={mdiClose} size={0.6} className="size-4" />
+            </Button>
           )}
           {defaults.showFileType && (
             <Badge
@@ -128,17 +131,19 @@ function VerticalMediumCard({
                 className="size-4"
               />
             </span>
-            <button
+            <Button
               type="button"
-              className="rounded p-0.5 hover:bg-muted"
+              variant="ghost"
+              className="h-auto! min-h-0! w-auto! min-w-0! max-w-min! gap-0! rounded! p-0 shadow-none hover:bg-muted"
+              size="icon-xs"
               aria-label="More options"
             >
               <Icon
                 path={mdiDotsHorizontal}
-                size={1.2}
-                className="size-4 text-neutral-fg"
+                size={0.9}
+                className="size-3.5 text-neutral-fg"
               />
-            </button>
+            </Button>
           </CardAction>
         </CardHeader>
       </CardContent>

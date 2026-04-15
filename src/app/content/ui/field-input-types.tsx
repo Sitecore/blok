@@ -31,7 +31,9 @@ export default function FieldInputTypesDemo() {
             </FieldDescription>
           </Field>
           <Field>
-            <FieldLabel htmlFor="field-date-range">Date Range Picker</FieldLabel>
+            <FieldLabel htmlFor="field-date-range">
+              Date Range Picker
+            </FieldLabel>
             <DatePickerWithRange id="field-date-range" />
             <FieldDescription>
               Select a date range using the Blok date picker.
@@ -51,7 +53,12 @@ export default function FieldInputTypesDemo() {
           </Field>
           <Field>
             <FieldLabel htmlFor="field-number">Input number</FieldLabel>
-            <Input id="field-number" type="number" autoComplete="off" placeholder="Enter number" />
+            <Input
+              id="field-number"
+              type="number"
+              autoComplete="off"
+              placeholder="Enter number"
+            />
           </Field>
           <Field>
             <FieldLabel htmlFor="field-search">Input search</FieldLabel>
@@ -59,7 +66,13 @@ export default function FieldInputTypesDemo() {
           </Field>
           <Field>
             <FieldLabel htmlFor="field-tel">Input tel</FieldLabel>
-            <Input id="field-tel" type="tel" name="tel" autoComplete="tel" placeholder="Enter phone number" />
+            <Input
+              id="field-tel"
+              type="tel"
+              name="tel"
+              autoComplete="tel"
+              placeholder="Enter phone number"
+            />
           </Field>
           <Field>
             <FieldLabel htmlFor="field-time">Time Picker</FieldLabel>

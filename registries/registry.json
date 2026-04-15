@@ -1291,6 +1291,7 @@
       "description": "Pinned sites shown within SitecoreAI.",
       "registryDependencies": [
         "https://blok.sitecore.com/r/theme.json",
+        "https://blok.sitecore.com/r/button.json",
         "https://blok.sitecore.com/r/all-site.json",
         "https://blok.sitecore.com/r/site-card.json"
       ],
