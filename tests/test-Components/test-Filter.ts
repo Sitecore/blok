@@ -265,6 +265,14 @@ export async function testFilterWithSearch(page: Page){
     // Verify that filter search input has the input control
     const searchInputControlSingle = singleSelectContent.locator('[data-slot="search-input-control"]');
     await expect(searchInputControlSingle).toBeVisible();
+    // Verify that search input has the expected classes
+    const searchInputClasses = await searchInputControlSingle.getAttribute('class');
+    expect(searchInputClasses).toContain('selection:bg-primary');
+    expect(searchInputClasses).toContain('selection:text-inverse-text');
+    expect(searchInputClasses).toContain('h-10');
+    expect(searchInputClasses).toContain('w-full');
+    expect(searchInputClasses).toContain('text-md');
+    expect(searchInputClasses).toContain('font-regular');
     /// Verify options are visible
     await expect(singleSelectContent.getByRole('option', { name: 'XM Cloud' })).toBeVisible();
     await expect(singleSelectContent.getByRole('option', { name: 'Content Hub' })).toBeVisible();
