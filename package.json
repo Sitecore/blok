@@ -4,7 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "tests": "npx playwright test tests/basic-ui.spec.ts"
+    "tests": "npx playwright test tests/basic-ui.spec.ts",
+    "tests:headed": "npx playwright test tests/basic-ui.spec.ts --headed",
+    "tests:ui": "npx playwright test --ui",
+    "tests:debug": "npx playwright test tests/basic-ui.spec.ts --debug"
   },
   "keywords": [],
   "author": "",
