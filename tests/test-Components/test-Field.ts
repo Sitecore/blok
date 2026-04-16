@@ -694,7 +694,7 @@ export async function testFieldInputTypes(page: Page){
     const DateRangePickerSection = fieldInputDateRangePicker.locator('button[data-slot="popover-trigger"]');
     await expect(DateRangePickerSection).toBeVisible();
     await expect(DateRangePickerSection).toHaveAttribute('type', 'button');
-    await expect(DateRangePickerSection).toContainText('Jan 20, 2026 - Feb 09, 2026');
+    await expect(DateRangePickerSection).toContainText('Pick a date');
     // Verify that display Input Date Range Picker message
     await expect(fieldInputDateRangePicker.locator('[data-slot="field-description"]')).toContainText('Select a date range using the Blok date picker.');
 
