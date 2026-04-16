@@ -366,14 +366,18 @@ export function FieldDemo() {
                 <Input id="field-color" type="color" />
               </Field>
               <Field>
-                <FieldLabel>Date Picker</FieldLabel>
-                <DatePickerSimple />
-                <FieldDescription>Select a single date using the Blok date picker.</FieldDescription>
-              </Field>
+                <FieldLabel htmlFor="field-date">Date Picker</FieldLabel>
+                <DatePickerSimple id="field-date" />
+                <FieldDescription>
+                  Select a single date using the Blok date picker.
+                </FieldDescription>
+              </Field>  
               <Field>
-                <FieldLabel>Date Range Picker</FieldLabel>
-                <DatePickerWithRange />
-                <FieldDescription>Select a date range using the Blok date picker.</FieldDescription>
+                <FieldLabel htmlFor="field-date-range">Date Range Picker</FieldLabel>
+                <DatePickerWithRange id="field-date-range" />
+                <FieldDescription>
+                  Select a date range using the Blok date picker.
+                </FieldDescription>
               </Field>
               <Field>
                 <FieldLabel htmlFor="field-email">Input email</FieldLabel>
