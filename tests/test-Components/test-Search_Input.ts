@@ -15,7 +15,7 @@ export async function testSearchInput(page: Page){
     expect(searchInputClasses).toContain('border');
     expect(searchInputClasses).toContain('border-input');
     expect(searchInputClasses).toContain('outline-none');
-    expect(searchInputClasses).toContain('h-9');
+    expect(searchInputClasses).toContain('h-10');
     expect(searchInputClasses).toContain('min-w-0');
     expect(searchInputClasses).toContain('bg-white');
     expect(searchInputClasses).toContain('has-[[data-slot=search-input-control]:focus-visible]:border-2');
