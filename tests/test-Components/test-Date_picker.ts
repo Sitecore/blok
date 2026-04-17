@@ -5,7 +5,7 @@ export async function testSimpleDatePicker(page: Page){
     const datePicker = page.locator('[id="date-picker-simple"]');
     const datePickerButton = datePicker.locator('[data-slot="popover-trigger"]');
     await expect(datePickerButton).toBeVisible();
-    await expect(datePickerButton).toContainText('Pick a date');
+    await expect(datePickerButton).toContainText('April 16th, 2026');
     await expect(datePickerButton.locator('[class="text-muted-foreground"]')).toBeVisible();
 
     // Verify that open calendar popover when button is clicked
