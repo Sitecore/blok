@@ -9,7 +9,7 @@ import { testBadge, testBadgeBold, testBadgeClosable, testBadgeColor, testBadgeL
 import { testBreadcrumb } from './test-Components/test-Breadcrumb';
 import { testPrimaryORDefaultButton, testGhostButton, testDisabledButtons, testIcononlyVariant, testLinkVariant, testOutlineButton, testSizeVariant, testLoadingButton } from './test-Components/test-Button';
 import { testSingleCalendar, testTwoMonthCalendar } from './test-Components/test-Calendar';
-import { testCardElevation, testCardPadding, testCardStyle, testDefaultCard, testStyledCard } from './test-Components/test-Card';
+import { testCardElevation, testCardPadding, testCardStyle, testDefaultCard, testHorizontalDetailCard, testHorizontalNormalCard, testHorizontalSmallCard, testLargeAndCompactCard, testStyledCard, testVerticalDetailCard, testVerticalMediumCard, testVerticalSmallCard } from './test-Components/test-Card';
 import { testNumberCardsCarousel, testResponsiveCardsCarousel, testHalfWidthCardsCarousel } from './test-Components/test-Carousel';
 import { testAreaChart, testBarChart, testMixedBarChart } from './test-Components/test-Chart';
 import { testCheckbox, testCheckboxDisabled, testCheckboxWithDescription, testCheckEnabledLabel } from './test-Components/test-Checkbox';
@@ -146,6 +146,13 @@ test.describe('UI BLOK QA Automation', () => {
     await testCardStyle(page);
     await testCardPadding(page);
     await testStyledCard(page);
+    await testLargeAndCompactCard(page);
+    await testVerticalDetailCard(page);
+    await testVerticalMediumCard(page);
+    await testVerticalSmallCard(page);
+    await testHorizontalDetailCard(page);
+    await testHorizontalNormalCard(page);
+    await testHorizontalSmallCard(page);
   });
 
   test('test_Carousel', async ({ page }) => {
