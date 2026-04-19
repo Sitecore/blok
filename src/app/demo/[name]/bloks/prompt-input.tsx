@@ -75,11 +75,43 @@ import {
     </PromptInputActions>
   </PromptInputFooter>
 </PromptInput>`,
+      `import { promptInputDemoAttachMenu } from "@/app/content/bloks/prompt-input";
+import {
+  PromptInput,
+  PromptInputActions,
+  PromptInputAttachButton,
+  PromptInputAttachments,
+  PromptInputBody,
+  PromptInputFooter,
+  PromptInputHeader,
+  PromptInputMicButton,
+  PromptInputSubmit,
+  PromptInputTextarea,
+  PromptInputToolbar,
+} from "@/components/bloks/prompt-input";
+import {
+  Collapsible,
+  CollapsibleContent,
+  CollapsibleTrigger,
+} from "@/components/ui/collapsible";
+
+// Compose a queue panel above the field; drive PromptInputSubmit with status="streaming" for stop.
+<Collapsible defaultOpen>
+  <CollapsibleTrigger>{/* chevron + "N prompts queued" */}</CollapsibleTrigger>
+  <CollapsibleContent>{/* pending rows */}</CollapsibleContent>
+</Collapsible>
+<PromptInput variant="default" onSubmit={handleSubmit}>
+  {/* header / body / footer */}
+  <PromptInputSubmit status={busy ? "streaming" : "ready"} />
+</PromptInput>`,
     ],
   },
   components: {
     Floating: {
       component: "prompt-input-floating",
+    },
+    Queued: {
+      component: "prompt-input-queued",
     },
   },
 };

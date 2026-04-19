@@ -665,7 +665,10 @@ export const rightSidebarMetadata: Record<string, RightSidebarMetadata> = {
       {
         id: "examples",
         title: "Examples",
-        children: [{ id: "prompt-input-floating", title: "Floating" }],
+        children: [
+          { id: "prompt-input-floating", title: "Floating" },
+          { id: "prompt-input-queued", title: "Queued" },
+        ],
       },
     ],
   },
