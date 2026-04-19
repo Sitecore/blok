@@ -153,7 +153,7 @@ function QueuedPromptCard({
 
 export default function PromptInputQueuedDemo() {
   return (
-    <div className="flex w-full flex-col gap-8 p-8">
+    <div className="flex w-full flex-col gap-3 p-8">
       <div className="relative flex min-h-[420px] w-full flex-col items-center justify-end p-4">
         <QueuedPromptCard variant="default" placeholder="Message..." />
       </div>
