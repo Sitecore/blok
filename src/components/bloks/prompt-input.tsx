@@ -3,6 +3,12 @@
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import {
   Popover,
   PopoverContent,
   PopoverTrigger,
@@ -20,6 +26,7 @@ import {
   mdiClose,
   mdiFileOutline,
   mdiMicrophone,
+  mdiPaperclip,
   mdiPlus,
   mdiSquare,
 } from "@mdi/js";
@@ -900,27 +907,96 @@ function PromptInputButton({
 }
 
 // ---------------------------------------------------------------------------
-// PromptInputAttachButton (+ icon)
+// PromptInputAttachButton (+ icon → attach menu dropdown)
 // ---------------------------------------------------------------------------
+
+export type PromptInputAttachMenuRenderArgs = {
+  openFileDialog: () => void;
+};
+
+export type PromptInputAttachButtonProps = Omit<
+  PromptInputButtonProps,
+  "onClick"
+> & {
+  /**
+   * Dropdown body for the “+” control. Pass demo/example menus from app
+   * content; when omitted, a single “Attach file” row is shown.
+   */
+  attachMenu?:
+    | ReactNode
+    | ((args: PromptInputAttachMenuRenderArgs) => ReactNode);
+};
 
 function PromptInputAttachButton({
   className,
   tooltip = "Add attachment",
   disabled,
+  attachMenu,
   ...props
-}: Omit<PromptInputButtonProps, "onClick">) {
+}: PromptInputAttachButtonProps) {
   const { openFileDialog, isRecording } = usePromptInputContext();
+  const blocked = Boolean(disabled || isRecording);
+
+  const tooltipProps =
+    typeof tooltip === "string" ? { content: tooltip } : tooltip;
+
+  const menuContent =
+    attachMenu === undefined ? (
+      <DropdownMenuItem
+        className="gap-3 py-2.5 pr-2 pl-2.5 [&>svg:first-child]:size-[18px] [&>svg:first-child]:text-muted-foreground"
+        onSelect={() => {
+          openFileDialog();
+        }}
+      >
+        <Icon path={mdiPaperclip} className="shrink-0" />
+        <span className="min-w-0 flex-1 font-normal">Attach file</span>
+      </DropdownMenuItem>
+    ) : typeof attachMenu === "function" ? (
+      attachMenu({ openFileDialog })
+    ) : (
+      attachMenu
+    );
 
   return (
-    <PromptInputButton
-      tooltip={tooltip}
-      onClick={openFileDialog}
-      className={cn("shrink-0", className)}
-      {...props}
-      disabled={disabled || isRecording}
-    >
-      <Icon path={mdiPlus} className="size-5" />
-    </PromptInputButton>
+    <DropdownMenu>
+      <Tooltip>
+        <TooltipTrigger asChild>
+          <DropdownMenuTrigger asChild>
+            <Button
+              type="button"
+              variant="ghost"
+              size="icon-xs"
+              data-slot="prompt-input-attach-trigger"
+              className={cn(
+                "text-muted-foreground hover:text-foreground shrink-0",
+                className,
+              )}
+              disabled={blocked}
+              {...props}
+            >
+              <Icon path={mdiPlus} className="size-5" />
+            </Button>
+          </DropdownMenuTrigger>
+        </TooltipTrigger>
+        <TooltipContent side={tooltipProps.side ?? "top"}>
+          <span>{tooltipProps.content}</span>
+          {tooltipProps.shortcut && (
+            <kbd className="ml-2 rounded bg-white/20 px-1.5 py-0.5 text-[10px] font-mono">
+              {tooltipProps.shortcut}
+            </kbd>
+          )}
+        </TooltipContent>
+      </Tooltip>
+      <DropdownMenuContent
+        side="bottom"
+        align="start"
+        sideOffset={6}
+        className="min-w-0 w-[min(100vw-2rem,13rem)] rounded-lg"
+        onCloseAutoFocus={(e) => e.preventDefault()}
+      >
+        {menuContent}
+      </DropdownMenuContent>
+    </DropdownMenu>
   );
 }
 

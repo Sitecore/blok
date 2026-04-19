@@ -5,7 +5,8 @@ export const promptInput = {
   },
   usage: {
     usage: [
-      `import {
+      `import { promptInputDemoAttachMenu } from "@/app/content/bloks/prompt-input";
+import {
   PromptInput,
   PromptInputActions,
   PromptInputAttachButton,
@@ -29,7 +30,7 @@ export const promptInput = {
   </PromptInputBody>
   <PromptInputFooter>
     <PromptInputToolbar>
-      <PromptInputAttachButton />
+      <PromptInputAttachButton attachMenu={promptInputDemoAttachMenu} />
     </PromptInputToolbar>
     <PromptInputActions>
       <PromptInputMicButton />
@@ -37,19 +38,36 @@ export const promptInput = {
     </PromptInputActions>
   </PromptInputFooter>
 </PromptInput>`,
-      `// Floating variant — for in-page editing and canvas
+      `import { promptInputDemoAttachMenu } from "@/app/content/bloks/prompt-input";
+import {
+  PromptInput,
+  PromptInputActions,
+  PromptInputAttachButton,
+  PromptInputAttachments,
+  PromptInputBody,
+  PromptInputFooter,
+  PromptInputHeader,
+  PromptInputMicButton,
+  PromptInputSubmit,
+  PromptInputTextarea,
+  PromptInputToolbar,
+} from "@/components/bloks/prompt-input";
+
+// Floating variant — for in-page editing and canvas
 // Uses inline toolbar (single-line row) + regular toolbar (multiline column)
 <PromptInput variant="floating" onSubmit={(msg) => console.log(msg)}>
-  <PromptInputAttachments />
+  <PromptInputHeader>
+    <PromptInputAttachments />
+  </PromptInputHeader>
   <PromptInputToolbar inline>
-    <PromptInputAttachButton />
+    <PromptInputAttachButton attachMenu={promptInputDemoAttachMenu} />
   </PromptInputToolbar>
   <PromptInputBody>
-    <PromptInputTextarea />
+    <PromptInputTextarea placeholder="Edit this page…" />
   </PromptInputBody>
   <PromptInputFooter>
     <PromptInputToolbar>
-      <PromptInputAttachButton />
+      <PromptInputAttachButton attachMenu={promptInputDemoAttachMenu} />
     </PromptInputToolbar>
     <PromptInputActions>
       <PromptInputMicButton />

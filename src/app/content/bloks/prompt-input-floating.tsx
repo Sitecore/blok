@@ -1,5 +1,6 @@
 "use client"; // Please remove this if you are not using nextjs
 
+import { promptInputDemoAttachMenu } from "@/app/content/bloks/prompt-input";
 import {
   PromptInput,
   PromptInputActions,
@@ -42,7 +43,7 @@ export default function PromptInputFloatingDemo() {
         </PromptInputHeader>
         {/* Visible only when single-line (inline layout) */}
         <PromptInputToolbar inline>
-          <PromptInputAttachButton />
+          <PromptInputAttachButton attachMenu={promptInputDemoAttachMenu} />
         </PromptInputToolbar>
         <PromptInputBody>
           <PromptInputTextarea placeholder="Edit this page…" />
@@ -50,7 +51,7 @@ export default function PromptInputFloatingDemo() {
         <PromptInputFooter>
           {/* Visible only when multiline (column layout) */}
           <PromptInputToolbar>
-            <PromptInputAttachButton />
+            <PromptInputAttachButton attachMenu={promptInputDemoAttachMenu} />
           </PromptInputToolbar>
           <PromptInputActions>
             <PromptInputMicButton />
