@@ -10,9 +10,12 @@ import {
   PromptInputHeader,
   type PromptInputMessage,
   PromptInputMicButton,
+  type PromptInputSelection,
+  PromptInputSelections,
   PromptInputSubmit,
   PromptInputTextarea,
   PromptInputToolbar,
+  usePromptInputContext,
 } from "@/components/bloks/prompt-input";
 import { Button } from "@/components/ui/button";
 import {
@@ -282,12 +285,14 @@ function AttachMenuCategorySub({
   searchPlaceholder,
   items,
   showItemTrailingIcons = false,
+  onSelectItem,
 }: {
   icon: string;
   label: string;
   searchPlaceholder: string;
   items: readonly AttachMenuSubmenuItem[];
   showItemTrailingIcons?: boolean;
+  onSelectItem?: (selection: PromptInputSelection) => void;
 }) {
   const [query, setQuery] = useState("");
 
@@ -350,9 +355,22 @@ function AttachMenuCategorySub({
                   showItemTrailingIcons &&
                   entry.trailing &&
                   entry.trailing.length > 0;
+                const chipIcon =
+                  entry.leading ??
+                  (entry.trailing && entry.trailing.length > 0
+                    ? entry.trailing[0]
+                    : { path: icon, className: "bg-muted-foreground/40" });
                 return (
                   <DropdownMenuItem
                     key={entry.id}
+                    onSelect={() => {
+                      onSelectItem?.({
+                        id: `${label.toLowerCase()}-${entry.id}`,
+                        label: entry.label,
+                        iconPath: chipIcon.path,
+                        iconClassName: chipIcon.className,
+                      });
+                    }}
                     className={cn(
                       "min-w-0 items-center py-2",
                       hasTrailing
@@ -387,8 +405,10 @@ function AttachMenuCategorySub({
 
 export function PromptInputAttachMenuPanel({
   onAttachFile,
+  onSelectItem,
 }: {
   onAttachFile: () => void;
+  onSelectItem?: (selection: PromptInputSelection) => void;
 }) {
   return (
     <>
@@ -407,6 +427,7 @@ export function PromptInputAttachMenuPanel({
         label="Agents"
         searchPlaceholder="Search agents"
         items={ATTACH_MENU_DEMO_AGENTS}
+        onSelectItem={onSelectItem}
       />
       <AttachMenuCategorySub
         icon={mdiGraphOutline}
@@ -414,6 +435,7 @@ export function PromptInputAttachMenuPanel({
         searchPlaceholder="Search flows"
         items={ATTACH_MENU_DEMO_FLOWS}
         showItemTrailingIcons
+        onSelectItem={onSelectItem}
       />
       <AttachMenuCategorySub
         icon={mdiHammerWrench}
@@ -421,14 +443,34 @@ export function PromptInputAttachMenuPanel({
         searchPlaceholder="Search tools"
         items={ATTACH_MENU_DEMO_TOOLS}
         showItemTrailingIcons
+        onSelectItem={onSelectItem}
       />
       <AttachMenuCategorySub
         icon={mdiAt}
         label="Context"
         searchPlaceholder="Search context"
         items={ATTACH_MENU_DEMO_CONTEXT}
+        onSelectItem={onSelectItem}
       />
     </>
+  );
+}
+
+/**
+ * Connects `PromptInputAttachMenuPanel` to the surrounding `PromptInput`
+ * context so picked items become inline selection chips.
+ */
+function PromptInputAttachMenuPanelConnected({
+  onAttachFile,
+}: {
+  onAttachFile: () => void;
+}) {
+  const { addSelection } = usePromptInputContext();
+  return (
+    <PromptInputAttachMenuPanel
+      onAttachFile={onAttachFile}
+      onSelectItem={addSelection}
+    />
   );
 }
 
@@ -438,7 +480,7 @@ export function promptInputDemoAttachMenu({
 }: {
   openFileDialog: () => void;
 }) {
-  return <PromptInputAttachMenuPanel onAttachFile={openFileDialog} />;
+  return <PromptInputAttachMenuPanelConnected onAttachFile={openFileDialog} />;
 }
 
 /** Isolated attach dropdown preview (e.g. docsite). */
@@ -487,6 +529,7 @@ export default function PromptInputDemo() {
         <PromptInputFooter>
           <PromptInputToolbar>
             <PromptInputAttachButton attachMenu={promptInputDemoAttachMenu} />
+            <PromptInputSelections />
           </PromptInputToolbar>
           <PromptInputActions>
             <PromptInputMicButton />

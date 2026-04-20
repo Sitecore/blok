@@ -11,6 +11,7 @@ import {
   PromptInputHeader,
   type PromptInputMessage,
   PromptInputMicButton,
+  PromptInputSelections,
   PromptInputSubmit,
   PromptInputTextarea,
   PromptInputToolbar,
@@ -133,6 +134,7 @@ function FloatingChatCard() {
         </PromptInputHeader>
         <PromptInputToolbar inline>
           <PromptInputAttachButton attachMenu={promptInputDemoAttachMenu} />
+          <PromptInputSelections />
         </PromptInputToolbar>
         <PromptInputBody>
           <PromptInputTextarea placeholder="/ for tools, @ for context references" />
@@ -140,6 +142,7 @@ function FloatingChatCard() {
         <PromptInputFooter>
           <PromptInputToolbar>
             <PromptInputAttachButton attachMenu={promptInputDemoAttachMenu} />
+            <PromptInputSelections />
           </PromptInputToolbar>
           <PromptInputActions>
             <PromptInputMicButton />
@@ -179,6 +182,7 @@ export default function PromptInputFloatingDemo() {
           {/* Visible only when single-line (inline layout) */}
           <PromptInputToolbar inline>
             <PromptInputAttachButton attachMenu={promptInputDemoAttachMenu} />
+            <PromptInputSelections />
           </PromptInputToolbar>
           <PromptInputBody>
             <PromptInputTextarea placeholder="Edit this page…" />
@@ -187,6 +191,7 @@ export default function PromptInputFloatingDemo() {
             {/* Visible only when multiline (column layout) */}
             <PromptInputToolbar>
               <PromptInputAttachButton attachMenu={promptInputDemoAttachMenu} />
+              <PromptInputSelections />
             </PromptInputToolbar>
             <PromptInputActions>
               <PromptInputMicButton />

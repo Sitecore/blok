@@ -11,6 +11,7 @@ import {
   PromptInputHeader,
   type PromptInputMessage,
   PromptInputMicButton,
+  PromptInputSelections,
   PromptInputSubmit,
   PromptInputTextarea,
   PromptInputToolbar,
@@ -124,6 +125,7 @@ function QueuedPromptCard({
         {variant === "floating" && (
           <PromptInputToolbar inline>
             <PromptInputAttachButton attachMenu={promptInputDemoAttachMenu} />
+            <PromptInputSelections />
           </PromptInputToolbar>
         )}
         <PromptInputBody>
@@ -132,6 +134,7 @@ function QueuedPromptCard({
         <PromptInputFooter>
           <PromptInputToolbar>
             <PromptInputAttachButton attachMenu={promptInputDemoAttachMenu} />
+            <PromptInputSelections />
           </PromptInputToolbar>
           <PromptInputActions>
             <PromptInputMicButton />

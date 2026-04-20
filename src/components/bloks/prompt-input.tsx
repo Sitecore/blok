@@ -59,9 +59,23 @@ export interface PromptInputFile {
   preview?: string;
 }
 
+/**
+ * Non-file selection (agent / flow / tool / context) chosen from the attach
+ * menu and rendered as an inline chip in the toolbar.
+ */
+export interface PromptInputSelection {
+  id: string;
+  label: string;
+  /** MDI path string for the leading icon tile. */
+  iconPath?: string;
+  /** Tailwind classes for the leading icon tile background. */
+  iconClassName?: string;
+}
+
 export interface PromptInputMessage {
   text: string;
   files?: PromptInputFile[];
+  selections?: PromptInputSelection[];
 }
 
 // ---------------------------------------------------------------------------
@@ -83,6 +97,10 @@ interface PromptInputContextValue {
   multiple?: boolean;
   maxFiles?: number;
   maxFileSize?: number;
+  selections: PromptInputSelection[];
+  addSelection: (selection: PromptInputSelection) => void;
+  removeSelection: (id: string) => void;
+  clearSelections: () => void;
   /** Inline voice capture: waveform in the text area; stop on the submit control. */
   isRecording: boolean;
   recordingDurationSec: number;
@@ -231,6 +249,7 @@ function PromptInput({
   ...props
 }: PromptInputProps) {
   const [files, setFiles] = useState<PromptInputFile[]>([]);
+  const [selections, setSelections] = useState<PromptInputSelection[]>([]);
   const [isMultiline, setIsMultiline] = useState(false);
   const [isRecording, setIsRecording] = useState(false);
   const [recordingDurationSec, setRecordingDurationSec] = useState(0);
@@ -319,6 +338,21 @@ function PromptInput({
     }
     setFiles([]);
   }, [files]);
+
+  const addSelection = useCallback((selection: PromptInputSelection) => {
+    setSelections((prev) => {
+      if (prev.some((s) => s.id === selection.id)) return prev;
+      return [...prev, selection];
+    });
+  }, []);
+
+  const removeSelection = useCallback((id: string) => {
+    setSelections((prev) => prev.filter((s) => s.id !== id));
+  }, []);
+
+  const clearSelections = useCallback(() => {
+    setSelections([]);
+  }, []);
 
   const openFileDialog = useCallback(() => {
     fileInputRef.current?.click();
@@ -478,9 +512,16 @@ function PromptInput({
       e.preventDefault();
       if (isRecording) return;
       const text = textareaRef.current?.value?.trim() ?? "";
-      if (!text && files.length === 0) return;
+      if (!text && files.length === 0 && selections.length === 0) return;
 
-      onSubmit?.({ text, files: files.length > 0 ? files : undefined }, e);
+      onSubmit?.(
+        {
+          text,
+          files: files.length > 0 ? files : undefined,
+          selections: selections.length > 0 ? selections : undefined,
+        },
+        e,
+      );
 
       if (textareaRef.current) {
         textareaRef.current.value = "";
@@ -488,8 +529,9 @@ function PromptInput({
       }
       setIsMultiline(false);
       clearFiles();
+      clearSelections();
     },
-    [files, onSubmit, clearFiles, isRecording],
+    [files, selections, onSubmit, clearFiles, clearSelections, isRecording],
   );
 
   const handleFileInput = useCallback(
@@ -503,8 +545,15 @@ function PromptInput({
   );
 
   const hasFiles = files.length > 0;
+  /**
+   * Floating treats any selection chip the same as wrapped text — the chip
+   * needs the same multiline layout (textarea on top, toolbar row below) so
+   * it has room to render without squashing the textarea on a single row.
+   */
+  const effectiveMultiline =
+    isMultiline || (variant === "floating" && selections.length > 0);
   /** Single-line floating: one horizontal row for toolbar + textarea + actions. */
-  const floatingSingleLine = variant === "floating" && !isMultiline;
+  const floatingSingleLine = variant === "floating" && !effectiveMultiline;
   /** No attachments — entire form is that single row. */
   const floatingPureInline = floatingSingleLine && !hasFiles;
   /** Attachments on first row, then same centered row as `floatingPureInline`. */
@@ -514,7 +563,7 @@ function PromptInput({
     <PromptInputContext.Provider
       value={{
         variant,
-        isMultiline,
+        isMultiline: effectiveMultiline,
         setIsMultiline,
         files,
         addFiles,
@@ -527,6 +576,10 @@ function PromptInput({
         multiple,
         maxFiles,
         maxFileSize,
+        selections,
+        addSelection,
+        removeSelection,
+        clearSelections,
         isRecording,
         recordingDurationSec,
         recordingAnalyser,
@@ -539,7 +592,7 @@ function PromptInput({
       <form
         data-slot="prompt-input"
         data-variant={variant}
-        data-multiline={isMultiline || undefined}
+        data-multiline={effectiveMultiline || undefined}
         onSubmit={handleSubmit}
         data-recording={isRecording || undefined}
         onKeyDown={(e) => {
@@ -786,6 +839,7 @@ function PromptInputFooter({
 }: React.ComponentProps<"div">) {
   const { variant, isMultiline } = usePromptInputContext();
   const floatingSingleLine = variant === "floating" && !isMultiline;
+  const floatingColumn = variant === "floating" && isMultiline;
 
   return (
     <div
@@ -793,6 +847,7 @@ function PromptInputFooter({
       className={cn(
         "flex items-center gap-2",
         floatingSingleLine ? "shrink-0" : "justify-between px-3 pb-3",
+        floatingColumn && "pt-2",
         className,
       )}
       {...props}
@@ -1320,6 +1375,184 @@ function PromptInputAttachments({
 }
 
 // ---------------------------------------------------------------------------
+// PromptInputSelections (inline chips for picked agents/tools/contexts)
+// ---------------------------------------------------------------------------
+
+/**
+ * Fixed chip width — every selection chip occupies the same space so the
+ * `+`, mic, and submit controls on the toolbar row do not shift around as
+ * chips are added/removed. Long labels truncate to fit. Narrower than the
+ * file-attachment badges since this row also has to fit `+`, mic, submit.
+ */
+const PROMPT_INPUT_SELECTION_CHIP_WIDTH_PX = 140;
+
+/** Fixed `+N` overflow chip width so the toolbar footprint is stable. */
+const PROMPT_INPUT_SELECTION_OVERFLOW_WIDTH_PX = 36;
+
+function PromptInputSelectionChip({
+  selection,
+  onRemove,
+}: {
+  selection: PromptInputSelection;
+  onRemove: () => void;
+}) {
+  return (
+    <Badge
+      colorScheme="neutral"
+      size="lg"
+      data-slot="prompt-input-selection-chip"
+      className={cn(
+        "group/selection-chip min-h-7 shrink-0 justify-start gap-1.5 py-1 pl-1 pr-2 text-sm",
+      )}
+      style={{
+        width: PROMPT_INPUT_SELECTION_CHIP_WIDTH_PX,
+        minWidth: PROMPT_INPUT_SELECTION_CHIP_WIDTH_PX,
+      }}
+    >
+      {selection.iconPath ? (
+        <span
+          className={cn(
+            "flex size-5 shrink-0 items-center justify-center rounded text-white",
+            selection.iconClassName ?? "bg-muted-foreground/40",
+          )}
+          aria-hidden
+        >
+          <Icon path={selection.iconPath} className="size-3 text-white" />
+        </span>
+      ) : null}
+      <span className="min-w-0 flex-1 truncate text-left">
+        {selection.label}
+      </span>
+      <button
+        type="button"
+        onClick={onRemove}
+        aria-label={`Remove ${selection.label}`}
+        className={cn(
+          "ml-0.5 flex size-4 shrink-0 items-center justify-center rounded-full text-muted-foreground opacity-0 transition-opacity",
+          "group-hover/selection-chip:opacity-100 focus-visible:opacity-100",
+          "hover:bg-foreground/10 hover:text-foreground focus:outline-none focus-visible:ring-1 focus-visible:ring-ring",
+        )}
+      >
+        <Icon path={mdiClose} className="size-3" />
+      </button>
+    </Badge>
+  );
+}
+
+function PromptInputSelectionListRow({
+  selection,
+  onRemove,
+}: {
+  selection: PromptInputSelection;
+  onRemove: () => void;
+}) {
+  return (
+    <div className="flex items-center gap-2 rounded-md px-1.5 py-1 text-xs hover:bg-muted/50">
+      {selection.iconPath ? (
+        <span
+          className={cn(
+            "flex size-6 shrink-0 items-center justify-center rounded text-white",
+            selection.iconClassName ?? "bg-muted-foreground/40",
+          )}
+          aria-hidden
+        >
+          <Icon path={selection.iconPath} className="size-3.5 text-white" />
+        </span>
+      ) : null}
+      <span className="min-w-0 flex-1 truncate">{selection.label}</span>
+      <button
+        type="button"
+        onClick={onRemove}
+        className="shrink-0 rounded-full p-0.5 text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
+        aria-label={`Remove ${selection.label}`}
+      >
+        <Icon path={mdiClose} className="size-3" />
+      </button>
+    </div>
+  );
+}
+
+/** Default visible chips before overflowing into a `+N` popover. */
+export const PROMPT_INPUT_MAX_VISIBLE_SELECTIONS = 2;
+
+export interface PromptInputSelectionsProps
+  extends React.ComponentProps<"div"> {
+  maxDisplayItems?: number;
+}
+
+function PromptInputSelections({
+  maxDisplayItems = PROMPT_INPUT_MAX_VISIBLE_SELECTIONS,
+  className,
+  ...props
+}: PromptInputSelectionsProps) {
+  const { selections, removeSelection } = usePromptInputContext();
+
+  if (selections.length === 0) return null;
+
+  const visibleSelections = selections.slice(0, maxDisplayItems);
+  const overflowCount = selections.length - maxDisplayItems;
+
+  return (
+    <div
+      data-slot="prompt-input-selections"
+      className={cn("flex min-w-0 flex-nowrap items-center gap-1.5", className)}
+      {...props}
+    >
+      {visibleSelections.map((s) => (
+        <PromptInputSelectionChip
+          key={s.id}
+          selection={s}
+          onRemove={() => removeSelection(s.id)}
+        />
+      ))}
+      {overflowCount > 0 && (
+        <Popover>
+          <PopoverTrigger asChild>
+            <button
+              type="button"
+              className="shrink-0 cursor-pointer"
+              aria-label={`Show ${overflowCount} more ${
+                overflowCount === 1 ? "selection" : "selections"
+              }`}
+            >
+              <Badge
+                colorScheme="neutral"
+                size="lg"
+                className="min-h-7 shrink-0 justify-center"
+                style={{
+                  width: PROMPT_INPUT_SELECTION_OVERFLOW_WIDTH_PX,
+                  minWidth: PROMPT_INPUT_SELECTION_OVERFLOW_WIDTH_PX,
+                }}
+              >
+                +{overflowCount}
+              </Badge>
+            </button>
+          </PopoverTrigger>
+          <PopoverContent
+            align="start"
+            side="top"
+            className="max-h-60 w-72 overflow-y-auto p-2"
+          >
+            <p className="px-1 pb-2 text-xs font-medium text-muted-foreground">
+              All selections ({selections.length})
+            </p>
+            <div className="flex flex-col gap-1">
+              {selections.map((s) => (
+                <PromptInputSelectionListRow
+                  key={s.id}
+                  selection={s}
+                  onRemove={() => removeSelection(s.id)}
+                />
+              ))}
+            </div>
+          </PopoverContent>
+        </Popover>
+      )}
+    </div>
+  );
+}
+
+// ---------------------------------------------------------------------------
 // PromptInputMicButton
 // ---------------------------------------------------------------------------
 
@@ -1364,6 +1597,7 @@ export {
   PromptInputAttachButton,
   PromptInputSubmit,
   PromptInputAttachments,
+  PromptInputSelections,
   PromptInputMicButton,
   usePromptInputContext,
 };
