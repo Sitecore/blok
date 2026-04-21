@@ -647,10 +647,8 @@ function PromptInputHeader({
   ...props
 }: React.ComponentProps<"div">) {
   const { variant, isMultiline, files } = usePromptInputContext();
-  const hideHeader =
-    variant === "floating" && !isMultiline && files.length === 0;
 
-  if (hideHeader) return null;
+  if (files.length === 0) return null;
 
   const floatingSingleLine = variant === "floating" && !isMultiline;
 
