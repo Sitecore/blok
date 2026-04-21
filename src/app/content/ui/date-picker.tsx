@@ -11,6 +11,9 @@ export default function DatePickerSimpleDemo() {
       value={date}
       onChange={setDate}
       placeholder="Pick a date"
+      ariaLabels={{
+        popoverTrigger: "Select a date",
+      }}
     />
   );
 }
