@@ -285,7 +285,7 @@ export function Collaboration<T extends User = User>({
           <Button
             type="button"
             variant="ghost"
-            className="h-auto min-h-0 w-fit rounded-full p-0 focus-visible:ring-2 focus-visible:ring-primary"
+            className="h-auto min-h-0 w-fit rounded-full p-0 bg-transparent hover:bg-transparent active:bg-transparent focus-visible:ring-2 focus-visible:ring-primary"
           >
             <AvatarTrigger users={users} maxDisplay={maxDisplayAvatars} />
           </Button>
