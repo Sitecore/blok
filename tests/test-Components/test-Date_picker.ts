@@ -1,11 +1,36 @@
 import { test, expect, Page } from '@playwright/test';
 
+/** Matches UI date picker label, e.g. "April 21st, 2026" (ordinal day, not `toLocaleDateString`). */
+function ordinalSuffix(day: number): string {
+  const j = day % 10;
+  const k = day % 100;
+  if (k >= 11 && k <= 13) return 'th';
+  switch (j) {
+    case 1: return 'st';
+    case 2: return 'nd';
+    case 3: return 'rd';
+    default: return 'th';
+  }
+}
+
+function formatLongDateWithOrdinal(d: Date): string {
+  const months = [
+    'January', 'February', 'March', 'April', 'May', 'June',
+    'July', 'August', 'September', 'October', 'November', 'December',
+  ];
+  const day = d.getDate();
+  return `${months[d.getMonth()]} ${day}${ordinalSuffix(day)}, ${d.getFullYear()}`;
+}
+
 export async function testSimpleDatePicker(page: Page){
     // Verify that date picker button is visible
     const datePicker = page.locator('[id="date-picker-simple"]');
     const datePickerButton = datePicker.locator('[data-slot="popover-trigger"]');
     await expect(datePickerButton).toBeVisible();
-    await expect(datePickerButton).toContainText('April 17th, 2026');
+
+    // Verify that display current date in button
+    const currentDate = formatLongDateWithOrdinal(new Date());
+    await expect(datePickerButton).toContainText(currentDate);
     await expect(datePickerButton.locator('[class="text-muted-foreground"]')).toBeVisible();
 
     // Verify that open calendar popover when button is clicked
