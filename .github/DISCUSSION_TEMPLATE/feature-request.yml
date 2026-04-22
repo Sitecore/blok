@@ -1,37 +1,51 @@
-name: " Feature Request"
-description: Suggest a new feature or enhancement for the Sitecore Blok CN.
+name: Feature request
+description: Suggest a new feature or enhancement for Sitecore Blok CN.
 labels: [enhancement, feature request]
 body:
   - type: markdown
     attributes:
       value: |
-        Thank you for suggesting a feature! Please fill out the details below.
+        Thank you for suggesting a feature. Please fill out the sections below—the more specific you are, the easier it is to evaluate.
   - type: textarea
     id: problem
     attributes:
-      label: Is your feature request related to a problem?
-      description: Describe the problem you're facing that this feature would solve.
-      placeholder: I'm always frustrated when...
+      label: Problem or motivation
+      description: Optional—what problem would this solve? Why does it matter?
+      placeholder: I'm always frustrated when…
     validations:
       required: false
   - type: textarea
     id: solution
     attributes:
-      label: Describe the solution you'd like
-      description: What would you like to see implemented?
+      label: Proposed solution
+      description: What would you like to see built or changed?
     validations:
       required: true
   - type: textarea
     id: alternatives
     attributes:
-      label: Describe alternatives you've considered
-      description: Have you thought of other ways to solve this problem?
+      label: Alternatives considered
+      description: Optional—other approaches you have considered.
+    validations:
+      required: false
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Acceptance criteria
+      description: Optional—bullet list of “done when…” to reduce ambiguity.
+    validations:
+      required: false
+  - type: textarea
+    id: breaking
+    attributes:
+      label: Breaking changes / migration
+      description: Optional—could this break existing consumers? Any migration ideas?
     validations:
       required: false
   - type: textarea
     id: context
     attributes:
       label: Additional context
-      description: Add any other context or screenshots about the feature request here.
+      description: Mockups, screenshots, links, or examples.
     validations:
       required: false
