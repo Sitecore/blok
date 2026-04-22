@@ -25,6 +25,15 @@ import type { DropdownProps } from "react-day-picker";
 
 type CalendarProps = React.ComponentProps<typeof Calendar>;
 
+/**
+ * Optional ARIA strings for the date picker UI outside the calendar grid.
+ * For DayPicker label creators (nav, days, etc.), use `calendarProps.ariaLabels`.
+ */
+export type DatePickerAriaLabels = {
+  /** `aria-label` on the popover trigger button */
+  popoverTrigger?: string;
+};
+
 export function CustomDropdown({
   options = [],
   value,
@@ -88,6 +97,7 @@ export type DatePickerSimpleProps = {
   disabled?: boolean;
   id?: string;
   className?: string;
+  ariaLabels?: DatePickerAriaLabels;
   /** Props forwarded to `Calendar`; `mode`, `selected`, and `onSelect` are fixed */
   calendarProps?: DatePickerSimpleCalendarProps;
 } & (
@@ -108,6 +118,7 @@ function DatePickerSimple(props: DatePickerSimpleProps) {
     disabled,
     id,
     className,
+    ariaLabels,
     calendarProps,
   } = props;
 
@@ -142,6 +153,10 @@ function DatePickerSimple(props: DatePickerSimpleProps) {
           variant="outline"
           colorScheme="neutral"
           disabled={disabled}
+          aria-label={
+            ariaLabels?.popoverTrigger ??
+            (typeof placeholder === "string" ? placeholder : undefined)
+          }
           className={cn(
             "border-input border-1 data-[state=open]:border-2 data-[state=open]:border-primary rounded-md text-md data-[placeholder]:text-muted-foreground [&_svg:not([class*='text-'])]:text-muted-foreground focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive dark:bg-input/30 dark:hover:bg-input/50 flex w-fit items-center justify-between gap-2 bg-body-bg px-3 py-2 whitespace-nowrap shadow-xs transition-[color,box-shadow] outline-none focus-visible:ring-[2px] disabled:cursor-not-allowed disabled:opacity-50 h-10",
             !date && "text-muted-foreground",
@@ -152,6 +167,7 @@ function DatePickerSimple(props: DatePickerSimpleProps) {
             path={mdiCalendarBlankOutline}
             size={1}
             className="text-muted-foreground"
+            aria-hidden
           />
           {date ? (
             format(date, dateFormat, formatOpts)
@@ -196,6 +212,7 @@ export type DatePickerWithRangeProps = {
   disabled?: boolean;
   id?: string;
   className?: string;
+  ariaLabels?: DatePickerAriaLabels;
   calendarProps?: DatePickerWithRangeCalendarProps;
 } & ({ value: DateRange | undefined } | { value?: never });
 
@@ -210,6 +227,7 @@ function DatePickerWithRange(props: DatePickerWithRangeProps) {
     disabled,
     id,
     className,
+    ariaLabels,
     calendarProps,
   } = props;
 
@@ -260,6 +278,10 @@ function DatePickerWithRange(props: DatePickerWithRangeProps) {
           variant="outline"
           colorScheme="neutral"
           disabled={disabled}
+          aria-label={
+            ariaLabels?.popoverTrigger ??
+            (typeof placeholder === "string" ? placeholder : undefined)
+          }
           className={cn(
             "border-input border-1 data-[state=open]:border-2 data-[state=open]:border-primary rounded-md text-md data-[placeholder]:text-muted-foreground [&_svg:not([class*='text-'])]:text-muted-foreground focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive dark:bg-input/30 dark:hover:bg-input/50 flex w-fit items-center justify-between gap-2 bg-body-bg px-3 py-2 whitespace-nowrap shadow-xs transition-[color,box-shadow] outline-none focus-visible:ring-[2px] disabled:cursor-not-allowed disabled:opacity-50 h-10",
             !range?.from && "text-muted-foreground",
@@ -270,6 +292,7 @@ function DatePickerWithRange(props: DatePickerWithRangeProps) {
             path={mdiCalendarBlankOutline}
             size={1}
             className="text-muted-foreground"
+            aria-hidden
           />
           {triggerLabel}
         </Button>

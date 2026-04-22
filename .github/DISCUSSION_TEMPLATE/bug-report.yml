@@ -1,0 +1,85 @@
+name: Bug report
+description: Report incorrect behavior in Blok components, types, registry, or the documentation site.
+title: "[Bug] "
+labels: [bug, needs-triage]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for the report. Please include enough detail for us to reproduce the issue. For usage questions (not a defect), use **General Q&A** instead.
+  - type: textarea
+    id: summary
+    attributes:
+      label: Short summary
+      description: One or two sentences describing what is wrong.
+    validations:
+      required: true
+  - type: input
+    id: affected-area
+    attributes:
+      label: Affected area
+      description: Component name, docs URL, registry item, or other—be specific.
+      placeholder: e.g. Button, https://blok.sitecore.com/..., accordion registry item
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      description: Numbered steps or a minimal scenario.
+      placeholder: |
+        1. …
+        2. …
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+      description: What you expected to happen.
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behavior
+      description: What happens instead (include errors or messages if any).
+    validations:
+      required: true
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      description: OS, browser and version (if relevant), framework (e.g. Next.js), Node version, Blok or package versions if known.
+      placeholder: |
+        - OS:
+        - Browser:
+        - Framework:
+        - Node:
+        - Blok / package versions:
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Minimal reproduction
+      description: Optional—code snippet, repo link, or short screen recording.
+      render: typescript
+    validations:
+      required: false
+  - type: textarea
+    id: additional
+    attributes:
+      label: Additional context
+      description: Optional—screenshots, console output, network errors, links to related discussions.
+    validations:
+      required: false
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Checklist
+      options:
+        - label: I have searched existing discussions and issues for duplicates
+          required: true
+        - label: I have provided the required information above
+          required: true
