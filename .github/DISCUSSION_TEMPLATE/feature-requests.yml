@@ -1,11 +1,10 @@
-name: Feature request
-description: Suggest a new feature or enhancement for Sitecore Blok CN.
-labels: [enhancement, feature request]
+title: "[Feature] "
+labels: [enhancement, "feature request"]
 body:
   - type: markdown
     attributes:
       value: |
-        Thank you for suggesting a feature. Please fill out the sections below—the more specific you are, the easier it is to evaluate.
+        **Feature request** — Suggest a new feature or enhancement for Sitecore Blok CN. The more specific you are, the easier it is to evaluate.
   - type: textarea
     id: problem
     attributes:
