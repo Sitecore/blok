@@ -1,0 +1,55 @@
+# Create Discussion labels in the repo UI: needs-triage, approved, tracked (and any workflow-added names).
+
+name: Community — discussions
+
+on:
+  discussion:
+    types: [created, labeled]
+
+permissions:
+  contents: read
+  discussions: write
+  issues: write
+
+concurrency:
+  group: community-discussion-${{ github.event.discussion.number }}-${{ github.event.action }}
+  cancel-in-progress: false
+
+jobs:
+  discussion-opened:
+    name: Discussion opened — triage comment
+    if: github.event.action == 'created'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Post triage comment, label, optional Teams
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          DISCUSSION_MENTIONS_BUG_REPORTS: ${{ vars.DISCUSSION_MENTIONS_BUG_REPORTS }}
+          DISCUSSION_MENTIONS_FEATURE_REQUESTS: ${{ vars.DISCUSSION_MENTIONS_FEATURE_REQUESTS }}
+          DISCUSSION_MENTIONS_IDEAS: ${{ vars.DISCUSSION_MENTIONS_IDEAS }}
+          DISCUSSION_MENTIONS_GENERAL_Q_A: ${{ vars.DISCUSSION_MENTIONS_GENERAL_Q_A }}
+          DISCUSSION_MENTIONS_DESIGN_FEEDBACK: ${{ vars.DISCUSSION_MENTIONS_DESIGN_FEEDBACK }}
+          TEAMS_COMMUNITY_WEBHOOK_URL: ${{ secrets.TEAMS_COMMUNITY_WEBHOOK_URL }}
+          TEAMS_WEBHOOK_URL: ${{ secrets.TEAMS_WEBHOOK_URL }}
+        run: npx tsx scripts/community/discussion-opened.ts
+        continue-on-error: true
+
+  discussion-approved:
+    name: Discussion approved — create issue
+    if: github.event.action == 'labeled' && github.event.label.name == 'approved'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Create issue from discussion
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          DISCUSSION_APPROVED_ACTORS: ${{ vars.DISCUSSION_APPROVED_ACTORS }}
+          TEAMS_COMMUNITY_WEBHOOK_URL: ${{ secrets.TEAMS_COMMUNITY_WEBHOOK_URL }}
+          TEAMS_WEBHOOK_URL: ${{ secrets.TEAMS_WEBHOOK_URL }}
+          JIRA_WEBHOOK_URL: ${{ secrets.JIRA_WEBHOOK_URL }}
+          JIRA_SUMMARY_PREFIX: ${{ vars.JIRA_SUMMARY_PREFIX }}
+        run: npx tsx scripts/community/discussion-approved.ts
+        continue-on-error: true

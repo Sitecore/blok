@@ -1,0 +1,26 @@
+# POST to Jira  when an issue or external PR is opened.
+
+name: Community — Jira from GitHub
+
+on:
+  issues:
+    types: [opened]
+  pull_request:
+    types: [opened]
+
+permissions:
+  contents: read
+
+jobs:
+  notify-jira:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Create Jira item via webhook
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          JIRA_WEBHOOK_URL: ${{ secrets.JIRA_WEBHOOK_URL }}
+          JIRA_SUMMARY_PREFIX: ${{ vars.JIRA_SUMMARY_PREFIX }}
+        run: npx tsx scripts/community/jira-from-github.ts
+        continue-on-error: true
