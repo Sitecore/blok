@@ -1,5 +1,9 @@
 import { readFileSync } from "node:fs";
-import { sendJiraWebhook, typeFromIssueLabels } from "./jira-shared";
+import {
+  isJiraConfigured,
+  notifyJira,
+  typeFromIssueLabels,
+} from "./jira-shared";
 
 const eventPath = process.env.GITHUB_EVENT_PATH;
 if (!eventPath) {
@@ -48,9 +52,10 @@ async function fetchJson(url: string): Promise<{
 }
 
 async function main(): Promise<void> {
-  const webhook = process.env.JIRA_WEBHOOK_URL;
-  if (!webhook || webhook.trim() === "") {
-    console.log("JIRA_WEBHOOK_URL not set; skipping Jira webhook.");
+  if (!isJiraConfigured()) {
+    console.log(
+      "Jira not configured (set JIRA_BASE_URL + JIRA_EMAIL + JIRA_API_TOKEN + JIRA_PROJECT_KEY, or JIRA_WEBHOOK_URL); skipping.",
+    );
     process.exit(0);
   }
 
@@ -93,15 +98,14 @@ async function main(): Promise<void> {
   const summary = `${summaryPrefix}${eventEntity.title}`;
 
   try {
-    await sendJiraWebhook(webhook, {
+    await notifyJira({
       summary,
       description: eventEntity.body || "",
       link: eventEntity.html_url || "",
       type: jiraIssueType,
     });
-    console.log("Jira webhook OK:", jiraIssueType, summary);
   } catch (error) {
-    console.error("Jira webhook error:", error);
+    console.error("Jira notify error:", error);
     process.exit(1);
   }
 }

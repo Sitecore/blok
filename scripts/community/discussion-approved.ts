@@ -3,7 +3,11 @@
  * Optional: DISCUSSION_APPROVED_ACTORS=comma,list,of,logins (lowercase) — if set, only those users may trigger.
  */
 import { readFileSync } from "node:fs";
-import { sendJiraWebhook, typeFromDiscussionSlug } from "./jira-shared";
+import {
+  isJiraConfigured,
+  notifyJira,
+  typeFromDiscussionSlug,
+} from "./jira-shared";
 import { postTeamsDiscussionApproved } from "./teams-notify";
 
 const api = process.env.GITHUB_API_URL || "https://api.github.com";
@@ -184,18 +188,17 @@ async function main(): Promise<void> {
     });
   }
 
-  const jiraUrl = process.env.JIRA_WEBHOOK_URL;
-  if (jiraUrl?.trim()) {
+  if (isJiraConfigured()) {
     const slug = discussion.category?.slug || "";
     const jtype = typeFromDiscussionSlug(slug);
     const summaryPrefix = process.env.JIRA_SUMMARY_PREFIX || "[Blok] ";
-    await sendJiraWebhook(jiraUrl, {
-      summary: `${summaryPrefix}${issue.title}`,
+    await notifyJira({
+      summary: `${summaryPrefix}${String(issue.title ?? "")}`,
       description: (issue.body as string) || issueBody,
       link: issueUrl,
       type: jtype,
     });
-    console.log("Jira webhook sent for issue #%s (from discussion)", inum);
+    console.log("Jira notified for issue #%s (from discussion)", inum);
   }
 
   console.log("Created issue #%s from discussion #%s", inum, dnum);

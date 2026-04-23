@@ -50,6 +50,16 @@ jobs:
           TEAMS_COMMUNITY_WEBHOOK_URL: ${{ secrets.TEAMS_COMMUNITY_WEBHOOK_URL }}
           TEAMS_WEBHOOK_URL: ${{ secrets.TEAMS_WEBHOOK_URL }}
           JIRA_WEBHOOK_URL: ${{ secrets.JIRA_WEBHOOK_URL }}
+          JIRA_BASE_URL: ${{ secrets.JIRA_BASE_URL }}
+          JIRA_EMAIL: ${{ secrets.JIRA_EMAIL }}
+          JIRA_API_TOKEN: ${{ secrets.JIRA_API_TOKEN }}
+          JIRA_PROJECT_KEY: ${{ vars.JIRA_PROJECT_KEY }}
+          JIRA_ISSUETYPE_BUG: ${{ vars.JIRA_ISSUETYPE_BUG }}
+          JIRA_ISSUETYPE_FEATURE: ${{ vars.JIRA_ISSUETYPE_FEATURE }}
+          JIRA_ISSUETYPE_TASK: ${{ vars.JIRA_ISSUETYPE_TASK }}
+          JIRA_ISSUETYPE_DOC: ${{ vars.JIRA_ISSUETYPE_DOC }}
+          JIRA_ISSUETYPE_SUPPORT: ${{ vars.JIRA_ISSUETYPE_SUPPORT }}
+          JIRA_ISSUETYPE_PR: ${{ vars.JIRA_ISSUETYPE_PR }}
           JIRA_SUMMARY_PREFIX: ${{ vars.JIRA_SUMMARY_PREFIX }}
         run: npx tsx scripts/community/discussion-approved.ts
         continue-on-error: true
