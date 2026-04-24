@@ -1,10 +1,22 @@
-/**
- * discussion labeled "approved" — create GitHub issue, comment on discussion, optional Teams.
- * Optional: DISCUSSION_APPROVED_ACTORS=comma,list,of,logins (lowercase) — if set, only those users may trigger.
- */
 import { readFileSync } from "node:fs";
-import { sendJiraWebhook, typeFromDiscussionSlug } from "./jira-shared";
-import { postTeamsDiscussionApproved } from "./teams-notify";
+import { loadBlokResponsibilityConfig } from "./blok-responsibility-metric";
+import {
+  addDiscussionCommentGraphql,
+  addDiscussionLabelsByName,
+  getDiscussionCommentBodiesGraphql,
+} from "./github-discussion-graphql";
+import {
+  isGithubIssueLabelsValidationError,
+  isJiraConfigured,
+  mirrorIssueInitialWorkflowLabels,
+  mirrorIssueLabelsForDiscussionSlug,
+  notifyJira,
+  typeFromDiscussionSlug,
+} from "./jira-shared";
+import {
+  postTeamsDiscussionApprovalNotice,
+  postTeamsJiraAndGithubCreated,
+} from "./teams-notify";
 
 const api = process.env.GITHUB_API_URL || "https://api.github.com";
 const token = process.env.GITHUB_TOKEN;
@@ -16,7 +28,10 @@ if (!repoFull || !token || !eventPath) {
   );
   process.exit(1);
 }
+const ghToken = token;
 const [owner, repoName] = repoFull.split("/");
+const ownerEnc = encodeURIComponent(owner);
+const repoEnc = encodeURIComponent(repoName);
 
 interface DiscussionComment {
   body?: string;
@@ -37,20 +52,24 @@ interface DiscussionEvent {
     html_url: string;
     node_id?: string;
     category?: { slug?: string };
+    user?: { login?: string };
   };
 }
 
 const event = JSON.parse(readFileSync(eventPath, "utf8")) as DiscussionEvent;
+
+/** Hidden marker so re-runs skip after this automation already commented. */
+const DISCUSSION_APPROVED_MARKER = "<!-- blok-discussion-approved -->";
 
 async function gh(
   method: string,
   path: string,
   body: Record<string, unknown> | null,
 ): Promise<unknown> {
-  const res = await fetch(`${api}${path}`, {
+  const res = await fetch(`${api.replace(/\/+$/, "")}${path}`, {
     method,
     headers: {
-      Authorization: `Bearer ${token}`,
+      Authorization: `Bearer ${ghToken}`,
       Accept: "application/vnd.github+json",
       "X-GitHub-Api-Version": "2022-11-28",
       ...(body ? { "Content-Type": "application/json" } : {}),
@@ -84,89 +103,228 @@ async function main(): Promise<void> {
     process.exit(0);
   }
 
-  const actors = (process.env.DISCUSSION_APPROVED_ACTORS || "")
-    .split(",")
-    .map((s) => s.trim().toLowerCase())
-    .filter(Boolean);
+  const { discussionApprovedActors: actors } = loadBlokResponsibilityConfig();
   const actor = (event.sender?.login || "").toLowerCase();
   if (actors.length && !actors.includes(actor)) {
-    console.log(`Skip: ${actor} is not in DISCUSSION_APPROVED_ACTORS`);
+    console.log(
+      `Skip: ${actor} is not in discussionApprovedActors (metric or DISCUSSION_APPROVED_ACTORS override)`,
+    );
     process.exit(0);
   }
 
   const dnum = discussion.number;
 
-  const commentsRaw = await gh(
-    "GET",
-    `/repos/${owner}/${repoName}/discussions/${dnum}/comments`,
-    null,
-  );
-  const list = Array.isArray(commentsRaw)
-    ? (commentsRaw as DiscussionComment[])
-    : [];
-  const bodies = list.map((c) => c.body || "").join("\n");
-  if (/Tracked in #\d+/i.test(bodies)) {
-    console.log("Discussion already linked to an issue; skipping.");
+  let bodies: string;
+  if (discussion.node_id) {
+    const graphqlBodies = await getDiscussionCommentBodiesGraphql({
+      token: ghToken,
+      discussionNodeId: discussion.node_id,
+    });
+    bodies = graphqlBodies.join("\n");
+  } else {
+    const commentsRaw = await gh(
+      "GET",
+      `/repos/${ownerEnc}/${repoEnc}/discussions/${dnum}/comments`,
+      null,
+    );
+    const list = Array.isArray(commentsRaw)
+      ? (commentsRaw as DiscussionComment[])
+      : [];
+    bodies = list.map((c) => c.body || "").join("\n");
+  }
+  if (
+    bodies.includes(DISCUSSION_APPROVED_MARKER) ||
+    /Tracked in #\d+/i.test(bodies) ||
+    /\*\*Approved \(no GitHub issue\)\*\*/i.test(bodies)
+  ) {
+    console.log(
+      "Discussion already reviewed/approved by automation; skipping.",
+    );
     process.exit(0);
   }
 
   let discBody = discussion.body || "";
   let discTitle = discussion.title || "Discussion";
+  let discAuthorLogin = discussion.user?.login;
   if (!discussion.body && discussion.node_id) {
     try {
       const full = (await gh(
         "GET",
-        `/repos/${owner}/${repoName}/discussions/${dnum}`,
+        `/repos/${ownerEnc}/${repoEnc}/discussions/${dnum}`,
         null,
-      )) as { body?: string; title?: string };
+      )) as { body?: string; title?: string; user?: { login?: string } };
       discBody = full.body || "";
       discTitle = full.title || discTitle;
+      if (!discAuthorLogin && full.user?.login) {
+        discAuthorLogin = full.user.login;
+      }
     } catch {
       /* use event fields */
     }
   }
 
-  const issueTitleRaw = `[from discussion #${dnum}] ${discTitle}`;
+  const discussionTitlePart = discTitle.trim() || "Discussion";
+  const issueTitlePrefix = `[discussion - ${dnum}] `;
+  const issueTitleRaw = `${issueTitlePrefix}${discussionTitlePart}`;
+  /** GitHub issue titles are limited to 256 characters. */
   const issueTitle =
-    issueTitleRaw.length > 250
-      ? `${issueTitleRaw.slice(0, 247)}…`
+    issueTitleRaw.length > 256
+      ? `${issueTitleRaw.slice(0, 255)}…`
       : issueTitleRaw;
 
   const issueBody = `Created from discussion #${dnum}: ${discussion.html_url}\n\n---\n\n${discBody || "_No description._"}`;
 
-  const issue = (await gh("POST", `/repos/${owner}/${repoName}/issues`, {
-    title: issueTitle,
-    body: issueBody.slice(0, 65000),
-    labels: ["needs-triage"],
-  })) as { number?: number; html_url?: string; title?: string; body?: string };
+  const categorySlug = discussion.category?.slug || "";
+  const typeLabels = mirrorIssueLabelsForDiscussionSlug(categorySlug);
+  const workflowLabels = mirrorIssueInitialWorkflowLabels();
+  const issueCreateUrl = `${api.replace(/\/+$/, "")}/repos/${ownerEnc}/${repoEnc}/issues`;
+  const issueCreateHeaders = {
+    Authorization: `Bearer ${ghToken}`,
+    Accept: "application/vnd.github+json",
+    "X-GitHub-Api-Version": "2022-11-28",
+    "Content-Type": "application/json",
+  } as const;
 
-  const inum = issue.number;
-  const issueUrl = issue.html_url;
+  const baseWorkflowTriage = [...new Set([...workflowLabels, "needs-triage"])];
+  const withTypes = [...new Set([...baseWorkflowTriage, ...typeLabels])];
+  const labelAttempts: string[][] = [];
+  const pushLabelAttempt = (labels: string[]) => {
+    const normalized = [...new Set(labels)];
+    const key = normalized.join("\0");
+    if (labelAttempts.some((a) => [...new Set(a)].join("\0") === key)) {
+      return;
+    }
+    labelAttempts.push(normalized);
+  };
+  pushLabelAttempt(withTypes);
+  if (withTypes.length > baseWorkflowTriage.length) {
+    pushLabelAttempt(baseWorkflowTriage);
+  }
+  pushLabelAttempt(["needs-triage"]);
 
-  if (inum === undefined || !issueUrl) {
-    throw new Error("Issue creation response missing number or html_url");
+  let issueRes!: Response;
+  let issueResText = "";
+  for (let ai = 0; ai < labelAttempts.length; ai++) {
+    const labels = labelAttempts[ai];
+    issueRes = await fetch(issueCreateUrl, {
+      method: "POST",
+      headers: issueCreateHeaders,
+      body: JSON.stringify({
+        title: issueTitle,
+        body: issueBody.slice(0, 65000),
+        labels,
+      }),
+    });
+    issueResText = await issueRes.text();
+    if (issueRes.ok || issueRes.status === 410) {
+      break;
+    }
+    const canRetry =
+      ai < labelAttempts.length - 1 &&
+      isGithubIssueLabelsValidationError(issueRes.status, issueResText);
+    if (canRetry) {
+      console.warn(
+        `Mirror issue: label validation failed (attempt ${ai + 1}). Retrying with: ${labelAttempts[ai + 1]?.join(", ") ?? "needs-triage"}`,
+      );
+      continue;
+    }
+    break;
+  }
+  let issueJson: {
+    number?: number;
+    html_url?: string;
+    title?: string;
+    body?: string;
+    message?: string;
+  };
+  try {
+    issueJson = issueResText ? JSON.parse(issueResText) : {};
+  } catch {
+    issueJson = {};
   }
 
-  await gh("POST", `/repos/${owner}/${repoName}/discussions/${dnum}/comments`, {
-    body: `**Tracked in** #${inum}\n\n${issueUrl}`,
-  });
+  let inum: number | undefined;
+  let issueUrl: string | undefined;
+  let githubIssueCreated = true;
+  let trackedBody: string;
+
+  if (issueRes.status === 410) {
+    githubIssueCreated = false;
+    issueUrl = discussion.html_url;
+    trackedBody = `**Discussion reviewed and approved.**
+
+This repository has [GitHub Issues disabled](https://docs.github.com/rest/issues/issues#create-an-issue), so **no GitHub issue was created**. Please keep tracking in this discussion thread.
+
+**Discussion:** ${discussion.html_url}
+
+${DISCUSSION_APPROVED_MARKER}`;
+    console.log(
+      "Issues disabled on repository (HTTP 410); skipping issue creation, posting discussion comment only.",
+    );
+  } else if (!issueRes.ok) {
+    throw new Error(
+      `POST /repos/${ownerEnc}/${repoEnc}/issues → ${issueRes.status}: ${issueResText.slice(0, 800)}`,
+    );
+  } else {
+    inum = issueJson.number;
+    issueUrl = issueJson.html_url;
+    if (inum === undefined || !issueUrl) {
+      throw new Error("Issue creation response missing number or html_url");
+    }
+    trackedBody = `**Discussion reviewed and approved.** A **GitHub issue** was created to track the process.
+
+**Issue:** [#${inum}](${issueUrl})
+
+${DISCUSSION_APPROVED_MARKER}`;
+  }
+  if (discussion.node_id) {
+    await addDiscussionCommentGraphql({
+      token: ghToken,
+      discussionNodeId: discussion.node_id,
+      body: trackedBody,
+    });
+  } else {
+    await gh(
+      "POST",
+      `/repos/${ownerEnc}/${repoEnc}/discussions/${dnum}/comments`,
+      {
+        body: trackedBody,
+      },
+    );
+  }
 
   try {
-    const currentRaw = await gh(
-      "GET",
-      `/repos/${owner}/${repoName}/discussions/${dnum}/labels`,
-      null,
-    );
-    const currentLabels = Array.isArray(currentRaw)
-      ? (currentRaw as DiscussionLabel[])
-      : [];
-    const names = new Set(
-      currentLabels.map((l) => l.name).filter(Boolean) as string[],
-    );
-    names.add("tracked");
-    await gh("PUT", `/repos/${owner}/${repoName}/discussions/${dnum}/labels`, {
-      labels: [...names],
-    });
+    if (discussion.node_id) {
+      await addDiscussionLabelsByName({
+        token: ghToken,
+        owner,
+        repo: repoName,
+        discussionNodeId: discussion.node_id,
+        labelNames: ["tracked"],
+      });
+      console.log("Applied label tracked (GraphQL)");
+    } else {
+      const currentRaw = await gh(
+        "GET",
+        `/repos/${ownerEnc}/${repoEnc}/discussions/${dnum}/labels`,
+        null,
+      );
+      const currentLabels = Array.isArray(currentRaw)
+        ? (currentRaw as DiscussionLabel[])
+        : [];
+      const names = new Set(
+        currentLabels.map((l) => l.name).filter(Boolean) as string[],
+      );
+      names.add("tracked");
+      await gh(
+        "PUT",
+        `/repos/${ownerEnc}/${repoEnc}/discussions/${dnum}/labels`,
+        {
+          labels: [...names],
+        },
+      );
+      console.log("Applied label tracked (REST)");
+    }
   } catch (e) {
     const msg = e instanceof Error ? e.message : String(e);
     console.warn("Could not set tracked label:", msg);
@@ -175,30 +333,67 @@ async function main(): Promise<void> {
   const teamsUrl =
     process.env.TEAMS_COMMUNITY_WEBHOOK_URL || process.env.TEAMS_WEBHOOK_URL;
   if (teamsUrl) {
-    await postTeamsDiscussionApproved({
+    await postTeamsDiscussionApprovalNotice({
       webhookUrl: teamsUrl,
-      title: discTitle,
+      repository: repoFull,
+      discussionNumber: dnum,
+      discussionTitle: discTitle,
       discussionUrl: discussion.html_url,
-      issueNumber: inum,
-      issueUrl,
+      createdByLogin: discAuthorLogin,
+      approvedByLogin: event.sender?.login,
+      githubIssueCreated,
+      issueUrl: githubIssueCreated && issueUrl ? issueUrl : undefined,
     });
   }
 
-  const jiraUrl = process.env.JIRA_WEBHOOK_URL;
-  if (jiraUrl?.trim()) {
+  const jiraSummary =
+    discTitle.length > 250 ? `${discTitle.slice(0, 249)}…` : discTitle;
+
+  let jiraResult: { ok: boolean; browseUrl?: string } = { ok: false };
+  if (isJiraConfigured()) {
     const slug = discussion.category?.slug || "";
     const jtype = typeFromDiscussionSlug(slug);
-    const summaryPrefix = process.env.JIRA_SUMMARY_PREFIX || "[Blok] ";
-    await sendJiraWebhook(jiraUrl, {
-      summary: `${summaryPrefix}${issue.title}`,
-      description: (issue.body as string) || issueBody,
-      link: issueUrl,
+    jiraResult = await notifyJira({
+      summary: jiraSummary,
+      description: githubIssueCreated
+        ? String(issueJson.body || issueBody)
+        : issueBody,
+      link: issueUrl || discussion.html_url,
       type: jtype,
+      sourceDiscussionUrl: discussion.html_url,
+      sourceIssueUrl: githubIssueCreated && issueUrl ? issueUrl : undefined,
     });
-    console.log("Jira webhook sent for issue #%s (from discussion)", inum);
+    if (jiraResult.ok) {
+      if (githubIssueCreated) {
+        console.log("Jira notified for issue #%s (from discussion)", inum);
+      } else {
+        console.log("Jira notified (discussion link; issues disabled on repo)");
+      }
+    }
   }
 
-  console.log("Created issue #%s from discussion #%s", inum, dnum);
+  if (teamsUrl && jiraResult.ok && jiraResult.browseUrl) {
+    await postTeamsJiraAndGithubCreated({
+      webhookUrl: teamsUrl,
+      discussionNumber: dnum,
+      discussionUrl: discussion.html_url,
+      issueTitle: githubIssueCreated
+        ? String(issueJson.title ?? issueTitle)
+        : jiraSummary,
+      githubIssueCreated,
+      issueUrl: githubIssueCreated && issueUrl ? issueUrl : undefined,
+      jiraBrowseUrl: jiraResult.browseUrl,
+    });
+  }
+
+  if (githubIssueCreated) {
+    console.log("Created issue #%s from discussion #%s", inum, dnum);
+  } else {
+    console.log(
+      "Approved discussion #%s (no GitHub issue — issues disabled on repo)",
+      dnum,
+    );
+  }
 }
 
 main().catch((e) => {
