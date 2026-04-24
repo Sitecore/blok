@@ -62,10 +62,12 @@ function ComboboxInput({
   disabled = false,
   showTrigger = true,
   showClear = false,
+  clearAriaLabel = "Clear selection",
   ...props
 }: ComboboxPrimitive.Input.Props & {
   showTrigger?: boolean;
   showClear?: boolean;
+  clearAriaLabel?: string;
 }) {
   return (
     <InputGroup
