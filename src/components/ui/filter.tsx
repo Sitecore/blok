@@ -181,6 +181,7 @@ export interface FilterBarProps {
   direction?: "horizontal" | "vertical";
   gap?: string;
   className?: string;
+  ariaLabel?: string;
 }
 
 // FILTER INPUT COMPONENT
@@ -1118,8 +1119,16 @@ function FilterBar({
   direction = "horizontal",
   gap = "gap-3",
   className,
+  ariaLabel = "Filters",
+  "aria-label": ariaLabelNative,
+  "aria-labelledby": ariaLabelledBy,
   ...props
 }: FilterBarProps & Omit<ComponentProps<"div">, "onChange">) {
+  const regionAccessibleName =
+    ariaLabelledBy != null && ariaLabelledBy !== ""
+      ? undefined
+      : (ariaLabelNative ?? ariaLabel);
+
   const renderFilter = (filter: FilterDefinition) => {
     const filterKey = `${filter.type}-${filter.key}`;
     const filterValue = values[filter.key];
@@ -1159,6 +1168,9 @@ function FilterBar({
 
   return (
     <div
+      role="region"
+      aria-label={regionAccessibleName}
+      aria-labelledby={ariaLabelledBy}
       className={cn(
         "flex",
         direction === "horizontal"

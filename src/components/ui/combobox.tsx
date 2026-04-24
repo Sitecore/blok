@@ -32,6 +32,7 @@ function ComboboxTrigger({
     >
       {children}
       <ChevronDownIcon
+        aria-hidden
         data-slot="combobox-trigger-icon"
         className="text-muted-foreground pointer-events-none size-4"
       />
@@ -41,7 +42,7 @@ function ComboboxTrigger({
 
 function ComboboxClear({
   className,
-  "aria-label": ariaLabel,
+  "aria-label": ariaLabel = "Clear selection",
   ...props
 }: ComboboxPrimitive.Clear.Props) {
   return (
@@ -49,9 +50,10 @@ function ComboboxClear({
       data-slot="combobox-clear"
       render={<InputGroupButton variant="ghost" size="icon-xs" />}
       className={cn(className)}
+      aria-label={ariaLabel}
       {...props}
     >
-      <XIcon className="pointer-events-none" />
+      <XIcon aria-hidden className="pointer-events-none" />
     </ComboboxPrimitive.Clear>
   );
 }
@@ -62,10 +64,14 @@ function ComboboxInput({
   disabled = false,
   showTrigger = true,
   showClear = false,
+  triggerAriaLabel = "Open listbox",
+  clearAriaLabel,
   ...props
 }: ComboboxPrimitive.Input.Props & {
   showTrigger?: boolean;
   showClear?: boolean;
+  triggerAriaLabel?: string;
+  clearAriaLabel?: string;
 }) {
   return (
     <InputGroup
@@ -92,12 +98,13 @@ function ComboboxInput({
             data-slot="input-group-button"
             className="group-has-data-[slot=combobox-clear]/input-group:hidden data-pressed:bg-transparent"
             disabled={disabled}
+            aria-label={triggerAriaLabel}
           >
             <ComboboxTrigger />
           </InputGroupButton>
         )}
         {showClear && (
-          <ComboboxClear disabled={disabled} aria-label="Clear selection" />
+          <ComboboxClear disabled={disabled} aria-label={clearAriaLabel} />
         )}
       </InputGroupAddon>
       {children}
@@ -309,9 +316,12 @@ function ComboboxChip({
   className,
   children,
   showRemove = true,
+  removeButtonAriaLabel = "Remove",
   ...props
 }: ComboboxPrimitive.Chip.Props & {
   showRemove?: boolean;
+  /** Accessible name for the chip remove control (icon button). */
+  removeButtonAriaLabel?: string;
 }) {
   return (
     <ComboboxPrimitive.Chip
@@ -328,8 +338,9 @@ function ComboboxChip({
           render={<Button variant="ghost" size="icon-xs" />}
           className="-ml-1 opacity-50 hover:opacity-100"
           data-slot="combobox-chip-remove"
+          aria-label={removeButtonAriaLabel}
         >
-          <XIcon className="pointer-events-none" />
+          <XIcon aria-hidden className="pointer-events-none" />
         </ComboboxPrimitive.ChipRemove>
       )}
     </ComboboxPrimitive.Chip>
