@@ -1,11 +1,10 @@
-name: Design feedback
-description: Feedback on UI components, layout, or design patterns in Blok CN.
+# Category slug: design-feedback
 labels: [design, feedback]
 body:
   - type: markdown
     attributes:
       value: |
-        We appreciate your design insights. Specific examples or references help us act on feedback faster.
+        **Design feedback** — Feedback on UI components, layout, or design patterns in Blok CN. Specific examples or references help us act faster.
   - type: input
     id: component
     attributes:

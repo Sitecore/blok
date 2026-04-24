@@ -5,6 +5,7 @@ import {
 } from "@mdi/js";
 
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import {
   Card,
   CardAction,
@@ -119,28 +120,32 @@ function HorizontalDetailCard({
                   className="size-3.5"
                 />
               </span>
-              <button
+              <Button
                 type="button"
-                className="rounded p-0.5 hover:bg-muted"
+                variant="ghost"
+                className="h-auto! min-h-0! w-auto! min-w-0! max-w-min! gap-0! rounded! p-0 shadow-none hover:bg-muted"
+                size="icon-xs"
                 aria-label="More options"
               >
                 <Icon
                   path={mdiDotsHorizontal}
-                  size={1.3}
+                  size={0.9}
                   className="size-3.5 text-neutral-fg"
                 />
-              </button>
-              <button
+              </Button>
+              <Button
                 type="button"
-                className="absolute right-3 top-1/2 -translate-y-1/2 rounded p-0.5 hover:bg-muted"
+                variant="ghost"
+                size="icon-xs"
+                className="absolute right-3 top-1/2 -translate-y-1/2 rounded p-0 hover:bg-muted"
                 aria-label="Close"
               >
                 <Icon
                   path={mdiClose}
-                  size={1.3}
+                  size={0.9}
                   className="size-3.5 text-neutral-fg"
                 />
-              </button>
+              </Button>
             </CardAction>
           </CardHeader>
           {defaults.showFileType && (

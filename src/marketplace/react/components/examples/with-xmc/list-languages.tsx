@@ -37,7 +37,9 @@ export const ListLanguagesFromClientSdk = () => {
   return (
     <div>
       <h1>Client API Request</h1>
-      <button onClick={fetchLanguages}>Fetch Languages</button>
+      <button type="button" onClick={fetchLanguages}>
+        Fetch Languages
+      </button>
       <div>Languages: {languages.length}</div>
       <div>{languages.map((language) => language.name)}</div>
     </div>

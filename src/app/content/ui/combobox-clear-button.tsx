@@ -20,7 +20,12 @@ const frameworks = [
 export default function ComboboxWithClearDemo() {
   return (
     <Combobox items={frameworks} defaultValue={frameworks[0]}>
-      <ComboboxInput placeholder="Select a framework" showClear clear-aria-label="Clear combobox" aria-label="Select a framework" />
+      <ComboboxInput
+        placeholder="Select a framework"
+        showClear
+        clear-aria-label="Clear combobox"
+        aria-label="Select a framework"
+      />
       <ComboboxContent>
         <ComboboxEmpty>No items found.</ComboboxEmpty>
         <ComboboxList>
