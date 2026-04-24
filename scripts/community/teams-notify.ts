@@ -271,19 +271,20 @@ export async function postTeamsDiscussionCreated({
 
   const mentions =
     teamsMentions?.filter((m) => m.id?.trim() && m.name?.trim()) ?? [];
+
+  bodyBlocks.push(...markdownSectionBlocks("Discussion details", body || ""));
+
   if (mentions.length) {
     const ping = mentions
       .map((u) => `<at>${sanitizeTeamsAtDisplayName(u.name)}</at>`)
       .join(" ");
     bodyBlocks.push({
       type: "TextBlock",
-      text: `Please review — ${ping}`,
+      text: `Please review the above discussion and provide your feedback — ${ping}`,
       wrap: true,
       spacing: "Medium",
     });
   }
-
-  bodyBlocks.push(...markdownSectionBlocks("Discussion details", body || ""));
 
   const cardRoot = teamsMsteamsMentionPayload(mentions);
 
