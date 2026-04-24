@@ -58,6 +58,9 @@ interface DiscussionEvent {
 
 const event = JSON.parse(readFileSync(eventPath, "utf8")) as DiscussionEvent;
 
+/** Hidden marker so re-runs skip after this automation already commented. */
+const DISCUSSION_APPROVED_MARKER = "<!-- blok-discussion-approved -->";
+
 async function gh(
   method: string,
   path: string,
@@ -131,11 +134,12 @@ async function main(): Promise<void> {
     bodies = list.map((c) => c.body || "").join("\n");
   }
   if (
+    bodies.includes(DISCUSSION_APPROVED_MARKER) ||
     /Tracked in #\d+/i.test(bodies) ||
     /\*\*Approved \(no GitHub issue\)\*\*/i.test(bodies)
   ) {
     console.log(
-      "Discussion already linked or approved (no-issue path); skipping.",
+      "Discussion already reviewed/approved by automation; skipping.",
     );
     process.exit(0);
   }
@@ -203,7 +207,13 @@ async function main(): Promise<void> {
   if (issueRes.status === 410) {
     githubIssueCreated = false;
     issueUrl = discussion.html_url;
-    trackedBody = `**Approved (no GitHub issue)** — [GitHub Issues are disabled](https://docs.github.com/rest/issues/issues#create-an-issue) for this repository, so no mirror issue was created. Track work from this discussion: ${discussion.html_url}`;
+    trackedBody = `**Discussion reviewed and approved.**
+
+This repository has [GitHub Issues disabled](https://docs.github.com/rest/issues/issues#create-an-issue), so **no GitHub issue was created**. Please keep tracking in this discussion thread.
+
+**Discussion:** ${discussion.html_url}
+
+${DISCUSSION_APPROVED_MARKER}`;
     console.log(
       "Issues disabled on repository (HTTP 410); skipping issue creation, posting discussion comment only.",
     );
@@ -217,7 +227,11 @@ async function main(): Promise<void> {
     if (inum === undefined || !issueUrl) {
       throw new Error("Issue creation response missing number or html_url");
     }
-    trackedBody = `**Tracked in** #${inum}\n\n${issueUrl}`;
+    trackedBody = `**Discussion reviewed and approved.** A **GitHub issue** was created to track the process.
+
+**Issue:** [#${inum}](${issueUrl})
+
+${DISCUSSION_APPROVED_MARKER}`;
   }
   if (discussion.node_id) {
     await addDiscussionCommentGraphql({

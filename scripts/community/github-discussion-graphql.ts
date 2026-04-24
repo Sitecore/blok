@@ -108,7 +108,7 @@ export async function addDiscussionCommentGraphql(params: {
   });
 }
 
-/** Concatenated comment bodies for idempotency checks (e.g. "Tracked in #"). */
+/** Concatenated comment bodies for idempotency checks (e.g. automation marker, legacy "Tracked in #"). */
 export async function getDiscussionCommentBodiesGraphql(params: {
   token: string;
   discussionNodeId: string;
