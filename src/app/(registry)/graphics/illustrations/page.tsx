@@ -2,6 +2,7 @@
 
 import { copyToClipboard } from "@/components/docsite/code-block";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+import { Button } from "@/components/ui/button";
 import {
   Table,
   TableBody,
@@ -368,7 +369,9 @@ export default function IllustrationsPage() {
                   <TableCell className="px-4 min-w-[120px]">
                     <Tooltip>
                       <TooltipTrigger asChild>
-                        <button
+                        <Button
+                          type="button"
+                          variant="ghost"
                           onClick={() => {
                             const url = `https://delivery-sitecore.sitecorecontenthub.cloud/api/public/content/spot-${name}`;
                             copyToClipboard(url);
@@ -377,14 +380,14 @@ export default function IllustrationsPage() {
                               href: url,
                             });
                           }}
-                          className="cursor-pointer flex items-center"
+                          className="h-auto min-h-0 cursor-pointer items-center border-0 p-0 shadow-none hover:bg-transparent"
                         >
                           <img
                             src={`https://delivery-sitecore.sitecorecontenthub.cloud/api/public/content/spot-${name}`}
                             alt={`${name} illustration`}
                             className="max-w-[64px] h-auto object-contain"
                           />
-                        </button>
+                        </Button>
                       </TooltipTrigger>
                       <TooltipContent>Copy URL</TooltipContent>
                     </Tooltip>
@@ -392,7 +395,9 @@ export default function IllustrationsPage() {
                   <TableCell className="px-4 min-w-[120px]">
                     <Tooltip>
                       <TooltipTrigger asChild>
-                        <button
+                        <Button
+                          type="button"
+                          variant="ghost"
                           onClick={() => {
                             const url = `https://delivery-sitecore.sitecorecontenthub.cloud/api/public/content/spot-${name}-neutral`;
                             copyToClipboard(url);
@@ -401,14 +406,14 @@ export default function IllustrationsPage() {
                               href: url,
                             });
                           }}
-                          className="cursor-pointer flex items-center"
+                          className="h-auto min-h-0 cursor-pointer items-center border-0 p-0 shadow-none hover:bg-transparent"
                         >
                           <img
                             src={`https://delivery-sitecore.sitecorecontenthub.cloud/api/public/content/spot-${name}-neutral`}
                             alt={`${name} illustration neutral variant`}
                             className="max-w-[64px] h-auto object-contain"
                           />
-                        </button>
+                        </Button>
                       </TooltipTrigger>
                       <TooltipContent>Copy URL</TooltipContent>
                     </Tooltip>

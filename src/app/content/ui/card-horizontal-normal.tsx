@@ -1,5 +1,6 @@
 import { mdiCloudCheckVariantOutline, mdiDotsHorizontal } from "@mdi/js";
 
+import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardTitle } from "@/components/ui/card";
 import { Icon } from "@/lib/icon";
 
@@ -90,17 +91,19 @@ function HorizontalNormalCard({
                   className="size-3.5"
                 />
               </span>
-              <button
+              <Button
                 type="button"
-                className="rounded p-0.5 hover:bg-muted"
+                variant="ghost"
+                size="icon-xs"
+                className="h-auto! min-h-0! w-auto! min-w-0! max-w-min! gap-0! rounded! p-0 shadow-none hover:bg-muted"
                 aria-label="More options"
               >
                 <Icon
                   path={mdiDotsHorizontal}
-                  size={1.3}
+                  size={0.9}
                   className="size-3.5 text-neutral-fg"
                 />
-              </button>
+              </Button>
             </div>
           </div>
         </CardContent>

@@ -1,11 +1,9 @@
-name: "General Q&A"
-description: Questions and help using Blok—integration, APIs, how-to, docs, or general topics (single Q&A category).
 labels: [question, discussion]
 body:
   - type: markdown
     attributes:
       value: |
-        Use this category for **how-to**, **usage**, **integration**, and **general questions**. For something broken or reproducible, use **Bug reports** instead.
+        **General Q&A** — Questions and help using Blok (integration, APIs, how-to, docs, or general topics). For something broken or reproducible, use **Bug reports** instead.
   - type: textarea
     id: topic
     attributes:

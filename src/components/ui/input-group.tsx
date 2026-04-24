@@ -103,6 +103,7 @@ function InputGroupButton({
   type = "button",
   variant = "ghost",
   size = "xs",
+  "aria-label": ariaLabel,
   ...props
 }: Omit<React.ComponentProps<typeof Button>, "size"> &
   VariantProps<typeof inputGroupButtonVariants>) {
@@ -113,6 +114,7 @@ function InputGroupButton({
       data-size={size}
       variant={variant}
       className={cn(inputGroupButtonVariants({ size }), className)}
+      aria-label={ariaLabel}
       {...props}
     />
   );
