@@ -1,11 +1,9 @@
-name: Ideas
-description: Share early-stage suggestions or improvements for the Blok UI library.
 labels: [idea, brainstorming]
 body:
   - type: markdown
     attributes:
       value: |
-        Share a rough idea—we can refine it together. For a fully specified change, consider **Feature requests** instead.
+        **Ideas** — Share early-stage suggestions or improvements for the Blok UI library. We can refine together. For a fully specified change, use **Feature requests** instead.
   - type: textarea
     id: idea
     attributes:

@@ -384,9 +384,11 @@ const FilterSingleSelect = React.forwardRef<
               }}
             >
               <PopoverTrigger asChild>
-                <button
+                <Button
                   ref={ref}
                   type="button"
+                  variant="ghost"
+                  aria-label={placeholder}
                   aria-describedby={describedBy}
                   aria-expanded={open}
                   disabled={disabled}
@@ -434,7 +436,7 @@ const FilterSingleSelect = React.forwardRef<
                       className="size-4 shrink-0 pointer-events-none text-current"
                     />
                   )}
-                </button>
+                </Button>
               </PopoverTrigger>
               <PopoverContent
                 align="start"
@@ -485,15 +487,16 @@ const FilterSingleSelect = React.forwardRef<
                       </div>
                     ) : (
                       filteredOptions.map((option) => (
-                        <button
+                        <Button
                           key={option.value}
                           type="button"
+                          variant="ghost"
                           role="option"
                           aria-selected={value === option.value}
                           disabled={option.disabled}
                           onClick={() => handleChange(option.value)}
                           className={cn(
-                            "flex w-full items-center justify-between gap-2 rounded-sm px-2 py-1 text-left text-sm outline-none hover:bg-accent/50 focus:bg-accent/50",
+                            "h-auto min-h-0 w-full justify-between rounded-sm px-2 py-1 text-left text-sm font-normal hover:bg-accent/50 focus-visible:bg-accent/50",
                             option.disabled &&
                               "opacity-50 cursor-not-allowed pointer-events-none",
                           )}
@@ -508,7 +511,7 @@ const FilterSingleSelect = React.forwardRef<
                               className="size-4 shrink-0 text-primary-fg"
                             />
                           )}
-                        </button>
+                        </Button>
                       ))
                     )}
                   </div>
@@ -850,9 +853,10 @@ const FilterMultiSelect = React.forwardRef<
         >
           <Popover open={open} onOpenChange={handleOpenChangeWithSearch}>
             <PopoverTrigger asChild>
-              <button
+              <Button
                 ref={setButtonRef}
                 type="button"
+                variant="ghost"
                 disabled={disabled}
                 aria-describedby={describedBy}
                 aria-expanded={open}
@@ -997,7 +1001,7 @@ const FilterMultiSelect = React.forwardRef<
                     className="size-4 shrink-0 pointer-events-none text-current"
                   />
                 )}
-              </button>
+              </Button>
             </PopoverTrigger>
             <PopoverContent
               className={cn(
