@@ -1,12 +1,17 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Button } from "@/components/ui/button";
 
 export default function AvatarMenuDemo() {
   return (
     <div className="flex items-center gap-4">
       <div className="flex -space-x-2">
-        <button className="group relative flex size-12 items-center justify-center rounded-full bg-primary-background text-primary-foreground transition-colors hover:bg-primary hover:text-white">
+        <Button
+          type="button"
+          variant="ghost"
+          className="group relative flex size-12 min-h-12 min-w-12 items-center justify-center rounded-full border-0 bg-primary-background p-0 text-primary-foreground shadow-none transition-colors hover:bg-primary hover:text-white"
+        >
           <span className="text-3xl font-semibold">+</span>
-        </button>
+        </Button>
         <Avatar className="size-12 ring-2 ring-background">
           <AvatarImage
             src="https://cloudfront-us-east-1.images.arcpublishing.com/opb/UODRDCE3KTLWUWUHHRETSAXL7U.jpg"
@@ -16,9 +21,13 @@ export default function AvatarMenuDemo() {
         </Avatar>
       </div>
       <div className="flex -space-x-2">
-        <button className="group relative flex size-12 items-center justify-center rounded-full bg-primary-background text-primary-foreground transition-colors hover:bg-primary hover:text-white">
+        <Button
+          type="button"
+          variant="ghost"
+          className="group relative flex size-12 min-h-12 min-w-12 items-center justify-center rounded-full border-0 bg-primary-background p-0 text-primary-foreground shadow-none transition-colors hover:bg-primary hover:text-white"
+        >
           <span className="text-3xl font-semibold">+</span>
-        </button>
+        </Button>
         <Avatar className="size-12 ring-2 ring-background">
           <AvatarImage
             src="https://cloudfront-us-east-1.images.arcpublishing.com/opb/UODRDCE3KTLWUWUHHRETSAXL7U.jpg"
@@ -40,9 +49,13 @@ export default function AvatarMenuDemo() {
           />
           <AvatarFallback>ST</AvatarFallback>
         </Avatar>
-        <button className="group relative flex size-12 items-center justify-center rounded-full bg-primary-background text-primary-foreground transition-colors hover:bg-primary hover:text-white">
+        <Button
+          type="button"
+          variant="ghost"
+          className="group relative flex size-12 min-h-12 min-w-12 items-center justify-center rounded-full border-0 bg-primary-background p-0 text-primary-foreground shadow-none transition-colors hover:bg-primary hover:text-white"
+        >
           <span className="text-1xl font-semibold">+3</span>
-        </button>
+        </Button>
       </div>
     </div>
   );

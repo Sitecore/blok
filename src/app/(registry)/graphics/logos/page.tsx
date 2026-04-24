@@ -3,6 +3,7 @@
 import { copyToClipboard } from "@/components/docsite/code-block";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import {
   Table,
@@ -308,7 +309,9 @@ export default function LogosPage() {
                   <TableCell className="px-4 py-3 min-w-[200px]">
                     <Tooltip>
                       <TooltipTrigger asChild>
-                        <button
+                        <Button
+                          type="button"
+                          variant="ghost"
                           onClick={() => {
                             const url = `https://delivery-sitecore.sitecorecontenthub.cloud/api/public/content/${filename}`;
                             copyToClipboard(url);
@@ -317,14 +320,14 @@ export default function LogosPage() {
                               href: url,
                             });
                           }}
-                          className="cursor-pointer h-7 flex items-center"
+                          className="h-auto min-h-0 cursor-pointer justify-start items-center border-0 p-0 shadow-none hover:bg-transparent"
                         >
                           <img
                             src={`https://delivery-sitecore.sitecorecontenthub.cloud/api/public/content/${filename}`}
                             alt={`${brand} ${type.toLowerCase()}`}
                             className="h-7 object-contain object-left"
                           />
-                        </button>
+                        </Button>
                       </TooltipTrigger>
                       <TooltipContent>Copy URL</TooltipContent>
                     </Tooltip>
@@ -332,7 +335,9 @@ export default function LogosPage() {
                   <TableCell className="px-4 py-3 min-w-[200px]">
                     <Tooltip>
                       <TooltipTrigger asChild>
-                        <button
+                        <Button
+                          type="button"
+                          variant="ghost"
                           onClick={() => {
                             const url = `https://delivery-sitecore.sitecorecontenthub.cloud/api/public/content/${filename}-dark`;
                             copyToClipboard(url);
@@ -341,14 +346,14 @@ export default function LogosPage() {
                               href: url,
                             });
                           }}
-                          className="cursor-pointer h-7 flex items-center"
+                          className="h-auto min-h-0 cursor-pointer justify-start items-center border-0 p-0 shadow-none hover:bg-transparent"
                         >
                           <img
                             src={`https://delivery-sitecore.sitecorecontenthub.cloud/api/public/content/${filename}-dark`}
                             alt={`${brand} ${type.toLowerCase()} dark variant`}
                             className="h-7 object-contain object-left"
                           />
-                        </button>
+                        </Button>
                       </TooltipTrigger>
                       <TooltipContent>Copy URL</TooltipContent>
                     </Tooltip>

@@ -1,5 +1,6 @@
 "use client";
 
+import { Button } from "@/components/ui/button";
 import { TELEMETRY_EVENTS, track } from "@/lib/telemetry";
 import { cn } from "@/lib/utils";
 import { mdiOpenInNew } from "@mdi/js";
@@ -45,6 +46,17 @@ function buildPageContext(pageName?: string, pageType?: PageType) {
     ...(pageType === "primitive" && { component_name: pageName }),
     ...(pageType === "blok" && { block_name: pageName }),
   };
+}
+
+/** Neutralize default `Button` */
+function tocNavButtonClassName(isActive: boolean) {
+  return cn(
+    "h-auto min-h-0 w-full min-w-0 justify-start gap-0 rounded-none border-0 bg-transparent px-0 py-0 my-0 text-start text-md font-semibold shadow-none",
+    "hover:bg-transparent hover:text-foreground active:bg-transparent",
+    "focus-visible:ring-0",
+    "transition-colors",
+    isActive ? "text-foreground" : "text-muted-foreground",
+  );
 }
 
 export function RightSidebar({
@@ -272,34 +284,28 @@ export function RightSidebar({
           <ul className="space-y-2">
             {sections.map((section) => (
               <li key={section.id}>
-                <button
+                <Button
                   type="button"
+                  variant="ghost"
                   onClick={() => scrollToSection(section.id, section.title)}
-                  className={cn(
-                    "block w-full text-start text-md font-semibold transition-colors hover:text-foreground",
-                    activeId === section.id
-                      ? "text-foreground"
-                      : "text-muted-foreground",
-                  )}
+                  className={tocNavButtonClassName(activeId === section.id)}
                 >
                   {section.title}
-                </button>
+                </Button>
                 {section.children && (
                   <ul className="mt-2 space-y-2 ps-4">
                     {section.children.map((child) => (
                       <li key={child.id}>
-                        <button
+                        <Button
                           type="button"
+                          variant="ghost"
                           onClick={() => scrollToSection(child.id, child.title)}
-                          className={cn(
-                            "block w-full text-start text-md font-semibold transition-colors hover:text-foreground",
-                            activeId === child.id
-                              ? "text-foreground"
-                              : "text-muted-foreground",
+                          className={tocNavButtonClassName(
+                            activeId === child.id,
                           )}
                         >
                           {child.title}
-                        </button>
+                        </Button>
                       </li>
                     ))}
                   </ul>

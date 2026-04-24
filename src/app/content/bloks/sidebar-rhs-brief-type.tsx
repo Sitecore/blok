@@ -3,6 +3,7 @@
 import { SidebarRHS, SidebarRHSProvider } from "@/components/bloks/sidebar-rhs";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -59,12 +60,14 @@ function ExpandableDescription() {
         )}
       </div>
       {shouldTruncate && (
-        <button
+        <Button
+          type="button"
+          variant="link"
           onClick={() => setIsExpanded(!isExpanded)}
-          className="text-sm text-center text-foreground hover:underline cursor-pointer font-semibold"
+          className="text-sm text-center font-semibold"
         >
           {isExpanded ? "Read less" : "Read more"}
-        </button>
+        </Button>
       )}
     </div>
   );
@@ -251,21 +254,27 @@ function CommentsSection() {
                   {comment.timestamp}
                 </span>
                 <div className="flex items-center gap-1 ml-auto">
-                  <button
-                    className="text-muted-foreground hover:text-foreground transition-colors p-1"
+                  <Button
+                    type="button"
+                    variant="ghost"
+                    size="icon-sm"
+                    className="p-1 text-muted-foreground shadow-none transition-colors hover:text-foreground"
                     aria-label="Reply"
                   >
                     <Icon path={mdiReplyOutline} className="size-4" />
-                  </button>
+                  </Button>
                   <DropdownMenu>
                     <DropdownMenuTrigger asChild>
-                      <button
-                        className="text-muted-foreground hover:text-foreground transition-colors p-1"
+                      <Button
+                        type="button"
+                        variant="ghost"
+                        size="icon-sm"
+                        className="p-1 text-muted-foreground shadow-none transition-colors hover:text-foreground"
                         aria-label="More options"
                         onClick={(e) => e.stopPropagation()}
                       >
                         <Icon path={mdiDotsHorizontal} className="size-4" />
-                      </button>
+                      </Button>
                     </DropdownMenuTrigger>
                     <DropdownMenuContent align="end">
                       <DropdownMenuItem
@@ -325,13 +334,16 @@ function InfoSection() {
         <label className="text-xs text-muted-foreground">Label</label>
         <div className="flex items-center justify-between">
           <span className="text-sm font-medium text-foreground">The label</span>
-          <button
+          <Button
+            type="button"
+            variant="ghost"
+            size="icon-sm"
             onClick={() => handleCopy("The label")}
-            className="text-muted-foreground hover:text-foreground transition-colors"
+            className="text-muted-foreground shadow-none transition-colors hover:text-foreground"
             aria-label="Copy to clipboard"
           >
             <Icon path={mdiContentCopy} className="size-4" />
-          </button>
+          </Button>
         </div>
       </div>
 
@@ -340,13 +352,16 @@ function InfoSection() {
         <label className="text-xs text-muted-foreground">Name</label>
         <div className="flex items-center justify-between">
           <span className="text-sm font-medium text-foreground">Value</span>
-          <button
+          <Button
+            type="button"
+            variant="ghost"
+            size="icon-sm"
             onClick={() => handleCopy("Value")}
-            className="text-muted-foreground hover:text-foreground transition-colors"
+            className="text-muted-foreground shadow-none transition-colors hover:text-foreground"
             aria-label="Copy to clipboard"
           >
             <Icon path={mdiContentCopy} className="size-4" />
-          </button>
+          </Button>
         </div>
       </div>
 

@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Icon } from "@/lib/icon";
 import {
+  mdiDotsHorizontal,
   mdiImageOutline,
   mdiLightbulbOutline,
   mdiPackageVariant,
@@ -23,8 +24,18 @@ export default function CardStyledDemo() {
           <span className="text-sm font-semibold text-muted-foreground wrap-break-word">
             View all briefs
           </span>
-          <Button variant="ghost" size="icon-sm" aria-label="More options">
-            …
+          <Button
+            type="button"
+            variant="ghost"
+            className="h-auto! min-h-0! w-auto! min-w-0! max-w-min! gap-0! rounded! p-0 text-md shadow-none hover:bg-muted"
+            size="icon-xs"
+            aria-label="More options"
+          >
+            <Icon
+              path={mdiDotsHorizontal}
+              size={0.9}
+              className="size-3.5 text-neutral-fg"
+            />
           </Button>
         </div>
       </CardHeader>
