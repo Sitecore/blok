@@ -1820,6 +1820,28 @@
           "target": "src/components/bloks/sidebar-rhs.tsx"
         }
       ]
+    },
+    {
+      "name": "prompt-input",
+      "type": "registry:block",
+      "title": "Prompt input",
+      "description": "A composable prompt input for AI chat and in-page editing experiences. Includes auto-resizing textarea, file attachments, and action toolbar. Available in Default (chatbot) and Floating (canvas/in-page) variants.",
+      "registryDependencies": [
+        "https://blok.sitecore.com/r/theme.json",
+        "https://blok.sitecore.com/r/badge.json",
+        "https://blok.sitecore.com/r/button.json",
+        "https://blok.sitecore.com/r/tooltip.json",
+        "https://blok.sitecore.com/r/popover.json",
+        "https://blok.sitecore.com/r/textarea.json"
+      ],
+      "dependencies": ["@mdi/js"],
+      "files": [
+        {
+          "path": "src/components/bloks/prompt-input.tsx",
+          "type": "registry:block",
+          "target": "src/components/bloks/prompt-input.tsx"
+        }
+      ]
     }
   ]
 }
