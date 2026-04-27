@@ -1342,7 +1342,7 @@ function PromptInputAttachments({
               <Badge
                 colorScheme="neutral"
                 size="lg"
-                className="min-h-7 min-w-12 shrink-0 justify-center overflow-visible!"
+                className="min-h-13 min-w-12 shrink-0 justify-center overflow-visible!"
               >
                 +{overflowCount}
               </Badge>
