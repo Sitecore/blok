@@ -1,6 +1,7 @@
 "use client";
 
 import { SiteCard } from "@/components/bloks/site-card";
+import { Button } from "@/components/ui/button";
 import EmptyPin from "@/lib/empty-pin.svg";
 import type { ComponentProps } from "react";
 
@@ -109,9 +110,9 @@ export function PinnedSitesSection<T extends SiteData>({
               Pin the sites you work on most to keep them front and center,
               making it easier to switch, manage, and stay productive
             </p>
-            <button className="text-sm font-semibold text-primary hover:underline">
+            <Button variant="link" className="text-sm font-semibold">
               Start pinning sites
-            </button>
+            </Button>
           </div>
         )}
       </section>

@@ -17,11 +17,21 @@ export default function FieldWithSeparatorDemo() {
           <FieldGroup>
             <Field>
               <FieldLabel htmlFor="field-sep-first">First name</FieldLabel>
-              <Input id="field-sep-first" name="given-name" autoComplete="given-name" placeholder="John" />
+              <Input
+                id="field-sep-first"
+                name="given-name"
+                autoComplete="given-name"
+                placeholder="John"
+              />
             </Field>
             <Field>
               <FieldLabel htmlFor="field-sep-last">Last name</FieldLabel>
-              <Input id="field-sep-last" name="family-name" autoComplete="family-name" placeholder="Doe" />
+              <Input
+                id="field-sep-last"
+                name="family-name"
+                autoComplete="family-name"
+                placeholder="Doe"
+              />
             </Field>
           </FieldGroup>
         </FieldSet>

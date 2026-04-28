@@ -16,7 +16,12 @@ export default function FieldInputDemo() {
         <FieldGroup>
           <Field>
             <FieldLabel htmlFor="field-input-username">Username</FieldLabel>
-            <Input id="field-input-username" name="username" autoComplete="username" placeholder="Enter username" />
+            <Input
+              id="field-input-username"
+              name="username"
+              autoComplete="username"
+              placeholder="Enter username"
+            />
             <FieldDescription>
               Choose a unique username for your account.
             </FieldDescription>

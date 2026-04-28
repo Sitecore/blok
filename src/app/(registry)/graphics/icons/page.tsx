@@ -2,6 +2,7 @@
 
 import { copyToClipboard } from "@/components/docsite/code-block";
 import { Alert, AlertDescription } from "@/components/ui/alert";
+import { Button } from "@/components/ui/button";
 import { CircularProgress } from "@/components/ui/circular-progress";
 import {
   Table,
@@ -685,7 +686,7 @@ export default function IconsPage() {
           <Table>
             <TableHeader>
               <TableRow>
-                <TableHead className="w-28 px-4">Icon</TableHead>
+                <TableHead className="w-28 px-4 ">Icon</TableHead>
                 <TableHead className="px-4">MDI link</TableHead>
                 <TableHead className="px-4">MDI code</TableHead>
                 <TableHead className="px-4">Usage</TableHead>
@@ -700,7 +701,9 @@ export default function IconsPage() {
                     >
                       <Tooltip>
                         <TooltipTrigger asChild>
-                          <button
+                          <Button
+                            variant="ghost"
+                            size="xs"
                             onClick={() => {
                               copyToClipboard(code || "");
                               track(TELEMETRY_EVENTS.copy_icon_code, {
@@ -710,14 +713,14 @@ export default function IconsPage() {
                               });
                             }}
                             aria-label={`Copy MDI code for ${mdi}`}
-                            className="cursor-pointer inline-flex items-center justify-center w-8 h-8 hover:bg-muted rounded transition-colors"
+                            className="cursor-pointer inline-flex   w-10 h-10 hover:bg-muted rounded transition-colors"
                           >
                             <Icon
                               path={icon as string}
-                              size={0.85}
+                              size={1.5}
                               className="text-foreground"
                             />
-                          </button>
+                          </Button>
                         </TooltipTrigger>
                         <TooltipContent>Copy MDI code</TooltipContent>
                       </Tooltip>
@@ -736,7 +739,9 @@ export default function IconsPage() {
                   <TableCell className="px-4">
                     <Tooltip>
                       <TooltipTrigger asChild>
-                        <button
+                        <Button
+                          variant="ghost"
+                          size="xs"
                           onClick={() => {
                             copyToClipboard(code || "");
                             track(TELEMETRY_EVENTS.copy_icon_code, {
@@ -748,7 +753,7 @@ export default function IconsPage() {
                           className="cursor-pointer bg-muted px-2 py-1 rounded text-sm hover:bg-muted/80 transition-colors inline-block"
                         >
                           {code}
-                        </button>
+                        </Button>
                       </TooltipTrigger>
                       <TooltipContent>Copy to clipboard</TooltipContent>
                     </Tooltip>
@@ -805,7 +810,9 @@ export default function IconsPage() {
                     >
                       <Tooltip>
                         <TooltipTrigger asChild>
-                          <button
+                          <Button
+                            variant="ghost"
+                            size="lg"
                             onClick={() => {
                               copyToClipboard(icon);
                               track(TELEMETRY_EVENTS.copy_icon_code, {
@@ -818,10 +825,10 @@ export default function IconsPage() {
                           >
                             <Icon
                               path={path}
-                              size={0.85}
+                              size={1.5}
                               className="text-foreground"
                             />
-                          </button>
+                          </Button>
                         </TooltipTrigger>
                         <TooltipContent>Copy icon code</TooltipContent>
                       </Tooltip>
