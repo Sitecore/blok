@@ -401,6 +401,7 @@ async function createJiraIssueRest(
       summary,
       description,
       issuetype: { name: issuetypeName },
+      customfield_15058: { value: "Production" },
     },
   };
 
