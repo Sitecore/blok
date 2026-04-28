@@ -1,0 +1,62 @@
+
+name: Community — discussions
+
+on:
+  discussion:
+    types: [created, labeled]
+
+permissions:
+  contents: read
+  discussions: write
+  issues: write
+
+concurrency:
+  group: community-discussion-${{ github.event.discussion.number }}-${{ github.event.action }}
+  cancel-in-progress: false
+
+jobs:
+  discussion-opened:
+    name: Discussion opened — welcome comment
+    if: github.event.action == 'created'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Post welcome comment, label, optional Teams
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          BLOK_RESPONSIBILITY_METRIC: ${{ vars.BLOK_RESPONSIBILITY_METRIC }}
+          TEAMS_COMMUNITY_WEBHOOK_URL: ${{ secrets.TEAMS_COMMUNITY_WEBHOOK_URL }}
+          TEAMS_WEBHOOK_URL: ${{ secrets.TEAMS_WEBHOOK_URL }}
+        run: npx tsx scripts/community/discussion-opened.ts
+        continue-on-error: true
+
+  discussion-approved:
+    name: Discussion approved — create issue
+    if: github.event.action == 'labeled' && github.event.label.name == 'approved'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Create issue from discussion
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          BLOK_RESPONSIBILITY_METRIC: ${{ vars.BLOK_RESPONSIBILITY_METRIC }}
+          DISCUSSION_APPROVED_ACTORS: ${{ vars.DISCUSSION_APPROVED_ACTORS }}
+          TEAMS_COMMUNITY_WEBHOOK_URL: ${{ secrets.TEAMS_COMMUNITY_WEBHOOK_URL }}
+          TEAMS_WEBHOOK_URL: ${{ secrets.TEAMS_WEBHOOK_URL }}
+          JIRA_WEBHOOK_URL: ${{ secrets.JIRA_WEBHOOK_URL }}
+          JIRA_BASE_URL: ${{ secrets.JIRA_BASE_URL }}
+          JIRA_EMAIL: ${{ secrets.JIRA_EMAIL }}
+          JIRA_API_TOKEN: ${{ secrets.JIRA_API_TOKEN }}
+          JIRA_PROJECT_KEY: ${{ vars.JIRA_PROJECT_KEY }}
+          JIRA_ISSUETYPE_BUG: ${{ vars.JIRA_ISSUETYPE_BUG }}
+          JIRA_ISSUETYPE_FEATURE: ${{ vars.JIRA_ISSUETYPE_FEATURE }}
+          JIRA_ISSUETYPE_TASK: ${{ vars.JIRA_ISSUETYPE_TASK }}
+          JIRA_ISSUETYPE_DOC: ${{ vars.JIRA_ISSUETYPE_DOC }}
+          JIRA_ISSUETYPE_SUPPORT: ${{ vars.JIRA_ISSUETYPE_SUPPORT }}
+          JIRA_ISSUETYPE_PR: ${{ vars.JIRA_ISSUETYPE_PR }}
+          JIRA_SUMMARY_PREFIX: ${{ vars.JIRA_SUMMARY_PREFIX }}
+          GITHUB_MIRROR_ISSUE_INITIAL_WORKFLOW_LABELS: ${{ vars.GITHUB_MIRROR_ISSUE_INITIAL_WORKFLOW_LABELS }}
+        run: npx tsx scripts/community/discussion-approved.ts
+        continue-on-error: true

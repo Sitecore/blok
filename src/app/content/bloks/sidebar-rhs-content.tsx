@@ -2,6 +2,7 @@
 
 import { SidebarRHS, SidebarRHSProvider } from "@/components/bloks/sidebar-rhs";
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import {
   type ChartConfig,
   ChartContainer,
@@ -47,12 +48,14 @@ function ExpandableDescription() {
         )}
       </div>
       {shouldTruncate && (
-        <button
+        <Button
+          type="button"
+          variant="link"
           onClick={() => setIsExpanded(!isExpanded)}
-          className="text-sm text-center text-foreground hover:underline cursor-pointer font-semibold"
+          className="text-sm text-center font-semibold"
         >
           {isExpanded ? "Read less" : "Read more"}
-        </button>
+        </Button>
       )}
     </div>
   );
@@ -335,13 +338,16 @@ function InfoSection() {
         <label className="text-xs text-muted-foreground">Label</label>
         <div className="flex items-center justify-between">
           <span className="text-sm font-medium text-foreground">The label</span>
-          <button
+          <Button
+            type="button"
+            variant="ghost"
+            size="icon-sm"
             onClick={() => handleCopy("The label")}
-            className="text-muted-foreground hover:text-foreground transition-colors"
+            className="text-muted-foreground shadow-none transition-colors hover:text-foreground"
             aria-label="Copy to clipboard"
           >
             <Icon path={mdiContentCopy} className="size-4" />
-          </button>
+          </Button>
         </div>
       </div>
 
@@ -350,13 +356,16 @@ function InfoSection() {
         <label className="text-xs text-muted-foreground">Name</label>
         <div className="flex items-center justify-between">
           <span className="text-sm font-medium text-foreground">Value</span>
-          <button
+          <Button
+            type="button"
+            variant="ghost"
+            size="icon-sm"
             onClick={() => handleCopy("Value")}
-            className="text-muted-foreground hover:text-foreground transition-colors"
+            className="text-muted-foreground shadow-none transition-colors hover:text-foreground"
             aria-label="Copy to clipboard"
           >
             <Icon path={mdiContentCopy} className="size-4" />
-          </button>
+          </Button>
         </div>
       </div>
 
@@ -392,7 +401,10 @@ function StatisticsSection() {
       <div className="grid grid-cols-[auto_auto] gap-4">
         {/* Total Variants */}
         <div className="flex flex-col gap-1 min-w-0">
-          <label htmlFor="total-variants" className="text-xs uppercase text-muted-foreground">
+          <label
+            htmlFor="total-variants"
+            className="text-xs uppercase text-muted-foreground"
+          >
             Total Variants
           </label>
           <div id="total-variants" className="flex items-baseline gap-2">
@@ -420,10 +432,15 @@ function StatisticsSection() {
 
         {/* Sites */}
         <div className="flex flex-col gap-1 shrink-0">
-          <label htmlFor="sites" className="text-xs uppercase text-muted-foreground">
+          <label
+            htmlFor="sites"
+            className="text-xs uppercase text-muted-foreground"
+          >
             Sites
           </label>
-          <span id="sites" className="text-2xl font-bold text-foreground">3</span>
+          <span id="sites" className="text-2xl font-bold text-foreground">
+            3
+          </span>
         </div>
       </div>
     </div>
