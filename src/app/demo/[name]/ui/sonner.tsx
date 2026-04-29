@@ -43,7 +43,10 @@ export const sonner = {
     ),
   },
   usage: {
-    usage: [`import { Toaster } from "@/components/ui/sonner";`, `<Toaster />`],
+    usage: [
+      `import { toast } from "sonner";`,
+      `<Button onClick={() => toast.info("Toast")}>Normal Toast</Button>`,
+    ],
   },
   components: {
     Default: { component: "sonner" },
