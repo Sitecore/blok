@@ -128,7 +128,44 @@ export async function testAvatarMenu(page: Page){
 
   // Verify that second avatar menu item is visible
   const avatarMenuItem2 = avatarMenu1.locator('span[data-slot="avatar"]');
-  const imageSpongebob = avatarMenuItem2.locator('[data-slot="avatar-image"]');
-    await expect(imageSpongebob).toBeVisible();
-    await expect(imageSpongebob).toHaveAttribute('alt', 'Spongebob');
+  const imageSpongebob1 = avatarMenuItem2.locator('[data-slot="avatar-image"]');
+    await expect(imageSpongebob1).toBeVisible();
+    await expect(imageSpongebob1).toHaveAttribute('alt', 'Spongebob');
+
+  // Verify that second avatar menu is visible
+  const avatarMenu2 = avatarMenu.locator('[class="flex -space-x-2"]').nth(1);
+
+  // Verify that third avatar menu item is visible
+  const avatarMenuItem3 = avatarMenu2.locator('button').nth(0);
+  await expect(avatarMenuItem3).toBeVisible();
+  // Verify class attribute of avatar menu item
+  const classAttribute3 = await avatarMenuItem3.getAttribute('class');
+  expect(classAttribute3).toContain('rounded-full');    
+  expect(classAttribute3).toContain('bg-primary-background');
+  expect(classAttribute3).toContain('text-primary-foreground');
+  expect(classAttribute3).toContain('transition-colors');
+  expect(classAttribute3).toContain('hover:bg-primary');
+  expect(classAttribute3).toContain('hover:text-white');
+
+  // Verify that fourth avatar menu item is visible
+  const avatarMenuItem4 = avatarMenu2.locator('span[data-slot="avatar"]').nth(0);
+  const imageSpongebob2 = avatarMenuItem4.locator('[data-slot="avatar-image"]');
+    await expect(imageSpongebob2).toBeVisible();
+    await expect(imageSpongebob2).toHaveAttribute('alt', 'Spongebob');
+  
+  // Verify that fifth avatar menu item is visible
+  const avatarMenuItem5 = avatarMenu2.locator('span[data-slot="avatar"]').nth(1);
+  const imageOmar = avatarMenuItem5.locator('[data-slot="avatar-image"]');
+    await expect(imageOmar).toBeVisible();
+    await expect(imageOmar).toHaveAttribute('alt', 'Omar Oueslati');
+
+  // Verify that sixth avatar menu item is visible
+  const avatarMenuItem6 = avatarMenu2.locator('span[data-slot="avatar"]').nth(2);
+  const imageSquidward = avatarMenuItem6.locator('[data-slot="avatar-image"]');
+    await expect(imageSquidward).toBeVisible();
+    await expect(imageSquidward).toHaveAttribute('alt', 'Squidward');
+
+  // Verify that seventh avatar menu item is visible
+  const avatarMenuItem7 = avatarMenu2.locator('button').nth(1);
+  await expect(avatarMenuItem7).toBeVisible();
 }
