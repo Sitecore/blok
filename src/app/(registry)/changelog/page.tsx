@@ -18,10 +18,10 @@ export default function ChangelogPage() {
             <section key={entry.id} id={entry.id} className="space-y-6">
               <h2 className="text-3xl font-semibold">{entry.title}</h2>
               <p className="whitespace-pre-line">
-                {formatDescription(entry.items.description)}
+                {formatDescription(entry.log.description)}
               </p>
               <div className="h-fit py-12 px-52 flex items-center justify-center rounded-xl bg-primary-bg">
-                {entry.items.image}
+                {entry.log.thumbnail}
               </div>
             </section>
           ))}

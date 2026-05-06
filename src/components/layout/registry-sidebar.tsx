@@ -274,7 +274,7 @@ export function RegistrySidebar() {
                       pathname.startsWith("/changelog") &&
                       changelogHash === changelog.id
                     }
-                    className="!h-auto min-h-10 max-w-full items-start overflow-visible whitespace-normal break-words py-2 font-medium text-md leading-snug text-neutral-fg hover:bg-gray-100 hover:dark:bg-gray-700 data-[active=true]:text-primary-fg data-[active=true]:bg-primary-background [&>span:last-child]:whitespace-normal"
+                    className="h-10 w-full min-w-0 items-center overflow-hidden font-medium text-md text-neutral-fg hover:bg-gray-100 hover:dark:bg-gray-700 data-[active=true]:text-primary-fg data-[active=true]:bg-primary-background"
                   >
                     <Link
                       href={`/changelog#${changelog.id}`}
@@ -288,7 +288,9 @@ export function RegistrySidebar() {
                         });
                       }}
                     >
-                      {changelog.title}
+                      <span className="min-w-0 w-40 truncate">
+                        {changelog.title}
+                      </span>
                     </Link>
                   </SidebarMenuButton>
                 </SidebarMenuItem>
