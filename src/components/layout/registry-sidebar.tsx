@@ -1,5 +1,6 @@
 "use client";
 
+import { getChangelogsNewestFirst } from "@/app/(registry)/changelog/changelogs";
 import {
   Sidebar,
   SidebarContent,
@@ -18,7 +19,7 @@ import { Menu, X } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Direction } from "radix-ui";
-import { useMemo } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 const { useDirection } = Direction;
 
@@ -48,7 +49,8 @@ export function MobileSidebarTrigger() {
       pathname.startsWith("/bloks") ||
       pathname.startsWith("/theming") ||
       pathname.startsWith("/graphics") ||
-      pathname.startsWith("/registry")
+      pathname.startsWith("/registry") ||
+      pathname.startsWith("/changelog")
     );
   }, [pathname]);
 
@@ -71,6 +73,19 @@ export function RegistrySidebar() {
   const pathname = usePathname();
   const { setOpenMobile } = useSidebar();
   const direction = useDirection();
+  const changelogNav = useMemo(() => getChangelogsNewestFirst(), []);
+  const [changelogHash, setChangelogHash] = useState("");
+
+  useEffect(() => {
+    if (!pathname.startsWith("/changelog")) {
+      setChangelogHash("");
+      return;
+    }
+    const sync = () => setChangelogHash(window.location.hash.slice(1));
+    sync();
+    window.addEventListener("hashchange", sync);
+    return () => window.removeEventListener("hashchange", sync);
+  }, [pathname]);
 
   // Determine which sidebar content to show based on pathname
   const sidebarType = useMemo(() => {
@@ -114,6 +129,9 @@ export function RegistrySidebar() {
     }
     if (pathname.startsWith("/graphics")) {
       return "graphics";
+    }
+    if (pathname.startsWith("/changelog")) {
+      return "changelog";
     }
     return null;
   }, [pathname]);
@@ -242,6 +260,35 @@ export function RegistrySidebar() {
                       href={item.path}
                     >
                       {item.title}
+                    </Link>
+                  </SidebarMenuButton>
+                </SidebarMenuItem>
+              ))}
+
+            {sidebarType === "changelog" &&
+              changelogNav.map((changelog) => (
+                <SidebarMenuItem key={changelog.id}>
+                  <SidebarMenuButton
+                    asChild
+                    isActive={
+                      pathname.startsWith("/changelog") &&
+                      changelogHash === changelog.id
+                    }
+                    className="!h-auto min-h-10 max-w-full items-start overflow-visible whitespace-normal break-words py-2 font-medium text-md leading-snug text-neutral-fg hover:bg-gray-100 hover:dark:bg-gray-700 data-[active=true]:text-primary-fg data-[active=true]:bg-primary-background [&>span:last-child]:whitespace-normal"
+                  >
+                    <Link
+                      href={`/changelog#${changelog.id}`}
+                      className="w-full min-w-0"
+                      onClick={() => {
+                        setOpenMobile(false);
+                        track(TELEMETRY_EVENTS.sidebar_nav_click, {
+                          path: `/changelog#${changelog.id}`,
+                          label: changelog.title,
+                          section: "changelog",
+                        });
+                      }}
+                    >
+                      {changelog.title}
                     </Link>
                   </SidebarMenuButton>
                 </SidebarMenuItem>
