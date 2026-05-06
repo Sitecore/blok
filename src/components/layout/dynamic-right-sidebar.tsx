@@ -26,6 +26,7 @@ const HIDDEN_SIDEBAR_PATHS = [
   "/graphics/icons",
   "/graphics/illustrations",
   "/graphics/logos",
+  "/changelog",
 ];
 
 export function DynamicRightSidebar() {

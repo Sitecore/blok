@@ -4,6 +4,7 @@ export const navItems = [
   { name: "Bloks", href: "/bloks" },
   { name: "Theming", href: "/theming" },
   { name: "Graphics", href: "/graphics" },
+  { name: "Changelog", href: "/changelog" },
   { name: "Resources", href: "/resources" },
 ];
 
