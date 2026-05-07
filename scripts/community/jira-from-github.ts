@@ -18,38 +18,8 @@ const github = JSON.parse(readFileSync(eventPath, "utf8")) as {
     html_url?: string;
     labels?: { name: string }[];
   };
-  pull_request?: {
-    title?: string;
-    body?: string;
-    html_url?: string;
-    user?: { login?: string };
-  };
+  pull_request?: unknown;
 };
-
-async function fetchJson(url: string): Promise<{
-  user?: { permissions?: { admin?: boolean; maintain?: boolean } };
-}> {
-  const res = await fetch(url, {
-    headers: {
-      Accept: "application/vnd.github+json",
-      "X-GitHub-Api-Version": "2022-11-28",
-      Authorization: `Bearer ${process.env.GITHUB_TOKEN}`,
-    },
-  });
-  const text = await res.text();
-  let data: {
-    user?: { permissions?: { admin?: boolean; maintain?: boolean } };
-  };
-  try {
-    data = text ? (JSON.parse(text) as typeof data) : {};
-  } catch {
-    data = {};
-  }
-  if (!res.ok) {
-    throw new Error(`GET ${url} → ${res.status}: ${text.slice(0, 500)}`);
-  }
-  return data;
-}
 
 async function main(): Promise<void> {
   if (!isJiraConfigured()) {
@@ -59,51 +29,30 @@ async function main(): Promise<void> {
     process.exit(0);
   }
 
-  const repoFull = process.env.GITHUB_REPOSITORY;
-  if (!repoFull) {
-    console.error("GITHUB_REPOSITORY missing");
-    process.exit(1);
-  }
-  const apiBase = process.env.GITHUB_API_URL || "https://api.github.com";
-
-  const jiraIssueType = github.pull_request
-    ? "PR"
-    : typeFromIssueLabels(github.issue?.labels || []);
-  const eventEntity = github.issue || github.pull_request;
-  if (!eventEntity) {
-    console.log("No issue or pull_request on event; skipping.");
+  if (github.pull_request) {
+    console.log(
+      "Skip: Jira from GitHub is issues-only; pull_request events are ignored.",
+    );
     process.exit(0);
   }
 
-  if (github.pull_request) {
-    const pr = github.pull_request;
-    try {
-      const userInfoRes = await fetchJson(
-        `${apiBase}/repos/${repoFull}/collaborators/${pr.user?.login}/permission`,
-      );
-      if (
-        userInfoRes.user?.permissions?.admin ||
-        userInfoRes.user?.permissions?.maintain
-      ) {
-        console.log("Skipping Jira: PR author has admin/maintain on repo.");
-        process.exit(0);
-      }
-    } catch (e) {
-      const msg = e instanceof Error ? e.message : String(e);
-      console.log("Could not verify collaborator permission:", msg);
-    }
+  const issue = github.issue;
+  if (!issue) {
+    console.log("No issue on event; skipping.");
+    process.exit(0);
   }
 
+  const jiraIssueType = typeFromIssueLabels(issue.labels || []);
   const summaryPrefix = (process.env.JIRA_SUMMARY_PREFIX ?? "").trim();
   const summary = summaryPrefix
-    ? `${summaryPrefix} ${eventEntity.title}`.trim()
-    : eventEntity.title || "";
+    ? `${summaryPrefix} ${issue.title}`.trim()
+    : issue.title || "";
 
   try {
     await notifyJira({
       summary,
-      description: eventEntity.body || "",
-      link: eventEntity.html_url || "",
+      description: issue.body || "",
+      link: issue.html_url || "",
       type: jiraIssueType,
     });
   } catch (error) {
