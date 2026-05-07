@@ -32,11 +32,7 @@ export default function ComboboxMultipleDemo() {
       items={frameworks}
       defaultValue={[frameworks[0]]}
     >
-      <ComboboxChips
-        ref={anchor}
-        className="w-full max-w-xs"
-        aria-label="Combobox chips"
-      >
+      <ComboboxChips ref={anchor} className="w-full max-w-xs">
         <ComboboxValue>
           {(values: readonly string[]) => (
             <React.Fragment>
@@ -45,7 +41,7 @@ export default function ComboboxMultipleDemo() {
                   {value}
                 </ComboboxChip>
               ))}
-              <ComboboxChipsInput />
+              <ComboboxChipsInput aria-label="Combobox chips input" />
             </React.Fragment>
           )}
         </ComboboxValue>
