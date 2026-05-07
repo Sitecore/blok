@@ -136,6 +136,7 @@ export interface FilterSingleSelectProps {
   "aria-describedby"?: string;
   renderOption?: (option: FilterOption) => React.ReactNode;
   dropdownClassName?: string;
+  "aria-label"?: string;
 }
 
 export interface FilterMultiSelectProps {
@@ -295,6 +296,7 @@ const FilterSingleSelect = React.forwardRef<
       disabled = false,
       name,
       helperText,
+      "aria-label": ariaLabel,
       "aria-describedby": ariaDescribedBy,
       renderOption,
       dropdownClassName,
@@ -389,7 +391,7 @@ const FilterSingleSelect = React.forwardRef<
                   ref={ref}
                   type="button"
                   variant="ghost"
-                  aria-label={placeholder}
+                  aria-label={ariaLabel}
                   aria-describedby={describedBy}
                   aria-expanded={open}
                   disabled={disabled}
