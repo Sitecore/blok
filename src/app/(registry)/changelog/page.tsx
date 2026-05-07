@@ -5,9 +5,9 @@ export default function ChangelogPage() {
     <div className="w-full px-10 flex justify-center">
       <div className="max-w-[800px]">
         <div className="py-12.5">
-          <div className="space-y-6">
+          <div>
             <h1 className="font-semibold text-4xl">Changelog</h1>
-            <p className="text-subtle-text">
+            <p className="mt-2 text-muted-foreground">
               Latest updates and announcements.
             </p>
           </div>
