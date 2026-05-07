@@ -5,15 +5,68 @@ import { mdiChevronLeft, mdiChevronRight } from "@mdi/js";
 import { format } from "date-fns";
 import * as React from "react";
 
+import { Button, buttonVariants } from "@/components/ui/button";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { cn } from "@/lib/utils";
+import { ChevronDownIcon } from "lucide-react";
 import {
   type DayButton,
   DayPicker,
+  type DropdownProps,
   getDefaultClassNames,
 } from "react-day-picker";
 
-import { Button, buttonVariants } from "@/components/ui/button";
-import { cn } from "@/lib/utils";
-import { ChevronDownIcon } from "lucide-react";
+export function InBuiltDropdown({
+  options = [],
+  value,
+  onChange,
+  disabled,
+  name,
+  id,
+  "aria-label": ariaLabel,
+}: DropdownProps) {
+  return (
+    <Select
+      disabled={disabled}
+      name={name}
+      value={value != null ? String(value) : ""}
+      onValueChange={(val) => {
+        const e = {
+          target: { value: val },
+        } as unknown as React.ChangeEvent<HTMLSelectElement>;
+        onChange?.(e);
+      }}
+    >
+      <SelectTrigger
+        id={id}
+        size="sm"
+        aria-label={ariaLabel}
+        className="z-50 px-3 text-sm [&_svg:not([class*='text-'])]:text-accent-foreground bg-transparent dark:bg-transparent dark:hover:bg-transparent"
+      >
+        <SelectValue />
+      </SelectTrigger>
+
+      <SelectContent className="rounded-md borde p-0 min-w-20">
+        {options.map(({ value: v, label, disabled }) => (
+          <SelectItem
+            key={String(v)}
+            value={String(v)}
+            disabled={disabled}
+            className="cursor-pointer px-3 py-1.5 text-sm"
+          >
+            {label}
+          </SelectItem>
+        ))}
+      </SelectContent>
+    </Select>
+  );
+}
 
 function Calendar({
   className,
@@ -187,6 +240,7 @@ function Calendar({
             </td>
           );
         },
+        Dropdown: InBuiltDropdown,
         ...components,
       }}
       {...props}
