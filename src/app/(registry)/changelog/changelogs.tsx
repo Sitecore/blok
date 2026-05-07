@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import May052026SonnerDocumentation from "./changelog-thumbs/5-6-2026.sonner-documentation";
+import May052026SonnerDocumentation from "./changelog-content/5-6-2025.sonner-documentation";
 
 export type ChangelogItem = {
   description: string;
