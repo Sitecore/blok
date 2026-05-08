@@ -1,7 +1,7 @@
 "use client";
 
 import { Calendar } from "@/components/ui/calendar";
-import { format, parseISO } from "date-fns";
+import { addDays, format } from "date-fns";
 import * as React from "react";
 import type { DateRange } from "react-day-picker";
 
@@ -9,8 +9,8 @@ export function MultiCalendar({
   numberOfMonths = 1,
 }: { numberOfMonths?: number }) {
   const [dateRange, setDateRange] = React.useState<DateRange | undefined>({
-    from: parseISO("2025-06-09"),
-    to: parseISO("2025-06-26"),
+    from: new Date(),
+    to: addDays(new Date(), 20),
   });
 
   return (

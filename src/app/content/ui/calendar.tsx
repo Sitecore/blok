@@ -1,13 +1,11 @@
 "use client";
 
 import { Calendar } from "@/components/ui/calendar";
-import { format, parseISO } from "date-fns";
+import { format } from "date-fns";
 import * as React from "react";
 
 export default function CalendarDemo() {
-  const [date, setDate] = React.useState<Date | undefined>(
-    parseISO("2025-06-12"),
-  );
+  const [date, setDate] = React.useState<Date | undefined>(() => new Date());
 
   return (
     <Calendar
