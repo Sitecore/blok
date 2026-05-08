@@ -30,7 +30,10 @@ type CalendarProps = React.ComponentProps<typeof Calendar>;
  * For DayPicker label creators (nav, days, etc.), use `calendarProps.ariaLabels`.
  */
 export type DatePickerAriaLabels = {
-  /** `aria-label` on the popover trigger button */
+  /**
+   * `aria-label` on the popover trigger when **no date is selected** (empty state).
+   * When a date is shown, `aria-label` is omitted so the visible formatted date is the accessible name.
+   */
   popoverTrigger?: string;
 };
 
@@ -154,8 +157,10 @@ function DatePickerSimple(props: DatePickerSimpleProps) {
           colorScheme="neutral"
           disabled={disabled}
           aria-label={
-            ariaLabels?.popoverTrigger ??
-            (typeof placeholder === "string" ? placeholder : undefined)
+            date
+              ? undefined
+              : (ariaLabels?.popoverTrigger ??
+                (typeof placeholder === "string" ? placeholder : undefined))
           }
           className={cn(
             "border-input border-1 data-[state=open]:border-2 data-[state=open]:border-primary rounded-md text-md data-[placeholder]:text-muted-foreground [&_svg:not([class*='text-'])]:text-muted-foreground focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive dark:bg-input/30 dark:hover:bg-input/50 flex w-fit items-center justify-between gap-2 bg-body-bg px-3 py-2 whitespace-nowrap shadow-xs transition-[color,box-shadow] outline-none focus-visible:ring-[2px] disabled:cursor-not-allowed disabled:opacity-50 h-10",
@@ -279,8 +284,10 @@ function DatePickerWithRange(props: DatePickerWithRangeProps) {
           colorScheme="neutral"
           disabled={disabled}
           aria-label={
-            ariaLabels?.popoverTrigger ??
-            (typeof placeholder === "string" ? placeholder : undefined)
+            range?.from
+              ? undefined
+              : (ariaLabels?.popoverTrigger ??
+                (typeof placeholder === "string" ? placeholder : undefined))
           }
           className={cn(
             "border-input border-1 data-[state=open]:border-2 data-[state=open]:border-primary rounded-md text-md data-[placeholder]:text-muted-foreground [&_svg:not([class*='text-'])]:text-muted-foreground focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive dark:bg-input/30 dark:hover:bg-input/50 flex w-fit items-center justify-between gap-2 bg-body-bg px-3 py-2 whitespace-nowrap shadow-xs transition-[color,box-shadow] outline-none focus-visible:ring-[2px] disabled:cursor-not-allowed disabled:opacity-50 h-10",
