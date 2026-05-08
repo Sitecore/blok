@@ -13,15 +13,7 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
 import { cn } from "@/lib/utils";
-import type { DropdownProps } from "react-day-picker";
 
 type CalendarProps = React.ComponentProps<typeof Calendar>;
 
@@ -33,50 +25,6 @@ export type DatePickerAriaLabels = {
   /** `aria-label` on the popover trigger button */
   popoverTrigger?: string;
 };
-
-export function CustomDropdown({
-  options = [],
-  value,
-  onChange,
-  disabled,
-  name,
-  id,
-}: DropdownProps) {
-  return (
-    <Select
-      disabled={disabled}
-      name={name}
-      value={value != null ? String(value) : ""}
-      onValueChange={(val) => {
-        const e = {
-          target: { value: val },
-        } as unknown as React.ChangeEvent<HTMLSelectElement>;
-        onChange?.(e);
-      }}
-    >
-      <SelectTrigger
-        id={id}
-        size="sm"
-        className="z-50 px-3 text-sm text-neutral-fg [&_svg:not([class*='text-'])]:text-accent-foreground bg-transparent dark:bg-transparent dark:hover:bg-transparent"
-      >
-        <SelectValue />
-      </SelectTrigger>
-
-      <SelectContent className="rounded-md borde p-0 min-w-20">
-        {options.map(({ value: v, label, disabled }) => (
-          <SelectItem
-            key={String(v)}
-            value={String(v)}
-            disabled={disabled}
-            className="cursor-pointer px-3 py-1.5 text-sm"
-          >
-            {label}
-          </SelectItem>
-        ))}
-      </SelectContent>
-    </Select>
-  );
-}
 
 export type DatePickerSimpleCalendarProps = Omit<
   CalendarProps,
@@ -186,7 +134,6 @@ function DatePickerSimple(props: DatePickerSimpleProps) {
           captionLayout={calendarProps?.captionLayout ?? "dropdown"}
           locale={mergedLocale}
           components={{
-            Dropdown: CustomDropdown,
             ...calendarProps?.components,
           }}
         />
@@ -309,7 +256,6 @@ function DatePickerWithRange(props: DatePickerWithRangeProps) {
           captionLayout={calendarProps?.captionLayout ?? "dropdown"}
           locale={mergedLocale}
           components={{
-            Dropdown: CustomDropdown,
             ...calendarProps?.components,
           }}
         />
