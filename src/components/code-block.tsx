@@ -157,8 +157,8 @@ export function CodeBlock({
       </div>
       <div
         dir="ltr"
-        className="text-md overflow-x-auto p-4 wrap-break-words"
-        style={{ minWidth: 0, width: "100%" }}
+        className="text-md min-w-0 p-4 wrap-break-words"
+        style={{ width: "100%" }}
         dangerouslySetInnerHTML={{ __html: html }}
       />
     </div>
