@@ -44,6 +44,8 @@ export default function FieldInputTypesDemo() {
             <Input
               id="field-email"
               type="email"
+              name="email"
+              autoComplete="email"
               placeholder="email@example.com"
             />
           </Field>
