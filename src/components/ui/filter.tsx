@@ -133,7 +133,6 @@ export interface FilterSingleSelectProps {
   disabled?: boolean;
   name?: string;
   helperText?: string;
-  "aria-label"?: string;
   "aria-describedby"?: string;
   renderOption?: (option: FilterOption) => React.ReactNode;
   dropdownClassName?: string;
@@ -161,7 +160,6 @@ export interface FilterMultiSelectProps {
   name?: string;
   helperText?: string;
   "aria-label"?: string;
-  "aria-describedby"?: string;
   renderOption?: (option: FilterOption) => React.ReactNode;
   open?: boolean;
   onOpenChange?: (open: boolean) => void;
@@ -298,7 +296,6 @@ const FilterSingleSelect = React.forwardRef<
       name,
       helperText,
       "aria-describedby": ariaDescribedBy,
-      "aria-label": ariaLabel,
       renderOption,
       dropdownClassName,
       ...props
@@ -392,7 +389,7 @@ const FilterSingleSelect = React.forwardRef<
                   ref={ref}
                   type="button"
                   variant="ghost"
-                  aria-label={ariaLabel ?? placeholder}
+                  aria-label={placeholder}
                   aria-describedby={describedBy}
                   aria-expanded={open}
                   disabled={disabled}
@@ -561,7 +558,6 @@ const FilterSingleSelect = React.forwardRef<
             <SelectTrigger
               ref={ref}
               aria-describedby={describedBy}
-              aria-label={ariaLabel}
               className={cn(
                 "*:data-[slot=select-value]:hidden",
                 FILTER_SELECT_TRIGGER_CLASSNAME,
@@ -692,7 +688,6 @@ const FilterMultiSelect = React.forwardRef<
       name,
       helperText,
       "aria-describedby": ariaDescribedBy,
-      "aria-label": ariaLabel,
       renderOption,
       open: controlledOpen,
       onOpenChange,
@@ -864,7 +859,6 @@ const FilterMultiSelect = React.forwardRef<
                 type="button"
                 variant="ghost"
                 disabled={disabled}
-                aria-label={ariaLabel ?? placeholder}
                 aria-describedby={describedBy}
                 aria-expanded={open}
                 style={
