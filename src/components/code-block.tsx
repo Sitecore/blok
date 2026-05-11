@@ -123,8 +123,12 @@ export function CodeBlock({
   return (
     <div
       dir="ltr"
+      role="region"
+      tabIndex={0}
+      aria-label="Code sample"
       className={cn(
         "relative rounded-md bg-muted max-h-[400px] overflow-auto",
+        "outline-none focus-visible:ring-2 focus-visible:ring-ring/50",
         className,
       )}
       style={{ width: "100%", maxWidth: "100%" }}
