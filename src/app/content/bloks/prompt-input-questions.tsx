@@ -591,7 +591,10 @@ function QuestionPromptCard({
         </PromptInputHeader>
         {variant === "floating" && (
           <PromptInputToolbar inline>
-            <PromptInputAttachButton attachMenu={promptInputDemoAttachMenu} />
+            <PromptInputAttachButton
+              aria-label="add attachment"
+              attachMenu={promptInputDemoAttachMenu}
+            />
             <PromptInputSelections />
           </PromptInputToolbar>
         )}
@@ -600,12 +603,15 @@ function QuestionPromptCard({
         </PromptInputBody>
         <PromptInputFooter>
           <PromptInputToolbar>
-            <PromptInputAttachButton attachMenu={promptInputDemoAttachMenu} />
+            <PromptInputAttachButton
+              aria-label="add attachment"
+              attachMenu={promptInputDemoAttachMenu}
+            />
             <PromptInputSelections />
           </PromptInputToolbar>
           <PromptInputActions>
-            <PromptInputMicButton />
-            <PromptInputSubmit />
+            <PromptInputMicButton aria-label="record voice input" />
+            <PromptInputSubmit aria-label="submit prompt" />
           </PromptInputActions>
         </PromptInputFooter>
       </PromptInput>

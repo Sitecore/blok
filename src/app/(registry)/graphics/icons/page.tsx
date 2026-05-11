@@ -822,6 +822,7 @@ export default function IconsPage() {
                               });
                             }}
                             className="cursor-pointer inline-flex items-center justify-center w-8 h-8 hover:bg-muted rounded transition-colors"
+                            aria-label={`Copy icon code for ${icon}`}
                           >
                             <Icon
                               path={path}

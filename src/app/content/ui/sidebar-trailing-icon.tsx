@@ -21,7 +21,7 @@ export default function SidebarTrailingIconDemo() {
                 <SidebarMenuButton isActive>
                   <span>Home</span>
                 </SidebarMenuButton>
-                <SidebarMenuAction>
+                <SidebarMenuAction aria-label="open home in new tab">
                   <Icon path={mdiOpenInNew} />
                 </SidebarMenuAction>
               </SidebarMenuItem>
@@ -29,7 +29,7 @@ export default function SidebarTrailingIconDemo() {
                 <SidebarMenuButton>
                   <span>Profile</span>
                 </SidebarMenuButton>
-                <SidebarMenuAction>
+                <SidebarMenuAction aria-label="open profile in new tab">
                   <Icon path={mdiOpenInNew} />
                 </SidebarMenuAction>
               </SidebarMenuItem>
@@ -37,7 +37,7 @@ export default function SidebarTrailingIconDemo() {
                 <SidebarMenuButton disabled>
                   <span>Settings</span>
                 </SidebarMenuButton>
-                <SidebarMenuAction>
+                <SidebarMenuAction aria-label="open settings in new tab">
                   <Icon path={mdiOpenInNew} />
                 </SidebarMenuAction>
               </SidebarMenuItem>

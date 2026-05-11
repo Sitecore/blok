@@ -579,7 +579,10 @@ function QueuedPromptCard({
         </PromptInputHeader>
         {variant === "floating" && (
           <PromptInputToolbar inline>
-            <PromptInputAttachButton attachMenu={promptInputDemoAttachMenu} />
+            <PromptInputAttachButton
+              aria-label="add attachment"
+              attachMenu={promptInputDemoAttachMenu}
+            />
             <PromptInputSelections />
           </PromptInputToolbar>
         )}
@@ -588,11 +591,14 @@ function QueuedPromptCard({
         </PromptInputBody>
         <PromptInputFooter>
           <PromptInputToolbar>
-            <PromptInputAttachButton attachMenu={promptInputDemoAttachMenu} />
+            <PromptInputAttachButton
+              aria-label="add attachment"
+              attachMenu={promptInputDemoAttachMenu}
+            />
             <PromptInputSelections />
           </PromptInputToolbar>
           <PromptInputActions>
-            <PromptInputMicButton />
+            <PromptInputMicButton aria-label="record voice input" />
             <PromptInputSubmit
               status={isProcessing ? "streaming" : "ready"}
               onClick={(e) => {
@@ -601,6 +607,7 @@ function QueuedPromptCard({
                   setIsProcessing(false);
                 }
               }}
+              aria-label="submit prompt"
             />
           </PromptInputActions>
         </PromptInputFooter>
