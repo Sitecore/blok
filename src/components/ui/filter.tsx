@@ -159,7 +159,7 @@ export interface FilterMultiSelectProps {
   disabled?: boolean;
   name?: string;
   helperText?: string;
-  "aria-describedby"?: string;
+  "aria-label"?: string;
   renderOption?: (option: FilterOption) => React.ReactNode;
   open?: boolean;
   onOpenChange?: (open: boolean) => void;
