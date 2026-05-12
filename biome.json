@@ -3,6 +3,14 @@
   "organizeImports": {
     "enabled": true
   },
+  "overrides": [
+    {
+      "include": ["src/lib/docsite/docsite-registry.ts"],
+      "organizeImports": {
+        "enabled": false
+      }
+    }
+  ],
   "files": {
     "ignore": [
       "node_modules",
