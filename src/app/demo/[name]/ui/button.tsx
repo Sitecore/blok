@@ -6,7 +6,7 @@ export const button = {
   usage: {
     usage: [
       `import { Button } from "@/components/ui/button"`,
-      `<Button variant=’default’ colorScheme=’default’ size=’default’>Click me</Button>`,
+      `<Button>Click me</Button>`,
     ],
   },
   components: {
