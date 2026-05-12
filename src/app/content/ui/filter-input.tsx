@@ -11,7 +11,7 @@ export default function FilterInputDemo() {
       value={value}
       onChange={setValue}
       placeholder="Search..."
-      ariaLabel="Search"
+      aria-label="Search"
     />
   );
 }

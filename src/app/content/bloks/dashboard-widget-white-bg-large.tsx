@@ -43,7 +43,11 @@ export default function DashboardWidgetWhiteBgLargeDemo() {
             options={filterOptions}
             placeholder="Filter"
             className="w-fit"
-            aria-label="Select an option"
+            ariaLabels={{
+              popoverTrigger: "Select an option",
+              listbox: "List of options",
+              clearSelection: "Clear selection",
+            }}
           />
         </DashboardWidgetToolbar>
         <DashboardWidgetContent>

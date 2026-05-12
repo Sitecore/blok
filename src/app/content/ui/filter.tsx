@@ -49,7 +49,7 @@ export default function FilterDemo() {
       key: "search",
       props: {
         placeholder: "Search...",
-        ariaLabel: "Search",
+        "aria-label": "Search",
         width: "w-64",
       },
     },
@@ -60,6 +60,11 @@ export default function FilterDemo() {
         options: [],
         placeholder: "Single select filter",
         groups: BLOCKCN_FILTER_GROUPS,
+        ariaLabels: {
+          popoverTrigger: "Select an option",
+          listbox: "List of options",
+          clearSelection: "Clear selection",
+        },
       },
     },
     {
@@ -69,6 +74,11 @@ export default function FilterDemo() {
         options: [],
         placeholder: "Multi-select filter",
         groups: BLOCKCN_FILTER_GROUPS,
+        ariaLabels: {
+          popoverTrigger: "Select options",
+          listbox: "List of options",
+          clearSelection: "Clear all selections",
+        },
       },
     },
   ];

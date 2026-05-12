@@ -51,7 +51,12 @@ export default function FilterWithSearchDemo() {
         searchable
         searchPlaceholder="Search"
         noResultsText="No results found"
-        aria-label="Select an option"
+        ariaLabels={{
+          popoverTrigger: "Select an option",
+          searchInput: "Search",
+          listbox: "List of options",
+          clearSelection: "Clear selection",
+        }}
       />
 
       <FilterMultiSelect
@@ -63,6 +68,12 @@ export default function FilterWithSearchDemo() {
         searchable
         searchPlaceholder="Search"
         noResultsText="No results found"
+        ariaLabels={{
+          popoverTrigger: "Select options",
+          searchInput: "Search",
+          listbox: "List of options",
+          clearSelection: "Clear all selections",
+        }}
       />
     </div>
   );
