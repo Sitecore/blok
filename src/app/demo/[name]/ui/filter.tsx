@@ -64,7 +64,7 @@ export default function FilterDemo() {
       key: "search",
       props: {
         placeholder: "Search...",
-        ariaLabel: "Search",
+        "aria-label": "Search",
         width: "w-64",
       },
     },
