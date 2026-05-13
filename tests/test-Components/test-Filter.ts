@@ -342,10 +342,11 @@ export async function testFilterWithImage(page: Page){
     const defaultSelectContent = page.locator('[role="dialog"], [data-radix-popper-content-wrapper]').nth(0);
     await expect(defaultSelectContent).toBeVisible();
     // Verify options are visible with image/avatar
-    const imageSelectOptions = defaultSelectContent.locator('[aria-label="Single select filter"]');
+    const imageSelectOptions = defaultSelectContent.locator('[aria-label="List of options"]');
     // Verify that XM Cloud option is visible
-    await expect(imageSelectOptions.locator('[data-slot="avatar"]').nth(0)).toBeVisible();
-    const xmCloudOption = imageSelectOptions.locator('button').nth(0);
+    const xmCloudOption = imageSelectOptions.locator('button[data-slot="button"]').nth(0);
+    await expect(xmCloudOption.locator('[data-slot="avatar"]')).toBeVisible();
+    await expect(xmCloudOption.locator('[data-slot="avatar-fallback"]')).toHaveText('X');
     await expect(xmCloudOption).toContainText('XM Cloud');
     // Select "XM Cloud"
     await xmCloudOption.click();
@@ -381,13 +382,13 @@ export async function testFilterWithImage(page: Page){
     await expect(multiSelectContent).toBeVisible();
     // Wait for popover to be stable (helps in headless where positioning can lag)
     await page.waitForTimeout(400);
-    // Verify that filter search input has the input control
-    const searchInputControlMulti = multiSelectContent.locator('[aria-label="Multi-select filter"]');
-    await expect(searchInputControlMulti).toBeVisible();
+    // Verify that options are visible with image/avatar
+    const multiInputOptions = multiSelectContent.locator('[aria-label="List of options"]');
+    await expect(multiInputOptions).toBeVisible();
     // Verify that select options from multi select
-    const CDPCheckbox = multiSelectContent.getByRole('checkbox', { name: 'CDP' });
-    const sitecoreFormCheckbox = multiSelectContent.getByRole('checkbox', { name: 'Sitecore forms' });
+    const CDPCheckbox = multiInputOptions.getByRole('checkbox', { name: 'CDP' });
     await CDPCheckbox.click();
+    const sitecoreFormCheckbox = multiInputOptions.getByRole('checkbox', { name: 'Sitecore forms' });
     await sitecoreFormCheckbox.click();
     // Close dropdown with Escape to avoid clicking trigger (which can hit CDP checkbox and uncheck it)
     await page.keyboard.press('Escape');
