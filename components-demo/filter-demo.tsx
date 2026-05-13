@@ -70,7 +70,7 @@ export function FilterDemo() {
       key: "search",
       props: {
         placeholder: "Search...",
-        ariaLabel: "Search",
+        "aria-label": "Search",
         width: "w-64",
       },
     },
@@ -81,6 +81,11 @@ export function FilterDemo() {
         options: [],
         placeholder: "Single select filter",
         groups: BLOCKCN_FILTER_GROUPS,
+        ariaLabels: {
+          popoverTrigger: "Select an option",
+          listbox: "List of options",
+          clearSelection: "Clear selection",
+        },
       },
     },
     {
@@ -90,6 +95,11 @@ export function FilterDemo() {
         options: [],
         placeholder: "Multi-select filter",
         groups: BLOCKCN_FILTER_GROUPS,
+        ariaLabels: {
+          popoverTrigger: "Select options",
+          listbox: "List of options",
+          clearSelection: "Clear all selections",
+        },
       },
     },
   ];
@@ -107,6 +117,8 @@ export function FilterDemo() {
   }, []);
 
   const [value, setValue] = useState("");
+
+  const [valueSingleSelect, setValueSingleSelect] = useState<string>("");
 
   const [primaryValues, setPrimaryValues] = useState<string[]>([]);
   const [badgeValues, setBadgeValues] = useState<string[]>([]);
@@ -135,18 +147,23 @@ export function FilterDemo() {
           value={value}
           onChange={setValue}
           placeholder="Search..."
-          ariaLabel="Search"
+          aria-label="Search"
         />
       </div>
 
       <div id='filter-single-select'>
         <div className="flex flex-col gap-4">
           <FilterSingleSelect
-            value={value}
-            onChange={setValue}
+            value={valueSingleSelect} // value is set as valueSingleSelect 
+            onChange={setValueSingleSelect} // setValue is set as valueSingleSelect
             options={[]}
             placeholder="Single select filter"
             groups={BLOCKCN_FILTER_GROUPS}
+            ariaLabels={{
+              popoverTrigger: "Select an option",
+              listbox: "List of options",
+              clearSelection: "Clear selection",
+            }}
           />
         </div>
       </div>
@@ -159,6 +176,11 @@ export function FilterDemo() {
             options={[]}
             placeholder="Multi-select filter"
             groups={BLOCKCN_FILTER_GROUPS}
+            ariaLabels={{
+              popoverTrigger: "Select options",
+              listbox: "List of options",
+              clearSelection: "Clear all selections",
+            }}
           />
           <FilterMultiSelect
             value={badgeValues}
@@ -167,33 +189,50 @@ export function FilterDemo() {
             placeholder="Multi-select filter"
             groups={BLOCKCN_FILTER_GROUPS}
             displayMode="badge"
+            ariaLabels={{
+              popoverTrigger: "Select options",
+              listbox: "List of options",
+              clearSelection: "Clear all selections",
+            }}
           />
         </div>
       </div>
 
       <div id='filter-with-search'>
-      <div className="flex flex-col gap-4">
-      <FilterSingleSelect
-        value={singleValue}
-        onChange={setSingleValue}
-        options={[]}
-        groups={BLOCKCN_FILTER_GROUPS}
-        placeholder="Single select filter with search"
-        searchable
-        searchPlaceholder="Search"
-        noResultsText="No results found"
-      />
-      <FilterMultiSelect
-        value={multiValues}
-        onChange={setMultiValues}
-        options={[]}
-        placeholder="Multi select filter with search"
-        groups={BLOCKCN_FILTER_GROUPS}
-        searchable
-        searchPlaceholder="Search"
-        noResultsText="No results found"
-      />
-    </div>
+        <div className="flex flex-col gap-4">
+          <FilterSingleSelect
+            value={singleValue}
+            onChange={setSingleValue}
+            options={[]}
+            groups={BLOCKCN_FILTER_GROUPS}
+            placeholder="Single select filter with search"
+            searchable
+            searchPlaceholder="Search"
+            noResultsText="No results found"
+            ariaLabels={{
+              popoverTrigger: "Select an option",
+              searchInput: "Search",
+              listbox: "List of options",
+              clearSelection: "Clear selection",
+            }}
+          />
+          <FilterMultiSelect
+            value={multiValues}
+            onChange={setMultiValues}
+            options={[]}
+            placeholder="Multi select filter with search"
+            groups={BLOCKCN_FILTER_GROUPS}
+            searchable
+            searchPlaceholder="Search"
+            noResultsText="No results found"
+            ariaLabels={{
+              popoverTrigger: "Select options",
+              searchInput: "Search",
+              listbox: "List of options",
+              clearSelection: "Clear all selections",
+            }}
+          />
+        </div>
       </div>
 
       <div id='filter-with-image'>
@@ -203,6 +242,11 @@ export function FilterDemo() {
             onChange={setSingleValue}
             options={[]}
             placeholder="Single select filter"
+            ariaLabels={{
+              popoverTrigger: "Select an option",
+              listbox: "List of options",
+              clearSelection: "Clear selection",
+            }}
             groups={BLOCKCN_FILTER_GROUPS}
             searchable
             showSearch={false}
@@ -219,6 +263,11 @@ export function FilterDemo() {
             showSearch={false}
             noResultsText="No results found"
             renderOption={renderOptionWithAvatar}
+            ariaLabels={{
+              popoverTrigger: "Select options",
+              listbox: "List of options",
+              clearSelection: "Clear all selections",
+            }}
           />
         </div>
       </div>
