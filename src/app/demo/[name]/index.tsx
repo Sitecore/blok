@@ -70,7 +70,8 @@ import { allSite } from "@/app/demo/[name]/bloks/all-site";
 import { collaboration } from "@/app/demo/[name]/bloks/collaboration";
 import { dashboardWidget } from "@/app/demo/[name]/bloks/dashboard-widget";
 import { pinnedSite } from "@/app/demo/[name]/bloks/pinned-site";
-import { promptInput } from "@/app/demo/[name]/bloks/prompt-input";
+// TEMP: prompt-input disabled
+// import { promptInput } from "@/app/demo/[name]/bloks/prompt-input";
 import { sidebarRhs } from "@/app/demo/[name]/bloks/sidebar-rhs";
 import { siteCard } from "@/app/demo/[name]/bloks/site-card";
 
@@ -171,6 +172,7 @@ export const demos: { [name: string]: Demo } = {
   "site-card": siteCard,
   "pinned-site": pinnedSite,
   collaboration,
-  "prompt-input": promptInput,
+  // TEMP: prompt-input disabled
+  // "prompt-input": promptInput,
   "sidebar-rhs": sidebarRhs,
 };
