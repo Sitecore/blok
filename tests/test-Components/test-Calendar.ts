@@ -1,4 +1,44 @@
-import { test, expect, Page } from '@playwright/test';
+import { test, expect, Page, type Locator } from '@playwright/test';
+
+/** `data-day` on calendar cells uses local calendar YYYY-MM-DD. */
+function formatLocalIsoDate(d: Date): string {
+    const y = d.getFullYear();
+    const m = String(d.getMonth() + 1).padStart(2, '0');
+    const day = String(d.getDate()).padStart(2, '0');
+    return `${y}-${m}-${day}`;
+}
+
+async function cellIsPickable(loc: Locator): Promise<boolean> {
+    if ((await loc.getAttribute('disabled')) !== null) return false;
+    if ((await loc.getAttribute('aria-disabled')) === 'true') return false;
+    return true;
+}
+
+/** Pick two visible day cells (start < end) whose range is not the same as the current selection. */
+async function pickNewVisibleRangePair(
+    calendar: Locator,
+    oldStart: string,
+    oldEnd: string,
+): Promise<{ start: Locator; end: Locator; startIso: string; endIso: string }> {
+    const cells = calendar.locator('button[data-day]');
+    const count = await cells.count();
+    for (let i = 0; i < count; i++) {
+        const locI = cells.nth(i);
+        if (!(await cellIsPickable(locI))) continue;
+        const di = await locI.getAttribute('data-day');
+        if (!di) continue;
+        for (let j = i + 1; j < count; j++) {
+            const locJ = cells.nth(j);
+            if (!(await cellIsPickable(locJ))) continue;
+            const dj = await locJ.getAttribute('data-day');
+            if (!dj) continue;
+            if (!(di < dj)) continue;
+            if (di === oldStart && dj === oldEnd) continue;
+            return { start: locI, end: locJ, startIso: di, endIso: dj };
+        }
+    }
+    throw new Error('Could not find two visible days to select a different range');
+}
 
 export async function testSingleCalendar(page: Page){
     // Check that calendar is visible
@@ -10,20 +50,20 @@ export async function testSingleCalendar(page: Page){
     const table = calendar.locator('table');
     await expect(table).toBeVisible();
 
-    // Verify default selected date (June 12, 2025)
+    // Verify default selected date is current date
+    const todayIso = formatLocalIsoDate(new Date());
     // Try to find by data-selected first, fallback to finding by data-day attribute
     let selectedDay = calendar.locator('button[data-selected="true"]');
     const selectedCount = await selectedDay.count();
-    
+
     if (selectedCount === 0) {
-      // If no button with data-selected, try to find the specific date button
-      selectedDay = calendar.locator('button[data-day*="2025-06-12"]');
+      selectedDay = calendar.locator(`button[data-day="${todayIso}"]`);
     }
-    
+
     await expect(selectedDay).toBeVisible();
     const dayValue = await selectedDay.getAttribute('data-day');
     expect(dayValue).toBeTruthy();
-    expect(dayValue).toContain('2025-06-12');
+    expect(dayValue).toContain(todayIso);
 
     // Verify that navigate to previous month when previous button is clicked
     const prevButton = page.locator('[aria-label="Go to the Previous Month"]').first();
@@ -130,9 +170,35 @@ export async function testTwoMonthCalendar(page: Page){
     const monthGrids = calendar.first().locator('.rdp-months').locator('.rdp-month');
     await expect(monthGrids).toHaveCount(2);
 
-    // Verify default range is selected (2025-06-09 to 2025-06-26)
-    const rangeStart = calendar.locator('button[data-day="2025-06-09"][data-range-start="true"]');
-    const rangeEnd = calendar.locator('button[data-day="2025-06-26"][data-range-end="true"]');
+    // Verify default range is selected (demo dates are dynamic; assert markers + chronological order).
+    const rangeStart = calendar.locator('button[data-range-start="true"]').first();
+    const rangeEnd = calendar.locator('button[data-range-end="true"]').first();
     await expect(rangeStart).toBeVisible();
     await expect(rangeEnd).toBeVisible();
+    const startDay = await rangeStart.getAttribute('data-day');
+    const endDay = await rangeEnd.getAttribute('data-day');
+    expect(startDay).toMatch(/^\d{4}-\d{2}-\d{2}$/);
+    expect(endDay).toMatch(/^\d{4}-\d{2}-\d{2}$/);
+    expect(startDay! <= endDay!).toBe(true);
+
+    // Select a different date range using any two visible days (story month view is not fixed to Jan/Feb)
+    const { start: newStartDay, end: newEndDay, startIso, endIso } = await pickNewVisibleRangePair(
+        calendar,
+        startDay!,
+        endDay!,
+    );
+    await expect(newStartDay).toBeVisible();
+    await expect(newEndDay).toBeVisible();
+    await newStartDay.click();
+    await newEndDay.click();
+
+    const newRangeStart = calendar.locator('button[data-range-start="true"]').first();
+    const newRangeEnd = calendar.locator('button[data-range-end="true"]').first();
+    await expect(newRangeStart).toBeVisible();
+    await expect(newRangeEnd).toBeVisible();
+    const newStartDayValue = await newRangeStart.getAttribute('data-day');
+    const newEndDayValue = await newRangeEnd.getAttribute('data-day');
+    expect(newStartDayValue).toBe(startIso);
+    expect(newEndDayValue).toBe(endIso);
+    expect(newStartDayValue !== startDay || newEndDayValue !== endDay).toBe(true);
 }
