@@ -7,8 +7,6 @@ export const stackNavigation = {
     usage: [
       `import { StackNavigation } from "@/components/ui/stack-navigation";`,
       `<StackNavigation items={items} />`,
-      `<StackNavigation items={items} colorScheme="neutral" />`,
-      `<StackNavigation items={items} colorScheme="primary" />`,
     ],
   },
   components: {
