@@ -6,7 +6,7 @@ export const checkbox = {
   usage: {
     usage: [
       `import { Checkbox } from "@/components/ui/checkbox"`,
-      `<Checkbox id="terms" aria-label="Accept terms and conditions" />`,
+      `<Checkbox id="terms" />`,
     ],
   },
   components: {

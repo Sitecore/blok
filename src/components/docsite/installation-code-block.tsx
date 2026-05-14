@@ -7,8 +7,16 @@ import { mdiClipboardOutline } from "@mdi/js";
 import Icon from "@mdi/react";
 import { Check } from "lucide-react";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button } from "../ui/button";
+
+const INSTALLATION_PM_STORAGE_KEY = "blok:docsite-installation-pm";
+const PACKAGE_MANAGERS = ["pnpm", "npm", "yarn", "bun"] as const;
+type PackageManager = (typeof PACKAGE_MANAGERS)[number];
+
+function isPackageManager(value: string): value is PackageManager {
+  return (PACKAGE_MANAGERS as readonly string[]).includes(value);
+}
 
 interface InstallationCodeBlockProps {
   registryUrl: string;
@@ -22,7 +30,19 @@ export default function InstallationCodeBlock({
 }: InstallationCodeBlockProps) {
   const pathname = usePathname();
   const [copied, setCopied] = useState(false);
-  const [activeTab, setActiveTab] = useState("pnpm");
+  const [activeTab, setActiveTab] = useState<PackageManager>("pnpm");
+
+  useEffect(() => {
+    try {
+      const stored = localStorage.getItem(INSTALLATION_PM_STORAGE_KEY);
+      if (stored && isPackageManager(stored)) {
+        setActiveTab(stored);
+      }
+    } catch {
+      setActiveTab("pnpm");
+      localStorage.setItem(INSTALLATION_PM_STORAGE_KEY, "pnpm");
+    }
+  }, []);
 
   const npxCommand = `npx shadcn@latest add ${registryUrl}`;
   const pnpmCommand = `pnpm dlx shadcn@latest add ${registryUrl}`;
@@ -64,7 +84,13 @@ export default function InstallationCodeBlock({
   };
 
   const handleTabChange = (value: string) => {
+    if (!isPackageManager(value)) return;
     setActiveTab(value);
+    try {
+      localStorage.setItem(INSTALLATION_PM_STORAGE_KEY, value);
+    } catch {
+      // ignore
+    }
     const payload: Record<string, unknown> = { package_manager: value };
     if (componentName && pathname) {
       if (pathname.startsWith("/primitives/")) {
@@ -78,7 +104,7 @@ export default function InstallationCodeBlock({
 
   return (
     <div dir="ltr" className="rounded-lg bg-subtle-bg p-4">
-      <Tabs defaultValue="pnpm" onValueChange={handleTabChange}>
+      <Tabs value={activeTab} onValueChange={handleTabChange}>
         <div className="flex items-center justify-between">
           <TabsList variant="soft-rounded">
             <TabsTrigger

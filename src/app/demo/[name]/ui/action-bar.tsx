@@ -6,7 +6,7 @@ export const actionBar = {
   usage: {
     usage: [
       `import { ActionBar } from "@/components/ui/action-bar";`,
-      `<ActionBar />`,
+      `<ActionBar \n  isOpen={true}\n/>`,
     ],
   },
 };
