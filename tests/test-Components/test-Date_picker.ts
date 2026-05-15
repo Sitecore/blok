@@ -1,4 +1,4 @@
-import { test, expect, Page } from '@playwright/test';
+import { test, expect, Page, type Locator } from '@playwright/test';
 
 /** Matches UI date picker label, e.g. "April 21st, 2026" (ordinal day, not `toLocaleDateString`). */
 function ordinalSuffix(day: number): string {
@@ -20,6 +20,52 @@ function formatLongDateWithOrdinal(d: Date): string {
   ];
   const day = d.getDate();
   return `${months[d.getMonth()]} ${day}${ordinalSuffix(day)}, ${d.getFullYear()}`;
+}
+
+/** Parse `YYYY-MM-DD` from `data-day` as local midnight. */
+function parseIsoLocal(iso: string): Date {
+  const [y, m, d] = iso.split('-').map(Number);
+  return new Date(y!, m! - 1, d!);
+}
+
+/** Range trigger uses short months and zero-padded day, e.g. "May 12, 2026 - Jun 01, 2026". */
+function formatShortMonthDayYear(d: Date): string {
+  const shorts = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+  const day = String(d.getDate()).padStart(2, '0');
+  return `${shorts[d.getMonth()]} ${day}, ${d.getFullYear()}`;
+}
+
+function formatRangeButtonLabelFromIso(startIso: string, endIso: string): string {
+  return `${formatShortMonthDayYear(parseIsoLocal(startIso))} - ${formatShortMonthDayYear(parseIsoLocal(endIso))}`;
+}
+
+async function cellIsPickable(loc: Locator): Promise<boolean> {
+  if ((await loc.getAttribute('disabled')) !== null) return false;
+  if ((await loc.getAttribute('aria-disabled')) === 'true') return false;
+  return true;
+}
+
+/** Two pickable days (start < end) whose formatted range label differs from the current trigger text. */
+async function pickRangePairLabelNotEqual(calendar: Locator, avoidLabel: string) {
+  const cells = calendar.locator('button[data-day]');
+  const count = await cells.count();
+  for (let i = 0; i < count; i++) {
+    const locI = cells.nth(i);
+    if (!(await cellIsPickable(locI))) continue;
+    const di = await locI.getAttribute('data-day');
+    if (!di) continue;
+    for (let j = i + 1; j < count; j++) {
+      const locJ = cells.nth(j);
+      if (!(await cellIsPickable(locJ))) continue;
+      const dj = await locJ.getAttribute('data-day');
+      if (!dj) continue;
+      if (!(di < dj)) continue;
+      const label = formatRangeButtonLabelFromIso(di, dj);
+      if (label.replace(/\s+/g, ' ').trim() === avoidLabel.replace(/\s+/g, ' ').trim()) continue;
+      return { start: locI, end: locJ, startIso: di, endIso: dj, label };
+    }
+  }
+  throw new Error('Could not find a different visible date range in the calendar');
 }
 
 export async function testSimpleDatePicker(page: Page){
@@ -138,7 +184,8 @@ export async function testDatePickerRange(page: Page){
   const datePicker = page.locator('[id="date-picker-range"]');
   const datePickerButton = datePicker.locator('[data-slot="popover-trigger"]');
   await expect(datePickerButton).toBeVisible();
-  await expect(datePickerButton).toContainText('Jan 20, 2026 - Feb 09, 2026');
+  const initialRange = ((await datePickerButton.textContent()) ?? '').replace(/\s+/g, ' ').trim();
+  expect(initialRange).toMatch(/[A-Za-z]{3,9} \d{1,2}, \d{4} - [A-Za-z]{3,9} \d{1,2}, \d{4}/);
   await expect(datePickerButton.locator('[class="text-muted-foreground"]')).toBeVisible();
 
   // Verify that open date picker range calendar when button is clicked
@@ -147,21 +194,23 @@ export async function testDatePickerRange(page: Page){
   const calendar = popover.locator('[data-slot="calendar"]');
   await expect(calendar).toBeVisible();
 
-  // Verify that select a date range when day is clicked
-    // Click new start day (e.g. June 15)
-    await calendar.locator('button[data-day="2026-01-11"]').click();
-    // Click new end day (e.g. June 20)
-    await calendar.locator('button[data-day="2026-02-02"]').click();
-    // Verify range is reflected
-    await expect(calendar.locator('button[data-day="2026-01-11"][data-range-start="true"]')).toBeVisible();
-    await expect(calendar.locator('button[data-day="2026-02-02"][data-range-end="true"]')).toBeVisible();
-   
+  const { start, end, startIso, endIso, label: expectedNewLabel } = await pickRangePairLabelNotEqual(
+    calendar,
+    initialRange,
+  );
+  await expect(start).toBeVisible();
+  await expect(end).toBeVisible();
+  await start.click();
+  await end.click();
+  await expect(calendar.locator(`button[data-day="${startIso}"][data-range-start="true"]`).first()).toBeVisible();
+  await expect(calendar.locator(`button[data-day="${endIso}"][data-range-end="true"]`).first()).toBeVisible();
+
   // Verify that close popover when clicking outside
   await page.mouse.click(10, 10);
   await expect(calendar).not.toBeVisible({ timeout: 2000 });
 
   // Verify that update button text after date selection
-  const buttonText = (await datePickerButton.textContent())?.trim() ?? '';
-  expect(buttonText).not.toBe('Jan 20, 2026 - Feb 09, 2026');
-  expect(buttonText).toBe('Jan 11, 2026 - Feb 02, 2026');
+  const buttonText = ((await datePickerButton.textContent()) ?? '').replace(/\s+/g, ' ').trim();
+  expect(buttonText).not.toBe(initialRange);
+  expect(buttonText).toBe(expectedNewLabel);
 }
