@@ -100,7 +100,7 @@ export interface FilterInputProps {
   defaultValue?: string;
   onChange?: (value: string) => void;
   placeholder?: string;
-  ariaLabel?: string;
+  "aria-label"?: string;
   icon?: string;
   showClear?: boolean;
   className?: string;
@@ -133,6 +133,7 @@ export interface FilterSingleSelectProps {
   disabled?: boolean;
   name?: string;
   helperText?: string;
+  ariaLabels?: FilterAriaLabels;
   "aria-describedby"?: string;
   renderOption?: (option: FilterOption) => React.ReactNode;
   dropdownClassName?: string;
@@ -159,7 +160,7 @@ export interface FilterMultiSelectProps {
   disabled?: boolean;
   name?: string;
   helperText?: string;
-  "aria-describedby"?: string;
+  ariaLabels?: FilterAriaLabels;
   renderOption?: (option: FilterOption) => React.ReactNode;
   open?: boolean;
   onOpenChange?: (open: boolean) => void;
@@ -184,6 +185,13 @@ export interface FilterBarProps {
   ariaLabel?: string;
 }
 
+export type FilterAriaLabels = {
+  popoverTrigger?: string;
+  searchInput?: string;
+  listbox?: string;
+  clearSelection?: string;
+};
+
 // FILTER INPUT COMPONENT
 
 const FilterInput = React.forwardRef<
@@ -196,7 +204,7 @@ const FilterInput = React.forwardRef<
       defaultValue = "",
       onChange,
       placeholder = "Search...",
-      ariaLabel = "Search",
+      "aria-label": ariaLabel = "Search",
       icon = mdiMagnify,
       showClear = true,
       className,
@@ -295,6 +303,9 @@ const FilterSingleSelect = React.forwardRef<
       disabled = false,
       name,
       helperText,
+      ariaLabels = {
+        clearSelection: "Clear selection",
+      },
       "aria-describedby": ariaDescribedBy,
       renderOption,
       dropdownClassName,
@@ -389,7 +400,7 @@ const FilterSingleSelect = React.forwardRef<
                   ref={ref}
                   type="button"
                   variant="ghost"
-                  aria-label={placeholder}
+                  aria-label={ariaLabels?.popoverTrigger ?? placeholder}
                   aria-describedby={describedBy}
                   aria-expanded={open}
                   disabled={disabled}
@@ -462,7 +473,9 @@ const FilterSingleSelect = React.forwardRef<
                         placeholder={searchPlaceholder}
                         value={searchQuery}
                         onChange={(e) => setSearchQuery(e.target.value)}
-                        aria-label={searchPlaceholder}
+                        aria-label={
+                          ariaLabels?.searchInput ?? searchPlaceholder
+                        }
                         className="placeholder:text-muted-foreground"
                       />
                       {searchQuery && (
@@ -480,7 +493,9 @@ const FilterSingleSelect = React.forwardRef<
                   <div
                     className="py-0.5"
                     role="listbox"
-                    aria-label={groupLabel || placeholder}
+                    aria-label={
+                      ariaLabels?.listbox ?? groupLabel ?? placeholder
+                    }
                   >
                     {filteredOptions.length === 0 ? (
                       <div className="py-6 text-center text-sm text-muted-foreground">
@@ -525,7 +540,7 @@ const FilterSingleSelect = React.forwardRef<
                 variant="ghost"
                 size="icon-xs"
                 colorScheme="neutral"
-                aria-label="Clear selection"
+                aria-label={ariaLabels?.clearSelection}
                 className="absolute right-2 top-1/2 -translate-y-1/2 pointer-events-auto text-neutral-fg hover:bg-neutral-bg-active"
               >
                 <Icon path={mdiClose} size={0.75} />
@@ -557,6 +572,7 @@ const FilterSingleSelect = React.forwardRef<
           >
             <SelectTrigger
               ref={ref}
+              aria-label={ariaLabels?.popoverTrigger ?? placeholder}
               aria-describedby={describedBy}
               className={cn(
                 "*:data-[slot=select-value]:hidden",
@@ -641,7 +657,7 @@ const FilterSingleSelect = React.forwardRef<
               variant="ghost"
               size="icon-xs"
               colorScheme="neutral"
-              aria-label="Clear selection"
+              aria-label={ariaLabels?.clearSelection}
               className="absolute right-2 top-1/2 -translate-y-1/2 pointer-events-auto text-neutral-fg hover:bg-neutral-bg-active"
             >
               <Icon path={mdiClose} size={0.75} />
@@ -687,6 +703,9 @@ const FilterMultiSelect = React.forwardRef<
       disabled = false,
       name,
       helperText,
+      ariaLabels = {
+        clearSelection: "Clear selection",
+      },
       "aria-describedby": ariaDescribedBy,
       renderOption,
       open: controlledOpen,
@@ -859,6 +878,7 @@ const FilterMultiSelect = React.forwardRef<
                 type="button"
                 variant="ghost"
                 disabled={disabled}
+                aria-label={ariaLabels?.popoverTrigger ?? placeholder}
                 aria-describedby={describedBy}
                 aria-expanded={open}
                 style={
@@ -1027,7 +1047,7 @@ const FilterMultiSelect = React.forwardRef<
                       placeholder={searchPlaceholder}
                       value={searchQuery}
                       onChange={(e) => setSearchQuery(e.target.value)}
-                      aria-label={searchPlaceholder}
+                      aria-label={ariaLabels?.searchInput ?? searchPlaceholder}
                       className="placeholder:text-muted-foreground"
                     />
                     {searchQuery && (
@@ -1045,7 +1065,7 @@ const FilterMultiSelect = React.forwardRef<
                 <div
                   className="py-0.5"
                   role="group"
-                  aria-label={groupLabel || placeholder}
+                  aria-label={ariaLabels?.listbox ?? groupLabel ?? placeholder}
                 >
                   {groups ? (
                     !filteredMultiGroups || filteredMultiGroups.length === 0 ? (
@@ -1089,7 +1109,7 @@ const FilterMultiSelect = React.forwardRef<
               variant="ghost"
               size="icon-xs"
               colorScheme="neutral"
-              aria-label="Clear all selections"
+              aria-label={ariaLabels?.clearSelection}
               className="absolute right-2 top-1/2 -translate-y-1/2 pointer-events-auto hover:bg-neutral-bg-active"
             >
               <Icon path={mdiClose} size={0.75} />

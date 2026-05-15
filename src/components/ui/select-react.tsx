@@ -89,7 +89,7 @@ function MultiValueRemove<
 }
 
 // Custom option component with checkmark for selected items
-function CustomOption<
+const CustomOption = React.memo(function CustomOption<
   Option extends SelectReactOption,
   IsMulti extends boolean,
   Group extends GroupBase<Option>,
@@ -131,7 +131,7 @@ function CustomOption<
       </div>
     </components.Option>
   );
-}
+}) as typeof components.Option;
 
 function SelectReact<
   Option extends SelectReactOption = SelectReactOption,
@@ -148,127 +148,146 @@ function SelectReact<
   // Generate a stable ID to prevent hydration mismatches
   const id = React.useId();
   const selectInstanceId = instanceId ?? id;
-  const classNames: ClassNamesConfig<Option, IsMulti, Group> = {
-    control: ({ isFocused, isDisabled: controlDisabled, menuIsOpen }) =>
-      cn(
-        // Base styles matching SelectTrigger
-        "border-input text-md flex w-full items-center gap-2 rounded-md border-1 px-3 transition-[color] outline-none",
-        // Size variants
-        size === "default" ? "min-h-10" : "min-h-8",
-        // Focus states - only apply ring when focused but menu is closed
-        isFocused && !menuIsOpen && "border-input ring-ring/50 ring-1",
-        // When menu is open, use border-2 (no ring to avoid double border)
-        menuIsOpen && "border-primary border-2",
-        // Disabled state
-        controlDisabled && "cursor-not-allowed opacity-50",
-        // Dark mode
-        "dark:bg-input/30 dark:hover:bg-input/50",
-        // Remove default react-select background
-        "bg-body-bg",
-        className,
-      ),
-    placeholder: () => "text-muted-foreground",
-    input: () => "text-foreground",
-    singleValue: () => "text-foreground",
-    valueContainer: () => "gap-1 p-0",
-    indicatorSeparator: () => "hidden",
-    indicatorsContainer: () => "gap-1",
-    dropdownIndicator: () => "text-muted-foreground p-0",
-    clearIndicator: () => "text-muted-foreground p-0 cursor-pointer",
-    menu: () =>
-      cn(
-        "bg-popover text-popover-foreground relative z-50 min-w-[8rem] overflow-hidden rounded-md border shadow-md",
-        // Animation classes matching SelectContent
-        "data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95",
-      ),
-    menuList: () => "p-1 max-h-[300px]",
-    option: ({ isFocused, isSelected, isDisabled: optionDisabled, data }) =>
-      cn(
-        // Base styles matching SelectItem
-        "relative flex w-full cursor-default gap-2 rounded-sm py-1.5 px-2 !text-sm outline-hidden select-none",
-        data.description ? "items-start" : "items-center",
-        // Hover/focus state
-        isFocused && "bg-accent text-accent-foreground",
-        // Selected state
-        isSelected && "bg-accent text-accent-foreground",
-        // Disabled state
-        optionDisabled && "pointer-events-none opacity-50",
-      ),
-    group: () => "",
-    groupHeading: () =>
-      "text-muted-foreground px-2 py-1.5 text-xs font-semibold uppercase",
-    noOptionsMessage: () => "text-muted-foreground py-6 text-center text-sm",
-    loadingMessage: () => "text-muted-foreground py-6 text-center text-sm",
-    multiValue: () => "",
-    multiValueLabel: () => "text-sm",
-    multiValueRemove: () =>
-      "hover:bg-destructive/20 hover:text-destructive rounded-sm p-0.5 transition-colors cursor-pointer",
-  };
+
+  const classNames = React.useMemo<ClassNamesConfig<Option, IsMulti, Group>>(
+    () => ({
+      control: ({ isFocused, isDisabled: controlDisabled, menuIsOpen }) =>
+        cn(
+          // Base styles matching SelectTrigger
+          "border-input text-md flex w-full items-center gap-2 rounded-md border-1 px-3 transition-[color] outline-none",
+          // Size variants
+          size === "default" ? "min-h-10" : "min-h-8",
+          // Focus states - only apply ring when focused but menu is closed
+          isFocused && !menuIsOpen && "border-input ring-ring/50 ring-1",
+          // When menu is open, use border-2 (no ring to avoid double border)
+          menuIsOpen && "border-primary border-2",
+          // Disabled state
+          controlDisabled && "cursor-not-allowed opacity-50",
+          // Dark mode
+          "dark:bg-input/30 dark:hover:bg-input/50",
+          // Remove default react-select background
+          "bg-body-bg",
+          className,
+        ),
+      placeholder: () => "text-muted-foreground",
+      input: () => "text-foreground",
+      singleValue: () => "text-foreground",
+      valueContainer: () => "gap-1 p-0",
+      indicatorSeparator: () => "hidden",
+      indicatorsContainer: () => "gap-1",
+      dropdownIndicator: () => "text-muted-foreground p-0",
+      clearIndicator: () => "text-muted-foreground p-0 cursor-pointer",
+      menu: () =>
+        cn(
+          "bg-popover text-popover-foreground relative z-50 min-w-[8rem] overflow-hidden rounded-md border shadow-md",
+          // Animation classes matching SelectContent
+          "data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95",
+        ),
+      menuList: () => "p-1 max-h-[300px]",
+      option: ({ isFocused, isSelected, isDisabled: optionDisabled, data }) =>
+        cn(
+          // Base styles matching SelectItem
+          "relative flex w-full cursor-default gap-2 rounded-sm py-1.5 px-2 !text-sm outline-hidden select-none",
+          data.description ? "items-start" : "items-center",
+          // Hover/focus state
+          isFocused && "bg-accent text-accent-foreground",
+          // Selected state
+          isSelected && "bg-accent text-accent-foreground",
+          // Disabled state
+          optionDisabled && "pointer-events-none opacity-50",
+        ),
+      group: () => "",
+      groupHeading: () =>
+        "text-muted-foreground px-2 py-1.5 text-xs font-semibold uppercase",
+      noOptionsMessage: () => "text-muted-foreground py-6 text-center text-sm",
+      loadingMessage: () => "text-muted-foreground py-6 text-center text-sm",
+      multiValue: () => "",
+      multiValueLabel: () => "text-sm",
+      multiValueRemove: () =>
+        "hover:bg-destructive/20 hover:text-destructive rounded-sm p-0.5 transition-colors cursor-pointer",
+    }),
+    [size, className],
+  );
 
   // Remove all default styles to use only classNames
-  const styles: StylesConfig<Option, IsMulti, Group> = {
-    control: () => ({
-      boxShadow: "none",
-    }),
-    option: (base) => ({
-      ...base,
-      backgroundColor: undefined,
-      color: undefined,
-      "&:active": {
-        backgroundColor: undefined,
-      },
-    }),
-    menu: (base) => ({
-      ...base,
-      backgroundColor: undefined,
-    }),
-    menuList: (base) => ({
-      ...base,
-      padding: undefined,
-    }),
-    multiValue: (base) => ({
-      ...base,
-      backgroundColor: undefined,
-    }),
-    multiValueLabel: (base) => ({
-      ...base,
-      color: undefined,
-      padding: undefined,
-    }),
-    multiValueRemove: (base) => ({
-      ...base,
-      color: undefined,
-      "&:hover": {
+  const styles = React.useMemo<StylesConfig<Option, IsMulti, Group>>(
+    () => ({
+      control: () => ({
+        boxShadow: "none",
+      }),
+      option: (base) => ({
+        ...base,
         backgroundColor: undefined,
         color: undefined,
-      },
+        "&:active": {
+          backgroundColor: undefined,
+        },
+      }),
+      menu: (base) => ({
+        ...base,
+        backgroundColor: undefined,
+      }),
+      menuList: (base) => ({
+        ...base,
+        padding: undefined,
+      }),
+      multiValue: (base) => ({
+        ...base,
+        backgroundColor: undefined,
+      }),
+      multiValueLabel: (base) => ({
+        ...base,
+        color: undefined,
+        padding: undefined,
+      }),
+      multiValueRemove: (base) => ({
+        ...base,
+        color: undefined,
+        "&:hover": {
+          backgroundColor: undefined,
+          color: undefined,
+        },
+      }),
+      input: (base) => ({
+        ...base,
+        color: undefined,
+      }),
+      placeholder: (base) => ({
+        ...base,
+        color: undefined,
+      }),
+      singleValue: (base) => ({
+        ...base,
+        color: undefined,
+      }),
+      indicatorSeparator: () => ({
+        display: "none",
+      }),
+      dropdownIndicator: (base) => ({
+        ...base,
+        color: undefined,
+        padding: 0,
+      }),
+      clearIndicator: (base) => ({
+        ...base,
+        color: undefined,
+        padding: 0,
+      }),
     }),
-    input: (base) => ({
-      ...base,
-      color: undefined,
+    [],
+  );
+
+  const mergedComponents = React.useMemo(
+    () => ({
+      DropdownIndicator,
+      ClearIndicator,
+      MultiValueContainer,
+      MultiValueRemove,
+      Option: CustomOption,
+      ...userComponents,
     }),
-    placeholder: (base) => ({
-      ...base,
-      color: undefined,
-    }),
-    singleValue: (base) => ({
-      ...base,
-      color: undefined,
-    }),
-    indicatorSeparator: () => ({
-      display: "none",
-    }),
-    dropdownIndicator: (base) => ({
-      ...base,
-      color: undefined,
-      padding: 0,
-    }),
-    clearIndicator: (base) => ({
-      ...base,
-      color: undefined,
-      padding: 0,
-    }),
-  };
+    [userComponents],
+  );
 
   return (
     <ReactSelect<Option, IsMulti, Group>
@@ -276,14 +295,7 @@ function SelectReact<
       instanceId={selectInstanceId}
       classNames={classNames}
       styles={styles}
-      components={{
-        DropdownIndicator,
-        ClearIndicator,
-        MultiValueContainer,
-        MultiValueRemove,
-        Option: CustomOption as typeof components.Option,
-        ...userComponents,
-      }}
+      components={mergedComponents}
       isDisabled={isDisabled}
       isOptionDisabled={(option) => !!(option as SelectReactOption).disabled}
       {...props}

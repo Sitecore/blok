@@ -13,15 +13,7 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
 import { cn } from "@/lib/utils";
-import type { DropdownProps } from "react-day-picker";
 
 type CalendarProps = React.ComponentProps<typeof Calendar>;
 
@@ -30,53 +22,12 @@ type CalendarProps = React.ComponentProps<typeof Calendar>;
  * For DayPicker label creators (nav, days, etc.), use `calendarProps.ariaLabels`.
  */
 export type DatePickerAriaLabels = {
-  /** `aria-label` on the popover trigger button */
+  /**
+   * `aria-label` on the popover trigger when **no date is selected** (empty state).
+   * When a date is shown, `aria-label` is omitted so the visible formatted date is the accessible name.
+   */
   popoverTrigger?: string;
 };
-
-export function CustomDropdown({
-  options = [],
-  value,
-  onChange,
-  disabled,
-  name,
-  id,
-}: DropdownProps) {
-  return (
-    <Select
-      disabled={disabled}
-      name={name}
-      value={value != null ? String(value) : ""}
-      onValueChange={(val) => {
-        const e = {
-          target: { value: val },
-        } as unknown as React.ChangeEvent<HTMLSelectElement>;
-        onChange?.(e);
-      }}
-    >
-      <SelectTrigger
-        id={id}
-        size="sm"
-        className="z-50 px-3 text-sm text-neutral-fg [&_svg:not([class*='text-'])]:text-accent-foreground bg-transparent dark:bg-transparent dark:hover:bg-transparent"
-      >
-        <SelectValue />
-      </SelectTrigger>
-
-      <SelectContent className="rounded-md borde p-0 min-w-20">
-        {options.map(({ value: v, label, disabled }) => (
-          <SelectItem
-            key={String(v)}
-            value={String(v)}
-            disabled={disabled}
-            className="cursor-pointer px-3 py-1.5 text-sm"
-          >
-            {label}
-          </SelectItem>
-        ))}
-      </SelectContent>
-    </Select>
-  );
-}
 
 export type DatePickerSimpleCalendarProps = Omit<
   CalendarProps,
@@ -154,8 +105,10 @@ function DatePickerSimple(props: DatePickerSimpleProps) {
           colorScheme="neutral"
           disabled={disabled}
           aria-label={
-            ariaLabels?.popoverTrigger ??
-            (typeof placeholder === "string" ? placeholder : undefined)
+            date
+              ? undefined
+              : (ariaLabels?.popoverTrigger ??
+                (typeof placeholder === "string" ? placeholder : undefined))
           }
           className={cn(
             "border-input border-1 data-[state=open]:border-2 data-[state=open]:border-primary rounded-md text-md data-[placeholder]:text-muted-foreground [&_svg:not([class*='text-'])]:text-muted-foreground focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive dark:bg-input/30 dark:hover:bg-input/50 flex w-fit items-center justify-between gap-2 bg-body-bg px-3 py-2 whitespace-nowrap shadow-xs transition-[color,box-shadow] outline-none focus-visible:ring-[2px] disabled:cursor-not-allowed disabled:opacity-50 h-10",
@@ -186,7 +139,6 @@ function DatePickerSimple(props: DatePickerSimpleProps) {
           captionLayout={calendarProps?.captionLayout ?? "dropdown"}
           locale={mergedLocale}
           components={{
-            Dropdown: CustomDropdown,
             ...calendarProps?.components,
           }}
         />
@@ -279,8 +231,10 @@ function DatePickerWithRange(props: DatePickerWithRangeProps) {
           colorScheme="neutral"
           disabled={disabled}
           aria-label={
-            ariaLabels?.popoverTrigger ??
-            (typeof placeholder === "string" ? placeholder : undefined)
+            range?.from
+              ? undefined
+              : (ariaLabels?.popoverTrigger ??
+                (typeof placeholder === "string" ? placeholder : undefined))
           }
           className={cn(
             "border-input border-1 data-[state=open]:border-2 data-[state=open]:border-primary rounded-md text-md data-[placeholder]:text-muted-foreground [&_svg:not([class*='text-'])]:text-muted-foreground focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive dark:bg-input/30 dark:hover:bg-input/50 flex w-fit items-center justify-between gap-2 bg-body-bg px-3 py-2 whitespace-nowrap shadow-xs transition-[color,box-shadow] outline-none focus-visible:ring-[2px] disabled:cursor-not-allowed disabled:opacity-50 h-10",
@@ -309,7 +263,6 @@ function DatePickerWithRange(props: DatePickerWithRangeProps) {
           captionLayout={calendarProps?.captionLayout ?? "dropdown"}
           locale={mergedLocale}
           components={{
-            Dropdown: CustomDropdown,
             ...calendarProps?.components,
           }}
         />

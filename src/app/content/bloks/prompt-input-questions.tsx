@@ -534,7 +534,7 @@ function QuestionPromptCard({
 
           <p className="text-sm text-foreground">{question}</p>
 
-          <ul
+          <div
             role="radiogroup"
             aria-label="Question answers"
             className="flex flex-col gap-2"
@@ -543,7 +543,7 @@ function QuestionPromptCard({
               const letter = String.fromCharCode(65 + index);
               const isSelected = selectedId === answer.id;
               return (
-                <li key={answer.id} className="min-w-0">
+                <div key={answer.id} className="min-w-0">
                   <button
                     type="button"
                     role="radio"
@@ -560,10 +560,10 @@ function QuestionPromptCard({
                     <span className="shrink-0">{letter}.</span>
                     <span className="min-w-0 truncate">{answer.label}</span>
                   </button>
-                </li>
+                </div>
               );
             })}
-          </ul>
+          </div>
         </div>
       )}
 
@@ -591,7 +591,10 @@ function QuestionPromptCard({
         </PromptInputHeader>
         {variant === "floating" && (
           <PromptInputToolbar inline>
-            <PromptInputAttachButton attachMenu={promptInputDemoAttachMenu} />
+            <PromptInputAttachButton
+              aria-label="add attachment"
+              attachMenu={promptInputDemoAttachMenu}
+            />
             <PromptInputSelections />
           </PromptInputToolbar>
         )}
@@ -600,12 +603,15 @@ function QuestionPromptCard({
         </PromptInputBody>
         <PromptInputFooter>
           <PromptInputToolbar>
-            <PromptInputAttachButton attachMenu={promptInputDemoAttachMenu} />
+            <PromptInputAttachButton
+              aria-label="add attachment"
+              attachMenu={promptInputDemoAttachMenu}
+            />
             <PromptInputSelections />
           </PromptInputToolbar>
           <PromptInputActions>
-            <PromptInputMicButton />
-            <PromptInputSubmit />
+            <PromptInputMicButton aria-label="record voice input" />
+            <PromptInputSubmit aria-label="submit prompt" />
           </PromptInputActions>
         </PromptInputFooter>
       </PromptInput>

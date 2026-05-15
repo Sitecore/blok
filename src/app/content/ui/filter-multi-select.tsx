@@ -47,6 +47,11 @@ export default function FilterMultiSelectDemo() {
         options={[]}
         placeholder="Multi-select filter"
         groups={BLOCKCN_FILTER_GROUPS}
+        ariaLabels={{
+          popoverTrigger: "Select options",
+          listbox: "List of options",
+          clearSelection: "Clear all selections",
+        }}
       />
       <FilterMultiSelect
         value={badgeValues}
@@ -55,6 +60,11 @@ export default function FilterMultiSelectDemo() {
         placeholder="Multi-select filter"
         groups={BLOCKCN_FILTER_GROUPS}
         displayMode="badge"
+        ariaLabels={{
+          popoverTrigger: "Select options",
+          listbox: "List of options",
+          clearSelection: "Clear all selections",
+        }}
       />
     </div>
   );

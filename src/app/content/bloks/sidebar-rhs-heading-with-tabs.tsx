@@ -85,6 +85,7 @@ function OverviewSection() {
             checked={todoChecked}
             onCheckedChange={(checked) => setTodoChecked(checked === true)}
             className="shrink-0"
+            aria-label="Complete todo"
           />
           <span className="text-sm flex-1">
             <Badge size="sm" colorScheme="neutral" className="mr-1">
@@ -109,9 +110,11 @@ function OverviewSection() {
             checked={newTodoChecked}
             onCheckedChange={(checked) => setNewTodoChecked(checked === true)}
             className="shrink-0"
+            aria-label="Add new todo"
           />
           <Input
             type="text"
+            autoComplete="off"
             placeholder="Add new to-do, type @ to mention someone"
             className="flex-1 border-0 bg-transparent px-0 py-0 h-auto text-sm placeholder:text-muted-foreground focus-visible:ring-0 focus-visible:ring-offset-0"
           />

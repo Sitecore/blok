@@ -28,7 +28,13 @@ export default function FieldWithErrorDemo() {
           </Field>
           <Field data-invalid>
             <FieldLabel htmlFor="field-error-password">Password</FieldLabel>
-            <Input id="field-error-password" type="password" aria-invalid />
+            <Input
+              id="field-error-password"
+              type="password"
+              name="password"
+              autoComplete="current-password"
+              aria-invalid
+            />
             <FieldError
               errors={[
                 { message: "Password must be at least 8 characters" },

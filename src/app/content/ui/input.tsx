@@ -8,6 +8,8 @@ export default function InputDemo() {
       <Input
         type="text"
         id="input"
+        name="name"
+        autoComplete="name"
         placeholder="Enter your name"
         aria-label="Name"
       />

@@ -64,7 +64,11 @@ export default function FilterWithAvatarDemo() {
         onChange={setSingleValue}
         options={[]}
         placeholder="Single select filter"
-        aria-label="Select an option"
+        ariaLabels={{
+          popoverTrigger: "Select an option",
+          listbox: "List of options",
+          clearSelection: "Clear selection",
+        }}
         groups={BLOCKCN_FILTER_GROUPS}
         searchable
         showSearch={false}
@@ -82,6 +86,11 @@ export default function FilterWithAvatarDemo() {
         showSearch={false}
         noResultsText="No results found"
         renderOption={renderOptionWithAvatar}
+        ariaLabels={{
+          popoverTrigger: "Select options",
+          listbox: "List of options",
+          clearSelection: "Clear all selections",
+        }}
       />
     </div>
   );

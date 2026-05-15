@@ -22,7 +22,7 @@ export default function SidebarIconCombinationDemo() {
                   <Icon path={mdiHome} />
                   <span>Home</span>
                 </SidebarMenuButton>
-                <SidebarMenuAction>
+                <SidebarMenuAction aria-label="open home in new tab">
                   <Icon path={mdiOpenInNew} />
                 </SidebarMenuAction>
               </SidebarMenuItem>
@@ -31,7 +31,7 @@ export default function SidebarIconCombinationDemo() {
                   <Icon path={mdiAccount} />
                   <span>Profile</span>
                 </SidebarMenuButton>
-                <SidebarMenuAction>
+                <SidebarMenuAction aria-label="open profile in new tab">
                   <Icon path={mdiOpenInNew} />
                 </SidebarMenuAction>
               </SidebarMenuItem>
@@ -40,7 +40,7 @@ export default function SidebarIconCombinationDemo() {
                   <Icon path={mdiCog} />
                   <span>Settings</span>
                 </SidebarMenuButton>
-                <SidebarMenuAction>
+                <SidebarMenuAction aria-label="open settings in new tab">
                   <Icon path={mdiOpenInNew} />
                 </SidebarMenuAction>
               </SidebarMenuItem>
