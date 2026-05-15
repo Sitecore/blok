@@ -7,7 +7,7 @@ import * as React from "react";
 export function DatePickerDemo() {
   
   const [date, setDate] = React.useState<Date | undefined>(() => new Date());
-  const defaultFrom = new Date(new Date().getFullYear(), 0, 20);
+  const defaultFrom = new Date();
 
   return (
     <div>
