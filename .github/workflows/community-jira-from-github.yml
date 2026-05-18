@@ -29,5 +29,5 @@ jobs:
           JIRA_ISSUETYPE_DOC: ${{ vars.JIRA_ISSUETYPE_DOC }}
           JIRA_ISSUETYPE_SUPPORT: ${{ vars.JIRA_ISSUETYPE_SUPPORT }}
           JIRA_SUMMARY_PREFIX: ${{ vars.JIRA_SUMMARY_PREFIX }}
-        run: npx tsx scripts/community/jira-from-github.ts
+        run: pnpm dlx tsx scripts/community/jira-from-github.ts
         continue-on-error: true
