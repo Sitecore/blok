@@ -69,7 +69,7 @@ jobs:
         working-directory: .
         run: |
           echo "Updating registry URLs to use: ${{ steps.registry-url.outputs.url }}"
-          NEXT_PUBLIC_REGISTRY_URL="${{ steps.registry-url.outputs.url }}" pnpm run registry:update-urls || pnpm dlx tsx scripts/update-registry-urls.ts
+          NEXT_PUBLIC_REGISTRY_URL="${{ steps.registry-url.outputs.url }}" npm run registry:update-urls || npx tsx scripts/update-registry-urls.ts
           echo "Registry URLs updated"
         env:
           NEXT_PUBLIC_REGISTRY_URL: ${{ steps.registry-url.outputs.url }}

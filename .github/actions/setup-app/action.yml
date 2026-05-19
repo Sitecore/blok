@@ -26,13 +26,13 @@ runs:
       uses: actions/setup-node@v4
       with:
         node-version: ${{ inputs.node-version }}
-        cache: 'pnpm'
-        cache-dependency-path: ${{ inputs.app-path }}/pnpm-lock.yaml
+        cache: 'npm'
+        cache-dependency-path: ${{ inputs.app-path }}/package-lock.json
     
     - name: Install app dependencies
       shell: bash
       working-directory: ./${{ inputs.app-path }}
-      run: pnpm install --frozen-lockfile
+      run: npm ci
     
     - name: Clean up extra lockfiles
       shell: bash
@@ -55,7 +55,7 @@ runs:
       continue-on-error: true
       run: |
         set +e
-        pnpm run build
+        npm run build
         BUILD_EXIT_CODE=$?
         echo "build-exit-code=${BUILD_EXIT_CODE}" >> $GITHUB_OUTPUT
         if [ $BUILD_EXIT_CODE -eq 0 ]; then
@@ -65,7 +65,7 @@ runs:
           echo "build-status=failed" >> $GITHUB_OUTPUT
           echo "Build failed with exit code: $BUILD_EXIT_CODE"
           echo "=== Build Error Output ==="
-          pnpm run build 2>&1 | tail -50 || true
+          npm run build 2>&1 | tail -50 || true
         fi
         exit $BUILD_EXIT_CODE
       env:
