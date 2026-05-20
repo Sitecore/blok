@@ -19,6 +19,8 @@
 .DS_Store
 *.pem
 
+# lock files
+package-lock.json
 
 # debug
 npm-debug.log*
