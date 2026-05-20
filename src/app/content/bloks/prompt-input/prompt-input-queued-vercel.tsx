@@ -8,16 +8,6 @@ import {
   Attachments,
 } from "@/components/ai-elements/attachments";
 import {
-  Conversation,
-  ConversationContent,
-  ConversationScrollButton,
-} from "@/components/ai-elements/conversation";
-import {
-  Message,
-  MessageContent,
-  MessageResponse,
-} from "@/components/ai-elements/message";
-import {
   PromptInput,
   PromptInputActionAddAttachments,
   PromptInputActionAddScreenshot,
@@ -39,6 +29,17 @@ import {
   PromptInputTools,
   usePromptInputAttachments,
 } from "@/components/ai-elements/prompt-input";
+import type { QueueTodo } from "@/components/ai-elements/queue";
+import {
+  Queue,
+  QueueItem,
+  QueueItemAction,
+  QueueItemActions,
+  QueueItemContent,
+  QueueItemDescription,
+  QueueItemIndicator,
+  QueueSectionLabel,
+} from "@/components/ai-elements/queue";
 import {
   SpeechInput,
   type SpeechInputHandle,
@@ -46,6 +47,7 @@ import {
 } from "@/components/ai-elements/speech-input";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { Collapsible, CollapsibleTrigger } from "@/components/ui/collapsible";
 import {
   DropdownMenuItem,
   DropdownMenuPortal,
@@ -59,6 +61,7 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
+import { ScrollArea } from "@/components/ui/scroll-area";
 import {
   SearchInput,
   SearchInputClearButton,
@@ -69,7 +72,6 @@ import {
 import { Spinner } from "@/components/ui/spinner";
 import { Icon } from "@/lib/icon";
 import { cn } from "@/lib/utils";
-import { useChat } from "@ai-sdk/react";
 import {
   mdiAccountGroup,
   mdiAccountOutline,
@@ -97,53 +99,7 @@ import {
   mdiTextBoxSearch,
   mdiWeb,
 } from "@mdi/js";
-import type { UIMessage } from "ai";
-import { GlobeIcon } from "lucide-react";
-import { useCallback, useMemo, useRef, useState } from "react";
-
-/** Seed thread so the demo opens with example user prompts and assistant replies. */
-const DEMO_INITIAL_MESSAGES: UIMessage[] = [
-  {
-    id: "demo-seed-user-1",
-    role: "user",
-    parts: [
-      {
-        type: "text",
-        text: "Edit this image to be more warm in tone",
-      },
-    ],
-  },
-  {
-    id: "demo-seed-assistant-1",
-    role: "assistant",
-    parts: [
-      {
-        type: "text",
-        text: "Here is a warmer edit: I lifted the shadows slightly toward amber, reduced the blue cast in the highlights, and kept skin tones from going too orange. If you want it punchier, we can add a soft vignette next.",
-      },
-    ],
-  },
-  {
-    id: "demo-seed-user-2",
-    role: "user",
-    parts: [
-      {
-        type: "text",
-        text: "Looks great—save this as the default look.",
-      },
-    ],
-  },
-  {
-    id: "demo-seed-assistant-2",
-    role: "assistant",
-    parts: [
-      {
-        type: "text",
-        text: "Done. I’ll use this grade as the default for similar outdoor shots in this session.",
-      },
-    ],
-  },
-];
+import { memo, useCallback, useMemo, useRef, useState } from "react";
 
 // ---------------------------------------------------------------------------
 // PromptInputSelection — a non-file picked item (agent / flow / tool / context)
@@ -164,7 +120,7 @@ type PromptInputSelection = {
 // ---------------------------------------------------------------------------
 
 const promptInputAttachSubTriggerClass =
-  "gap-3 py-2.5 pl-2.5 pr-1 [&>svg:first-child]:size-[18px] [&>svg:first-child]:text-muted-foreground";
+  "gap-3 py-2.5 pl-2.5 pr-1 [&>svg:first-child]:size-[14px] [&>svg:first-child]:text-muted-foreground";
 
 type AttachMenuSubmenuChip = {
   path: string;
@@ -345,12 +301,12 @@ function AttachMenuChipTile({ path, className }: AttachMenuSubmenuChip) {
   return (
     <span
       className={cn(
-        "flex size-7 shrink-0 items-center justify-center rounded-md text-white shadow-sm",
+        "flex size-6 shrink-0 items-center justify-center rounded-md text-white shadow-sm",
         className,
       )}
       aria-hidden
     >
-      <Icon path={path} className="size-4 text-white" />
+      <Icon path={path} className="size-3 text-white" />
     </span>
   );
 }
@@ -417,8 +373,8 @@ function AttachMenuCategorySub({
             onKeyDown={(e) => e.stopPropagation()}
           >
             <SearchInput className="h-8">
-              <SearchInputLeftElement className="pl-2 [&>svg:not([class*='size-'])]:size-4">
-                <Icon path={mdiMagnify} />
+              <SearchInputLeftElement className="pl-2 [&>svg:not([class*='size-'])]:size-3">
+                <Icon className="size-3 shrink-0" path={mdiMagnify} />
               </SearchInputLeftElement>
               <SearchInputField
                 placeholder={searchPlaceholder}
@@ -518,12 +474,12 @@ function SelectionChip({
       {selection.iconPath ? (
         <span
           className={cn(
-            "flex size-5 shrink-0 items-center justify-center rounded text-white",
+            "flex size-4 shrink-0 items-center justify-center rounded text-white",
             selection.iconClassName ?? "bg-muted-foreground/40",
           )}
           aria-hidden
         >
-          <Icon path={selection.iconPath} className="size-3 text-white" />
+          <Icon path={selection.iconPath} className="size-2.5 text-white" />
         </span>
       ) : null}
       <span className="min-w-0 flex-1 truncate text-left">
@@ -534,12 +490,12 @@ function SelectionChip({
         onClick={onRemove}
         aria-label={`Remove ${selection.label}`}
         className={cn(
-          "flex size-4 shrink-0 items-center justify-center rounded-full text-muted-foreground transition-colors",
+          "flex size-3.5 shrink-0 items-center justify-center rounded-full text-muted-foreground transition-colors",
           "hover:bg-foreground/10 hover:text-foreground",
           "focus:outline-none focus-visible:ring-1 focus-visible:ring-ring",
         )}
       >
-        <Icon path={mdiClose} className="size-3" />
+        <Icon path={mdiClose} className="size-2.5" />
       </button>
     </Badge>
   );
@@ -609,12 +565,12 @@ function SelectionList({
                   {s.iconPath ? (
                     <span
                       className={cn(
-                        "flex size-6 shrink-0 items-center justify-center rounded text-white",
+                        "flex size-5 shrink-0 items-center justify-center rounded text-white",
                         s.iconClassName ?? "bg-muted-foreground/40",
                       )}
                       aria-hidden
                     >
-                      <Icon path={s.iconPath} className="size-3.5 text-white" />
+                      <Icon path={s.iconPath} className="size-3 text-white" />
                     </span>
                   ) : null}
                   <span className="min-w-0 flex-1 truncate">{s.label}</span>
@@ -624,7 +580,7 @@ function SelectionList({
                     aria-label={`Remove ${s.label}`}
                     className="shrink-0 rounded-full p-0.5 text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
                   >
-                    <Icon path={mdiClose} className="size-3" />
+                    <Icon path={mdiClose} className="size-2.5" />
                   </button>
                 </div>
               ))}
@@ -635,6 +591,81 @@ function SelectionList({
     </div>
   );
 }
+
+interface TodoItemProps {
+  todo: QueueTodo;
+  onRemove: (id: string) => void;
+}
+
+const TodoItem = memo(({ todo, onRemove }: TodoItemProps) => {
+  const isCompleted = todo.status === "completed";
+  const handleRemove = useCallback(
+    () => onRemove(todo.id),
+    [onRemove, todo.id],
+  );
+
+  return (
+    <QueueItem className="flex-row items-center gap-2">
+      <QueueItemIndicator className="mt-0 shrink-0" completed={isCompleted} />
+      <div className="flex min-w-0 flex-1 flex-col gap-1">
+        <QueueItemContent completed={isCompleted}>
+          {todo.title}
+        </QueueItemContent>
+        {todo.description ? (
+          <QueueItemDescription className="ml-0" completed={isCompleted}>
+            {todo.description}
+          </QueueItemDescription>
+        ) : null}
+      </div>
+      <QueueItemActions className="shrink-0">
+        <QueueItemAction
+          aria-label="Remove todo"
+          className="h-5 w-5 min-h-5 p-px text-muted-foreground/60 hover:bg-muted/50 hover:text-muted-foreground"
+          onClick={handleRemove}
+        >
+          <Icon className="size-2 shrink-0" path={mdiClose} />
+        </QueueItemAction>
+      </QueueItemActions>
+    </QueueItem>
+  );
+});
+
+TodoItem.displayName = "TodoItem";
+
+const sampleTodos: QueueTodo[] = [
+  {
+    description: "Complete the README and API docs",
+    id: "todo-1",
+    status: "completed",
+    title: "Write project documentation",
+  },
+  {
+    id: "todo-2",
+    status: "pending",
+    title: "Implement authentication",
+  },
+  {
+    description: "Resolve crash on settings page",
+    id: "todo-3",
+    status: "pending",
+    title: "Fix bug #42",
+  },
+  {
+    description: "Unify queue and todo state management",
+    id: "todo-4",
+    status: "pending",
+    title: "Refactor queue logic",
+  },
+  {
+    description: "Increase test coverage for hooks",
+    id: "todo-5",
+    status: "pending",
+    title: "Add unit tests",
+  },
+];
+
+/** Vertical overlap between queue and prompt (px). Same value works open + collapsed. */
+const QUEUE_OVERLAP_PX = 20;
 
 const PromptInputAttachmentsDisplay = () => {
   const attachments = usePromptInputAttachments();
@@ -694,19 +725,21 @@ const handleAudioRecorded = async (audioBlob: Blob): Promise<string> => {
   return data.text ?? "";
 };
 
-const InputDemo = () => {
+export default function PromptInputQueuedVercelDemo() {
   const [text, setText] = useState<string>("");
   const [model, setModel] = useState<string>(models[0].id);
   const [useWebSearch, setUseWebSearch] = useState<boolean>(false);
   const [selections, setSelections] = useState<PromptInputSelection[]>([]);
+  const [todos, setTodos] = useState<QueueTodo[]>(sampleTodos);
+  const [queueOpen, setQueueOpen] = useState(true);
   const [voiceUiPhase, setVoiceUiPhase] =
     useState<SpeechInputVoiceUiPhase>("idle");
   const formRef = useRef<HTMLFormElement>(null);
   const speechRef = useRef<SpeechInputHandle>(null);
 
-  const { messages, status, sendMessage } = useChat({
-    messages: DEMO_INITIAL_MESSAGES,
-  });
+  const handleRemoveTodo = useCallback((id: string) => {
+    setTodos((prev) => prev.filter((todo) => todo.id !== id));
+  }, []);
 
   const addSelection = (selection: PromptInputSelection) => {
     setSelections((prev) =>
@@ -735,19 +768,15 @@ const InputDemo = () => {
       return;
     }
 
-    sendMessage(
+    const queuedTitle = (message.text ?? "").trim() || "Sent with attachments";
+    setTodos((prev) => [
+      ...prev,
       {
-        text: message.text || "Sent with attachments",
-        files: message.files,
+        id: `queued-${crypto.randomUUID()}`,
+        status: "pending" as const,
+        title: queuedTitle.slice(0, 120),
       },
-      {
-        body: {
-          model: model,
-          webSearch: useWebSearch,
-          selections: selections.map(({ id, label }) => ({ id, label })),
-        },
-      },
-    );
+    ]);
     setText("");
   };
 
@@ -756,36 +785,93 @@ const InputDemo = () => {
   }, []);
 
   return (
-    <div className="mx-auto p-8" style={{ width: "48rem", maxWidth: "100%" }}>
-      <div className="bg-card text-card-foreground flex flex-col gap-4 rounded-sm border border-border p-6">
-        <Conversation>
-          <ConversationContent>
-            {messages.map((message) => (
-              <Message from={message.role} key={message.id}>
-                <MessageContent>
-                  {message.parts.map((part, i) => {
-                    switch (part.type) {
-                      case "text":
-                        return (
-                          <MessageResponse key={`${message.id}-${i}`}>
-                            {part.text}
-                          </MessageResponse>
-                        );
-                      default:
-                        return null;
+    <div
+      className="mx-auto flex h-[min(32rem,75vh)] w-full min-w-0 flex-col"
+      style={{ width: "48rem", maxWidth: "100%" }}
+    >
+      <div className="min-h-0 flex-1" aria-hidden />
+      <div className="relative isolate flex shrink-0 flex-col">
+        {todos.length > 0 ? (
+          <Queue
+            className={cn(
+              "relative z-0 overflow-hidden rounded-t-xl rounded-b-none border-b-0 p-0 shadow-none",
+            )}
+            style={{
+              width: "calc(100% + 2px)",
+              maxWidth: "calc(100% + 2px)",
+              marginLeft: -1,
+              marginRight: -1,
+            }}
+          >
+            <Collapsible
+              className="flex min-w-0 flex-col gap-2"
+              onOpenChange={setQueueOpen}
+              open={queueOpen}
+            >
+              <CollapsibleTrigger asChild>
+                <button
+                  className={cn(
+                    "group flex w-full items-center justify-between rounded-md bg-muted/40 px-3 py-2 text-left text-xs font-semibold text-foreground transition-colors hover:bg-muted [&_svg]:text-muted-foreground",
+                  )}
+                  type="button"
+                >
+                  <QueueSectionLabel
+                    count={todos.length}
+                    label={
+                      todos.length === 1
+                        ? "prompt in queue"
+                        : "prompts in queue"
                     }
-                  })}
-                </MessageContent>
-              </Message>
-            ))}
-          </ConversationContent>
-          <ConversationScrollButton />
-        </Conversation>
-
+                  />
+                </button>
+              </CollapsibleTrigger>
+              <div
+                className={cn(
+                  "grid min-h-0 overflow-hidden transition-[grid-template-rows] duration-200 ease-out motion-reduce:transition-none",
+                  queueOpen ? "grid-rows-[1fr]" : "grid-rows-[0fr]",
+                )}
+              >
+                <div className="min-h-0 flex flex-col gap-0">
+                  <ScrollArea className="h-[min(11rem,32vh)] w-full">
+                    <ul className="list-none space-y-0 px-3 pb-8 pt-0.5 scroll-pb-10">
+                      {todos.map((todo) => (
+                        <TodoItem
+                          key={todo.id}
+                          onRemove={handleRemoveTodo}
+                          todo={todo}
+                        />
+                      ))}
+                    </ul>
+                  </ScrollArea>
+                  <div
+                    aria-hidden
+                    className="shrink-0"
+                    style={{ height: QUEUE_OVERLAP_PX }}
+                  />
+                </div>
+              </div>
+            </Collapsible>
+          </Queue>
+        ) : null}
         <PromptInput
           ref={formRef}
           onSubmit={handleSubmit}
-          className="w-full"
+          style={
+            todos.length > 0
+              ? {
+                  marginTop: -QUEUE_OVERLAP_PX,
+                  width: "calc(100% + 2px)",
+                  maxWidth: "calc(100% + 2px)",
+                  marginLeft: -1,
+                  marginRight: -1,
+                }
+              : undefined
+          }
+          className={cn(
+            "w-full",
+            todos.length > 0 &&
+              "relative z-10 **:data-[slot=input-group]:rounded-2xl **:data-[slot=input-group]:shadow-xl!",
+          )}
           globalDrop
           multiple
         >
@@ -852,7 +938,11 @@ const InputDemo = () => {
                 tooltip={{ content: "Search the web", shortcut: "⌘K" }}
                 variant={useWebSearch ? "default" : "ghost"}
               >
-                <GlobeIcon size={14} />
+                <Icon
+                  className="size-3 shrink-0 text-current"
+                  path={mdiWeb}
+                  title="Web search"
+                />
                 <span>Search</span>
               </PromptInputButton>
               <PromptInputSelect
@@ -898,7 +988,7 @@ const InputDemo = () => {
                   type="button"
                   variant="default"
                 >
-                  <Icon path={mdiSquare} className="h-4! w-4! shrink-0" />
+                  <Icon className="h-4! w-4! shrink-0" path={mdiSquare} />
                 </Button>
               ) : voiceUiPhase === "processing" ? (
                 <Button
@@ -913,10 +1003,7 @@ const InputDemo = () => {
                   <Spinner className="text-current" />
                 </Button>
               ) : (
-                <PromptInputSubmit
-                  disabled={!text && !status}
-                  status={status}
-                />
+                <PromptInputSubmit />
               )}
             </div>
           </PromptInputFooter>
@@ -924,6 +1011,4 @@ const InputDemo = () => {
       </div>
     </div>
   );
-};
-
-export default InputDemo;
+}

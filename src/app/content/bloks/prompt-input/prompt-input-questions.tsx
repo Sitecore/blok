@@ -307,7 +307,7 @@ function AttachMenuCategorySub({
     >
       <DropdownMenuSubTrigger className={promptInputAttachSubTriggerClass}>
         <Icon path={icon} className="shrink-0" />
-        <span className="min-w-0 flex-1 text-left font-normal">{label}</span>
+        <span className="min-w-0 flex-1 text-left">{label}</span>
       </DropdownMenuSubTrigger>
       <DropdownMenuPortal>
         <DropdownMenuSubContent
@@ -416,7 +416,7 @@ function PromptInputAttachMenuPanel({
         }}
       >
         <Icon path={mdiPaperclip} className="shrink-0" />
-        <span className="min-w-0 flex-1 font-normal">Attach file</span>
+        <span className="min-w-0 flex-1">Attach file</span>
       </DropdownMenuItem>
       <DropdownMenuSeparator />
       <AttachMenuCategorySub
@@ -534,7 +534,7 @@ function QuestionPromptCard({
 
           <p className="text-sm text-foreground">{question}</p>
 
-          <div
+          <ul
             role="radiogroup"
             aria-label="Question answers"
             className="flex flex-col gap-2"
@@ -543,7 +543,7 @@ function QuestionPromptCard({
               const letter = String.fromCharCode(65 + index);
               const isSelected = selectedId === answer.id;
               return (
-                <div key={answer.id} className="min-w-0">
+                <li key={answer.id} className="min-w-0">
                   <button
                     type="button"
                     role="radio"
@@ -560,10 +560,10 @@ function QuestionPromptCard({
                     <span className="shrink-0">{letter}.</span>
                     <span className="min-w-0 truncate">{answer.label}</span>
                   </button>
-                </div>
+                </li>
               );
             })}
-          </div>
+          </ul>
         </div>
       )}
 
@@ -591,10 +591,7 @@ function QuestionPromptCard({
         </PromptInputHeader>
         {variant === "floating" && (
           <PromptInputToolbar inline>
-            <PromptInputAttachButton
-              aria-label="add attachment"
-              attachMenu={promptInputDemoAttachMenu}
-            />
+            <PromptInputAttachButton attachMenu={promptInputDemoAttachMenu} />
             <PromptInputSelections />
           </PromptInputToolbar>
         )}
@@ -603,15 +600,12 @@ function QuestionPromptCard({
         </PromptInputBody>
         <PromptInputFooter>
           <PromptInputToolbar>
-            <PromptInputAttachButton
-              aria-label="add attachment"
-              attachMenu={promptInputDemoAttachMenu}
-            />
+            <PromptInputAttachButton attachMenu={promptInputDemoAttachMenu} />
             <PromptInputSelections />
           </PromptInputToolbar>
           <PromptInputActions>
-            <PromptInputMicButton aria-label="record voice input" />
-            <PromptInputSubmit aria-label="submit prompt" />
+            <PromptInputMicButton />
+            <PromptInputSubmit />
           </PromptInputActions>
         </PromptInputFooter>
       </PromptInput>

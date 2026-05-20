@@ -314,7 +314,7 @@ function AttachMenuCategorySub({
     >
       <DropdownMenuSubTrigger className={promptInputAttachSubTriggerClass}>
         <Icon path={icon} className="shrink-0" />
-        <span className="min-w-0 flex-1 text-left font-normal">{label}</span>
+        <span className="min-w-0 flex-1 text-left">{label}</span>
       </DropdownMenuSubTrigger>
       <DropdownMenuPortal>
         <DropdownMenuSubContent
@@ -423,7 +423,7 @@ function PromptInputAttachMenuPanel({
         }}
       >
         <Icon path={mdiPaperclip} className="shrink-0" />
-        <span className="min-w-0 flex-1 font-normal">Attach file</span>
+        <span className="min-w-0 flex-1">Attach file</span>
       </DropdownMenuItem>
       <DropdownMenuSeparator />
       <AttachMenuCategorySub
@@ -516,7 +516,7 @@ function QueuedPromptCard({
     <div
       className={cn(
         "flex min-w-0 max-w-full flex-col rounded-xl border bg-white",
-        "dark:bg-input/30",
+        "dark:bg-background",
         shellShadowClass,
       )}
       style={{ width: `${COLUMN_WIDTH_PX}px` }}
@@ -571,7 +571,7 @@ function QueuedPromptCard({
         className={cn(
           "rounded-b-xl rounded-t-lg border bg-white shadow-none",
           "focus-within:border-border focus-within:ring-0",
-          "dark:bg-input/30",
+          "dark:bg-background",
         )}
       >
         <PromptInputHeader>
@@ -579,10 +579,7 @@ function QueuedPromptCard({
         </PromptInputHeader>
         {variant === "floating" && (
           <PromptInputToolbar inline>
-            <PromptInputAttachButton
-              aria-label="add attachment"
-              attachMenu={promptInputDemoAttachMenu}
-            />
+            <PromptInputAttachButton attachMenu={promptInputDemoAttachMenu} />
             <PromptInputSelections />
           </PromptInputToolbar>
         )}
@@ -591,14 +588,11 @@ function QueuedPromptCard({
         </PromptInputBody>
         <PromptInputFooter>
           <PromptInputToolbar>
-            <PromptInputAttachButton
-              aria-label="add attachment"
-              attachMenu={promptInputDemoAttachMenu}
-            />
+            <PromptInputAttachButton attachMenu={promptInputDemoAttachMenu} />
             <PromptInputSelections />
           </PromptInputToolbar>
           <PromptInputActions>
-            <PromptInputMicButton aria-label="record voice input" />
+            <PromptInputMicButton />
             <PromptInputSubmit
               status={isProcessing ? "streaming" : "ready"}
               onClick={(e) => {
@@ -607,7 +601,6 @@ function QueuedPromptCard({
                   setIsProcessing(false);
                 }
               }}
-              aria-label="submit prompt"
             />
           </PromptInputActions>
         </PromptInputFooter>

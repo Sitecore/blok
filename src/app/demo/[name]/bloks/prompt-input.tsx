@@ -32,8 +32,14 @@ export const promptInput = {
     Queued: {
       component: "prompt-input-queued",
     },
+    QueuedVercelAI: {
+      component: "prompt-input-queued-vercel",
+    },
     Questions: {
       component: "prompt-input-questions",
+    },
+    QuestionsVercelAI: {
+      component: "prompt-input-questions-vercel",
     },
   },
 };

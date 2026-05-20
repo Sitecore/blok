@@ -228,7 +228,9 @@ import DashboardWidgetGrayBgLargeDemo from "@/app/content/bloks/dashboard-widget
 import PinnedSitesSectionDemo from "@/app/content/bloks/pinned-site-section/pinned-site-section";
 import PromptInputDemo from "@/app/content/bloks/prompt-input/prompt-input";
 import PromptInputFloatingDemo from "@/app/content/bloks/prompt-input/prompt-input-floating";
+import PromptInputQuestionsVercelDemo from "@/app/content/bloks/prompt-input/prompt-input-questions-vercel";
 import PromptInputQueuedDemo from "@/app/content/bloks/prompt-input/prompt-input-queued";
+import PromptInputQueuedVercelDemo from "@/app/content/bloks/prompt-input/prompt-input-queued-vercel";
 import PromptInputQuestionsDemo from "@/app/content/bloks/prompt-input/prompt-input-questions";
 import SidebarRHSDemo from "@/app/content/bloks/sidebar-rhs/sidebar-rhs";
 import SidebarRHSHeadingWithTabsDemo from "@/app/content/bloks/sidebar-rhs/sidebar-rhs-heading-with-tabs";
@@ -1378,10 +1380,20 @@ export const docsiteRegistry: Record<string, DocsiteRegistryEntry> = {
     path: "src/app/content/bloks/prompt-input/prompt-input-queued.tsx",
     component: PromptInputQueuedDemo,
   },
+  "prompt-input-queued-vercel": {
+    name: "prompt-input-queued-vercel",
+    path: "src/app/content/bloks/prompt-input/prompt-input-queued-vercel.tsx",
+    component: PromptInputQueuedVercelDemo,
+  },
   "prompt-input-questions": {
     name: "prompt-input-questions",
     path: "src/app/content/bloks/prompt-input/prompt-input-questions.tsx",
     component: PromptInputQuestionsDemo,
+  },
+  "prompt-input-questions-vercel": {
+    name: "prompt-input-questions-vercel",
+    path: "src/app/content/bloks/prompt-input/prompt-input-questions-vercel.tsx",
+    component: PromptInputQuestionsVercelDemo,
   },
   "sidebar-rhs": {
     name: "sidebar-rhs",

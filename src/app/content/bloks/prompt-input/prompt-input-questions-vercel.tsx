@@ -1,5 +1,9 @@
 "use client";
 
+// Vercel-style `ai-elements` PromptInput with the same "Questions" layout as
+// `prompt-input-questions.tsx` (static panel above the input, with overlap).
+// Does not use `queue.tsx` — that primitive is for queued prompts.
+
 import {
   Attachment,
   AttachmentInfo,
@@ -7,16 +11,6 @@ import {
   AttachmentRemove,
   Attachments,
 } from "@/components/ai-elements/attachments";
-import {
-  Conversation,
-  ConversationContent,
-  ConversationScrollButton,
-} from "@/components/ai-elements/conversation";
-import {
-  Message,
-  MessageContent,
-  MessageResponse,
-} from "@/components/ai-elements/message";
 import {
   PromptInput,
   PromptInputActionAddAttachments,
@@ -69,7 +63,6 @@ import {
 import { Spinner } from "@/components/ui/spinner";
 import { Icon } from "@/lib/icon";
 import { cn } from "@/lib/utils";
-import { useChat } from "@ai-sdk/react";
 import {
   mdiAccountGroup,
   mdiAccountOutline,
@@ -97,53 +90,7 @@ import {
   mdiTextBoxSearch,
   mdiWeb,
 } from "@mdi/js";
-import type { UIMessage } from "ai";
-import { GlobeIcon } from "lucide-react";
 import { useCallback, useMemo, useRef, useState } from "react";
-
-/** Seed thread so the demo opens with example user prompts and assistant replies. */
-const DEMO_INITIAL_MESSAGES: UIMessage[] = [
-  {
-    id: "demo-seed-user-1",
-    role: "user",
-    parts: [
-      {
-        type: "text",
-        text: "Edit this image to be more warm in tone",
-      },
-    ],
-  },
-  {
-    id: "demo-seed-assistant-1",
-    role: "assistant",
-    parts: [
-      {
-        type: "text",
-        text: "Here is a warmer edit: I lifted the shadows slightly toward amber, reduced the blue cast in the highlights, and kept skin tones from going too orange. If you want it punchier, we can add a soft vignette next.",
-      },
-    ],
-  },
-  {
-    id: "demo-seed-user-2",
-    role: "user",
-    parts: [
-      {
-        type: "text",
-        text: "Looks great—save this as the default look.",
-      },
-    ],
-  },
-  {
-    id: "demo-seed-assistant-2",
-    role: "assistant",
-    parts: [
-      {
-        type: "text",
-        text: "Done. I’ll use this grade as the default for similar outdoor shots in this session.",
-      },
-    ],
-  },
-];
 
 // ---------------------------------------------------------------------------
 // PromptInputSelection — a non-file picked item (agent / flow / tool / context)
@@ -164,7 +111,7 @@ type PromptInputSelection = {
 // ---------------------------------------------------------------------------
 
 const promptInputAttachSubTriggerClass =
-  "gap-3 py-2.5 pl-2.5 pr-1 [&>svg:first-child]:size-[18px] [&>svg:first-child]:text-muted-foreground";
+  "gap-3 py-2.5 pl-2.5 pr-1 [&>svg:first-child]:size-[14px] [&>svg:first-child]:text-muted-foreground";
 
 type AttachMenuSubmenuChip = {
   path: string;
@@ -345,12 +292,12 @@ function AttachMenuChipTile({ path, className }: AttachMenuSubmenuChip) {
   return (
     <span
       className={cn(
-        "flex size-7 shrink-0 items-center justify-center rounded-md text-white shadow-sm",
+        "flex size-6 shrink-0 items-center justify-center rounded-md text-white shadow-sm",
         className,
       )}
       aria-hidden
     >
-      <Icon path={path} className="size-4 text-white" />
+      <Icon path={path} className="size-3 text-white" />
     </span>
   );
 }
@@ -417,8 +364,8 @@ function AttachMenuCategorySub({
             onKeyDown={(e) => e.stopPropagation()}
           >
             <SearchInput className="h-8">
-              <SearchInputLeftElement className="pl-2 [&>svg:not([class*='size-'])]:size-4">
-                <Icon path={mdiMagnify} />
+              <SearchInputLeftElement className="pl-2 [&>svg:not([class*='size-'])]:size-3">
+                <Icon className="size-3 shrink-0" path={mdiMagnify} />
               </SearchInputLeftElement>
               <SearchInputField
                 placeholder={searchPlaceholder}
@@ -518,12 +465,12 @@ function SelectionChip({
       {selection.iconPath ? (
         <span
           className={cn(
-            "flex size-5 shrink-0 items-center justify-center rounded text-white",
+            "flex size-4 shrink-0 items-center justify-center rounded text-white",
             selection.iconClassName ?? "bg-muted-foreground/40",
           )}
           aria-hidden
         >
-          <Icon path={selection.iconPath} className="size-3 text-white" />
+          <Icon path={selection.iconPath} className="size-2.5 text-white" />
         </span>
       ) : null}
       <span className="min-w-0 flex-1 truncate text-left">
@@ -534,12 +481,12 @@ function SelectionChip({
         onClick={onRemove}
         aria-label={`Remove ${selection.label}`}
         className={cn(
-          "flex size-4 shrink-0 items-center justify-center rounded-full text-muted-foreground transition-colors",
+          "flex size-3.5 shrink-0 items-center justify-center rounded-full text-muted-foreground transition-colors",
           "hover:bg-foreground/10 hover:text-foreground",
           "focus:outline-none focus-visible:ring-1 focus-visible:ring-ring",
         )}
       >
-        <Icon path={mdiClose} className="size-3" />
+        <Icon path={mdiClose} className="size-2.5" />
       </button>
     </Badge>
   );
@@ -609,12 +556,12 @@ function SelectionList({
                   {s.iconPath ? (
                     <span
                       className={cn(
-                        "flex size-6 shrink-0 items-center justify-center rounded text-white",
+                        "flex size-5 shrink-0 items-center justify-center rounded text-white",
                         s.iconClassName ?? "bg-muted-foreground/40",
                       )}
                       aria-hidden
                     >
-                      <Icon path={s.iconPath} className="size-3.5 text-white" />
+                      <Icon path={s.iconPath} className="size-3 text-white" />
                     </span>
                   ) : null}
                   <span className="min-w-0 flex-1 truncate">{s.label}</span>
@@ -624,7 +571,7 @@ function SelectionList({
                     aria-label={`Remove ${s.label}`}
                     className="shrink-0 rounded-full p-0.5 text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
                   >
-                    <Icon path={mdiClose} className="size-3" />
+                    <Icon path={mdiClose} className="size-2.5" />
                   </button>
                 </div>
               ))}
@@ -635,6 +582,18 @@ function SelectionList({
     </div>
   );
 }
+
+const surveyQuestion =
+  "This is the question that is being asked by the AI… or is it?";
+
+const surveyAnswers: readonly { id: string; label: string }[] = [
+  { id: "a", label: "This is the first response to the question" },
+  { id: "b", label: "This is the second response to the question" },
+  { id: "c", label: "This is the third response to the question" },
+];
+
+/** Vertical overlap between the question panel and prompt (px). */
+const QUESTION_PANEL_OVERLAP_PX = 20;
 
 const PromptInputAttachmentsDisplay = () => {
   const attachments = usePromptInputAttachments();
@@ -694,19 +653,21 @@ const handleAudioRecorded = async (audioBlob: Blob): Promise<string> => {
   return data.text ?? "";
 };
 
-const InputDemo = () => {
+export default function PromptInputQuestionsVercelDemo() {
   const [text, setText] = useState<string>("");
   const [model, setModel] = useState<string>(models[0].id);
   const [useWebSearch, setUseWebSearch] = useState<boolean>(false);
   const [selections, setSelections] = useState<PromptInputSelection[]>([]);
+  const [skipped, setSkipped] = useState(false);
+  const [selectedAnswerId, setSelectedAnswerId] = useState<string | null>(
+    surveyAnswers[0]?.id ?? null,
+  );
   const [voiceUiPhase, setVoiceUiPhase] =
     useState<SpeechInputVoiceUiPhase>("idle");
   const formRef = useRef<HTMLFormElement>(null);
   const speechRef = useRef<SpeechInputHandle>(null);
 
-  const { messages, status, sendMessage } = useChat({
-    messages: DEMO_INITIAL_MESSAGES,
-  });
+  const showQuestionPanel = !skipped;
 
   const addSelection = (selection: PromptInputSelection) => {
     setSelections((prev) =>
@@ -735,19 +696,6 @@ const InputDemo = () => {
       return;
     }
 
-    sendMessage(
-      {
-        text: message.text || "Sent with attachments",
-        files: message.files,
-      },
-      {
-        body: {
-          model: model,
-          webSearch: useWebSearch,
-          selections: selections.map(({ id, label }) => ({ id, label })),
-        },
-      },
-    );
     setText("");
   };
 
@@ -756,36 +704,99 @@ const InputDemo = () => {
   }, []);
 
   return (
-    <div className="mx-auto p-8" style={{ width: "48rem", maxWidth: "100%" }}>
-      <div className="bg-card text-card-foreground flex flex-col gap-4 rounded-sm border border-border p-6">
-        <Conversation>
-          <ConversationContent>
-            {messages.map((message) => (
-              <Message from={message.role} key={message.id}>
-                <MessageContent>
-                  {message.parts.map((part, i) => {
-                    switch (part.type) {
-                      case "text":
-                        return (
-                          <MessageResponse key={`${message.id}-${i}`}>
-                            {part.text}
-                          </MessageResponse>
-                        );
-                      default:
-                        return null;
-                    }
-                  })}
-                </MessageContent>
-              </Message>
-            ))}
-          </ConversationContent>
-          <ConversationScrollButton />
-        </Conversation>
+    <div
+      className="mx-auto flex h-[min(32rem,75vh)] w-full min-w-0 flex-col"
+      style={{ width: "48rem", maxWidth: "100%" }}
+    >
+      <div className="min-h-0 flex-1" aria-hidden />
+      <div className="relative isolate flex shrink-0 flex-col">
+        {showQuestionPanel ? (
+          <div
+            className={cn(
+              "relative z-0 overflow-hidden rounded-t-xl rounded-b-none border border-border border-b-0 bg-background p-0 shadow-none",
+            )}
+            style={{
+              width: "calc(100% + 2px)",
+              maxWidth: "calc(100% + 2px)",
+              marginLeft: -1,
+              marginRight: -1,
+            }}
+          >
+            <div className="flex w-full min-w-0 flex-col gap-3 px-4 pt-3 pb-4">
+              <div className="flex min-w-0 items-center justify-between gap-3">
+                <span className="min-w-0 text-sm font-semibold text-foreground">
+                  Questions
+                </span>
+                <button
+                  type="button"
+                  onClick={() => setSkipped(true)}
+                  className={cn(
+                    "shrink-0 rounded-sm text-sm font-medium text-primary outline-none",
+                    "hover:underline focus-visible:ring-2 focus-visible:ring-ring/50",
+                  )}
+                >
+                  Skip
+                </button>
+              </div>
 
+              <p className="text-sm text-foreground">{surveyQuestion}</p>
+
+              <ul
+                role="radiogroup"
+                aria-label="Question answers"
+                className="m-0 flex list-none flex-col gap-2 p-0"
+              >
+                {surveyAnswers.map((answer, index) => {
+                  const letter = String.fromCharCode(65 + index);
+                  const isSelected = selectedAnswerId === answer.id;
+                  return (
+                    <li key={answer.id} className="min-w-0">
+                      <button
+                        type="button"
+                        role="radio"
+                        aria-checked={isSelected}
+                        onClick={() => setSelectedAnswerId(answer.id)}
+                        className={cn(
+                          "flex w-full min-w-0 items-center gap-1 rounded-md px-3 py-2.5 text-left text-sm outline-none transition-colors",
+                          "focus-visible:ring-2 focus-visible:ring-ring/50",
+                          isSelected
+                            ? "bg-primary-background text-foreground"
+                            : "bg-muted text-foreground hover:bg-muted/70",
+                        )}
+                      >
+                        <span className="shrink-0">{letter}.</span>
+                        <span className="min-w-0 truncate">{answer.label}</span>
+                      </button>
+                    </li>
+                  );
+                })}
+              </ul>
+            </div>
+            <div
+              aria-hidden
+              className="shrink-0"
+              style={{ height: QUESTION_PANEL_OVERLAP_PX }}
+            />
+          </div>
+        ) : null}
         <PromptInput
           ref={formRef}
           onSubmit={handleSubmit}
-          className="w-full"
+          style={
+            showQuestionPanel
+              ? {
+                  marginTop: -QUESTION_PANEL_OVERLAP_PX,
+                  width: "calc(100% + 2px)",
+                  maxWidth: "calc(100% + 2px)",
+                  marginLeft: -1,
+                  marginRight: -1,
+                }
+              : undefined
+          }
+          className={cn(
+            "w-full **:data-[slot=input-group]:rounded-2xl **:data-[slot=input-group]:shadow-xl!",
+            showQuestionPanel && "relative z-10",
+          )}
           globalDrop
           multiple
         >
@@ -804,6 +815,7 @@ const InputDemo = () => {
                   e.preventDefault();
                 }
               }}
+              placeholder="Respond to the question"
               value={text}
             />
           </PromptInputBody>
@@ -852,7 +864,11 @@ const InputDemo = () => {
                 tooltip={{ content: "Search the web", shortcut: "⌘K" }}
                 variant={useWebSearch ? "default" : "ghost"}
               >
-                <GlobeIcon size={14} />
+                <Icon
+                  className="size-3 shrink-0 text-current"
+                  path={mdiWeb}
+                  title="Web search"
+                />
                 <span>Search</span>
               </PromptInputButton>
               <PromptInputSelect
@@ -898,7 +914,7 @@ const InputDemo = () => {
                   type="button"
                   variant="default"
                 >
-                  <Icon path={mdiSquare} className="h-4! w-4! shrink-0" />
+                  <Icon className="h-4! w-4! shrink-0" path={mdiSquare} />
                 </Button>
               ) : voiceUiPhase === "processing" ? (
                 <Button
@@ -913,10 +929,7 @@ const InputDemo = () => {
                   <Spinner className="text-current" />
                 </Button>
               ) : (
-                <PromptInputSubmit
-                  disabled={!text && !status}
-                  status={status}
-                />
+                <PromptInputSubmit />
               )}
             </div>
           </PromptInputFooter>
@@ -924,6 +937,4 @@ const InputDemo = () => {
       </div>
     </div>
   );
-};
-
-export default InputDemo;
+}

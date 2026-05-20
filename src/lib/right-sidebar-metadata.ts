@@ -675,7 +675,15 @@ export const rightSidebarMetadata: Record<string, RightSidebarMetadata> = {
         children: [
           { id: "prompt-input-floating", title: "Floating" },
           { id: "prompt-input-queued", title: "Queued" },
+          {
+            id: "prompt-input-queued-vercel",
+            title: "Queued Vercel AI input",
+          },
           { id: "prompt-input-questions", title: "Questions" },
+          {
+            id: "prompt-input-questions-vercel",
+            title: "Questions Vercel AI input",
+          },
         ],
       },
     ],

@@ -312,7 +312,7 @@ function AttachMenuCategorySub({
     >
       <DropdownMenuSubTrigger className={promptInputAttachSubTriggerClass}>
         <Icon path={icon} className="shrink-0" />
-        <span className="min-w-0 flex-1 text-left font-normal">{label}</span>
+        <span className="min-w-0 flex-1 text-left">{label}</span>
       </DropdownMenuSubTrigger>
       <DropdownMenuPortal>
         <DropdownMenuSubContent
@@ -421,7 +421,7 @@ function PromptInputAttachMenuPanel({
         }}
       >
         <Icon path={mdiPaperclip} className="shrink-0" />
-        <span className="min-w-0 flex-1 font-normal">Attach file</span>
+        <span className="min-w-0 flex-1">Attach file</span>
       </DropdownMenuItem>
       <DropdownMenuSeparator />
       <AttachMenuCategorySub
@@ -587,10 +587,7 @@ function FloatingChatCard() {
           <PromptInputAttachments />
         </PromptInputHeader>
         <PromptInputToolbar inline>
-          <PromptInputAttachButton
-            aria-label="add attachment"
-            attachMenu={promptInputDemoAttachMenu}
-          />
+          <PromptInputAttachButton attachMenu={promptInputDemoAttachMenu} />
           <PromptInputSelections />
         </PromptInputToolbar>
         <PromptInputBody>
@@ -598,15 +595,12 @@ function FloatingChatCard() {
         </PromptInputBody>
         <PromptInputFooter>
           <PromptInputToolbar>
-            <PromptInputAttachButton
-              aria-label="add attachment"
-              attachMenu={promptInputDemoAttachMenu}
-            />
+            <PromptInputAttachButton attachMenu={promptInputDemoAttachMenu} />
             <PromptInputSelections />
           </PromptInputToolbar>
           <PromptInputActions>
-            <PromptInputMicButton aria-label="record voice input" />
-            <PromptInputSubmit aria-label="submit prompt" />
+            <PromptInputMicButton />
+            <PromptInputSubmit />
           </PromptInputActions>
         </PromptInputFooter>
       </PromptInput>
@@ -641,10 +635,7 @@ export default function PromptInputFloatingDemo() {
           </PromptInputHeader>
           {/* Visible only when single-line (inline layout) */}
           <PromptInputToolbar inline>
-            <PromptInputAttachButton
-              aria-label="add attachment"
-              attachMenu={promptInputDemoAttachMenu}
-            />
+            <PromptInputAttachButton attachMenu={promptInputDemoAttachMenu} />
             <PromptInputSelections />
           </PromptInputToolbar>
           <PromptInputBody>
@@ -653,15 +644,12 @@ export default function PromptInputFloatingDemo() {
           <PromptInputFooter>
             {/* Visible only when multiline (column layout) */}
             <PromptInputToolbar>
-              <PromptInputAttachButton
-                aria-label="add attachment"
-                attachMenu={promptInputDemoAttachMenu}
-              />
+              <PromptInputAttachButton attachMenu={promptInputDemoAttachMenu} />
               <PromptInputSelections />
             </PromptInputToolbar>
             <PromptInputActions>
-              <PromptInputMicButton aria-label="record voice input" />
-              <PromptInputSubmit aria-label="submit prompt" />
+              <PromptInputMicButton />
+              <PromptInputSubmit />
             </PromptInputActions>
           </PromptInputFooter>
         </PromptInput>
