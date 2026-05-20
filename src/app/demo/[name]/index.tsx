@@ -80,6 +80,10 @@ interface Demo {
     pre?: ReactNode | ReactElement;
     defaultComponent: string;
     post?: ReactNode | ReactElement;
+    /** Override DemoTab preview panel classes (e.g. remove padding for full-bleed layouts). */
+    contentClassName?: string;
+    /** Override the wrapper around the preview component. */
+    wrapperClassName?: string;
   };
   installation?: {
     pre?: ReactNode | ReactElement;
@@ -95,6 +99,8 @@ interface Demo {
       pre?: ReactNode | ReactElement;
       component: ReactNode | ReactElement;
       post?: ReactNode | ReactElement;
+      contentClassName?: string;
+      wrapperClassName?: string;
     };
   };
 }

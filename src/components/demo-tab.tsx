@@ -3,6 +3,7 @@
 import { CodeBlock, type CopyCodeContext } from "@/components/code-block";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { TELEMETRY_EVENTS, track } from "@/lib/telemetry";
+import { cn } from "@/lib/utils";
 import { usePathname } from "next/navigation";
 import { type ReactNode, useCallback, useRef } from "react";
 
@@ -21,6 +22,8 @@ interface DemoTabProps {
   exampleId?: string;
   /** Telemetry: example title. */
   exampleTitle?: string;
+  /** Override preview panel classes (merged with defaults). */
+  previewContentClassName?: string;
 }
 
 export default function DemoTab({
@@ -32,6 +35,7 @@ export default function DemoTab({
   section = "main",
   exampleId,
   exampleTitle,
+  previewContentClassName,
 }: DemoTabProps) {
   const pathname = usePathname();
   const lastPreviewInteractionBySectionRef = useRef<Record<string, number>>({});
@@ -116,10 +120,17 @@ export default function DemoTab({
       </TabsList>
       <TabsContent
         value="preview"
-        className="min-h-[200px] p-8 bg-subtle-bg flex items-center justify-center rounded-b-md"
+        className={cn(
+          "min-h-[200px] p-8 bg-subtle-bg flex items-center justify-center rounded-b-md",
+          previewContentClassName,
+        )}
       >
         <div
-          className="min-h-[200px] w-full flex items-center justify-center"
+          className={cn(
+            "min-h-[200px] w-full flex items-center justify-center",
+            previewContentClassName?.includes("p-0") &&
+              "h-full min-h-0 items-stretch justify-start",
+          )}
           onClick={() => handlePreviewInteraction("click")}
           onFocusCapture={() => handlePreviewInteraction("focus")}
           role="presentation"

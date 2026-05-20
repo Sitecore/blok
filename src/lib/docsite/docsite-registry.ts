@@ -231,6 +231,7 @@ import PromptInputFloatingDemo from "@/app/content/bloks/prompt-input/prompt-inp
 import PromptInputQueuedDemo from "@/app/content/bloks/prompt-input/prompt-input-queued";
 import PromptInputQuestionsDemo from "@/app/content/bloks/prompt-input/prompt-input-questions";
 import SidebarRHSDemo from "@/app/content/bloks/sidebar-rhs/sidebar-rhs";
+import SidebarRHSFixedDemo from "@/app/content/bloks/sidebar-rhs/sidebar-rhs-fixed";
 import SidebarRHSHeadingWithTabsDemo from "@/app/content/bloks/sidebar-rhs/sidebar-rhs-heading-with-tabs";
 import SidebarRHSBriefDemo from "@/app/content/bloks/sidebar-rhs/sidebar-rhs-brief";
 import SidebarRHSBriefTypeDemo from "@/app/content/bloks/sidebar-rhs/sidebar-rhs-brief-type";
@@ -1387,6 +1388,11 @@ export const docsiteRegistry: Record<string, DocsiteRegistryEntry> = {
     name: "sidebar-rhs",
     path: "src/app/content/bloks/sidebar-rhs/sidebar-rhs.tsx",
     component: SidebarRHSDemo,
+  },
+  "sidebar-rhs-fixed": {
+    name: "sidebar-rhs-fixed",
+    path: "src/app/content/bloks/sidebar-rhs/sidebar-rhs-fixed.tsx",
+    component: SidebarRHSFixedDemo,
   },
   "sidebar-rhs-heading-with-tabs": {
     name: "sidebar-rhs-heading-with-tabs",
