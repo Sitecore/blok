@@ -1,7 +1,10 @@
+import { siteCardCodeFiles } from "@/lib/docsite/blok-demo-code-files";
+
 export const siteCard = {
-  name: "pinned-site",
+  name: "site-card",
   preview: {
     defaultComponent: "site-card",
+    codeFiles: siteCardCodeFiles,
   },
   usage: {
     usage: [

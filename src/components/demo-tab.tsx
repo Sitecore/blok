@@ -1,7 +1,9 @@
 "use client";
 
 import { CodeBlock, type CopyCodeContext } from "@/components/code-block";
+import { DemoCodeExplorer } from "@/components/docsite/demo-code-explorer";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import type { LoadedDemoCodeFile } from "@/lib/docsite/demo-code-files";
 import { TELEMETRY_EVENTS, track } from "@/lib/telemetry";
 import { usePathname } from "next/navigation";
 import { type ReactNode, useCallback, useRef } from "react";
@@ -11,6 +13,8 @@ const PREVIEW_INTERACTION_THROTTLE_MS = 3000;
 interface DemoTabProps {
   id?: string;
   code: string;
+  /** When multiple entries are provided (bloks), the Code tab shows a file tree + editor. */
+  codeFiles?: LoadedDemoCodeFile[];
   component: ReactNode;
   defaultTab?: "preview" | "code";
   /** Telemetry: component/block name (e.g. "button"). */
@@ -26,6 +30,7 @@ interface DemoTabProps {
 export default function DemoTab({
   id,
   code,
+  codeFiles,
   component,
   defaultTab = "preview",
   componentName,
@@ -131,13 +136,20 @@ export default function DemoTab({
       <TabsContent
         value="code"
         dir="ltr"
-        className="min-h-[200px] rounded-b-md"
+        className="min-h-[200px] rounded-b-md p-0"
       >
-        <CodeBlock
-          code={code}
-          className="rounded-t-none rounded-b-md"
-          copyCodeContext={copyCodeContext}
-        />
+        {codeFiles && codeFiles.length > 0 ? (
+          <DemoCodeExplorer
+            files={codeFiles}
+            copyCodeContext={copyCodeContext}
+          />
+        ) : (
+          <CodeBlock
+            code={code}
+            className="rounded-t-none rounded-b-md"
+            copyCodeContext={copyCodeContext}
+          />
+        )}
       </TabsContent>
     </Tabs>
   );

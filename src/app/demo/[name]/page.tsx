@@ -3,7 +3,9 @@ import { Renderer } from "@/app/demo/[name]/renderer";
 import { CodeBlock } from "@/components/code-block";
 import DemoTab from "@/components/demo-tab";
 import InstallationCodeBlock from "@/components/docsite/installation-code-block";
+import { blokDemoCodeFilesByName } from "@/lib/docsite/blok-demo-code-files";
 import type { docsiteRegistry } from "@/lib/docsite/docsite-registry";
+import { loadDemoCodeFiles } from "@/lib/docsite/load-demo-code-files";
 import { loadFromRegistry } from "@/lib/docsite/load-from-registry";
 import { notFound } from "next/navigation";
 import React, { type ComponentType } from "react";
@@ -38,6 +40,13 @@ export default async function DemoPage({
 
   if (!defaultEntry) notFound();
 
+  const previewCodeSources =
+    preview.codeFiles ?? blokDemoCodeFilesByName[name] ?? [];
+  const loadedPreviewCodeFiles =
+    previewCodeSources.length > 0
+      ? await loadDemoCodeFiles(previewCodeSources)
+      : undefined;
+
   // Examples
   const exampleSections = components
     ? await Promise.all(
@@ -47,6 +56,11 @@ export default async function DemoPage({
           );
 
           if (!entry) return null;
+
+          const exampleCodeSources = component.codeFiles;
+          const loadedExampleCodeFiles = exampleCodeSources?.length
+            ? await loadDemoCodeFiles(exampleCodeSources)
+            : undefined;
 
           return (
             <div
@@ -58,6 +72,7 @@ export default async function DemoPage({
               {component.pre}
               <DemoTab
                 code={entry.code}
+                codeFiles={loadedExampleCodeFiles}
                 component={componentDemo(
                   React.createElement(entry.Component as ComponentType<any>),
                 )}
@@ -81,6 +96,7 @@ export default async function DemoPage({
         key={name}
         id="preview"
         code={defaultEntry.code}
+        codeFiles={loadedPreviewCodeFiles}
         component={componentDemo(
           React.createElement(defaultEntry.Component as ComponentType<any>),
         )}

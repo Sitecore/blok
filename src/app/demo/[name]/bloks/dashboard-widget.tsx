@@ -1,7 +1,10 @@
+import { dashboardWidgetCodeFiles } from "@/lib/docsite/blok-demo-code-files";
+
 export const dashboardWidget = {
   name: "dashboard-widget",
   preview: {
     defaultComponent: "dashboard-widget",
+    codeFiles: dashboardWidgetCodeFiles,
   },
   usage: {
     usage: [
