@@ -1412,6 +1412,27 @@
       ]
     },
     {
+      "name": "virtualized-select",
+      "type": "registry:ui",
+      "title": "Virtualized Select (React Select)",
+      "description": "An optimized select component built with React Select that supports virtualized rendering of large lists.",
+      "dependencies": ["react-select", "react-window"],
+      "registryDependencies": [
+        "https://blok.sitecore.com/r/theme.json",
+        "https://blok.sitecore.com/r/select-react.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/ui/virtualized-select.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "src/lib/icon.tsx",
+          "type": "registry:lib"
+        }
+      ]
+    },
+    {
       "name": "separator",
       "type": "registry:ui",
       "title": "Separator",
