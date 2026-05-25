@@ -681,7 +681,7 @@ function EditableError({
       aria-live="polite"
       data-slot="editable-error"
       className={cn(
-        "text-sm text-destructive absolute w-max px-2 bottom-[calc(-100%+var(--spacing)*2)] cursor-default z-10",
+        "text-sm text-destructive absolute w-max bg-white rounded-sm shadow-lg py-1 px-2 bottom-[calc(-100%+var(--spacing)*0.5)] cursor-default z-10",
         className,
       )}
       {...props}
