@@ -72,14 +72,6 @@ function registryItemMatchesQuery(
   );
 }
 
-function dedupeSearchResultsByHref(results: SearchResult[]): SearchResult[] {
-  const byHref = new Map<string, SearchResult>();
-  for (const result of results) {
-    byHref.set(result.href, result);
-  }
-  return [...byHref.values()];
-}
-
 /**
  * Radix DropdownMenu assigns unstable `id`s via React `useId()`. Rendering it
  * only after mount avoids SSR/client drift (and reduces noise when extensions
@@ -312,7 +304,7 @@ export default function TopBar() {
           })
         ) {
           results.push({
-            name: "select-react",
+            name: "virtualized-select",
             type: "ui",
             href: SELECT_REACT_PRIMITIVE_HREF,
             description: virtualizedSelect.description,
@@ -367,7 +359,7 @@ export default function TopBar() {
         }
       });
 
-      setSearchResults(dedupeSearchResultsByHref(results).slice(0, 8));
+      setSearchResults(results.slice(0, 8));
       setShowSearchResults(results.length > 0);
       setSelectedIndex(-1);
     } catch (error) {
