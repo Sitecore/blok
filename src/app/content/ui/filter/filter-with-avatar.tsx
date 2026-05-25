@@ -65,7 +65,6 @@ export default function FilterWithAvatarDemo() {
         options={[]}
         placeholder="Single select filter"
         ariaLabels={{
-          popoverTrigger: "Select an option",
           listbox: "List of options",
           clearSelection: "Clear selection",
         }}
@@ -87,7 +86,6 @@ export default function FilterWithAvatarDemo() {
         noResultsText="No results found"
         renderOption={renderOptionWithAvatar}
         ariaLabels={{
-          popoverTrigger: "Select options",
           listbox: "List of options",
           clearSelection: "Clear all selections",
         }}

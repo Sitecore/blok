@@ -14,7 +14,7 @@ function buildRegistry(config: RegistryConfig): void {
   console.log(`📦 Building ${source}...`);
 
   // Build components with shadcn/ui
-  execSync(`npx shadcn@latest build ${source} --output ${output}`, {
+  execSync(`pnpm dlx shadcn@latest build ${source} --output ${output}`, {
     stdio: "inherit",
   });
 
@@ -34,7 +34,7 @@ if (require.main === module) {
   const configFile = process.argv[2];
 
   if (!configFile) {
-    console.error("❌ Usage: npx tsx scripts/build-registry.ts");
+    console.error("❌ Usage: pnpm exec tsx scripts/build-registry.ts");
     process.exit(1);
   }
 

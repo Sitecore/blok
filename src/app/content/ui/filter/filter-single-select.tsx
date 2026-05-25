@@ -1,7 +1,7 @@
 "use client";
 
 import {
-  FilterMultiSelect,
+  FilterSingleSelect,
   type FilterSingleSelectGroup,
 } from "@/components/ui/filter";
 import { useState } from "react";
@@ -35,35 +35,20 @@ const BLOCKCN_FILTER_GROUPS: FilterSingleSelectGroup[] = [
   },
 ];
 
-export default function FilterMultiSelectDemo() {
-  const [primaryValues, setPrimaryValues] = useState<string[]>([]);
-  const [badgeValues, setBadgeValues] = useState<string[]>([]);
+export default function FilterSingleSelectDemo() {
+  const [value, setValue] = useState<string>("");
 
   return (
     <div className="flex flex-col gap-4">
-      <FilterMultiSelect
-        value={primaryValues}
-        onChange={setPrimaryValues}
+      <FilterSingleSelect
+        value={value}
+        onChange={setValue}
         options={[]}
-        placeholder="Multi-select filter"
+        placeholder="Single select filter"
         groups={BLOCKCN_FILTER_GROUPS}
         ariaLabels={{
-          popoverTrigger: "Select options",
           listbox: "List of options",
-          clearSelection: "Clear all selections",
-        }}
-      />
-      <FilterMultiSelect
-        value={badgeValues}
-        onChange={setBadgeValues}
-        options={[]}
-        placeholder="Multi-select filter"
-        groups={BLOCKCN_FILTER_GROUPS}
-        displayMode="badge"
-        ariaLabels={{
-          popoverTrigger: "Select options",
-          listbox: "List of options",
-          clearSelection: "Clear all selections",
+          clearSelection: "Clear selection",
         }}
       />
     </div>

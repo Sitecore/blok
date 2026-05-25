@@ -10,11 +10,11 @@ export const alert = {
     ],
   },
   components: {
-    "alert-primary": { component: "alert-primary" },
-    "alert-success": { component: "alert-success" },
-    "alert-danger": { component: "alert-danger" },
-    "alert-warning": { component: "alert-warning" },
-    "alert-closable": { component: "alert-closable" },
-    "alert-button-link": { component: "alert-button-link" },
+    Primary: { component: "alert-primary" },
+    Success: { component: "alert-success" },
+    Danger: { component: "alert-danger" },
+    Warning: { component: "alert-warning" },
+    Closable: { component: "alert-closable" },
+    "With Button Link": { component: "alert-button-link" },
   },
 };

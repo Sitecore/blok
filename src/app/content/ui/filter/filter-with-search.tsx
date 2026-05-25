@@ -52,7 +52,6 @@ export default function FilterWithSearchDemo() {
         searchPlaceholder="Search"
         noResultsText="No results found"
         ariaLabels={{
-          popoverTrigger: "Select an option",
           searchInput: "Search",
           listbox: "List of options",
           clearSelection: "Clear selection",
@@ -69,7 +68,6 @@ export default function FilterWithSearchDemo() {
         searchPlaceholder="Search"
         noResultsText="No results found"
         ariaLabels={{
-          popoverTrigger: "Select options",
           searchInput: "Search",
           listbox: "List of options",
           clearSelection: "Clear all selections",

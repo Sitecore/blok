@@ -572,6 +572,7 @@ const FilterSingleSelect = React.forwardRef<
           >
             <SelectTrigger
               ref={ref}
+              aria-label={ariaLabels?.popoverTrigger ?? placeholder}
               aria-describedby={describedBy}
               className={cn(
                 "*:data-[slot=select-value]:hidden",
