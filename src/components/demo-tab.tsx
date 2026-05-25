@@ -101,7 +101,7 @@ export default function DemoTab({
     <Tabs
       id={id}
       defaultValue={defaultTab}
-      className="gap-0"
+      className="gap-0 overflow-visible"
       onValueChange={handleTabChange}
     >
       <TabsList className="w-full rounded-none justify-start">
@@ -116,10 +116,10 @@ export default function DemoTab({
       </TabsList>
       <TabsContent
         value="preview"
-        className="min-h-[200px] p-8 bg-subtle-bg flex items-center justify-center rounded-b-md"
+        className="min-h-[200px] overflow-visible p-8 bg-subtle-bg flex items-center justify-center rounded-b-md"
       >
         <div
-          className="min-h-[200px] w-full flex items-center justify-center"
+          className="min-h-[200px] w-full overflow-visible flex items-center justify-center"
           onClick={() => handlePreviewInteraction("click")}
           onFocusCapture={() => handlePreviewInteraction("focus")}
           role="presentation"

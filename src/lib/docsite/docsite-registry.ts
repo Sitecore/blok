@@ -159,6 +159,7 @@ import SelectLargeListDemo from "@/app/content/ui/select/select-large-list";
 import SelectWithIconDemo from "@/app/content/ui/select/select-icon";
 import DisabledSelectDemo from "@/app/content/ui/select/select-disabled";
 import SelectReactDemo from "@/app/content/ui/select-react/select-react";
+import VirtualizedSelectDemo from "@/app/content/ui/select-react/virtualized-select";
 import SeparatorDemo from "@/app/content/ui/separator/separator";
 import SheetDemo from "@/app/content/ui/sheet/sheet";
 import SheetDirectionsDemo from "@/app/content/ui/sheet/sheet-directions";
@@ -1080,6 +1081,11 @@ export const docsiteRegistry: Record<string, DocsiteRegistryEntry> = {
     name: "select-react",
     path: "src/app/content/ui/select-react/select-react.tsx",
     component: SelectReactDemo,
+  },
+  "virtualized-select": {
+    name: "virtualized-select",
+    path: "src/app/content/ui/select-react/virtualized-select.tsx",
+    component: VirtualizedSelectDemo,
   },
   separator: {
     name: "separator",

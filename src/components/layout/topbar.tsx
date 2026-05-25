@@ -48,6 +48,38 @@ interface SearchResult {
   title?: string;
 }
 
+const SELECT_REACT_PRIMITIVE_HREF = "/primitives/select-react";
+
+function registryItemMatchesQuery(
+  query: string,
+  fields: {
+    name?: string;
+    title?: string;
+    description?: string;
+    categories?: string[];
+  },
+): boolean {
+  const name = fields.name || "";
+  const title = fields.title || name;
+  const description = fields.description || "";
+  const categories = fields.categories || [];
+
+  return (
+    name.toLowerCase().includes(query) ||
+    title.toLowerCase().includes(query) ||
+    description.toLowerCase().includes(query) ||
+    categories.some((cat) => cat.toLowerCase().includes(query))
+  );
+}
+
+function dedupeSearchResultsByHref(results: SearchResult[]): SearchResult[] {
+  const byHref = new Map<string, SearchResult>();
+  for (const result of results) {
+    byHref.set(result.href, result);
+  }
+  return [...byHref.values()];
+}
+
 /**
  * Radix DropdownMenu assigns unstable `id`s via React `useId()`. Rendering it
  * only after mount avoids SSR/client drift (and reduces noise when extensions
@@ -230,9 +262,12 @@ export default function TopBar() {
     const results: SearchResult[] = [];
 
     try {
-      // Search through UI components
+      // Search through UI components (virtualized-select is documented on select-react)
       registry.items
-        .filter((item) => item.type === "registry:ui")
+        .filter(
+          (item) =>
+            item.type === "registry:ui" && item.name !== "virtualized-select",
+        )
         .forEach((item) => {
           const name = item.name || "";
           const title = (item as any).title || name;
@@ -240,10 +275,12 @@ export default function TopBar() {
           const categories = (item as any).categories || [];
 
           if (
-            name.toLowerCase().includes(query) ||
-            title.toLowerCase().includes(query) ||
-            description.toLowerCase().includes(query) ||
-            categories.some((cat: string) => cat.toLowerCase().includes(query))
+            registryItemMatchesQuery(query, {
+              name,
+              title,
+              description,
+              categories,
+            })
           ) {
             results.push({
               name: item.name,
@@ -255,6 +292,35 @@ export default function TopBar() {
             });
           }
         });
+
+      const virtualizedSelect = registry.items.find(
+        (item) => item.name === "virtualized-select",
+      );
+      if (virtualizedSelect) {
+        const title =
+          (virtualizedSelect as { title?: string }).title ||
+          virtualizedSelect.name;
+        const categories =
+          (virtualizedSelect as { categories?: string[] }).categories || [];
+
+        if (
+          registryItemMatchesQuery(query, {
+            name: virtualizedSelect.name,
+            title,
+            description: virtualizedSelect.description,
+            categories,
+          })
+        ) {
+          results.push({
+            name: "select-react",
+            type: "ui",
+            href: SELECT_REACT_PRIMITIVE_HREF,
+            description: virtualizedSelect.description,
+            categories,
+            title,
+          });
+        }
+      }
 
       // Search through blocks
       registry.items
@@ -301,7 +367,7 @@ export default function TopBar() {
         }
       });
 
-      setSearchResults(results.slice(0, 8));
+      setSearchResults(dedupeSearchResultsByHref(results).slice(0, 8));
       setShowSearchResults(results.length > 0);
       setSelectedIndex(-1);
     } catch (error) {
