@@ -227,10 +227,11 @@ import DashboardWidgetDemo from "@/app/content/bloks/dashboard-widget/dashboard-
 import DashboardWidgetWhiteBgLargeDemo from "@/app/content/bloks/dashboard-widget/dashboard-widget-white-bg-large";
 import DashboardWidgetGrayBgLargeDemo from "@/app/content/bloks/dashboard-widget/dashboard-widget-gray-bg-large";
 import PinnedSitesSectionDemo from "@/app/content/bloks/pinned-site-section/pinned-site-section";
-import PromptInputDemo from "@/app/content/bloks/prompt-input/prompt-input";
-import PromptInputFloatingDemo from "@/app/content/bloks/prompt-input/prompt-input-floating";
-import PromptInputQueuedDemo from "@/app/content/bloks/prompt-input/prompt-input-queued";
-import PromptInputQuestionsDemo from "@/app/content/bloks/prompt-input/prompt-input-questions";
+// TEMP: prompt-input disabled
+// import PromptInputDemo from "@/app/content/bloks/prompt-input/prompt-input";
+// import PromptInputFloatingDemo from "@/app/content/bloks/prompt-input/prompt-input-floating";
+// import PromptInputQueuedDemo from "@/app/content/bloks/prompt-input/prompt-input-queued";
+// import PromptInputQuestionsDemo from "@/app/content/bloks/prompt-input/prompt-input-questions";
 import SidebarRHSDemo from "@/app/content/bloks/sidebar-rhs/sidebar-rhs";
 import SidebarRHSHeadingWithTabsDemo from "@/app/content/bloks/sidebar-rhs/sidebar-rhs-heading-with-tabs";
 import SidebarRHSBriefDemo from "@/app/content/bloks/sidebar-rhs/sidebar-rhs-brief";
@@ -1369,26 +1370,27 @@ export const docsiteRegistry: Record<string, DocsiteRegistryEntry> = {
     path: "src/app/content/bloks/pinned-site-section/pinned-site-section.tsx",
     component: PinnedSitesSectionDemo,
   },
-  "prompt-input": {
-    name: "prompt-input",
-    path: "src/app/content/bloks/prompt-input/prompt-input.tsx",
-    component: PromptInputDemo,
-  },
-  "prompt-input-floating": {
-    name: "prompt-input-floating",
-    path: "src/app/content/bloks/prompt-input/prompt-input-floating.tsx",
-    component: PromptInputFloatingDemo,
-  },
-  "prompt-input-queued": {
-    name: "prompt-input-queued",
-    path: "src/app/content/bloks/prompt-input/prompt-input-queued.tsx",
-    component: PromptInputQueuedDemo,
-  },
-  "prompt-input-questions": {
-    name: "prompt-input-questions",
-    path: "src/app/content/bloks/prompt-input/prompt-input-questions.tsx",
-    component: PromptInputQuestionsDemo,
-  },
+  // TEMP: prompt-input disabled
+  // "prompt-input": {
+  //   name: "prompt-input",
+  //   path: "src/app/content/bloks/prompt-input/prompt-input.tsx",
+  //   component: PromptInputDemo,
+  // },
+  // "prompt-input-floating": {
+  //   name: "prompt-input-floating",
+  //   path: "src/app/content/bloks/prompt-input/prompt-input-floating.tsx",
+  //   component: PromptInputFloatingDemo,
+  // },
+  // "prompt-input-queued": {
+  //   name: "prompt-input-queued",
+  //   path: "src/app/content/bloks/prompt-input/prompt-input-queued.tsx",
+  //   component: PromptInputQueuedDemo,
+  // },
+  // "prompt-input-questions": {
+  //   name: "prompt-input-questions",
+  //   path: "src/app/content/bloks/prompt-input/prompt-input-questions.tsx",
+  //   component: PromptInputQuestionsDemo,
+  // },
   "sidebar-rhs": {
     name: "sidebar-rhs",
     path: "src/app/content/bloks/sidebar-rhs/sidebar-rhs.tsx",
