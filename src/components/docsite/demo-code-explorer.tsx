@@ -49,7 +49,7 @@ export function DemoCodeExplorer({
   return (
     <div
       className={cn(
-        "flex min-h-[420px] w-full overflow-hidden rounded-b-md border-t bg-background",
+        "flex min-h-[420px] w-full overflow-hidden rounded-b-md bg-background",
         className,
       )}
     >

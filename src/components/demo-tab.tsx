@@ -110,11 +110,15 @@ export default function DemoTab({
       onValueChange={handleTabChange}
     >
       <TabsList className="w-full rounded-none justify-start">
-        <TabsTrigger value="preview">Preview</TabsTrigger>
-        <TabsTrigger value="code">Code</TabsTrigger>
+        <TabsTrigger value="preview" className="border-b">
+          Preview
+        </TabsTrigger>
+        <TabsTrigger value="code" className="border-b">
+          Code
+        </TabsTrigger>
         <TabsTrigger
           value=""
-          className="w-full pointer-events-none"
+          className="w-full pointer-events-none border-b"
           aria-hidden="true"
           tabIndex={-1}
         />
