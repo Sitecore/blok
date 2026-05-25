@@ -19,7 +19,7 @@ interface DemoCodeExplorerProps {
 }
 
 const explorerHeaderClass =
-  "flex h-11 min-h-11 shrink-0 items-center gap-2 border-b px-3";
+  "flex h-11 min-h-11 shrink-0 items-center gap-2 border-b bg-muted px-3";
 
 export function DemoCodeExplorer({
   files,
@@ -71,7 +71,7 @@ export function DemoCodeExplorer({
       </aside>
 
       <div className="flex min-w-0 flex-1 flex-col bg-background">
-        <div className={cn(explorerHeaderClass, "bg-background")}>
+        <div className={explorerHeaderClass}>
           {selected ? (
             <>
               <FileCode2 className="size-4 shrink-0 text-muted-foreground" />
