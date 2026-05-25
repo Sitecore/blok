@@ -1,23 +1,33 @@
+"use client";
+
 import {
   Editable,
   EditableError,
   EditableInput,
   EditablePreview,
 } from "@/components/ui/editable";
+import { cn } from "@/lib/utils";
+import { useState } from "react";
+
+const ERROR_MESSAGE = "This field is required";
 
 export default function EditableErrorDemo() {
-  const error = "This field is required";
+  const [showError, setShowError] = useState(false);
 
   return (
     <div className="w-96">
       <Editable
-        defaultValue="Click to edit this text"
-        placeholder="Enter some text..."
-        hasError={Boolean(error)}
+        defaultValue=""
+        placeholder="Click to edit this text"
+        hasError={showError}
+        onEdit={() => setShowError(true)}
       >
         <EditablePreview className="w-80" />
-        <EditableInput className="w-80" aria-invalid={Boolean(error)} />
-        <EditableError>{error}</EditableError>
+        <EditableInput
+          className={cn("w-80", showError && "border-destructive")}
+          aria-invalid={showError}
+        />
+        {showError ? <EditableError>{ERROR_MESSAGE}</EditableError> : null}
       </Editable>
     </div>
   );
