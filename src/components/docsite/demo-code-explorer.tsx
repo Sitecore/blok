@@ -59,7 +59,7 @@ export function DemoCodeExplorer({
             Files
           </p>
         </div>
-        <div className="flex-1 overflow-auto py-1">
+        <div className="scrollbar-themed flex-1 overflow-auto py-1">
           <FileTree
             data={treeData}
             selectedId={selectedId}
@@ -70,7 +70,7 @@ export function DemoCodeExplorer({
         </div>
       </aside>
 
-      <div className="flex min-w-0 flex-1 flex-col bg-background">
+      <div className="flex min-h-0 min-w-0 flex-1 flex-col bg-muted">
         <div className={explorerHeaderClass}>
           {selected ? (
             <>
@@ -84,14 +84,16 @@ export function DemoCodeExplorer({
           )}
         </div>
         {selected ? (
-          <CodeBlock
-            code={selected.code}
-            lang={selected.language}
-            className="rounded-none border-0"
-            copyCodeContext={copyCodeContext}
-          />
+          <div className="min-h-0 overflow-hidden">
+            <CodeBlock
+              code={selected.code}
+              lang={selected.language}
+              className="max-h-[400px] rounded-none border-0"
+              copyCodeContext={copyCodeContext}
+            />
+          </div>
         ) : (
-          <div className="flex flex-1 items-center justify-center text-sm text-muted-foreground">
+          <div className="flex min-h-0 flex-1 items-center justify-center text-sm text-muted-foreground">
             Select a file
           </div>
         )}

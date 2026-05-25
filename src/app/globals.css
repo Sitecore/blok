@@ -325,3 +325,37 @@
   background-color: rgba(150, 150, 150, 0.5);
   border-radius: 4px;
 }
+
+/* Theme-aware scrollbars (code explorer, panels) */
+:root {
+  --scrollbar-thumb: var(--color-blackAlpha-400);
+  --scrollbar-track: transparent;
+}
+
+.dark {
+  --scrollbar-thumb: var(--color-whiteAlpha-500);
+  --scrollbar-track: transparent;
+}
+
+.scrollbar-themed {
+  scrollbar-width: thin;
+  scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
+}
+
+.scrollbar-themed::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+.scrollbar-themed::-webkit-scrollbar-track {
+  background: var(--scrollbar-track);
+}
+
+.scrollbar-themed::-webkit-scrollbar-thumb {
+  background-color: var(--scrollbar-thumb);
+  border-radius: 5px;
+}
+
+.scrollbar-themed::-webkit-scrollbar-corner {
+  background: var(--scrollbar-track);
+}
