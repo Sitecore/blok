@@ -128,7 +128,7 @@ export function CodeBlock({
       role="region"
       aria-label="Code sample"
       className={cn(
-        "scrollbar-themed relative rounded-md bg-muted max-h-[400px] overflow-auto",
+        "relative rounded-md bg-muted max-h-[400px] overflow-auto",
         className,
       )}
       style={{ width: "100%", maxWidth: "100%" }}

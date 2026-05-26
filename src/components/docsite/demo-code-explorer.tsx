@@ -59,7 +59,7 @@ export function DemoCodeExplorer({
             Files
           </p>
         </div>
-        <div className="scrollbar-themed flex-1 overflow-auto py-1">
+        <div className="flex-1 overflow-auto py-1">
           <FileTree
             data={treeData}
             selectedId={selectedId}
