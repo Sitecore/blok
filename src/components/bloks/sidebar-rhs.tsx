@@ -171,7 +171,7 @@ export interface SidebarRHSProps {
   title?: string;
   /** Custom header content (overrides title if provided) */
   header?: ReactNode;
-  /** Content to display in the sidebar */
+  /** Content to display in the sidebar body (below the header) */
   children?: ReactNode;
   /** Main content area (shown on the left) */
   mainContent?: ReactNode;
@@ -185,12 +185,88 @@ export interface SidebarRHSProps {
   maxWidth?: string;
   /** Callback when width changes */
   onWidthChange?: (width: string) => void;
-  /** Additional className */
+  /** Additional className on the sidebar root */
   className?: string;
-  /** Enable collapsible functionality (default: true) */
+  /** ClassName for the header region */
+  headerClassName?: string;
+  /** ClassName for the scrollable content region below the header */
+  contentClassName?: string;
+  /** Enable collapsible functionality */
   collapsible?: boolean;
-  /** Enable dock/undock functionality (default: true) */
+  /**
+   * Shows dock/undock controls (pop-out to a floating, draggable panel).
+   * When false, pop-out UI is hidden only — docked vs undocked logic stays in the component.
+   * Set to true to re-enable without further changes.
+   */
   dockable?: boolean;
+  /** Show left-edge resize handle and hover stroke (defaults to match collapsible) */
+  resizable?: boolean;
+}
+
+function SidebarResizeHandle({
+  onMouseDown,
+}: {
+  onMouseDown: (e: React.MouseEvent) => void;
+}) {
+  return (
+    <div
+      className="absolute left-0 top-0 bottom-0 w-2 cursor-ew-resize z-20 group/resize"
+      onMouseDown={onMouseDown}
+      role="separator"
+      aria-label="Resize sidebar"
+      aria-orientation="vertical"
+    >
+      <div className="absolute inset-y-0 left-0 w-px bg-transparent group-hover/resize:bg-primary transition-colors" />
+    </div>
+  );
+}
+
+function SidebarRHSInner({
+  header,
+  title,
+  children,
+  dockable,
+  headerClassName,
+  contentClassName,
+  isStackedNavHeader,
+}: {
+  header?: ReactNode;
+  title?: string;
+  children?: ReactNode;
+  dockable?: boolean;
+  headerClassName?: string;
+  contentClassName?: string;
+  isStackedNavHeader: boolean;
+}) {
+  return (
+    <>
+      <div
+        className={cn(
+          "shrink-0 flex items-center justify-between w-full gap-2",
+          isStackedNavHeader
+            ? "sticky top-0 z-10 bg-body-bg pt-4 pb-2 px-6"
+            : "h-12 px-4",
+          headerClassName,
+        )}
+      >
+        <div className={cn(isStackedNavHeader && "flex-1 min-w-0 w-full")}>
+          {header ||
+            (title && <h2 className="text-lg font-semibold">{title}</h2>)}
+        </div>
+        <DockButton show={dockable} />
+      </div>
+
+      <div
+        className={cn(
+          "flex-1 min-h-0 overflow-auto",
+          isStackedNavHeader ? "px-6 py-4" : "p-4",
+          contentClassName,
+        )}
+      >
+        {children}
+      </div>
+    </>
+  );
 }
 
 // Helper function to parse width string to pixels
@@ -258,10 +334,15 @@ export function SidebarRHS({
   maxWidth = "800px",
   onWidthChange,
   className,
+  headerClassName,
+  contentClassName,
   collapsible = false,
   dockable = false,
+  resizable: resizableProp,
   ...props
 }: SidebarRHSProps & ComponentProps<"div">) {
+  const isStackedNavHeader = !!header;
+  const resizable = resizableProp ?? collapsible;
   const { isCollapsed, isDocked } = useSidebarRHS();
   const [currentWidth, setCurrentWidth] = useState(width);
   const [isResizing, setIsResizing] = useState(false);
@@ -429,30 +510,19 @@ export function SidebarRHS({
           {/* Sidebar */}
           <div
             className={cn(
-              "relative bg-body-bg border-l border-border shrink-0 overflow-x-visible",
-              isCollapsed && "border-l-0",
+              "relative bg-body-bg shrink-0 overflow-x-visible",
               !isResizing && "transition-all ease-in-out",
-              !isResizing && transitionDuration === "500" && "duration-500", // Slower when collapsing
-              !isResizing && transitionDuration === "200" && "duration-200", // Faster when expanding
+              !isResizing && transitionDuration === "500" && "duration-500",
+              !isResizing && transitionDuration === "200" && "duration-200",
             )}
             style={{
               width: isCollapsed ? "0" : currentWidth,
             }}
           >
-            {/* Resize handle */}
-            {!shouldHideContent && (
-              <div
-                className="absolute -left-1 top-0 bottom-0 w-2 cursor-ew-resize z-20 hover:bg-primary/20 transition-colors group"
-                onMouseDown={handleResizeStart}
-                role="separator"
-                aria-label="Resize sidebar"
-                aria-orientation="vertical"
-              >
-                <div className="absolute inset-y-0 left-1/2 -translate-x-1/2 w-0.5 bg-border group-hover:bg-primary" />
-              </div>
+            {resizable && !shouldHideContent && (
+              <SidebarResizeHandle onMouseDown={handleResizeStart} />
             )}
 
-            {/* Collapse/Expand button - on the resize border */}
             {collapsible && (
               <SidebarRHSTrigger
                 className="absolute top-1/2 -translate-y-1/2 z-30"
@@ -470,15 +540,16 @@ export function SidebarRHS({
                   "opacity-100 transition-opacity duration-200",
               )}
             >
-              {/* Header */}
-              <div className="flex h-12 items-center justify-between px-4 shrink-0">
-                {header ||
-                  (title && <h2 className="text-lg font-semibold">{title}</h2>)}
-                <DockButton show={dockable} />
-              </div>
-
-              {/* Content */}
-              <div className="flex-1 overflow-auto p-4">{children}</div>
+              <SidebarRHSInner
+                header={header}
+                title={title}
+                dockable={dockable}
+                headerClassName={headerClassName}
+                contentClassName={contentClassName}
+                isStackedNavHeader={isStackedNavHeader}
+              >
+                {children}
+              </SidebarRHSInner>
             </div>
           </div>
         </div>
@@ -491,11 +562,10 @@ export function SidebarRHS({
         ref={containerRef}
         {...props}
         className={cn(
-          "relative bg-body-bg border-l border-border shrink-0 overflow-x-visible",
-          isCollapsed && "border-l-0",
+          "relative bg-body-bg shrink-0 overflow-x-visible",
           !isResizing && "transition-all ease-in-out",
-          !isResizing && transitionDuration === "500" && "duration-500", // Slower when collapsing
-          !isResizing && transitionDuration === "200" && "duration-200", // Faster when expanding
+          !isResizing && transitionDuration === "500" && "duration-500",
+          !isResizing && transitionDuration === "200" && "duration-200",
           className,
         )}
         style={{
@@ -503,20 +573,10 @@ export function SidebarRHS({
           height: height,
         }}
       >
-        {/* Resize handle */}
-        {!shouldHideContent && (
-          <div
-            className="absolute -left-1 top-0 bottom-0 w-2 cursor-ew-resize z-20 hover:bg-primary/20 transition-colors group"
-            onMouseDown={handleResizeStart}
-            role="separator"
-            aria-label="Resize sidebar"
-            aria-orientation="vertical"
-          >
-            <div className="absolute inset-y-0 left-1/2 -translate-x-1/2 w-0.5 bg-border group-hover:bg-primary" />
-          </div>
+        {resizable && !shouldHideContent && (
+          <SidebarResizeHandle onMouseDown={handleResizeStart} />
         )}
 
-        {/* Collapse/Expand button - on the resize border */}
         {collapsible && (
           <SidebarRHSTrigger
             className="absolute top-1/2 -translate-y-1/2 z-30"
@@ -533,15 +593,16 @@ export function SidebarRHS({
             !shouldHideContent && "opacity-100 transition-opacity duration-200",
           )}
         >
-          {/* Header */}
-          <div className="flex h-12 items-center justify-between px-4 shrink-0">
-            {header ||
-              (title && <h2 className="text-lg font-semibold">{title}</h2>)}
-            <DockButton show={dockable} />
-          </div>
-
-          {/* Content */}
-          <div className="flex-1 overflow-auto p-4">{children}</div>
+          <SidebarRHSInner
+            header={header}
+            title={title}
+            dockable={dockable}
+            headerClassName={headerClassName}
+            contentClassName={contentClassName}
+            isStackedNavHeader={isStackedNavHeader}
+          >
+            {children}
+          </SidebarRHSInner>
         </div>
       </div>
     );
@@ -602,10 +663,15 @@ export function SidebarRHS({
         )}
         style={style}
       >
-        <div className="flex h-full flex-col">
-          {/* Header - draggable area */}
+        <div className="flex h-full flex-col min-h-0">
           <div
-            className="flex h-12 items-center justify-between px-4 shrink-0 cursor-grab active:cursor-grabbing"
+            className={cn(
+              "shrink-0 flex items-center justify-between w-full cursor-grab active:cursor-grabbing",
+              isStackedNavHeader
+                ? "sticky top-0 z-10 bg-body-bg pt-4 pb-2 px-6"
+                : "h-12 px-4",
+              headerClassName,
+            )}
             {...listeners}
             {...attributes}
           >
@@ -616,8 +682,15 @@ export function SidebarRHS({
             <UndockButton show={dockable} />
           </div>
 
-          {/* Content */}
-          <div className="flex-1 overflow-auto p-4">{children}</div>
+          <div
+            className={cn(
+              "flex-1 min-h-0 overflow-auto",
+              isStackedNavHeader ? "px-6 py-4" : "p-4",
+              contentClassName,
+            )}
+          >
+            {children}
+          </div>
         </div>
       </div>
     );

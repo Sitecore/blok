@@ -7,7 +7,6 @@ import { useState } from "react";
 import {
   DEMO_SIDEBAR_DOCKABLE,
   EXAMPLE_HEIGHT,
-  ExpandableDescription,
   InfoSection,
   UsageSection,
   navigationItems,
@@ -15,7 +14,15 @@ import {
 
 function SidebarContent({ activeTab }: { activeTab: string }) {
   const tabContent: Record<string, React.ReactNode> = {
-    "/overview": <ExpandableDescription />,
+    "/overview": (
+      <div className="flex flex-col gap-3">
+        <h3 className="text-sm font-semibold">Description</h3>
+        <p className="text-sm text-foreground">
+          A fixed sidebar stays open with no collapse control or left-edge
+          resize interaction.
+        </p>
+      </div>
+    ),
     "/usage": <UsageSection />,
     "/comments": (
       <p className="text-sm text-muted-foreground">Comments tab content.</p>
@@ -26,7 +33,7 @@ function SidebarContent({ activeTab }: { activeTab: string }) {
   return <>{tabContent[activeTab] || tabContent["/overview"]}</>;
 }
 
-export default function SidebarRHSDemo() {
+export default function SidebarRHSFixedDemo() {
   const [activeTab, setActiveTab] = useState("/overview");
 
   const stackedNavigationHeader = (
@@ -54,8 +61,8 @@ export default function SidebarRHSDemo() {
             <div className="space-y-4">
               <h2 className="text-2xl font-bold">Main Content Area</h2>
               <p className="text-muted-foreground">
-                Collapsible sidebar with stacked navigation tabs. Pass any
-                content as children of SidebarRHS.
+                Fixed sidebar — always visible with no collapse or resize
+                controls.
               </p>
             </div>
           </main>
@@ -67,7 +74,7 @@ export default function SidebarRHSDemo() {
             minWidth="250px"
             maxWidth="600px"
             height="100%"
-            collapsible={true}
+            collapsible={false}
             dockable={DEMO_SIDEBAR_DOCKABLE}
           >
             <SidebarContent activeTab={activeTab} />

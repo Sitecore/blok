@@ -233,10 +233,7 @@ import PinnedSitesSectionDemo from "@/app/content/bloks/pinned-site-section/pinn
 // import PromptInputQueuedDemo from "@/app/content/bloks/prompt-input/prompt-input-queued";
 // import PromptInputQuestionsDemo from "@/app/content/bloks/prompt-input/prompt-input-questions";
 import SidebarRHSDemo from "@/app/content/bloks/sidebar-rhs/sidebar-rhs";
-import SidebarRHSHeadingWithTabsDemo from "@/app/content/bloks/sidebar-rhs/sidebar-rhs-heading-with-tabs";
-import SidebarRHSBriefDemo from "@/app/content/bloks/sidebar-rhs/sidebar-rhs-brief";
-import SidebarRHSBriefTypeDemo from "@/app/content/bloks/sidebar-rhs/sidebar-rhs-brief-type";
-import SidebarRHSContentDemo from "@/app/content/bloks/sidebar-rhs/sidebar-rhs-content";
+import SidebarRHSFixedDemo from "@/app/content/bloks/sidebar-rhs/sidebar-rhs-fixed";
 import SiteCardDemo from "@/app/content/bloks/site-card/site-card";
 import TopbarDemo from "@/app/content/bloks/topbar/topbar";
 
@@ -1396,25 +1393,10 @@ export const docsiteRegistry: Record<string, DocsiteRegistryEntry> = {
     path: "src/app/content/bloks/sidebar-rhs/sidebar-rhs.tsx",
     component: SidebarRHSDemo,
   },
-  "sidebar-rhs-heading-with-tabs": {
-    name: "sidebar-rhs-heading-with-tabs",
-    path: "src/app/content/bloks/sidebar-rhs/sidebar-rhs-heading-with-tabs.tsx",
-    component: SidebarRHSHeadingWithTabsDemo,
-  },
-  "sidebar-rhs-brief": {
-    name: "sidebar-rhs-brief",
-    path: "src/app/content/bloks/sidebar-rhs/sidebar-rhs-brief.tsx",
-    component: SidebarRHSBriefDemo,
-  },
-  "sidebar-rhs-brief-type": {
-    name: "sidebar-rhs-brief-type",
-    path: "src/app/content/bloks/sidebar-rhs/sidebar-rhs-brief-type.tsx",
-    component: SidebarRHSBriefTypeDemo,
-  },
-  "sidebar-rhs-content": {
-    name: "sidebar-rhs-content",
-    path: "src/app/content/bloks/sidebar-rhs/sidebar-rhs-content.tsx",
-    component: SidebarRHSContentDemo,
+  "sidebar-rhs-fixed": {
+    name: "sidebar-rhs-fixed",
+    path: "src/app/content/bloks/sidebar-rhs/sidebar-rhs-fixed.tsx",
+    component: SidebarRHSFixedDemo,
   },
   "site-card": {
     name: "site-card",
