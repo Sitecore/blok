@@ -370,7 +370,7 @@ const editablePreviewVariants = cva(
   {
     variants: {
       isEmpty: {
-        true: "text-muted-foreground italic",
+        true: "text-foreground",
         false: "text-foreground",
       },
     },
