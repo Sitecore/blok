@@ -1,3 +1,4 @@
+import type { DemoCodeFileSource } from "@/lib/docsite/demo-code-files";
 import type { ReactElement, ReactNode } from "react";
 
 // PRIMITIVES
@@ -28,6 +29,7 @@ import { editable } from "@/app/demo/[name]/ui/editable";
 import { emptyStates } from "@/app/demo/[name]/ui/empty-states";
 import { errorStates } from "@/app/demo/[name]/ui/error-states";
 import { field } from "@/app/demo/[name]/ui/field";
+import { fileTree } from "@/app/demo/[name]/ui/file-tree";
 import { filter } from "@/app/demo/[name]/ui/filter";
 import { icon } from "@/app/demo/[name]/ui/icon-component";
 import { input } from "@/app/demo/[name]/ui/input";
@@ -80,6 +82,8 @@ interface Demo {
   preview: {
     pre?: ReactNode | ReactElement;
     defaultComponent: string;
+    /** Blok demos: virtual file tree shown on the Code tab. */
+    codeFiles?: DemoCodeFileSource[];
     post?: ReactNode | ReactElement;
   };
   installation?: {
@@ -95,6 +99,7 @@ interface Demo {
     [name: string]: {
       pre?: ReactNode | ReactElement;
       component: ReactNode | ReactElement;
+      codeFiles?: DemoCodeFileSource[];
       post?: ReactNode | ReactElement;
     };
   };
@@ -128,6 +133,7 @@ export const demos: { [name: string]: Demo } = {
   "empty-states": emptyStates,
   "error-states": errorStates,
   field,
+  "file-tree": fileTree,
   filter,
   icon,
   input,

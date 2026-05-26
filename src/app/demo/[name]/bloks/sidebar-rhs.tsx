@@ -1,7 +1,10 @@
+import { sidebarRhsCodeFiles } from "@/lib/docsite/blok-demo-code-files";
+
 export const sidebarRhs = {
   name: "sidebar-rhs",
   preview: {
     defaultComponent: "sidebar-rhs",
+    codeFiles: sidebarRhsCodeFiles,
   },
   usage: {
     usage: [
