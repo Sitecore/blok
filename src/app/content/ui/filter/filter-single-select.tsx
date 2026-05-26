@@ -47,7 +47,6 @@ export default function FilterSingleSelectDemo() {
         placeholder="Single select filter"
         groups={BLOCKCN_FILTER_GROUPS}
         ariaLabels={{
-          popoverTrigger: "Select an option",
           listbox: "List of options",
           clearSelection: "Clear selection",
         }}

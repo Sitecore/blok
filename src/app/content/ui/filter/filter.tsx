@@ -61,7 +61,6 @@ export default function FilterDemo() {
         placeholder: "Single select filter",
         groups: BLOCKCN_FILTER_GROUPS,
         ariaLabels: {
-          popoverTrigger: "Select an option",
           listbox: "List of options",
           clearSelection: "Clear selection",
         },
@@ -75,7 +74,6 @@ export default function FilterDemo() {
         placeholder: "Multi-select filter",
         groups: BLOCKCN_FILTER_GROUPS,
         ariaLabels: {
-          popoverTrigger: "Select options",
           listbox: "List of options",
           clearSelection: "Clear all selections",
         },

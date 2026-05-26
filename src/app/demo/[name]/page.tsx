@@ -136,7 +136,7 @@ export default async function DemoPage({
 
 const componentDemo = (component: ReactNode, wrapperClassName?: string) => {
   return (
-    <div className={cn("relative rounded-lg", wrapperClassName)}>
+    <div className={cn("relative rounded-lg overflow-visible", wrapperClassName)}>
       <Renderer>{component}</Renderer>
     </div>
   );
