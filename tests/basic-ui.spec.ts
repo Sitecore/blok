@@ -44,7 +44,7 @@ import { testResizableHorizontal, testResizableVertical, testResizableWithHandle
 import { testScrollAreaHorizontal, testScrollAreaVertical } from './test-Components/test-Scroll_Area';
 import { testSearchInput } from './test-Components/test-Search_Input';
 import { testSelectDefault, testSelectDisabled, testSelectLargeList, testSelectWithIcon } from './test-Components/test-Select';
-import { testSelectReact } from './test-Components/test-Select_React';
+import { testSelectReact, testVertualizedSelect } from './test-Components/test-Select_React';
 import { testSeparator } from './test-Components/test-Separator';
 import { testSheetBottom, testSheetDefault, testSheetLeft, testSheetRight, testSheetTop } from './test-Components/test-Sheet';
 import { testSkeletonCardList, testSkeletonDefault } from './test-Components/test-Skeleton';
@@ -375,6 +375,7 @@ test.describe('UI BLOK QA Automation', () => {
 
   test('test_Select_React', async ({ page }) => {
     await testSelectReact(page);
+    await testVertualizedSelect(page);
   });
 
   test('test_Separator', async ({ page }) => {
@@ -492,7 +493,7 @@ test.describe('UI BLOK QA Automation', () => {
 
   test('test_Pinned_Site_Section', async ({ page }) => {
     await testPinnedSiteSection(page);
-  });
+  }); 
 
   test('test_Sidebar_RHS', async ({ page }) => {
     await testSidebarRHS(page);
