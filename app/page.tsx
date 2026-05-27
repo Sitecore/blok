@@ -47,6 +47,7 @@ import { ScrollAreaDemo } from "@/components-demo/scroll_area-demo";
 import { SearchInputDemo } from "@/components-demo/search_input-demo";
 import { SelectDemo } from "@/components-demo/select-demo";
 import { SelectReactDemo } from "@/components-demo/select_react_select-demo";
+import { VirtualizeSelectDemo } from "@/components-demo/virtualize_select-demo";
 import { SeparatorDemo } from "@/components-demo/separator-demo";
 import { SheetDemo } from "@/components-demo/sheet-demo";
 import { SkeletonDemo } from "@/components-demo/skeleten-demo";
@@ -70,6 +71,7 @@ import { PinnedSitesSectionDemo } from "@/components-demo/pinned_site_section-de
 import { SidebarRHSDemo } from "@/components-demo/sidebar_rhs-demo";
 import { SiteCardDemo } from "@/components-demo/site_card-demo";
 import { TopbarDemo } from "@/components-demo/topbar-demo";
+
 
 
 
@@ -267,6 +269,10 @@ export default function SinkPage() {
         <SelectReactDemo />
       </div>
     <br />
+    <div>
+        <VirtualizeSelectDemo />
+      </div>
+    <br />
       <div>
         <SeparatorDemo />
       </div>
@@ -359,10 +365,6 @@ export default function SinkPage() {
       </div>
     </div>
 
-
-
   );
-
-  
-  
+ 
 }

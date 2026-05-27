@@ -11,6 +11,7 @@
       "https://blok.sitecore.com/r/sidebar-rhs.json",
       "https://blok.sitecore.com/r/site-card.json",
       "https://blok.sitecore.com/r/topbar.json",
-      "https://blok.sitecore.com/r/combobox.json"
+      "https://blok.sitecore.com/r/combobox.json",
+      "https://blok.sitecore.com/r/virtualized-select.json"
     ]
   }
