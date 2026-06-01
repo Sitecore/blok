@@ -87,6 +87,7 @@ import DropdownMenuIconColorDemo from "@/app/content/ui/dropdown/dropdown-menu-i
 import DropdownMenuWithDescriptionDemo from "@/app/content/ui/dropdown/dropdown-menu-with-description";
 import EditableDemo from "@/app/content/ui/editable/editable";
 import EditableTextareaDemo from "@/app/content/ui/editable/editable-textarea";
+import EditableErrorDemo from "@/app/content/ui/editable/editable-error";
 import EmptyStatesNoSearchResultsDemo from "@/app/content/ui/empty-states/empty-states-no-search-results";
 import EmptyStatesNothingCreatedDemo from "@/app/content/ui/empty-states/empty-states-nothing-created";
 import EmptyStatesErrorDemo from "@/app/content/ui/empty-states/empty-states-error";
@@ -677,6 +678,11 @@ export const docsiteRegistry: Record<string, DocsiteRegistryEntry> = {
     name: "editable-textarea",
     path: "src/app/content/ui/editable/editable-textarea.tsx",
     component: EditableTextareaDemo,
+  },
+  "editable-error": {
+    name: "editable-error",
+    path: "src/app/content/ui/editable/editable-error.tsx",
+    component: EditableErrorDemo,
   },
   "empty-states-no-results": {
     name: "empty-states-no-results",
