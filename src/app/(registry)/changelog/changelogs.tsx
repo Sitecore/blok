@@ -1,5 +1,8 @@
 import type { ReactNode } from "react";
-import May052026SonnerDocumentation from "./changelog-content/5-6-2025.sonner-documentation";
+import May2026EditableErrorState from "./changelog-content/enhancement-editable-errorstate";
+import May2026SidebarRHS from "./changelog-content/enhancement-sidebar-rhs";
+import May2026VirtualizedSelect from "./changelog-content/feature-virtualized-select";
+import April2026SonnerDocumentation from "./changelog-content/update-sonner-documentation";
 
 export type ChangelogItem = {
   description: string;
@@ -18,7 +21,25 @@ export const changelogs: Changelog[] = [
     title: "April 2026 - Sonner Installation Guide Updated",
     id: "april-2026-sonner-installation-guide",
     releaseDate: "2026-05-06",
-    log: May052026SonnerDocumentation,
+    log: April2026SonnerDocumentation,
+  },
+  {
+    title: "May 2026 - Virtualized Select Added",
+    id: "may-2026-virtualized-select",
+    releaseDate: "2026-06-01",
+    log: May2026VirtualizedSelect,
+  },
+  {
+    title: "May 2026 - Sidebar RHS Enhancement",
+    id: "may-2026-sidebar-rhs-enhancement",
+    releaseDate: "2026-06-01",
+    log: May2026SidebarRHS,
+  },
+  {
+    title: "May 2026 - Editable Error State Enhancement",
+    id: "may-2026-editable-error-state-enhancement",
+    releaseDate: "2026-06-01",
+    log: May2026EditableErrorState,
   },
 ];
 
