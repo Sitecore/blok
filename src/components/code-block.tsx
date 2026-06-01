@@ -20,6 +20,74 @@ export interface CopyCodeContext {
   example_title?: string;
 }
 
+interface CodeCopyButtonProps {
+  code: string;
+  copyCodeContext?: CopyCodeContext;
+  className?: string;
+}
+
+export function CodeCopyButton({
+  code,
+  copyCodeContext,
+  className,
+}: CodeCopyButtonProps) {
+  const pathname = usePathname();
+  const [copied, setCopied] = useState(false);
+
+  async function copyToClipboard() {
+    await navigator.clipboard.writeText(code);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 1500);
+    if (copyCodeContext?.section) {
+      const payload: CopyCodePayload = {
+        section: copyCodeContext.section,
+        path: pathname ?? undefined,
+        page_type: pathname?.startsWith("/primitives/")
+          ? "primitive"
+          : pathname?.startsWith("/bloks/")
+            ? "blok"
+            : undefined,
+        ...(copyCodeContext.page_name &&
+          pathname?.startsWith("/primitives/") && {
+            component_name: copyCodeContext.page_name,
+          }),
+        ...(copyCodeContext.page_name &&
+          pathname?.startsWith("/bloks/") && {
+            block_name: copyCodeContext.page_name,
+          }),
+        ...(copyCodeContext.package_manager && {
+          package_manager: copyCodeContext.package_manager,
+        }),
+        ...(copyCodeContext.example_id && {
+          example_id: copyCodeContext.example_id,
+        }),
+        ...(copyCodeContext.example_title && {
+          example_title: copyCodeContext.example_title,
+        }),
+      };
+      track(TELEMETRY_EVENTS.copy_code, payload);
+    }
+  }
+
+  return (
+    <Button
+      variant="ghost"
+      size="icon-sm"
+      onClick={copyToClipboard}
+      className={cn("shrink-0 bg-muted", className)}
+      aria-label={
+        copied ? "Code copied to clipboard" : "Copy code to clipboard"
+      }
+    >
+      {copied ? (
+        <Check className="size-4" />
+      ) : (
+        <Icon path={mdiClipboardOutline} className="text-muted-foreground" />
+      )}
+    </Button>
+  );
+}
+
 interface CodeBlockProps {
   code: string;
   lang?: string;
@@ -27,6 +95,8 @@ interface CodeBlockProps {
   className?: string;
   /** When set, copy triggers copy_code with normalized payload (section, path, page_type, component_name/block_name). */
   copyCodeContext?: CopyCodeContext;
+  /** Hide the floating copy control (e.g. when copy is shown in a parent header). */
+  hideCopyButton?: boolean;
 }
 
 export function CodeBlock({
@@ -35,9 +105,8 @@ export function CodeBlock({
   showLineNumbers = true,
   className,
   copyCodeContext,
+  hideCopyButton = false,
 }: CodeBlockProps) {
-  const pathname = usePathname();
-  const [copied, setCopied] = useState(false);
   const [html, setHtml] = useState<string>("");
   const [isDark, setIsDark] = useState(false);
 
@@ -87,41 +156,6 @@ export function CodeBlock({
     };
   }, [code, lang, showLineNumbers, isDark]);
 
-  async function copyToClipboard() {
-    await navigator.clipboard.writeText(code);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 1500);
-    if (copyCodeContext?.section) {
-      const payload: CopyCodePayload = {
-        section: copyCodeContext.section,
-        path: pathname ?? undefined,
-        page_type: pathname?.startsWith("/primitives/")
-          ? "primitive"
-          : pathname?.startsWith("/bloks/")
-            ? "blok"
-            : undefined,
-        ...(copyCodeContext.page_name &&
-          pathname?.startsWith("/primitives/") && {
-            component_name: copyCodeContext.page_name,
-          }),
-        ...(copyCodeContext.page_name &&
-          pathname?.startsWith("/bloks/") && {
-            block_name: copyCodeContext.page_name,
-          }),
-        ...(copyCodeContext.package_manager && {
-          package_manager: copyCodeContext.package_manager,
-        }),
-        ...(copyCodeContext.example_id && {
-          example_id: copyCodeContext.example_id,
-        }),
-        ...(copyCodeContext.example_title && {
-          example_title: copyCodeContext.example_title,
-        }),
-      };
-      track(TELEMETRY_EVENTS.copy_code, payload);
-    }
-  }
-
   return (
     <div
       dir="ltr"
@@ -133,28 +167,17 @@ export function CodeBlock({
       )}
       style={{ width: "100%", maxWidth: "100%" }}
     >
-      <div className="sticky top-0 h-0 z-10">
-        <div className="absolute top-2 right-2" dir="ltr">
-          <Button
-            variant="ghost"
-            size="icon-sm"
-            onClick={copyToClipboard}
-            className="p-4 bg-muted backdrop-blur-sm "
-            aria-label={
-              copied ? "Code copied to clipboard" : "Copy code to clipboard"
-            }
-          >
-            {copied ? (
-              <Check className="size-4" />
-            ) : (
-              <Icon
-                path={mdiClipboardOutline}
-                className="text-muted-foreground"
-              />
-            )}
-          </Button>
+      {!hideCopyButton && (
+        <div className="sticky top-0 z-10 h-0">
+          <div className="absolute top-2 right-2" dir="ltr">
+            <CodeCopyButton
+              code={code}
+              copyCodeContext={copyCodeContext}
+              className="backdrop-blur-sm"
+            />
+          </div>
         </div>
-      </div>
+      )}
       <div
         dir="ltr"
         className="text-md min-w-0 p-4 font-mono wrap-break-words [&_.shiki]:!bg-transparent"

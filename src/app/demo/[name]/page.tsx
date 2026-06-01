@@ -92,7 +92,7 @@ export default async function DemoPage({
     : null;
 
   return (
-    <div className="flex min-h-screen w-full flex-col gap-12 bg-body-bg">
+    <div className="flex min-h-screen w-full min-w-0 flex-col gap-12 overflow-x-hidden bg-body-bg">
       {/* Preview */}
       {preview.pre}
       <DemoTab
@@ -153,7 +153,10 @@ export default async function DemoPage({
 const componentDemo = (component: ReactNode, wrapperClassName?: string) => {
   return (
     <div
-      className={cn("relative rounded-lg overflow-visible", wrapperClassName)}
+      className={cn(
+        "relative min-w-0 overflow-hidden rounded-lg",
+        wrapperClassName,
+      )}
     >
       <Renderer>{component}</Renderer>
     </div>

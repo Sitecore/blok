@@ -13,7 +13,7 @@ export function ComponentCard({ component }: ComponentCardProps) {
   return (
     <section>
       <div id="starting-kit">
-        <div className="w-full overflow-visible">
+        <div className="w-full min-w-0 overflow-x-hidden">
           <DemoWrapper name={component.name} />
           {/* <iframe
             id="iframe"

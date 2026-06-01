@@ -1,4 +1,7 @@
-import { sidebarRhsCodeFiles } from "@/lib/docsite/blok-demo-code-files";
+import {
+  sidebarRhsCodeFiles,
+  sidebarRhsFixedCodeFiles,
+} from "@/lib/docsite/blok-demo-code-files";
 
 /** Usage sample — separate strings so `{` is not parsed as template interpolation in .tsx */
 const sidebarRhsUsageCode = [
@@ -48,6 +51,7 @@ export const sidebarRhs = {
   components: {
     Fixed: {
       component: "sidebar-rhs-fixed",
+      codeFiles: sidebarRhsFixedCodeFiles,
       contentClassName:
         "p-0 h-[720px] min-h-[720px] max-h-[720px] w-full items-stretch justify-start",
       wrapperClassName: "rounded-none h-[720px] w-full",

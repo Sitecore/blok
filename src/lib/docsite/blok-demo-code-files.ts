@@ -71,16 +71,7 @@ export const siteCardCodeFiles: DemoCodeFileSource[] = [
   ),
 ];
 
-export const sidebarRhsCodeFiles: DemoCodeFileSource[] = [
-  demoCodeFile(
-    "app/content/bloks/sidebar-rhs/sidebar-rhs.tsx",
-    "src/app/content/bloks/sidebar-rhs/sidebar-rhs.tsx",
-    { default: true },
-  ),
-  demoCodeFile(
-    "app/content/bloks/sidebar-rhs/sidebar-rhs-fixed.tsx",
-    "src/app/content/bloks/sidebar-rhs/sidebar-rhs-fixed.tsx",
-  ),
+const sidebarRhsSharedCodeFiles: DemoCodeFileSource[] = [
   demoCodeFile(
     "app/content/bloks/sidebar-rhs/sidebar-rhs-tab-content.tsx",
     "src/app/content/bloks/sidebar-rhs/sidebar-rhs-tab-content.tsx",
@@ -95,12 +86,29 @@ export const sidebarRhsCodeFiles: DemoCodeFileSource[] = [
   ),
 ];
 
-export const promptInputCodeFiles: DemoCodeFileSource[] = [
+export const sidebarRhsCodeFiles: DemoCodeFileSource[] = [
   demoCodeFile(
-    "app/content/bloks/prompt-input/prompt-input.tsx",
-    "src/app/content/bloks/prompt-input/prompt-input.tsx",
+    "app/content/bloks/sidebar-rhs/sidebar-rhs.tsx",
+    "src/app/content/bloks/sidebar-rhs/sidebar-rhs.tsx",
     { default: true },
   ),
+  demoCodeFile(
+    "app/content/bloks/sidebar-rhs/sidebar-rhs-fixed.tsx",
+    "src/app/content/bloks/sidebar-rhs/sidebar-rhs-fixed.tsx",
+  ),
+  ...sidebarRhsSharedCodeFiles,
+];
+
+export const sidebarRhsFixedCodeFiles: DemoCodeFileSource[] = [
+  demoCodeFile(
+    "app/content/bloks/sidebar-rhs/sidebar-rhs-fixed.tsx",
+    "src/app/content/bloks/sidebar-rhs/sidebar-rhs-fixed.tsx",
+    { default: true },
+  ),
+  ...sidebarRhsSharedCodeFiles,
+];
+
+const promptInputSharedCodeFiles: DemoCodeFileSource[] = [
   demoCodeFile(
     "app/content/bloks/prompt-input/prompt-input-attach-menu.demo.tsx",
     "src/app/content/bloks/prompt-input/prompt-input-attach-menu.demo.tsx",
@@ -114,6 +122,40 @@ export const promptInputCodeFiles: DemoCodeFileSource[] = [
     "src/components/bloks/prompt-input.tsx",
   ),
 ];
+
+function promptInputVariantCodeFiles(
+  id: string,
+  path: string,
+): DemoCodeFileSource[] {
+  return [
+    demoCodeFile(id, path, { default: true }),
+    ...promptInputSharedCodeFiles,
+  ];
+}
+
+export const promptInputCodeFiles: DemoCodeFileSource[] =
+  promptInputVariantCodeFiles(
+    "app/content/bloks/prompt-input/prompt-input.tsx",
+    "src/app/content/bloks/prompt-input/prompt-input.tsx",
+  );
+
+export const promptInputFloatingCodeFiles: DemoCodeFileSource[] =
+  promptInputVariantCodeFiles(
+    "app/content/bloks/prompt-input/prompt-input-floating.tsx",
+    "src/app/content/bloks/prompt-input/prompt-input-floating.tsx",
+  );
+
+export const promptInputQueuedCodeFiles: DemoCodeFileSource[] =
+  promptInputVariantCodeFiles(
+    "app/content/bloks/prompt-input/prompt-input-queued.tsx",
+    "src/app/content/bloks/prompt-input/prompt-input-queued.tsx",
+  );
+
+export const promptInputQuestionsCodeFiles: DemoCodeFileSource[] =
+  promptInputVariantCodeFiles(
+    "app/content/bloks/prompt-input/prompt-input-questions.tsx",
+    "src/app/content/bloks/prompt-input/prompt-input-questions.tsx",
+  );
 
 export const collaborationCodeFiles: DemoCodeFileSource[] = [
   demoCodeFile(
@@ -131,15 +173,65 @@ export const collaborationCodeFiles: DemoCodeFileSource[] = [
   ),
 ];
 
+const dashboardWidgetComponentCodeFiles: DemoCodeFileSource[] = [
+  demoCodeFile(
+    "components/bloks/dashboard-widget.tsx",
+    "src/components/bloks/dashboard-widget.tsx",
+  ),
+];
+
+const dashboardWidgetSharedCodeFiles: DemoCodeFileSource[] = [
+  demoCodeFile(
+    "app/content/bloks/dashboard-widget/dashboard-widget.mock-data.ts",
+    "src/app/content/bloks/dashboard-widget/dashboard-widget.mock-data.ts",
+  ),
+  ...dashboardWidgetComponentCodeFiles,
+];
+
 export const dashboardWidgetCodeFiles: DemoCodeFileSource[] = [
   demoCodeFile(
     "app/content/bloks/dashboard-widget/dashboard-widget.tsx",
     "src/app/content/bloks/dashboard-widget/dashboard-widget.tsx",
     { default: true },
   ),
+  ...dashboardWidgetSharedCodeFiles,
+];
+
+export const dashboardWidgetWhiteBgLargeCodeFiles: DemoCodeFileSource[] = [
   demoCodeFile(
-    "components/bloks/dashboard-widget.tsx",
-    "src/components/bloks/dashboard-widget.tsx",
+    "app/content/bloks/dashboard-widget/dashboard-widget-white-bg-large.tsx",
+    "src/app/content/bloks/dashboard-widget/dashboard-widget-white-bg-large.tsx",
+    { default: true },
+  ),
+  ...dashboardWidgetSharedCodeFiles,
+];
+
+export const dashboardWidgetGrayBgLargeCodeFiles: DemoCodeFileSource[] = [
+  demoCodeFile(
+    "app/content/bloks/dashboard-widget/dashboard-widget-gray-bg-large.tsx",
+    "src/app/content/bloks/dashboard-widget/dashboard-widget-gray-bg-large.tsx",
+    { default: true },
+  ),
+  ...dashboardWidgetComponentCodeFiles,
+];
+
+export const topbarCodeFiles: DemoCodeFileSource[] = [
+  demoCodeFile(
+    "app/content/bloks/topbar/topbar.tsx",
+    "src/app/content/bloks/topbar/topbar.tsx",
+    { default: true },
+  ),
+  demoCodeFile(
+    "app/content/bloks/topbar/topbar.mock-data.ts",
+    "src/app/content/bloks/topbar/topbar.mock-data.ts",
+  ),
+  demoCodeFile(
+    "app/content/bloks/topbar/topbar.demo-right-side.tsx",
+    "src/app/content/bloks/topbar/topbar.demo-right-side.tsx",
+  ),
+  demoCodeFile(
+    "components/bloks/top-bar.tsx",
+    "src/components/bloks/top-bar.tsx",
   ),
 ];
 
@@ -152,4 +244,5 @@ export const blokDemoCodeFilesByName: Record<string, DemoCodeFileSource[]> = {
   "prompt-input": promptInputCodeFiles,
   collaboration: collaborationCodeFiles,
   "dashboard-widget": dashboardWidgetCodeFiles,
+  topbar: topbarCodeFiles,
 };

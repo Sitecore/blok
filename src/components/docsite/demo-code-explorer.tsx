@@ -1,6 +1,10 @@
 "use client";
 
-import { CodeBlock, type CopyCodeContext } from "@/components/code-block";
+import {
+  CodeBlock,
+  CodeCopyButton,
+  type CopyCodeContext,
+} from "@/components/code-block";
 import { FileTree } from "@/components/ui/file-tree";
 import {
   type LoadedDemoCodeFile,
@@ -53,7 +57,7 @@ export function DemoCodeExplorer({
         className,
       )}
     >
-      <aside className="flex w-[240px] shrink-0 flex-col border-r bg-muted">
+      <aside className="flex w-[220px] shrink-0 flex-col border-r bg-muted">
         <div className={explorerHeaderClass}>
           <p className="text-sm font-medium leading-none text-foreground">
             Files
@@ -65,19 +69,26 @@ export function DemoCodeExplorer({
             selectedId={selectedId}
             onSelectedChange={setSelectedId}
             defaultExpandedIds={expandedIds}
+            indent={10}
             className="w-full"
           />
         </div>
       </aside>
 
       <div className="flex min-h-0 min-w-0 flex-1 flex-col bg-muted">
-        <div className={explorerHeaderClass}>
+        <div className={cn(explorerHeaderClass, "justify-between gap-2")}>
           {selected ? (
             <>
-              <FileCode2 className="size-4 shrink-0 text-muted-foreground" />
-              <span className="truncate font-mono text-xs leading-none">
-                {selected.id}
-              </span>
+              <div className="flex min-w-0 flex-1 items-center gap-2">
+                <FileCode2 className="size-4 shrink-0 text-muted-foreground" />
+                <span className="truncate font-mono text-xs leading-none">
+                  {selected.id}
+                </span>
+              </div>
+              <CodeCopyButton
+                code={selected.code}
+                copyCodeContext={copyCodeContext}
+              />
             </>
           ) : (
             <span className="text-sm text-muted-foreground">Select a file</span>
@@ -90,6 +101,7 @@ export function DemoCodeExplorer({
               lang={selected.language}
               className="max-h-[400px] rounded-none border-0"
               copyCodeContext={copyCodeContext}
+              hideCopyButton
             />
           </div>
         ) : (

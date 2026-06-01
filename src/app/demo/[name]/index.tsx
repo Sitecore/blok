@@ -65,7 +65,6 @@ import { timeline } from "@/app/demo/[name]/ui/timeline";
 import { toggle } from "@/app/demo/[name]/ui/toggle";
 import { toggleGroup } from "@/app/demo/[name]/ui/toggle-group";
 import { tooltip } from "@/app/demo/[name]/ui/tooltip";
-import { topbar } from "@/app/demo/[name]/ui/topbar";
 
 // BLOKS
 import { allSite } from "@/app/demo/[name]/bloks/all-site";
@@ -76,6 +75,7 @@ import { pinnedSite } from "@/app/demo/[name]/bloks/pinned-site";
 // import { promptInput } from "@/app/demo/[name]/bloks/prompt-input";
 import { sidebarRhs } from "@/app/demo/[name]/bloks/sidebar-rhs";
 import { siteCard } from "@/app/demo/[name]/bloks/site-card";
+import { topbar } from "@/app/demo/[name]/bloks/topbar";
 
 interface Demo {
   name: string; // this must match the `/registries/registry.json` name
@@ -176,7 +176,6 @@ export const demos: { [name: string]: Demo } = {
   toggle,
   "toggle-group": toggleGroup,
   tooltip,
-  topbar,
 
   // BLOKS
   "all-site": allSite,
@@ -187,4 +186,5 @@ export const demos: { [name: string]: Demo } = {
   // TEMP: prompt-input disabled
   // "prompt-input": promptInput,
   "sidebar-rhs": sidebarRhs,
+  topbar,
 };
