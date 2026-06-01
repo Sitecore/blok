@@ -78,6 +78,18 @@ export const sidebarRhsCodeFiles: DemoCodeFileSource[] = [
     { default: true },
   ),
   demoCodeFile(
+    "app/content/bloks/sidebar-rhs/sidebar-rhs-fixed.tsx",
+    "src/app/content/bloks/sidebar-rhs/sidebar-rhs-fixed.tsx",
+  ),
+  demoCodeFile(
+    "app/content/bloks/sidebar-rhs/sidebar-rhs-tab-content.tsx",
+    "src/app/content/bloks/sidebar-rhs/sidebar-rhs-tab-content.tsx",
+  ),
+  demoCodeFile(
+    "app/content/bloks/sidebar-rhs/sidebar-rhs.mock-data.ts",
+    "src/app/content/bloks/sidebar-rhs/sidebar-rhs.mock-data.ts",
+  ),
+  demoCodeFile(
     "components/bloks/sidebar-rhs.tsx",
     "src/components/bloks/sidebar-rhs.tsx",
   ),
