@@ -14,8 +14,12 @@ export const allSiteCodeFiles: DemoCodeFileSource[] = [
     { default: true },
   ),
   demoCodeFile(
-    "app/content/bloks/shared/site-mock-data.ts",
-    "src/app/content/bloks/shared/site-mock-data.ts",
+    "app/content/bloks/all-site-section/all-site-section.mock-data.ts",
+    "src/app/content/bloks/all-site-section/all-site-section.mock-data.ts",
+  ),
+  demoCodeFile(
+    "app/content/bloks/pinned-site-section/pinned-site-section.mock-data.ts",
+    "src/app/content/bloks/pinned-site-section/pinned-site-section.mock-data.ts",
   ),
   demoCodeFile(
     "components/bloks/all-sites-section.tsx",
@@ -30,8 +34,12 @@ export const pinnedSiteCodeFiles: DemoCodeFileSource[] = [
     { default: true },
   ),
   demoCodeFile(
-    "app/content/bloks/shared/site-mock-data.ts",
-    "src/app/content/bloks/shared/site-mock-data.ts",
+    "app/content/bloks/pinned-site-section/pinned-site-section.mock-data.ts",
+    "src/app/content/bloks/pinned-site-section/pinned-site-section.mock-data.ts",
+  ),
+  demoCodeFile(
+    "app/content/bloks/all-site-section/all-site-section.mock-data.ts",
+    "src/app/content/bloks/all-site-section/all-site-section.mock-data.ts",
   ),
   demoCodeFile(
     "components/bloks/pinned-sites-section.tsx",

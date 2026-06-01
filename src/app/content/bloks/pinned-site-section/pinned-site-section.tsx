@@ -1,10 +1,10 @@
 "use client";
 
+import { mockAllSites } from "@/app/content/bloks/all-site-section/all-site-section.mock-data";
 import {
   type SiteFavoritesResponse,
   initialPinnedSiteIds,
-  mockAllSites,
-} from "@/app/content/bloks/shared/site-mock-data";
+} from "@/app/content/bloks/pinned-site-section/pinned-site-section.mock-data";
 import { AllSitesSection } from "@/components/bloks/all-sites-section";
 import { PinnedSitesSection } from "@/components/bloks/pinned-sites-section";
 import { Button } from "@/components/ui/button";

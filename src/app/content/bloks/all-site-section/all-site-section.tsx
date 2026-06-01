@@ -4,7 +4,7 @@ import {
   type SiteFavoritesResponse,
   initialPinnedSiteIds,
   mockAllSites,
-} from "@/app/content/bloks/shared/site-mock-data";
+} from "@/app/content/bloks/all-site-section/all-site-section.mock-data";
 import { AllSitesSection } from "@/components/bloks/all-sites-section";
 import { Button } from "@/components/ui/button";
 import {
