@@ -5,6 +5,7 @@ import DemoTab from "@/components/demo-tab";
 import InstallationCodeBlock from "@/components/docsite/installation-code-block";
 import type { docsiteRegistry } from "@/lib/docsite/docsite-registry";
 import { loadFromRegistry } from "@/lib/docsite/load-from-registry";
+import { cn } from "@/lib/utils";
 import { notFound } from "next/navigation";
 import React, { type ComponentType } from "react";
 import type { ReactNode } from "react";
@@ -60,11 +61,13 @@ export default async function DemoPage({
                 code={entry.code}
                 component={componentDemo(
                   React.createElement(entry.Component as ComponentType<any>),
+                  component.wrapperClassName,
                 )}
                 componentName={name}
                 section="examples"
                 exampleId={component.component as string}
                 exampleTitle={title}
+                previewContentClassName={component.contentClassName}
               />
               {component.post}
             </div>
@@ -83,9 +86,11 @@ export default async function DemoPage({
         code={defaultEntry.code}
         component={componentDemo(
           React.createElement(defaultEntry.Component as ComponentType<any>),
+          preview.wrapperClassName,
         )}
         componentName={name}
         section="main"
+        previewContentClassName={preview.contentClassName}
       />
       {preview.post}
 
@@ -129,9 +134,9 @@ export default async function DemoPage({
   );
 }
 
-const componentDemo = (component: ReactNode) => {
+const componentDemo = (component: ReactNode, wrapperClassName?: string) => {
   return (
-    <div className="relative overflow-visible rounded-lg">
+    <div className={cn("relative rounded-lg overflow-visible", wrapperClassName)}>
       <Renderer>{component}</Renderer>
     </div>
   );

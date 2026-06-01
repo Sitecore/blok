@@ -351,7 +351,10 @@ export const rightSidebarMetadata: Record<string, RightSidebarMetadata> = {
       {
         id: "examples",
         title: "Examples",
-        children: [{ id: "editable-textarea", title: "Textarea" }],
+        children: [
+          { id: "editable-textarea", title: "Textarea" },
+          { id: "editable-error", title: "Editable with Error" },
+        ],
       },
     ],
   },
@@ -1094,24 +1097,7 @@ export const rightSidebarMetadata: Record<string, RightSidebarMetadata> = {
       {
         id: "examples",
         title: "Examples",
-        children: [
-          {
-            id: "sidebar-rhs-heading-with-tabs",
-            title: "Heading with Tabs",
-          },
-          {
-            id: "sidebar-rhs-brief",
-            title: "Brief",
-          },
-          {
-            id: "sidebar-rhs-brief-type",
-            title: "Brief Type",
-          },
-          {
-            id: "sidebar-rhs-content",
-            title: "Content",
-          },
-        ],
+        children: [{ id: "sidebar-rhs-fixed", title: "Fixed" }],
       },
     ],
   },
