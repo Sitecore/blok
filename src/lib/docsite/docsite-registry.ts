@@ -87,6 +87,7 @@ import DropdownMenuIconColorDemo from "@/app/content/ui/dropdown/dropdown-menu-i
 import DropdownMenuWithDescriptionDemo from "@/app/content/ui/dropdown/dropdown-menu-with-description";
 import EditableDemo from "@/app/content/ui/editable/editable";
 import EditableTextareaDemo from "@/app/content/ui/editable/editable-textarea";
+import EditableErrorDemo from "@/app/content/ui/editable/editable-error";
 import EmptyStatesNoSearchResultsDemo from "@/app/content/ui/empty-states/empty-states-no-search-results";
 import EmptyStatesNothingCreatedDemo from "@/app/content/ui/empty-states/empty-states-nothing-created";
 import EmptyStatesErrorDemo from "@/app/content/ui/empty-states/empty-states-error";
@@ -159,6 +160,7 @@ import SelectLargeListDemo from "@/app/content/ui/select/select-large-list";
 import SelectWithIconDemo from "@/app/content/ui/select/select-icon";
 import DisabledSelectDemo from "@/app/content/ui/select/select-disabled";
 import SelectReactDemo from "@/app/content/ui/select-react/select-react";
+import VirtualizedSelectDemo from "@/app/content/ui/select-react/virtualized-select";
 import SeparatorDemo from "@/app/content/ui/separator/separator";
 import SheetDemo from "@/app/content/ui/sheet/sheet";
 import SheetDirectionsDemo from "@/app/content/ui/sheet/sheet-directions";
@@ -226,15 +228,13 @@ import DashboardWidgetDemo from "@/app/content/bloks/dashboard-widget/dashboard-
 import DashboardWidgetWhiteBgLargeDemo from "@/app/content/bloks/dashboard-widget/dashboard-widget-white-bg-large";
 import DashboardWidgetGrayBgLargeDemo from "@/app/content/bloks/dashboard-widget/dashboard-widget-gray-bg-large";
 import PinnedSitesSectionDemo from "@/app/content/bloks/pinned-site-section/pinned-site-section";
-import PromptInputDemo from "@/app/content/bloks/prompt-input/prompt-input";
-import PromptInputFloatingDemo from "@/app/content/bloks/prompt-input/prompt-input-floating";
-import PromptInputQueuedDemo from "@/app/content/bloks/prompt-input/prompt-input-queued";
-import PromptInputQuestionsDemo from "@/app/content/bloks/prompt-input/prompt-input-questions";
+// TEMP: prompt-input disabled
+// import PromptInputDemo from "@/app/content/bloks/prompt-input/prompt-input";
+// import PromptInputFloatingDemo from "@/app/content/bloks/prompt-input/prompt-input-floating";
+// import PromptInputQueuedDemo from "@/app/content/bloks/prompt-input/prompt-input-queued";
+// import PromptInputQuestionsDemo from "@/app/content/bloks/prompt-input/prompt-input-questions";
 import SidebarRHSDemo from "@/app/content/bloks/sidebar-rhs/sidebar-rhs";
-import SidebarRHSHeadingWithTabsDemo from "@/app/content/bloks/sidebar-rhs/sidebar-rhs-heading-with-tabs";
-import SidebarRHSBriefDemo from "@/app/content/bloks/sidebar-rhs/sidebar-rhs-brief";
-import SidebarRHSBriefTypeDemo from "@/app/content/bloks/sidebar-rhs/sidebar-rhs-brief-type";
-import SidebarRHSContentDemo from "@/app/content/bloks/sidebar-rhs/sidebar-rhs-content";
+import SidebarRHSFixedDemo from "@/app/content/bloks/sidebar-rhs/sidebar-rhs-fixed";
 import SiteCardDemo from "@/app/content/bloks/site-card/site-card";
 import TopbarDemo from "@/app/content/bloks/topbar/topbar";
 
@@ -676,6 +676,11 @@ export const docsiteRegistry: Record<string, DocsiteRegistryEntry> = {
     path: "src/app/content/ui/editable/editable-textarea.tsx",
     component: EditableTextareaDemo,
   },
+  "editable-error": {
+    name: "editable-error",
+    path: "src/app/content/ui/editable/editable-error.tsx",
+    component: EditableErrorDemo,
+  },
   "empty-states-no-results": {
     name: "empty-states-no-results",
     path: "src/app/content/ui/empty-states/empty-states-no-search-results.tsx",
@@ -1081,6 +1086,11 @@ export const docsiteRegistry: Record<string, DocsiteRegistryEntry> = {
     path: "src/app/content/ui/select-react/select-react.tsx",
     component: SelectReactDemo,
   },
+  "virtualized-select": {
+    name: "virtualized-select",
+    path: "src/app/content/ui/select-react/virtualized-select.tsx",
+    component: VirtualizedSelectDemo,
+  },
   separator: {
     name: "separator",
     path: "src/app/content/ui/separator/separator.tsx",
@@ -1363,50 +1373,36 @@ export const docsiteRegistry: Record<string, DocsiteRegistryEntry> = {
     path: "src/app/content/bloks/pinned-site-section/pinned-site-section.tsx",
     component: PinnedSitesSectionDemo,
   },
-  "prompt-input": {
-    name: "prompt-input",
-    path: "src/app/content/bloks/prompt-input/prompt-input.tsx",
-    component: PromptInputDemo,
-  },
-  "prompt-input-floating": {
-    name: "prompt-input-floating",
-    path: "src/app/content/bloks/prompt-input/prompt-input-floating.tsx",
-    component: PromptInputFloatingDemo,
-  },
-  "prompt-input-queued": {
-    name: "prompt-input-queued",
-    path: "src/app/content/bloks/prompt-input/prompt-input-queued.tsx",
-    component: PromptInputQueuedDemo,
-  },
-  "prompt-input-questions": {
-    name: "prompt-input-questions",
-    path: "src/app/content/bloks/prompt-input/prompt-input-questions.tsx",
-    component: PromptInputQuestionsDemo,
-  },
+  // TEMP: prompt-input disabled
+  // "prompt-input": {
+  //   name: "prompt-input",
+  //   path: "src/app/content/bloks/prompt-input/prompt-input.tsx",
+  //   component: PromptInputDemo,
+  // },
+  // "prompt-input-floating": {
+  //   name: "prompt-input-floating",
+  //   path: "src/app/content/bloks/prompt-input/prompt-input-floating.tsx",
+  //   component: PromptInputFloatingDemo,
+  // },
+  // "prompt-input-queued": {
+  //   name: "prompt-input-queued",
+  //   path: "src/app/content/bloks/prompt-input/prompt-input-queued.tsx",
+  //   component: PromptInputQueuedDemo,
+  // },
+  // "prompt-input-questions": {
+  //   name: "prompt-input-questions",
+  //   path: "src/app/content/bloks/prompt-input/prompt-input-questions.tsx",
+  //   component: PromptInputQuestionsDemo,
+  // },
   "sidebar-rhs": {
     name: "sidebar-rhs",
     path: "src/app/content/bloks/sidebar-rhs/sidebar-rhs.tsx",
     component: SidebarRHSDemo,
   },
-  "sidebar-rhs-heading-with-tabs": {
-    name: "sidebar-rhs-heading-with-tabs",
-    path: "src/app/content/bloks/sidebar-rhs/sidebar-rhs-heading-with-tabs.tsx",
-    component: SidebarRHSHeadingWithTabsDemo,
-  },
-  "sidebar-rhs-brief": {
-    name: "sidebar-rhs-brief",
-    path: "src/app/content/bloks/sidebar-rhs/sidebar-rhs-brief.tsx",
-    component: SidebarRHSBriefDemo,
-  },
-  "sidebar-rhs-brief-type": {
-    name: "sidebar-rhs-brief-type",
-    path: "src/app/content/bloks/sidebar-rhs/sidebar-rhs-brief-type.tsx",
-    component: SidebarRHSBriefTypeDemo,
-  },
-  "sidebar-rhs-content": {
-    name: "sidebar-rhs-content",
-    path: "src/app/content/bloks/sidebar-rhs/sidebar-rhs-content.tsx",
-    component: SidebarRHSContentDemo,
+  "sidebar-rhs-fixed": {
+    name: "sidebar-rhs-fixed",
+    path: "src/app/content/bloks/sidebar-rhs/sidebar-rhs-fixed.tsx",
+    component: SidebarRHSFixedDemo,
   },
   "site-card": {
     name: "site-card",

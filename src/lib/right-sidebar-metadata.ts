@@ -351,7 +351,10 @@ export const rightSidebarMetadata: Record<string, RightSidebarMetadata> = {
       {
         id: "examples",
         title: "Examples",
-        children: [{ id: "editable-textarea", title: "Textarea" }],
+        children: [
+          { id: "editable-textarea", title: "Textarea" },
+          { id: "editable-error", title: "Editable with Error" },
+        ],
       },
     ],
   },
@@ -663,23 +666,24 @@ export const rightSidebarMetadata: Record<string, RightSidebarMetadata> = {
         "https://www.figma.com/design/x0CUbrC5Kjcuk64VPCnbgz/Blok-Components?m=auto&node-id=7069-16457&t=NScvPldB3fxBBWL8-1",
     },
   },
-  "prompt-input": {
-    links: {},
-    sections: [
-      { id: "preview", title: "Preview" },
-      { id: "installation", title: "Installation" },
-      { id: "usage", title: "Usage" },
-      {
-        id: "examples",
-        title: "Examples",
-        children: [
-          { id: "prompt-input-floating", title: "Floating" },
-          { id: "prompt-input-queued", title: "Queued" },
-          { id: "prompt-input-questions", title: "Questions" },
-        ],
-      },
-    ],
-  },
+  // TEMP: prompt-input disabled
+  // "prompt-input": {
+  //   links: {},
+  //   sections: [
+  //     { id: "preview", title: "Preview" },
+  //     { id: "installation", title: "Installation" },
+  //     { id: "usage", title: "Usage" },
+  //     {
+  //       id: "examples",
+  //       title: "Examples",
+  //       children: [
+  //         { id: "prompt-input-floating", title: "Floating" },
+  //         { id: "prompt-input-queued", title: "Queued" },
+  //         { id: "prompt-input-questions", title: "Questions" },
+  //       ],
+  //     },
+  //   ],
+  // },
   "radio-group": {
     links: {
       shadcn: "https://ui.shadcn.com/docs/components/radio-group",
@@ -750,6 +754,11 @@ export const rightSidebarMetadata: Record<string, RightSidebarMetadata> = {
       { id: "preview", title: "Preview" },
       { id: "installation", title: "Installation" },
       { id: "usage", title: "Usage" },
+      {
+        id: "examples",
+        title: "Examples",
+        children: [{ id: "virtualized-select", title: "Virtualized Select" }],
+      },
     ],
   },
   separator: {
@@ -1088,24 +1097,7 @@ export const rightSidebarMetadata: Record<string, RightSidebarMetadata> = {
       {
         id: "examples",
         title: "Examples",
-        children: [
-          {
-            id: "sidebar-rhs-heading-with-tabs",
-            title: "Heading with Tabs",
-          },
-          {
-            id: "sidebar-rhs-brief",
-            title: "Brief",
-          },
-          {
-            id: "sidebar-rhs-brief-type",
-            title: "Brief Type",
-          },
-          {
-            id: "sidebar-rhs-content",
-            title: "Content",
-          },
-        ],
+        children: [{ id: "sidebar-rhs-fixed", title: "Fixed" }],
       },
     ],
   },

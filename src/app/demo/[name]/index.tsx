@@ -72,7 +72,8 @@ import { allSite } from "@/app/demo/[name]/bloks/all-site";
 import { collaboration } from "@/app/demo/[name]/bloks/collaboration";
 import { dashboardWidget } from "@/app/demo/[name]/bloks/dashboard-widget";
 import { pinnedSite } from "@/app/demo/[name]/bloks/pinned-site";
-import { promptInput } from "@/app/demo/[name]/bloks/prompt-input";
+// TEMP: prompt-input disabled
+// import { promptInput } from "@/app/demo/[name]/bloks/prompt-input";
 import { sidebarRhs } from "@/app/demo/[name]/bloks/sidebar-rhs";
 import { siteCard } from "@/app/demo/[name]/bloks/site-card";
 
@@ -84,6 +85,10 @@ interface Demo {
     /** Blok demos: virtual file tree shown on the Code tab. */
     codeFiles?: DemoCodeFileSource[];
     post?: ReactNode | ReactElement;
+    /** Override DemoTab preview panel classes (e.g. remove padding for full-bleed layouts). */
+    contentClassName?: string;
+    /** Override the wrapper around the preview component. */
+    wrapperClassName?: string;
   };
   installation?: {
     pre?: ReactNode | ReactElement;
@@ -100,6 +105,8 @@ interface Demo {
       component: ReactNode | ReactElement;
       codeFiles?: DemoCodeFileSource[];
       post?: ReactNode | ReactElement;
+      contentClassName?: string;
+      wrapperClassName?: string;
     };
   };
 }
@@ -177,6 +184,7 @@ export const demos: { [name: string]: Demo } = {
   "site-card": siteCard,
   "pinned-site": pinnedSite,
   collaboration,
-  "prompt-input": promptInput,
+  // TEMP: prompt-input disabled
+  // "prompt-input": promptInput,
   "sidebar-rhs": sidebarRhs,
 };

@@ -42,6 +42,10 @@ export function getBlocks() {
 // Get Components
 export function getComponents() {
   return getRegistryItems()
-    .filter((component) => component.type === "registry:ui")
+    .filter(
+      (component) =>
+        component.type === "registry:ui" &&
+        component.name !== "virtualized-select",
+    )
     .sort((a, b) => a.title.localeCompare(b.title));
 }

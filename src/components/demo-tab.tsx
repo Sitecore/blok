@@ -5,6 +5,7 @@ import { DemoCodeExplorer } from "@/components/docsite/demo-code-explorer";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import type { LoadedDemoCodeFile } from "@/lib/docsite/demo-code-files";
 import { TELEMETRY_EVENTS, track } from "@/lib/telemetry";
+import { cn } from "@/lib/utils";
 import { usePathname } from "next/navigation";
 import { type ReactNode, useCallback, useRef } from "react";
 
@@ -25,6 +26,8 @@ interface DemoTabProps {
   exampleId?: string;
   /** Telemetry: example title. */
   exampleTitle?: string;
+  /** Override preview panel classes (merged with defaults). */
+  previewContentClassName?: string;
 }
 
 export default function DemoTab({
@@ -37,6 +40,7 @@ export default function DemoTab({
   section = "main",
   exampleId,
   exampleTitle,
+  previewContentClassName,
 }: DemoTabProps) {
   const pathname = usePathname();
   const lastPreviewInteractionBySectionRef = useRef<Record<string, number>>({});
@@ -106,7 +110,7 @@ export default function DemoTab({
     <Tabs
       id={id}
       defaultValue={defaultTab}
-      className="gap-0"
+      className="gap-0 overflow-visible"
       onValueChange={handleTabChange}
     >
       <TabsList className="w-full rounded-none justify-start">
@@ -125,10 +129,17 @@ export default function DemoTab({
       </TabsList>
       <TabsContent
         value="preview"
-        className="min-h-[200px] p-8 bg-subtle-bg flex items-center justify-center rounded-b-md"
+        className={cn(
+          "min-h-[200px] overflow-visible p-8 bg-subtle-bg flex items-center justify-center rounded-b-md",
+          previewContentClassName,
+        )}
       >
         <div
-          className="min-h-[200px] w-full flex items-center justify-center"
+          className={cn(
+            "min-h-[200px] w-full overflow-visible flex items-center justify-center",
+            previewContentClassName?.includes("p-0") &&
+              "h-full min-h-0 items-stretch justify-start",
+          )}
           onClick={() => handlePreviewInteraction("click")}
           onFocusCapture={() => handlePreviewInteraction("focus")}
           role="presentation"

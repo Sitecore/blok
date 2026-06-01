@@ -43,7 +43,8 @@ import PinInputThumb from "@/components/component-thumbs/pin-input";
 import PinnedSiteThumb from "@/components/component-thumbs/pinned-site";
 import PopoverThumb from "@/components/component-thumbs/popover";
 import ProgressThumb from "@/components/component-thumbs/progress";
-import PromptInputThumb from "@/components/component-thumbs/prompt-input";
+// TEMP: prompt-input disabled
+// import PromptInputThumb from "@/components/component-thumbs/prompt-input";
 import RadioThumb from "@/components/component-thumbs/radio";
 import RadioGroupThumb from "@/components/component-thumbs/radio-group";
 import ResizableThumb from "@/components/component-thumbs/resizable";
@@ -108,7 +109,8 @@ const componentThumbnails: Record<
   "navigation-menu": NavigationMenuThumb,
   pagination: PaginationThumb,
   popover: PopoverThumb,
-  "prompt-input": PromptInputThumb,
+  // TEMP: prompt-input disabled
+  // "prompt-input": PromptInputThumb,
   progress: ProgressThumb,
   radio: RadioThumb,
   "radio-group": RadioGroupThumb,
