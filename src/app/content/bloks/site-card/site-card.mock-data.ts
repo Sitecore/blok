@@ -1,4 +1,4 @@
-import type { SiteFavoritesResponse } from "@/app/content/bloks/pinned-site-section/pinned-site-section.mock-data";
+import type { SiteFavoritesResponse } from "@/app/content/bloks/all-site-section/all-site-section.mock-data";
 
 export const mockSite: SiteFavoritesResponse = {
   id: "site-demo-001",

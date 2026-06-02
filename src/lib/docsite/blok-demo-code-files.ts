@@ -18,10 +18,6 @@ export const allSiteCodeFiles: DemoCodeFileSource[] = [
     "src/app/content/bloks/all-site-section/all-site-section.mock-data.ts",
   ),
   demoCodeFile(
-    "app/content/bloks/pinned-site-section/pinned-site-section.mock-data.ts",
-    "src/app/content/bloks/pinned-site-section/pinned-site-section.mock-data.ts",
-  ),
-  demoCodeFile(
     "components/bloks/all-sites-section.tsx",
     "src/components/bloks/all-sites-section.tsx",
   ),
