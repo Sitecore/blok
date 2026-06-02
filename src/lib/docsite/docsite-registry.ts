@@ -228,6 +228,7 @@ import DashboardWidgetGrayBgLargeDemo from "@/app/content/bloks/dashboard-widget
 import PinnedSitesSectionDemo from "@/app/content/bloks/pinned-site-section/pinned-site-section";
 import PromptInputDemo from "@/app/content/bloks/prompt-input/prompt-input";
 import PromptInputFloatingDemo from "@/app/content/bloks/prompt-input/prompt-input-floating";
+import PromptInputFloatingVercelDemo from "@/app/content/bloks/prompt-input/prompt-input-floating-vercel";
 import PromptInputQuestionsVercelDemo from "@/app/content/bloks/prompt-input/prompt-input-questions-vercel";
 import PromptInputQueuedDemo from "@/app/content/bloks/prompt-input/prompt-input-queued";
 import PromptInputQueuedVercelDemo from "@/app/content/bloks/prompt-input/prompt-input-queued-vercel";
@@ -1374,6 +1375,11 @@ export const docsiteRegistry: Record<string, DocsiteRegistryEntry> = {
     name: "prompt-input-floating",
     path: "src/app/content/bloks/prompt-input/prompt-input-floating.tsx",
     component: PromptInputFloatingDemo,
+  },
+  "prompt-input-floating-vercel": {
+    name: "prompt-input-floating-vercel",
+    path: "src/app/content/bloks/prompt-input/prompt-input-floating-vercel.tsx",
+    component: PromptInputFloatingVercelDemo,
   },
   "prompt-input-queued": {
     name: "prompt-input-queued",

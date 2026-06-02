@@ -29,6 +29,9 @@ export const promptInput = {
     Floating: {
       component: "prompt-input-floating",
     },
+    FloatingVercelAI: {
+      component: "prompt-input-floating-vercel",
+    },
     Queued: {
       component: "prompt-input-queued",
     },

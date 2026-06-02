@@ -100,6 +100,11 @@ import {
   mdiWeb,
 } from "@mdi/js";
 import { memo, useCallback, useMemo, useRef, useState } from "react";
+import {
+  PROMPT_INPUT_DEMO_MODELS,
+  handlePromptInputAudioRecorded,
+  usePromptInputVercelChat,
+} from "./prompt-input-vercel-demo-shared";
 
 // ---------------------------------------------------------------------------
 // PromptInputSelection — a non-file picked item (agent / flow / tool / context)
@@ -691,39 +696,7 @@ const PromptInputAttachmentsDisplay = () => {
   );
 };
 
-const models = [
-  { id: "gpt-4o", name: "GPT-4o" },
-  { id: "claude-opus-4-20250514", name: "Claude 4 Opus" },
-];
-
-/**
- * Fallback handler for browsers that don't support Web Speech API (Firefox, Safari).
- * This function receives recorded audio and should send it to a transcription service.
- * Example uses OpenAI Whisper API - replace with your preferred service.
- */
-const handleAudioRecorded = async (audioBlob: Blob): Promise<string> => {
-  const formData = new FormData();
-  formData.append("file", audioBlob, "audio.webm");
-  formData.append("model", "whisper-1");
-
-  const response = await fetch(
-    "https://api.openai.com/v1/audio/transcriptions",
-    {
-      body: formData,
-      headers: {
-        Authorization: `Bearer ${process.env.NEXT_PUBLIC_OPENAI_API_KEY}`,
-      },
-      method: "POST",
-    },
-  );
-
-  if (!response.ok) {
-    throw new Error("Transcription failed");
-  }
-
-  const data = (await response.json()) as { text?: string };
-  return data.text ?? "";
-};
+const models = PROMPT_INPUT_DEMO_MODELS;
 
 export default function PromptInputQueuedVercelDemo() {
   const [text, setText] = useState<string>("");
@@ -736,6 +709,7 @@ export default function PromptInputQueuedVercelDemo() {
     useState<SpeechInputVoiceUiPhase>("idle");
   const formRef = useRef<HTMLFormElement>(null);
   const speechRef = useRef<SpeechInputHandle>(null);
+  const { submitPrompt, status } = usePromptInputVercelChat();
 
   const handleRemoveTodo = useCallback((id: string) => {
     setTodos((prev) => prev.filter((todo) => todo.id !== id));
@@ -760,11 +734,13 @@ export default function PromptInputQueuedVercelDemo() {
   }, []);
 
   const handleSubmit = (message: PromptInputMessage) => {
-    const hasText = Boolean(message.text);
-    const hasAttachments = Boolean(message.files?.length);
-    const hasSelections = selections.length > 0;
-
-    if (!(hasText || hasAttachments || hasSelections)) {
+    if (
+      !submitPrompt(message, {
+        model,
+        useWebSearch,
+        selections,
+      })
+    ) {
       return;
     }
 
@@ -971,7 +947,7 @@ export default function PromptInputQueuedVercelDemo() {
               <SpeechInput
                 ref={speechRef}
                 integration="prompt"
-                onAudioRecorded={handleAudioRecorded}
+                onAudioRecorded={handlePromptInputAudioRecorded}
                 onTranscriptionChange={handleTranscriptionChange}
                 onVoiceSessionComplete={() => {
                   formRef.current?.requestSubmit();
@@ -1003,7 +979,10 @@ export default function PromptInputQueuedVercelDemo() {
                   <Spinner className="text-current" />
                 </Button>
               ) : (
-                <PromptInputSubmit />
+                <PromptInputSubmit
+                  disabled={!text && !status}
+                  status={status}
+                />
               )}
             </div>
           </PromptInputFooter>

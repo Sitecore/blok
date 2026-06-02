@@ -1,6 +1,7 @@
 "use client";
 
 import { type VariantProps, cva } from "class-variance-authority";
+import { forwardRef } from "react";
 import type * as React from "react";
 
 import { Button } from "@/components/ui/button";
@@ -148,12 +149,13 @@ function InputGroupInput({
   );
 }
 
-function InputGroupTextarea({
-  className,
-  ...props
-}: React.ComponentProps<"textarea">) {
+const InputGroupTextarea = forwardRef<
+  HTMLTextAreaElement,
+  React.ComponentProps<"textarea">
+>(function InputGroupTextarea({ className, ...props }, ref) {
   return (
     <Textarea
+      ref={ref}
       data-slot="input-group-control"
       className={cn(
         "flex-1 resize-none rounded-none border-0 bg-transparent py-3 shadow-none focus-visible:ring-0 dark:bg-transparent",
@@ -162,7 +164,7 @@ function InputGroupTextarea({
       {...props}
     />
   );
-}
+});
 
 export {
   InputGroup,

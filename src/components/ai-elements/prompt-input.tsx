@@ -59,6 +59,7 @@ import type {
   FormEvent,
   FormEventHandler,
   HTMLAttributes,
+  InputEventHandler,
   KeyboardEventHandler,
   PropsWithChildren,
   ReactNode,
@@ -71,6 +72,7 @@ import {
   useCallback,
   useContext,
   useEffect,
+  useLayoutEffect,
   useMemo,
   useRef,
   useState,
@@ -505,10 +507,31 @@ export interface PromptInputMessage {
   files: FileUIPart[];
 }
 
+export type PromptInputVariant = "default" | "floating";
+
+const SINGLE_LINE_HEIGHT = 32;
+
+interface PromptInputLayoutContextValue {
+  variant: PromptInputVariant;
+  isMultiline: boolean;
+  setIsMultiline: (value: boolean) => void;
+  effectiveMultiline: boolean;
+  hasFiles: boolean;
+  textareaRef: RefObject<HTMLTextAreaElement | null>;
+}
+
+const PromptInputLayoutContext =
+  createContext<PromptInputLayoutContextValue | null>(null);
+
+const useOptionalPromptInputLayout = () => useContext(PromptInputLayoutContext);
+
 export type PromptInputProps = Omit<
   HTMLAttributes<HTMLFormElement>,
   "onSubmit" | "onError"
 > & {
+  variant?: PromptInputVariant;
+  /** In floating mode, force column layout (e.g. when selection chips are present). */
+  floatingColumn?: boolean;
   // e.g., "image/*" or leave undefined for any
   accept?: string;
   multiple?: boolean;
@@ -543,6 +566,8 @@ export const PromptInput = forwardRef<HTMLFormElement, PromptInputProps>(
       onError,
       onSubmit,
       children,
+      variant = "default",
+      floatingColumn = false,
       ...props
     },
     ref,
@@ -569,6 +594,12 @@ export const PromptInput = forwardRef<HTMLFormElement, PromptInputProps>(
     // ----- Local attachments (only used when no provider)
     const [items, setItems] = useState<(FileUIPart & { id: string })[]>([]);
     const files = usingProvider ? controller.attachments.files : items;
+    const [isMultiline, setIsMultiline] = useState(false);
+    const textareaRef = useRef<HTMLTextAreaElement | null>(null);
+    const hasFiles = files.length > 0;
+    const effectiveMultiline =
+      variant === "floating" && (isMultiline || floatingColumn);
+    const floatingSingleLine = variant === "floating" && !effectiveMultiline;
 
     // ----- Local referenced sources (always local to PromptInput)
     const [referencedSources, setReferencedSources] = useState<
@@ -919,6 +950,9 @@ export const PromptInput = forwardRef<HTMLFormElement, PromptInputProps>(
               if (usingProvider) {
                 controller.textInput.clear();
               }
+              if (variant === "floating") {
+                setIsMultiline(false);
+              }
             } catch {
               // Don't clear on error - user may want to retry
             }
@@ -929,11 +963,26 @@ export const PromptInput = forwardRef<HTMLFormElement, PromptInputProps>(
               controller.textInput.clear();
             }
           }
+          if (variant === "floating") {
+            setIsMultiline(false);
+          }
         } catch {
           // Don't clear on error - user may want to retry
         }
       },
-      [usingProvider, controller, files, onSubmit, clear],
+      [usingProvider, controller, files, onSubmit, clear, variant],
+    );
+
+    const layoutCtx = useMemo<PromptInputLayoutContextValue>(
+      () => ({
+        variant,
+        isMultiline,
+        setIsMultiline,
+        effectiveMultiline,
+        hasFiles,
+        textareaRef,
+      }),
+      [variant, isMultiline, effectiveMultiline, hasFiles],
     );
 
     // Render with or without local provider
@@ -955,7 +1004,19 @@ export const PromptInput = forwardRef<HTMLFormElement, PromptInputProps>(
           ref={setFormRef}
           {...props}
         >
-          <InputGroup className="overflow-hidden border-border">
+          <InputGroup
+            className={cn(
+              "overflow-hidden border-border",
+              floatingSingleLine &&
+                cn(
+                  "h-auto! min-h-0 gap-2 rounded-xl border bg-white shadow-lg dark:bg-input/30",
+                  "flex-row items-center px-4",
+                  hasFiles ? "pb-3 pt-0" : "py-3",
+                  hasFiles && "flex-wrap",
+                ),
+              variant === "floating" && effectiveMultiline && "flex-col",
+            )}
+          >
             {children}
           </InputGroup>
         </form>
@@ -968,10 +1029,16 @@ export const PromptInput = forwardRef<HTMLFormElement, PromptInputProps>(
       </LocalReferencedSourcesContext.Provider>
     );
 
+    const withLayout = (
+      <PromptInputLayoutContext.Provider value={layoutCtx}>
+        {withReferencedSources}
+      </PromptInputLayoutContext.Provider>
+    );
+
     // Always provide LocalAttachmentsContext so children get validated add function
     return (
       <LocalAttachmentsContext.Provider value={attachmentsCtx}>
-        {withReferencedSources}
+        {withLayout}
       </LocalAttachmentsContext.Provider>
     );
   },
@@ -994,6 +1061,7 @@ export type PromptInputTextareaProps = ComponentProps<
 
 export const PromptInputTextarea = ({
   onChange,
+  onInput,
   onKeyDown,
   className,
   placeholder = "What would you like to know?",
@@ -1001,7 +1069,56 @@ export const PromptInputTextarea = ({
 }: PromptInputTextareaProps) => {
   const controller = useOptionalPromptInputController();
   const attachments = usePromptInputAttachments();
+  const layout = useOptionalPromptInputLayout();
   const [isComposing, setIsComposing] = useState(false);
+  const inlineWidthRef = useRef(0);
+
+  const floatingMaxHeight = 120;
+
+  useLayoutEffect(() => {
+    if (layout?.variant !== "floating" || !layout.textareaRef.current) {
+      return;
+    }
+    const el = layout.textareaRef.current;
+    el.style.height = "auto";
+    el.style.height = `${Math.min(el.scrollHeight, floatingMaxHeight)}px`;
+  }, [layout?.variant, layout?.textareaRef]);
+
+  const handleInput: InputEventHandler<HTMLTextAreaElement> = useCallback(
+    (e) => {
+      onInput?.(e);
+
+      if (layout?.variant !== "floating") {
+        return;
+      }
+
+      const el = e.currentTarget;
+      el.style.height = "auto";
+      el.style.height = `${Math.min(el.scrollHeight, floatingMaxHeight)}px`;
+
+      if (!layout.effectiveMultiline) {
+        if (el.offsetWidth > 0) {
+          inlineWidthRef.current = el.offsetWidth;
+        }
+        if (el.scrollHeight > SINGLE_LINE_HEIGHT) {
+          layout.setIsMultiline(true);
+        }
+      } else if (inlineWidthRef.current > 0) {
+        const savedWidth = el.style.width;
+        el.style.width = `${inlineWidthRef.current}px`;
+        el.style.height = "auto";
+        const heightAtInlineWidth = el.scrollHeight;
+        el.style.width = savedWidth;
+        el.style.height = "auto";
+        el.style.height = `${Math.min(el.scrollHeight, floatingMaxHeight)}px`;
+
+        if (heightAtInlineWidth <= SINGLE_LINE_HEIGHT) {
+          layout.setIsMultiline(false);
+        }
+      }
+    },
+    [layout, onInput],
+  );
 
   const handleKeyDown: KeyboardEventHandler<HTMLTextAreaElement> = useCallback(
     (e) => {
@@ -1094,10 +1211,22 @@ export const PromptInputTextarea = ({
 
   return (
     <InputGroupTextarea
-      className={cn("field-sizing-content max-h-48 min-h-6", className)}
+      ref={layout?.textareaRef}
+      className={cn(
+        "field-sizing-content max-h-48 min-h-6",
+        layout?.variant === "floating" &&
+          !layout.effectiveMultiline &&
+          "max-h-[120px] min-h-6 min-w-0 flex-1 py-0",
+        layout?.variant === "floating" &&
+          layout.effectiveMultiline &&
+          "max-h-[120px] px-3 py-3",
+        className,
+      )}
       name="message"
+      rows={layout?.variant === "floating" ? 1 : undefined}
       onCompositionEnd={handleCompositionEnd}
       onCompositionStart={handleCompositionStart}
+      onInput={handleInput}
       onKeyDown={handleKeyDown}
       onPaste={handlePaste}
       placeholder={placeholder}
@@ -1114,17 +1243,52 @@ export type PromptInputHeaderProps = Omit<
 
 export const PromptInputHeader = ({
   className,
+  children,
   ...props
-}: PromptInputHeaderProps) => (
-  <InputGroupAddon
-    align="block-end"
-    className={cn(
-      "order-first flex-wrap gap-1 empty:hidden empty:p-0",
-      className,
-    )}
-    {...props}
-  />
-);
+}: PromptInputHeaderProps) => {
+  const layout = useOptionalPromptInputLayout();
+  const variant = layout?.variant ?? "default";
+  const hasFiles = layout?.hasFiles ?? false;
+  const effectiveMultiline = layout?.effectiveMultiline ?? false;
+  const floatingSingleLine = variant === "floating" && !effectiveMultiline;
+
+  if (floatingSingleLine && !hasFiles) {
+    return null;
+  }
+
+  if (floatingSingleLine && hasFiles) {
+    return (
+      <div
+        data-slot="prompt-input-header"
+        className={cn(
+          "order-first w-full min-w-full shrink-0 basis-full pt-3",
+          className,
+        )}
+        {...props}
+      >
+        {children}
+      </div>
+    );
+  }
+
+  return (
+    <InputGroupAddon
+      align={
+        variant === "floating" && effectiveMultiline
+          ? "block-start"
+          : "block-end"
+      }
+      className={cn(
+        "order-first flex-wrap gap-1 empty:hidden empty:p-0",
+        variant === "floating" && effectiveMultiline && "px-3 pt-3",
+        className,
+      )}
+      {...props}
+    >
+      {children}
+    </InputGroupAddon>
+  );
+};
 
 export type PromptInputFooterProps = Omit<
   ComponentProps<typeof InputGroupAddon>,
@@ -1134,10 +1298,90 @@ export type PromptInputFooterProps = Omit<
 export const PromptInputFooter = ({
   className,
   ...props
-}: PromptInputFooterProps) => (
-  <InputGroupAddon
-    align="block-end"
-    className={cn("justify-between gap-1", className)}
+}: PromptInputFooterProps) => {
+  const layout = useOptionalPromptInputLayout();
+  const variant = layout?.variant ?? "default";
+  const effectiveMultiline = layout?.effectiveMultiline ?? false;
+  const floatingSingleLine = variant === "floating" && !effectiveMultiline;
+
+  if (floatingSingleLine) {
+    return (
+      <InputGroupAddon
+        align="inline-end"
+        className={cn("shrink-0 gap-2 py-0 pr-0 has-[>button]:mr-0", className)}
+        {...props}
+      />
+    );
+  }
+
+  return (
+    <InputGroupAddon
+      align="block-end"
+      className={cn(
+        "justify-between gap-1",
+        variant === "floating" && effectiveMultiline && "px-3 pb-3 pt-2",
+        className,
+      )}
+      {...props}
+    />
+  );
+};
+
+export type PromptInputToolbarProps = HTMLAttributes<HTMLDivElement> & {
+  /**
+   * When true, visible only in floating single-line layout (inline row).
+   * When false, visible in default layout and floating multiline layout.
+   */
+  inline?: boolean;
+};
+
+export const PromptInputToolbar = ({
+  inline = false,
+  className,
+  ...props
+}: PromptInputToolbarProps) => {
+  const layout = useOptionalPromptInputLayout();
+  const variant = layout?.variant ?? "default";
+  const effectiveMultiline = layout?.effectiveMultiline ?? false;
+
+  if (variant === "floating") {
+    if (inline && effectiveMultiline) return null;
+    if (!inline && !effectiveMultiline) return null;
+  } else if (inline) {
+    return null;
+  }
+
+  if (inline) {
+    return (
+      <InputGroupAddon
+        align="inline-start"
+        className={cn(
+          "shrink-0 gap-1.5 py-0 pl-0 has-[>button]:ml-0",
+          className,
+        )}
+        {...props}
+      />
+    );
+  }
+
+  return (
+    <div
+      data-slot="prompt-input-toolbar"
+      className={cn("flex min-w-0 items-center gap-1", className)}
+      {...props}
+    />
+  );
+};
+
+export type PromptInputActionsProps = HTMLAttributes<HTMLDivElement>;
+
+export const PromptInputActions = ({
+  className,
+  ...props
+}: PromptInputActionsProps) => (
+  <div
+    data-slot="prompt-input-actions"
+    className={cn("flex shrink-0 items-center gap-2", className)}
     {...props}
   />
 );

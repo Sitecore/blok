@@ -69,7 +69,6 @@ import {
 import { Spinner } from "@/components/ui/spinner";
 import { Icon } from "@/lib/icon";
 import { cn } from "@/lib/utils";
-import { useChat } from "@ai-sdk/react";
 import {
   mdiAccountGroup,
   mdiAccountOutline,
@@ -100,6 +99,11 @@ import {
 import type { UIMessage } from "ai";
 import { GlobeIcon } from "lucide-react";
 import { useCallback, useMemo, useRef, useState } from "react";
+import {
+  PROMPT_INPUT_DEMO_MODELS,
+  handlePromptInputAudioRecorded,
+  usePromptInputVercelChat,
+} from "./prompt-input-vercel-demo-shared";
 
 /** Seed thread so the demo opens with example user prompts and assistant replies. */
 const DEMO_INITIAL_MESSAGES: UIMessage[] = [
@@ -660,39 +664,7 @@ const PromptInputAttachmentsDisplay = () => {
   );
 };
 
-const models = [
-  { id: "gpt-4o", name: "GPT-4o" },
-  { id: "claude-opus-4-20250514", name: "Claude 4 Opus" },
-];
-
-/**
- * Fallback handler for browsers that don't support Web Speech API (Firefox, Safari).
- * This function receives recorded audio and should send it to a transcription service.
- * Example uses OpenAI Whisper API - replace with your preferred service.
- */
-const handleAudioRecorded = async (audioBlob: Blob): Promise<string> => {
-  const formData = new FormData();
-  formData.append("file", audioBlob, "audio.webm");
-  formData.append("model", "whisper-1");
-
-  const response = await fetch(
-    "https://api.openai.com/v1/audio/transcriptions",
-    {
-      body: formData,
-      headers: {
-        Authorization: `Bearer ${process.env.NEXT_PUBLIC_OPENAI_API_KEY}`,
-      },
-      method: "POST",
-    },
-  );
-
-  if (!response.ok) {
-    throw new Error("Transcription failed");
-  }
-
-  const data = (await response.json()) as { text?: string };
-  return data.text ?? "";
-};
+const models = PROMPT_INPUT_DEMO_MODELS;
 
 const InputDemo = () => {
   const [text, setText] = useState<string>("");
@@ -704,9 +676,9 @@ const InputDemo = () => {
   const formRef = useRef<HTMLFormElement>(null);
   const speechRef = useRef<SpeechInputHandle>(null);
 
-  const { messages, status, sendMessage } = useChat({
-    messages: DEMO_INITIAL_MESSAGES,
-  });
+  const { messages, submitPrompt, status } = usePromptInputVercelChat(
+    DEMO_INITIAL_MESSAGES,
+  );
 
   const addSelection = (selection: PromptInputSelection) => {
     setSelections((prev) =>
@@ -727,27 +699,16 @@ const InputDemo = () => {
   }, []);
 
   const handleSubmit = (message: PromptInputMessage) => {
-    const hasText = Boolean(message.text);
-    const hasAttachments = Boolean(message.files?.length);
-    const hasSelections = selections.length > 0;
-
-    if (!(hasText || hasAttachments || hasSelections)) {
+    if (
+      !submitPrompt(message, {
+        model,
+        useWebSearch,
+        selections,
+      })
+    ) {
       return;
     }
 
-    sendMessage(
-      {
-        text: message.text || "Sent with attachments",
-        files: message.files,
-      },
-      {
-        body: {
-          model: model,
-          webSearch: useWebSearch,
-          selections: selections.map(({ id, label }) => ({ id, label })),
-        },
-      },
-    );
     setText("");
   };
 
@@ -881,7 +842,7 @@ const InputDemo = () => {
               <SpeechInput
                 ref={speechRef}
                 integration="prompt"
-                onAudioRecorded={handleAudioRecorded}
+                onAudioRecorded={handlePromptInputAudioRecorded}
                 onTranscriptionChange={handleTranscriptionChange}
                 onVoiceSessionComplete={() => {
                   formRef.current?.requestSubmit();

@@ -1,8 +1,7 @@
 "use client";
 
-// Vercel-style `ai-elements` PromptInput with the same "Questions" layout as
-// `prompt-input-questions.tsx` (static panel above the input, with overlap).
-// Does not use `queue.tsx` — that primitive is for queued prompts.
+// Vercel-style `ai-elements` PromptInput with the same floating layout as
+// `prompt-input-floating.tsx` (canvas-bottom input + chat card with overlap).
 
 import {
   Attachment,
@@ -18,6 +17,7 @@ import {
   PromptInputActionMenu,
   PromptInputActionMenuContent,
   PromptInputActionMenuTrigger,
+  PromptInputActions,
   PromptInputBody,
   PromptInputButton,
   PromptInputFooter,
@@ -30,6 +30,7 @@ import {
   PromptInputSelectValue,
   PromptInputSubmit,
   PromptInputTextarea,
+  PromptInputToolbar,
   PromptInputTools,
   usePromptInputAttachments,
 } from "@/components/ai-elements/prompt-input";
@@ -40,6 +41,11 @@ import {
 } from "@/components/ai-elements/speech-input";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import {
+  Collapsible,
+  CollapsibleContent,
+  CollapsibleTrigger,
+} from "@/components/ui/collapsible";
 import {
   DropdownMenuItem,
   DropdownMenuPortal,
@@ -69,6 +75,7 @@ import {
   mdiAt,
   mdiBugOutline,
   mdiChartLine,
+  mdiChevronDown,
   mdiCircleOutline,
   mdiClose,
   mdiDatabaseOutline,
@@ -90,17 +97,14 @@ import {
   mdiTextBoxSearch,
   mdiWeb,
 } from "@mdi/js";
+import type { ChatStatus } from "ai";
 import { useCallback, useMemo, useRef, useState } from "react";
 import {
   PROMPT_INPUT_DEMO_MODELS,
+  type PromptInputSubmitContext,
   handlePromptInputAudioRecorded,
   usePromptInputVercelChat,
 } from "./prompt-input-vercel-demo-shared";
-
-// ---------------------------------------------------------------------------
-// PromptInputSelection — a non-file picked item (agent / flow / tool / context)
-// shown as an inline chip and sent in the API body alongside text + files.
-// ---------------------------------------------------------------------------
 
 type PromptInputSelection = {
   id: string;
@@ -108,12 +112,6 @@ type PromptInputSelection = {
   iconPath?: string;
   iconClassName?: string;
 };
-
-// ---------------------------------------------------------------------------
-// Attach menu (dropdown) demo data, types, and helpers — duplicated from the
-// floating prompt input so the "+" menu has the same Agents / Flows / Tools /
-// Context submenus.
-// ---------------------------------------------------------------------------
 
 const promptInputAttachSubTriggerClass =
   "gap-3 py-2.5 pl-2.5 pr-1 [&>svg:first-child]:size-[14px] [&>svg:first-child]:text-muted-foreground";
@@ -445,7 +443,6 @@ function AttachMenuCategorySub({
   );
 }
 
-// Fixed-width chip so toolbar controls don't shift around as chips appear.
 const SELECTION_CHIP_WIDTH_PX = 140;
 const SELECTION_OVERFLOW_CHIP_WIDTH_PX = 36;
 const SELECTION_MAX_VISIBLE = 2;
@@ -588,18 +585,6 @@ function SelectionList({
   );
 }
 
-const surveyQuestion =
-  "This is the question that is being asked by the AI… or is it?";
-
-const surveyAnswers: readonly { id: string; label: string }[] = [
-  { id: "a", label: "This is the first response to the question" },
-  { id: "b", label: "This is the second response to the question" },
-  { id: "c", label: "This is the third response to the question" },
-];
-
-/** Vertical overlap between the question panel and prompt (px). */
-const QUESTION_PANEL_OVERLAP_PX = 20;
-
 const PromptInputAttachmentsDisplay = () => {
   const attachments = usePromptInputAttachments();
 
@@ -626,22 +611,63 @@ const PromptInputAttachmentsDisplay = () => {
 
 const models = PROMPT_INPUT_DEMO_MODELS;
 
-export default function PromptInputQuestionsVercelDemo() {
+const COLUMN_WIDTH_PX = 576;
+
+type ChatMessage = {
+  id: string;
+  role: "user" | "assistant";
+  text: string;
+};
+
+const initialMessages: ChatMessage[] = [
+  {
+    id: "1",
+    role: "user",
+    text: "Edit this image to be more warm in tone",
+  },
+  {
+    id: "2",
+    role: "assistant",
+    text: "Sure thing!\nI will now edit this image to be more warm in tone!",
+  },
+  {
+    id: "3",
+    role: "user",
+    text: "Can you replace the font with something Serif?",
+  },
+  {
+    id: "4",
+    role: "assistant",
+    text: "Of course! I will now replace the font with the Serif font \u2018Georgia\u2019.",
+  },
+];
+
+function FloatingVercelPromptInput({
+  className,
+  style,
+  placeholder,
+  onSubmitMessage,
+  submitPrompt,
+  status,
+}: {
+  className?: string;
+  style?: React.ComponentProps<typeof PromptInput>["style"];
+  placeholder: string;
+  onSubmitMessage?: (text: string) => void;
+  submitPrompt: (
+    message: PromptInputMessage,
+    context: PromptInputSubmitContext,
+  ) => boolean;
+  status?: ChatStatus;
+}) {
   const [text, setText] = useState<string>("");
   const [model, setModel] = useState<string>(models[0].id);
   const [useWebSearch, setUseWebSearch] = useState<boolean>(false);
   const [selections, setSelections] = useState<PromptInputSelection[]>([]);
-  const [skipped, setSkipped] = useState(false);
-  const [selectedAnswerId, setSelectedAnswerId] = useState<string | null>(
-    surveyAnswers[0]?.id ?? null,
-  );
   const [voiceUiPhase, setVoiceUiPhase] =
     useState<SpeechInputVoiceUiPhase>("idle");
   const formRef = useRef<HTMLFormElement>(null);
   const speechRef = useRef<SpeechInputHandle>(null);
-  const { submitPrompt, status } = usePromptInputVercelChat();
-
-  const showQuestionPanel = !skipped;
 
   const addSelection = (selection: PromptInputSelection) => {
     setSelections((prev) =>
@@ -672,6 +698,7 @@ export default function PromptInputQuestionsVercelDemo() {
       return;
     }
 
+    onSubmitMessage?.(message.text ?? "");
     setText("");
   };
 
@@ -680,239 +707,295 @@ export default function PromptInputQuestionsVercelDemo() {
   }, []);
 
   return (
-    <div
-      className="mx-auto flex h-[min(32rem,75vh)] w-full min-w-0 flex-col"
-      style={{ width: "48rem", maxWidth: "100%" }}
+    <PromptInput
+      ref={formRef}
+      variant="floating"
+      floatingColumn={selections.length > 0}
+      onSubmit={handleSubmit}
+      style={style}
+      className={cn("w-full", className)}
+      globalDrop
+      multiple
     >
-      <div className="min-h-0 flex-1" aria-hidden />
-      <div className="relative isolate flex shrink-0 flex-col">
-        {showQuestionPanel ? (
-          <div
-            className={cn(
-              "relative z-0 overflow-hidden rounded-t-xl rounded-b-none border border-border border-b-0 bg-background p-0 shadow-none",
-            )}
-            style={{
-              width: "calc(100% + 2px)",
-              maxWidth: "calc(100% + 2px)",
-              marginLeft: -1,
-              marginRight: -1,
-            }}
-          >
-            <div className="flex w-full min-w-0 flex-col gap-3 px-4 pt-3 pb-4">
-              <div className="flex min-w-0 items-center justify-between gap-3">
-                <span className="min-w-0 text-sm font-semibold text-foreground">
-                  Questions
-                </span>
-                <button
-                  type="button"
-                  onClick={() => setSkipped(true)}
-                  className={cn(
-                    "shrink-0 rounded-sm text-sm font-medium text-primary outline-none",
-                    "hover:underline focus-visible:ring-2 focus-visible:ring-ring/50",
-                  )}
-                >
-                  Skip
-                </button>
-              </div>
-
-              <p className="text-sm text-foreground">{surveyQuestion}</p>
-
-              <ul
-                role="radiogroup"
-                aria-label="Question answers"
-                className="m-0 flex list-none flex-col gap-2 p-0"
-              >
-                {surveyAnswers.map((answer, index) => {
-                  const letter = String.fromCharCode(65 + index);
-                  const isSelected = selectedAnswerId === answer.id;
-                  return (
-                    <li key={answer.id} className="min-w-0">
-                      <button
-                        type="button"
-                        role="radio"
-                        aria-checked={isSelected}
-                        onClick={() => setSelectedAnswerId(answer.id)}
-                        className={cn(
-                          "flex w-full min-w-0 items-center gap-1 rounded-md px-3 py-2.5 text-left text-sm outline-none transition-colors",
-                          "focus-visible:ring-2 focus-visible:ring-ring/50",
-                          isSelected
-                            ? "bg-primary-background text-foreground"
-                            : "bg-muted text-foreground hover:bg-muted/70",
-                        )}
-                      >
-                        <span className="shrink-0">{letter}.</span>
-                        <span className="min-w-0 truncate">{answer.label}</span>
-                      </button>
-                    </li>
-                  );
-                })}
-              </ul>
-            </div>
-            <div
-              aria-hidden
-              className="shrink-0"
-              style={{ height: QUESTION_PANEL_OVERLAP_PX }}
+      <PromptInputHeader>
+        <PromptInputAttachmentsDisplay />
+      </PromptInputHeader>
+      <PromptInputToolbar inline>
+        <PromptInputActionMenu>
+          <PromptInputActionMenuTrigger />
+          <PromptInputActionMenuContent>
+            <PromptInputActionAddAttachments />
+            <PromptInputActionAddScreenshot />
+            <DropdownMenuSeparator />
+            <AttachMenuCategorySub
+              icon={mdiStarFourPoints}
+              label="Agents"
+              searchPlaceholder="Search agents"
+              items={ATTACH_MENU_DEMO_AGENTS}
+              onSelectItem={addSelection}
             />
-          </div>
-        ) : null}
-        <PromptInput
-          ref={formRef}
-          onSubmit={handleSubmit}
-          style={
-            showQuestionPanel
-              ? {
-                  marginTop: -QUESTION_PANEL_OVERLAP_PX,
-                  width: "calc(100% + 2px)",
-                  maxWidth: "calc(100% + 2px)",
-                  marginLeft: -1,
-                  marginRight: -1,
-                }
-              : undefined
-          }
-          className={cn(
-            "w-full **:data-[slot=input-group]:rounded-2xl **:data-[slot=input-group]:shadow-xl!",
-            showQuestionPanel && "relative z-10",
-          )}
-          globalDrop
-          multiple
-        >
-          <PromptInputHeader>
-            <PromptInputAttachmentsDisplay />
-          </PromptInputHeader>
-          <PromptInputBody>
-            <PromptInputTextarea
-              onChange={(e) => setText(e.target.value)}
-              onKeyDown={(e) => {
-                if (
-                  voiceUiPhase !== "idle" &&
-                  e.key === "Enter" &&
-                  !e.shiftKey
-                ) {
-                  e.preventDefault();
-                }
+            <AttachMenuCategorySub
+              icon={mdiGraphOutline}
+              label="Flows"
+              searchPlaceholder="Search flows"
+              items={ATTACH_MENU_DEMO_FLOWS}
+              showItemTrailingIcons
+              onSelectItem={addSelection}
+            />
+            <AttachMenuCategorySub
+              icon={mdiHammerWrench}
+              label="Tools"
+              searchPlaceholder="Search tools"
+              items={ATTACH_MENU_DEMO_TOOLS}
+              showItemTrailingIcons
+              onSelectItem={addSelection}
+            />
+            <AttachMenuCategorySub
+              icon={mdiAt}
+              label="Context"
+              searchPlaceholder="Search context"
+              items={ATTACH_MENU_DEMO_CONTEXT}
+              onSelectItem={addSelection}
+            />
+          </PromptInputActionMenuContent>
+        </PromptInputActionMenu>
+      </PromptInputToolbar>
+      <PromptInputBody>
+        <PromptInputTextarea
+          onChange={(e) => setText(e.target.value)}
+          onKeyDown={(e) => {
+            if (voiceUiPhase !== "idle" && e.key === "Enter" && !e.shiftKey) {
+              e.preventDefault();
+            }
+          }}
+          placeholder={placeholder}
+          value={text}
+        />
+      </PromptInputBody>
+      <PromptInputFooter>
+        <PromptInputToolbar>
+          <PromptInputTools>
+            <PromptInputActionMenu>
+              <PromptInputActionMenuTrigger />
+              <PromptInputActionMenuContent>
+                <PromptInputActionAddAttachments />
+                <PromptInputActionAddScreenshot />
+                <DropdownMenuSeparator />
+                <AttachMenuCategorySub
+                  icon={mdiStarFourPoints}
+                  label="Agents"
+                  searchPlaceholder="Search agents"
+                  items={ATTACH_MENU_DEMO_AGENTS}
+                  onSelectItem={addSelection}
+                />
+                <AttachMenuCategorySub
+                  icon={mdiGraphOutline}
+                  label="Flows"
+                  searchPlaceholder="Search flows"
+                  items={ATTACH_MENU_DEMO_FLOWS}
+                  showItemTrailingIcons
+                  onSelectItem={addSelection}
+                />
+                <AttachMenuCategorySub
+                  icon={mdiHammerWrench}
+                  label="Tools"
+                  searchPlaceholder="Search tools"
+                  items={ATTACH_MENU_DEMO_TOOLS}
+                  showItemTrailingIcons
+                  onSelectItem={addSelection}
+                />
+                <AttachMenuCategorySub
+                  icon={mdiAt}
+                  label="Context"
+                  searchPlaceholder="Search context"
+                  items={ATTACH_MENU_DEMO_CONTEXT}
+                  onSelectItem={addSelection}
+                />
+              </PromptInputActionMenuContent>
+            </PromptInputActionMenu>
+            <PromptInputButton
+              onClick={() => setUseWebSearch(!useWebSearch)}
+              tooltip={{ content: "Search the web", shortcut: "⌘K" }}
+              variant={useWebSearch ? "default" : "ghost"}
+            >
+              <Icon
+                className="size-3 shrink-0 text-current"
+                path={mdiWeb}
+                title="Web search"
+              />
+              <span>Search</span>
+            </PromptInputButton>
+            <PromptInputSelect
+              onValueChange={(value) => {
+                setModel(value);
               }}
-              placeholder="Respond to the question"
-              value={text}
-            />
-          </PromptInputBody>
-          <PromptInputFooter>
-            <PromptInputTools>
-              <PromptInputActionMenu>
-                <PromptInputActionMenuTrigger />
-                <PromptInputActionMenuContent>
-                  <PromptInputActionAddAttachments />
-                  <PromptInputActionAddScreenshot />
-                  <DropdownMenuSeparator />
-                  <AttachMenuCategorySub
-                    icon={mdiStarFourPoints}
-                    label="Agents"
-                    searchPlaceholder="Search agents"
-                    items={ATTACH_MENU_DEMO_AGENTS}
-                    onSelectItem={addSelection}
-                  />
-                  <AttachMenuCategorySub
-                    icon={mdiGraphOutline}
-                    label="Flows"
-                    searchPlaceholder="Search flows"
-                    items={ATTACH_MENU_DEMO_FLOWS}
-                    showItemTrailingIcons
-                    onSelectItem={addSelection}
-                  />
-                  <AttachMenuCategorySub
-                    icon={mdiHammerWrench}
-                    label="Tools"
-                    searchPlaceholder="Search tools"
-                    items={ATTACH_MENU_DEMO_TOOLS}
-                    showItemTrailingIcons
-                    onSelectItem={addSelection}
-                  />
-                  <AttachMenuCategorySub
-                    icon={mdiAt}
-                    label="Context"
-                    searchPlaceholder="Search context"
-                    items={ATTACH_MENU_DEMO_CONTEXT}
-                    onSelectItem={addSelection}
-                  />
-                </PromptInputActionMenuContent>
-              </PromptInputActionMenu>
-              <PromptInputButton
-                onClick={() => setUseWebSearch(!useWebSearch)}
-                tooltip={{ content: "Search the web", shortcut: "⌘K" }}
-                variant={useWebSearch ? "default" : "ghost"}
+              value={model}
+            >
+              <PromptInputSelectTrigger>
+                <PromptInputSelectValue />
+              </PromptInputSelectTrigger>
+              <PromptInputSelectContent>
+                {models.map((m) => (
+                  <PromptInputSelectItem key={m.id} value={m.id}>
+                    {m.name}
+                  </PromptInputSelectItem>
+                ))}
+              </PromptInputSelectContent>
+            </PromptInputSelect>
+            <SelectionList selections={selections} onRemove={removeSelection} />
+          </PromptInputTools>
+        </PromptInputToolbar>
+        <PromptInputActions>
+          <SpeechInput
+            ref={speechRef}
+            integration="prompt"
+            onAudioRecorded={handlePromptInputAudioRecorded}
+            onTranscriptionChange={handleTranscriptionChange}
+            onVoiceSessionComplete={() => {
+              formRef.current?.requestSubmit();
+            }}
+            onVoiceUiPhaseChange={setVoiceUiPhase}
+          />
+          {voiceUiPhase === "listening" ? (
+            <Button
+              aria-label="Stop recording"
+              className="shrink-0"
+              data-slot="prompt-input-submit"
+              onClick={handleVoiceStopClick}
+              size="icon-sm"
+              type="button"
+              variant="default"
+            >
+              <Icon className="h-4! w-4! shrink-0" path={mdiSquare} />
+            </Button>
+          ) : voiceUiPhase === "processing" ? (
+            <Button
+              aria-label="Transcribing"
+              className="shrink-0"
+              data-slot="prompt-input-submit"
+              disabled
+              size="icon-sm"
+              type="button"
+              variant="default"
+            >
+              <Spinner className="text-current" />
+            </Button>
+          ) : (
+            <PromptInputSubmit disabled={!text && !status} status={status} />
+          )}
+        </PromptInputActions>
+      </PromptInputFooter>
+    </PromptInput>
+  );
+}
+
+function FloatingChatCard({
+  submitPrompt,
+  status,
+}: {
+  submitPrompt: (
+    message: PromptInputMessage,
+    context: PromptInputSubmitContext,
+  ) => boolean;
+  status?: ChatStatus;
+}) {
+  const [, setLastMessage] = useState<string>("");
+
+  return (
+    <div
+      className={cn(
+        "flex min-w-0 max-w-full flex-col rounded-xl border bg-white shadow-lg",
+        "dark:bg-input/30",
+      )}
+      style={{ width: `${COLUMN_WIDTH_PX}px` }}
+    >
+      <Collapsible className="w-full min-w-0" defaultOpen>
+        <CollapsibleTrigger
+          className={cn(
+            "grid w-full grid-cols-[1rem_minmax(0,1fr)] items-center gap-x-3 px-4 py-3 text-left text-sm font-semibold text-foreground outline-none",
+            "hover:bg-muted/40 focus-visible:ring-2 focus-visible:ring-ring/50 focus-visible:ring-inset",
+            "[&[data-state=open]>svg:first-child]:rotate-0 [&[data-state=closed]>svg:first-child]:-rotate-90",
+          )}
+        >
+          <Icon
+            path={mdiChevronDown}
+            className="size-4 shrink-0 justify-self-center text-muted-foreground transition-transform duration-200"
+            aria-hidden
+          />
+          <span className="min-w-0">Chat</span>
+        </CollapsibleTrigger>
+        <CollapsibleContent className="overflow-hidden">
+          <ul className="flex flex-col gap-3 px-4 pb-4">
+            {initialMessages.map((message) => (
+              <li
+                key={message.id}
+                className={cn(
+                  "flex min-w-0",
+                  message.role === "user" ? "justify-end" : "justify-start",
+                )}
               >
-                <Icon
-                  className="size-3 shrink-0 text-current"
-                  path={mdiWeb}
-                  title="Web search"
-                />
-                <span>Search</span>
-              </PromptInputButton>
-              <PromptInputSelect
-                onValueChange={(value) => {
-                  setModel(value);
-                }}
-                value={model}
-              >
-                <PromptInputSelectTrigger>
-                  <PromptInputSelectValue />
-                </PromptInputSelectTrigger>
-                <PromptInputSelectContent>
-                  {models.map((model) => (
-                    <PromptInputSelectItem key={model.id} value={model.id}>
-                      {model.name}
-                    </PromptInputSelectItem>
-                  ))}
-                </PromptInputSelectContent>
-              </PromptInputSelect>
-              <SelectionList
-                selections={selections}
-                onRemove={removeSelection}
-              />
-            </PromptInputTools>
-            <div className="flex shrink-0 items-center gap-2">
-              <SpeechInput
-                ref={speechRef}
-                integration="prompt"
-                onAudioRecorded={handlePromptInputAudioRecorded}
-                onTranscriptionChange={handleTranscriptionChange}
-                onVoiceSessionComplete={() => {
-                  formRef.current?.requestSubmit();
-                }}
-                onVoiceUiPhaseChange={setVoiceUiPhase}
-              />
-              {voiceUiPhase === "listening" ? (
-                <Button
-                  aria-label="Stop recording"
-                  className="shrink-0"
-                  data-slot="prompt-input-submit"
-                  onClick={handleVoiceStopClick}
-                  size="icon-sm"
-                  type="button"
-                  variant="default"
-                >
-                  <Icon className="h-4! w-4! shrink-0" path={mdiSquare} />
-                </Button>
-              ) : voiceUiPhase === "processing" ? (
-                <Button
-                  aria-label="Transcribing"
-                  className="shrink-0"
-                  data-slot="prompt-input-submit"
-                  disabled
-                  size="icon-sm"
-                  type="button"
-                  variant="default"
-                >
-                  <Spinner className="text-current" />
-                </Button>
-              ) : (
-                <PromptInputSubmit
-                  disabled={!text && !status}
-                  status={status}
-                />
-              )}
-            </div>
-          </PromptInputFooter>
-        </PromptInput>
+                {message.role === "user" ? (
+                  <div className="max-w-[80%] whitespace-pre-line rounded-md bg-muted px-3 py-2 text-sm text-foreground">
+                    {message.text}
+                  </div>
+                ) : (
+                  <p className="max-w-[90%] whitespace-pre-line text-sm text-foreground">
+                    {message.text}
+                  </p>
+                )}
+              </li>
+            ))}
+          </ul>
+        </CollapsibleContent>
+      </Collapsible>
+
+      <FloatingVercelPromptInput
+        placeholder="/ for tools, @ for context references"
+        onSubmitMessage={setLastMessage}
+        submitPrompt={submitPrompt}
+        status={status}
+        style={{
+          minWidth: 0,
+          width: "calc(100% + 2px)",
+          maxWidth: "calc(100% + 2px)",
+          marginLeft: "-1px",
+          marginRight: "-1px",
+          marginBottom: "-1px",
+        }}
+        className={cn(
+          "[&_[data-slot=input-group]]:rounded-b-xl [&_[data-slot=input-group]]:rounded-t-lg",
+          "[&_[data-slot=input-group]]:shadow-none",
+        )}
+      />
+    </div>
+  );
+}
+
+export default function PromptInputFloatingVercelDemo() {
+  const [lastMessage, setLastMessage] = useState<string>("");
+  const { submitPrompt, status } = usePromptInputVercelChat();
+
+  return (
+    <div className="flex w-full flex-col gap-3 p-8">
+      <div className="relative flex min-h-[400px] w-full flex-col items-center justify-end gap-4 rounded-lg bg-muted/30 p-8">
+        <div className="flex flex-1 items-center justify-center">
+          <p className="text-sm text-muted-foreground">
+            {lastMessage
+              ? `You said: "${lastMessage}"`
+              : "Canvas / page content area"}
+          </p>
+        </div>
+        <FloatingVercelPromptInput
+          placeholder="Edit this page…"
+          onSubmitMessage={setLastMessage}
+          submitPrompt={submitPrompt}
+          status={status}
+          className="w-full max-w-xl"
+        />
+      </div>
+
+      <div className="relative flex min-h-[480px] w-full flex-col items-center justify-end gap-4 rounded-lg bg-muted/30 p-8">
+        <FloatingChatCard submitPrompt={submitPrompt} status={status} />
       </div>
     </div>
   );
