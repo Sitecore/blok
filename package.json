@@ -4,24 +4,26 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "tests": "npx playwright test tests/basic-ui.spec.ts",
-    "tests:headed": "npx playwright test tests/basic-ui.spec.ts --headed",
-    "tests:ui": "npx playwright test --ui",
-    "tests:debug": "npx playwright test tests/basic-ui.spec.ts --debug"
+    "test": "pnpm exec playwright test",
+    "tests": "pnpm exec playwright test tests/basic-ui.spec.ts",
+    "tests:headed": "pnpm exec playwright test tests/basic-ui.spec.ts --headed",
+    "tests:ui": "pnpm exec playwright test --ui",
+    "tests:debug": "pnpm exec playwright test tests/basic-ui.spec.ts --debug"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "type": "commonjs",
+  "packageManager": "pnpm@9.15.2",
   "devDependencies": {
+    "@estruyf/github-actions-reporter": "^1.10.0",
     "@playwright/test": "^1.58.2",
     "@types/node": "^24.10.1"
   },
-  "dependencies": {
-    "@estruyf/github-actions-reporter": "^1.10.0"
-  },
-  "overrides": {
-    "@actions/http-client": "^4.0.0",
-    "undici": "^6.24.0"
+  "pnpm": {
+    "overrides": {
+      "@actions/http-client": "^4.0.0",
+      "undici": "^6.24.0"
+    }
   }
 }

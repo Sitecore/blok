@@ -15,7 +15,7 @@ export default defineConfig({
   testDir: './tests',
   /* Maximum time one test can run for. */
   timeout: 120 * 1000, // 2 minutes
-  /* Parallel: all tests (including in the same file). Worker count defaults to ~50% of CPUs; override with CLI e.g. `npx playwright test --workers=8` */
+  /* Parallel: all tests (including in the same file). Worker count defaults to ~50% of CPUs; override with CLI e.g. `pnpm exec playwright test --workers=8` */
   fullyParallel: true,
   /* Fail the build on CI if you accidentally left test.only in the source code. */
   forbidOnly: !!process.env.CI,
@@ -93,7 +93,7 @@ export default defineConfig({
 
   /* Run your local dev server before starting the tests */
   /* webServer: {
-     command: 'npm run dev',
+     command: 'pnpm run dev',
      url: 'http://localhost:3000',
      reuseExistingServer: !process.env.CI,
      timeout: 120 * 1000,
