@@ -156,7 +156,7 @@ jobs:
           echo ""
           
           # Check required files
-          REQUIRED_FILES=("Dockerfile" "install-components.sh" "components-config.json" "components.json" "package.json" "tsconfig.json")
+          REQUIRED_FILES=("Dockerfile" "install-components.sh" "components-config.json" "components.json" "package.json" "pnpm-lock.yaml" "tsconfig.json")
           MISSING_FILES=()
           
           for file in "${REQUIRED_FILES[@]}"; do
@@ -596,9 +596,15 @@ jobs:
           echo "Test Status: ${STATUS}"
           echo "Test Exit Code: ${EXIT_CODE}"
           
-          # Fail the workflow if tests failed
+          TOTAL="${{ steps.run-tests.outputs.total }}"
+          TOTAL="${TOTAL:-0}"
+
+          # Fail the workflow if tests failed or never ran
           if [ "$STATUS" == "failed" ] || [ "$EXIT_CODE" != "0" ]; then
             echo "❌ Tests failed! Failing workflow..."
+            exit 1
+          elif [ "$STATUS" == "unknown" ] || [ "$TOTAL" -eq 0 ]; then
+            echo "❌ No Playwright tests were executed! Failing workflow..."
             exit 1
           else
             echo "✅ All tests passed!"

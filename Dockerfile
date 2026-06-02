@@ -1,6 +1,9 @@
 # Use Node.js 20 Alpine for smaller image size
 FROM node:20-alpine AS base
 
+# Enable pnpm via corepack (version from packageManager in package.json)
+RUN corepack enable
+
 # Set working directory
 WORKDIR /app
 
@@ -8,10 +11,10 @@ WORKDIR /app
 FROM base AS deps
 
 # Copy package files
-COPY package.json package-lock.json* ./
+COPY package.json pnpm-lock.yaml ./
 
 # Install dependencies
-RUN npm ci
+RUN pnpm install --frozen-lockfile
 
 # Development stage - install components and run dev server
 FROM base AS dev
@@ -21,7 +24,7 @@ COPY --from=deps /app/node_modules ./node_modules
 
 # Copy essential files needed for component installation
 # We need package.json and tsconfig.json for shadcn CLI to work
-COPY package.json package-lock.json* ./
+COPY package.json pnpm-lock.yaml ./
 COPY tsconfig.json ./
 COPY next.config.ts ./
 COPY components.json ./
@@ -44,7 +47,7 @@ RUN chmod +x install-components.sh
 RUN ./install-components.sh
 
 # Install any new dependencies that may have been added by components
-RUN npm install
+RUN pnpm install
 
 # Copy the rest of the application (components/ui/ is excluded via .dockerignore)
 # This ensures we use the freshly installed components, not repository ones
@@ -57,5 +60,4 @@ EXPOSE 3000
 ENV NODE_ENV=development
 
 # Start the development server
-CMD ["npm", "run", "dev"]
-
+CMD ["pnpm", "run", "dev"]

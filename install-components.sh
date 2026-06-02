@@ -18,7 +18,7 @@ if [ "$BULK_ENABLED" = "true" ]; then
     echo ""
     echo "Installing bulk components from: $BULK_URL"
     echo "Using --overwrite --yes flags..."
-    npx shadcn@latest add "$BULK_URL" --yes --overwrite || true
+    pnpm dlx shadcn@latest add "$BULK_URL" --yes --overwrite || true
     echo "✅ Bulk component installation completed"
   fi
 else
@@ -41,7 +41,7 @@ node -e "
 " | while IFS= read -r componentUrl; do
   if [ -n "$componentUrl" ]; then
     echo "  Installing: $componentUrl"
-    npx shadcn@latest add "$componentUrl" --yes --overwrite 2>&1 || echo "    ⚠️ Failed to install (may not exist)"
+    pnpm dlx shadcn@latest add "$componentUrl" --yes --overwrite 2>&1 || echo "    ⚠️ Failed to install (may not exist)"
     sleep 1
   fi
 done
