@@ -1827,7 +1827,7 @@
       "name": "sidebar-rhs",
       "type": "registry:block",
       "title": "Sidebar RHS",
-      "description": "A right-hand side sidebar that can be collapsed and docked/undocked",
+      "description": "A right-hand side sidebar that can be collapsed",
       "registryDependencies": [
         "https://blok.sitecore.com/r/theme.json",
         "https://blok.sitecore.com/r/button.json",
