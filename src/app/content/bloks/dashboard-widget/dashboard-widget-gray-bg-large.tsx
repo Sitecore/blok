@@ -11,8 +11,8 @@ import { Button } from "@/components/ui/button";
 
 export default function DashboardWidgetGrayBgLargeDemo() {
   return (
-    <div className="w-[960px] max-w-full">
-      <DashboardWidget type="gray-bg-large">
+    <div className="mx-auto w-full min-w-0 max-w-[960px]">
+      <DashboardWidget type="gray-bg-large" className="w-full">
         <DashboardWidgetHeader>
           <DashboardWidgetTitle>Pinned widget</DashboardWidgetTitle>
           <DashboardWidgetAction>

@@ -7,6 +7,7 @@ import "@/app/globals.css";
 import { DirectionProvider } from "@/components/docsite/direction-provider";
 import { StructuredData } from "@/components/seo/structured-data";
 import { Toaster } from "@/components/ui/sonner";
+import { TooltipProvider } from "@/components/ui/tooltip";
 
 const baseUrl = (() => {
   const url =
@@ -110,12 +111,14 @@ export default function RootLayout({
       </head>
       <body className="flex grow">
         <StructuredData />
-        <DirectionProvider>
-          {children}
-          <Analytics />
-          <SpeedInsights />
-          <Toaster />
-        </DirectionProvider>
+        <TooltipProvider>
+          <DirectionProvider>
+            {children}
+            <Analytics />
+            <SpeedInsights />
+            <Toaster />
+          </DirectionProvider>
+        </TooltipProvider>
       </body>
     </html>
   );
