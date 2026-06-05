@@ -3,6 +3,7 @@ import May2026EditableErrorState from "./changelog-content/enhancement-editable-
 import May2026SidebarRHS from "./changelog-content/enhancement-sidebar-rhs";
 import May2026VirtualizedSelect from "./changelog-content/feature-virtualized-select";
 import April2026SonnerDocumentation from "./changelog-content/update-sonner-documentation";
+import May2026TooltipDocumentation from "./changelog-content/update-tooltip-documentation";
 
 export type ChangelogItem = {
   description: string;
@@ -18,10 +19,10 @@ type Changelog = {
 
 export const changelogs: Changelog[] = [
   {
-    title: "April 2026 - Sonner Installation Guide Updated",
-    id: "april-2026-sonner-installation-guide",
-    releaseDate: "2026-05-06",
-    log: April2026SonnerDocumentation,
+    title: "May 2026 - Tooltip Installation Guide Updated",
+    id: "may-2026-tooltip-installation-guide",
+    releaseDate: "2026-06-01",
+    log: May2026TooltipDocumentation,
   },
   {
     title: "May 2026 - Virtualized Select Added",
@@ -40,6 +41,12 @@ export const changelogs: Changelog[] = [
     id: "may-2026-editable-error-state-enhancement",
     releaseDate: "2026-06-01",
     log: May2026EditableErrorState,
+  },
+  {
+    title: "April 2026 - Sonner Installation Guide Updated",
+    id: "april-2026-sonner-installation-guide",
+    releaseDate: "2026-05-06",
+    log: April2026SonnerDocumentation,
   },
 ];
 
