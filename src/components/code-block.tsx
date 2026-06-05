@@ -2,6 +2,7 @@
 
 import { Button } from "@/components/ui/button";
 import { Icon } from "@/lib/icon";
+import { highlightCodeToHtml } from "@/lib/shiki-highlighter";
 import { TELEMETRY_EVENTS, track } from "@/lib/telemetry";
 import type { CopyCodePayload } from "@/lib/telemetry";
 import { cn } from "@/lib/utils";
@@ -9,7 +10,6 @@ import { mdiClipboardOutline } from "@mdi/js";
 import { Check } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import * as shiki from "shiki";
 
 /** Context for copy_code telemetry. Section is required; others are added from pathname when on primitives/bloks. */
 export interface CopyCodeContext {
@@ -20,70 +20,19 @@ export interface CopyCodeContext {
   example_title?: string;
 }
 
-interface CodeBlockProps {
+interface CodeCopyButtonProps {
   code: string;
-  lang?: string;
-  showLineNumbers?: boolean;
-  className?: string;
-  /** When set, copy triggers copy_code with normalized payload (section, path, page_type, component_name/block_name). */
   copyCodeContext?: CopyCodeContext;
+  className?: string;
 }
 
-export function CodeBlock({
+export function CodeCopyButton({
   code,
-  lang = "tsx",
-  showLineNumbers = true,
-  className,
   copyCodeContext,
-}: CodeBlockProps) {
+  className,
+}: CodeCopyButtonProps) {
   const pathname = usePathname();
   const [copied, setCopied] = useState(false);
-  const [html, setHtml] = useState<string>("");
-  const [isDark, setIsDark] = useState(false);
-
-  // detect theme
-  useEffect(() => {
-    const checkTheme = () => {
-      setIsDark(document.documentElement.classList.contains("dark"));
-    };
-
-    checkTheme();
-
-    const observer = new MutationObserver(checkTheme);
-    observer.observe(document.documentElement, {
-      attributes: true,
-      attributeFilter: ["class"],
-    });
-
-    return () => observer.disconnect();
-  }, []);
-
-  // highlight code
-  useEffect(() => {
-    async function load() {
-      const highlighter = await shiki.createHighlighter({
-        themes: ["github-light", "github-dark"],
-        langs: [
-          "typescript",
-          "javascript",
-          "tsx",
-          "jsx",
-          "json",
-          "css",
-          "html",
-        ],
-      });
-
-      const rawHtml = highlighter.codeToHtml(code, {
-        lang,
-        theme: isDark ? "github-dark" : "github-light",
-      });
-
-      setHtml(showLineNumbers ? addLineNumbers(rawHtml) : rawHtml);
-    }
-
-    load();
-  }, [code, lang, showLineNumbers, isDark]);
 
   async function copyToClipboard() {
     await navigator.clipboard.writeText(code);
@@ -121,43 +70,117 @@ export function CodeBlock({
   }
 
   return (
+    <Button
+      variant="ghost"
+      size="icon-sm"
+      onClick={copyToClipboard}
+      className={cn("shrink-0 bg-muted", className)}
+      aria-label={
+        copied ? "Code copied to clipboard" : "Copy code to clipboard"
+      }
+    >
+      {copied ? (
+        <Check className="size-4" />
+      ) : (
+        <Icon path={mdiClipboardOutline} className="text-muted-foreground" />
+      )}
+    </Button>
+  );
+}
+
+interface CodeBlockProps {
+  code: string;
+  lang?: string;
+  showLineNumbers?: boolean;
+  className?: string;
+  /** When set, copy triggers copy_code with normalized payload (section, path, page_type, component_name/block_name). */
+  copyCodeContext?: CopyCodeContext;
+  /** Hide the floating copy control (e.g. when copy is shown in a parent header). */
+  hideCopyButton?: boolean;
+}
+
+export function CodeBlock({
+  code,
+  lang = "tsx",
+  showLineNumbers = true,
+  className,
+  copyCodeContext,
+  hideCopyButton = false,
+}: CodeBlockProps) {
+  const [html, setHtml] = useState<string>("");
+  const [isDark, setIsDark] = useState(false);
+
+  useEffect(() => {
+    const checkTheme = () => {
+      setIsDark(document.documentElement.classList.contains("dark"));
+    };
+
+    checkTheme();
+
+    const observer = new MutationObserver(checkTheme);
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ["class"],
+    });
+
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    let cancelled = false;
+
+    async function load() {
+      try {
+        const rawHtml = await highlightCodeToHtml(code, {
+          lang,
+          theme: isDark ? "github-dark" : "github-light",
+        });
+        if (!cancelled) {
+          setHtml(
+            showLineNumbers
+              ? addLineNumbers(rawHtml)
+              : makeShikiPreBackgroundTransparent(rawHtml),
+          );
+        }
+      } catch {
+        if (!cancelled) {
+          setHtml("");
+        }
+      }
+    }
+
+    load();
+
+    return () => {
+      cancelled = true;
+    };
+  }, [code, lang, showLineNumbers, isDark]);
+
+  return (
     <div
       dir="ltr"
       role="region"
-      tabIndex={0}
       aria-label="Code sample"
       className={cn(
         "relative rounded-md bg-muted max-h-[400px] overflow-auto",
-        "outline-none focus-visible:ring-2 focus-visible:ring-ring/50",
         className,
       )}
       style={{ width: "100%", maxWidth: "100%" }}
     >
-      <div className="sticky top-0 h-0 z-10">
-        <div className="absolute top-2 right-2" dir="ltr">
-          <Button
-            variant="ghost"
-            size="icon-sm"
-            onClick={copyToClipboard}
-            className="p-4 bg-muted backdrop-blur-sm "
-            aria-label={
-              copied ? "Code copied to clipboard" : "Copy code to clipboard"
-            }
-          >
-            {copied ? (
-              <Check className="size-4" />
-            ) : (
-              <Icon
-                path={mdiClipboardOutline}
-                className="text-muted-foreground"
-              />
-            )}
-          </Button>
+      {!hideCopyButton && (
+        <div className="sticky top-0 z-10 h-0">
+          <div className="absolute top-2 right-2" dir="ltr">
+            <CodeCopyButton
+              code={code}
+              copyCodeContext={copyCodeContext}
+              className="backdrop-blur-sm"
+            />
+          </div>
         </div>
-      </div>
+      )}
       <div
         dir="ltr"
-        className="text-md min-w-0 p-4 wrap-break-words"
+        className="text-md min-w-0 p-4 font-mono wrap-break-words [&_.shiki]:!bg-transparent"
         style={{ width: "100%" }}
         dangerouslySetInnerHTML={{ __html: html }}
       />
@@ -165,27 +188,62 @@ export function CodeBlock({
   );
 }
 
+/** Adds a gutter while keeping Shiki token colors and theme classes on `<pre>`. */
 function addLineNumbers(html: string) {
-  const match = html.match(/<code.*?>([\s\S]*?)<\/code>/);
+  const match = html.match(
+    /<pre\s+([^>]*)>\s*<code[^>]*>([\s\S]*?)<\/code>\s*<\/pre>/,
+  );
   if (!match) return html;
 
-  const codeContent = match[1];
+  let preAttrs = match[1];
+  const codeContent = match[2];
   const lines = codeContent.split("\n");
+
+  preAttrs = preAttrs.includes('class="')
+    ? preAttrs.replace(/class="([^"]*)"/, 'class="$1 codeblock table w-full"')
+    : `${preAttrs} class="codeblock table w-full"`;
+
+  if (preAttrs.includes('style="')) {
+    preAttrs = preAttrs.replace(
+      /style="([^"]*)"/,
+      (_, style) =>
+        `style="${stripShikiBackground(style)};table-layout:fixed;width:100%;max-width:100%;background-color:transparent"`,
+    );
+  } else {
+    preAttrs +=
+      ' style="table-layout:fixed;width:100%;max-width:100%;background-color:transparent"';
+  }
 
   const numbered = lines
     .map(
       (line, i) => `
             <div class="table-row">
-                <span class="w-5 table-cell select-none text-zinc-500">${i + 1}</span>
+                <span class="w-8 table-cell select-none pr-3 text-right text-zinc-500">${i + 1}</span>
                 <span class="table-cell">${line || "&nbsp;"}</span>
-            </div>
-        `,
+            </div>`,
     )
     .join("");
 
-  return `
-        <pre class="shiki codeblock table w-full" style="table-layout: fixed; width: 100%; max-width: 100%;">
-            <code class="table-row-group">${numbered}</code>
-        </pre>
-    `;
+  return `<pre ${preAttrs}><code class="table-row-group">${numbered}</code></pre>`;
+}
+
+function stripShikiBackground(style: string) {
+  return style
+    .replace(/background-color:\s*[^;]+;?/gi, "")
+    .replace(/;\s*;/g, ";")
+    .trim()
+    .replace(/;$/, "");
+}
+
+function makeShikiPreBackgroundTransparent(html: string) {
+  return html.replace(/<pre\s+([^>]*)>/, (_, attrs: string) => {
+    if (attrs.includes('style="')) {
+      return `<pre ${attrs.replace(
+        /style="([^"]*)"/,
+        (_, style) =>
+          `style="${stripShikiBackground(style)};background-color:transparent"`,
+      )}>`;
+    }
+    return `<pre ${attrs} style="background-color:transparent">`;
+  });
 }

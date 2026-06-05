@@ -13,18 +13,14 @@ import { Button } from "@/components/ui/button";
 import { FilterSingleSelect } from "@/components/ui/filter";
 import { useState } from "react";
 
-const filterOptions = [
-  { value: "all", label: "All projects" },
-  { value: "active", label: "Active" },
-  { value: "archived", label: "Archived" },
-];
+import { mockDashboardWidgetFilterOptions } from "./dashboard-widget.mock-data";
 
 export default function DashboardWidgetWhiteBgLargeDemo() {
   const [filterValue, setFilterValue] = useState<string>("");
 
   return (
-    <div className="w-[960px] max-w-full">
-      <DashboardWidget type="white-bg-large">
+    <div className="mx-auto w-full min-w-0 max-w-[960px]">
+      <DashboardWidget type="white-bg-large" className="w-full">
         <DashboardWidgetHeader>
           <DashboardWidgetTitle>Projects</DashboardWidgetTitle>
           <DashboardWidgetDescription>
@@ -40,7 +36,7 @@ export default function DashboardWidgetWhiteBgLargeDemo() {
           <FilterSingleSelect
             value={filterValue}
             onChange={setFilterValue}
-            options={filterOptions}
+            options={mockDashboardWidgetFilterOptions}
             placeholder="Filter"
             className="w-fit"
             ariaLabels={{

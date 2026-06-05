@@ -1,7 +1,10 @@
+import { collaborationCodeFiles } from "@/lib/docsite/blok-demo-code-files";
+
 export const collaboration = {
   name: "collaboration",
   preview: {
     defaultComponent: "collaboration",
+    codeFiles: collaborationCodeFiles,
   },
   usage: {
     usage: [

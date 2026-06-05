@@ -1,5 +1,11 @@
 "use client";
 
+import {
+  sidebarRhsDemoBriefItems,
+  sidebarRhsDemoInfoFields,
+  sidebarRhsDemoNavItems,
+  sidebarRhsDemoUsageIntro,
+} from "@/app/content/bloks/sidebar-rhs/sidebar-rhs.mock-data";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
@@ -9,49 +15,26 @@ import {
 } from "@/components/ui/search-input";
 import type { StackNavigationElement } from "@/components/ui/stack-navigation";
 import { Icon } from "@/lib/icon";
-import {
-  mdiCommentOutline,
-  mdiContentCopy,
-  mdiInformationOutline,
-  mdiLayers,
-  mdiMagnify,
-  mdiViewDashboard,
-} from "@mdi/js";
-import { useState } from "react";
+import { mdiContentCopy, mdiMagnify } from "@mdi/js";
+import { useMemo, useState } from "react";
 
-export const EXAMPLE_HEIGHT = "h-[720px]";
+export {
+  sidebarRhsDemoDockable as DEMO_SIDEBAR_DOCKABLE,
+  sidebarRhsDemoExampleHeight as EXAMPLE_HEIGHT,
+} from "@/app/content/bloks/sidebar-rhs/sidebar-rhs.mock-data";
 
-/** Demos hide pop-out by default. Set to true to show dock/undock controls again. */
-export const DEMO_SIDEBAR_DOCKABLE = false;
-
-export const navigationItems: StackNavigationElement[] = [
-  {
-    name: "Overview",
-    path: "/overview",
-    icon: <Icon path={mdiViewDashboard} />,
-  },
-  {
-    name: "Usage",
-    path: "/usage",
-    icon: <Icon path={mdiLayers} />,
-  },
-  {
-    name: "Comments",
-    path: "/comments",
-    icon: <Icon path={mdiCommentOutline} />,
-  },
-  {
-    name: "Info",
-    path: "/info",
-    icon: <Icon path={mdiInformationOutline} />,
-  },
-];
+export const navigationItems: StackNavigationElement[] =
+  sidebarRhsDemoNavItems.map((item) => ({
+    name: item.name,
+    path: item.path,
+    icon: <Icon path={item.iconPath} />,
+  }));
 
 export function ExpandableDescription() {
   const [isExpanded, setIsExpanded] = useState(false);
 
-  const fullText = `Sitecore is a leading digital experience platform that empowers organizations to create, manage, and deliver personalized content across all channels. With its powerful content management system, marketers and developers can collaborate seamlessly to build engaging customer experiences.`;
-
+  const fullText =
+    "Sitecore is a leading digital experience platform that empowers organizations to create, manage, and deliver personalized content across all channels. With its powerful content management system, marketers and developers can collaborate seamlessly to build engaging customer experiences.";
   const truncatedText = fullText.substring(0, 200);
   const shouldTruncate = fullText.length > 200;
 
@@ -84,77 +67,18 @@ export function ExpandableDescription() {
 export function UsageSection() {
   const [searchQuery, setSearchQuery] = useState("");
 
-  const briefItems = [
-    {
-      name: "Campaign Brief Q1",
-      status: "Draft",
-      statusColor: "neutral" as const,
-    },
-    {
-      name: "Product Launch Brief",
-      status: "Published",
-      statusColor: "success" as const,
-    },
-    {
-      name: "Homepage Refresh Brief",
-      status: "Draft",
-      statusColor: "neutral" as const,
-    },
-    {
-      name: "Holiday Campaign Brief",
-      status: "Draft",
-      statusColor: "neutral" as const,
-    },
-    {
-      name: "Partner Portal Brief",
-      status: "Draft",
-      statusColor: "neutral" as const,
-    },
-    {
-      name: "Brand Guidelines Brief",
-      status: "Draft",
-      statusColor: "neutral" as const,
-    },
-    {
-      name: "Email Nurture Brief",
-      status: "Draft",
-      statusColor: "neutral" as const,
-    },
-    {
-      name: "App Onboarding Brief",
-      status: "Draft",
-      statusColor: "neutral" as const,
-    },
-    {
-      name: "Regional Launch Brief",
-      status: "Draft",
-      statusColor: "neutral" as const,
-    },
-    {
-      name: "Content Hub Brief",
-      status: "Draft",
-      statusColor: "neutral" as const,
-    },
-    {
-      name: "Analytics Rollout Brief",
-      status: "Draft",
-      statusColor: "neutral" as const,
-    },
-    {
-      name: "Support Portal Brief",
-      status: "Draft",
-      statusColor: "neutral" as const,
-    },
-  ];
-
-  const filteredItems = briefItems.filter((item) =>
-    item.name.toLowerCase().includes(searchQuery.toLowerCase()),
+  const filteredItems = useMemo(
+    () =>
+      sidebarRhsDemoBriefItems.filter((item) =>
+        item.name.toLowerCase().includes(searchQuery.toLowerCase()),
+      ),
+    [searchQuery],
   );
 
   return (
     <div className="flex flex-col gap-4">
       <p className="text-sm text-muted-foreground">
-        Briefs that are using this brief type
+        {sidebarRhsDemoUsageIntro}
       </p>
 
       <SearchInput className="w-full">
@@ -202,58 +126,30 @@ export function InfoSection() {
 
   return (
     <div className="flex flex-col gap-4">
-      <div className="flex flex-col gap-1">
-        <p className="text-sm font-medium text-neutral-fg">Label</p>
-        <div className="flex items-center gap-1">
-          <span className="flex-1 min-w-0 truncate text-sm text-foreground">
-            The label
-          </span>
-          <Button
-            type="button"
-            variant="ghost"
-            size="icon-sm"
-            onClick={() => handleCopy("The label")}
-            className="shrink-0 text-muted-foreground shadow-none hover:text-foreground"
-            aria-label="Copy label"
-          >
-            <Icon path={mdiContentCopy} className="size-4" />
-          </Button>
+      {sidebarRhsDemoInfoFields.map((field) => (
+        <div key={field.label} className="flex flex-col gap-1">
+          <p className="text-sm font-medium text-neutral-fg">{field.label}</p>
+          {field.copyable ? (
+            <div className="flex items-center gap-1">
+              <span className="flex-1 min-w-0 truncate text-sm text-foreground">
+                {field.value}
+              </span>
+              <Button
+                type="button"
+                variant="ghost"
+                size="icon-sm"
+                onClick={() => handleCopy(field.value)}
+                className="shrink-0 text-muted-foreground shadow-none hover:text-foreground"
+                aria-label={`Copy ${field.label.toLowerCase()}`}
+              >
+                <Icon path={mdiContentCopy} className="size-4" />
+              </Button>
+            </div>
+          ) : (
+            <span className="text-sm text-foreground">{field.value}</span>
+          )}
         </div>
-      </div>
-
-      <div className="flex flex-col gap-1">
-        <p className="text-sm font-medium text-neutral-fg">Name</p>
-        <div className="flex items-center gap-1">
-          <span className="flex-1 min-w-0 truncate text-sm text-foreground">
-            Value
-          </span>
-          <Button
-            type="button"
-            variant="ghost"
-            size="icon-sm"
-            onClick={() => handleCopy("Value")}
-            className="shrink-0 text-muted-foreground shadow-none hover:text-foreground"
-            aria-label="Copy name"
-          >
-            <Icon path={mdiContentCopy} className="size-4" />
-          </Button>
-        </div>
-      </div>
-
-      <div className="flex flex-col gap-1">
-        <p className="text-sm font-medium text-neutral-fg">Created by</p>
-        <span className="text-sm text-foreground">Value</span>
-      </div>
-
-      <div className="flex flex-col gap-1">
-        <p className="text-sm font-medium text-neutral-fg">Created</p>
-        <span className="text-sm text-foreground">Person, Date</span>
-      </div>
-
-      <div className="flex flex-col gap-1">
-        <p className="text-sm font-medium text-neutral-fg">Updated</p>
-        <span className="text-sm text-foreground">Person, Date</span>
-      </div>
+      ))}
     </div>
   );
 }

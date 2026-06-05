@@ -1,7 +1,10 @@
+import { promptInputCodeFiles } from "@/lib/docsite/blok-demo-code-files";
+
 export const promptInput = {
   name: "prompt-input",
   preview: {
     defaultComponent: "prompt-input",
+    codeFiles: promptInputCodeFiles,
   },
   usage: {
     usage: [
