@@ -20,6 +20,12 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Direction } from "radix-ui";
 import { useEffect, useMemo, useState } from "react";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "../ui/tooltip";
 
 const { useDirection } = Direction;
 
@@ -164,138 +170,147 @@ export function RegistrySidebar() {
         className={`${direction === "rtl" ? "mr-4" : "ml-4"} py-4`}
       >
         <ScrollArea className="h-full w-full pr-4">
-          <SidebarMenu>
-            {sidebarType === "components" &&
-              componentItems.map((item) => (
-                <SidebarMenuItem key={item.name}>
-                  <SidebarMenuButton
-                    asChild
-                    isActive={pathname === `/primitives/${item.name}`}
-                    className="h-10 font-medium text-md text-neutral-fg hover:bg-gray-100 hover:dark:bg-gray-700 data-[active=true]:text-primary-fg data-[active=true]:bg-primary-background"
-                  >
-                    <Link
-                      onClick={() => {
-                        setOpenMobile(false);
-                        track(TELEMETRY_EVENTS.sidebar_nav_click, {
-                          path: `/primitives/${item.name}`,
-                          label: item.title,
-                          section: "components",
-                        });
-                      }}
-                      href={`/primitives/${item.name}`}
+          <TooltipProvider delayDuration={2000}>
+            <SidebarMenu>
+              {sidebarType === "components" &&
+                componentItems.map((item) => (
+                  <SidebarMenuItem key={item.name}>
+                    <SidebarMenuButton
+                      asChild
+                      isActive={pathname === `/primitives/${item.name}`}
+                      className="h-10 font-medium text-md text-neutral-fg hover:bg-gray-100 hover:dark:bg-gray-700 data-[active=true]:text-primary-fg data-[active=true]:bg-primary-background"
                     >
-                      {item.title}
-                    </Link>
-                  </SidebarMenuButton>
-                </SidebarMenuItem>
-              ))}
+                      <Link
+                        onClick={() => {
+                          setOpenMobile(false);
+                          track(TELEMETRY_EVENTS.sidebar_nav_click, {
+                            path: `/primitives/${item.name}`,
+                            label: item.title,
+                            section: "components",
+                          });
+                        }}
+                        href={`/primitives/${item.name}`}
+                      >
+                        {item.title}
+                      </Link>
+                    </SidebarMenuButton>
+                  </SidebarMenuItem>
+                ))}
 
-            {sidebarType === "blocks" &&
-              blockItems.map((item) => (
-                <SidebarMenuItem key={item.name}>
-                  <SidebarMenuButton
-                    asChild
-                    isActive={pathname === `/bloks/${item.name}`}
-                    className="h-10 font-medium text-md text-neutral-fg hover:bg-gray-100 hover:dark:bg-gray-700 data-[active=true]:text-primary-fg data-[active=true]:bg-primary-background"
-                  >
-                    <Link
-                      onClick={() => {
-                        setOpenMobile(false);
-                        track(TELEMETRY_EVENTS.sidebar_nav_click, {
-                          path: `/bloks/${item.name}`,
-                          label: item.title,
-                          section: "blocks",
-                        });
-                      }}
-                      href={`/bloks/${item.name}`}
+              {sidebarType === "blocks" &&
+                blockItems.map((item) => (
+                  <SidebarMenuItem key={item.name}>
+                    <SidebarMenuButton
+                      asChild
+                      isActive={pathname === `/bloks/${item.name}`}
+                      className="h-10 font-medium text-md text-neutral-fg hover:bg-gray-100 hover:dark:bg-gray-700 data-[active=true]:text-primary-fg data-[active=true]:bg-primary-background"
                     >
-                      {item.title}
-                    </Link>
-                  </SidebarMenuButton>
-                </SidebarMenuItem>
-              ))}
+                      <Link
+                        onClick={() => {
+                          setOpenMobile(false);
+                          track(TELEMETRY_EVENTS.sidebar_nav_click, {
+                            path: `/bloks/${item.name}`,
+                            label: item.title,
+                            section: "blocks",
+                          });
+                        }}
+                        href={`/bloks/${item.name}`}
+                      >
+                        {item.title}
+                      </Link>
+                    </SidebarMenuButton>
+                  </SidebarMenuItem>
+                ))}
 
-            {sidebarType === "theming" &&
-              themingItems.map((item) => (
-                <SidebarMenuItem key={item.path}>
-                  <SidebarMenuButton
-                    asChild
-                    isActive={pathname === item.path}
-                    className="h-10 font-medium text-md text-neutral-fg hover:bg-gray-100 hover:dark:bg-gray-700 data-[active=true]:text-primary-fg data-[active=true]:bg-primary-background"
-                  >
-                    <Link
-                      onClick={() => {
-                        setOpenMobile(false);
-                        track(TELEMETRY_EVENTS.sidebar_nav_click, {
-                          path: item.path,
-                          label: item.title,
-                          section: "theming",
-                        });
-                      }}
-                      href={item.path}
+              {sidebarType === "theming" &&
+                themingItems.map((item) => (
+                  <SidebarMenuItem key={item.path}>
+                    <SidebarMenuButton
+                      asChild
+                      isActive={pathname === item.path}
+                      className="h-10 font-medium text-md text-neutral-fg hover:bg-gray-100 hover:dark:bg-gray-700 data-[active=true]:text-primary-fg data-[active=true]:bg-primary-background"
                     >
-                      {item.title}
-                    </Link>
-                  </SidebarMenuButton>
-                </SidebarMenuItem>
-              ))}
+                      <Link
+                        onClick={() => {
+                          setOpenMobile(false);
+                          track(TELEMETRY_EVENTS.sidebar_nav_click, {
+                            path: item.path,
+                            label: item.title,
+                            section: "theming",
+                          });
+                        }}
+                        href={item.path}
+                      >
+                        {item.title}
+                      </Link>
+                    </SidebarMenuButton>
+                  </SidebarMenuItem>
+                ))}
 
-            {sidebarType === "graphics" &&
-              graphicsItems.map((item) => (
-                <SidebarMenuItem key={item.path}>
-                  <SidebarMenuButton
-                    asChild
-                    isActive={pathname === item.path}
-                    className="h-10 font-medium text-md text-neutral-fg hover:bg-gray-100 hover:dark:bg-gray-700 data-[active=true]:text-primary-fg data-[active=true]:bg-primary-background"
-                  >
-                    <Link
-                      onClick={() => {
-                        setOpenMobile(false);
-                        track(TELEMETRY_EVENTS.sidebar_nav_click, {
-                          path: item.path,
-                          label: item.title,
-                          section: "graphics",
-                        });
-                      }}
-                      href={item.path}
+              {sidebarType === "graphics" &&
+                graphicsItems.map((item) => (
+                  <SidebarMenuItem key={item.path}>
+                    <SidebarMenuButton
+                      asChild
+                      isActive={pathname === item.path}
+                      className="h-10 font-medium text-md text-neutral-fg hover:bg-gray-100 hover:dark:bg-gray-700 data-[active=true]:text-primary-fg data-[active=true]:bg-primary-background"
                     >
-                      {item.title}
-                    </Link>
-                  </SidebarMenuButton>
-                </SidebarMenuItem>
-              ))}
+                      <Link
+                        onClick={() => {
+                          setOpenMobile(false);
+                          track(TELEMETRY_EVENTS.sidebar_nav_click, {
+                            path: item.path,
+                            label: item.title,
+                            section: "graphics",
+                          });
+                        }}
+                        href={item.path}
+                      >
+                        {item.title}
+                      </Link>
+                    </SidebarMenuButton>
+                  </SidebarMenuItem>
+                ))}
 
-            {sidebarType === "changelog" &&
-              changelogNav.map((changelog) => (
-                <SidebarMenuItem key={changelog.id}>
-                  <SidebarMenuButton
-                    asChild
-                    isActive={
-                      pathname.startsWith("/changelog") &&
-                      changelogHash === changelog.id
-                    }
-                    className="h-10 w-full min-w-0 items-center overflow-hidden font-medium text-md text-neutral-fg hover:bg-gray-100 hover:dark:bg-gray-700 data-[active=true]:text-primary-fg data-[active=true]:bg-primary-background"
-                  >
-                    <Link
-                      href={`/changelog#${changelog.id}`}
-                      className="w-full min-w-0"
-                      onClick={() => {
-                        setOpenMobile(false);
-                        track(TELEMETRY_EVENTS.sidebar_nav_click, {
-                          path: `/changelog#${changelog.id}`,
-                          label: changelog.title,
-                          section: "changelog",
-                        });
-                      }}
-                    >
-                      <span className="min-w-0 w-40 truncate">
-                        {changelog.title}
-                      </span>
-                    </Link>
-                  </SidebarMenuButton>
-                </SidebarMenuItem>
-              ))}
-          </SidebarMenu>
+              {sidebarType === "changelog" &&
+                changelogNav.map((changelog) => (
+                  <Tooltip key={changelog.id}>
+                    <TooltipTrigger asChild>
+                      <SidebarMenuItem key={changelog.id}>
+                        <SidebarMenuButton
+                          asChild
+                          isActive={
+                            pathname.startsWith("/changelog") &&
+                            changelogHash === changelog.id
+                          }
+                          className="h-10 w-full min-w-0 items-center overflow-hidden font-medium text-md text-neutral-fg hover:bg-gray-100 hover:dark:bg-gray-700 data-[active=true]:text-primary-fg data-[active=true]:bg-primary-background"
+                        >
+                          <Link
+                            href={`/changelog#${changelog.id}`}
+                            className="w-full min-w-0"
+                            onClick={() => {
+                              setOpenMobile(false);
+                              track(TELEMETRY_EVENTS.sidebar_nav_click, {
+                                path: `/changelog#${changelog.id}`,
+                                label: changelog.title,
+                                section: "changelog",
+                              });
+                            }}
+                          >
+                            <span className="min-w-0 w-40 truncate">
+                              {changelog.title}
+                            </span>
+                          </Link>
+                        </SidebarMenuButton>
+                      </SidebarMenuItem>
+                    </TooltipTrigger>
+                    <TooltipContent side="right">
+                      {changelog.title}
+                    </TooltipContent>
+                  </Tooltip>
+                ))}
+            </SidebarMenu>
+          </TooltipProvider>
         </ScrollArea>
       </SidebarContent>
     </Sidebar>
