@@ -30,10 +30,6 @@ export const pinnedSiteCodeFiles: DemoCodeFileSource[] = [
     { default: true },
   ),
   demoCodeFile(
-    "app/content/bloks/pinned-site-section/pinned-site-section.mock-data.ts",
-    "src/app/content/bloks/pinned-site-section/pinned-site-section.mock-data.ts",
-  ),
-  demoCodeFile(
     "app/content/bloks/all-site-section/all-site-section.mock-data.ts",
     "src/app/content/bloks/all-site-section/all-site-section.mock-data.ts",
   ),
@@ -176,21 +172,13 @@ const dashboardWidgetComponentCodeFiles: DemoCodeFileSource[] = [
   ),
 ];
 
-const dashboardWidgetSharedCodeFiles: DemoCodeFileSource[] = [
-  demoCodeFile(
-    "app/content/bloks/dashboard-widget/dashboard-widget.mock-data.ts",
-    "src/app/content/bloks/dashboard-widget/dashboard-widget.mock-data.ts",
-  ),
-  ...dashboardWidgetComponentCodeFiles,
-];
-
 export const dashboardWidgetCodeFiles: DemoCodeFileSource[] = [
   demoCodeFile(
     "app/content/bloks/dashboard-widget/dashboard-widget.tsx",
     "src/app/content/bloks/dashboard-widget/dashboard-widget.tsx",
     { default: true },
   ),
-  ...dashboardWidgetSharedCodeFiles,
+  ...dashboardWidgetComponentCodeFiles,
 ];
 
 export const dashboardWidgetWhiteBgLargeCodeFiles: DemoCodeFileSource[] = [
@@ -199,7 +187,11 @@ export const dashboardWidgetWhiteBgLargeCodeFiles: DemoCodeFileSource[] = [
     "src/app/content/bloks/dashboard-widget/dashboard-widget-white-bg-large.tsx",
     { default: true },
   ),
-  ...dashboardWidgetSharedCodeFiles,
+  demoCodeFile(
+    "app/content/bloks/dashboard-widget/dashboard-widget.mock-data.ts",
+    "src/app/content/bloks/dashboard-widget/dashboard-widget.mock-data.ts",
+  ),
+  ...dashboardWidgetComponentCodeFiles,
 ];
 
 export const dashboardWidgetGrayBgLargeCodeFiles: DemoCodeFileSource[] = [
