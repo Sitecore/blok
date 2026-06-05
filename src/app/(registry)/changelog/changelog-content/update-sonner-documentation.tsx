@@ -1,6 +1,6 @@
 import type { ChangelogItem } from "../changelogs";
 
-const SonnerThumb = ({ className }: { className?: string }) => (
+const Thumb = ({ className }: { className?: string }) => (
   <svg
     width="200"
     height="150"
@@ -96,11 +96,11 @@ const SonnerThumb = ({ className }: { className?: string }) => (
   </svg>
 );
 
-const May052026SonnerDocumentation: ChangelogItem = {
+const April2026SonnerDocumentation: ChangelogItem = {
   description: `The Sonner installation guide has been updated to remove confusion around setup and usage. 
   The new guidance clarifies the correct installation flow and expected integration steps, making it easier 
   for you to get the component working without misconfiguration.`,
-  thumbnail: <SonnerThumb />,
+  thumbnail: <Thumb />,
 };
 
-export default May052026SonnerDocumentation;
+export default April2026SonnerDocumentation;
