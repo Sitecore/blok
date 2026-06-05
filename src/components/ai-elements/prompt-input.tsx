@@ -510,6 +510,7 @@ export interface PromptInputMessage {
 export type PromptInputVariant = "default" | "floating";
 
 const SINGLE_LINE_HEIGHT = 32;
+const FLOATING_MAX_HEIGHT = 120;
 
 interface PromptInputLayoutContextValue {
   variant: PromptInputVariant;
@@ -1006,10 +1007,10 @@ export const PromptInput = forwardRef<HTMLFormElement, PromptInputProps>(
         >
           <InputGroup
             className={cn(
-              "overflow-hidden border-border",
+              "overflow-hidden border-border bg-white! shadow-lg! dark:bg-background!",
               floatingSingleLine &&
                 cn(
-                  "h-auto! min-h-0 gap-2 rounded-xl border bg-white shadow-lg dark:bg-input/30",
+                  "h-auto! min-h-0 gap-2 rounded-xl border",
                   "flex-row items-center px-4",
                   hasFiles ? "pb-3 pt-0" : "py-3",
                   hasFiles && "flex-wrap",
@@ -1065,6 +1066,7 @@ export const PromptInputTextarea = ({
   onKeyDown,
   className,
   placeholder = "What would you like to know?",
+  value,
   ...props
 }: PromptInputTextareaProps) => {
   const controller = useOptionalPromptInputController();
@@ -1073,30 +1075,16 @@ export const PromptInputTextarea = ({
   const [isComposing, setIsComposing] = useState(false);
   const inlineWidthRef = useRef(0);
 
-  const floatingMaxHeight = 120;
-
-  useLayoutEffect(() => {
-    if (layout?.variant !== "floating" || !layout.textareaRef.current) {
-      return;
-    }
-    const el = layout.textareaRef.current;
-    el.style.height = "auto";
-    el.style.height = `${Math.min(el.scrollHeight, floatingMaxHeight)}px`;
-  }, [layout?.variant, layout?.textareaRef]);
-
-  const handleInput: InputEventHandler<HTMLTextAreaElement> = useCallback(
-    (e) => {
-      onInput?.(e);
+  const syncFloatingLayout = useCallback(
+    (el: HTMLTextAreaElement) => {
+      el.style.height = "auto";
+      el.style.height = `${Math.min(el.scrollHeight, FLOATING_MAX_HEIGHT)}px`;
 
       if (layout?.variant !== "floating") {
         return;
       }
 
-      const el = e.currentTarget;
-      el.style.height = "auto";
-      el.style.height = `${Math.min(el.scrollHeight, floatingMaxHeight)}px`;
-
-      if (!layout.effectiveMultiline) {
+      if (!layout.isMultiline) {
         if (el.offsetWidth > 0) {
           inlineWidthRef.current = el.offsetWidth;
         }
@@ -1110,14 +1098,29 @@ export const PromptInputTextarea = ({
         const heightAtInlineWidth = el.scrollHeight;
         el.style.width = savedWidth;
         el.style.height = "auto";
-        el.style.height = `${Math.min(el.scrollHeight, floatingMaxHeight)}px`;
+        el.style.height = `${Math.min(el.scrollHeight, FLOATING_MAX_HEIGHT)}px`;
 
         if (heightAtInlineWidth <= SINGLE_LINE_HEIGHT) {
           layout.setIsMultiline(false);
         }
       }
     },
-    [layout, onInput],
+    [layout],
+  );
+
+  useLayoutEffect(() => {
+    if (layout?.variant !== "floating" || !layout.textareaRef.current) {
+      return;
+    }
+    syncFloatingLayout(layout.textareaRef.current);
+  }, [layout?.variant, layout?.textareaRef, syncFloatingLayout]);
+
+  const handleInput: InputEventHandler<HTMLTextAreaElement> = useCallback(
+    (e) => {
+      onInput?.(e);
+      syncFloatingLayout(e.currentTarget);
+    },
+    [onInput, syncFloatingLayout],
   );
 
   const handleKeyDown: KeyboardEventHandler<HTMLTextAreaElement> = useCallback(
@@ -1207,19 +1210,17 @@ export const PromptInputTextarea = ({
       }
     : {
         onChange,
+        ...(value !== undefined ? { value } : {}),
       };
 
   return (
     <InputGroupTextarea
       ref={layout?.textareaRef}
       className={cn(
-        "field-sizing-content max-h-48 min-h-6",
+        "field-sizing-content max-h-48 min-h-6 bg-transparent! dark:bg-transparent!",
         layout?.variant === "floating" &&
-          !layout.effectiveMultiline &&
           "max-h-[120px] min-h-6 min-w-0 flex-1 py-0",
-        layout?.variant === "floating" &&
-          layout.effectiveMultiline &&
-          "max-h-[120px] px-3 py-3",
+        layout?.variant === "floating" && layout.effectiveMultiline && "px-3",
         className,
       )}
       name="message"

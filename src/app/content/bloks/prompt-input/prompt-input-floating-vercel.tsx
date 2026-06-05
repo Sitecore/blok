@@ -759,6 +759,36 @@ function FloatingVercelPromptInput({
             />
           </PromptInputActionMenuContent>
         </PromptInputActionMenu>
+        <PromptInputButton
+          onClick={() => setUseWebSearch(!useWebSearch)}
+          tooltip={{ content: "Search the web", shortcut: "⌘K" }}
+          variant={useWebSearch ? "default" : "ghost"}
+        >
+          <Icon
+            className="size-3 shrink-0 text-current"
+            path={mdiWeb}
+            title="Web search"
+          />
+          <span>Search</span>
+        </PromptInputButton>
+        <PromptInputSelect
+          onValueChange={(value) => {
+            setModel(value);
+          }}
+          value={model}
+        >
+          <PromptInputSelectTrigger>
+            <PromptInputSelectValue />
+          </PromptInputSelectTrigger>
+          <PromptInputSelectContent>
+            {models.map((m) => (
+              <PromptInputSelectItem key={m.id} value={m.id}>
+                {m.name}
+              </PromptInputSelectItem>
+            ))}
+          </PromptInputSelectContent>
+        </PromptInputSelect>
+        <SelectionList selections={selections} onRemove={removeSelection} />
       </PromptInputToolbar>
       <PromptInputBody>
         <PromptInputTextarea
@@ -905,7 +935,7 @@ function FloatingChatCard({
     <div
       className={cn(
         "flex min-w-0 max-w-full flex-col rounded-xl border bg-white shadow-lg",
-        "dark:bg-input/30",
+        "dark:bg-background",
       )}
       style={{ width: `${COLUMN_WIDTH_PX}px` }}
     >
@@ -964,7 +994,7 @@ function FloatingChatCard({
         }}
         className={cn(
           "[&_[data-slot=input-group]]:rounded-b-xl [&_[data-slot=input-group]]:rounded-t-lg",
-          "[&_[data-slot=input-group]]:shadow-none",
+          "[&_[data-slot=input-group]]:bg-white! [&_[data-slot=input-group]]:dark:bg-background! [&_[data-slot=input-group]]:shadow-lg!",
         )}
       />
     </div>

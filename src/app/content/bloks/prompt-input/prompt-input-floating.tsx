@@ -6,10 +6,16 @@ import {
   PromptInputAttachButton,
   PromptInputAttachments,
   PromptInputBody,
+  PromptInputButton,
   PromptInputFooter,
   PromptInputHeader,
   type PromptInputMessage,
   PromptInputMicButton,
+  PromptInputSelect,
+  PromptInputSelectContent,
+  PromptInputSelectItem,
+  PromptInputSelectTrigger,
+  PromptInputSelectValue,
   type PromptInputSelection,
   PromptInputSelections,
   PromptInputSubmit,
@@ -67,6 +73,7 @@ import {
   mdiWeb,
 } from "@mdi/js";
 import { useMemo, useState } from "react";
+import { PROMPT_INPUT_DEMO_MODELS } from "./prompt-input-vercel-demo-shared";
 
 // ---------------------------------------------------------------------------
 // PromptInput "+" attach menu (demo data & layout — not part of core blok)
@@ -482,6 +489,47 @@ function promptInputDemoAttachMenu({
 
 const COLUMN_WIDTH_PX = 576;
 
+const demoModels = PROMPT_INPUT_DEMO_MODELS;
+
+function FloatingPromptToolbarTools({
+  model,
+  onModelChange,
+  useWebSearch,
+  onWebSearchChange,
+}: {
+  model: string;
+  onModelChange: (model: string) => void;
+  useWebSearch: boolean;
+  onWebSearchChange: (enabled: boolean) => void;
+}) {
+  return (
+    <>
+      <PromptInputButton
+        onClick={() => onWebSearchChange(!useWebSearch)}
+        tooltip={{ content: "Search the web", shortcut: "⌘K" }}
+        variant={useWebSearch ? "default" : "ghost"}
+        className="gap-1.5"
+      >
+        <Icon path={mdiWeb} className="size-3.5 shrink-0" />
+        <span>Search</span>
+      </PromptInputButton>
+      <PromptInputSelect value={model} onValueChange={onModelChange}>
+        <PromptInputSelectTrigger>
+          <PromptInputSelectValue />
+        </PromptInputSelectTrigger>
+        <PromptInputSelectContent>
+          {demoModels.map((entry) => (
+            <PromptInputSelectItem key={entry.id} value={entry.id}>
+              {entry.name}
+            </PromptInputSelectItem>
+          ))}
+        </PromptInputSelectContent>
+      </PromptInputSelect>
+      <PromptInputSelections />
+    </>
+  );
+}
+
 type ChatMessage = {
   id: string;
   role: "user" | "assistant";
@@ -513,6 +561,8 @@ const initialMessages: ChatMessage[] = [
 
 function FloatingChatCard() {
   const [, setLastMessage] = useState<string>("");
+  const [model, setModel] = useState<string>(demoModels[0].id);
+  const [useWebSearch, setUseWebSearch] = useState(false);
 
   const handleSubmit = (message: PromptInputMessage) => {
     setLastMessage(message.text);
@@ -588,7 +638,12 @@ function FloatingChatCard() {
         </PromptInputHeader>
         <PromptInputToolbar inline>
           <PromptInputAttachButton attachMenu={promptInputDemoAttachMenu} />
-          <PromptInputSelections />
+          <FloatingPromptToolbarTools
+            model={model}
+            onModelChange={setModel}
+            useWebSearch={useWebSearch}
+            onWebSearchChange={setUseWebSearch}
+          />
         </PromptInputToolbar>
         <PromptInputBody>
           <PromptInputTextarea placeholder="/ for tools, @ for context references" />
@@ -596,7 +651,12 @@ function FloatingChatCard() {
         <PromptInputFooter>
           <PromptInputToolbar>
             <PromptInputAttachButton attachMenu={promptInputDemoAttachMenu} />
-            <PromptInputSelections />
+            <FloatingPromptToolbarTools
+              model={model}
+              onModelChange={setModel}
+              useWebSearch={useWebSearch}
+              onWebSearchChange={setUseWebSearch}
+            />
           </PromptInputToolbar>
           <PromptInputActions>
             <PromptInputMicButton />
@@ -610,6 +670,8 @@ function FloatingChatCard() {
 
 export default function PromptInputFloatingDemo() {
   const [lastMessage, setLastMessage] = useState<string>("");
+  const [model, setModel] = useState<string>(demoModels[0].id);
+  const [useWebSearch, setUseWebSearch] = useState(false);
 
   const handleSubmit = (message: PromptInputMessage) => {
     setLastMessage(message.text);
@@ -636,7 +698,12 @@ export default function PromptInputFloatingDemo() {
           {/* Visible only when single-line (inline layout) */}
           <PromptInputToolbar inline>
             <PromptInputAttachButton attachMenu={promptInputDemoAttachMenu} />
-            <PromptInputSelections />
+            <FloatingPromptToolbarTools
+              model={model}
+              onModelChange={setModel}
+              useWebSearch={useWebSearch}
+              onWebSearchChange={setUseWebSearch}
+            />
           </PromptInputToolbar>
           <PromptInputBody>
             <PromptInputTextarea placeholder="Edit this page…" />
@@ -645,7 +712,12 @@ export default function PromptInputFloatingDemo() {
             {/* Visible only when multiline (column layout) */}
             <PromptInputToolbar>
               <PromptInputAttachButton attachMenu={promptInputDemoAttachMenu} />
-              <PromptInputSelections />
+              <FloatingPromptToolbarTools
+                model={model}
+                onModelChange={setModel}
+                useWebSearch={useWebSearch}
+                onWebSearchChange={setUseWebSearch}
+              />
             </PromptInputToolbar>
             <PromptInputActions>
               <PromptInputMicButton />

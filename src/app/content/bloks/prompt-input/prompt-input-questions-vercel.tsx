@@ -770,7 +770,7 @@ export default function PromptInputQuestionsVercelDemo() {
               : undefined
           }
           className={cn(
-            "w-full **:data-[slot=input-group]:rounded-2xl **:data-[slot=input-group]:shadow-xl!",
+            "w-full **:data-[slot=input-group]:rounded-2xl **:data-[slot=input-group]:bg-white! **:data-[slot=input-group]:dark:bg-background! **:data-[slot=input-group]:shadow-lg!",
             showQuestionPanel && "relative z-10",
           )}
           globalDrop

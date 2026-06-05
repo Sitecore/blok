@@ -844,9 +844,9 @@ export default function PromptInputQueuedVercelDemo() {
               : undefined
           }
           className={cn(
-            "w-full",
+            "w-full **:data-[slot=input-group]:bg-white! **:data-[slot=input-group]:dark:bg-background! **:data-[slot=input-group]:shadow-lg!",
             todos.length > 0 &&
-              "relative z-10 **:data-[slot=input-group]:rounded-2xl **:data-[slot=input-group]:shadow-xl!",
+              "relative z-10 **:data-[slot=input-group]:rounded-2xl",
           )}
           globalDrop
           multiple

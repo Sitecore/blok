@@ -13,6 +13,13 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
 import {
   Tooltip,
@@ -31,6 +38,7 @@ import {
   mdiSquare,
 } from "@mdi/js";
 import {
+  Children,
   type FormEvent,
   type KeyboardEvent,
   type ReactNode,
@@ -926,13 +934,17 @@ export interface PromptInputButtonProps
 function PromptInputButton({
   tooltip,
   className,
+  size,
   ...props
 }: PromptInputButtonProps) {
+  const resolvedSize =
+    size ?? (Children.count(props.children) > 1 ? "xs" : "icon-xs");
+
   const button = (
     <Button
       type="button"
       variant="ghost"
-      size="icon-xs"
+      size={resolvedSize}
       data-slot="prompt-input-button"
       className={cn("text-muted-foreground hover:text-foreground", className)}
       {...props}
@@ -1551,6 +1563,90 @@ function PromptInputSelections({
 }
 
 // ---------------------------------------------------------------------------
+// PromptInputSelect (model picker, etc.)
+// ---------------------------------------------------------------------------
+
+export type PromptInputSelectProps = React.ComponentProps<typeof Select>;
+
+function PromptInputSelect(props: PromptInputSelectProps) {
+  return <Select {...props} />;
+}
+
+export type PromptInputSelectTriggerProps = React.ComponentProps<
+  typeof SelectTrigger
+>;
+
+function PromptInputSelectTrigger({
+  className,
+  size = "sm",
+  ...props
+}: PromptInputSelectTriggerProps) {
+  return (
+    <SelectTrigger
+      size={size}
+      data-slot="prompt-input-select-trigger"
+      className={cn(
+        "h-7 min-h-7 gap-1 border-none bg-transparent px-2 py-1 text-xs font-normal text-muted-foreground shadow-none",
+        "hover:bg-muted hover:text-foreground data-[state=open]:bg-muted data-[state=open]:text-foreground",
+        className,
+      )}
+      {...props}
+    />
+  );
+}
+
+export type PromptInputSelectContentProps = React.ComponentProps<
+  typeof SelectContent
+>;
+
+function PromptInputSelectContent({
+  className,
+  ...props
+}: PromptInputSelectContentProps) {
+  return (
+    <SelectContent
+      data-slot="prompt-input-select-content"
+      className={cn(className)}
+      {...props}
+    />
+  );
+}
+
+export type PromptInputSelectItemProps = React.ComponentProps<
+  typeof SelectItem
+>;
+
+function PromptInputSelectItem({
+  className,
+  ...props
+}: PromptInputSelectItemProps) {
+  return (
+    <SelectItem
+      data-slot="prompt-input-select-item"
+      className={cn(className)}
+      {...props}
+    />
+  );
+}
+
+export type PromptInputSelectValueProps = React.ComponentProps<
+  typeof SelectValue
+>;
+
+function PromptInputSelectValue({
+  className,
+  ...props
+}: PromptInputSelectValueProps) {
+  return (
+    <SelectValue
+      data-slot="prompt-input-select-value"
+      className={cn(className)}
+      {...props}
+    />
+  );
+}
+
+// ---------------------------------------------------------------------------
 // PromptInputMicButton
 // ---------------------------------------------------------------------------
 
@@ -1596,6 +1692,11 @@ export {
   PromptInputSubmit,
   PromptInputAttachments,
   PromptInputSelections,
+  PromptInputSelect,
+  PromptInputSelectTrigger,
+  PromptInputSelectContent,
+  PromptInputSelectItem,
+  PromptInputSelectValue,
   PromptInputMicButton,
   usePromptInputContext,
 };
