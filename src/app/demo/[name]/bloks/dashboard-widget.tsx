@@ -1,7 +1,16 @@
+import {
+  dashboardWidgetCodeFiles,
+  dashboardWidgetGrayBgLargeCodeFiles,
+  dashboardWidgetWhiteBgLargeCodeFiles,
+} from "@/lib/docsite/blok-demo-code-files";
+
 export const dashboardWidget = {
   name: "dashboard-widget",
   preview: {
     defaultComponent: "dashboard-widget",
+    codeFiles: dashboardWidgetCodeFiles,
+    contentClassName: "items-stretch",
+    wrapperClassName: "w-full min-w-0 max-w-[960px]",
   },
   usage: {
     usage: [
@@ -34,7 +43,17 @@ export const dashboardWidget = {
     ],
   },
   components: {
-    "White widget": { component: "dashboard-widget-white-bg-large" },
-    "Gray widget": { component: "dashboard-widget-gray-bg-large" },
+    "White widget": {
+      component: "dashboard-widget-white-bg-large",
+      codeFiles: dashboardWidgetWhiteBgLargeCodeFiles,
+      contentClassName: "items-stretch",
+      wrapperClassName: "w-full min-w-0 max-w-[960px]",
+    },
+    "Gray widget": {
+      component: "dashboard-widget-gray-bg-large",
+      codeFiles: dashboardWidgetGrayBgLargeCodeFiles,
+      contentClassName: "items-stretch",
+      wrapperClassName: "w-full min-w-0 max-w-[960px]",
+    },
   },
 };

@@ -15,8 +15,10 @@ export default function ChangelogPage() {
 
         <div className="py-8 space-y-14">
           {getChangelogsNewestFirst().map((entry) => (
-            <section key={entry.id} id={entry.id} className="space-y-6">
-              <h2 className="text-3xl font-semibold">{entry.title}</h2>
+            <section key={entry.id} className="space-y-6">
+              <h2 className="scroll-mt-20 text-3xl font-semibold" id={entry.id}>
+                {entry.title}
+              </h2>
               <p className="whitespace-pre-line">
                 {formatDescription(entry.log.description)}
               </p>

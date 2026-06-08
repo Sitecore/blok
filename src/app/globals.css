@@ -98,6 +98,9 @@
   --sidebar-accent-foreground: oklch(0.205 0 0);
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
+
+  --scrollbar-thumb: var(--color-blackAlpha-400);
+  --scrollbar-track: transparent;
 }
 
 .dark {
@@ -183,6 +186,9 @@
   --sidebar-accent-foreground: oklch(0.985 0 0);
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.439 0 0);
+
+  --scrollbar-thumb: var(--color-whiteAlpha-500);
+  --scrollbar-track: transparent;
 }
 
 @theme inline {
@@ -288,7 +294,28 @@
 @layer base {
   * {
     @apply border-border outline-ring/50;
+    scrollbar-width: thin;
+    scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
   }
+
+  *::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+
+  *::-webkit-scrollbar-track {
+    background: var(--scrollbar-track);
+  }
+
+  *::-webkit-scrollbar-thumb {
+    background-color: var(--scrollbar-thumb);
+    border-radius: 5px;
+  }
+
+  *::-webkit-scrollbar-corner {
+    background: var(--scrollbar-track);
+  }
+
   body {
     @apply bg-background text-foreground;
   }
@@ -312,16 +339,25 @@
   display: none;
 }
 
-/* Scrollbar with hidden background: Chrome, Safari, Edge */
-.scrollbar-hidden-bg {
-  scrollbar-color: rgba(150, 150, 150, 0.5) transparent;
+/* Transparent track; themed thumb (alias for explicit opt-in) */
+.scrollbar-hidden-bg,
+.scrollbar-themed {
+  scrollbar-width: thin;
+  scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
 }
 
-.scrollbar-hidden-bg::-webkit-scrollbar-track {
-  background: transparent;
+.scrollbar-hidden-bg::-webkit-scrollbar-track,
+.scrollbar-themed::-webkit-scrollbar-track {
+  background: var(--scrollbar-track);
 }
 
-.scrollbar-hidden-bg::-webkit-scrollbar-thumb {
-  background-color: rgba(150, 150, 150, 0.5);
-  border-radius: 4px;
+.scrollbar-hidden-bg::-webkit-scrollbar-thumb,
+.scrollbar-themed::-webkit-scrollbar-thumb {
+  background-color: var(--scrollbar-thumb);
+  border-radius: 5px;
+}
+
+.scrollbar-hidden-bg::-webkit-scrollbar-corner,
+.scrollbar-themed::-webkit-scrollbar-corner {
+  background: var(--scrollbar-track);
 }

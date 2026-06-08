@@ -27,7 +27,7 @@ export default async function BlokItemPage({
   }
 
   return (
-    <div className="w-full max-w-[1250px] mx-auto bg-body-bg pb-10 px-5 md:px-10">
+    <div className="mx-auto w-full min-w-0 max-w-[1250px] overflow-x-hidden bg-body-bg px-5 pb-10 md:px-10">
       <div className="flex items-center justify-between">
         <div>
           <div className="py-10 flex flex-col gap-6">

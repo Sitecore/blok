@@ -3,7 +3,9 @@ import { Renderer } from "@/app/demo/[name]/renderer";
 import { CodeBlock } from "@/components/code-block";
 import DemoTab from "@/components/demo-tab";
 import InstallationCodeBlock from "@/components/docsite/installation-code-block";
+import { blokDemoCodeFilesByName } from "@/lib/docsite/blok-demo-code-files";
 import type { docsiteRegistry } from "@/lib/docsite/docsite-registry";
+import { loadDemoCodeFiles } from "@/lib/docsite/load-demo-code-files";
 import { loadFromRegistry } from "@/lib/docsite/load-from-registry";
 import { cn } from "@/lib/utils";
 import { notFound } from "next/navigation";
@@ -39,6 +41,13 @@ export default async function DemoPage({
 
   if (!defaultEntry) notFound();
 
+  const previewCodeSources =
+    preview.codeFiles ?? blokDemoCodeFilesByName[name] ?? [];
+  const loadedPreviewCodeFiles =
+    previewCodeSources.length > 0
+      ? await loadDemoCodeFiles(previewCodeSources)
+      : undefined;
+
   // Examples
   const exampleSections = components
     ? await Promise.all(
@@ -48,6 +57,11 @@ export default async function DemoPage({
           );
 
           if (!entry) return null;
+
+          const exampleCodeSources = component.codeFiles;
+          const loadedExampleCodeFiles = exampleCodeSources?.length
+            ? await loadDemoCodeFiles(exampleCodeSources)
+            : undefined;
 
           return (
             <div
@@ -59,6 +73,7 @@ export default async function DemoPage({
               {component.pre}
               <DemoTab
                 code={entry.code}
+                codeFiles={loadedExampleCodeFiles}
                 component={componentDemo(
                   React.createElement(entry.Component as ComponentType<any>),
                   component.wrapperClassName,
@@ -77,13 +92,14 @@ export default async function DemoPage({
     : null;
 
   return (
-    <div className="flex min-h-screen w-full flex-col gap-12 bg-body-bg">
+    <div className="flex min-h-screen w-full min-w-0 flex-col gap-12 overflow-x-hidden bg-body-bg">
       {/* Preview */}
       {preview.pre}
       <DemoTab
         key={name}
         id="preview"
         code={defaultEntry.code}
+        codeFiles={loadedPreviewCodeFiles}
         component={componentDemo(
           React.createElement(defaultEntry.Component as ComponentType<any>),
           preview.wrapperClassName,
@@ -136,7 +152,12 @@ export default async function DemoPage({
 
 const componentDemo = (component: ReactNode, wrapperClassName?: string) => {
   return (
-    <div className={cn("relative rounded-lg overflow-visible", wrapperClassName)}>
+    <div
+      className={cn(
+        "relative min-w-0 overflow-hidden rounded-lg",
+        wrapperClassName,
+      )}
+    >
       <Renderer>{component}</Renderer>
     </div>
   );
