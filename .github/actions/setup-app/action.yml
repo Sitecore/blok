@@ -10,6 +10,10 @@ inputs:
     description: 'Node.js version to use'
     required: false
     default: 'lts/*'
+  registry-url:
+    description: 'If set, run registry:update-urls before build'
+    required: false
+    default: ''
 
 outputs:
   build-status:
@@ -22,32 +26,48 @@ outputs:
 runs:
   using: 'composite'
   steps:
+    - name: Install pnpm
+      uses: pnpm/action-setup@v4
+      with:
+        package_json_file: ${{ inputs.app-path }}/package.json
+
     - name: Setup Node.js
       uses: actions/setup-node@v4
       with:
         node-version: ${{ inputs.node-version }}
-        cache: 'npm'
-        cache-dependency-path: ${{ inputs.app-path }}/package-lock.json
-    
+        cache: pnpm
+        cache-dependency-path: ${{ inputs.app-path }}/pnpm-lock.yaml
+
     - name: Install app dependencies
       shell: bash
       working-directory: ./${{ inputs.app-path }}
-      run: npm ci
-    
+      run: pnpm install --frozen-lockfile
+
+    - name: Update registry URLs
+      if: ${{ inputs.registry-url != '' }}
+      shell: bash
+      working-directory: ./${{ inputs.app-path }}
+      run: |
+        echo "Updating registry URLs to use: ${{ inputs.registry-url }}"
+        pnpm run registry:update-urls || pnpm exec tsx scripts/update-registry-urls.ts
+        echo "Registry URLs updated"
+      env:
+        NEXT_PUBLIC_REGISTRY_URL: ${{ inputs.registry-url }}
+
     - name: Clean up extra lockfiles
       shell: bash
       run: |
-        # Remove any package-lock.json in nested app/ subdirectory that might confuse Next.js
+        # Remove any pnpm-lock.yaml in nested app/ subdirectory that might confuse Next.js
         # Next.js detects multiple lockfiles and treats them as separate workspaces
         # This causes path resolution issues with Turbopack
-        if [ -f "${{ inputs.app-path }}/app/package-lock.json" ]; then
-          echo "⚠️ Found nested app/package-lock.json - removing to prevent Next.js workspace confusion"
-          rm -f "${{ inputs.app-path }}/app/package-lock.json"
+        if [ -f "${{ inputs.app-path }}/app/pnpm-lock.yaml" ]; then
+          echo "⚠️ Found nested app/pnpm-lock.yaml - removing to prevent Next.js workspace confusion"
+          rm -f "${{ inputs.app-path }}/app/pnpm-lock.yaml"
           echo "✅ Removed nested lockfile"
         else
           echo "✅ No nested lockfiles found"
         fi
-    
+
     - name: Build Next.js application
       id: build
       shell: bash
@@ -55,7 +75,7 @@ runs:
       continue-on-error: true
       run: |
         set +e
-        npm run build
+        pnpm run build
         BUILD_EXIT_CODE=$?
         echo "build-exit-code=${BUILD_EXIT_CODE}" >> $GITHUB_OUTPUT
         if [ $BUILD_EXIT_CODE -eq 0 ]; then
@@ -65,9 +85,9 @@ runs:
           echo "build-status=failed" >> $GITHUB_OUTPUT
           echo "Build failed with exit code: $BUILD_EXIT_CODE"
           echo "=== Build Error Output ==="
-          npm run build 2>&1 | tail -50 || true
+          pnpm run build 2>&1 | tail -50 || true
         fi
         exit $BUILD_EXIT_CODE
       env:
         NODE_ENV: production
-
+        NEXT_PUBLIC_REGISTRY_URL: ${{ inputs.registry-url }}

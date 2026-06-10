@@ -34,19 +34,28 @@ outputs:
 runs:
   using: 'composite'
   steps:
+    - name: Install pnpm
+      uses: pnpm/action-setup@v4
+      with:
+        package_json_file: ${{ inputs.tests-path }}/package.json
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: lts/*
+        cache: pnpm
+        cache-dependency-path: ${{ inputs.tests-path }}/pnpm-lock.yaml
+
     - name: Install test dependencies
       shell: bash
       working-directory: ./${{ inputs.tests-path }}
-      run: |
-        npm ci
-        # Install GitHub Actions reporter for Playwright
-        npm install @estruyf/github-actions-reporter --save-dev
-    
+      run: pnpm install --frozen-lockfile
+
     - name: Install Playwright Browsers
       shell: bash
       working-directory: ./${{ inputs.tests-path }}
-      run: npx playwright install --with-deps
-    
+      run: pnpm exec playwright install --with-deps
+
     - name: Run Playwright tests
       id: run-tests
       shell: bash
@@ -74,7 +83,7 @@ runs:
         fi
         
         # Run tests - GitHub Actions reporter will automatically create summaries
-        npx playwright test 2>&1 | tee test-output.log
+        pnpm exec playwright test 2>&1 | tee test-output.log
         TEST_EXIT_CODE=$?
         echo "exit-code=${TEST_EXIT_CODE}" >> $GITHUB_OUTPUT
         
@@ -82,7 +91,7 @@ runs:
       env:
         BASE_URL: ${{ inputs.base-url }}
         CI: true
-    
+
     - name: Parse test results
       id: parse-results
       shell: bash
@@ -187,7 +196,11 @@ runs:
             }
           } else {
             console.error('JSON results file not found in any location, using exit code');
-            if (exitCode !== '0') {
+            const testsRan = fs.existsSync(testOutputPath);
+            if (!testsRan) {
+              console.error('test-output.log not found — Playwright likely did not run');
+              status = 'failed';
+            } else if (exitCode !== '0') {
               status = 'failed';
             } else {
               status = 'passed';
@@ -195,11 +208,7 @@ runs:
           }
         } catch (e) {
           console.error('Error parsing results:', e.message);
-          if (exitCode !== '0') {
-            status = 'failed';
-          } else {
-            status = 'passed';
-          }
+          status = 'failed';
         }
         
         console.log(`total=${total}`);
@@ -212,4 +221,3 @@ runs:
         EOF
         
         EXIT_CODE="${{ steps.run-tests.outputs.exit-code || '0' }}" node parse-results.js >> $GITHUB_OUTPUT
-
