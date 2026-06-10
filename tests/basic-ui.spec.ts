@@ -22,7 +22,7 @@ import { testDatePickerRange, testSimpleDatePicker } from './test-Components/tes
 import { testDialog, testDialogScrollable, testDialogStickyFooter } from './test-Components/test-Dialog';
 import { testDraggableBasic, testDraggableCustomHandle, testDraggableDragDropandSort } from './test-Components/test-Draggable';
 import { testDropdown, testDropdownMenuAvatarOnly, testDropdownMenuCheckbox, testDropdownMenuIconColor, testDropdownMenuRadioGroup, testDropdownMenuWithAvatar, testDropdownMenuWithDescription } from './test-Components/test-Dropdown';
-import { testEditableInput, testEditableTextarea } from './test-Components/test-Editable';
+import { testEditableInput, testEditableTextarea, testEditableWithError } from './test-Components/test-Editable';
 import { testEmptyStatesError, testEmptyStatesNoSearchResults, testEmptyStatesNothingCreated } from './test-Components/test-Empty_States';
 import { testErrorStates, testErrorStatesBadRequest, testErrorStatesUnauthorized, testErrorStatesForbidden, testErrorStatesNotFound, testErrorStatesInternalServerError, testErrorStatesServiceUnavailable } from './test-Components/test-Error_States';
 import { testFieldDefault, testFieldInput, testFieldTextarea, testFieldSelect, testFieldCheckbox, testFieldRadioGroup, testFieldSwitch, testFieldSeparator, testFieldError, testFieldIcon, testFieldAddon, testFieldDisabled, testFieldReadOnly, testFieldSmallSize, testFieldInputTypes } from './test-Components/test-Field';
@@ -230,6 +230,7 @@ test.describe('UI BLOK QA Automation', () => {
   test('test_Editable', async ({ page }) => {
     await testEditableInput(page);
     await testEditableTextarea(page);
+    await testEditableWithError(page);
   });
 
   test('test_Empty_States', async ({ page }) => {

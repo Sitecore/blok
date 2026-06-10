@@ -93,3 +93,44 @@ export async function testEditableTextarea(page: Page){
     const previewText = await preview.textContent();
     expect(previewText).toBeTruthy();
 }
+
+export async function testEditableWithError(page: Page){
+    // Verify that the Editable Textarea section is visible
+    const editableWithErrorSection = page.locator('[id="editable-with-error"]');
+    await expect(editableWithErrorSection).toBeVisible();
+
+    // Check that preview shows the default value
+    const preview = editableWithErrorSection.locator('span[data-slot="editable-preview"]');
+    await expect(preview).toBeVisible();
+    await expect(preview).toHaveText('Click to edit this text');
+
+    // Verify that enter edit mode when preview is clicked
+    await preview.click();
+    // Verify input is visible and preview is hidden
+    const input = editableWithErrorSection.locator('input[data-slot="editable-input"]');
+    await expect(input).toBeVisible();
+    await expect(preview).not.toBeVisible();
+
+    // Verify that show error message after clicking on the preview
+    const errorMessage = editableWithErrorSection.locator('[data-slot="editable-error"]');
+    await expect(errorMessage).toBeVisible();
+    await expect(errorMessage).toContainText('This field is required');
+    // Verify that error message has the correct classes
+    const classerrorMessage = await errorMessage.getAttribute('class');
+    expect(classerrorMessage).toContain('text-sm');
+    expect(classerrorMessage).toContain('text-destructive');
+    expect(classerrorMessage).toContain('absolute');
+    expect(classerrorMessage).toContain('w-max');
+    expect(classerrorMessage).toContain('bg-white');
+    expect(classerrorMessage).toContain('rounded-sm');
+    expect(classerrorMessage).toContain('shadow-lg');
+    expect(classerrorMessage).toContain('py-1');
+    expect(classerrorMessage).toContain('px-2');
+    expect(classerrorMessage).toContain('bottom-[calc(-100%+var(--spacing)*0.5)]');
+    expect(classerrorMessage).toContain('cursor-default');
+    expect(classerrorMessage).toContain('z-10');
+
+    // Verify that allow editing text in input mode
+    await input.fill('New edited text');
+    await expect(input).toHaveValue('New edited text');
+}
