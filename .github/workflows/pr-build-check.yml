@@ -62,21 +62,12 @@ jobs:
           ref: ${{ inputs.pr-branch }}
           path: pr-branch
       
-      # Update registry URLs in the repository before building
-      - name: Update registry URLs
-        working-directory: .
-        run: |
-          echo "🔄 Updating registry URLs to use: ${{ steps.registry-url.outputs.url }}"
-          NEXT_PUBLIC_REGISTRY_URL="${{ steps.registry-url.outputs.url }}" npm run registry:update-urls || npx tsx scripts/update-registry-urls.ts
-          echo "✅ Registry URLs updated"
-        env:
-          NEXT_PUBLIC_REGISTRY_URL: ${{ steps.registry-url.outputs.url }}
-      
       - name: Setup and Build PR branch
         id: setup-and-build
         uses: ./.github/actions/setup-app
         with:
           app-path: pr-branch
+          registry-url: ${{ steps.registry-url.outputs.url }}
       
       - name: Send PR build status to Teams
         if: always()
