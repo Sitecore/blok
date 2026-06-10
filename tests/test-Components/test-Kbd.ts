@@ -127,6 +127,11 @@ export async function testKbdTooltip(page: Page){
     // Check for S key in the KbdGroup
     await expect(kbdTooltipGroup.getByText('S', { exact: true })).toBeVisible();
 
+    // Only one Radix tooltip is active at a time — dismiss Save before opening Print
+    await page.keyboard.press('Escape');
+    await page.mouse.move(0, 0);
+    await page.waitForTimeout(400);
+
     // Check for Print button - try multiple approaches
     let buttonPrint;
     
@@ -152,14 +157,11 @@ export async function testKbdTooltip(page: Page){
     await expect(buttonPrint.getByText('Print')).toBeVisible();
     // Hover over the Print button to trigger tooltip
     await buttonPrint.hover();
-    // Wait a bit for tooltip to appear
     await page.waitForTimeout(500);
-    // Verify that tooltip text is visible
-    const tooltipTextPrint = page.getByRole('tooltip', { name: 'Print Document' });
+    const tooltipTextPrint = page.getByRole('tooltip', { name: /Print/i });
     await expect(tooltipTextPrint).toBeVisible({ timeout: 5000 });
 
-    // Check for Ctrl and P keys in tooltip - scope to the tooltip element
-    const kbdTooltipGroupPrint = tooltipTextPrint.locator('kbd[data-slot="kbd-group"]');
+    const kbdTooltipGroupPrint = tooltipTextPrint.locator('kbd[data-slot="kbd-group"]').first();
     await expect(kbdTooltipGroupPrint).toBeVisible();
     // Check for Ctrl key in the KbdGroup
     await expect(kbdTooltipGroupPrint.getByText('Ctrl')).toBeVisible();

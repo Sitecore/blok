@@ -1,7 +1,22 @@
-import { test, expect, Page } from '@playwright/test';
+import { test, expect, Page, type Locator } from '@playwright/test';
+
+async function expectTooltipOnHover(page: Page, trigger: Locator, label: string) {
+    await trigger.scrollIntoViewIfNeeded();
+    const box = await trigger.boundingBox();
+    expect(box).toBeTruthy();
+    await page.mouse.move(box!.x + box!.width / 2, box!.y + box!.height / 2);
+    const tooltip = page.getByRole('tooltip', { name: label });
+    await expect(tooltip).toBeVisible();
+    await expect(tooltip).toHaveText(label);
+}
+
+async function dismissOpenTooltip(page: Page, neutralTarget: Locator) {
+    await page.keyboard.press('Escape');
+    await neutralTarget.hover();
+    await page.waitForTimeout(400);
+}
 
 export async function testActionBar(page: Page){
-    // Verify that display action bar section with all elements
     const actionBarSection = page.locator('[id="action-bar"]');
     await expect(actionBarSection).toBeVisible();
 
@@ -27,15 +42,6 @@ export async function testActionBar(page: Page){
     // Verify that action bar is visible when checkbox is checked 
     const actionBar = actionBarSection.locator('[class*="translate-y-0"]').first();
     await expect(actionBar).toBeVisible();
-
-    // Verify that Cancel tooltip trigger is visible
-    const tooltipTriggerCancel = actionBar.locator('button[data-slot="tooltip-trigger"][aria-label="Cancel"]');
-    await expect(tooltipTriggerCancel).toBeVisible();
-    // Hover over the tooltip icon
-    await tooltipTriggerCancel.hover();
-    // Verify that tooltip text is visible
-    const tooltipTextCancel = page.getByRole('tooltip', { name: 'Cancel' });
-    await expect(tooltipTextCancel).toBeVisible();
 
     // Verify that display selected count correctly
     const selectedCount = actionBar.locator('span');
@@ -66,18 +72,17 @@ export async function testActionBar(page: Page){
     const duplicateButtonClasses = await duplicateButton.getAttribute('class');
     expect(duplicateButtonClasses).toContain('h-10 min-w-10 px-4 rounded-4xl bg-primary text-inverse-text hover:bg-primary-hover active:bg-primary-active');
 
-    // Verify that More tooltip trigger is visible
     const tooltipTriggerMore = actionBar.locator('button[data-slot="tooltip-trigger"][aria-label="More"]');
     await expect(tooltipTriggerMore).toBeVisible();
-    // Hover over the tooltip icon
-    await tooltipTriggerMore.hover();
-    // Verify that tooltip text is visible
-    const tooltipTextMore = page.getByRole('tooltip', { name: 'More' });
-    await expect(tooltipTextMore).toBeVisible();
+    await expectTooltipOnHover(page, tooltipTriggerMore, 'More');
+    await dismissOpenTooltip(page, publishButton);
+
+    const tooltipTriggerCancel = actionBar.locator('button[data-slot="tooltip-trigger"][aria-label="Cancel"]');
+    await expect(tooltipTriggerCancel).toBeVisible();
+    await expectTooltipOnHover(page, tooltipTriggerCancel, 'Cancel');
 
     // Verify that More dropdown menu is visible
-    await tooltipTriggerMore.click();
-    const dropdownMenu = page.locator('[data-slot="dropdown-menu-group"]');
+    await tooltipTriggerMore.click();    const dropdownMenu = page.locator('[data-slot="dropdown-menu-group"]');
     await expect(dropdownMenu).toBeVisible();
     // Verify that More dropdown menu items are visible
     // Archive item
