@@ -25,12 +25,12 @@ export default function RegistryLayout({
     <GainsightProvider>
       <PageViewTracker />
       <div className="flex min-h-screen flex-col w-full bg-sidebar">
-        <header
+        <div
           className="fixed top-0 left-0 right-0 z-50 border-b bg-background border-border w-full"
           style={{ transform: "translateZ(0)", backfaceVisibility: "hidden" }}
         >
           <TopBar />
-        </header>
+        </div>
 
         <div className="flex flex-1 relative mt-12 bg-sidebar">
           <SidebarProvider
