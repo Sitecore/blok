@@ -12,12 +12,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { FilterSingleSelect } from "@/components/ui/filter";
 import { useState } from "react";
-
-const filterOptions = [
-  { value: "all", label: "All projects" },
-  { value: "active", label: "Active" },
-  { value: "archived", label: "Archived" },
-];
+import { mockDashboardWidgetFilterOptions } from "@/app/content/bloks/dashboard-widget/dashboard-widget.mock-data";
 
 export function DashboardWidgetDemo() {
 
@@ -29,8 +24,8 @@ export function DashboardWidgetDemo() {
     <h2 className="font-semibold text-4xl wrap-break-words">Dashboard Widget</h2>
 
       <div id="dashboard-widget">
-        <div className="w-[960px] max-w-full">
-          <DashboardWidget type="white-bg-large">
+        <div className="mx-auto w-full min-w-0 max-w-[960px]">
+          <DashboardWidget type="white-bg-large" className="w-full">
             <DashboardWidgetHeader>
               <DashboardWidgetTitle>Projects</DashboardWidgetTitle>
               <DashboardWidgetDescription>
@@ -52,8 +47,8 @@ export function DashboardWidgetDemo() {
       </div>
 
       <div id="dashboard-white-widget">
-        <div className="w-[960px] max-w-full">
-          <DashboardWidget type="white-bg-large">
+        <div className="mx-auto w-full min-w-0 max-w-[960px]">
+          <DashboardWidget type="white-bg-large" className="w-full">
             <DashboardWidgetHeader>
               <DashboardWidgetTitle>Projects</DashboardWidgetTitle>
               <DashboardWidgetDescription>
@@ -69,9 +64,14 @@ export function DashboardWidgetDemo() {
               <FilterSingleSelect
                 value={filterValue}
                 onChange={setFilterValue}
-                options={filterOptions}
+                options={mockDashboardWidgetFilterOptions}
                 placeholder="Filter"
                 className="w-fit"
+                ariaLabels={{
+                  popoverTrigger: "Select an option",
+                  listbox: "List of options",
+                  clearSelection: "Clear selection",
+                }}
               />
             </DashboardWidgetToolbar>
             <DashboardWidgetContent>
@@ -84,8 +84,8 @@ export function DashboardWidgetDemo() {
       </div>
 
       <div id="dashboard-gray-widget">
-        <div className="w-[960px] max-w-full">
-          <DashboardWidget type="gray-bg-large">
+        <div className="mx-auto w-full min-w-0 max-w-[960px]">
+          <DashboardWidget type="gray-bg-large" className="w-full">
             <DashboardWidgetHeader>
               <DashboardWidgetTitle>Pinned widget</DashboardWidgetTitle>
               <DashboardWidgetAction>
