@@ -1,45 +1,18 @@
 "use client";
 
+import {
+  collaborationDemoAvailableUsers,
+  collaborationDemoCurrentUser,
+  collaborationDemoInitialUsers,
+} from "@/app/content/bloks/collaboration/collaboration.mock-data";
 import { Collaboration, type User } from "@/components/bloks/collaboration";
 import { useCallback, useState } from "react";
 
-const currentUser: User = {
-  id: "current",
-  name: "Arshad Hannan",
-  avatarUrl: "/ArshadHannan.svg",
-  email: "arshad.hannan@sitecore.com",
-};
-
-const availableUsers: User[] = [
-  {
-    id: "2",
-    name: "Lasith Gunaratne",
-    avatarUrl: "/LasithGunaratne.png",
-    email: "lasith.gunaratne@sitecore.com",
-  },
-  {
-    id: "3",
-    name: "Spyridon Misichronis",
-    avatarUrl: "/SpyridonMisichronis.png",
-    email: "spyros.misichronis@sitecore.com",
-  },
-  {
-    id: "4",
-    name: "Christian Hahn",
-    avatarUrl: "/ChristianHahn.png",
-    email: "christian.hahn@sitecore.com",
-  },
-];
-
 export function CollaborationDemo() {
 
-  // Start with multiple users to show overflow behavior (maxDisplayAvatars=3)
-  const [addedUsers, setAddedUsers] = useState<User[]>([
-    currentUser,
-    availableUsers[0],
-    availableUsers[1],
-    availableUsers[2],
-  ]);
+  const [addedUsers, setAddedUsers] = useState<User[]>(
+    collaborationDemoInitialUsers,
+  );
 
   const handleAddUser = useCallback((user: User) => {
     setAddedUsers((prev) => [...prev, user]);
@@ -58,8 +31,8 @@ export function CollaborationDemo() {
         <div className="flex items-start justify-center pt-5 pb-8 px-8 min-h-[400px]">
           <Collaboration
             users={addedUsers}
-            currentUser={currentUser}
-            availableUsers={availableUsers}
+            currentUser={collaborationDemoCurrentUser}
+            availableUsers={collaborationDemoAvailableUsers}
             onAddUser={handleAddUser}
             onRemoveUser={handleRemoveUser}
             allowRemoveCurrentUser={false}
