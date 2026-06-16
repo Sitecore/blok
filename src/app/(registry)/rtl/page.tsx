@@ -83,7 +83,7 @@ const RTL_LANGUAGES = [
 
 export default function RTLPage() {
   return (
-    <main className="w-full">
+    <div className="w-full">
       <div className="px-32 max-w-[1250px] mx-auto">
         <div className="flex flex-col space-y-5 p-5 md:p-10">
           <h1 className="font-semibold text-4xl md:text-4xl">
@@ -376,6 +376,6 @@ export function Sidebar() {
           </div>
         </div>
       </div>
-    </main>
+    </div>
   );
 }
