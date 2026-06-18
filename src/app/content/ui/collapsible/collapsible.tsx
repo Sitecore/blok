@@ -20,7 +20,7 @@ export default function CollapsibleDemo() {
         className="flex w-full flex-col gap-2 md:w-[350px]"
       >
         <div className="flex items-center justify-between gap-4 px-4">
-          <h4 className="line-clamp-1 text-sm font-semibold">@products</h4>
+          <p className="line-clamp-1 text-sm font-semibold">@products</p>
           <CollapsibleTrigger asChild>
             <Button
               variant="ghost"

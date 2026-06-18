@@ -145,7 +145,7 @@ const FAQ = [
 
 export default function MigrationPage() {
   return (
-    <main className="w-full">
+    <div className="w-full">
       <div className="px-4 sm:px-8 md:px-32 max-w-[1250px] mx-auto">
         <div className="flex flex-col space-y-5 p-5 md:p-10">
           <Breadcrumb>
@@ -311,6 +311,6 @@ export default function MigrationPage() {
           </ul>
         </div>
       </div>
-    </main>
+    </div>
   );
 }

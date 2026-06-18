@@ -93,6 +93,8 @@ interface CodeBlockProps {
   lang?: string;
   showLineNumbers?: boolean;
   className?: string;
+  /** Accessible name for the code region landmark. Defaults to "Code sample". */
+  ariaLabel?: string;
   /** When set, copy triggers copy_code with normalized payload (section, path, page_type, component_name/block_name). */
   copyCodeContext?: CopyCodeContext;
   /** Hide the floating copy control (e.g. when copy is shown in a parent header). */
@@ -104,6 +106,7 @@ export function CodeBlock({
   lang = "tsx",
   showLineNumbers = true,
   className,
+  ariaLabel = "Code sample",
   copyCodeContext,
   hideCopyButton = false,
 }: CodeBlockProps) {
@@ -160,7 +163,7 @@ export function CodeBlock({
     <div
       dir="ltr"
       role="region"
-      aria-label="Code sample"
+      aria-label={ariaLabel}
       className={cn(
         "relative rounded-md bg-muted max-h-[400px] overflow-auto",
         className,
