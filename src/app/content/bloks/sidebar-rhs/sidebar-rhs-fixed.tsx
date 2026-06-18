@@ -57,7 +57,7 @@ export default function SidebarRHSFixedDemo() {
       <SidebarRHSProvider>
         <div className={`flex w-full ${EXAMPLE_HEIGHT} bg-body-bg`}>
           {/* Main content area */}
-          <main className="flex-1 overflow-auto bg-subtle-bg p-4">
+          <div className="flex-1 overflow-auto bg-subtle-bg p-4">
             <div className="space-y-4">
               <h2 className="text-2xl font-bold">Main Content Area</h2>
               <p className="text-muted-foreground">
@@ -65,7 +65,7 @@ export default function SidebarRHSFixedDemo() {
                 controls.
               </p>
             </div>
-          </main>
+          </div>
 
           {/* Sidebar */}
           <SidebarRHS

@@ -234,7 +234,7 @@ export function StackNavigation({
   pathname: providedPathname,
   onItemClick,
   ...props
-}: StackNavigationProps & React.ComponentProps<"aside">) {
+}: StackNavigationProps & React.ComponentProps<"div">) {
   // Use provided pathname or fall back to window.location.pathname
   const [clientPathname, setClientPathname] = React.useState("");
 
@@ -251,7 +251,7 @@ export function StackNavigation({
   const shadowClass = hasShadowNone ? "" : "shadow-base";
 
   return (
-    <aside
+    <div
       className={cn(
         !isHorizontal &&
           cn(
@@ -328,7 +328,7 @@ export function StackNavigation({
           {footer}
         </div>
       )}
-    </aside>
+    </div>
   );
 }
 

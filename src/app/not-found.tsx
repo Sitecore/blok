@@ -5,7 +5,10 @@ import Link from "next/link";
 export default function NotFound() {
   return (
     <div className="flex min-h-screen flex-col w-full bg-muted">
-      <header className="fixed top-0 left-0 right-0 z-50 border-b bg-background border-border w-full">
+      <header
+        aria-label="Not Found Site header"
+        className="fixed top-0 left-0 right-0 z-50 border-b bg-background border-border w-full"
+      >
         <TopBar />
       </header>
 

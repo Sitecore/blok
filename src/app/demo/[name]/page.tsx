@@ -69,7 +69,7 @@ export default async function DemoPage({
               id={component.component as string}
               className="flex flex-col gap-6"
             >
-              <h3 className="font-semibold text-xl">{title}</h3>
+              <h2 className="font-semibold text-xl">{title}</h2>
               {component.pre}
               <DemoTab
                 code={entry.code}

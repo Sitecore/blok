@@ -124,7 +124,7 @@ export function RightSidebar({
   if (!hasContent) return null;
 
   return (
-    <aside className="hidden xl:block xl:sticky xl:top-12 xl:h-[calc(100vh-48px)] xl:w-[250px] xl:overflow-y-auto xl:shrink-0 p-10 space-y-8 bg-transparent">
+    <div className="hidden xl:block xl:sticky xl:top-12 xl:h-[calc(100vh-48px)] xl:w-[250px] xl:overflow-y-auto xl:shrink-0 p-10 space-y-8 bg-transparent">
       {/* Links Section */}
       {links && Object.keys(links).length > 0 && (
         <div className="space-y-2.5">
@@ -315,6 +315,6 @@ export function RightSidebar({
           </ul>
         </nav>
       )}
-    </aside>
+    </div>
   );
 }
