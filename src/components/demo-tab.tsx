@@ -164,6 +164,11 @@ export default function DemoTab({
         ) : (
           <CodeBlock
             code={code}
+            ariaLabel={
+              section === "examples" && exampleTitle
+                ? `${exampleTitle} code`
+                : "Preview code"
+            }
             className="rounded-t-none rounded-b-md"
             copyCodeContext={copyCodeContext}
           />
