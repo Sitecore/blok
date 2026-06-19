@@ -16,7 +16,7 @@ export default function PopoverDemo() {
       <PopoverContent className="w-80" align="start">
         <div className="grid gap-4">
           <div className="grid gap-0.5">
-            <h4 className="leading-none font-semibold">Dimensions</h4>
+            <h2 className="leading-none font-semibold">Dimensions</h2>
             <p className="text-muted-foreground text-sm">
               Set the dimensions for the layer.
             </p>

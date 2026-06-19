@@ -501,7 +501,7 @@ export default function TopBar() {
   };
 
   return (
-    <header className="w-full bg-background border-b border-border">
+    <div className="w-full bg-background border-b border-border">
       <div className="flex items-center justify-between h-12 px-4">
         {/* Left: Logo + Navigation */}
         <div className="flex items-center gap-4">
@@ -776,6 +776,6 @@ export default function TopBar() {
           </Button>
         </div>
       </div>
-    </header>
+    </div>
   );
 }
