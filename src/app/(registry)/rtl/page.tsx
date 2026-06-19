@@ -226,6 +226,7 @@ export default function RTLPage() {
             component:
           </p>
           <CodeBlock
+            ariaLabel="Direction provider code"
             code={DirectionProviderCode}
             lang="tsx"
             showLineNumbers={true}

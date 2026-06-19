@@ -123,12 +123,12 @@ export function SiteCard<T extends SiteData>({
       >
         {/* Site Title */}
         <div className="w-full space-y-0.5">
-          <h3
+          <h2
             className="text-sm font-semibold truncate leading-tight"
             title={site.displayName || site.name}
           >
             {site.displayName || site.name}
-          </h3>
+          </h2>
           {site.collectionName && (
             <p
               className="text-xs text-muted-foreground truncate leading-tight"

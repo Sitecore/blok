@@ -135,7 +135,7 @@ export default function DraggableBasicDragDropDemo() {
     >
       <div className="p-6 space-y-6">
         <div>
-          <h3 className="text-2xl font-semibold">Basic Drag & Drop</h3>
+          <h2 className="text-2xl font-semibold">Basic Drag & Drop</h2>
           <p className="text-sm text-muted-foreground mt-2">
             Drag fields from the source to the drop zone. The drop zone shows an
             active state when fields can be dropped.
