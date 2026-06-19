@@ -123,6 +123,8 @@ export function RightSidebar({
 
   if (!hasContent) return null;
 
+  const pageTitle = pageName?.replace(/-/g, " ") ?? "";
+
   return (
     <aside
       aria-label="Page sidebar"
@@ -130,7 +132,12 @@ export function RightSidebar({
     >
       {/* Links Section */}
       {links && Object.keys(links).length > 0 && (
-        <nav className="space-y-2.5" aria-label="Related links">
+        <nav
+          className="space-y-2.5"
+          aria-label={
+            pageTitle ? `Related links: ${pageTitle}` : "Related links"
+          }
+        >
           {links.shadcn && (
             <Link
               href={links.shadcn}
@@ -283,7 +290,9 @@ export function RightSidebar({
 
       {/* Navigation Section */}
       {sections.length > 0 && (
-        <nav aria-label="On this page">
+        <nav
+          aria-label={pageTitle ? `On this page: ${pageTitle}` : "On this page"}
+        >
           <ul className="space-y-2">
             {sections.map((section) => (
               <li key={section.id}>
