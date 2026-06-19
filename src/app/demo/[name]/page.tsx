@@ -127,6 +127,11 @@ export default async function DemoPage({
             <CodeBlock
               key={index}
               code={code}
+              ariaLabel={
+                usage.usage.length > 1
+                  ? `${name} usage code ${index + 1}`
+                  : `${name} usage code`
+              }
               copyCodeContext={{ section: "usage", page_name: name }}
             />
           ))}

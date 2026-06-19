@@ -160,6 +160,7 @@ export default function RTLPage() {
           </p>
           <CodeBlock
             code={DirectionUtilsCode}
+            ariaLabel="Direction utilities code"
             lang="typescript"
             showLineNumbers={true}
             className="bg-body-bg border"

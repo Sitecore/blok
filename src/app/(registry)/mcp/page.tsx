@@ -116,6 +116,7 @@ export default function MCPPage() {
             to configure the Blok registry:
           </p>
           <CodeBlock
+            ariaLabel="Blok registry configuration code"
             code={BlockRegistryCode}
             lang="tsx"
             showLineNumbers={true}
