@@ -35,6 +35,7 @@ export const tooltip = {
         </p>
         <div className="overflow-hidden rounded-lg">
           <CodeBlock
+            ariaLabel="TooltipProvider component pre-installation code"
             code={ROOT_LAYOUT_TOOLTIP_SNIPPET}
             className="rounded-none border-0 shadow-none"
             copyCodeContext={{ section: "installation", page_name: "tooltip" }}
