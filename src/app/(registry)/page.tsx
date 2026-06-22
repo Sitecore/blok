@@ -20,7 +20,7 @@ import Link from "next/link";
 
 export default function Home() {
   return (
-    <main className="w-full bg-subtle-bg">
+    <div className="w-full bg-subtle-bg">
       <div className="bg-body-bg px-32 flex justify-center">
         <div className="flex flex-col space-y-12 py-20 md:py-30 w-full max-w-[1250px]">
           <div className="flex flex-col space-y-6">
@@ -382,6 +382,6 @@ export default function MyComponent() {
           </p>
         </div>
       </div>
-    </main>
+    </div>
   );
 }

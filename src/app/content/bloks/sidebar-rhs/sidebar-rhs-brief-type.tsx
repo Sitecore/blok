@@ -495,7 +495,7 @@ export default function SidebarRHSBriefTypeDemo() {
       <SidebarRHSProvider>
         <div className="w-full h-full flex bg-body-bg">
           {/* Main content area */}
-          <main className="flex-1 overflow-auto p-4">
+          <div className="flex-1 overflow-auto p-4">
             <div className="space-y-4">
               <h2 className="text-2xl font-bold">Main Content Area</h2>
               <p className="text-muted-foreground">
@@ -503,7 +503,7 @@ export default function SidebarRHSBriefTypeDemo() {
                 tabs for Overview, Usage, Comment, and Info.
               </p>
             </div>
-          </main>
+          </div>
 
           {/* Sidebar */}
           <SidebarRHS

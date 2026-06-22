@@ -34,6 +34,7 @@ export const sonner = {
         </p>
         <div className="overflow-hidden rounded-lg">
           <CodeBlock
+            ariaLabel="Toaster component pre-installation code"
             code={ROOT_LAYOUT_TOASTER_SNIPPET}
             className="rounded-none border-0 shadow-none"
             copyCodeContext={{ section: "installation", page_name: "sonner" }}

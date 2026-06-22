@@ -501,7 +501,7 @@ export default function TopBar() {
   };
 
   return (
-    <header className="w-full bg-background border-b border-border">
+    <div className="w-full bg-background border-b border-border">
       <div className="flex items-center justify-between h-12 px-4">
         {/* Left: Logo + Navigation */}
         <div className="flex items-center gap-4">
@@ -520,78 +520,80 @@ export default function TopBar() {
             />
           </Link>
 
-          {/* Desktop Navigation */}
-          <NavigationMenu className="hidden lg:flex">
-            <NavigationMenuList className="flex gap-3">
-              {navItems.map((item) => {
-                const normalizedPathname = pathname.replace(/\/$/, "") || "/";
-                const normalizedHref = item.href.replace(/\/$/, "") || "/";
-                let isActive =
-                  normalizedPathname === normalizedHref ||
-                  (normalizedHref !== "/" &&
-                    normalizedPathname.startsWith(`${normalizedHref}/`)) ||
-                  clickedHref === item.href;
+          {/* Top navigation */}
+          <nav aria-label="Top navigation">
+            <NavigationMenu className="hidden lg:flex">
+              <NavigationMenuList className="flex gap-3">
+                {navItems.map((item) => {
+                  const normalizedPathname = pathname.replace(/\/$/, "") || "/";
+                  const normalizedHref = item.href.replace(/\/$/, "") || "/";
+                  let isActive =
+                    normalizedPathname === normalizedHref ||
+                    (normalizedHref !== "/" &&
+                      normalizedPathname.startsWith(`${normalizedHref}/`)) ||
+                    clickedHref === item.href;
 
-                // Special handling for registry pages
-                if (pathname.startsWith("/registry/")) {
-                  const segments = pathname.split("/").filter(Boolean);
-                  const itemName = segments[segments.length - 1];
+                  // Special handling for registry pages
+                  if (pathname.startsWith("/registry/")) {
+                    const segments = pathname.split("/").filter(Boolean);
+                    const itemName = segments[segments.length - 1];
 
-                  if (itemName) {
-                    const registryItem = getRegistryItem(itemName);
+                    if (itemName) {
+                      const registryItem = getRegistryItem(itemName);
 
-                    if (registryItem) {
-                      // If this is a UI component and we're checking "Primitives"
-                      if (
-                        item.name === "Primitives" &&
-                        registryItem.type === "registry:ui"
-                      ) {
-                        isActive = true;
-                      }
-                      // If this is a block/component and we're checking "Bloks"
-                      else if (
-                        item.name === "Bloks" &&
-                        (registryItem.type === "registry:block" ||
-                          registryItem.type === "registry:component")
-                      ) {
-                        isActive = true;
+                      if (registryItem) {
+                        // If this is a UI component and we're checking "Primitives"
+                        if (
+                          item.name === "Primitives" &&
+                          registryItem.type === "registry:ui"
+                        ) {
+                          isActive = true;
+                        }
+                        // If this is a block/component and we're checking "Bloks"
+                        else if (
+                          item.name === "Bloks" &&
+                          (registryItem.type === "registry:block" ||
+                            registryItem.type === "registry:component")
+                        ) {
+                          isActive = true;
+                        }
                       }
                     }
                   }
-                }
 
-                return (
-                  <NavigationMenuItem key={item.name}>
-                    <Link
-                      href={item.href}
-                      onClick={() => {
-                        setClickedHref(item.href);
-                        track(TELEMETRY_EVENTS.topbar_nav_click, {
-                          link: item.href,
-                          label: item.name,
-                          is_mobile: false,
-                        });
-                      }}
-                      className={`${navigationMenuTriggerStyle()} ${
-                        isActive ? "active" : ""
-                      }`}
-                    >
-                      {item.name}
-                    </Link>
-                  </NavigationMenuItem>
-                );
-              })}
-            </NavigationMenuList>
-          </NavigationMenu>
+                  return (
+                    <NavigationMenuItem key={item.name}>
+                      <Link
+                        href={item.href}
+                        onClick={() => {
+                          setClickedHref(item.href);
+                          track(TELEMETRY_EVENTS.topbar_nav_click, {
+                            link: item.href,
+                            label: item.name,
+                            is_mobile: false,
+                          });
+                        }}
+                        className={`${navigationMenuTriggerStyle()} ${
+                          isActive ? "active" : ""
+                        }`}
+                      >
+                        {item.name}
+                      </Link>
+                    </NavigationMenuItem>
+                  );
+                })}
+              </NavigationMenuList>
+            </NavigationMenu>
 
-          {/* Mobile Nav Dropdown — client-only Radix to avoid hydration id drift */}
-          <div className="lg:hidden">
-            <MobileNavDropdown
-              pathname={pathname}
-              clickedHref={clickedHref}
-              setClickedHref={setClickedHref}
-            />
-          </div>
+            {/* Mobile Nav Dropdown — client-only Radix to avoid hydration id drift */}
+            <div className="lg:hidden">
+              <MobileNavDropdown
+                pathname={pathname}
+                clickedHref={clickedHref}
+                setClickedHref={setClickedHref}
+              />
+            </div>
+          </nav>
         </div>
 
         {/* Right Section */}
@@ -776,6 +778,6 @@ export default function TopBar() {
           </Button>
         </div>
       </div>
-    </header>
+    </div>
   );
 }

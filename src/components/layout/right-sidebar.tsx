@@ -123,11 +123,21 @@ export function RightSidebar({
 
   if (!hasContent) return null;
 
+  const pageTitle = pageName?.replace(/-/g, " ") ?? "";
+
   return (
-    <aside className="hidden xl:block xl:sticky xl:top-12 xl:h-[calc(100vh-48px)] xl:w-[250px] xl:overflow-y-auto xl:shrink-0 p-10 space-y-8 bg-transparent">
+    <aside
+      aria-label="Page sidebar"
+      className="hidden xl:block xl:sticky xl:top-12 xl:h-[calc(100vh-48px)] xl:w-[250px] xl:overflow-y-auto xl:shrink-0 p-10 space-y-8 bg-transparent"
+    >
       {/* Links Section */}
       {links && Object.keys(links).length > 0 && (
-        <div className="space-y-2.5">
+        <nav
+          className="space-y-2.5"
+          aria-label={
+            pageTitle ? `Related links: ${pageTitle}` : "Related links"
+          }
+        >
           {links.shadcn && (
             <Link
               href={links.shadcn}
@@ -272,7 +282,7 @@ export function RightSidebar({
               <span>Website</span>
             </Link>
           )}
-        </div>
+        </nav>
       )}
 
       {/* Custom Children */}
@@ -280,7 +290,9 @@ export function RightSidebar({
 
       {/* Navigation Section */}
       {sections.length > 0 && (
-        <nav>
+        <nav
+          aria-label={pageTitle ? `On this page: ${pageTitle}` : "On this page"}
+        >
           <ul className="space-y-2">
             {sections.map((section) => (
               <li key={section.id}>

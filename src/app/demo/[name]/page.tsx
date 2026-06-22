@@ -69,7 +69,7 @@ export default async function DemoPage({
               id={component.component as string}
               className="flex flex-col gap-6"
             >
-              <h3 className="font-semibold text-xl">{title}</h3>
+              <h2 className="font-semibold text-xl">{title}</h2>
               {component.pre}
               <DemoTab
                 code={entry.code}
@@ -127,6 +127,11 @@ export default async function DemoPage({
             <CodeBlock
               key={index}
               code={code}
+              ariaLabel={
+                usage.usage.length > 1
+                  ? `${name} usage code ${index + 1}`
+                  : `${name} usage code`
+              }
               copyCodeContext={{ section: "usage", page_name: name }}
             />
           ))}

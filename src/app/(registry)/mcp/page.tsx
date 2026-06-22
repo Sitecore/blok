@@ -29,7 +29,7 @@ const CursorConfigurationCode = `{
 
 export default function MCPPage() {
   return (
-    <main className="w-full">
+    <div className="w-full">
       <div className="px-4 sm:px-8 md:px-32 max-w-[1250px] mx-auto">
         <div className="flex flex-col space-y-5 p-5 md:p-10">
           <Breadcrumb>
@@ -116,6 +116,7 @@ export default function MCPPage() {
             to configure the Blok registry:
           </p>
           <CodeBlock
+            ariaLabel="Blok registry configuration code"
             code={BlockRegistryCode}
             lang="tsx"
             showLineNumbers={true}
@@ -474,6 +475,6 @@ args = ["shadcn@latest", "mcp"]`}
           </ol>
         </div>
       </div>
-    </main>
+    </div>
   );
 }

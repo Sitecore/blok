@@ -35,11 +35,27 @@ export const tooltip = {
         </p>
         <div className="overflow-hidden rounded-lg">
           <CodeBlock
+            ariaLabel="TooltipProvider component pre-installation code"
             code={ROOT_LAYOUT_TOOLTIP_SNIPPET}
             className="rounded-none border-0 shadow-none"
             copyCodeContext={{ section: "installation", page_name: "tooltip" }}
           />
         </div>
+        <p className="text-lg text-muted-foreground">
+          <strong>Note:</strong> Tooltips use the nearest{" "}
+          <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-md">
+            TooltipProvider
+          </code>
+          . If a tooltip needs different settings, such as{" "}
+          <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-md">
+            delayDuration
+          </code>
+          , wrap it in its own{" "}
+          <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-md">
+            TooltipProvider
+          </code>
+          .
+        </p>
       </div>
     ),
   },
