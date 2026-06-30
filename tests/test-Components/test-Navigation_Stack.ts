@@ -2,11 +2,11 @@ import { test, expect, Page, type Locator } from '@playwright/test';
 
 export async function testNavigationStackVertical(page: Page){
     // Verify vertical navigation exists
-    const verticalNav = page.locator('[id="stack-navigation-vertical"] aside');
+    const verticalNav = page.locator('[id="stack-navigation-vertical"]');
     await expect(verticalNav).toBeVisible();
 
     //Verify that vertical navigation has the expected classes
-    const classList = await verticalNav.getAttribute('class');
+    const classList = await (verticalNav.locator('div')).nth(0).getAttribute('class');
     expect(classList).toContain('w-[72px]');
     expect(classList).toContain('bg-background');
     expect(classList).toContain('p-1.5');
@@ -31,11 +31,11 @@ export async function testNavigationStackVertical(page: Page){
 
 export async function testNavigationStackHorizontal(page: Page){
     // Verify horizontal navigation exists
-    const horizontalNav = page.locator('[id="stack-navigation-horizontal"] aside');
+    const horizontalNav = page.locator('[id="stack-navigation-horizontal"]');
     await expect(horizontalNav).toBeVisible();
 
     //Verify that horizontal navigation has the expected classes
-    const classList = await horizontalNav.getAttribute('class');
+    const classList = await (horizontalNav.locator('div')).nth(0).getAttribute('class');
     expect(classList).toContain('bg-background');
     expect(classList).toContain('w-full');
     expect(classList).toContain('text-sidebar-foreground');
@@ -89,7 +89,7 @@ export async function testNavigationStackHorizontalTabs(page: Page){
     await horizontalTabsNav.scrollIntoViewIfNeeded();
 
     // Verify that horizontal navigation items exist
-    const navigationItems = horizontalTabsNav.locator('aside');
+    const navigationItems = horizontalTabsNav.locator('div').nth(1);
     await expect(navigationItems).toBeVisible();
 
     //Verify that horizontal navigation has the expected classes
