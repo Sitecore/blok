@@ -6,9 +6,9 @@ export async function testAllSiteSection(page: Page){
   await expect(allSiteSection).toBeVisible();
 
   // Verify that all site section title is visible
-  await expect(allSiteSection.locator('h2')).toContainText('All Sites');
+  await expect(allSiteSection.locator('h2').nth(0)).toContainText('All Sites');
   // Verify that all site section description is visible
-  await expect(allSiteSection.locator('p')).toContainText('Browse all available sites and pin your favorites for quick access');
+  await expect(allSiteSection.locator('p').nth(0)).toContainText('Browse all available sites and pin your favorites for quick access');
 
   // Verify that first site card is visible
   const firstCard = allSiteSection.locator('[data-slot="card"]').nth(0);
@@ -20,7 +20,7 @@ export async function testAllSiteSection(page: Page){
   const firstCardFooter = firstCard.locator('[data-slot="card-footer"]');
   await expect(firstCardFooter).toBeVisible();
   // Verify that site card footer title is visible
-  const firstCardFooterTitle = firstCardFooter.locator('h3').first();
+  const firstCardFooterTitle = firstCardFooter.locator('h2').first();
   await expect(firstCardFooterTitle).toContainText('My Ecommerce Site');
   // Mouse over the site card footer to display the footer buttons
   await firstCard.hover();
@@ -57,7 +57,7 @@ export async function testAllSiteSection(page: Page){
   const secondCardFooter = secondCard.locator('[data-slot="card-footer"]');
   await expect(secondCardFooter).toBeVisible();
   // Verify that site card footer title is visible
-  const secondCardFooterTitle = secondCardFooter.locator('h3').first();
+  const secondCardFooterTitle = secondCardFooter.locator('h2').first();
   await expect(secondCardFooterTitle).toContainText('Corporate Blog');
   // Mouse over the site card footer to display the footer buttons
   await secondCard.hover();
@@ -94,7 +94,7 @@ export async function testAllSiteSection(page: Page){
   const thirdCardFooter = thirdCard.locator('[data-slot="card-footer"]');
   await expect(thirdCardFooter).toBeVisible();
   // Verify that site card footer title is visible
-  const thirdCardFooterTitle = thirdCardFooter.locator('h3').first();
+  const thirdCardFooterTitle = thirdCardFooter.locator('h2').first();
   await expect(thirdCardFooterTitle).toContainText('Marketing Site');
   // Mouse over the site card footer to display the footer buttons
   await thirdCard.hover();
@@ -131,7 +131,7 @@ export async function testAllSiteSection(page: Page){
   const fourthCardFooter = fourthCard.locator('[data-slot="card-footer"]');
   await expect(fourthCardFooter).toBeVisible();
   // Verify that site card footer title is visible
-  const fourthCardFooterTitle = fourthCardFooter.locator('h3').first();
+  const fourthCardFooterTitle = fourthCardFooter.locator('h2').first();
   await expect(fourthCardFooterTitle).toContainText('Partner Portal');
   // Mouse over the site card footer to display the footer buttons
   await fourthCard.hover();
@@ -167,7 +167,7 @@ export async function testAllSiteSection(page: Page){
   const fifthCardFooter = fifthCard.locator('[data-slot="card-footer"]');
   await expect(fifthCardFooter).toBeVisible();
   // Verify that site card footer title is visible
-  const fifthCardFooterTitle = fifthCardFooter.locator('h3').first();
+  const fifthCardFooterTitle = fifthCardFooter.locator('h2').first();
   await expect(fifthCardFooterTitle).toContainText('Customer Support');
   // Mouse over the site card footer to display the footer buttons
   await fifthCard.hover();
@@ -204,7 +204,7 @@ export async function testAllSiteSection(page: Page){
   const sixthCardFooter = sixthCard.locator('[data-slot="card-footer"]');
   await expect(sixthCardFooter).toBeVisible();
   // Verify that site card footer title is visible
-  const sixthCardFooterTitle = sixthCardFooter.locator('h3').first();
+  const sixthCardFooterTitle = sixthCardFooter.locator('h2').first();
   await expect(sixthCardFooterTitle).toContainText('Documentation');
   // Mouse over the site card footer to display the footer buttons
   await sixthCard.hover();
