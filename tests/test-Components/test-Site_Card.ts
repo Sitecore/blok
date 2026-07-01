@@ -18,7 +18,7 @@ export async function testSiteCard(page: Page){
   await expect(siteCardFooter).toBeVisible();
 
   // Verify that site card footer title is visible
-  const siteCardFooterTitle = siteCardFooter.locator('h3').first();
+  const siteCardFooterTitle = siteCardFooter.locator('h2').first();
   await expect(siteCardFooterTitle).toContainText('Demo Site');
 
   // Verify that site card footer description is visible
