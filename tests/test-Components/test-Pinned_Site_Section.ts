@@ -19,7 +19,7 @@ export async function testPinnedSiteSection(page: Page){
   const FirstPinnedSiteCardFooter = FirstPinnedSiteCard.locator('[data-slot="card-footer"]');
   await expect(FirstPinnedSiteCardFooter).toBeVisible();
   // Verify that pinned site card footer title is visible
-  const FirstPinnedSiteCardFooterTitle = FirstPinnedSiteCardFooter.locator('h3').first();
+  const FirstPinnedSiteCardFooterTitle = FirstPinnedSiteCardFooter.locator('h2').first();
   await expect(FirstPinnedSiteCardFooterTitle).toContainText('My Ecommerce Site');
 
   // Verify that second pinned site card is visible
@@ -32,7 +32,7 @@ export async function testPinnedSiteSection(page: Page){
   const SecondPinnedSiteCardFooter = SecondPinnedSiteCard.locator('[data-slot="card-footer"]');
   await expect(SecondPinnedSiteCardFooter).toBeVisible();
   // Verify that pinned site card footer title is visible
-  const SecondPinnedSiteCardFooterTitle = SecondPinnedSiteCardFooter.locator('h3').first();
+  const SecondPinnedSiteCardFooterTitle = SecondPinnedSiteCardFooter.locator('h2').first();
   await expect(SecondPinnedSiteCardFooterTitle).toContainText('Corporate Blog');
 
   // Verify that all site is visible
@@ -49,7 +49,7 @@ export async function testPinnedSiteSection(page: Page){
   const firstCardFooter = firstCard.locator('[data-slot="card-footer"]');
   await expect(firstCardFooter).toBeVisible();
   // Verify that site card footer title is visible
-  const firstCardFooterTitle = firstCardFooter.locator('h3').first();
+  const firstCardFooterTitle = firstCardFooter.locator('h2').first();
   await expect(firstCardFooterTitle).toContainText('My Ecommerce Site');
   // Mouse over the site card footer to display the footer buttons
   await firstCard.hover();
@@ -86,7 +86,7 @@ export async function testPinnedSiteSection(page: Page){
   const secondCardFooter = secondCard.locator('[data-slot="card-footer"]');
   await expect(secondCardFooter).toBeVisible();
   // Verify that site card footer title is visible
-  const secondCardFooterTitle = secondCardFooter.locator('h3').first();
+  const secondCardFooterTitle = secondCardFooter.locator('h2').first();
   await expect(secondCardFooterTitle).toContainText('Corporate Blog');
   // Mouse over the site card footer to display the footer buttons
   await secondCard.hover();
@@ -123,7 +123,7 @@ export async function testPinnedSiteSection(page: Page){
   const thirdCardFooter = thirdCard.locator('[data-slot="card-footer"]');
   await expect(thirdCardFooter).toBeVisible();
   // Verify that site card footer title is visible
-  const thirdCardFooterTitle = thirdCardFooter.locator('h3').first();
+  const thirdCardFooterTitle = thirdCardFooter.locator('h2').first();
   await expect(thirdCardFooterTitle).toContainText('Marketing Site');
   // Mouse over the site card footer to display the footer buttons
   await thirdCard.hover();
@@ -160,7 +160,7 @@ export async function testPinnedSiteSection(page: Page){
   const fourthCardFooter = fourthCard.locator('[data-slot="card-footer"]');
   await expect(fourthCardFooter).toBeVisible();
   // Verify that site card footer title is visible
-  const fourthCardFooterTitle = fourthCardFooter.locator('h3').first();
+  const fourthCardFooterTitle = fourthCardFooter.locator('h2').first();
   await expect(fourthCardFooterTitle).toContainText('Partner Portal');
   // Mouse over the site card footer to display the footer buttons
   await fourthCard.hover();
@@ -196,7 +196,7 @@ export async function testPinnedSiteSection(page: Page){
   const fifthCardFooter = fifthCard.locator('[data-slot="card-footer"]');
   await expect(fifthCardFooter).toBeVisible();
   // Verify that site card footer title is visible
-  const fifthCardFooterTitle = fifthCardFooter.locator('h3').first();
+  const fifthCardFooterTitle = fifthCardFooter.locator('h2').first();
   await expect(fifthCardFooterTitle).toContainText('Customer Support');
   // Mouse over the site card footer to display the footer buttons
   await fifthCard.hover();
@@ -233,7 +233,7 @@ export async function testPinnedSiteSection(page: Page){
   const sixthCardFooter = sixthCard.locator('[data-slot="card-footer"]');
   await expect(sixthCardFooter).toBeVisible();
   // Verify that site card footer title is visible
-  const sixthCardFooterTitle = sixthCardFooter.locator('h3').first();
+  const sixthCardFooterTitle = sixthCardFooter.locator('h2').first();
   await expect(sixthCardFooterTitle).toContainText('Documentation');
   // Mouse over the site card footer to display the footer buttons
   await sixthCard.hover();
