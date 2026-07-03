@@ -103,7 +103,7 @@ export function TimePicker({
               value={time?.hour || "12"}
               onValueChange={(val) => handleTimeChange("hour", val)}
             >
-              <SelectTrigger className="w-[70px]">
+              <SelectTrigger className="w-[70px]" aria-label="Hour">
                 <SelectValue />
               </SelectTrigger>
               <SelectContent className="p-0 min-w-20">
@@ -126,7 +126,7 @@ export function TimePicker({
               value={time?.minute || "00"}
               onValueChange={(val) => handleTimeChange("minute", val)}
             >
-              <SelectTrigger className="w-[70px]">
+              <SelectTrigger className="w-[70px]" aria-label="Minute">
                 <SelectValue />
               </SelectTrigger>
               <SelectContent className="p-0 min-w-20 max-h-[400px]">
@@ -149,7 +149,7 @@ export function TimePicker({
                 handleTimeChange("period", val as "AM" | "PM")
               }
             >
-              <SelectTrigger className="w-[75px]">
+              <SelectTrigger className="w-[75px]" aria-label="Period">
                 <SelectValue />
               </SelectTrigger>
               <SelectContent>
