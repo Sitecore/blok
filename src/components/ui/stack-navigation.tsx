@@ -168,6 +168,9 @@ function DefaultNavItem({
       )}
       onContextMenu={(e) => e.preventDefault()}
       aria-label={item.name}
+      {...(onItemClick
+        ? { "aria-haspopup": true, "aria-expanded": isActive }
+        : {})}
     >
       {/* Icon */}
       <div
