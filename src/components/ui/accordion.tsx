@@ -35,29 +35,31 @@ function AccordionTrigger({
   actions?: React.ReactNode;
 }) {
   return (
-    <AccordionPrimitive.Header className="flex items-center hover:bg-blackAlpha-50 transition-colors w-full min-w-0">
-      <AccordionPrimitive.Trigger
-        data-slot="accordion-trigger"
-        className={cn(
-          "focus-visible:border-ring focus-visible:ring-ring/50 text-md font-regular flex flex-1 cursor-pointer items-center justify-between gap-4 px-2 py-4 text-left transition-all outline-none focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 [&[data-state=open]>svg]:rotate-180 min-w-0",
-          className,
-        )}
-        {...props}
-      >
-        {children}
-        <Icon
-          path={mdiChevronDown}
-          className="transition-transform duration-200 size-6 shrink-0"
-        />
-      </AccordionPrimitive.Trigger>
-      {actions && (
-        <div
-          className="flex items-center shrink-0 py-4 px-2"
-          onClick={(e) => e.stopPropagation()}
+    <AccordionPrimitive.Header asChild>
+      <div className="flex items-center hover:bg-blackAlpha-50 transition-colors w-full min-w-0">
+        <AccordionPrimitive.Trigger
+          data-slot="accordion-trigger"
+          className={cn(
+            "focus-visible:border-ring focus-visible:ring-ring/50 text-md font-regular flex flex-1 cursor-pointer items-center justify-between gap-4 px-2 py-4 text-left transition-all outline-none focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 [&[data-state=open]>svg]:rotate-180 min-w-0",
+            className,
+          )}
+          {...props}
         >
-          {actions}
-        </div>
-      )}
+          {children}
+          <Icon
+            path={mdiChevronDown}
+            className="transition-transform duration-200 size-6 shrink-0"
+          />
+        </AccordionPrimitive.Trigger>
+        {actions && (
+          <div
+            className="flex items-center shrink-0 py-4 px-2"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {actions}
+          </div>
+        )}
+      </div>
     </AccordionPrimitive.Header>
   );
 }
