@@ -100,14 +100,17 @@ export function TimePicker({
       >
         <div className="flex items-center gap-2">
           <div className="flex flex-col gap-2">
-            <label className="text-xs text-muted-foreground font-medium">
+            <label
+              htmlFor="time-picker-hour"
+              className="text-xs text-muted-foreground font-medium"
+            >
               Hour
             </label>
             <Select
               value={time?.hour || "12"}
               onValueChange={(val) => handleTimeChange("hour", val)}
             >
-              <SelectTrigger className="w-[70px]">
+              <SelectTrigger id="time-picker-hour" className="w-[70px]">
                 <SelectValue />
               </SelectTrigger>
               <SelectContent className="p-0 min-w-20">
@@ -123,14 +126,17 @@ export function TimePicker({
           <span className="text-2xl font-bold mt-6">:</span>
 
           <div className="flex flex-col gap-2">
-            <label className="text-xs text-muted-foreground font-medium">
+            <label
+              htmlFor="time-picker-minute"
+              className="text-xs text-muted-foreground font-medium"
+            >
               Minute
             </label>
             <Select
               value={time?.minute || "00"}
               onValueChange={(val) => handleTimeChange("minute", val)}
             >
-              <SelectTrigger className="w-[70px]">
+              <SelectTrigger id="time-picker-minute" className="w-[70px]">
                 <SelectValue />
               </SelectTrigger>
               <SelectContent className="p-0 min-w-20 max-h-[400px]">
@@ -144,7 +150,10 @@ export function TimePicker({
           </div>
 
           <div className="flex flex-col gap-2">
-            <label className="text-xs text-muted-foreground font-medium">
+            <label
+              htmlFor="time-picker-period"
+              className="text-xs text-muted-foreground font-medium"
+            >
               Period
             </label>
             <Select
@@ -153,7 +162,7 @@ export function TimePicker({
                 handleTimeChange("period", val as "AM" | "PM")
               }
             >
-              <SelectTrigger className="w-[75px]">
+              <SelectTrigger id="time-picker-period" className="w-[75px]">
                 <SelectValue />
               </SelectTrigger>
               <SelectContent>
