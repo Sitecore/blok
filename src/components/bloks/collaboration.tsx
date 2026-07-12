@@ -288,6 +288,7 @@ export function Collaboration<T extends User = User>({
         <PopoverContent
           align="end"
           sideOffset={8}
+          aria-label={title}
           className="w-[368px] p-0 border-0 bg-transparent shadow-none"
         >
           {/* Users Panel */}
@@ -354,6 +355,7 @@ export function Collaboration<T extends User = User>({
                   align="center"
                   sideOffset={-8}
                   alignOffset={26}
+                  aria-label="Add users"
                   className="w-[420px] p-0 border-0 bg-transparent shadow-none"
                 >
                   {/* Add Users Panel */}
