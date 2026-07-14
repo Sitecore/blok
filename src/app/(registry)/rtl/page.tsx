@@ -242,6 +242,7 @@ export default function RTLPage() {
           </p>
           <CodeBlock
             code={UseDirectionCode}
+            ariaLabel="useDirection hook code"
             lang="tsx"
             showLineNumbers={true}
             className="bg-body-bg border"
@@ -310,6 +311,7 @@ export default function RTLPage() {
             <div>
               <h3 className="font-semibold text-xl mb-2">Basic Usage</h3>
               <CodeBlock
+                ariaLabel="Basic RTL DirectionProvider example"
                 code={`import { Direction } from "radix-ui";
 
 export default function App() {
@@ -330,6 +332,7 @@ export default function App() {
                 Using the Hook in Components
               </h3>
               <CodeBlock
+                ariaLabel="Sidebar RTL useDirection example"
                 code={`import { Direction } from "radix-ui";
 import { cn } from "@/lib/utils";
 
@@ -361,6 +364,7 @@ export function Sidebar() {
                 Code blocks should always remain LTR for readability:
               </p>
               <CodeBlock
+                ariaLabel="Keep code blocks LTR example"
                 code={`export function CodeBlock({ code }: { code: string }) {
   return (
     <div dir="ltr">

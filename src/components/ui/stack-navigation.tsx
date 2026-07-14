@@ -168,6 +168,9 @@ function DefaultNavItem({
       )}
       onContextMenu={(e) => e.preventDefault()}
       aria-label={item.name}
+      {...(onItemClick
+        ? { "aria-haspopup": true, "aria-expanded": isActive }
+        : {})}
     >
       {/* Icon */}
       <div
@@ -282,6 +285,7 @@ export function StackNavigation({
         )}
       >
         <nav
+          aria-label={isHorizontal ? "Sidebar navigation" : "Stack navigation"}
           className={cn(
             !isHorizontal && "flex flex-col gap-1",
             isHorizontal &&

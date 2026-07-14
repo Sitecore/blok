@@ -37,9 +37,7 @@ export default function ComboboxMultipleDemo() {
           {(values: readonly string[]) => (
             <React.Fragment>
               {values.map((value: string) => (
-                <ComboboxChip key={value} aria-label="Remove chip">
-                  {value}
-                </ComboboxChip>
+                <ComboboxChip key={value}>{value}</ComboboxChip>
               ))}
               <ComboboxChipsInput aria-label="Combobox chips input" />
             </React.Fragment>

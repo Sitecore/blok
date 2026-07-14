@@ -27,6 +27,8 @@ function DropdownMenuTrigger({
   return (
     <DropdownMenuPrimitive.Trigger
       data-slot="dropdown-menu-trigger"
+      aria-haspopup="true"
+      aria-expanded={false}
       {...props}
     />
   );
@@ -252,6 +254,8 @@ function DropdownMenuSubTrigger({
     <DropdownMenuPrimitive.SubTrigger
       data-slot="dropdown-menu-sub-trigger"
       data-inset={inset}
+      aria-haspopup="true"
+      aria-expanded={false}
       className={cn(
         "focus:bg-accent focus:text-accent-foreground data-[state=open]:bg-accent data-[state=open]:text-accent-foreground flex cursor-default items-center rounded-sm px-2 py-1.5 text-sm outline-hidden select-none data-[inset]:pl-8 [&_svg]:size-[0.8rem] [&_svg]:text-neutral-600",
         className,
