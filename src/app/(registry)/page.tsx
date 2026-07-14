@@ -345,6 +345,7 @@ export default function Home() {
             alias:
           </p>
           <CodeBlock
+            ariaLabel="Test setup App.jsx example"
             code={`import { Button } from "@/components/ui/button"
 
 export default function MyComponent() {

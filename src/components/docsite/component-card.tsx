@@ -11,7 +11,7 @@ const DemoWrapper = dynamic(() => import("@/components/demo-wrapper"), {
 
 export function ComponentCard({ component }: ComponentCardProps) {
   return (
-    <section>
+    <section aria-label="Component preview">
       <div id="starting-kit">
         <div className="w-full min-w-0 overflow-x-hidden">
           <DemoWrapper name={component.name} />

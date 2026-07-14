@@ -522,7 +522,10 @@ export default function TopBar() {
 
           {/* Top navigation */}
           <nav aria-label="Top navigation">
-            <NavigationMenu className="hidden lg:flex">
+            <NavigationMenu
+              className="hidden lg:flex"
+              aria-label="Site navigation"
+            >
               <NavigationMenuList className="flex gap-3">
                 {navItems.map((item) => {
                   const normalizedPathname = pathname.replace(/\/$/, "") || "/";

@@ -162,7 +162,7 @@ export function CodeBlock({
   return (
     <div
       dir="ltr"
-      role="region"
+      role={ariaLabel ? "region" : undefined}
       aria-label={ariaLabel}
       className={cn(
         "relative rounded-md bg-muted max-h-[400px] overflow-auto",

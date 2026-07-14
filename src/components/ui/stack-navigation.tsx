@@ -285,6 +285,7 @@ export function StackNavigation({
         )}
       >
         <nav
+          aria-label={isHorizontal ? "Sidebar navigation" : "Stack navigation"}
           className={cn(
             !isHorizontal && "flex flex-col gap-1",
             isHorizontal &&
