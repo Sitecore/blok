@@ -92,6 +92,7 @@ function Calendar({
       className={cn("p-3", className)}
       captionLayout={captionLayout}
       labels={{
+        labelNav: () => "Month navigation",
         ...labels,
         ...(monthDropdownAriaLabel != null && !labels?.labelMonthDropdown
           ? { labelMonthDropdown: () => monthDropdownAriaLabel }

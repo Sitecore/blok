@@ -452,6 +452,7 @@ const FilterSingleSelect = React.forwardRef<
               </PopoverTrigger>
               <PopoverContent
                 align="start"
+                aria-label={ariaLabels?.listbox ?? groupLabel ?? placeholder}
                 className={cn(
                   FILTER_DROPDOWN_WIDTH,
                   FILTER_DROPDOWN_CONTAINER,
@@ -615,7 +616,10 @@ const FilterSingleSelect = React.forwardRef<
                 )}
               </span>
             </SelectTrigger>
-            <FilterSingleSelectContent align="start">
+            <FilterSingleSelectContent
+              align="start"
+              aria-label={ariaLabels?.listbox ?? groupLabel ?? placeholder}
+            >
               {groups ? (
                 groups.map((group) => (
                   <SelectGroup key={group.label}>
@@ -1025,6 +1029,7 @@ const FilterMultiSelect = React.forwardRef<
               </Button>
             </PopoverTrigger>
             <PopoverContent
+              aria-label={ariaLabels?.listbox ?? groupLabel ?? placeholder}
               className={cn(
                 FILTER_DROPDOWN_WIDTH,
                 FILTER_DROPDOWN_CONTAINER,

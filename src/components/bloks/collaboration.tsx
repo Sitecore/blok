@@ -136,35 +136,29 @@ function UserListItem({
   onAdd?: () => void;
   onRemove?: () => void;
 }) {
-  const [isHovered, setIsHovered] = useState(false);
-
   return (
-    <div
-      className="flex items-center justify-between py-2 px-1 rounded-md hover:bg-neutral-bg transition-colors"
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-    >
-      <div className="flex items-center gap-3">
+    <div className="group flex min-w-0 items-center justify-between gap-2 py-2 px-1 rounded-md hover:bg-neutral-bg transition-colors">
+      <div className="flex min-w-0 flex-1 items-center gap-3">
         <Avatar className="size-8">
           <AvatarImage src={user.avatarUrl} alt={user.name} />
           <AvatarFallback className="text-xs bg-muted">
             {getInitials(user.name)}
           </AvatarFallback>
         </Avatar>
-        <span className="text-sm font-medium">
+        <span className="truncate text-sm font-medium">
           {user.name}
           {isCurrentUser && (
             <span className="text-muted-foreground"> (You)</span>
           )}
         </span>
       </div>
-      {isAdded && isHovered && onRemove && (
+      {isAdded && onRemove && (
         <Button
           variant="link"
           size="xs"
           colorScheme="primary"
           onClick={onRemove}
-          className="h-auto py-0.5 px-2 no-underline hover:no-underline font-bold"
+          className="h-auto py-0.5 px-2 no-underline hover:no-underline font-bold opacity-0 group-hover:opacity-100 focus-visible:opacity-100"
         >
           Remove
         </Button>
@@ -294,6 +288,7 @@ export function Collaboration<T extends User = User>({
         <PopoverContent
           align="end"
           sideOffset={8}
+          aria-label={title}
           className="w-[368px] p-0 border-0 bg-transparent shadow-none"
         >
           {/* Users Panel */}
@@ -313,7 +308,7 @@ export function Collaboration<T extends User = User>({
                   {emptyStateMessage}
                 </div>
               ) : (
-                <div className="space-y-1 max-h-48 overflow-y-auto">
+                <div className="max-h-48 space-y-1 overflow-y-auto overflow-x-hidden">
                   {users.map((user) => {
                     const userId = getUserId(user as T);
                     const currentUserId = currentUser
@@ -360,6 +355,7 @@ export function Collaboration<T extends User = User>({
                   align="center"
                   sideOffset={-8}
                   alignOffset={26}
+                  aria-label="Add users"
                   className="w-[420px] p-0 border-0 bg-transparent shadow-none"
                 >
                   {/* Add Users Panel */}
@@ -412,7 +408,7 @@ export function Collaboration<T extends User = User>({
                         </SearchInput>
                       </div>
 
-                      <div className="space-y-1 max-h-48 overflow-y-auto">
+                      <div className="max-h-48 space-y-1 overflow-y-auto overflow-x-hidden">
                         {isSearching && (
                           <div className="text-sm text-muted-foreground py-4 text-center">
                             Searching...
