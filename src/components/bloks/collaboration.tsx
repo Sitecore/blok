@@ -375,6 +375,7 @@ export function Collaboration<T extends User = User>({
                           size="icon-sm"
                           onClick={() => setIsAddUsersOpen(false)}
                           className="text-muted-foreground hover:text-foreground -mr-1"
+                          aria-label="Close add users popover"
                         >
                           <Icon path={mdiClose} className="size-4" />
                         </Button>
