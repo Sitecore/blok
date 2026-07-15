@@ -80,7 +80,10 @@ export default function Home() {
       </div>
 
       <div className="px-32 w-full flex items-center flex-col">
-        <div className="flex flex-col space-y-3 py-20 md:pt-30  w-full max-w-[1250px]">
+        <section
+          aria-label="Getting started"
+          className="flex flex-col space-y-3 py-20 md:pt-30  w-full max-w-[1250px]"
+        >
           <h2 className="font-semibold text-3xl md:text-4xl">Prerequisites</h2>
           <p className="">
             Make sure you have the following tools installed before proceeding:
@@ -236,7 +239,7 @@ export default function Home() {
               . If you're familiar with that, you'll feel right at home!
             </AlertDescription>
           </Alert>
-        </div>
+        </section>
 
         <div
           id="step-1"
