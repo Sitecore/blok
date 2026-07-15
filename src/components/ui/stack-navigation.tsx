@@ -107,6 +107,7 @@ export interface StackNavigationProps {
   renderDivider?: (divider: StackNavigationDivider, index: number) => ReactNode;
   className?: string;
   navClassName?: string;
+  "aria-label"?: string;
   width?: string;
   header?: ReactNode;
   footer?: ReactNode;
@@ -122,7 +123,7 @@ export interface StackNavigationProps {
 
   onItemClick?: (
     item: StackNavigationItem,
-    event: React.MouseEvent<HTMLAnchorElement>,
+    event: React.MouseEvent<HTMLAnchorElement | HTMLButtonElement>,
   ) => undefined | boolean;
 }
 
@@ -139,7 +140,7 @@ function DefaultNavItem({
   colorScheme?: "neutral" | "primary";
   onItemClick?: (
     item: StackNavigationItem,
-    event: React.MouseEvent<HTMLAnchorElement>,
+    event: React.MouseEvent<HTMLAnchorElement | HTMLButtonElement>,
   ) => undefined | boolean;
 }) {
   const isActive = pathname === item.path;
@@ -153,6 +154,56 @@ function DefaultNavItem({
       }
     }
   };
+
+  // Expandable controls use a button so aria-expanded can toggle and Enter/Space work.
+  if (onItemClick) {
+    return (
+      <button
+        type="button"
+        className={cn(
+          stackNavigationItemVariants({
+            orientation,
+            colorScheme,
+            isActive,
+            className: item.className,
+          }),
+        )}
+        aria-label={item.name}
+        aria-haspopup="true"
+        aria-expanded={isActive}
+        onClick={(e) => {
+          onItemClick(item, e);
+        }}
+        onContextMenu={(e) => e.preventDefault()}
+      >
+        <div
+          aria-hidden="true"
+          className={cn(
+            "shrink-0 flex items-center justify-center",
+            "w-[22px] h-[22px]",
+          )}
+        >
+          {item.icon}
+        </div>
+
+        <span
+          className={cn(
+            !isHorizontal &&
+              "text-3xs text-center overflow-hidden text-ellipsis whitespace-nowrap w-full block leading-[150%] tracking-normal",
+            isHorizontal &&
+              "text-3xs text-center whitespace-nowrap leading-tight",
+          )}
+          title={item.name}
+        >
+          {item.name}
+        </span>
+
+        {!isHorizontal && item.badge && (
+          <div className="absolute top-1 right-1">{item.badge}</div>
+        )}
+      </button>
+    );
+  }
 
   return (
     <a
@@ -168,11 +219,7 @@ function DefaultNavItem({
       )}
       onContextMenu={(e) => e.preventDefault()}
       aria-label={item.name}
-      {...(onItemClick
-        ? { "aria-haspopup": true, "aria-expanded": isActive }
-        : {})}
     >
-      {/* Icon */}
       <div
         aria-hidden="true"
         className={cn(
@@ -183,7 +230,6 @@ function DefaultNavItem({
         {item.icon}
       </div>
 
-      {/* Text below icon */}
       <span
         className={cn(
           !isHorizontal &&
@@ -229,6 +275,7 @@ export function StackNavigation({
   renderDivider,
   className,
   navClassName,
+  "aria-label": ariaLabel,
   width = "w-[72px]",
   header,
   footer,
@@ -237,7 +284,7 @@ export function StackNavigation({
   pathname: providedPathname,
   onItemClick,
   ...props
-}: StackNavigationProps & React.ComponentProps<"div">) {
+}: StackNavigationProps & Omit<React.ComponentProps<"div">, "aria-label">) {
   // Use provided pathname or fall back to window.location.pathname
   const [clientPathname, setClientPathname] = React.useState("");
 
@@ -252,6 +299,7 @@ export function StackNavigation({
   const isHorizontal = orientation === "horizontal";
   const hasShadowNone = className?.includes("shadow-none");
   const shadowClass = hasShadowNone ? "" : "shadow-base";
+  const ListContainer = ariaLabel ? "nav" : "div";
 
   return (
     <div
@@ -284,8 +332,8 @@ export function StackNavigation({
           isHorizontal && "flex-1 overflow-x-auto",
         )}
       >
-        <nav
-          aria-label={isHorizontal ? "Sidebar navigation" : "Stack navigation"}
+        <ListContainer
+          {...(ariaLabel ? { "aria-label": ariaLabel } : {})}
           className={cn(
             !isHorizontal && "flex flex-col gap-1",
             isHorizontal &&
@@ -323,7 +371,7 @@ export function StackNavigation({
               </div>
             );
           })}
-        </nav>
+        </ListContainer>
       </div>
 
       {/* Footer only for vertical */}

@@ -72,10 +72,9 @@ function NavigationMenuTrigger({
   return (
     <NavigationMenuPrimitive.Trigger
       data-slot="navigation-menu-trigger"
-      aria-haspopup="true"
-      aria-expanded={false}
       className={cn(navigationMenuTriggerStyle(), "group", className)}
       {...props}
+      aria-haspopup="true"
     >
       {children}{" "}
       <Icon
