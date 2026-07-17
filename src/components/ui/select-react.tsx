@@ -227,6 +227,10 @@ function SelectReact<
         ...base,
         backgroundColor: undefined,
       }),
+      menuPortal: (base) => ({
+        ...base,
+        zIndex: 50,
+      }),
       menuList: (base) => ({
         ...base,
         padding: undefined,
@@ -298,6 +302,8 @@ function SelectReact<
       components={mergedComponents}
       isDisabled={isDisabled}
       isOptionDisabled={(option) => !!(option as SelectReactOption).disabled}
+      // Portal the menu so it isn't clipped by overflow-hidden ancestors (e.g. demo previews).
+      menuPortalTarget={typeof document !== "undefined" ? document.body : null}
       {...props}
     />
   );
