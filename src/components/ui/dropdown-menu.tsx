@@ -28,6 +28,7 @@ function DropdownMenuTrigger({
     <DropdownMenuPrimitive.Trigger
       data-slot="dropdown-menu-trigger"
       {...props}
+      aria-haspopup="true"
     />
   );
 }
@@ -257,6 +258,7 @@ function DropdownMenuSubTrigger({
         className,
       )}
       {...props}
+      aria-haspopup="true"
     >
       {children}
       <Icon path={mdiChevronRight} size={1.5} className="ml-auto" />

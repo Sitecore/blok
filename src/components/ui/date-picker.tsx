@@ -129,7 +129,11 @@ function DatePickerSimple(props: DatePickerSimpleProps) {
           )}
         </Button>
       </PopoverTrigger>
-      <PopoverContent className="w-auto p-0" align="start">
+      <PopoverContent
+        className="w-auto p-0"
+        align="start"
+        aria-label="Choose date"
+      >
         <Calendar
           {...calendarProps}
           mode="single"
@@ -251,7 +255,11 @@ function DatePickerWithRange(props: DatePickerWithRangeProps) {
           {triggerLabel}
         </Button>
       </PopoverTrigger>
-      <PopoverContent className="w-auto p-0" align="start">
+      <PopoverContent
+        className="w-auto p-0"
+        align="start"
+        aria-label="Choose date"
+      >
         <Calendar
           {...calendarProps}
           mode="range"

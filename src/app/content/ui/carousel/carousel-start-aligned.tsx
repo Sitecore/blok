@@ -9,7 +9,7 @@ import {
 
 export default function CarouselStartAlignedDemo() {
   return (
-    <div className="w-full max-w-sm mx-auto">
+    <div className="w-full max-w-sm mx-auto px-20">
       <Carousel
         className="w-full"
         aria-label="Responsive cards carousel with start alignment"
@@ -21,7 +21,7 @@ export default function CarouselStartAlignedDemo() {
           {Array.from({ length: 5 }).map((_, index) => (
             <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
               <div className="p-1">
-                <Card className="bg-subtle-bg border-subtle-bg">
+                <Card className="bg-subtle-bg border-subtle-bg p-0">
                   <CardContent className="flex aspect-square items-center justify-center p-6">
                     <span className="text-3xl font-semibold text-body-text">
                       {index + 1}
