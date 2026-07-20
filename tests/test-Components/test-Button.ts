@@ -107,7 +107,7 @@ export async function testSizeVariant(page: Page){
 export async function testIcononlyVariant(page: Page){
 
   // Verify icon-lg button size and styling
-    const iconLgButton = page.getByRole('button', { name: 'Help and support' });
+    const iconLgButton = page.locator('button[data-slot="button"][aria-label="Help and support"]');
     await expect(iconLgButton).toBeVisible();
   // Verify button has correct size class (size-12 = 48px)
     const buttonLgBox = await iconLgButton.boundingBox();
@@ -115,7 +115,7 @@ export async function testIcononlyVariant(page: Page){
     expect(buttonLgBox?.height).toBe(48);
 
   // Verify icon button size and styling  
-    const iconButton = page.getByRole('button', { name: 'Get help' });
+    const iconButton = page.locator('button[data-slot="button"][aria-label="Get help"]');
     await expect(iconButton).toBeVisible();
   // Verify button has correct size class (size-10 = 40px)
     const buttonBox = await iconButton.boundingBox();
@@ -123,7 +123,7 @@ export async function testIcononlyVariant(page: Page){
     expect(buttonBox?.height).toBe(40);
 
   // Verify icon-sm button size and styling
-    const iconSmButton = page.getByRole('button', { name: 'Help' }).nth(2);
+    const iconSmButton = page.locator('button[data-slot="button"][aria-label="Help"]');
     await expect(iconSmButton).toBeVisible();
   // Verify button has correct size class (size-8 = 32px)
     const buttonSmBox = await iconSmButton.boundingBox();
@@ -131,7 +131,7 @@ export async function testIcononlyVariant(page: Page){
     expect(buttonSmBox?.height).toBe(32);
 
   // Verify icon-xs button size and styling
-    const iconXsButton = page.getByRole('button', { name: 'Info' });
+    const iconXsButton = page.locator('button[data-slot="button"][aria-label="Info"]');
     await expect(iconXsButton).toBeVisible();
   // Verify button has correct size class (size-6 = 24px)
     const buttonXsBox = await iconXsButton.boundingBox();
