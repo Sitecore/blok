@@ -383,7 +383,7 @@ export async function testFilterWithImage(page: Page){
     // Wait for popover to be stable (helps in headless where positioning can lag)
     await page.waitForTimeout(400);
     // Verify that options are visible with image/avatar
-    const multiInputOptions = multiSelectContent.locator('[aria-label="List of options"]');
+    const multiInputOptions = multiSelectContent.getByRole('dialog', { name: 'List of options' });
     await expect(multiInputOptions).toBeVisible();
     // Verify that select options from multi select
     const CDPCheckbox = multiInputOptions.getByRole('checkbox', { name: 'CDP' });
