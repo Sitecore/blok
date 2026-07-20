@@ -18,7 +18,7 @@ export default function CarouselNegativeMarginDemo() {
           {Array.from({ length: 5 }).map((_, index) => (
             <CarouselItem key={index} className="pl-1 md:basis-1/2">
               <div className="p-1">
-                <Card className="bg-subtle-bg border-subtle-bg">
+                <Card className="bg-subtle-bg border-subtle-bg p-0">
                   <CardContent className="flex aspect-square items-center justify-center p-6">
                     <span className="text-2xl font-semibold text-body-text">
                       {index + 1}
