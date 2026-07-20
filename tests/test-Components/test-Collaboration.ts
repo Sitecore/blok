@@ -54,13 +54,13 @@ export async function testCollaboration(page: Page){
     await expect(popoverCard.getByText('Christian Hahn')).toBeVisible();
 
     // Verify that remove user when Remove button is clicked
-    // Find the user item that contains "Spyridon Misichronis"
-    const userItem = popoverCard.locator('div').filter({ hasText: 'Spyridon Misichronis' }).first();
+    // Scope to Spyridon's row (the group container that includes the Remove button)
+    const userItem = popoverCard.locator('div.group').filter({ hasText: 'Spyridon Misichronis' });
     await expect(userItem).toBeVisible();
     // Hover over the user item to reveal the Remove button
     await userItem.hover();
     // Verify that display Remove button
-    const removeButton = userItem.locator('button[data-slot="button"]');
+    const removeButton = userItem.getByRole('button', { name: 'Remove' });
     await expect(removeButton).toBeVisible();
     await removeButton.click();
     // Wait for the removal to complete - the user should disappear
