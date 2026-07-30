@@ -14,7 +14,6 @@ import {
 import TopBar from "@/components/layout/topbar";
 import { GainsightProvider } from "@/components/telemetry/gainsight-provider";
 import { PageViewTracker } from "@/components/telemetry/page-view-tracker";
-import { Toaster } from "@/components/ui/sonner";
 
 export default function RegistryLayout({
   children,
@@ -58,7 +57,6 @@ export default function RegistryLayout({
             </SidebarInset>
           </SidebarProvider>
         </div>
-        <Toaster />
       </div>
     </GainsightProvider>
   );

@@ -68,6 +68,14 @@ export function InBuiltDropdown({
   );
 }
 
+function defaultMonthNavLabel(
+  mode: React.ComponentProps<typeof DayPicker>["mode"],
+): string {
+  if (mode === "range") return "Date range month navigation";
+  if (mode === "multiple") return "Multiple dates month navigation";
+  return "Month navigation";
+}
+
 function Calendar({
   className,
   classNames,
@@ -78,11 +86,13 @@ function Calendar({
   components,
   labels,
   monthDropdownAriaLabel,
+  navAriaLabel,
   ...props
 }: React.ComponentProps<typeof DayPicker> & {
   buttonVariant?: React.ComponentProps<typeof Button>["variant"];
   /** Sets `labels.labelMonthDropdown` for dropdown caption layouts (month `<select>` / custom trigger). */
   monthDropdownAriaLabel?: string;
+  navAriaLabel?: string;
 }) {
   const defaultClassNames = getDefaultClassNames();
 
@@ -92,10 +102,13 @@ function Calendar({
       className={cn("p-3", className)}
       captionLayout={captionLayout}
       labels={{
-        labelNav: () => "Month navigation",
+        labelNav: () => defaultMonthNavLabel(props.mode),
         ...labels,
         ...(monthDropdownAriaLabel != null && !labels?.labelMonthDropdown
           ? { labelMonthDropdown: () => monthDropdownAriaLabel }
+          : {}),
+        ...(navAriaLabel != null && !labels?.labelNav
+          ? { labelNav: () => navAriaLabel }
           : {}),
       }}
       formatters={{
