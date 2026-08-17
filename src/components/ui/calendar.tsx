@@ -19,7 +19,10 @@ import {
   type DayButton,
   DayPicker,
   type DropdownProps,
+  type NavProps,
+  UI,
   getDefaultClassNames,
+  useDayPicker,
 } from "react-day-picker";
 
 export function InBuiltDropdown({
@@ -68,6 +71,59 @@ export function InBuiltDropdown({
   );
 }
 
+/** Month controls as a div so multiple calendars do not create duplicate nav landmarks. */
+function CalendarNav({
+  onPreviousClick,
+  onNextClick,
+  previousMonth,
+  nextMonth,
+  "aria-label": _unusedAriaLabel,
+  ...navProps
+}: NavProps) {
+  const {
+    components,
+    classNames,
+    labels: { labelPrevious, labelNext },
+  } = useDayPicker();
+
+  return (
+    <div {...navProps}>
+      <components.PreviousMonthButton
+        type="button"
+        className={classNames[UI.PreviousMonthButton]}
+        tabIndex={previousMonth ? undefined : -1}
+        aria-disabled={previousMonth ? undefined : true}
+        aria-label={labelPrevious(previousMonth)}
+        onClick={(e) => {
+          if (previousMonth) onPreviousClick?.(e);
+        }}
+      >
+        <components.Chevron
+          disabled={previousMonth ? undefined : true}
+          className={classNames[UI.Chevron]}
+          orientation="left"
+        />
+      </components.PreviousMonthButton>
+      <components.NextMonthButton
+        type="button"
+        className={classNames[UI.NextMonthButton]}
+        tabIndex={nextMonth ? undefined : -1}
+        aria-disabled={nextMonth ? undefined : true}
+        aria-label={labelNext(nextMonth)}
+        onClick={(e) => {
+          if (nextMonth) onNextClick?.(e);
+        }}
+      >
+        <components.Chevron
+          disabled={nextMonth ? undefined : true}
+          orientation="right"
+          className={classNames[UI.Chevron]}
+        />
+      </components.NextMonthButton>
+    </div>
+  );
+}
+
 function Calendar({
   className,
   classNames,
@@ -92,7 +148,6 @@ function Calendar({
       className={cn("p-3", className)}
       captionLayout={captionLayout}
       labels={{
-        labelNav: () => "Month navigation",
         ...labels,
         ...(monthDropdownAriaLabel != null && !labels?.labelMonthDropdown
           ? { labelMonthDropdown: () => monthDropdownAriaLabel }
@@ -205,6 +260,7 @@ function Calendar({
             />
           );
         },
+        Nav: CalendarNav,
         Chevron: ({ className, orientation, ...props }) => {
           if (orientation === "left") {
             return (

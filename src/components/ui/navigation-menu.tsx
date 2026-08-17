@@ -10,6 +10,7 @@ function NavigationMenu({
   className,
   children,
   viewport = true,
+  "aria-label": ariaLabel,
   ...props
 }: React.ComponentProps<typeof NavigationMenuPrimitive.Root> & {
   viewport?: boolean;
@@ -18,7 +19,9 @@ function NavigationMenu({
     <NavigationMenuPrimitive.Root
       data-slot="navigation-menu"
       data-viewport={viewport}
-      aria-label="Navigation menu"
+      aria-label={
+        ariaLabel ?? (viewport ? "Navigation menu" : "Inline navigation menu")
+      }
       className={cn(
         "group/navigation-menu relative flex max-w-max flex-1 items-center justify-center",
         className,
