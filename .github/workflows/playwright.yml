@@ -419,19 +419,31 @@ jobs:
       - name: Get author information
         id: author-info
         if: always()
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+          PR_AUTHOR_USERNAME: ${{ github.event.pull_request.user.login }}
+          PR_AUTHOR_NAME: ${{ github.event.pull_request.user.name || github.event.pull_request.user.login }}
+          PUSH_AUTHOR_USERNAME: ${{ github.actor }}
+          PUSH_AUTHOR_NAME: ${{ github.event.head_commit.author.name || github.actor }}
         run: |
-          if [ "${{ github.event_name }}" == "pull_request" ]; then
+          if [ "$EVENT_NAME" == "pull_request" ]; then
             # For Pull Requests
-            AUTHOR_USERNAME="${{ github.event.pull_request.user.login }}"
-            AUTHOR_NAME="${{ github.event.pull_request.user.name || github.event.pull_request.user.login }}"
+            AUTHOR_USERNAME="$PR_AUTHOR_USERNAME"
+            AUTHOR_NAME="$PR_AUTHOR_NAME"
           else
             # For direct commits/pushes
-            AUTHOR_USERNAME="${{ github.actor }}"
-            AUTHOR_NAME="${{ github.event.head_commit.author.name || github.actor }}"
+            AUTHOR_USERNAME="$PUSH_AUTHOR_USERNAME"
+            AUTHOR_NAME="$PUSH_AUTHOR_NAME"
           fi
-          
-          echo "username=$AUTHOR_USERNAME" >> $GITHUB_OUTPUT
-          echo "name=$AUTHOR_NAME" >> $GITHUB_OUTPUT
+
+          {
+            echo "username<<EOF"
+            printf '%s\n' "$AUTHOR_USERNAME"
+            echo "EOF"
+            echo "name<<EOF"
+            printf '%s\n' "$AUTHOR_NAME"
+            echo "EOF"
+          } >> "$GITHUB_OUTPUT"
       
       # Step 11.7: Generate workflow summary
       - name: Generate workflow summary
@@ -538,13 +550,18 @@ jobs:
       - name: Prepare event details
         id: event-details
         if: always()
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+          PR_TITLE: ${{ github.event.pull_request.title }}
+          HEAD_COMMIT_MESSAGE: ${{ github.event.head_commit.message }}
         run: |
-          if [ "${{ github.event_name }}" == "pull_request" ]; then
+          if [ "$EVENT_NAME" == "pull_request" ]; then
             EVENT_TYPE="Pull Request"
-            EVENT_DETAILS="PR #${{ github.event.pull_request.number }}: ${{ github.event.pull_request.title }}"
+            EVENT_DETAILS="PR #${PR_NUMBER}: ${PR_TITLE}"
           else
             EVENT_TYPE="Direct Commit"
-            COMMIT_MSG="${{ github.event.head_commit.message }}"
+            COMMIT_MSG="$HEAD_COMMIT_MESSAGE"
             # Remove newlines and carriage returns, replace with spaces, then clean up multiple spaces
             COMMIT_MSG=$(printf '%s' "$COMMIT_MSG" | tr '\n\r' ' ' | sed 's/[[:space:]]\+/ /g' | sed 's/^[[:space:]]*//;s/[[:space:]]*$//')
             # Truncate if too long
@@ -553,8 +570,15 @@ jobs:
             fi
             EVENT_DETAILS="Commit: ${COMMIT_MSG}"
           fi
-          echo "type=${EVENT_TYPE}" >> $GITHUB_OUTPUT
-          echo "details=${EVENT_DETAILS}" >> $GITHUB_OUTPUT
+
+          {
+            echo "type<<EOF"
+            printf '%s\n' "$EVENT_TYPE"
+            echo "EOF"
+            echo "details<<EOF"
+            printf '%s\n' "$EVENT_DETAILS"
+            echo "EOF"
+          } >> "$GITHUB_OUTPUT"
       
       # Step 11.9: Send test results to Teams channel
       - name: Send test results to Teams
