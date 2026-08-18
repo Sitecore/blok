@@ -395,7 +395,7 @@ const FilterSingleSelect = React.forwardRef<
                   disabled={disabled}
                   className={cn(
                     FILTER_SELECT_TRIGGER_CLASSNAME,
-                    hasValue && "pr-8 overflow-hidden",
+                    hasValue && showClear && "pr-8 overflow-hidden",
                   )}
                 >
                   <span className="flex min-w-0 flex-1 items-center gap-0.5 overflow-hidden text-left pointer-events-none">
@@ -567,7 +567,7 @@ const FilterSingleSelect = React.forwardRef<
               className={cn(
                 "*:data-[slot=select-value]:hidden",
                 FILTER_SELECT_TRIGGER_CLASSNAME,
-                hasValue && "pr-8 overflow-hidden",
+                hasValue && showClear && "pr-8 overflow-hidden",
                 hasValue && showClear && "[&_svg]:hidden",
               )}
             >
@@ -881,7 +881,7 @@ const FilterMultiSelect = React.forwardRef<
                 }
                 className={cn(
                   FILTER_SELECT_TRIGGER_CLASSNAME,
-                  hasValues && "pr-8 overflow-hidden",
+                  hasValues && showClear && "pr-8 overflow-hidden",
                 )}
               >
                 <span
