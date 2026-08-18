@@ -50,7 +50,7 @@ function FilterSingleSelectContent({
       className={cn(
         FILTER_DROPDOWN_WIDTH,
         FILTER_DROPDOWN_CONTAINER,
-        "min-w-0 max-h-80 overflow-hidden p-0 [&_[data-slot=select-viewport]]:h-auto [&_[data-slot=select-viewport]]:min-w-0 [&_[data-slot=select-viewport]]:p-2 [&_[data-slot=select-viewport]]:max-h-80",
+        "min-w-0 max-h-80 p-0 [&_[data-radix-select-viewport]]:h-auto [&_[data-radix-select-viewport]]:min-w-0 [&_[data-radix-select-viewport]]:w-full [&_[data-radix-select-viewport]]:p-2 [&_[data-radix-select-viewport]]:max-h-80",
         className,
       )}
       position={position}
