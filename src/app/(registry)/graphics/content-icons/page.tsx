@@ -283,7 +283,7 @@ function ContentItemsTable({
                             colorScheme: item.colorScheme,
                           });
                         }}
-                        aria-label={`Copy Icon usage for ${item.label}`}
+                        aria-label={`Copy snippet for ${item.label}`}
                         className="cursor-pointer inline-flex w-10 h-10 hover:bg-muted rounded transition-colors"
                       >
                         <Icon
@@ -295,7 +295,7 @@ function ContentItemsTable({
                         />
                       </Button>
                     </TooltipTrigger>
-                    <TooltipContent>Copy Icon usage</TooltipContent>
+                    <TooltipContent>Copy snippet</TooltipContent>
                   </Tooltip>
                 </TableCell>
                 <TableCell className="w-40 px-4 text-sm font-medium">
@@ -351,7 +351,7 @@ function ContentItemsTable({
                             colorScheme: item.colorScheme,
                           });
                         }}
-                        aria-label={`Copy Icon usage for ${item.label}`}
+                        aria-label={`Copy snippet for ${item.label}`}
                         className="shrink-0"
                       >
                         <Icon
@@ -361,7 +361,7 @@ function ContentItemsTable({
                         />
                       </Button>
                     </TooltipTrigger>
-                    <TooltipContent>Copy Icon usage</TooltipContent>
+                    <TooltipContent>Copy snippet</TooltipContent>
                   </Tooltip>
                 </TableCell>
               </TableRow>
