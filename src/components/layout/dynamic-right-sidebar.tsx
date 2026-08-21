@@ -22,6 +22,7 @@ const HIDDEN_SIDEBAR_PATHS = [
   "/theming/sizes",
   "/theming/spacing",
   "/theming/typography",
+  "/graphics/content-icons",
   "/graphics/favicons",
   "/graphics/icons",
   "/graphics/illustrations",
