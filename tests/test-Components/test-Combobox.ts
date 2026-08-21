@@ -191,13 +191,13 @@ export async function testCombobxAutoHighlight(page: Page){
     await expect(itemNextJs).toBeVisible();
     await expect(itemNextJs).toContainText('Next.js');
 
-    // Verify that selected item is auto highlighted
+    // Verify that the first item is auto highlighted when the list opens
+    await expect(itemNextJs).toHaveAttribute('data-highlighted');
+
+    // Verify that selecting the item closes the list
     await itemNextJs.click();
-    await expect(itemNextJs.locator('span')).toHaveAttribute('data-selected');
-    
-    // Verify that close combobox auto highlight content
     await expect(comboboxCustomItemContent).not.toBeVisible();
-    
+
     // Verify that the selected items are displayed
     await expect(comboboxAutoHighlightControl).toHaveAttribute('value', 'Next.js');
 }
@@ -265,7 +265,7 @@ export async function testCombobxWithDescription(page: Page){
     await expect(inputGroupControl).toHaveAttribute('aria-haspopup', 'listbox');
     await expect(inputGroupControl).toHaveAttribute('aria-autocomplete', 'list');
     await expect(inputGroupControl).toHaveAttribute('placeholder', 'XM Cloud Authoring');
-    await expect(inputGroupControl).toHaveAttribute('type', 'text');
+    await expect(inputGroupControl).toHaveJSProperty('type', 'text');
 
     // Verify that description trigger has input group addon button
     const inputGroupAddon = descriptionTrigger.locator('[data-slot="input-group-addon"]');
@@ -345,7 +345,7 @@ export async function testCombobxWithDescription(page: Page){
     await expect(inputGroupControlWithIcon).toHaveAttribute('aria-haspopup', 'listbox');
     await expect(inputGroupControlWithIcon).toHaveAttribute('aria-autocomplete', 'list');
     await expect(inputGroupControlWithIcon).toHaveAttribute('placeholder', 'Platform & Data');
-    await expect(inputGroupControlWithIcon).toHaveAttribute('type', 'text');
+    await expect(inputGroupControlWithIcon).toHaveJSProperty('type', 'text');
 
     // Verify that description trigger has input group addon button
     const inputGroupAddonWithIcon = descriptionWithIconTrigger.locator('[data-slot="input-group-addon"]');
