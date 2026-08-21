@@ -187,11 +187,12 @@ export async function testCombobxAutoHighlight(page: Page){
     await expect(comboboxCustomItemContent).toBeVisible(); 
 
     // Verify that combobx items are visible
-    const itemNextJs = comboboxCustomItemContent.locator('[data-slot="combobox-item"]').nth(0);
+    const itemNextJs = comboboxCustomItemContent.locator('[data-slot="combobox-item"]').filter({ hasText: 'Next.js' });
     await expect(itemNextJs).toBeVisible();
     await expect(itemNextJs).toContainText('Next.js');
 
-    // Verify that the first item is auto highlighted when the list opens
+    // autoHighlight is input-change: the first match is highlighted while filtering
+    await comboboxAutoHighlightControl.fill('Next');
     await expect(itemNextJs).toHaveAttribute('data-highlighted');
 
     // Verify that selecting the item closes the list
