@@ -22,6 +22,7 @@ export const themingItems = [
 
 // Graphics items for sidebar
 export const graphicsItems = [
+  { title: "Content icons", path: "/graphics/content-icons" },
   { title: "Favicons", path: "/graphics/favicons" },
   { title: "Icons", path: "/graphics/icons" },
   { title: "Illustrations", path: "/graphics/illustrations" },
