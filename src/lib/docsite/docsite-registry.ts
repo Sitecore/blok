@@ -119,6 +119,7 @@ import FilterSingleSelectDemo from "@/app/content/ui/filter/filter-single-select
 import FilterMultiSelectDemo from "@/app/content/ui/filter/filter-multi-select";
 import FilterWithSearchDemo from "@/app/content/ui/filter/filter-with-search";
 import FilterWithAvatarDemo from "@/app/content/ui/filter/filter-with-avatar";
+import FilterInfiniteScrollDemo from "@/app/content/ui/filter/filter-infinite-scroll";
 import IconDemo from "@/app/content/ui/icon/icon-component";
 import IconVariantsDemo from "@/app/content/ui/icon/icon-variants";
 import IconSizingDemo from "@/app/content/ui/icon/icon-sizing";
@@ -835,6 +836,11 @@ export const docsiteRegistry: Record<string, DocsiteRegistryEntry> = {
     name: "filter-with-avatar",
     path: "src/app/content/ui/filter/filter-with-avatar.tsx",
     component: FilterWithAvatarDemo,
+  },
+  "filter-infinite-scroll": {
+    name: "filter-infinite-scroll",
+    path: "src/app/content/ui/filter/filter-infinite-scroll.tsx",
+    component: FilterInfiniteScrollDemo,
   },
   icon: {
     name: "icon",

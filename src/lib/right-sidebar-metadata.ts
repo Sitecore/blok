@@ -514,6 +514,10 @@ export const rightSidebarMetadata: Record<string, RightSidebarMetadata> = {
           { id: "filter-multi-select", title: "Filter Multi Select" },
           { id: "filter-with-search", title: "Filter with Search" },
           { id: "filter-with-avatar", title: "Filter with image/avatar" },
+          {
+            id: "filter-infinite-scroll",
+            title: "Filter with infinite scroll",
+          },
         ],
       },
     ],

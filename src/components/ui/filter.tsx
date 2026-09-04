@@ -24,6 +24,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { Spinner } from "@/components/ui/spinner";
 import { Icon } from "@/lib/icon";
 import { cn } from "@/lib/utils";
 import { mdiCheck, mdiChevronDown, mdiClose, mdiMagnify } from "@mdi/js";
@@ -37,6 +38,146 @@ const FILTER_DROPDOWN_CONTAINER =
 
 const FILTER_SELECT_TRIGGER_CLASSNAME =
   "border-border text-md text-neutral-fg font-semibold outline-none focus-visible:ring-1 focus-visible:ring-ring/50 aria-invalid:border-destructive aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 bg-body-bg hover:bg-neutral-bg dark:bg-input/30 dark:hover:bg-input/50 flex w-fit min-w-0 max-w-full items-center justify-between gap-2 rounded-md border-1 px-3 py-2 whitespace-nowrap transition-[color] h-10 cursor-pointer disabled:cursor-not-allowed disabled:opacity-50 data-[state=open]:border-primary data-[state=open]:border-2 data-[state=open]:bg-primary-bg data-[state=open]:text-primary-fg data-[state=open]:hover:bg-primary-bg [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4 [&>svg]:!text-current [&>svg]:!opacity-100";
+
+const FILTER_SELECT_TRIGGER_HIGHLIGHT_CLASSNAME =
+  "border-primary border-2 bg-primary-bg text-primary-fg hover:bg-primary-bg dark:bg-primary-bg dark:hover:bg-primary-bg";
+
+function getFilterTriggerTextClassName(highlighted: boolean) {
+  return highlighted ? "text-primary-fg" : "text-neutral-fg";
+}
+
+function getFilterClearButtonClassName(highlighted: boolean) {
+  return cn(
+    "absolute right-2 top-1/2 -translate-y-1/2 pointer-events-auto",
+    highlighted
+      ? "text-primary-fg hover:bg-primary-bg-active"
+      : "text-neutral-fg hover:bg-neutral-bg-active",
+  );
+}
+
+function useFilterInfiniteScroll({
+  open,
+  onLoadMore,
+  hasMore,
+  isLoadingMore,
+}: {
+  open: boolean;
+  onLoadMore?: () => void;
+  hasMore?: boolean;
+  isLoadingMore?: boolean;
+}) {
+  const listNodeRef = React.useRef<HTMLDivElement | null>(null);
+  const sentinelNodeRef = React.useRef<HTMLDivElement | null>(null);
+  const observerRef = React.useRef<IntersectionObserver | null>(null);
+
+  const setupObserver = React.useCallback(() => {
+    observerRef.current?.disconnect();
+    observerRef.current = null;
+
+    if (!open || !onLoadMore || !hasMore || isLoadingMore) {
+      return;
+    }
+
+    const sentinel = sentinelNodeRef.current;
+    const root = listNodeRef.current;
+    if (!sentinel || !root) {
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry?.isIntersecting) {
+          onLoadMore();
+        }
+      },
+      { root, rootMargin: "56px", threshold: 0 },
+    );
+    observer.observe(sentinel);
+    observerRef.current = observer;
+  }, [open, onLoadMore, hasMore, isLoadingMore]);
+
+  const listRef = React.useCallback(
+    (node: HTMLDivElement | null) => {
+      listNodeRef.current = node;
+      setupObserver();
+    },
+    [setupObserver],
+  );
+
+  const sentinelRef = React.useCallback(
+    (node: HTMLDivElement | null) => {
+      sentinelNodeRef.current = node;
+      setupObserver();
+    },
+    [setupObserver],
+  );
+
+  React.useEffect(() => {
+    setupObserver();
+    return () => {
+      observerRef.current?.disconnect();
+      observerRef.current = null;
+    };
+  }, [setupObserver]);
+
+  return { listRef, sentinelRef };
+}
+
+function FilterDropdownFooter({
+  footer,
+  loadedCount,
+  totalCount,
+  itemCountLabel,
+}: {
+  footer?: React.ReactNode;
+  loadedCount: number;
+  totalCount?: number;
+  itemCountLabel?: string;
+}) {
+  const content =
+    footer ??
+    (totalCount != null
+      ? `${loadedCount} of ${totalCount}${itemCountLabel ? ` ${itemCountLabel}` : ""}`
+      : null);
+
+  if (content == null || content === false) {
+    return null;
+  }
+
+  return (
+    <div
+      data-slot="filter-dropdown-footer"
+      className="border-t border-border -mx-2 mt-2 px-3 pt-2 text-right text-xs text-muted-foreground"
+    >
+      {content}
+    </div>
+  );
+}
+
+function FilterLoadMoreStatus({
+  onLoadMore,
+  hasMore,
+  isLoadingMore,
+  sentinelRef,
+}: {
+  onLoadMore?: () => void;
+  hasMore?: boolean;
+  isLoadingMore?: boolean;
+  sentinelRef: React.Ref<HTMLDivElement | null>;
+}) {
+  return (
+    <>
+      {onLoadMore && hasMore && !isLoadingMore && (
+        <div ref={sentinelRef} className="h-px w-full" aria-hidden />
+      )}
+      {isLoadingMore && (
+        <div className="flex justify-center py-2">
+          <Spinner className="size-4" />
+        </div>
+      )}
+    </>
+  );
+}
 
 function FilterSingleSelectContent({
   className,
@@ -105,7 +246,26 @@ export interface FilterSingleSelectGroup {
   options: FilterOption[];
 }
 
-export interface FilterSingleSelectProps {
+export interface FilterDropdownListProps {
+  /** Called when the user scrolls near the bottom of the options list. */
+  onLoadMore?: () => void;
+  /** Whether more pages are available for infinite scroll. */
+  hasMore?: boolean;
+  /** Whether a load-more request is in progress. */
+  isLoadingMore?: boolean;
+  /** Called when the in-dropdown search query changes (for server-side search). */
+  onSearchChange?: (query: string) => void;
+  /** Custom footer content rendered below the options list. */
+  footer?: React.ReactNode;
+  /** Number of currently loaded options. Defaults to the visible option count. */
+  loadedCount?: number;
+  /** Total number of available options, used for the default count footer. */
+  totalCount?: number;
+  /** Label appended to the default count footer, e.g. "users" → "20 of 197 users". */
+  itemCountLabel?: string;
+}
+
+export interface FilterSingleSelectProps extends FilterDropdownListProps {
   value?: string;
   defaultValue?: string;
   onChange?: (value: string) => void;
@@ -126,9 +286,11 @@ export interface FilterSingleSelectProps {
   "aria-describedby"?: string;
   renderOption?: (option: FilterOption) => React.ReactNode;
   dropdownClassName?: string;
+  /** Label to show on the trigger when the selected option is not in the current page. */
+  selectedLabel?: string;
 }
 
-export interface FilterMultiSelectProps {
+export interface FilterMultiSelectProps extends FilterDropdownListProps {
   value?: string[];
   defaultValue?: string[];
   onChange?: (values: string[]) => void;
@@ -298,6 +460,15 @@ const FilterSingleSelect = React.forwardRef<
       "aria-describedby": ariaDescribedBy,
       renderOption,
       dropdownClassName,
+      onLoadMore,
+      hasMore = false,
+      isLoadingMore = false,
+      onSearchChange,
+      footer,
+      loadedCount,
+      totalCount,
+      itemCountLabel,
+      selectedLabel: selectedLabelProp,
       ...props
     },
     ref,
@@ -316,8 +487,17 @@ const FilterSingleSelect = React.forwardRef<
       : ariaDescribedBy;
 
     const allOptions = groups ? groups.flatMap((g) => g.options) : options;
-    const selectedLabel = value
+    const lookedUpLabel = value
       ? allOptions.find((opt) => opt.value === value)?.label
+      : undefined;
+    const lastSelectedLabelRef = React.useRef("");
+    if (selectedLabelProp) {
+      lastSelectedLabelRef.current = selectedLabelProp;
+    } else if (lookedUpLabel) {
+      lastSelectedLabelRef.current = lookedUpLabel;
+    }
+    const selectedLabel = value
+      ? (selectedLabelProp ?? lookedUpLabel ?? lastSelectedLabelRef.current)
       : "";
 
     const handleChange = (newValue: string) => {
@@ -340,6 +520,20 @@ const FilterSingleSelect = React.forwardRef<
     };
 
     const hasValue = Boolean(value);
+    const highlighted = open || hasValue;
+    const usePopoverList =
+      searchable || onLoadMore != null || footer != null || totalCount != null;
+    const { listRef, sentinelRef } = useFilterInfiniteScroll({
+      open,
+      onLoadMore,
+      hasMore,
+      isLoadingMore,
+    });
+
+    const updateSearchQuery = (query: string) => {
+      setSearchQuery(query);
+      onSearchChange?.(query);
+    };
 
     const renderOptionContent = (option: FilterOption) => {
       if (renderOption) {
@@ -358,19 +552,20 @@ const FilterSingleSelect = React.forwardRef<
       return option.label;
     };
 
-    const filteredOptions = React.useMemo(
-      () =>
-        searchQuery.trim() === ""
-          ? allOptions
-          : allOptions.filter((opt) =>
-              opt.label
-                .toLowerCase()
-                .includes(searchQuery.trim().toLowerCase()),
-            ),
-      [allOptions, searchQuery],
-    );
+    const filteredOptions = React.useMemo(() => {
+      if (onSearchChange) {
+        return allOptions;
+      }
+      return searchQuery.trim() === ""
+        ? allOptions
+        : allOptions.filter((opt) =>
+            opt.label.toLowerCase().includes(searchQuery.trim().toLowerCase()),
+          );
+    }, [allOptions, searchQuery, onSearchChange]);
 
-    if (searchable) {
+    const displayedCount = loadedCount ?? filteredOptions.length;
+
+    if (usePopoverList) {
       return (
         <div
           className={cn("relative inline-flex w-fit flex-col", className)}
@@ -381,7 +576,9 @@ const FilterSingleSelect = React.forwardRef<
               open={open}
               onOpenChange={(newOpen) => {
                 setInternalOpen(newOpen);
-                if (!newOpen) setSearchQuery("");
+                if (!newOpen) {
+                  updateSearchQuery("");
+                }
               }}
             >
               <PopoverTrigger asChild>
@@ -389,12 +586,14 @@ const FilterSingleSelect = React.forwardRef<
                   ref={ref}
                   type="button"
                   variant="ghost"
+                  data-selected={hasValue || undefined}
                   aria-label={ariaLabels?.popoverTrigger ?? placeholder}
                   aria-describedby={describedBy}
                   aria-expanded={open}
                   disabled={disabled}
                   className={cn(
                     FILTER_SELECT_TRIGGER_CLASSNAME,
+                    highlighted && FILTER_SELECT_TRIGGER_HIGHLIGHT_CLASSNAME,
                     hasValue && showClear && "pr-8 overflow-hidden",
                   )}
                 >
@@ -402,8 +601,7 @@ const FilterSingleSelect = React.forwardRef<
                     <span
                       className={cn(
                         "font-semibold truncate",
-                        open && "text-primary-fg",
-                        !open && "text-neutral-fg",
+                        getFilterTriggerTextClassName(highlighted),
                       )}
                     >
                       {placeholder}
@@ -411,18 +609,14 @@ const FilterSingleSelect = React.forwardRef<
                     {selectedLabel && (
                       <>
                         <span
-                          className={cn(
-                            open && "text-primary-fg",
-                            !open && "text-neutral-fg",
-                          )}
+                          className={getFilterTriggerTextClassName(highlighted)}
                         >
                           :
                         </span>
                         <span
                           className={cn(
                             "font-normal truncate min-w-0 ml-0.5",
-                            open && "text-primary-fg",
-                            !open && "text-neutral-fg",
+                            getFilterTriggerTextClassName(highlighted),
                           )}
                         >
                           {selectedLabel}
@@ -462,7 +656,7 @@ const FilterSingleSelect = React.forwardRef<
                       <SearchInputField
                         placeholder={searchPlaceholder}
                         value={searchQuery}
-                        onChange={(e) => setSearchQuery(e.target.value)}
+                        onChange={(e) => updateSearchQuery(e.target.value)}
                         aria-label={
                           ariaLabels?.searchInput ?? searchPlaceholder
                         }
@@ -471,7 +665,7 @@ const FilterSingleSelect = React.forwardRef<
                       {searchQuery && (
                         <SearchInputRightElement>
                           <SearchInputClearButton
-                            onClear={() => setSearchQuery("")}
+                            onClear={() => updateSearchQuery("")}
                             tooltipLabel="Clear search"
                           />
                         </SearchInputRightElement>
@@ -479,7 +673,10 @@ const FilterSingleSelect = React.forwardRef<
                     </SearchInput>
                   </div>
                 )}
-                <div className="max-h-80 w-full -mx-1 px-1 overflow-y-auto scrollbar-hidden">
+                <div
+                  ref={listRef}
+                  className="max-h-80 w-full -mx-1 px-1 overflow-y-auto scrollbar-hidden"
+                >
                   <div
                     className="py-0.5"
                     role="listbox"
@@ -500,7 +697,11 @@ const FilterSingleSelect = React.forwardRef<
                           role="option"
                           aria-selected={value === option.value}
                           disabled={option.disabled}
-                          onClick={() => handleChange(option.value)}
+                          onClick={() => {
+                            handleChange(option.value);
+                            setInternalOpen(false);
+                            updateSearchQuery("");
+                          }}
                           className={cn(
                             "h-auto min-h-0 w-full justify-between rounded-sm px-2 py-1 text-left text-sm font-normal hover:bg-accent/50 focus-visible:bg-accent/50",
                             option.disabled &&
@@ -520,8 +721,20 @@ const FilterSingleSelect = React.forwardRef<
                         </Button>
                       ))
                     )}
+                    <FilterLoadMoreStatus
+                      onLoadMore={onLoadMore}
+                      hasMore={hasMore}
+                      isLoadingMore={isLoadingMore}
+                      sentinelRef={sentinelRef}
+                    />
                   </div>
                 </div>
+                <FilterDropdownFooter
+                  footer={footer}
+                  loadedCount={displayedCount}
+                  totalCount={totalCount}
+                  itemCountLabel={itemCountLabel}
+                />
               </PopoverContent>
             </Popover>
             {showClear && hasValue && (
@@ -531,7 +744,7 @@ const FilterSingleSelect = React.forwardRef<
                 size="icon-xs"
                 colorScheme="neutral"
                 aria-label={ariaLabels?.clearSelection}
-                className="absolute right-2 top-1/2 -translate-y-1/2 pointer-events-auto text-neutral-fg hover:bg-neutral-bg-active"
+                className={getFilterClearButtonClassName(highlighted)}
               >
                 <Icon path={mdiClose} size={0.75} />
               </Button>
@@ -562,11 +775,13 @@ const FilterSingleSelect = React.forwardRef<
           >
             <SelectTrigger
               ref={ref}
+              data-selected={hasValue || undefined}
               aria-label={ariaLabels?.popoverTrigger ?? placeholder}
               aria-describedby={describedBy}
               className={cn(
                 "*:data-[slot=select-value]:hidden",
                 FILTER_SELECT_TRIGGER_CLASSNAME,
+                highlighted && FILTER_SELECT_TRIGGER_HIGHLIGHT_CLASSNAME,
                 hasValue && showClear && "pr-8 overflow-hidden",
                 hasValue && showClear && "[&_svg]:hidden",
               )}
@@ -576,8 +791,7 @@ const FilterSingleSelect = React.forwardRef<
                 <span
                   className={cn(
                     "font-semibold truncate",
-                    open && "text-primary-fg",
-                    !open && "text-neutral-fg",
+                    getFilterTriggerTextClassName(highlighted),
                   )}
                 >
                   {placeholder}
@@ -585,18 +799,14 @@ const FilterSingleSelect = React.forwardRef<
                 {selectedLabel && (
                   <>
                     <span
-                      className={cn(
-                        open && "text-primary-fg",
-                        !open && "text-neutral-fg",
-                      )}
+                      className={getFilterTriggerTextClassName(highlighted)}
                     >
                       :
                     </span>
                     <span
                       className={cn(
                         "font-normal truncate min-w-0 ml-0.5",
-                        open && "text-primary-fg",
-                        !open && "text-neutral-fg",
+                        getFilterTriggerTextClassName(highlighted),
                       )}
                     >
                       {selectedLabel}
@@ -651,7 +861,7 @@ const FilterSingleSelect = React.forwardRef<
               size="icon-xs"
               colorScheme="neutral"
               aria-label={ariaLabels?.clearSelection}
-              className="absolute right-2 top-1/2 -translate-y-1/2 pointer-events-auto text-neutral-fg hover:bg-neutral-bg-active"
+              className={getFilterClearButtonClassName(highlighted)}
             >
               <Icon path={mdiClose} size={0.75} />
             </Button>
@@ -704,6 +914,14 @@ const FilterMultiSelect = React.forwardRef<
       open: controlledOpen,
       onOpenChange,
       dropdownClassName,
+      onLoadMore,
+      hasMore = false,
+      isLoadingMore = false,
+      onSearchChange,
+      footer,
+      loadedCount,
+      totalCount,
+      itemCountLabel,
       ...props
     },
     ref,
@@ -716,6 +934,16 @@ const FilterMultiSelect = React.forwardRef<
     const isOpenControlled = controlledOpen !== undefined;
     const values = isControlled ? controlledValue : internalValue;
     const open = isOpenControlled ? controlledOpen : internalOpen;
+    const { listRef, sentinelRef } = useFilterInfiniteScroll({
+      open,
+      onLoadMore,
+      hasMore,
+      isLoadingMore,
+    });
+    const updateSearchQuery = (query: string) => {
+      setSearchQuery(query);
+      onSearchChange?.(query);
+    };
     const helperId = React.useId();
     const describedBy = helperText
       ? ariaDescribedBy
@@ -802,21 +1030,24 @@ const FilterMultiSelect = React.forwardRef<
     };
 
     const hasValues = values.length > 0;
+    const highlighted = open || hasValues;
 
-    const filteredOptions = React.useMemo(
-      () =>
-        searchQuery.trim() === ""
-          ? options
-          : options.filter((opt) =>
-              opt.label
-                .toLowerCase()
-                .includes(searchQuery.trim().toLowerCase()),
-            ),
-      [options, searchQuery],
-    );
+    const filteredOptions = React.useMemo(() => {
+      if (onSearchChange) {
+        return options;
+      }
+      return searchQuery.trim() === ""
+        ? options
+        : options.filter((opt) =>
+            opt.label.toLowerCase().includes(searchQuery.trim().toLowerCase()),
+          );
+    }, [options, searchQuery, onSearchChange]);
 
     const filteredMultiGroups = React.useMemo(() => {
       if (!groups) return null;
+      if (onSearchChange) {
+        return groups.filter((g) => g.options.length > 0);
+      }
       const q = searchQuery.trim().toLowerCase();
       return groups
         .map((g) => ({
@@ -827,10 +1058,21 @@ const FilterMultiSelect = React.forwardRef<
               : g.options.filter((opt) => opt.label.toLowerCase().includes(q)),
         }))
         .filter((g) => g.options.length > 0);
-    }, [groups, searchQuery]);
+    }, [groups, searchQuery, onSearchChange]);
+
+    const displayedCount =
+      loadedCount ??
+      (groups
+        ? (filteredMultiGroups?.reduce(
+            (sum, group) => sum + group.options.length,
+            0,
+          ) ?? 0)
+        : filteredOptions.length);
 
     const handleOpenChangeWithSearch = (newOpen: boolean) => {
-      if (!newOpen) setSearchQuery("");
+      if (!newOpen) {
+        updateSearchQuery("");
+      }
       handleOpenChange(newOpen);
     };
 
@@ -870,6 +1112,7 @@ const FilterMultiSelect = React.forwardRef<
                 ref={setButtonRef}
                 type="button"
                 variant="ghost"
+                data-selected={hasValues || undefined}
                 disabled={disabled}
                 aria-label={ariaLabels?.popoverTrigger ?? placeholder}
                 aria-describedby={describedBy}
@@ -881,6 +1124,7 @@ const FilterMultiSelect = React.forwardRef<
                 }
                 className={cn(
                   FILTER_SELECT_TRIGGER_CLASSNAME,
+                  highlighted && FILTER_SELECT_TRIGGER_HIGHLIGHT_CLASSNAME,
                   hasValues && showClear && "pr-8 overflow-hidden",
                 )}
               >
@@ -894,8 +1138,7 @@ const FilterMultiSelect = React.forwardRef<
                   <span
                     className={cn(
                       "font-semibold shrink-0",
-                      open && "text-primary-fg",
-                      !open && "text-neutral-fg",
+                      getFilterTriggerTextClassName(highlighted),
                     )}
                   >
                     {placeholder}
@@ -912,8 +1155,7 @@ const FilterMultiSelect = React.forwardRef<
                         <span
                           className={cn(
                             "shrink-0",
-                            open && "text-primary-fg",
-                            !open && "text-neutral-fg",
+                            getFilterTriggerTextClassName(highlighted),
                           )}
                         >
                           :
@@ -924,8 +1166,7 @@ const FilterMultiSelect = React.forwardRef<
                             isButtonWidthConstrained
                               ? "min-w-0 flex-1 truncate"
                               : "shrink-0",
-                            open && "text-primary-fg",
-                            !open && "text-neutral-fg",
+                            getFilterTriggerTextClassName(highlighted),
                           )}
                           title={selectedLabels.join(", ")}
                         >
@@ -935,8 +1176,7 @@ const FilterMultiSelect = React.forwardRef<
                           <span
                             className={cn(
                               "shrink-0 font-normal",
-                              open && "text-primary-fg",
-                              !open && "text-neutral-fg",
+                              getFilterTriggerTextClassName(highlighted),
                             )}
                           >
                             +{displayParts.overflowCount}
@@ -949,7 +1189,14 @@ const FilterMultiSelect = React.forwardRef<
                     )}
                   {hasValues && displayMode === "badge" && (
                     <>
-                      <span className="text-neutral-fg shrink-0">:</span>
+                      <span
+                        className={cn(
+                          "shrink-0",
+                          getFilterTriggerTextClassName(highlighted),
+                        )}
+                      >
+                        :
+                      </span>
                       <span
                         className={cn(
                           "flex items-center gap-1.5 flex-nowrap ml-0.5",
@@ -998,7 +1245,12 @@ const FilterMultiSelect = React.forwardRef<
                         })}
                       </span>
                       {values.length > maxDisplayItems && (
-                        <span className="text-neutral-fg font-normal shrink-0 ml-0.5">
+                        <span
+                          className={cn(
+                            "font-normal shrink-0 ml-0.5",
+                            getFilterTriggerTextClassName(highlighted),
+                          )}
+                        >
                           +{values.length - maxDisplayItems}
                           <span className="sr-only">
                             {values.length - maxDisplayItems} more selected
@@ -1040,14 +1292,14 @@ const FilterMultiSelect = React.forwardRef<
                     <SearchInputField
                       placeholder={searchPlaceholder}
                       value={searchQuery}
-                      onChange={(e) => setSearchQuery(e.target.value)}
+                      onChange={(e) => updateSearchQuery(e.target.value)}
                       aria-label={ariaLabels?.searchInput ?? searchPlaceholder}
                       className="placeholder:text-muted-foreground"
                     />
                     {searchQuery && (
                       <SearchInputRightElement>
                         <SearchInputClearButton
-                          onClear={() => setSearchQuery("")}
+                          onClear={() => updateSearchQuery("")}
                           tooltipLabel="Clear search"
                         />
                       </SearchInputRightElement>
@@ -1055,7 +1307,10 @@ const FilterMultiSelect = React.forwardRef<
                   </SearchInput>
                 </div>
               )}
-              <div className="max-h-80 w-full -mx-1 px-1 overflow-y-auto scrollbar-hidden">
+              <div
+                ref={listRef}
+                className="max-h-80 w-full -mx-1 px-1 overflow-y-auto scrollbar-hidden"
+              >
                 <div
                   className="py-0.5"
                   role="group"
@@ -1093,8 +1348,20 @@ const FilterMultiSelect = React.forwardRef<
                         renderMultiOptionRow(option),
                       )
                     ))}
+                  <FilterLoadMoreStatus
+                    onLoadMore={onLoadMore}
+                    hasMore={hasMore}
+                    isLoadingMore={isLoadingMore}
+                    sentinelRef={sentinelRef}
+                  />
                 </div>
               </div>
+              <FilterDropdownFooter
+                footer={footer}
+                loadedCount={displayedCount}
+                totalCount={totalCount}
+                itemCountLabel={itemCountLabel}
+              />
             </PopoverContent>
           </Popover>
           {showClear && hasValues && (
@@ -1104,7 +1371,7 @@ const FilterMultiSelect = React.forwardRef<
               size="icon-xs"
               colorScheme="neutral"
               aria-label={ariaLabels?.clearSelection}
-              className="absolute right-2 top-1/2 -translate-y-1/2 pointer-events-auto hover:bg-neutral-bg-active"
+              className={getFilterClearButtonClassName(highlighted)}
             >
               <Icon path={mdiClose} size={0.75} />
             </Button>
