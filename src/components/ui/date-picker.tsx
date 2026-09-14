@@ -7,7 +7,10 @@ import * as React from "react";
 import type { DateRange } from "react-day-picker";
 
 import { Button } from "@/components/ui/button";
-import { Calendar } from "@/components/ui/calendar";
+import {
+  Calendar,
+  type CalendarMonthNavigationProps,
+} from "@/components/ui/calendar";
 import {
   Popover,
   PopoverContent,
@@ -49,6 +52,8 @@ export type DatePickerSimpleProps = {
   id?: string;
   className?: string;
   ariaLabels?: DatePickerAriaLabels;
+  /** Optional month navigation button props forwarded to Calendar. */
+  monthNavigationProps?: CalendarMonthNavigationProps;
   /** Props forwarded to `Calendar`; `mode`, `selected`, and `onSelect` are fixed */
   calendarProps?: DatePickerSimpleCalendarProps;
 } & (
@@ -70,6 +75,7 @@ function DatePickerSimple(props: DatePickerSimpleProps) {
     id,
     className,
     ariaLabels,
+    monthNavigationProps,
     calendarProps,
   } = props;
 
@@ -94,6 +100,8 @@ function DatePickerSimple(props: DatePickerSimpleProps) {
 
   const formatOpts = locale ? { locale } : undefined;
   const mergedLocale = locale ?? calendarProps?.locale;
+  const resolvedMonthNavigationProps =
+    monthNavigationProps ?? calendarProps?.monthNavigationProps;
 
   return (
     <Popover>
@@ -136,6 +144,7 @@ function DatePickerSimple(props: DatePickerSimpleProps) {
       >
         <Calendar
           {...calendarProps}
+          monthNavigationProps={resolvedMonthNavigationProps}
           mode="single"
           selected={date}
           onSelect={setDate}
@@ -169,6 +178,8 @@ export type DatePickerWithRangeProps = {
   id?: string;
   className?: string;
   ariaLabels?: DatePickerAriaLabels;
+  /** Optional month navigation button props forwarded to Calendar. */
+  monthNavigationProps?: CalendarMonthNavigationProps;
   calendarProps?: DatePickerWithRangeCalendarProps;
 } & ({ value: DateRange | undefined } | { value?: never });
 
@@ -184,6 +195,7 @@ function DatePickerWithRange(props: DatePickerWithRangeProps) {
     id,
     className,
     ariaLabels,
+    monthNavigationProps,
     calendarProps,
   } = props;
 
@@ -208,6 +220,8 @@ function DatePickerWithRange(props: DatePickerWithRangeProps) {
 
   const formatOpts = locale ? { locale } : undefined;
   const mergedLocale = locale ?? calendarProps?.locale;
+  const resolvedMonthNavigationProps =
+    monthNavigationProps ?? calendarProps?.monthNavigationProps;
 
   const triggerLabel = (() => {
     if (!range?.from) {
@@ -262,6 +276,7 @@ function DatePickerWithRange(props: DatePickerWithRangeProps) {
       >
         <Calendar
           {...calendarProps}
+          monthNavigationProps={resolvedMonthNavigationProps}
           mode="range"
           defaultMonth={range?.from ?? calendarProps?.defaultMonth}
           selected={range}
