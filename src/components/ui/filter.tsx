@@ -563,7 +563,65 @@ const FilterSingleSelect = React.forwardRef<
           );
     }, [allOptions, searchQuery, onSearchChange]);
 
-    const displayedCount = loadedCount ?? filteredOptions.length;
+    const filteredGroups = React.useMemo(() => {
+      if (!groups) {
+        return null;
+      }
+      if (onSearchChange) {
+        return groups.filter((g) => g.options.length > 0);
+      }
+      const q = searchQuery.trim().toLowerCase();
+      return groups
+        .map((g) => ({
+          ...g,
+          options:
+            q === ""
+              ? g.options
+              : g.options.filter((opt) => opt.label.toLowerCase().includes(q)),
+        }))
+        .filter((g) => g.options.length > 0);
+    }, [groups, searchQuery, onSearchChange]);
+
+    const displayedCount =
+      loadedCount ??
+      (filteredGroups
+        ? filteredGroups.reduce((sum, group) => sum + group.options.length, 0)
+        : filteredOptions.length);
+
+    const renderSingleOptionRow = (option: FilterOption) => (
+      <Button
+        key={option.value}
+        type="button"
+        variant="ghost"
+        role="option"
+        aria-selected={value === option.value}
+        disabled={option.disabled}
+        onClick={() => {
+          handleChange(option.value);
+          setInternalOpen(false);
+          updateSearchQuery("");
+        }}
+        className={cn(
+          "h-auto min-h-0 w-full justify-between rounded-sm px-2 py-1 text-left text-sm font-normal hover:bg-accent/50 focus-visible:bg-accent/50",
+          option.disabled && "opacity-50 cursor-not-allowed pointer-events-none",
+        )}
+      >
+        <span className="min-w-0 truncate">{renderOptionContent(option)}</span>
+        {value === option.value && (
+          <Icon
+            path={mdiCheck}
+            size={0.9}
+            className="size-4 shrink-0 text-primary-fg"
+          />
+        )}
+      </Button>
+    );
+
+    const emptyState = (
+      <div className="py-6 text-center text-sm text-muted-foreground">
+        {noResultsText}
+      </div>
+    );
 
     if (usePopoverList) {
       return (
@@ -684,43 +742,27 @@ const FilterSingleSelect = React.forwardRef<
                       ariaLabels?.listbox ?? groupLabel ?? placeholder
                     }
                   >
-                    {filteredOptions.length === 0 ? (
-                      <div className="py-6 text-center text-sm text-muted-foreground">
-                        {noResultsText}
-                      </div>
-                    ) : (
-                      filteredOptions.map((option) => (
-                        <Button
-                          key={option.value}
-                          type="button"
-                          variant="ghost"
-                          role="option"
-                          aria-selected={value === option.value}
-                          disabled={option.disabled}
-                          onClick={() => {
-                            handleChange(option.value);
-                            setInternalOpen(false);
-                            updateSearchQuery("");
-                          }}
-                          className={cn(
-                            "h-auto min-h-0 w-full justify-between rounded-sm px-2 py-1 text-left text-sm font-normal hover:bg-accent/50 focus-visible:bg-accent/50",
-                            option.disabled &&
-                              "opacity-50 cursor-not-allowed pointer-events-none",
-                          )}
-                        >
-                          <span className="min-w-0 truncate">
-                            {renderOptionContent(option)}
-                          </span>
-                          {value === option.value && (
-                            <Icon
-                              path={mdiCheck}
-                              size={0.9}
-                              className="size-4 shrink-0 text-primary-fg"
-                            />
-                          )}
-                        </Button>
-                      ))
-                    )}
+                    {filteredGroups
+                      ? filteredGroups.length === 0
+                        ? emptyState
+                        : filteredGroups.map((group) => (
+                            <div
+                              key={group.label}
+                              role="group"
+                              aria-label={group.label}
+                            >
+                              <div
+                                aria-hidden
+                                className="px-2 py-1 text-xs font-semibold uppercase text-muted-foreground"
+                              >
+                                {group.label}
+                              </div>
+                              {group.options.map(renderSingleOptionRow)}
+                            </div>
+                          ))
+                      : filteredOptions.length === 0
+                        ? emptyState
+                        : filteredOptions.map(renderSingleOptionRow)}
                     <FilterLoadMoreStatus
                       onLoadMore={onLoadMore}
                       hasMore={hasMore}
