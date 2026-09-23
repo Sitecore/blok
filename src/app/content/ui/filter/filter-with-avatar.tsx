@@ -38,14 +38,12 @@ const BLOCKCN_FILTER_GROUPS: FilterSingleSelectGroup[] = [
   },
 ];
 
-/** Renders option with small circular avatar (initial) + label, for dropdown rows. */
 function renderOptionWithAvatar(option: FilterOption) {
-  const initial = option.label.charAt(0).toUpperCase();
   return (
     <span className="flex items-center gap-2 min-w-0">
-      <Avatar className="size-6 shrink-0 rounded-full bg-violet-100 dark:bg-violet-900/40">
-        <AvatarFallback className="rounded-full bg-violet-100 text-violet-700 text-xs font-medium dark:bg-violet-900/40 dark:text-violet-300">
-          {initial}
+      <Avatar className="size-6 shrink-0">
+        <AvatarFallback className="bg-primary-bg text-primary-fg text-xs font-medium">
+          {option.label.charAt(0).toUpperCase()}
         </AvatarFallback>
       </Avatar>
       <span className="truncate">{option.label}</span>
@@ -63,11 +61,8 @@ export default function FilterWithAvatarDemo() {
         value={singleValue}
         onChange={setSingleValue}
         options={[]}
-        placeholder="Single select filter"
         groups={BLOCKCN_FILTER_GROUPS}
-        searchable
-        showSearch={false}
-        noResultsText="No results found"
+        placeholder="Single select filter"
         renderOption={renderOptionWithAvatar}
       />
 
@@ -75,11 +70,8 @@ export default function FilterWithAvatarDemo() {
         value={multiValues}
         onChange={setMultiValues}
         options={[]}
-        placeholder="Multi-select filter"
         groups={BLOCKCN_FILTER_GROUPS}
-        searchable
-        showSearch={false}
-        noResultsText="No results found"
+        placeholder="Multi-select filter"
         renderOption={renderOptionWithAvatar}
       />
     </div>
