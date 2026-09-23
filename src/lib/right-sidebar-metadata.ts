@@ -1136,6 +1136,22 @@ export const rightSidebarMetadata: Record<string, RightSidebarMetadata> = {
       },
     ],
   },
+  "marketplace-app-icon": {
+    links: {},
+    sections: [
+      { id: "preview", title: "Preview" },
+      { id: "installation", title: "Installation" },
+      { id: "usage", title: "Usage" },
+      {
+        id: "examples",
+        title: "Examples",
+        children: [
+          { id: "marketplace-app-icon-sizes", title: "Sizes" },
+          { id: "marketplace-app-icon-fallback", title: "Fallback" },
+        ],
+      },
+    ],
+  },
   // ===== THEMING-SPECIFIC METADATA =====
 
   // "theming-colors": {

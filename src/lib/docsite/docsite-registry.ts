@@ -229,7 +229,6 @@ import DashboardWidgetDemo from "@/app/content/bloks/dashboard-widget/dashboard-
 import DashboardWidgetWhiteBgLargeDemo from "@/app/content/bloks/dashboard-widget/dashboard-widget-white-bg-large";
 import DashboardWidgetGrayBgLargeDemo from "@/app/content/bloks/dashboard-widget/dashboard-widget-gray-bg-large";
 import MarketplaceAppIconDemo from "@/app/content/bloks/marketplace-app-icon/marketplace-app-icon";
-import MarketplaceAppIconBrokenSrcDemo from "@/app/content/bloks/marketplace-app-icon/marketplace-app-icon-broken-src";
 import MarketplaceAppIconFallbackDemo from "@/app/content/bloks/marketplace-app-icon/marketplace-app-icon-fallback";
 import MarketplaceAppIconSizesDemo from "@/app/content/bloks/marketplace-app-icon/marketplace-app-icon-sizes";
 import PinnedSitesSectionDemo from "@/app/content/bloks/pinned-site-section/pinned-site-section";
@@ -1392,11 +1391,6 @@ export const docsiteRegistry: Record<string, DocsiteRegistryEntry> = {
     name: "marketplace-app-icon-fallback",
     path: "src/app/content/bloks/marketplace-app-icon/marketplace-app-icon-fallback.tsx",
     component: MarketplaceAppIconFallbackDemo,
-  },
-  "marketplace-app-icon-broken-src": {
-    name: "marketplace-app-icon-broken-src",
-    path: "src/app/content/bloks/marketplace-app-icon/marketplace-app-icon-broken-src.tsx",
-    component: MarketplaceAppIconBrokenSrcDemo,
   },
   "pinned-site": {
     name: "pinned-site",
