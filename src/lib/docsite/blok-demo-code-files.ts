@@ -223,6 +223,49 @@ export const topbarCodeFiles: DemoCodeFileSource[] = [
   ),
 ];
 
+const marketplaceAppIconComponentCodeFiles: DemoCodeFileSource[] = [
+  demoCodeFile(
+    "components/bloks/marketplace-app-icon.tsx",
+    "src/components/bloks/marketplace-app-icon.tsx",
+  ),
+];
+
+export const marketplaceAppIconCodeFiles: DemoCodeFileSource[] = [
+  demoCodeFile(
+    "app/content/bloks/marketplace-app-icon/marketplace-app-icon.tsx",
+    "src/app/content/bloks/marketplace-app-icon/marketplace-app-icon.tsx",
+    { default: true },
+  ),
+  ...marketplaceAppIconComponentCodeFiles,
+];
+
+export const marketplaceAppIconSizesCodeFiles: DemoCodeFileSource[] = [
+  demoCodeFile(
+    "app/content/bloks/marketplace-app-icon/marketplace-app-icon-sizes.tsx",
+    "src/app/content/bloks/marketplace-app-icon/marketplace-app-icon-sizes.tsx",
+    { default: true },
+  ),
+  ...marketplaceAppIconComponentCodeFiles,
+];
+
+export const marketplaceAppIconFallbackCodeFiles: DemoCodeFileSource[] = [
+  demoCodeFile(
+    "app/content/bloks/marketplace-app-icon/marketplace-app-icon-fallback.tsx",
+    "src/app/content/bloks/marketplace-app-icon/marketplace-app-icon-fallback.tsx",
+    { default: true },
+  ),
+  ...marketplaceAppIconComponentCodeFiles,
+];
+
+export const marketplaceAppIconBrokenSrcCodeFiles: DemoCodeFileSource[] = [
+  demoCodeFile(
+    "app/content/bloks/marketplace-app-icon/marketplace-app-icon-broken-src.tsx",
+    "src/app/content/bloks/marketplace-app-icon/marketplace-app-icon-broken-src.tsx",
+    { default: true },
+  ),
+  ...marketplaceAppIconComponentCodeFiles,
+];
+
 /** Map blok registry name → code file sources for the Code tab explorer. */
 export const blokDemoCodeFilesByName: Record<string, DemoCodeFileSource[]> = {
   "all-site": allSiteCodeFiles,
@@ -232,5 +275,6 @@ export const blokDemoCodeFilesByName: Record<string, DemoCodeFileSource[]> = {
   "prompt-input": promptInputCodeFiles,
   collaboration: collaborationCodeFiles,
   "dashboard-widget": dashboardWidgetCodeFiles,
+  "marketplace-app-icon": marketplaceAppIconCodeFiles,
   topbar: topbarCodeFiles,
 };
