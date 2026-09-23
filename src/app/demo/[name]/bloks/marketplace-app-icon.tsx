@@ -1,5 +1,4 @@
 import {
-  marketplaceAppIconBrokenSrcCodeFiles,
   marketplaceAppIconCodeFiles,
   marketplaceAppIconFallbackCodeFiles,
   marketplaceAppIconSizesCodeFiles,
@@ -30,10 +29,6 @@ export const marketplaceAppIcon = {
     Fallback: {
       component: "marketplace-app-icon-fallback",
       codeFiles: marketplaceAppIconFallbackCodeFiles,
-    },
-    "Broken image": {
-      component: "marketplace-app-icon-broken-src",
-      codeFiles: marketplaceAppIconBrokenSrcCodeFiles,
     },
   },
 };

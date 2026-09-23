@@ -257,15 +257,6 @@ export const marketplaceAppIconFallbackCodeFiles: DemoCodeFileSource[] = [
   ...marketplaceAppIconComponentCodeFiles,
 ];
 
-export const marketplaceAppIconBrokenSrcCodeFiles: DemoCodeFileSource[] = [
-  demoCodeFile(
-    "app/content/bloks/marketplace-app-icon/marketplace-app-icon-broken-src.tsx",
-    "src/app/content/bloks/marketplace-app-icon/marketplace-app-icon-broken-src.tsx",
-    { default: true },
-  ),
-  ...marketplaceAppIconComponentCodeFiles,
-];
-
 /** Map blok registry name → code file sources for the Code tab explorer. */
 export const blokDemoCodeFilesByName: Record<string, DemoCodeFileSource[]> = {
   "all-site": allSiteCodeFiles,
