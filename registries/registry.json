@@ -1267,6 +1267,24 @@
       ]
     },
     {
+      "name": "marketplace-app-icon",
+      "type": "registry:block",
+      "title": "Marketplace app icon",
+      "description": "Marketplace application icon with image support and a consistent letter fallback when the image is missing or fails to load.",
+      "registryDependencies": [
+        "https://blok.sitecore.com/r/theme.json",
+        "https://blok.sitecore.com/r/avatar.json"
+      ],
+      "dependencies": ["class-variance-authority"],
+      "files": [
+        {
+          "path": "src/components/bloks/marketplace-app-icon.tsx",
+          "target": "src/components/bloks/marketplace-app-icon.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
       "name": "all-site",
       "type": "registry:block",
       "title": "All site section",
