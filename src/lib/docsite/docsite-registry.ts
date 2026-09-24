@@ -175,6 +175,7 @@ import SkeletonCardListDemo from "@/app/content/ui/skeleton/skeleton-card";
 import SliderDemo from "@/app/content/ui/slider/slider";
 import SonnerDemo from "@/app/content/ui/sonner/sonner";
 import SonnerSuccessDemo from "@/app/content/ui/sonner/sonner-success";
+import SonnerLoadingDemo from "@/app/content/ui/sonner/sonner-loading";
 import SonnerWarningDemo from "@/app/content/ui/sonner/sonner-warning";
 import SonnerErrorDemo from "@/app/content/ui/sonner/sonner-error";
 import SonnerActionDemo from "@/app/content/ui/sonner/sonner-action";
@@ -1149,6 +1150,11 @@ export const docsiteRegistry: Record<string, DocsiteRegistryEntry> = {
     name: "sonner-error",
     path: "src/app/content/ui/sonner/sonner-error.tsx",
     component: SonnerErrorDemo,
+  },
+  "sonner-loading": {
+    name: "sonner-loading",
+    path: "src/app/content/ui/sonner/sonner-loading.tsx",
+    component: SonnerLoadingDemo,
   },
   "sonner-action": {
     name: "sonner-action",
