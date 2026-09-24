@@ -853,7 +853,6 @@ export const rightSidebarMetadata: Record<string, RightSidebarMetadata> = {
           { id: "sonner-success", title: "Success" },
           { id: "sonner-warning", title: "Warning" },
           { id: "sonner-error", title: "Error" },
-          { id: "sonner-loading", title: "Loading" },
           { id: "sonner-action", title: "Action" },
           { id: "sonner-closable", title: "Closable" },
         ],
