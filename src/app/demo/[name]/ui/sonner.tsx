@@ -54,7 +54,6 @@ export const sonner = {
     Success: { component: "sonner-success" },
     Warning: { component: "sonner-warning" },
     Error: { component: "sonner-error" },
-    Loading: { component: "sonner-loading" },
     Action: { component: "sonner-action" },
     // Custom: "sonner-custom",
     Closable: { component: "sonner-closable" },
