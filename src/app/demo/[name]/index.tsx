@@ -70,6 +70,7 @@ import { tooltip } from "@/app/demo/[name]/ui/tooltip";
 import { allSite } from "@/app/demo/[name]/bloks/all-site";
 import { collaboration } from "@/app/demo/[name]/bloks/collaboration";
 import { dashboardWidget } from "@/app/demo/[name]/bloks/dashboard-widget";
+import { marketplaceAppIcon } from "@/app/demo/[name]/bloks/marketplace-app-icon";
 import { pinnedSite } from "@/app/demo/[name]/bloks/pinned-site";
 // TEMP: prompt-input disabled
 // import { promptInput } from "@/app/demo/[name]/bloks/prompt-input";
@@ -180,6 +181,7 @@ export const demos: { [name: string]: Demo } = {
   // BLOKS
   "all-site": allSite,
   "dashboard-widget": dashboardWidget,
+  "marketplace-app-icon": marketplaceAppIcon,
   "site-card": siteCard,
   "pinned-site": pinnedSite,
   collaboration,

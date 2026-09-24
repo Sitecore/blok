@@ -119,6 +119,7 @@ import FilterSingleSelectDemo from "@/app/content/ui/filter/filter-single-select
 import FilterMultiSelectDemo from "@/app/content/ui/filter/filter-multi-select";
 import FilterWithSearchDemo from "@/app/content/ui/filter/filter-with-search";
 import FilterWithAvatarDemo from "@/app/content/ui/filter/filter-with-avatar";
+import FilterInfiniteScrollDemo from "@/app/content/ui/filter/filter-infinite-scroll";
 import IconDemo from "@/app/content/ui/icon/icon-component";
 import IconVariantsDemo from "@/app/content/ui/icon/icon-variants";
 import IconSizingDemo from "@/app/content/ui/icon/icon-sizing";
@@ -227,6 +228,9 @@ import CollaborationDemo from "@/app/content/bloks/collaboration/collaboration";
 import DashboardWidgetDemo from "@/app/content/bloks/dashboard-widget/dashboard-widget";
 import DashboardWidgetWhiteBgLargeDemo from "@/app/content/bloks/dashboard-widget/dashboard-widget-white-bg-large";
 import DashboardWidgetGrayBgLargeDemo from "@/app/content/bloks/dashboard-widget/dashboard-widget-gray-bg-large";
+import MarketplaceAppIconDemo from "@/app/content/bloks/marketplace-app-icon/marketplace-app-icon";
+import MarketplaceAppIconFallbackDemo from "@/app/content/bloks/marketplace-app-icon/marketplace-app-icon-fallback";
+import MarketplaceAppIconSizesDemo from "@/app/content/bloks/marketplace-app-icon/marketplace-app-icon-sizes";
 import PinnedSitesSectionDemo from "@/app/content/bloks/pinned-site-section/pinned-site-section";
 // TEMP: prompt-input disabled
 // import PromptInputDemo from "@/app/content/bloks/prompt-input/prompt-input";
@@ -836,6 +840,11 @@ export const docsiteRegistry: Record<string, DocsiteRegistryEntry> = {
     path: "src/app/content/ui/filter/filter-with-avatar.tsx",
     component: FilterWithAvatarDemo,
   },
+  "filter-infinite-scroll": {
+    name: "filter-infinite-scroll",
+    path: "src/app/content/ui/filter/filter-infinite-scroll.tsx",
+    component: FilterInfiniteScrollDemo,
+  },
   icon: {
     name: "icon",
     path: "src/app/content/ui/icon/icon-component.tsx",
@@ -1367,6 +1376,21 @@ export const docsiteRegistry: Record<string, DocsiteRegistryEntry> = {
     name: "dashboard-widget-gray-bg-large",
     path: "src/app/content/bloks/dashboard-widget/dashboard-widget-gray-bg-large.tsx",
     component: DashboardWidgetGrayBgLargeDemo,
+  },
+  "marketplace-app-icon": {
+    name: "marketplace-app-icon",
+    path: "src/app/content/bloks/marketplace-app-icon/marketplace-app-icon.tsx",
+    component: MarketplaceAppIconDemo,
+  },
+  "marketplace-app-icon-sizes": {
+    name: "marketplace-app-icon-sizes",
+    path: "src/app/content/bloks/marketplace-app-icon/marketplace-app-icon-sizes.tsx",
+    component: MarketplaceAppIconSizesDemo,
+  },
+  "marketplace-app-icon-fallback": {
+    name: "marketplace-app-icon-fallback",
+    path: "src/app/content/bloks/marketplace-app-icon/marketplace-app-icon-fallback.tsx",
+    component: MarketplaceAppIconFallbackDemo,
   },
   "pinned-site": {
     name: "pinned-site",
