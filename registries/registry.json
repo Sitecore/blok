@@ -1031,7 +1031,8 @@
         "https://blok.sitecore.com/r/popover.json",
         "https://blok.sitecore.com/r/badge.json",
         "https://blok.sitecore.com/r/checkbox.json",
-        "https://blok.sitecore.com/r/search-input.json"
+        "https://blok.sitecore.com/r/search-input.json",
+        "https://blok.sitecore.com/r/spinner.json"
       ],
       "files": [
         {
