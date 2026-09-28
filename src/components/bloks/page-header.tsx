@@ -20,17 +20,18 @@ const pageHeaderVariants = cva(
     variants: {
       surface: {
         none: "",
-        card: "rounded-lg bg-body-bg shadow-sm",
-        outline: "rounded-lg border border-border-color bg-body-bg",
+        card: "bg-body-bg shadow-sm",
+        outline: "border border-border-color bg-body-bg",
       },
       size: {
         default: "gap-x-6 gap-y-6",
         compact: "gap-x-3 gap-y-2",
       },
     },
+    /** No bottom padding — the tabs row sits flush with the header edge. */
     compoundVariants: [
-      { surface: ["card", "outline"], size: "default", class: "p-6" },
-      { surface: ["card", "outline"], size: "compact", class: "p-3" },
+      { surface: ["card", "outline"], size: "default", class: "px-6 pt-6" },
+      { surface: ["card", "outline"], size: "compact", class: "px-3 pt-3" },
     ],
     defaultVariants: {
       surface: "none",
