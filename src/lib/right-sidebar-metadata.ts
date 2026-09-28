@@ -1152,6 +1152,32 @@ export const rightSidebarMetadata: Record<string, RightSidebarMetadata> = {
       },
     ],
   },
+  "page-header": {
+    links: {},
+    sections: [
+      { id: "preview", title: "Preview" },
+      { id: "installation", title: "Installation" },
+      { id: "usage", title: "Usage" },
+      {
+        id: "examples",
+        title: "Examples",
+        children: [
+          {
+            id: "page-header-site-summary",
+            title: "Site summary",
+          },
+          {
+            id: "page-header-top-nav-mini",
+            title: "Top nav mini",
+          },
+          {
+            id: "page-header-site-summary-white",
+            title: "Site summary white",
+          },
+        ],
+      },
+    ],
+  },
   // ===== THEMING-SPECIFIC METADATA =====
 
   // "theming-colors": {
