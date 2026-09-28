@@ -8,37 +8,58 @@ const PageHeaderThumb = ({ className }: { className?: string }) => (
     className={className}
     preserveAspectRatio="xMidYMid meet"
   >
+    {/* Header surface — full bleed, square corners, tabs flush to the bottom */}
+    <rect y="34" width="400" height="152" fill="white" />
+
     {/* Media */}
-    <rect x="24" y="28" width="56" height="56" rx="10" fill="#e5e7eb" />
-    {/* Back */}
-    <rect x="96" y="28" width="72" height="8" rx="3" fill="#9ca3af" />
-    {/* Title */}
-    <rect x="96" y="46" width="160" height="14" rx="4" fill="#1f2937" />
-    {/* Status */}
-    <rect x="264" y="48" width="52" height="12" rx="3" fill="#dbeafe" />
+    <rect x="24" y="58" width="76" height="56" rx="8" fill="#9373FF" />
+
+    {/* Title + status */}
+    <rect x="116" y="62" width="132" height="13" rx="6.5" fill="#1F2937" />
+    <rect x="258" y="62" width="48" height="13" rx="6.5" fill="#DDD6FE" />
+
     {/* Description */}
-    <rect x="96" y="70" width="180" height="8" rx="3" fill="#9ca3af" />
-    <rect x="96" y="84" width="140" height="8" rx="3" fill="#9ca3af" />
-    {/* Tags */}
-    <rect x="96" y="104" width="40" height="14" rx="3" fill="#f3f4f6" />
-    <rect x="142" y="104" width="48" height="14" rx="3" fill="#f3f4f6" />
-    <rect x="196" y="104" width="36" height="14" rx="3" fill="#f3f4f6" />
-    {/* Actions */}
-    <rect x="280" y="28" width="48" height="22" rx="11" fill="#5548d9" />
-    <rect x="334" y="32" width="42" height="14" rx="4" fill="#e5e7eb" />
+    <rect x="116" y="86" width="168" height="8" rx="4" fill="#D1D5DB" />
+    <rect x="116" y="100" width="118" height="8" rx="4" fill="#D1D5DB" />
+
+    {/* Primary action */}
+    <rect x="316" y="58" width="60" height="20" rx="10" fill="#6E3FFF" />
+
     {/* People */}
-    <circle cx="348" cy="72" r="10" fill="#c7d2fe" />
-    <circle cx="362" cy="72" r="10" fill="#a5b4fc" />
-    <circle cx="376" cy="72" r="10" fill="#818cf8" />
+    <circle
+      cx="340"
+      cy="98"
+      r="9"
+      fill="#DADADA"
+      stroke="white"
+      strokeWidth="2"
+    />
+    <circle
+      cx="356"
+      cy="98"
+      r="9"
+      fill="#939393"
+      stroke="white"
+      strokeWidth="2"
+    />
+    <circle
+      cx="372"
+      cy="98"
+      r="9"
+      fill="#9373FF"
+      stroke="white"
+      strokeWidth="2"
+    />
+
     {/* Tabs */}
-    <rect x="24" y="148" width="56" height="10" rx="3" fill="#5548d9" />
-    <rect x="90" y="148" width="40" height="10" rx="3" fill="#d1d5db" />
-    <rect x="140" y="148" width="44" height="10" rx="3" fill="#d1d5db" />
-    <line x1="24" y1="168" x2="376" y2="168" stroke="#e5e7eb" strokeWidth="1" />
+    <rect x="24" y="158" width="40" height="8" rx="4" fill="#6E3FFF" />
+    <rect x="76" y="158" width="32" height="8" rx="4" fill="#D1D5DB" />
+    <rect x="120" y="158" width="32" height="8" rx="4" fill="#D1D5DB" />
+    <rect x="24" y="182" width="40" height="4" fill="#6E3FFF" />
+
     {/* Timeline */}
-    <rect x="250" y="148" width="60" height="6" rx="3" fill="#e5e7eb" />
-    <rect x="250" y="148" width="12" height="6" rx="3" fill="#5548d9" />
-    <rect x="318" y="146" width="58" height="10" rx="3" fill="#9ca3af" />
+    <rect x="300" y="159" width="76" height="6" rx="3" fill="#E5E7EB" />
+    <rect x="300" y="159" width="44" height="6" rx="3" fill="#6E3FFF" />
   </svg>
 );
 

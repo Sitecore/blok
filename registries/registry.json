@@ -1300,7 +1300,8 @@
         "https://blok.sitecore.com/r/dropdown-menu.json",
         "https://blok.sitecore.com/r/badge.json",
         "https://blok.sitecore.com/r/avatar.json",
-        "https://blok.sitecore.com/r/progress.json"
+        "https://blok.sitecore.com/r/progress.json",
+        "https://blok.sitecore.com/r/separator.json"
       ],
       "dependencies": ["@mdi/js"],
       "files": [
