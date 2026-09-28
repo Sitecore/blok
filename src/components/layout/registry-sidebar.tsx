@@ -169,7 +169,7 @@ export function RegistrySidebar() {
       <SidebarContent
         className={`${direction === "rtl" ? "mr-4" : "ml-4"} py-4`}
       >
-        <ScrollArea className="h-full w-full pr-4">
+        <ScrollArea className="h-full w-full pr-6">
           <TooltipProvider delayDuration={2000}>
             <SidebarMenu>
               {sidebarType === "components" &&
@@ -178,7 +178,7 @@ export function RegistrySidebar() {
                     <SidebarMenuButton
                       asChild
                       isActive={pathname === `/primitives/${item.name}`}
-                      className="h-10 font-medium text-md text-neutral-fg hover:bg-gray-100 hover:dark:bg-gray-700 data-[active=true]:text-primary-fg data-[active=true]:bg-primary-background"
+                      className="h-10 bg-subtle-bg font-medium text-md text-neutral-fg hover:bg-gray-100 hover:dark:bg-gray-700 data-[active=true]:text-primary-fg data-[active=true]:bg-primary-background"
                     >
                       <Link
                         onClick={() => {
@@ -203,7 +203,7 @@ export function RegistrySidebar() {
                     <SidebarMenuButton
                       asChild
                       isActive={pathname === `/bloks/${item.name}`}
-                      className="h-10 font-medium text-md text-neutral-fg hover:bg-gray-100 hover:dark:bg-gray-700 data-[active=true]:text-primary-fg data-[active=true]:bg-primary-background"
+                      className="h-10 bg-subtle-bg font-medium text-md text-neutral-fg hover:bg-gray-100 hover:dark:bg-gray-700 data-[active=true]:text-primary-fg data-[active=true]:bg-primary-background"
                     >
                       <Link
                         onClick={() => {
@@ -228,7 +228,7 @@ export function RegistrySidebar() {
                     <SidebarMenuButton
                       asChild
                       isActive={pathname === item.path}
-                      className="h-10 font-medium text-md text-neutral-fg hover:bg-gray-100 hover:dark:bg-gray-700 data-[active=true]:text-primary-fg data-[active=true]:bg-primary-background"
+                      className="h-10 bg-subtle-bg font-medium text-md text-neutral-fg hover:bg-gray-100 hover:dark:bg-gray-700 data-[active=true]:text-primary-fg data-[active=true]:bg-primary-background"
                     >
                       <Link
                         onClick={() => {
@@ -253,7 +253,7 @@ export function RegistrySidebar() {
                     <SidebarMenuButton
                       asChild
                       isActive={pathname === item.path}
-                      className="h-10 font-medium text-md text-neutral-fg hover:bg-gray-100 hover:dark:bg-gray-700 data-[active=true]:text-primary-fg data-[active=true]:bg-primary-background"
+                      className="h-10 bg-subtle-bg font-medium text-md text-neutral-fg hover:bg-gray-100 hover:dark:bg-gray-700 data-[active=true]:text-primary-fg data-[active=true]:bg-primary-background"
                     >
                       <Link
                         onClick={() => {
@@ -283,7 +283,7 @@ export function RegistrySidebar() {
                             pathname.startsWith("/changelog") &&
                             changelogHash === changelog.id
                           }
-                          className="h-10 w-full min-w-0 items-center overflow-hidden font-medium text-md text-neutral-fg hover:bg-gray-100 hover:dark:bg-gray-700 data-[active=true]:text-primary-fg data-[active=true]:bg-primary-background"
+                          className="h-10 w-full min-w-0 items-center overflow-hidden bg-subtle-bg font-medium text-md text-neutral-fg hover:bg-gray-100 hover:dark:bg-gray-700 data-[active=true]:text-primary-fg data-[active=true]:bg-primary-background"
                         >
                           <Link
                             href={`/changelog#${changelog.id}`}
