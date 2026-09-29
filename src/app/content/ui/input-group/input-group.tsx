@@ -1,3 +1,5 @@
+"use client";
+
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -22,8 +24,11 @@ import {
   mdiDotsHorizontal,
   mdiInformationOutline,
 } from "@mdi/js";
+import { useId } from "react";
 
 export default function InputGroupDemo() {
+  const urlPrefixId = useId();
+
   return (
     <div className="grid w-full max-w-md gap-4 p-2">
       {/* URL */}
@@ -31,12 +36,12 @@ export default function InputGroupDemo() {
         <InputGroupInput
           placeholder="example.com"
           className="!pl-1"
-          aria-label="Website URL"
+          aria-labelledby={urlPrefixId}
           name="url"
           autoComplete="url"
         />
         <InputGroupAddon>
-          <InputGroupText>https://</InputGroupText>
+          <InputGroupText id={urlPrefixId}>https://</InputGroupText>
         </InputGroupAddon>
         <InputGroupAddon align="inline-end">
           <Tooltip>

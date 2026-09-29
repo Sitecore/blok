@@ -1,10 +1,57 @@
+"use client";
+
 import { Icon } from "@/lib/icon";
 import { mdiChevronDown } from "@mdi/js";
 import { cva } from "class-variance-authority";
 import { NavigationMenu as NavigationMenuPrimitive } from "radix-ui";
-import type * as React from "react";
+import * as React from "react";
 
 import { cn } from "@/lib/utils";
+
+function assignRef<T>(ref: React.Ref<T> | undefined, value: T | null) {
+  if (typeof ref === "function") {
+    ref(value);
+  } else if (ref) {
+    ref.current = value;
+  }
+}
+
+/** Radix sets aria-controls while viewport content is unmounted; strip invalid ARIA when closed. */
+function useNavigationMenuTriggerA11y(
+  forwardedRef: React.Ref<HTMLButtonElement> | undefined,
+) {
+  const observerCleanup = React.useRef<(() => void) | null>(null);
+
+  React.useEffect(() => {
+    return () => observerCleanup.current?.();
+  }, []);
+
+  return React.useCallback(
+    (node: HTMLButtonElement | null) => {
+      observerCleanup.current?.();
+      observerCleanup.current = null;
+      assignRef(forwardedRef, node);
+
+      if (!node) return;
+
+      const sync = () => {
+        node.removeAttribute("aria-haspopup");
+        if (node.getAttribute("data-state") !== "open") {
+          node.removeAttribute("aria-controls");
+        }
+      };
+
+      sync();
+      const observer = new MutationObserver(sync);
+      observer.observe(node, {
+        attributes: true,
+        attributeFilter: ["data-state", "aria-controls", "aria-haspopup"],
+      });
+      observerCleanup.current = () => observer.disconnect();
+    },
+    [forwardedRef],
+  );
+}
 
 function NavigationMenu({
   className,
@@ -23,7 +70,7 @@ function NavigationMenu({
         ariaLabel ?? (viewport ? "Navigation menu" : "Inline navigation menu")
       }
       className={cn(
-        "group/navigation-menu relative flex max-w-max flex-1 items-center justify-center",
+        "group/navigation-menu relative z-0 flex max-w-max flex-1 items-center justify-center",
         className,
       )}
       {...props}
@@ -70,14 +117,19 @@ const navigationMenuTriggerStyle = cva(
 function NavigationMenuTrigger({
   className,
   children,
+  ref,
+  "aria-controls": ariaControls,
   ...props
 }: React.ComponentProps<typeof NavigationMenuPrimitive.Trigger>) {
+  const triggerRef = useNavigationMenuTriggerA11y(ref);
+
   return (
     <NavigationMenuPrimitive.Trigger
+      ref={triggerRef}
       data-slot="navigation-menu-trigger"
       className={cn(navigationMenuTriggerStyle(), "group", className)}
       {...props}
-      aria-haspopup="true"
+      aria-controls={ariaControls}
     >
       {children}{" "}
       <Icon
@@ -114,7 +166,7 @@ function NavigationMenuViewport({
   return (
     <div
       className={cn(
-        "absolute top-full left-0 isolate z-50 flex justify-center",
+        "absolute top-full left-0 isolate z-20 flex justify-center",
       )}
     >
       <NavigationMenuPrimitive.Viewport
