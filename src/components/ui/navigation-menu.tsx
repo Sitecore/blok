@@ -77,7 +77,6 @@ function NavigationMenuTrigger({
       data-slot="navigation-menu-trigger"
       className={cn(navigationMenuTriggerStyle(), "group", className)}
       {...props}
-      aria-haspopup="true"
     >
       {children}{" "}
       <Icon
