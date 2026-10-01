@@ -1286,6 +1286,33 @@
       ]
     },
     {
+      "name": "page-header",
+      "type": "registry:block",
+      "title": "Page header",
+      "description": "In-page entity header with optional media, back/breadcrumb, title, status, tags, actions, people, tabs, and timeline. Composes existing Blok primitives.",
+      "registryDependencies": [
+        "https://blok.sitecore.com/r/theme.json",
+        "https://blok.sitecore.com/r/breadcrumb.json",
+        "https://blok.sitecore.com/r/button.json",
+        "https://blok.sitecore.com/r/tabs.json",
+        "https://blok.sitecore.com/r/icon.json",
+        "https://blok.sitecore.com/r/tooltip.json",
+        "https://blok.sitecore.com/r/dropdown-menu.json",
+        "https://blok.sitecore.com/r/badge.json",
+        "https://blok.sitecore.com/r/avatar.json",
+        "https://blok.sitecore.com/r/progress.json",
+        "https://blok.sitecore.com/r/separator.json"
+      ],
+      "dependencies": ["@mdi/js"],
+      "files": [
+        {
+          "path": "src/components/bloks/page-header.tsx",
+          "target": "src/components/bloks/page-header.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
       "name": "all-site",
       "type": "registry:block",
       "title": "All site section",

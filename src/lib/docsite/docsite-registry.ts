@@ -231,6 +231,10 @@ import DashboardWidgetGrayBgLargeDemo from "@/app/content/bloks/dashboard-widget
 import MarketplaceAppIconDemo from "@/app/content/bloks/marketplace-app-icon/marketplace-app-icon";
 import MarketplaceAppIconFallbackDemo from "@/app/content/bloks/marketplace-app-icon/marketplace-app-icon-fallback";
 import MarketplaceAppIconSizesDemo from "@/app/content/bloks/marketplace-app-icon/marketplace-app-icon-sizes";
+import PageHeaderDemo from "@/app/content/bloks/page-header/page-header";
+import PageHeaderSiteSummaryDemo from "@/app/content/bloks/page-header/page-header-site-summary";
+import PageHeaderSiteSummaryWhiteDemo from "@/app/content/bloks/page-header/page-header-site-summary-white";
+import PageHeaderTopNavMiniDemo from "@/app/content/bloks/page-header/page-header-top-nav-mini";
 import PinnedSitesSectionDemo from "@/app/content/bloks/pinned-site-section/pinned-site-section";
 // TEMP: prompt-input disabled
 // import PromptInputDemo from "@/app/content/bloks/prompt-input/prompt-input";
@@ -1391,6 +1395,26 @@ export const docsiteRegistry: Record<string, DocsiteRegistryEntry> = {
     name: "marketplace-app-icon-fallback",
     path: "src/app/content/bloks/marketplace-app-icon/marketplace-app-icon-fallback.tsx",
     component: MarketplaceAppIconFallbackDemo,
+  },
+  "page-header": {
+    name: "page-header",
+    path: "src/app/content/bloks/page-header/page-header.tsx",
+    component: PageHeaderDemo,
+  },
+  "page-header-top-nav-mini": {
+    name: "page-header-top-nav-mini",
+    path: "src/app/content/bloks/page-header/page-header-top-nav-mini.tsx",
+    component: PageHeaderTopNavMiniDemo,
+  },
+  "page-header-site-summary": {
+    name: "page-header-site-summary",
+    path: "src/app/content/bloks/page-header/page-header-site-summary.tsx",
+    component: PageHeaderSiteSummaryDemo,
+  },
+  "page-header-site-summary-white": {
+    name: "page-header-site-summary-white",
+    path: "src/app/content/bloks/page-header/page-header-site-summary-white.tsx",
+    component: PageHeaderSiteSummaryWhiteDemo,
   },
   "pinned-site": {
     name: "pinned-site",

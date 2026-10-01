@@ -7,7 +7,6 @@ export default function TextareaDemo() {
       <Label htmlFor="basic-textarea">Message</Label>
       <Textarea
         id="basic-textarea"
-        aria-label="Message"
         placeholder="Type your message here."
       />
     </div>
