@@ -16,6 +16,8 @@ type Changelog = {
   title: string;
   id: string;
   releaseDate: string;
+  /** Docs page for the Blok this entry announces. */
+  href?: string;
   log: ChangelogItem;
 };
 
@@ -24,12 +26,14 @@ export const changelogs: Changelog[] = [
     title: "October 2026 - Page Header Added",
     id: "october-2026-page-header",
     releaseDate: "2026-10-01",
+    href: "/bloks/page-header",
     log: October2026PageHeader,
   },
   {
     title: "October 2026 - Marketplace App Icon Added",
     id: "october-2026-marketplace-app-icon",
     releaseDate: "2026-10-01",
+    href: "/bloks/marketplace-app-icon",
     log: October2026MarketplaceAppIcon,
   },
   {
