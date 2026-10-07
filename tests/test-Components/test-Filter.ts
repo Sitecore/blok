@@ -286,7 +286,6 @@ export async function testFilterWithSearch(page: Page){
     // Select "XM Cloud"
     await singleSelectContent.getByRole('option', { name: 'CDP' }).click();
     // Verify that close select dropdown content
-    await singleSelectFilterButton.click();
     await expect(singleSelectContent).not.toBeVisible();
     // Verify the selected value is displayed
     await expect(singleSelectFilter).toContainText('Single select filter with search:CDP');
@@ -354,7 +353,6 @@ export async function testFilterWithImage(page: Page){
     // Select "XM Cloud"
     await xmCloudOption.click();
     // Verify that close select dropdown content
-    await singleFilterButton.click();
     // Verify the selected value is displayed
     await expect(singleFilterButton).toContainText('Single select filter:XM Cloud');
     // Verify that close select dropdown content
@@ -362,9 +360,9 @@ export async function testFilterWithImage(page: Page){
     // Verify that single select filter has the expected classes
     const classListSingle = await singleFilterButton.getAttribute('class');
     expect(classListSingle).toContain('text-md');
-    expect(classListSingle).toContain('text-neutral-fg');
+    expect(classListSingle).toContain('text-primary-fg');
     expect(classListSingle).toContain('font-semibold');
-    expect(classListSingle).toContain('bg-body-bg');
+    expect(classListSingle).toContain('bg-primary-bg');
     expect(classListSingle).toContain('whitespace-nowrap');
     expect(classListSingle).toContain('data-[state=open]:border-2');
 
