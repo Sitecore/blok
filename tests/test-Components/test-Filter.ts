@@ -134,6 +134,9 @@ export async function testFilterSingleSelect(page: Page){
     // Verify that display single filter button
     const singleFilterButton = singleFilter.locator('button[data-slot="select-trigger"]');
     await expect(singleFilterButton).toBeVisible();
+    const classListSingleDefault = await singleFilterButton.getAttribute('class');
+    expect(classListSingleDefault).toContain('text-neutral-fg');
+    expect(classListSingleDefault).toContain('bg-body-bg');
     // Verify that display single filter dropdown content
     await expect(singleFilter.locator('[data-slot="select-value"]').first()).toContainText('Single select filter');
     // Verify that display single filter options
@@ -157,9 +160,9 @@ export async function testFilterSingleSelect(page: Page){
     // Verify that single select filter has the expected classes
     const classListSingle = await singleFilterButton.getAttribute('class');
     expect(classListSingle).toContain('text-md');
-    expect(classListSingle).toContain('text-neutral-fg');
+    expect(classListSingle).toContain('text-primary-fg');
     expect(classListSingle).toContain('font-semibold');
-    expect(classListSingle).toContain('bg-body-bg');
+    expect(classListSingle).toContain('bg-primary-bg');
     expect(classListSingle).toContain('whitespace-nowrap');
     expect(classListSingle).toContain('data-[state=open]:border-2');
 }
