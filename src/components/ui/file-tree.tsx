@@ -5,8 +5,9 @@ import {
   CollapsibleContent,
   CollapsibleTrigger,
 } from "@/components/ui/collapsible";
+import { Icon } from "@/lib/icon";
 import { cn } from "@/lib/utils";
-import { ChevronRight, File, Folder } from "lucide-react";
+import { mdiChevronRight, mdiFileOutline, mdiFolderOutline } from "@mdi/js";
 import * as React from "react";
 
 export type FileTreeNodeType = "file" | "folder";
@@ -201,7 +202,8 @@ function fileTreeRowPadding(depth: number, indent: number) {
 
 function FileTreeChevron({ open }: { open: boolean }) {
   return (
-    <ChevronRight
+    <Icon
+      path={mdiChevronRight}
       className={cn(
         "size-4 shrink-0 text-muted-foreground transition-transform duration-200",
         open && "rotate-90",
@@ -297,7 +299,7 @@ function FileTreeFolder({
             <FileTreeChevron open={isOpen} />
             {showIcons && (
               <FileTreeIconSlot>
-                {icon ?? <Folder className="size-4" />}
+                {icon ?? <Icon path={mdiFolderOutline} className="size-4" />}
               </FileTreeIconSlot>
             )}
             <span className="truncate">{name}</span>
@@ -351,7 +353,7 @@ function FileTreeFile({
         <span className="size-4 shrink-0" aria-hidden />
         {showIcons && (
           <FileTreeIconSlot>
-            {icon ?? <File className="size-4" />}
+            {icon ?? <Icon path={mdiFileOutline} className="size-4" />}
           </FileTreeIconSlot>
         )}
         <span className="truncate">{name}</span>

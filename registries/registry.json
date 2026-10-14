@@ -783,7 +783,7 @@
       "type": "registry:ui",
       "title": "Combobox",
       "description": "Select a value from a list of options.",
-      "dependencies": ["@base-ui/react", "lucide-react"],
+      "dependencies": ["@base-ui/react", "@mdi/js"],
       "registryDependencies": [
         "https://blok.sitecore.com/r/theme.json",
         "https://blok.sitecore.com/r/button.json",
@@ -916,7 +916,6 @@
         "@dnd-kit/core",
         "@dnd-kit/sortable",
         "@dnd-kit/utilities",
-        "lucide-react",
         "@mdi/js"
       ],
       "files": [
@@ -1238,7 +1237,7 @@
         "https://blok.sitecore.com/r/dropdown-menu.json",
         "https://blok.sitecore.com/r/dialog.json"
       ],
-      "dependencies": ["lucide-react"],
+      "dependencies": ["@mdi/js"],
       "files": [
         {
           "path": "src/components/bloks/site-card.tsx",
@@ -1258,7 +1257,6 @@
         "https://blok.sitecore.com/r/card.json",
         "https://blok.sitecore.com/r/filter.json"
       ],
-      "dependencies": ["lucide-react"],
       "files": [
         {
           "path": "src/components/bloks/dashboard-widget.tsx",
@@ -1321,7 +1319,6 @@
         "https://blok.sitecore.com/r/theme.json",
         "https://blok.sitecore.com/r/site-card.json"
       ],
-      "dependencies": ["lucide-react"],
       "files": [
         {
           "path": "src/components/bloks/all-sites-section.tsx",
@@ -1341,7 +1338,6 @@
         "https://blok.sitecore.com/r/all-site.json",
         "https://blok.sitecore.com/r/site-card.json"
       ],
-      "dependencies": ["lucide-react"],
       "files": [
         {
           "path": "src/components/bloks/pinned-sites-section.tsx",
@@ -1606,7 +1602,7 @@
       "type": "registry:ui",
       "title": "Spinner",
       "description": "An indicator that can be used to show a loading state.",
-      "dependencies": ["lucide-react", "class-variance-authority"],
+      "dependencies": ["@mdi/js", "class-variance-authority"],
       "registryDependencies": ["https://blok.sitecore.com/r/theme.json"],
       "files": [
         {

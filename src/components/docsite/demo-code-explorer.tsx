@@ -12,8 +12,9 @@ import {
   defaultSelectedCodeFileId,
   demoCodeFilesToTree,
 } from "@/lib/docsite/demo-code-files";
+import { Icon } from "@/lib/icon";
 import { cn } from "@/lib/utils";
-import { FileCode2 } from "lucide-react";
+import { mdiFileCodeOutline } from "@mdi/js";
 import * as React from "react";
 
 interface DemoCodeExplorerProps {
@@ -80,7 +81,10 @@ export function DemoCodeExplorer({
           {selected ? (
             <>
               <div className="flex min-w-0 flex-1 items-center gap-2">
-                <FileCode2 className="size-4 shrink-0 text-muted-foreground" />
+                <Icon
+                  path={mdiFileCodeOutline}
+                  className="size-4 shrink-0 text-muted-foreground"
+                />
                 <span className="truncate font-mono text-xs leading-none">
                   {selected.id}
                 </span>

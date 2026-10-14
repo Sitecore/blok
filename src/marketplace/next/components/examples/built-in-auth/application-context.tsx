@@ -6,7 +6,8 @@ import {
   CollapsibleContent,
   CollapsibleTrigger,
 } from "@/components/ui/collapsible";
-import { ChevronDown, ChevronRight } from "lucide-react";
+import { Icon } from "@/lib/icon";
+import { mdiChevronDown, mdiChevronRight } from "@mdi/js";
 import { useState } from "react";
 
 export const ApplicationContext = () => {
@@ -28,9 +29,15 @@ export const ApplicationContext = () => {
             <Badge colorScheme={"success"}>SDK Built-in Auth</Badge>
           </div>
           {isExpanded ? (
-            <ChevronDown className="h-4 w-4 transition-transform" />
+            <Icon
+              path={mdiChevronDown}
+              className="h-4 w-4 transition-transform"
+            />
           ) : (
-            <ChevronRight className="h-4 w-4 transition-transform" />
+            <Icon
+              path={mdiChevronRight}
+              className="h-4 w-4 transition-transform"
+            />
           )}
         </div>
       </CollapsibleTrigger>
