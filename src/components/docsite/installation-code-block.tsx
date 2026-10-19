@@ -3,9 +3,8 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { TELEMETRY_EVENTS, track } from "@/lib/telemetry";
 import type { CopyCodePayload } from "@/lib/telemetry";
-import { mdiClipboardOutline } from "@mdi/js";
+import { mdiCheck, mdiClipboardOutline } from "@mdi/js";
 import Icon from "@mdi/react";
-import { Check } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { Button } from "../ui/button";
@@ -146,7 +145,7 @@ export default function InstallationCodeBlock({
             }
           >
             {copied ? (
-              <Check className="size-4" />
+              <Icon path={mdiCheck} className="size-4" />
             ) : (
               <Icon
                 className="text-muted-foreground"

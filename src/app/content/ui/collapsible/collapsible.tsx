@@ -6,7 +6,8 @@ import {
   CollapsibleContent,
   CollapsibleTrigger,
 } from "@/components/ui/collapsible";
-import { ChevronsUpDown } from "lucide-react";
+import { Icon } from "@/lib/icon";
+import { mdiUnfoldMoreHorizontal } from "@mdi/js";
 import React from "react";
 
 export default function CollapsibleDemo() {
@@ -28,7 +29,7 @@ export default function CollapsibleDemo() {
               size="icon"
               aria-label="Toggle collapsible content"
             >
-              <ChevronsUpDown className="h-4 w-4" />
+              <Icon path={mdiUnfoldMoreHorizontal} className="h-4 w-4" />
               <span className="sr-only">Toggle</span>
             </Button>
           </CollapsibleTrigger>

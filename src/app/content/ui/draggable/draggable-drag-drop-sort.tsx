@@ -18,8 +18,13 @@ import { SortableItem } from "@/components/ui/sortable";
 import { Icon } from "@/lib/icon";
 import { cn } from "@/lib/utils";
 import type { CollisionDetection } from "@dnd-kit/core";
-import { mdiTextShort } from "@mdi/js";
-import { ChevronDown, GripVertical, List, Trash2 } from "lucide-react";
+import {
+  mdiChevronDown,
+  mdiDragVertical,
+  mdiFormatListBulleted,
+  mdiTextShort,
+  mdiTrashCanOutline,
+} from "@mdi/js";
 import * as React from "react";
 
 interface FieldItem {
@@ -75,7 +80,7 @@ function DraggableFieldCard({ item }: { item: FieldItem }) {
   return (
     <div className="flex items-center gap-3 px-3 py-2.5 bg-card border border-border rounded-lg hover:border-primary/50 transition-colors cursor-grab active:cursor-grabbing group">
       <div className="flex-shrink-0 text-muted-foreground">
-        <GripVertical className="w-4 h-4" />
+        <Icon path={mdiDragVertical} className="w-4 h-4" />
       </div>
       <div className="flex-shrink-0 p-1.5 rounded bg-primary/10">
         <Icon path={mdiTextShort} className="w-4 h-4 text-primary" />
@@ -105,7 +110,7 @@ function SortableFieldCard({
   return (
     <div className="flex items-center gap-3 px-3 py-2.5 bg-card border border-border rounded-lg hover:border-primary/50 transition-colors group">
       <div className="flex-shrink-0 text-muted-foreground cursor-grab active:cursor-grabbing">
-        <GripVertical className="w-4 h-4" />
+        <Icon path={mdiDragVertical} className="w-4 h-4" />
       </div>
       <div className="flex-shrink-0 p-1.5 rounded bg-primary/10">
         <Icon path={mdiTextShort} className="w-4 h-4 text-primary" />
@@ -132,7 +137,7 @@ function SortableFieldCard({
         className="h-8 w-8 opacity-0 group-hover:opacity-100 text-muted-foreground hover:text-danger-fg"
         onClick={() => onRemove(item.id)}
       >
-        <Trash2 className="w-4 h-4" />
+        <Icon path={mdiTrashCanOutline} className="w-4 h-4" />
       </Button>
 
       <Button
@@ -140,7 +145,7 @@ function SortableFieldCard({
         size="icon"
         className="h-8 w-8 text-muted-foreground"
       >
-        <ChevronDown className="w-4 h-4" />
+        <Icon path={mdiChevronDown} className="w-4 h-4" />
       </Button>
     </div>
   );
@@ -275,7 +280,7 @@ export default function DraggableDragDropSortableDemo() {
               ) : (
                 <div className="flex flex-col items-center justify-center h-full min-h-[200px] text-center">
                   <div className="w-12 h-12 flex items-center justify-center text-muted-foreground/50 mb-3">
-                    <List className="w-8 h-8" />
+                    <Icon path={mdiFormatListBulleted} className="w-8 h-8" />
                   </div>
                   <p className="text-sm text-muted-foreground">
                     Drop (fields) in this area to (return) (items)
@@ -319,7 +324,7 @@ export default function DraggableDragDropSortableDemo() {
               ) : (
                 <div className="flex flex-col items-center justify-center h-full min-h-[200px] text-center">
                   <div className="w-12 h-12 flex items-center justify-center text-muted-foreground/50 mb-3">
-                    <List className="w-8 h-8" />
+                    <Icon path={mdiFormatListBulleted} className="w-8 h-8" />
                   </div>
                   <p className="text-sm text-muted-foreground">
                     Drop (fields) in this area to (build) (form)
@@ -339,7 +344,7 @@ export default function DraggableDragDropSortableDemo() {
         {activeItem ? (
           <div className="flex items-center gap-3 px-3 py-2.5 bg-card border border-primary rounded-lg shadow-lg">
             <div className="flex-shrink-0 text-foreground cursor-grabbing">
-              <GripVertical className="w-4 h-4" />
+              <Icon path={mdiDragVertical} className="w-4 h-4" />
             </div>
             <div className="flex-shrink-0 p-1.5 rounded bg-primary/10">
               <Icon path={mdiTextShort} className="w-4 h-4 text-primary" />

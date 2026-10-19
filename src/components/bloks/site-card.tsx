@@ -8,7 +8,8 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { MoreVertical, PinOff } from "lucide-react";
+import { Icon } from "@/lib/icon";
+import { mdiDotsVertical, mdiPinOffOutline } from "@mdi/js";
 import type { ComponentProps } from "react";
 import { useState } from "react";
 
@@ -172,7 +173,7 @@ export function SiteCard<T extends SiteData>({
                   size="icon"
                   className="h-8 w-8 flex-shrink-0"
                 >
-                  <MoreVertical className="h-4 w-4" />
+                  <Icon path={mdiDotsVertical} className="h-4 w-4" />
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end">
@@ -201,7 +202,7 @@ export function SiteCard<T extends SiteData>({
             }}
             title="Unpin site"
           >
-            <PinOff size={10} strokeWidth={0.9} absoluteStrokeWidth />
+            <Icon path={mdiPinOffOutline} className="size-2.5" />
           </Button>
         </div>
       )}

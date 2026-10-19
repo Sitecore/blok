@@ -19,15 +19,16 @@ import {
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { Icon } from "@/lib/icon";
 import {
-  Copy,
-  Edit,
-  FileEdit,
-  LayoutGrid,
-  Pin,
-  PinOff,
-  Settings,
-} from "lucide-react";
+  mdiCogOutline,
+  mdiContentCopy,
+  mdiFileEditOutline,
+  mdiPencilOutline,
+  mdiPinOffOutline,
+  mdiPinOutline,
+  mdiViewGridOutline,
+} from "@mdi/js";
 import { useCallback, useState } from "react";
 
 export default function PinnedSitesSectionDemo() {
@@ -145,12 +146,12 @@ export default function PinnedSitesSectionDemo() {
   const getFooterButtons = useCallback(
     (site: SiteFavoritesResponse) => [
       {
-        icon: <FileEdit className="h-3.5 w-3.5" />,
+        icon: <Icon path={mdiFileEditOutline} className="h-3.5 w-3.5" />,
         label: "Page builder",
         onClick: () => handlePageBuilder(site),
       },
       {
-        icon: <LayoutGrid className="h-3.5 w-3.5" />,
+        icon: <Icon path={mdiViewGridOutline} className="h-3.5 w-3.5" />,
         label: "Dashboard",
         onClick: () => handleDashboard(site),
       },
@@ -162,29 +163,29 @@ export default function PinnedSitesSectionDemo() {
   const getDropdownActions = useCallback(
     (site: SiteFavoritesResponse, isPinned: boolean) => [
       {
-        icon: <Settings className="mr-2 h-4 w-4" />,
+        icon: <Icon path={mdiCogOutline} className="mr-2 h-4 w-4" />,
         label: "Settings",
         onClick: () => handleSettings(site),
         show: true,
       },
       {
         icon: isPinned ? (
-          <PinOff className="mr-2 h-4 w-4" />
+          <Icon path={mdiPinOffOutline} className="mr-2 h-4 w-4" />
         ) : (
-          <Pin className="mr-2 h-4 w-4" />
+          <Icon path={mdiPinOutline} className="mr-2 h-4 w-4" />
         ),
         label: isPinned ? "Unpin Site" : "Pin Site",
         onClick: () => (isPinned ? handleUnpin(site.id) : handlePin(site.id)),
         show: true,
       },
       {
-        icon: <Edit className="mr-2 h-4 w-4" />,
+        icon: <Icon path={mdiPencilOutline} className="mr-2 h-4 w-4" />,
         label: "Rename",
         onClick: () => handleRename(site.id, site.displayName || site.name),
         show: site.permissions.canRename,
       },
       {
-        icon: <Copy className="mr-2 h-4 w-4" />,
+        icon: <Icon path={mdiContentCopy} className="mr-2 h-4 w-4" />,
         label: "Duplicate",
         onClick: () =>
           handleDuplicate(site.id, `${site.displayName || site.name} (Copy)`),

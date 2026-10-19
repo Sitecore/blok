@@ -1,7 +1,7 @@
 "use client";
 
 import { Icon } from "@/lib/icon";
-import { mdiChevronLeft, mdiChevronRight } from "@mdi/js";
+import { mdiChevronDown, mdiChevronLeft, mdiChevronRight } from "@mdi/js";
 import { format } from "date-fns";
 import * as React from "react";
 
@@ -14,7 +14,6 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { cn } from "@/lib/utils";
-import { ChevronDownIcon } from "lucide-react";
 import {
   type DayButton,
   DayPicker,
@@ -352,7 +351,11 @@ function Calendar({
             );
           }
           return (
-            <ChevronDownIcon className={cn("size-4", className)} {...props} />
+            <Icon
+              path={mdiChevronDown}
+              className={cn("size-4", className)}
+              {...props}
+            />
           );
         },
         DayButton: CalendarDayButton,
