@@ -13,9 +13,10 @@ import {
 import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { graphicsItems, themingItems } from "@/config/nav";
+import { Icon } from "@/lib/icon";
 import { getBlocks, getComponents, getRegistryItem } from "@/lib/registry";
 import { TELEMETRY_EVENTS, track } from "@/lib/telemetry";
-import { Menu, X } from "lucide-react";
+import { mdiClose, mdiMenu } from "@mdi/js";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Direction } from "radix-ui";
@@ -69,7 +70,7 @@ export function MobileSidebarTrigger() {
       className={`absolute top-8 ${direction === "rtl" ? "left-4" : "right-4"} md:hidden`}
     >
       <Button aria-label="Open menu" onClick={() => setOpenMobile(true)}>
-        <Menu className="size-5" />
+        <Icon path={mdiMenu} className="size-5" />
       </Button>
     </div>
   );
@@ -161,7 +162,7 @@ export function RegistrySidebar() {
             onClick={() => setOpenMobile(false)}
             aria-label="Close sidebar"
           >
-            <X />
+            <Icon path={mdiClose} />
           </Button>
         </div>
       </SidebarHeader>

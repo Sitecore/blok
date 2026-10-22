@@ -1,6 +1,5 @@
 "use client";
 
-import { Minus, Plus } from "lucide-react";
 import * as React from "react";
 import { Bar, BarChart, ResponsiveContainer } from "recharts";
 
@@ -15,6 +14,8 @@ import {
   DrawerTitle,
   DrawerTrigger,
 } from "@/components/ui/drawer";
+import { Icon } from "@/lib/icon";
+import { mdiMinus, mdiPlus } from "@mdi/js";
 
 const data = [
   {
@@ -86,7 +87,7 @@ export default function DrawerDefaultDemo() {
                 onClick={() => onClick(-10)}
                 disabled={goal <= 200}
               >
-                <Minus />
+                <Icon path={mdiMinus} />
                 <span className="sr-only">Decrease</span>
               </Button>
               <div className="flex-1 text-center">
@@ -103,7 +104,7 @@ export default function DrawerDefaultDemo() {
                 onClick={() => onClick(10)}
                 disabled={goal >= 400}
               >
-                <Plus />
+                <Icon path={mdiPlus} />
                 <span className="sr-only">Increase</span>
               </Button>
             </div>

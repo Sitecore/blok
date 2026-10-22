@@ -12,8 +12,12 @@ import { DragOverlay } from "@/components/ui/drag-overlay";
 import { SortableHandle, SortableItem } from "@/components/ui/sortable";
 import { Icon } from "@/lib/icon";
 import { cn } from "@/lib/utils";
-import { mdiTextShort } from "@mdi/js";
-import { ChevronDown, GripVertical, Trash2 } from "lucide-react";
+import {
+  mdiChevronDown,
+  mdiDragVertical,
+  mdiTextShort,
+  mdiTrashCanOutline,
+} from "@mdi/js";
 import * as React from "react";
 
 interface FieldItem {
@@ -43,7 +47,7 @@ function SortableFieldItem({
             "transition-all duration-200",
           )}
         >
-          <GripVertical className="w-4 h-4" />
+          <Icon path={mdiDragVertical} className="w-4 h-4" />
         </SortableHandle>
 
         {/* Field Icon with purple background */}
@@ -77,7 +81,7 @@ function SortableFieldItem({
           className="h-8 w-8 opacity-0 group-hover:opacity-100 text-muted-foreground hover:text-danger-fg hover:bg-danger-bg"
           onClick={() => onDelete?.(item.id)}
         >
-          <Trash2 className="w-2 h-2" />
+          <Icon path={mdiTrashCanOutline} className="w-2 h-2" />
         </Button>
 
         {/* Expand/Collapse Icon */}
@@ -87,7 +91,7 @@ function SortableFieldItem({
           aria-label="Expand/Collapse field"
           className="h-8 w-8 text-muted-foreground hover:text-foreground"
         >
-          <ChevronDown className="w-4 h-4" />
+          <Icon path={mdiChevronDown} className="w-4 h-4" />
         </Button>
       </div>
     </SortableItem>
@@ -210,7 +214,7 @@ export default function DraggableCustomHandleDemo() {
         {activeItem ? (
           <div className="flex items-center gap-3 px-3 py-2.5 bg-card border border-primary rounded-lg shadow-lg">
             <div className="flex-shrink-0 w-6 h-6 rounded flex items-center justify-center text-foreground cursor-grabbing bg-muted">
-              <GripVertical className="w-4 h-4" />
+              <Icon path={mdiDragVertical} className="w-4 h-4" />
             </div>
             <div className="flex-shrink-0 p-1.5 rounded bg-primary/10">
               <Icon path={mdiTextShort} className="w-4 h-4 text-primary" />
@@ -228,10 +232,10 @@ export default function DraggableCustomHandleDemo() {
               {activeItem.type}
             </div>
             <div className="flex-shrink-0 p-1.5 text-muted-foreground">
-              <Trash2 className="w-3 h-3" />
+              <Icon path={mdiTrashCanOutline} className="w-3 h-3" />
             </div>
             <div className="flex-shrink-0 p-1.5 text-muted-foreground">
-              <ChevronDown className="w-4 h-4" />
+              <Icon path={mdiChevronDown} className="w-4 h-4" />
             </div>
           </div>
         ) : null}

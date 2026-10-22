@@ -18,9 +18,10 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import { useIsMobile } from "@/hooks/use-mobile";
+import { Icon } from "@/lib/icon";
 import { cn } from "@/lib/utils";
+import { mdiPageLayoutSidebarLeft } from "@mdi/js";
 import { type VariantProps, cva } from "class-variance-authority";
-import { PanelLeftIcon } from "lucide-react";
 import { Slot } from "radix-ui";
 import * as React from "react";
 
@@ -274,7 +275,7 @@ function SidebarTrigger({
       }}
       {...props}
     >
-      <PanelLeftIcon />
+      <Icon path={mdiPageLayoutSidebarLeft} />
       <span className="sr-only">Toggle Sidebar</span>
     </Button>
   );
