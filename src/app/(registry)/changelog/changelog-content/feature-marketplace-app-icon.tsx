@@ -16,13 +16,13 @@ const Thumb = ({ className }: { className?: string }) => (
       width="48"
       height="48"
       rx="10"
-      fill="var(--color-teal-500)"
+      fill="var(--color-teal-200)"
     />
     <text
       x="142"
       y="148"
       textAnchor="middle"
-      fill="white"
+      fill="#102c33"
       fontSize="22"
       fontWeight="600"
       fontFamily="system-ui, sans-serif"
@@ -35,13 +35,13 @@ const Thumb = ({ className }: { className?: string }) => (
       width="48"
       height="48"
       rx="10"
-      fill="var(--color-pink-500)"
+      fill="var(--color-pink-200)"
     />
     <text
       x="200"
       y="148"
       textAnchor="middle"
-      fill="white"
+      fill="#102c33"
       fontSize="22"
       fontWeight="600"
       fontFamily="system-ui, sans-serif"
@@ -54,13 +54,13 @@ const Thumb = ({ className }: { className?: string }) => (
       width="48"
       height="48"
       rx="10"
-      fill="var(--color-purple-500)"
+      fill="var(--color-purple-200)"
     />
     <text
       x="258"
       y="148"
       textAnchor="middle"
-      fill="white"
+      fill="#102c33"
       fontSize="22"
       fontWeight="600"
       fontFamily="system-ui, sans-serif"
