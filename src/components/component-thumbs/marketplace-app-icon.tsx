@@ -14,13 +14,13 @@ const MarketplaceAppIconThumb = ({ className }: { className?: string }) => (
       width="48"
       height="48"
       rx="10"
-      fill="var(--color-teal-200)"
+      fill="var(--color-teal-500)"
     />
     <text
       x="142"
       y="148"
       textAnchor="middle"
-      fill="#102c33"
+      fill="white"
       fontSize="22"
       fontWeight="600"
       fontFamily="system-ui, sans-serif"
@@ -33,13 +33,13 @@ const MarketplaceAppIconThumb = ({ className }: { className?: string }) => (
       width="48"
       height="48"
       rx="10"
-      fill="var(--color-pink-200)"
+      fill="var(--color-pink-500)"
     />
     <text
       x="200"
       y="148"
       textAnchor="middle"
-      fill="#102c33"
+      fill="white"
       fontSize="22"
       fontWeight="600"
       fontFamily="system-ui, sans-serif"
@@ -52,13 +52,13 @@ const MarketplaceAppIconThumb = ({ className }: { className?: string }) => (
       width="48"
       height="48"
       rx="10"
-      fill="var(--color-purple-200)"
+      fill="var(--color-purple-500)"
     />
     <text
       x="258"
       y="148"
       textAnchor="middle"
-      fill="#102c33"
+      fill="white"
       fontSize="22"
       fontWeight="600"
       fontFamily="system-ui, sans-serif"
