@@ -69,6 +69,8 @@ import { CollaborationDemo } from "@/components-demo/collaboration-demo";
 import { DashboardWidgetDemo } from "@/components-demo/dashboard-widget-demo";
 import { PinnedSitesSectionDemo } from "@/components-demo/pinned_site_section-demo";
 import { SidebarRHSDemo } from "@/components-demo/sidebar_rhs-demo";
+import { MarketplaceAppIconSectionDemo } from "@/components-demo/marketplace_app_icon-demo";
+import { PageHeaderSectionDemo } from "@/components-demo/page_header-demo";
 import { SiteCardDemo } from "@/components-demo/site_card-demo";
 import { TopbarDemo } from "@/components-demo/topbar-demo";
 
@@ -358,6 +360,14 @@ export default function SinkPage() {
       </div>
       <div>
         <SiteCardDemo />
+      </div>
+    <br />
+      <div>
+        <MarketplaceAppIconSectionDemo />
+      </div>
+    <br />
+      <div>
+        <PageHeaderSectionDemo />
       </div>
     <br />
       <div>
