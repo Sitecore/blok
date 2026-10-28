@@ -39,7 +39,9 @@ jobs:
 
   test:
     timeout-minutes: 60
-    runs-on: ubuntu-latest
+    # ubuntu-latest is Ubuntu 26.04. Playwright 1.60 has no Chromium build for it.
+    # 1.61+ supports 26.04; until then, stay on the last supported runner image.
+    runs-on: ubuntu-24.04
     steps:
       # Step 0: Checkout repository (needed for composite actions)
       - name: Checkout repository
