@@ -43,7 +43,7 @@
     "embla-carousel-react": "^8.6.0",
     "input-otp": "^1.4.2",
     "lodash": "^4.18.0",
-    "next": "^16.2.11",
+    "next": "^16.4.3",
     "next-themes": "^0.4.6",
     "radix-ui": "^1.4.3",
     "react": "^19.2.0",
@@ -58,7 +58,7 @@
     "sonner": "^2.0.8",
     "tailwind-merge": "^3.3.1",
     "vaul": "^1.1.2",
-    "zod": "^3.25.76"
+    "zod": "^4.6.7"
   },
   "devDependencies": {
     "@auth0/auth0-react": "^2.5.0",
@@ -76,7 +76,7 @@
     "jsdom": "^25.0.1",
     "lint-staged": "^16.2.7",
     "lodash": "^4.18.0",
-    "next": "^16.2.11",
+    "next": "^16.4.3",
     "postcss": "^8.5.23",
     "tailwindcss": "^4.1.11",
     "tsx": "^4.22.1",
@@ -95,6 +95,7 @@
     "picomatch": "^4.0.4",
     "postcss": "^8.5.23",
     "rollup": ">=4.59.0",
+    "source-map-js": ">=1.2.2",
     "uuid": "^11.1.1",
     "ws": ">=8.21.0",
     "yaml": "^2.8.3"
@@ -107,6 +108,7 @@
       "picomatch": "^4.0.4",
       "postcss": "^8.5.23",
       "rollup": ">=4.59.0",
+      "source-map-js": ">=1.2.2",
       "uuid": "^11.1.1",
       "ws": ">=8.21.0",
       "yaml": "^2.8.3"

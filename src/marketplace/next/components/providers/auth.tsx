@@ -1,5 +1,6 @@
 "use client";
 
+import { useAppContext } from "@/components/providers/marketplace";
 import {
   type Auth0ContextInterface,
   Auth0Provider,
@@ -7,16 +8,35 @@ import {
   useAuth0,
   withAuthenticationRequired,
 } from "@auth0/auth0-react";
+import { useSearchParams } from "next/navigation";
 import type React from "react";
+
+const useSitecoreAuthParams = () => {
+  const searchParams = useSearchParams();
+  const appContext = useAppContext();
+  const organizationId =
+    searchParams.get("organizationId") || appContext.organizationId;
+  const tenantId =
+    searchParams.get("marketplaceAppTenantId") ||
+    appContext.MarketplaceAppTenantId;
+
+  if (!organizationId || !tenantId) {
+    throw new Error(
+      "Sitecore organizationId and marketplaceAppTenantId are required in the URL or application context",
+    );
+  }
+
+  return { organization_id: organizationId, tenant_id: tenantId };
+};
 
 export const WithAuth = withAuthenticationRequired(
   ({ children }: { children: React.ReactNode }) => children,
 );
 
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
+  const sitecoreAuthParams = useSitecoreAuthParams();
   const authParams = {
-    organization_id: process.env.NEXT_PUBLIC_SITECORE_ORGANIZATION_ID,
-    tenant_id: process.env.NEXT_PUBLIC_SITECORE_TENANT_ID,
+    ...sitecoreAuthParams,
     product_codes: `mkp_${process.env.NEXT_PUBLIC_SITECORE_APP_ID}`,
     audience: process.env.NEXT_PUBLIC_AUTH0_AUDIENCE,
     redirect_uri: process.env.NEXT_PUBLIC_APP_BASE_URL,
@@ -45,14 +65,14 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 
 export const useAuth = (): Auth0ContextInterface => {
   const { getAccessTokenSilently, ...rest } = useAuth0();
+  const sitecoreAuthParams = useSitecoreAuthParams();
 
   const customGetAccessTokenSilently = (options?: GetTokenSilentlyOptions) => {
     return getAccessTokenSilently({
       ...options,
       authorizationParams: {
         ...options?.authorizationParams,
-        organization_id: process.env.NEXT_PUBLIC_SITECORE_ORGANIZATION_ID,
-        tenant_id: process.env.NEXT_PUBLIC_SITECORE_TENANT_ID,
+        ...sitecoreAuthParams,
       },
     });
   };

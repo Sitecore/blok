@@ -69,11 +69,9 @@
         "NEXT_PUBLIC_AUTH0_SCOPE": "openid profile email offline_access",
         "NEXT_PUBLIC_AUTH0_CLIENT_ID": "your-marketplace-client-id",
         "NEXT_PUBLIC_SITECORE_APP_ID": "your-app-id",
-        "NEXT_PUBLIC_APP_BASE_URL": "https://localhost:3000",
-        "NEXT_PUBLIC_SITECORE_ORGANIZATION_ID": "your-organization-id",
-        "NEXT_PUBLIC_SITECORE_TENANT_ID": "marketplace-app-tenant-id-after-installation"
+        "NEXT_PUBLIC_APP_BASE_URL": "https://localhost:3000"
       },
-      "docs": "Your app needs to run in 'https'. We suggest to add '--experimental-https' in your dev script in package.json. Also, make sure to update your environment variables. Happy coding!"
+      "docs": "Your app needs to run in 'https'. We suggest to add '--experimental-https' in your dev script in package.json. Also, make sure to update your environment variables. The organization and Marketplace app tenant IDs are read from the URL query parameters 'organizationId' and 'marketplaceAppTenantId', falling back to 'organizationId' and 'MarketplaceAppTenantId' from the SDK application context. Happy coding!"
     },
     {
       "name": "quickstart-with-client-side-xmc",
