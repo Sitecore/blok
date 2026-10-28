@@ -66,6 +66,8 @@ import { testCollaboration } from './test-Components/test-Collaboration';
 import { testDashboardGrayWidget, testDashboardWhiteWidget, testDashboardWidget } from './test-Components/test-Dashboard_widget';
 import { testPinnedSiteSection } from './test-Components/test-Pinned_Site_Section';
 import { testSidebarRHS, testSidebarRHSFixed } from './test-Components/test-Sidebar_RHS';
+import { testMarketplaceAppIcon, testMarketplaceAppIconFallback, testMarketplaceAppIconSizes } from './test-Components/test-Marketplace_App_Icon';
+import { testPageHeader, testPageHeaderSiteSummary, testPageHeaderSiteSummaryWhite, testPageHeaderTopNavMini } from './test-Components/test-Page_Header';
 import { testSiteCard } from './test-Components/test-Site_Card';
 import { testTopbar } from './test-Components/test-Topbar';
 
@@ -503,6 +505,19 @@ test.describe('UI BLOK QA Automation', () => {
 
   test('test_Site_Card', async ({ page }) => {
     await testSiteCard(page);
+  });
+
+  test('test_Marketplace_App_Icon', async ({ page }) => {
+    await testMarketplaceAppIcon(page);
+    await testMarketplaceAppIconSizes(page);
+    await testMarketplaceAppIconFallback(page);
+  });
+
+  test('test_Page_Header', async ({ page }) => {
+    await testPageHeader(page);
+    await testPageHeaderSiteSummary(page);
+    await testPageHeaderTopNavMini(page);
+    await testPageHeaderSiteSummaryWhite(page);
   });
   
   test('test_Topbar', async ({ page }) => {

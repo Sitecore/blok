@@ -101,9 +101,9 @@ export async function testDraggableCustomHandle(page: Page){
   await expect(draggableItemA).toContainText('|');
   await expect(draggableItemA).toContainText('Text');
   const deleteClassA = await draggableItemA.locator('button').nth(0).locator('svg').getAttribute('class');
-  expect(deleteClassA).toContain('lucide lucide-trash2 lucide-trash-2 w-2 h-2');
+  expect(deleteClassA).toContain('w-2 h-2');
   const chevronClassA = await draggableItemA.locator('button').nth(1).locator('svg').getAttribute('class');
-  expect(chevronClassA).toContain('lucide lucide-chevron-down w-4 h-4');
+  expect(chevronClassA).toContain('w-4 h-4');
   // Item B
   const draggableItemB = draggableSection.locator('[data-sortable-id="field-B"]');
   await expect(draggableItemB).toBeVisible();
@@ -114,9 +114,9 @@ export async function testDraggableCustomHandle(page: Page){
   await expect(draggableItemB).toContainText('|');
   await expect(draggableItemB).toContainText('Text');
   const deleteClassB = await draggableItemB.locator('button').nth(0).locator('svg').getAttribute('class');
-  expect(deleteClassB).toContain('lucide lucide-trash2 lucide-trash-2 w-2 h-2');
+  expect(deleteClassB).toContain('w-2 h-2');
   const chevronClassB = await draggableItemB.locator('button').nth(1).locator('svg').getAttribute('class');
-  expect(chevronClassB).toContain('lucide lucide-chevron-down w-4 h-4');
+  expect(chevronClassB).toContain('w-4 h-4');
   // Item C
   const draggableItemC = draggableSection.locator('[data-sortable-id="field-C"]');
   await expect(draggableItemC).toBeVisible();
@@ -127,9 +127,9 @@ export async function testDraggableCustomHandle(page: Page){
   await expect(draggableItemC).toContainText('|');
   await expect(draggableItemC).toContainText('Text');
   const deleteClassC = await draggableItemC.locator('button').nth(0).locator('svg').getAttribute('class');
-  expect(deleteClassC).toContain('lucide lucide-trash2 lucide-trash-2 w-2 h-2');
+  expect(deleteClassC).toContain('w-2 h-2');
   const chevronClassC = await draggableItemC.locator('button').nth(1).locator('svg').getAttribute('class');
-  expect(chevronClassC).toContain('lucide lucide-chevron-down w-4 h-4');
+  expect(chevronClassC).toContain('w-4 h-4');
 
   // Verify that allow sorting items using the grip handle
   const firstItemBox = await draggableItemA.boundingBox();

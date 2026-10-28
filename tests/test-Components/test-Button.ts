@@ -170,15 +170,11 @@ export async function testLoadingButton(page: Page){
   // Verify that the loading button spinner is visible and has the expected attributes
   const loadingSpinner = buttonSpinnerLoading.locator('[role="status"]');
   await expect(loadingSpinner).toBeVisible();
-  await expect(loadingSpinner).toHaveAttribute('width', '24');
-  await expect(loadingSpinner).toHaveAttribute('height', '24');
   await expect(loadingSpinner).toHaveAttribute('viewBox', '0 0 24 24');
-  await expect(loadingSpinner).toHaveAttribute('fill', 'none');
-  await expect(loadingSpinner).toHaveAttribute('stroke', 'currentColor');
-  await expect(loadingSpinner).toHaveAttribute('stroke-width', '2');
-  await expect(loadingSpinner).toHaveAttribute('stroke-linecap', 'round');
-  await expect(loadingSpinner).toHaveAttribute('stroke-linejoin', 'round');
-  await expect(loadingSpinner).toHaveAttribute('class', 'lucide lucide-loader-circle size-4 animate-spin text-neutral-fg');
+  await expect(loadingSpinner).toHaveAttribute('role', 'status');
+  await expect(loadingSpinner).toHaveAttribute('aria-label', 'Loading');
+  await expect(loadingSpinner.locator('path')).toHaveAttribute('fill', 'currentColor');
+  await expect(loadingSpinner).toHaveAttribute('class', 'size-4 animate-spin text-neutral-fg');
   
   // Verify please wait button is visible
   const buttonSpinnerWait = page.getByRole('button', { name: 'Please wait' }).first();
@@ -200,15 +196,11 @@ export async function testLoadingButton(page: Page){
   // Verify that the loading button spinner is visible and has the expected attributes
   const waitSpinner = buttonSpinnerWait.locator('[role="status"]');
   await expect(waitSpinner).toBeVisible();
-  await expect(waitSpinner).toHaveAttribute('width', '24');
-  await expect(waitSpinner).toHaveAttribute('height', '24');
   await expect(waitSpinner).toHaveAttribute('viewBox', '0 0 24 24');
-  await expect(waitSpinner).toHaveAttribute('fill', 'none');
-  await expect(waitSpinner).toHaveAttribute('stroke', 'currentColor');
-  await expect(waitSpinner).toHaveAttribute('stroke-width', '2');
-  await expect(waitSpinner).toHaveAttribute('stroke-linecap', 'round');
-  await expect(waitSpinner).toHaveAttribute('stroke-linejoin', 'round');
-  await expect(waitSpinner).toHaveAttribute('class', 'lucide lucide-loader-circle size-4 animate-spin text-neutral-fg');
+  await expect(waitSpinner).toHaveAttribute('role', 'status');
+  await expect(waitSpinner).toHaveAttribute('aria-label', 'Loading');
+  await expect(waitSpinner.locator('path')).toHaveAttribute('fill', 'currentColor');
+  await expect(waitSpinner).toHaveAttribute('class', 'size-4 animate-spin text-neutral-fg');
 
   // Verify processing button is visible
   const buttonSpinnerProcessing = page.getByRole('button', { name: 'Processing' }).first();
@@ -229,13 +221,9 @@ export async function testLoadingButton(page: Page){
   // Verify that the loading button spinner is visible and has the expected attributes
   const processingSpinner = buttonSpinnerProcessing.locator('[role="status"]');
   await expect(processingSpinner).toBeVisible();
-  await expect(processingSpinner).toHaveAttribute('width', '24');
-  await expect(processingSpinner).toHaveAttribute('height', '24');
   await expect(processingSpinner).toHaveAttribute('viewBox', '0 0 24 24');
-  await expect(processingSpinner).toHaveAttribute('fill', 'none');
-  await expect(processingSpinner).toHaveAttribute('stroke', 'currentColor');
-  await expect(processingSpinner).toHaveAttribute('stroke-width', '2');
-  await expect(processingSpinner).toHaveAttribute('stroke-linecap', 'round');
-  await expect(processingSpinner).toHaveAttribute('stroke-linejoin', 'round');
-  await expect(processingSpinner).toHaveAttribute('class', 'lucide lucide-loader-circle size-4 animate-spin text-neutral-fg');
+  await expect(processingSpinner).toHaveAttribute('role', 'status');
+  await expect(processingSpinner).toHaveAttribute('aria-label', 'Loading');
+  await expect(processingSpinner.locator('path')).toHaveAttribute('fill', 'currentColor');
+  await expect(processingSpinner).toHaveAttribute('class', 'size-4 animate-spin text-neutral-fg');
 }
