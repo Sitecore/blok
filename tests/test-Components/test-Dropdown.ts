@@ -99,7 +99,11 @@ export async function testDropdownMenuWithAvatar(page: Page){
     // Verify that Dropdown trigger button has Avatar
     const avatar = triggerButton.locator('[data-slot="avatar"]');
     await expect(avatar).toBeVisible();
-    await expect(avatar.locator('[data-slot="avatar-fallback"]')).toHaveText('TK');
+    // AvatarFallback is only rendered when the image cannot load. The demo
+    // provides ThomasKelly.png, so validate the rendered image instead.
+    const avatarImage = avatar.locator('[data-slot="avatar-image"]');
+    await expect(avatarImage).toHaveAttribute('src', '/ThomasKelly.png');
+    await expect(avatarImage).toHaveAttribute('alt', 'thomas');
 
     // Verify that display dropdown menu avatar items
     await triggerButton.click();
