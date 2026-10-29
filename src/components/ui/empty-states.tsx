@@ -24,6 +24,8 @@ interface EmptyStatesProps
   imageSrc?: string;
   imageAlt?: string;
   actions?: React.ReactNode;
+  /** When false, the variant illustration is omitted. Defaults to true. */
+  showImage?: boolean;
 }
 
 const emptyStateConfig = {
@@ -58,6 +60,7 @@ function EmptyStates({
   imageSrc,
   imageAlt,
   actions,
+  showImage = true,
   ...props
 }: EmptyStatesProps) {
   const config = emptyStateConfig[variant || "no-search-results"];
@@ -82,7 +85,9 @@ function EmptyStates({
       {...props}
     >
       <div className="flex flex-col items-center text-center gap-4 max-w-sm">
-        <img src={finalImageSrc} alt={finalImageAlt} className="w-16 h-16" />
+        {showImage ? (
+          <img src={finalImageSrc} alt={finalImageAlt} className="w-16 h-16" />
+        ) : null}
         <div className="flex flex-col items-center gap-1.5">
           <h2 className="text-lg font-semibold">{finalTitle}</h2>
           {finalDescription && (

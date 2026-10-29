@@ -13,5 +13,6 @@ export const emptyStates = {
     "No Search Results": { component: "empty-states-no-results" },
     "Nothing Created": { component: "empty-states-nothing-created" },
     Error: { component: "empty-states-error" },
+    "Without image": { component: "empty-states-without-image" },
   },
 };
