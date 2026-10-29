@@ -18,6 +18,8 @@ const useSitecoreAuthParams = () => {
     searchParams.get("organizationId") || appContext.organizationId;
   const tenantId =
     searchParams.get("marketplaceAppTenantId") ||
+    (typeof appContext.marketplaceAppTenantId === "string" &&
+      appContext.marketplaceAppTenantId) ||
     appContext.MarketplaceAppTenantId;
 
   if (!organizationId || !tenantId) {
