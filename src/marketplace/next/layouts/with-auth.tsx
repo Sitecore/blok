@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import { Suspense } from "react";
 import "./globals.css";
 import { AuthProvider } from "@/components/providers/auth";
 import { MarketplaceProvider } from "@/components/providers/marketplace";
@@ -29,9 +30,11 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <AuthProvider>
-          <MarketplaceProvider>{children}</MarketplaceProvider>
-        </AuthProvider>
+        <MarketplaceProvider>
+          <Suspense fallback={<div>Loading authentication...</div>}>
+            <AuthProvider>{children}</AuthProvider>
+          </Suspense>
+        </MarketplaceProvider>
       </body>
     </html>
   );
