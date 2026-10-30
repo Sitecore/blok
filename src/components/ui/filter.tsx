@@ -480,6 +480,7 @@ const FilterSingleSelect = React.forwardRef<
     const value = isControlled ? controlledValue : internalValue;
     const open = internalOpen;
     const helperId = React.useId();
+    const popoverContentId = React.useId();
     const describedBy = helperText
       ? ariaDescribedBy
         ? `${helperId} ${ariaDescribedBy}`
@@ -603,7 +604,8 @@ const FilterSingleSelect = React.forwardRef<
         }}
         className={cn(
           "h-auto min-h-0 w-full justify-between rounded-sm px-2 py-1 text-left text-sm font-normal hover:bg-accent/50 focus-visible:bg-accent/50",
-          option.disabled && "opacity-50 cursor-not-allowed pointer-events-none",
+          option.disabled &&
+            "opacity-50 cursor-not-allowed pointer-events-none",
         )}
       >
         <span className="min-w-0 truncate">{renderOptionContent(option)}</span>
@@ -648,6 +650,7 @@ const FilterSingleSelect = React.forwardRef<
                   aria-label={ariaLabels?.popoverTrigger ?? placeholder}
                   aria-describedby={describedBy}
                   aria-expanded={open}
+                  aria-controls={open ? popoverContentId : undefined}
                   disabled={disabled}
                   className={cn(
                     FILTER_SELECT_TRIGGER_CLASSNAME,
@@ -692,6 +695,7 @@ const FilterSingleSelect = React.forwardRef<
                 </Button>
               </PopoverTrigger>
               <PopoverContent
+                id={popoverContentId}
                 align="start"
                 aria-label={ariaLabels?.listbox ?? groupLabel ?? placeholder}
                 className={cn(
@@ -987,6 +991,7 @@ const FilterMultiSelect = React.forwardRef<
       onSearchChange?.(query);
     };
     const helperId = React.useId();
+    const popoverContentId = React.useId();
     const describedBy = helperText
       ? ariaDescribedBy
         ? `${helperId} ${ariaDescribedBy}`
@@ -1159,6 +1164,7 @@ const FilterMultiSelect = React.forwardRef<
                 aria-label={ariaLabels?.popoverTrigger ?? placeholder}
                 aria-describedby={describedBy}
                 aria-expanded={open}
+                aria-controls={open ? popoverContentId : undefined}
                 style={
                   isButtonWidthConstrained
                     ? { maxWidth: maxButtonWidth }
@@ -1312,6 +1318,7 @@ const FilterMultiSelect = React.forwardRef<
               </Button>
             </PopoverTrigger>
             <PopoverContent
+              id={popoverContentId}
               aria-label={ariaLabels?.listbox ?? groupLabel ?? placeholder}
               className={cn(
                 FILTER_DROPDOWN_WIDTH,
