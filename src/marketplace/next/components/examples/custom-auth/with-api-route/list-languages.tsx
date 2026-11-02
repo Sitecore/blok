@@ -26,8 +26,12 @@ export const ListLanguagesFromApiRoute = () => {
   const fetchLanguages = async () => {
     setLoading(true);
     setError(null);
-    const accessToken = await getAccessTokenSilently();
     try {
+      const accessToken = await getAccessTokenSilently();
+      if (!accessToken) {
+        throw new Error("An access token is required to fetch languages");
+      }
+
       // /app/api/sites/languages/route.ts
       const response = await fetch(
         `/api/sites/languages?contextid=${appContext?.resourceAccess?.[0]?.context?.preview}`,
