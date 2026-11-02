@@ -65,13 +65,15 @@ export async function testSingleCalendar(page: Page){
     expect(dayValue).toBeTruthy();
     expect(dayValue).toContain(todayIso);
 
-    // Verify that navigate to previous month when previous button is clicked
-    const prevButton = page.locator('[aria-label="Go to the Previous Month"]').first();
+    // Keep navigation inside the single calendar. The range calendar is already
+    // showing the last month of the dropdown year, so its next button is disabled.
+    const prevButton = calendarSingle.locator('[aria-label="Go to the Previous Month"]');
     await prevButton.click();
     await expect(calendar).toBeVisible();
     
     // Verify that navigate to next month when next button is clicked
-    const nextButton = page.locator('[aria-label="Go to the Next Month"]').last();
+    const nextButton = calendarSingle.locator('[aria-label="Go to the Next Month"]');
+    await expect(nextButton).toBeEnabled();
     await nextButton.click();
     await expect(calendar).toBeVisible();
 
