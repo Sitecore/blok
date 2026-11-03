@@ -15,9 +15,11 @@ export default function FieldReadOnlyDemo() {
         <FieldLegend>Account Settings</FieldLegend>
         <FieldGroup>
           <Field>
-            <FieldLabel htmlFor="field-readonly">Input readOnly</FieldLabel>
+            <FieldLabel htmlFor="field-readonly-value">
+              Input readOnly
+            </FieldLabel>
             <Input
-              id="field-readonly"
+              id="field-readonly-value"
               value="You can't edit this value"
               readOnly
             />

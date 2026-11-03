@@ -137,12 +137,11 @@ function MarketplaceAppIcon({
   return (
     <Avatar
       data-slot="marketplace-app-icon"
-      aria-label={label}
       className={cn(marketplaceAppIconVariants({ size }), className)}
       {...props}
     >
       {resolvedSrc ? (
-        <AvatarImage src={resolvedSrc} alt="" className="object-cover" />
+        <AvatarImage src={resolvedSrc} alt={label} className="object-cover" />
       ) : null}
       <AvatarFallback
         className={marketplaceAppIconFallbackVariants({
@@ -150,6 +149,7 @@ function MarketplaceAppIcon({
           fallbackColor: resolvedFallbackColor,
         })}
       >
+        <span className="sr-only">{label}</span>
         <span aria-hidden="true">{letter}</span>
       </AvatarFallback>
     </Avatar>

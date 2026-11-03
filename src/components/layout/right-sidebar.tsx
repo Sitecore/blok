@@ -59,6 +59,39 @@ function tocNavButtonClassName(isActive: boolean) {
   );
 }
 
+function TocLink({
+  id,
+  title,
+  isActive,
+  onSelect,
+  menuId,
+}: {
+  id: string;
+  title: string;
+  isActive: boolean;
+  onSelect: (id: string, title: string) => void;
+  /** Id of the nested list this item reveals. */
+  menuId?: string;
+}) {
+  return (
+    <Button variant="ghost" asChild className={tocNavButtonClassName(isActive)}>
+      <a
+        href={`#${id}`}
+        aria-current={isActive ? "location" : undefined}
+        aria-expanded={menuId ? true : undefined}
+        aria-haspopup={menuId ? "true" : undefined}
+        aria-controls={menuId}
+        onClick={(event) => {
+          event.preventDefault();
+          onSelect(id, title);
+        }}
+      >
+        {title}
+      </a>
+    </Button>
+  );
+}
+
 export function RightSidebar({
   sections = [],
   links,
@@ -296,28 +329,28 @@ export function RightSidebar({
           <ul className="space-y-2">
             {sections.map((section) => (
               <li key={section.id}>
-                <Button
-                  type="button"
-                  variant="ghost"
-                  onClick={() => scrollToSection(section.id, section.title)}
-                  className={tocNavButtonClassName(activeId === section.id)}
-                >
-                  {section.title}
-                </Button>
+                <TocLink
+                  id={section.id}
+                  title={section.title}
+                  isActive={activeId === section.id}
+                  onSelect={scrollToSection}
+                  menuId={
+                    section.children ? `toc-${section.id}-menu` : undefined
+                  }
+                />
                 {section.children && (
-                  <ul className="mt-2 space-y-2 ps-4">
+                  <ul
+                    id={`toc-${section.id}-menu`}
+                    className="mt-2 space-y-2 ps-4"
+                  >
                     {section.children.map((child) => (
                       <li key={child.id}>
-                        <Button
-                          type="button"
-                          variant="ghost"
-                          onClick={() => scrollToSection(child.id, child.title)}
-                          className={tocNavButtonClassName(
-                            activeId === child.id,
-                          )}
-                        >
-                          {child.title}
-                        </Button>
+                        <TocLink
+                          id={child.id}
+                          title={child.title}
+                          isActive={activeId === child.id}
+                          onSelect={scrollToSection}
+                        />
                       </li>
                     ))}
                   </ul>
