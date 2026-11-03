@@ -15,9 +15,11 @@ export default function FieldDisabledDemo() {
         <FieldLegend>Account Settings</FieldLegend>
         <FieldGroup>
           <Field>
-            <FieldLabel htmlFor="field-disabled">Input disabled</FieldLabel>
+            <FieldLabel htmlFor="field-disabled-value">
+              Input disabled
+            </FieldLabel>
             <Input
-              id="field-disabled"
+              id="field-disabled-value"
               value="You can't edit this value"
               disabled
             />

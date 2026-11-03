@@ -20,7 +20,7 @@ export default function FieldInputWithAddonDemo() {
         <FieldLegend>Phone Number</FieldLegend>
         <FieldGroup>
           <Field>
-            <FieldLabel htmlFor="field-input-addon">
+            <FieldLabel htmlFor="field-input-addon-value">
               Input with addon
             </FieldLabel>
             <InputGroup>
@@ -28,7 +28,7 @@ export default function FieldInputWithAddonDemo() {
                 <InputGroupText>+234</InputGroupText>
               </InputGroupAddon>
               <InputGroupInput
-                id="field-input-addon"
+                id="field-input-addon-value"
                 name="tel"
                 autoComplete="tel"
                 placeholder="Enter phone number"

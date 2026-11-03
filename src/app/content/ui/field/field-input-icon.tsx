@@ -21,10 +21,12 @@ export default function FieldInputWithIconDemo() {
         <FieldLegend>Contact</FieldLegend>
         <FieldGroup>
           <Field>
-            <FieldLabel htmlFor="field-input-icon">Input with icon</FieldLabel>
+            <FieldLabel htmlFor="field-input-icon-value">
+              Input with icon
+            </FieldLabel>
             <InputGroup>
               <InputGroupInput
-                id="field-input-icon"
+                id="field-input-icon-value"
                 type="tel"
                 name="tel"
                 autoComplete="tel"

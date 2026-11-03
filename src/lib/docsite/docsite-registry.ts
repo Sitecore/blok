@@ -91,6 +91,7 @@ import EditableErrorDemo from "@/app/content/ui/editable/editable-error";
 import EmptyStatesNoSearchResultsDemo from "@/app/content/ui/empty-states/empty-states-no-search-results";
 import EmptyStatesNothingCreatedDemo from "@/app/content/ui/empty-states/empty-states-nothing-created";
 import EmptyStatesErrorDemo from "@/app/content/ui/empty-states/empty-states-error";
+import EmptyStatesWithoutImageDemo from "@/app/content/ui/empty-states/empty-states-without-image";
 import ErrorStatesGenericDemo from "@/app/content/ui/error-states/error-states-generic";
 import ErrorStates400Demo from "@/app/content/ui/error-states/error-states-400";
 import ErrorStates401Demo from "@/app/content/ui/error-states/error-states-401";
@@ -703,6 +704,11 @@ export const docsiteRegistry: Record<string, DocsiteRegistryEntry> = {
     name: "empty-states-error",
     path: "src/app/content/ui/empty-states/empty-states-error.tsx",
     component: EmptyStatesErrorDemo,
+  },
+  "empty-states-without-image": {
+    name: "empty-states-without-image",
+    path: "src/app/content/ui/empty-states/empty-states-without-image.tsx",
+    component: EmptyStatesWithoutImageDemo,
   },
   "error-states-generic": {
     name: "error-states-generic",

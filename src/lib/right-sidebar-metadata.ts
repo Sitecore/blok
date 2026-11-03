@@ -444,6 +444,7 @@ export const rightSidebarMetadata: Record<string, RightSidebarMetadata> = {
           { id: "empty-states-no-results", title: "No Search Results" },
           { id: "empty-states-nothing-created", title: "Nothing Created" },
           { id: "empty-states-error", title: "Error" },
+          { id: "empty-states-without-image", title: "Without image" },
         ],
       },
     ],
