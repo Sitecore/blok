@@ -28,11 +28,16 @@ export const ListLanguagesFromServerAction = () => {
     setLoading(true);
     setError(null);
     try {
+      const accessToken = await getAccessTokenSilently();
+      if (!accessToken) {
+        throw new Error("An access token is required to fetch languages");
+      }
+
       // server action
       const languages = await fetchLanguagesAction({
         sitecoreContextId:
           appContext?.resourceAccess?.[0]?.context?.preview || "",
-        accessToken: await getAccessTokenSilently(),
+        accessToken,
       });
 
       setLanguages(languages);
