@@ -8,6 +8,7 @@
       "type": "registry:block",
       "title": "Quickstart for Next.js",
       "description": "A quickstart for next.js Sitecore marketplace apps with marketplace sdk",
+      "docs": "To install Blok components by name (npx shadcn@latest add @blok/<name>) and let the shadcn MCP server find them, add the Blok registry to your components.json: \"registries\": { \"@blok\": \"https://blok.sitecore.com/r/{name}.json\" }. See https://blok.sitecore.com/mcp",
       "dependencies": ["@sitecore-marketplace-sdk/client"],
       "registryDependencies": [
         "https://blok.sitecore.com/r/badge.json",
