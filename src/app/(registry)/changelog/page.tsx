@@ -1,4 +1,8 @@
+import { mdiLinkVariant } from "@mdi/js";
+import Link from "next/link";
+
 import { getChangelogsNewestFirst } from "@/app/(registry)/changelog/changelogs";
+import { Icon } from "@/components/ui/icon";
 
 export default function ChangelogPage() {
   return (
@@ -16,8 +20,21 @@ export default function ChangelogPage() {
         <div className="py-8 space-y-14">
           {getChangelogsNewestFirst().map((entry) => (
             <section key={entry.id} className="space-y-6">
-              <h2 className="scroll-mt-20 text-3xl font-semibold" id={entry.id}>
+              <h2
+                className="scroll-mt-20 flex items-center gap-2 text-3xl font-semibold"
+                id={entry.id}
+              >
                 {entry.title}
+                {entry.href ? (
+                  <Link
+                    href={entry.href}
+                    aria-label={`Open ${entry.title}`}
+                    title={entry.href}
+                    className="inline-flex shrink-0 text-primary-fg hover:text-primary-active"
+                  >
+                    <Icon path={mdiLinkVariant} size="md" aria-hidden />
+                  </Link>
+                ) : null}
               </h2>
               <p className="whitespace-pre-line">
                 {formatDescription(entry.log.description)}

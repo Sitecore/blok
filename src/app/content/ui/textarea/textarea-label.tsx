@@ -8,7 +8,6 @@ export default function TextareaWithLabelDemo() {
       <Textarea
         id="textarea-demo-message"
         placeholder="Type your message here."
-        aria-label="Message"
         rows={6}
       />
     </div>

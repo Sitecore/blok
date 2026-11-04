@@ -134,7 +134,7 @@ export function VerticalCard({
           )}
         </div>
       </div>
-      <CardContent className="flex flex-col gap-0 px-4 pt-2 pb-3">
+      <CardContent className="flex flex-col gap-2 px-4 pt-2 pb-3">
         <CardHeader className="gap-1">
           <CardTitle className="text-md font-semibold text-foreground leading-snug line-clamp-2">
             Lorem ipsum dolor sit amet consectetur. Morbi...
@@ -165,11 +165,11 @@ export function VerticalCard({
               />
             </Button>
           </CardAction>
+          <CardDescription className="col-start-1 row-start-2 text-xs text-muted-foreground line-clamp-2">
+            Explore luxurious escapes worldwide with our elite collection of
+            hotels &amp; resorts and...
+          </CardDescription>
         </CardHeader>
-        <CardDescription className="-mt-3 text-xs text-muted-foreground line-clamp-2">
-          Explore luxurious escapes worldwide with our elite collection of
-          hotels &amp; resorts and...
-        </CardDescription>
         <div className="flex flex-wrap gap-1">
           {TAGS.map((tag, i) => (
             <Badge

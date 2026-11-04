@@ -8,7 +8,6 @@ export default function TextareaWithLabelAndDescriptionDemo() {
       <Textarea
         id="textarea-demo-message-2"
         placeholder="Type your message here."
-        aria-label="Message"
         rows={6}
       />
       <div className="text-muted-foreground text-sm">

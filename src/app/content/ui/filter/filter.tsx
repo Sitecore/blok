@@ -60,10 +60,6 @@ export default function FilterDemo() {
         options: [],
         placeholder: "Single select filter",
         groups: BLOCKCN_FILTER_GROUPS,
-        ariaLabels: {
-          listbox: "List of options",
-          clearSelection: "Clear selection",
-        },
       },
     },
     {
@@ -73,10 +69,6 @@ export default function FilterDemo() {
         options: [],
         placeholder: "Multi-select filter",
         groups: BLOCKCN_FILTER_GROUPS,
-        ariaLabels: {
-          listbox: "List of options",
-          clearSelection: "Clear all selections",
-        },
       },
     },
   ];

@@ -783,7 +783,7 @@
       "type": "registry:ui",
       "title": "Combobox",
       "description": "Select a value from a list of options.",
-      "dependencies": ["@base-ui/react", "lucide-react"],
+      "dependencies": ["@base-ui/react", "@mdi/js"],
       "registryDependencies": [
         "https://blok.sitecore.com/r/theme.json",
         "https://blok.sitecore.com/r/button.json",
@@ -916,7 +916,6 @@
         "@dnd-kit/core",
         "@dnd-kit/sortable",
         "@dnd-kit/utilities",
-        "lucide-react",
         "@mdi/js"
       ],
       "files": [
@@ -1031,7 +1030,8 @@
         "https://blok.sitecore.com/r/popover.json",
         "https://blok.sitecore.com/r/badge.json",
         "https://blok.sitecore.com/r/checkbox.json",
-        "https://blok.sitecore.com/r/search-input.json"
+        "https://blok.sitecore.com/r/search-input.json",
+        "https://blok.sitecore.com/r/spinner.json"
       ],
       "files": [
         {
@@ -1237,7 +1237,7 @@
         "https://blok.sitecore.com/r/dropdown-menu.json",
         "https://blok.sitecore.com/r/dialog.json"
       ],
-      "dependencies": ["lucide-react"],
+      "dependencies": ["@mdi/js"],
       "files": [
         {
           "path": "src/components/bloks/site-card.tsx",
@@ -1257,11 +1257,55 @@
         "https://blok.sitecore.com/r/card.json",
         "https://blok.sitecore.com/r/filter.json"
       ],
-      "dependencies": ["lucide-react"],
       "files": [
         {
           "path": "src/components/bloks/dashboard-widget.tsx",
           "target": "src/components/bloks/dashboard-widget.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "marketplace-app-icon",
+      "type": "registry:block",
+      "title": "Marketplace app icon",
+      "description": "Marketplace application icon with image support and a consistent letter fallback when the image is missing or fails to load.",
+      "registryDependencies": [
+        "https://blok.sitecore.com/r/theme.json",
+        "https://blok.sitecore.com/r/avatar.json"
+      ],
+      "dependencies": ["class-variance-authority"],
+      "files": [
+        {
+          "path": "src/components/bloks/marketplace-app-icon.tsx",
+          "target": "src/components/bloks/marketplace-app-icon.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "page-header",
+      "type": "registry:block",
+      "title": "Page header",
+      "description": "In-page entity header with optional media, back/breadcrumb, title, status, tags, actions, people, tabs, and timeline. Composes existing Blok primitives.",
+      "registryDependencies": [
+        "https://blok.sitecore.com/r/theme.json",
+        "https://blok.sitecore.com/r/breadcrumb.json",
+        "https://blok.sitecore.com/r/button.json",
+        "https://blok.sitecore.com/r/tabs.json",
+        "https://blok.sitecore.com/r/icon.json",
+        "https://blok.sitecore.com/r/tooltip.json",
+        "https://blok.sitecore.com/r/dropdown-menu.json",
+        "https://blok.sitecore.com/r/badge.json",
+        "https://blok.sitecore.com/r/avatar.json",
+        "https://blok.sitecore.com/r/progress.json",
+        "https://blok.sitecore.com/r/separator.json"
+      ],
+      "dependencies": ["@mdi/js"],
+      "files": [
+        {
+          "path": "src/components/bloks/page-header.tsx",
+          "target": "src/components/bloks/page-header.tsx",
           "type": "registry:ui"
         }
       ]
@@ -1275,7 +1319,6 @@
         "https://blok.sitecore.com/r/theme.json",
         "https://blok.sitecore.com/r/site-card.json"
       ],
-      "dependencies": ["lucide-react"],
       "files": [
         {
           "path": "src/components/bloks/all-sites-section.tsx",
@@ -1295,7 +1338,6 @@
         "https://blok.sitecore.com/r/all-site.json",
         "https://blok.sitecore.com/r/site-card.json"
       ],
-      "dependencies": ["lucide-react"],
       "files": [
         {
           "path": "src/components/bloks/pinned-sites-section.tsx",
@@ -1560,7 +1602,7 @@
       "type": "registry:ui",
       "title": "Spinner",
       "description": "An indicator that can be used to show a loading state.",
-      "dependencies": ["lucide-react", "class-variance-authority"],
+      "dependencies": ["@mdi/js", "class-variance-authority"],
       "registryDependencies": ["https://blok.sitecore.com/r/theme.json"],
       "files": [
         {

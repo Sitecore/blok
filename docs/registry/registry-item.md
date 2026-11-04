@@ -132,7 +132,6 @@ Use `@version` to specify the version of your registry item.
   "dependencies": [
     "radix-ui",
     "zod",
-    "lucide-react",
     "name@1.0.2"
   ]
 }

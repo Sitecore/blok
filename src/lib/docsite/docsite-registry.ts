@@ -91,6 +91,7 @@ import EditableErrorDemo from "@/app/content/ui/editable/editable-error";
 import EmptyStatesNoSearchResultsDemo from "@/app/content/ui/empty-states/empty-states-no-search-results";
 import EmptyStatesNothingCreatedDemo from "@/app/content/ui/empty-states/empty-states-nothing-created";
 import EmptyStatesErrorDemo from "@/app/content/ui/empty-states/empty-states-error";
+import EmptyStatesWithoutImageDemo from "@/app/content/ui/empty-states/empty-states-without-image";
 import ErrorStatesGenericDemo from "@/app/content/ui/error-states/error-states-generic";
 import ErrorStates400Demo from "@/app/content/ui/error-states/error-states-400";
 import ErrorStates401Demo from "@/app/content/ui/error-states/error-states-401";
@@ -119,6 +120,7 @@ import FilterSingleSelectDemo from "@/app/content/ui/filter/filter-single-select
 import FilterMultiSelectDemo from "@/app/content/ui/filter/filter-multi-select";
 import FilterWithSearchDemo from "@/app/content/ui/filter/filter-with-search";
 import FilterWithAvatarDemo from "@/app/content/ui/filter/filter-with-avatar";
+import FilterInfiniteScrollDemo from "@/app/content/ui/filter/filter-infinite-scroll";
 import IconDemo from "@/app/content/ui/icon/icon-component";
 import IconVariantsDemo from "@/app/content/ui/icon/icon-variants";
 import IconSizingDemo from "@/app/content/ui/icon/icon-sizing";
@@ -227,6 +229,13 @@ import CollaborationDemo from "@/app/content/bloks/collaboration/collaboration";
 import DashboardWidgetDemo from "@/app/content/bloks/dashboard-widget/dashboard-widget";
 import DashboardWidgetWhiteBgLargeDemo from "@/app/content/bloks/dashboard-widget/dashboard-widget-white-bg-large";
 import DashboardWidgetGrayBgLargeDemo from "@/app/content/bloks/dashboard-widget/dashboard-widget-gray-bg-large";
+import MarketplaceAppIconDemo from "@/app/content/bloks/marketplace-app-icon/marketplace-app-icon";
+import MarketplaceAppIconFallbackDemo from "@/app/content/bloks/marketplace-app-icon/marketplace-app-icon-fallback";
+import MarketplaceAppIconSizesDemo from "@/app/content/bloks/marketplace-app-icon/marketplace-app-icon-sizes";
+import PageHeaderDemo from "@/app/content/bloks/page-header/page-header";
+import PageHeaderSiteSummaryDemo from "@/app/content/bloks/page-header/page-header-site-summary";
+import PageHeaderSiteSummaryWhiteDemo from "@/app/content/bloks/page-header/page-header-site-summary-white";
+import PageHeaderTopNavMiniDemo from "@/app/content/bloks/page-header/page-header-top-nav-mini";
 import PinnedSitesSectionDemo from "@/app/content/bloks/pinned-site-section/pinned-site-section";
 // TEMP: prompt-input disabled
 // import PromptInputDemo from "@/app/content/bloks/prompt-input/prompt-input";
@@ -696,6 +705,11 @@ export const docsiteRegistry: Record<string, DocsiteRegistryEntry> = {
     path: "src/app/content/ui/empty-states/empty-states-error.tsx",
     component: EmptyStatesErrorDemo,
   },
+  "empty-states-without-image": {
+    name: "empty-states-without-image",
+    path: "src/app/content/ui/empty-states/empty-states-without-image.tsx",
+    component: EmptyStatesWithoutImageDemo,
+  },
   "error-states-generic": {
     name: "error-states-generic",
     path: "src/app/content/ui/error-states/error-states-generic.tsx",
@@ -835,6 +849,11 @@ export const docsiteRegistry: Record<string, DocsiteRegistryEntry> = {
     name: "filter-with-avatar",
     path: "src/app/content/ui/filter/filter-with-avatar.tsx",
     component: FilterWithAvatarDemo,
+  },
+  "filter-infinite-scroll": {
+    name: "filter-infinite-scroll",
+    path: "src/app/content/ui/filter/filter-infinite-scroll.tsx",
+    component: FilterInfiniteScrollDemo,
   },
   icon: {
     name: "icon",
@@ -1367,6 +1386,41 @@ export const docsiteRegistry: Record<string, DocsiteRegistryEntry> = {
     name: "dashboard-widget-gray-bg-large",
     path: "src/app/content/bloks/dashboard-widget/dashboard-widget-gray-bg-large.tsx",
     component: DashboardWidgetGrayBgLargeDemo,
+  },
+  "marketplace-app-icon": {
+    name: "marketplace-app-icon",
+    path: "src/app/content/bloks/marketplace-app-icon/marketplace-app-icon.tsx",
+    component: MarketplaceAppIconDemo,
+  },
+  "marketplace-app-icon-sizes": {
+    name: "marketplace-app-icon-sizes",
+    path: "src/app/content/bloks/marketplace-app-icon/marketplace-app-icon-sizes.tsx",
+    component: MarketplaceAppIconSizesDemo,
+  },
+  "marketplace-app-icon-fallback": {
+    name: "marketplace-app-icon-fallback",
+    path: "src/app/content/bloks/marketplace-app-icon/marketplace-app-icon-fallback.tsx",
+    component: MarketplaceAppIconFallbackDemo,
+  },
+  "page-header": {
+    name: "page-header",
+    path: "src/app/content/bloks/page-header/page-header.tsx",
+    component: PageHeaderDemo,
+  },
+  "page-header-top-nav-mini": {
+    name: "page-header-top-nav-mini",
+    path: "src/app/content/bloks/page-header/page-header-top-nav-mini.tsx",
+    component: PageHeaderTopNavMiniDemo,
+  },
+  "page-header-site-summary": {
+    name: "page-header-site-summary",
+    path: "src/app/content/bloks/page-header/page-header-site-summary.tsx",
+    component: PageHeaderSiteSummaryDemo,
+  },
+  "page-header-site-summary-white": {
+    name: "page-header-site-summary-white",
+    path: "src/app/content/bloks/page-header/page-header-site-summary-white.tsx",
+    component: PageHeaderSiteSummaryWhiteDemo,
   },
   "pinned-site": {
     name: "pinned-site",

@@ -1,7 +1,6 @@
 "use client";
 
 import { Combobox as ComboboxPrimitive } from "@base-ui/react/combobox";
-import { CheckIcon, ChevronDownIcon, XIcon } from "lucide-react";
 import * as React from "react";
 
 import { Button } from "@/components/ui/button";
@@ -11,7 +10,9 @@ import {
   InputGroupButton,
   InputGroupInput,
 } from "@/components/ui/input-group";
+import { Icon } from "@/lib/icon";
 import { cn } from "@/lib/utils";
+import { mdiCheck, mdiChevronDown, mdiClose } from "@mdi/js";
 
 const Combobox = ComboboxPrimitive.Root;
 
@@ -31,7 +32,8 @@ function ComboboxTrigger({
       {...props}
     >
       {children}
-      <ChevronDownIcon
+      <Icon
+        path={mdiChevronDown}
         aria-hidden
         data-slot="combobox-trigger-icon"
         className="text-muted-foreground pointer-events-none size-4"
@@ -53,7 +55,7 @@ function ComboboxClear({
       aria-label={ariaLabel}
       {...props}
     >
-      <XIcon aria-hidden className="pointer-events-none" />
+      <Icon path={mdiClose} aria-hidden className="pointer-events-none" />
     </ComboboxPrimitive.Clear>
   );
 }
@@ -224,7 +226,10 @@ function ComboboxItem({
           <span className="pointer-events-none absolute right-2 flex size-4 items-center justify-center" />
         }
       >
-        <CheckIcon className="pointer-events-none size-4 pointer-coarse:size-5" />
+        <Icon
+          path={mdiCheck}
+          className="pointer-events-none size-4 pointer-coarse:size-5"
+        />
       </ComboboxPrimitive.ItemIndicator>
     </ComboboxPrimitive.Item>
   );
@@ -341,7 +346,7 @@ function ComboboxChip({
           data-slot="combobox-chip-remove"
           aria-label={removeButtonAriaLabel}
         >
-          <XIcon aria-hidden className="pointer-events-none" />
+          <Icon path={mdiClose} aria-hidden className="pointer-events-none" />
         </ComboboxPrimitive.ChipRemove>
       )}
     </ComboboxPrimitive.Chip>

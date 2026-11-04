@@ -113,20 +113,17 @@ export default function DemoTab({
       className="min-w-0 gap-0 overflow-hidden"
       onValueChange={handleTabChange}
     >
-      <TabsList className="w-full rounded-none justify-start">
-        <TabsTrigger value="preview" className="border-b">
-          Preview
-        </TabsTrigger>
-        <TabsTrigger value="code" className="border-b">
-          Code
-        </TabsTrigger>
-        <TabsTrigger
-          value=""
-          className="w-full pointer-events-none border-b"
-          aria-hidden="true"
-          tabIndex={-1}
-        />
-      </TabsList>
+      <div className="flex w-full items-end">
+        <TabsList className="rounded-none justify-start">
+          <TabsTrigger value="preview" className="border-b">
+            Preview
+          </TabsTrigger>
+          <TabsTrigger value="code" className="border-b">
+            Code
+          </TabsTrigger>
+        </TabsList>
+        <div aria-hidden="true" className="h-9 min-w-0 flex-1 border-b" />
+      </div>
       <TabsContent
         value="preview"
         className={cn(

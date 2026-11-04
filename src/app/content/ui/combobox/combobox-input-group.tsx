@@ -12,7 +12,8 @@ import {
   ComboboxList,
 } from "@/components/ui/combobox";
 import { InputGroupAddon } from "@/components/ui/input-group";
-import { GlobeIcon } from "lucide-react";
+import { Icon } from "@/lib/icon";
+import { mdiWeb } from "@mdi/js";
 
 const timezones = [
   {
@@ -59,7 +60,7 @@ export default function ComboxboxInputGroupDemo() {
         aria-label="Select a timezone"
       >
         <InputGroupAddon>
-          <GlobeIcon />
+          <Icon path={mdiWeb} />
         </InputGroupAddon>
       </ComboboxInput>
       <ComboboxContent alignOffset={-28} className="w-60">

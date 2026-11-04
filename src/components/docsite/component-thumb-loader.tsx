@@ -37,7 +37,9 @@ import InputThumb from "@/components/component-thumbs/input";
 import InputGroupThumb from "@/components/component-thumbs/input-group";
 import KbdThumb from "@/components/component-thumbs/kbd";
 import LabelThumb from "@/components/component-thumbs/label";
+import MarketplaceAppIconThumb from "@/components/component-thumbs/marketplace-app-icon";
 import NavigationMenuThumb from "@/components/component-thumbs/navigation-menu";
+import PageHeaderThumb from "@/components/component-thumbs/page-header";
 import PaginationThumb from "@/components/component-thumbs/pagination";
 import PinInputThumb from "@/components/component-thumbs/pin-input";
 import PinnedSiteThumb from "@/components/component-thumbs/pinned-site";
@@ -97,6 +99,8 @@ const componentThumbnails: Record<
   "context-menu": ContextMenuThumb,
   "dashboard-widget": DashboardWidgetThumb,
   "date-picker": DatePickerThumb,
+  "marketplace-app-icon": MarketplaceAppIconThumb,
+  "page-header": PageHeaderThumb,
   draggable: DraggableThumb,
   drawer: DrawerThumb,
   "dropdown-menu": DropdownMenuThumb,

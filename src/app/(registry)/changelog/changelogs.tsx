@@ -1,6 +1,8 @@
 import type { ReactNode } from "react";
 import May2026EditableErrorState from "./changelog-content/enhancement-editable-errorstate";
 import May2026SidebarRHS from "./changelog-content/enhancement-sidebar-rhs";
+import October2026MarketplaceAppIcon from "./changelog-content/feature-marketplace-app-icon";
+import October2026PageHeader from "./changelog-content/feature-page-header";
 import May2026VirtualizedSelect from "./changelog-content/feature-virtualized-select";
 import April2026SonnerDocumentation from "./changelog-content/update-sonner-documentation";
 import May2026TooltipDocumentation from "./changelog-content/update-tooltip-documentation";
@@ -14,10 +16,26 @@ type Changelog = {
   title: string;
   id: string;
   releaseDate: string;
+  /** Docs page for the Blok this entry announces. */
+  href?: string;
   log: ChangelogItem;
 };
 
 export const changelogs: Changelog[] = [
+  {
+    title: "October 2026 - Page Header Added",
+    id: "october-2026-page-header",
+    releaseDate: "2026-10-01",
+    href: "/bloks/page-header",
+    log: October2026PageHeader,
+  },
+  {
+    title: "October 2026 - Marketplace App Icon Added",
+    id: "october-2026-marketplace-app-icon",
+    releaseDate: "2026-10-01",
+    href: "/bloks/marketplace-app-icon",
+    log: October2026MarketplaceAppIcon,
+  },
   {
     title: "May 2026 - Tooltip Installation Guide Updated",
     id: "may-2026-tooltip-installation-guide",

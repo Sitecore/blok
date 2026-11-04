@@ -47,10 +47,6 @@ export default function FilterMultiSelectDemo() {
         options={[]}
         placeholder="Multi-select filter"
         groups={BLOCKCN_FILTER_GROUPS}
-        ariaLabels={{
-          listbox: "List of options",
-          clearSelection: "Clear all selections",
-        }}
       />
       <FilterMultiSelect
         value={badgeValues}
@@ -59,10 +55,6 @@ export default function FilterMultiSelectDemo() {
         placeholder="Multi-select filter"
         groups={BLOCKCN_FILTER_GROUPS}
         displayMode="badge"
-        ariaLabels={{
-          listbox: "List of options",
-          clearSelection: "Clear all selections",
-        }}
       />
     </div>
   );

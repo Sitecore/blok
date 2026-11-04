@@ -17,6 +17,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/primitives",
     "/bloks",
     "/graphics",
+    "/graphics/content-icons",
     "/graphics/icons",
     "/graphics/illustrations",
     "/graphics/logos",

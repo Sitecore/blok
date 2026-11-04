@@ -16,7 +16,7 @@ import {
 
 export default function NavigationMenuSecondaryDemo() {
   return (
-    <div className="pb-50">
+    <div className="pb-50 px-35">
       <NavigationMenu viewport={false}>
         <NavigationMenuList>
           <NavigationMenuItem>
@@ -31,7 +31,7 @@ export default function NavigationMenuSecondaryDemo() {
           <NavigationMenuItem>
             <NavigationMenuTrigger>List</NavigationMenuTrigger>
             <NavigationMenuContent>
-              <ul className="grid w-[300px] gap-4">
+              <ul className="grid w-[300px] gap-1">
                 <li>
                   <NavigationMenuLink asChild>
                     <Link href="#">
@@ -41,6 +41,8 @@ export default function NavigationMenuSecondaryDemo() {
                       </div>
                     </Link>
                   </NavigationMenuLink>
+                </li>
+                <li>
                   <NavigationMenuLink asChild>
                     <Link href="#">
                       <div className="font-medium">Documentation</div>
@@ -49,6 +51,8 @@ export default function NavigationMenuSecondaryDemo() {
                       </div>
                     </Link>
                   </NavigationMenuLink>
+                </li>
+                <li>
                   <NavigationMenuLink asChild>
                     <Link href="#">
                       <div className="font-medium">Blog</div>
@@ -65,14 +69,18 @@ export default function NavigationMenuSecondaryDemo() {
           <NavigationMenuItem>
             <NavigationMenuTrigger>Simple List</NavigationMenuTrigger>
             <NavigationMenuContent>
-              <ul className="grid w-[200px] gap-4">
+              <ul className="grid w-[200px] gap-1">
                 <li>
                   <NavigationMenuLink asChild>
                     <Link href="#">Components</Link>
                   </NavigationMenuLink>
+                </li>
+                <li>
                   <NavigationMenuLink asChild>
                     <Link href="#">Documentation</Link>
                   </NavigationMenuLink>
+                </li>
+                <li>
                   <NavigationMenuLink asChild>
                     <Link href="#">Blocks</Link>
                   </NavigationMenuLink>
@@ -84,7 +92,7 @@ export default function NavigationMenuSecondaryDemo() {
           <NavigationMenuItem>
             <NavigationMenuTrigger>With Icon</NavigationMenuTrigger>
             <NavigationMenuContent>
-              <ul className="grid w-[200px] gap-4">
+              <ul className="grid w-[200px] gap-1">
                 <li>
                   <NavigationMenuLink asChild>
                     <Link href="#" className="flex-row items-center gap-2">
@@ -92,12 +100,16 @@ export default function NavigationMenuSecondaryDemo() {
                       Backlog
                     </Link>
                   </NavigationMenuLink>
+                </li>
+                <li>
                   <NavigationMenuLink asChild>
                     <Link href="#" className="flex-row items-center gap-2">
                       <Icon path={mdiCircleOutline} />
                       To Do
                     </Link>
                   </NavigationMenuLink>
+                </li>
+                <li>
                   <NavigationMenuLink asChild>
                     <Link href="#" className="flex-row items-center gap-2">
                       <Icon path={mdiCheckCircleOutline} />

@@ -8,7 +8,6 @@ export default function TextareaWithDefaultValueDemo() {
       <Textarea
         id="textarea-with-value"
         defaultValue="This textarea comes with some pre-filled content. You can edit this text or add more content as needed."
-        aria-label="Pre-filled Textarea"
         rows={4}
       />
     </div>

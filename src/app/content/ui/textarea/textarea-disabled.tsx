@@ -8,7 +8,6 @@ export default function DisabledTextareaDemo() {
       <Textarea
         id="textarea-demo-disabled"
         placeholder="Type your message here."
-        aria-label="Disabled Textarea"
         disabled
       />
     </div>

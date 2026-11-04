@@ -1,14 +1,18 @@
+"use client";
+
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
+import { useId } from "react";
 
 export default function SmallTextareaDemo() {
+  const fieldId = useId();
+
   return (
     <div className="grid gap-3 m-2 w-75">
-      <Label htmlFor="small-textarea">Small (3 rows)</Label>
+      <Label htmlFor={fieldId}>Small (3 rows)</Label>
       <Textarea
-        id="small-textarea"
+        id={fieldId}
         placeholder="Small textarea"
-        aria-label="Small textarea"
         rows={3}
         className="min-h-[60px]"
       />

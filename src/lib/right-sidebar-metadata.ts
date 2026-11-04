@@ -444,6 +444,7 @@ export const rightSidebarMetadata: Record<string, RightSidebarMetadata> = {
           { id: "empty-states-no-results", title: "No Search Results" },
           { id: "empty-states-nothing-created", title: "Nothing Created" },
           { id: "empty-states-error", title: "Error" },
+          { id: "empty-states-without-image", title: "Without image" },
         ],
       },
     ],
@@ -514,6 +515,10 @@ export const rightSidebarMetadata: Record<string, RightSidebarMetadata> = {
           { id: "filter-multi-select", title: "Filter Multi Select" },
           { id: "filter-with-search", title: "Filter with Search" },
           { id: "filter-with-avatar", title: "Filter with image/avatar" },
+          {
+            id: "filter-infinite-scroll",
+            title: "Filter with infinite scroll",
+          },
         ],
       },
     ],
@@ -1127,6 +1132,48 @@ export const rightSidebarMetadata: Record<string, RightSidebarMetadata> = {
           {
             id: "dashboard-widget-gray-bg-large",
             title: "Gray widget",
+          },
+        ],
+      },
+    ],
+  },
+  "marketplace-app-icon": {
+    links: {},
+    sections: [
+      { id: "preview", title: "Preview" },
+      { id: "installation", title: "Installation" },
+      { id: "usage", title: "Usage" },
+      {
+        id: "examples",
+        title: "Examples",
+        children: [
+          { id: "marketplace-app-icon-sizes", title: "Sizes" },
+          { id: "marketplace-app-icon-fallback", title: "Fallback" },
+        ],
+      },
+    ],
+  },
+  "page-header": {
+    links: {},
+    sections: [
+      { id: "preview", title: "Preview" },
+      { id: "installation", title: "Installation" },
+      { id: "usage", title: "Usage" },
+      {
+        id: "examples",
+        title: "Examples",
+        children: [
+          {
+            id: "page-header-site-summary",
+            title: "Site summary",
+          },
+          {
+            id: "page-header-top-nav-mini",
+            title: "Top nav mini",
+          },
+          {
+            id: "page-header-site-summary-white",
+            title: "Site summary white",
           },
         ],
       },

@@ -419,23 +419,40 @@ jobs:
       - name: Get author information
         id: author-info
         if: always()
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+          PR_AUTHOR_USERNAME: ${{ github.event.pull_request.user.login }}
+          PR_AUTHOR_NAME: ${{ github.event.pull_request.user.name || github.event.pull_request.user.login }}
+          PUSH_AUTHOR_USERNAME: ${{ github.actor }}
+          PUSH_AUTHOR_NAME: ${{ github.event.head_commit.author.name || github.actor }}
         run: |
-          if [ "${{ github.event_name }}" == "pull_request" ]; then
+          if [ "$EVENT_NAME" == "pull_request" ]; then
             # For Pull Requests
-            AUTHOR_USERNAME="${{ github.event.pull_request.user.login }}"
-            AUTHOR_NAME="${{ github.event.pull_request.user.name || github.event.pull_request.user.login }}"
+            AUTHOR_USERNAME="$PR_AUTHOR_USERNAME"
+            AUTHOR_NAME="$PR_AUTHOR_NAME"
           else
             # For direct commits/pushes
-            AUTHOR_USERNAME="${{ github.actor }}"
-            AUTHOR_NAME="${{ github.event.head_commit.author.name || github.actor }}"
+            AUTHOR_USERNAME="$PUSH_AUTHOR_USERNAME"
+            AUTHOR_NAME="$PUSH_AUTHOR_NAME"
           fi
-          
-          echo "username=$AUTHOR_USERNAME" >> $GITHUB_OUTPUT
-          echo "name=$AUTHOR_NAME" >> $GITHUB_OUTPUT
+
+          {
+            echo "username<<EOF"
+            printf '%s\n' "$AUTHOR_USERNAME"
+            echo "EOF"
+            echo "name<<EOF"
+            printf '%s\n' "$AUTHOR_NAME"
+            echo "EOF"
+          } >> "$GITHUB_OUTPUT"
       
       # Step 11.7: Generate workflow summary
       - name: Generate workflow summary
         if: always()
+        env:
+          SUMMARY_AUTHOR_NAME: ${{ steps.author-info.outputs.name }}
+          SUMMARY_AUTHOR_USERNAME: ${{ steps.author-info.outputs.username }}
+          SUMMARY_REGISTRY_URL: ${{ steps.registry-url.outputs.url }}
+          SUMMARY_REGISTRY_TYPE: ${{ steps.registry-url.outputs.type }}
         run: |
           STATUS="${{ steps.run-tests.outputs.status }}"
           TOTAL="${{ steps.run-tests.outputs.total }}"
@@ -478,14 +495,14 @@ jobs:
           echo "| **Skipped** | ${SKIPPED} |" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
           echo "### Component Installation" >> $GITHUB_STEP_SUMMARY
-          echo "- **Registry URL**: \`${{ steps.registry-url.outputs.url }}\`" >> $GITHUB_STEP_SUMMARY
-          echo "- **Registry Type**: ${{ steps.registry-url.outputs.type }}" >> $GITHUB_STEP_SUMMARY
+          echo "- **Registry URL**: \`${SUMMARY_REGISTRY_URL}\`" >> $GITHUB_STEP_SUMMARY
+          echo "- **Registry Type**: ${SUMMARY_REGISTRY_TYPE}" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
           echo "### Test Details" >> $GITHUB_STEP_SUMMARY
           echo "- **Repository**: \`${{ github.repository }}\`" >> $GITHUB_STEP_SUMMARY
           echo "- **Branch**: \`${{ github.ref_name }}\`" >> $GITHUB_STEP_SUMMARY
           echo "- **Commit**: \`${{ github.sha }}\`" >> $GITHUB_STEP_SUMMARY
-          echo "- **Author**: ${{ steps.author-info.outputs.name }} (@${{ steps.author-info.outputs.username }})" >> $GITHUB_STEP_SUMMARY
+          echo "- **Author**: ${SUMMARY_AUTHOR_NAME} (@${SUMMARY_AUTHOR_USERNAME})" >> $GITHUB_STEP_SUMMARY
           echo "- **Workflow**: [${{ github.workflow }}](${WORKFLOW_RUN_URL})" >> $GITHUB_STEP_SUMMARY
           echo "- **Run Number**: #${{ github.run_number }}" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
@@ -538,13 +555,18 @@ jobs:
       - name: Prepare event details
         id: event-details
         if: always()
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+          PR_TITLE: ${{ github.event.pull_request.title }}
+          HEAD_COMMIT_MESSAGE: ${{ github.event.head_commit.message }}
         run: |
-          if [ "${{ github.event_name }}" == "pull_request" ]; then
+          if [ "$EVENT_NAME" == "pull_request" ]; then
             EVENT_TYPE="Pull Request"
-            EVENT_DETAILS="PR #${{ github.event.pull_request.number }}: ${{ github.event.pull_request.title }}"
+            EVENT_DETAILS="PR #${PR_NUMBER}: ${PR_TITLE}"
           else
             EVENT_TYPE="Direct Commit"
-            COMMIT_MSG="${{ github.event.head_commit.message }}"
+            COMMIT_MSG="$HEAD_COMMIT_MESSAGE"
             # Remove newlines and carriage returns, replace with spaces, then clean up multiple spaces
             COMMIT_MSG=$(printf '%s' "$COMMIT_MSG" | tr '\n\r' ' ' | sed 's/[[:space:]]\+/ /g' | sed 's/^[[:space:]]*//;s/[[:space:]]*$//')
             # Truncate if too long
@@ -553,8 +575,15 @@ jobs:
             fi
             EVENT_DETAILS="Commit: ${COMMIT_MSG}"
           fi
-          echo "type=${EVENT_TYPE}" >> $GITHUB_OUTPUT
-          echo "details=${EVENT_DETAILS}" >> $GITHUB_OUTPUT
+
+          {
+            echo "type<<EOF"
+            printf '%s\n' "$EVENT_TYPE"
+            echo "EOF"
+            echo "details<<EOF"
+            printf '%s\n' "$EVENT_DETAILS"
+            echo "EOF"
+          } >> "$GITHUB_OUTPUT"
       
       # Step 11.9: Send test results to Teams channel
       - name: Send test results to Teams
@@ -643,15 +672,25 @@ jobs:
       - name: Comment on PR with test results
         if: github.event_name == 'pull_request' && always()
         uses: actions/github-script@v7
+        env:
+          AUTHOR_USERNAME: ${{ steps.author-info.outputs.username }}
+          AUTHOR_NAME: ${{ steps.author-info.outputs.name }}
+          TEST_STATUS: ${{ steps.run-tests.outputs.status }}
+          TEST_TOTAL: ${{ steps.run-tests.outputs.total }}
+          TEST_PASSED: ${{ steps.run-tests.outputs.passed }}
+          TEST_FAILED: ${{ steps.run-tests.outputs.failed }}
+          TEST_SKIPPED: ${{ steps.run-tests.outputs.skipped }}
+          REGISTRY_URL: ${{ steps.registry-url.outputs.url }}
+          REGISTRY_TYPE: ${{ steps.registry-url.outputs.type }}
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
-            const status = '${{ steps.run-tests.outputs.status }}' || 'unknown';
-            const total = '${{ steps.run-tests.outputs.total }}' || '0';
-            const passed = '${{ steps.run-tests.outputs.passed }}' || '0';
-            const failed = '${{ steps.run-tests.outputs.failed }}' || '0';
-            const skipped = '${{ steps.run-tests.outputs.skipped }}' || '0';
-            const author = '@${{ steps.author-info.outputs.username }}' || '@${{ github.actor }}';
+            const status = process.env.TEST_STATUS || 'unknown';
+            const total = process.env.TEST_TOTAL || '0';
+            const passed = process.env.TEST_PASSED || '0';
+            const failed = process.env.TEST_FAILED || '0';
+            const skipped = process.env.TEST_SKIPPED || '0';
+            const author = process.env.AUTHOR_USERNAME ? `@${process.env.AUTHOR_USERNAME}` : '@${{ github.actor }}';
             const workflowRunUrl = `${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}`;
             const prUrl = `${{ github.server_url }}/${{ github.repository }}/pull/${{ github.event.pull_request.number }}`;
             const reportUrl = `${workflowRunUrl}#artifacts`;
@@ -694,8 +733,8 @@ jobs:
             const mentions = specificPerson ? `${author} ${specificPerson}` : author;
             
             // Build comment with markdown
-            const registryUrl = '${{ steps.registry-url.outputs.url }}' || 'https://blok.sitecore.com';
-            const registryType = '${{ steps.registry-url.outputs.type }}' || 'production';
+            const registryUrl = process.env.REGISTRY_URL || 'https://blok.sitecore.com';
+            const registryType = process.env.REGISTRY_TYPE || 'production';
             
             const comment = `## ${statusEmoji} Playwright Test Results
             
@@ -748,6 +787,11 @@ jobs:
       # Step 16: Log test results for direct commits
       - name: Log test results for direct commits
         if: github.event_name != 'pull_request' && always()
+        env:
+          LOG_AUTHOR_NAME: ${{ steps.author-info.outputs.name }}
+          LOG_AUTHOR_USERNAME: ${{ steps.author-info.outputs.username }}
+          LOG_REGISTRY_URL: ${{ steps.registry-url.outputs.url }}
+          LOG_REGISTRY_TYPE: ${{ steps.registry-url.outputs.type }}
         run: |
           STATUS="${{ steps.run-tests.outputs.status }}"
           TOTAL="${{ steps.run-tests.outputs.total }}"
@@ -768,8 +812,8 @@ jobs:
           echo "Passed: ${PASSED}"
           echo "Failed: ${FAILED}"
           echo "Skipped: ${SKIPPED}"
-          echo "Registry URL: ${{ steps.registry-url.outputs.url }} (${{ steps.registry-url.outputs.type }})"
-          echo "Author: ${{ steps.author-info.outputs.name }} (@${{ steps.author-info.outputs.username }})"
+          echo "Registry URL: ${LOG_REGISTRY_URL} (${LOG_REGISTRY_TYPE})"
+          echo "Author: ${LOG_AUTHOR_NAME} (@${LOG_AUTHOR_USERNAME})"
           echo "Workflow Run: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
           echo ""
           echo "Note: GitHub will automatically send email notifications to the commit author."

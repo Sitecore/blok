@@ -119,5 +119,6 @@ export default function FilterDemo() {
     "Filter Multi Select": { component: "filter-multi-select" },
     "Filter with Search": { component: "filter-with-search" },
     "Filter with image/avatar": { component: "filter-with-avatar" },
+    "Filter with infinite scroll": { component: "filter-infinite-scroll" },
   },
 };

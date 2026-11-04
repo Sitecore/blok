@@ -111,6 +111,17 @@ runs:
     - name: Send notification to Teams
       shell: bash
       if: always()
+      env:
+        INPUT_AUTHOR_NAME: ${{ inputs.author-name }}
+        INPUT_AUTHOR_USERNAME: ${{ inputs.author-username }}
+        INPUT_PR_NUMBER: ${{ inputs.pr-number }}
+        INPUT_PR_TITLE: ${{ inputs.pr-title }}
+        INPUT_PR_BRANCH: ${{ inputs.pr-branch }}
+        INPUT_BASE_BRANCH: ${{ inputs.base-branch }}
+        INPUT_REGISTRY_URL: ${{ inputs.registry-url }}
+        INPUT_REGISTRY_TYPE: ${{ inputs.registry-type }}
+        INPUT_EVENT_DETAILS: ${{ inputs.event-details }}
+        INPUT_EVENT_TYPE: ${{ inputs.event-type }}
       run: |
         # Determine notification content based on type
         if [ "${{ inputs.notification-type }}" == "pr-build" ]; then
@@ -129,14 +140,14 @@ runs:
             SUMMARY="PR branch build completed successfully!"
           fi
           
-          AUTHOR_NAME="${{ inputs.author-name }}"
-          AUTHOR_USERNAME="${{ inputs.author-username }}"
-          PR_NUMBER="${{ inputs.pr-number }}"
-          PR_TITLE="${{ inputs.pr-title }}"
-          PR_BRANCH="${{ inputs.pr-branch }}"
-          BASE_BRANCH="${{ inputs.base-branch }}"
-          REGISTRY_URL="${{ inputs.registry-url }}"
-          REGISTRY_TYPE="${{ inputs.registry-type }}"
+          AUTHOR_NAME="${INPUT_AUTHOR_NAME}"
+          AUTHOR_USERNAME="${INPUT_AUTHOR_USERNAME}"
+          PR_NUMBER="${INPUT_PR_NUMBER}"
+          PR_TITLE="${INPUT_PR_TITLE}"
+          PR_BRANCH="${INPUT_PR_BRANCH}"
+          BASE_BRANCH="${INPUT_BASE_BRANCH}"
+          REGISTRY_URL="${INPUT_REGISTRY_URL}"
+          REGISTRY_TYPE="${INPUT_REGISTRY_TYPE}"
           PR_URL="${{ inputs.github-server-url }}/${{ inputs.github-repository }}/pull/${PR_NUMBER}"
           WORKFLOW_RUN_URL="${{ inputs.github-server-url }}/${{ inputs.github-repository }}/actions/runs/${{ inputs.github-run-id }}"
           
@@ -282,15 +293,15 @@ runs:
           STATUS_TEXT="${OVERALL_TEXT}"
           STATUS_COLOR="${OVERALL_COLOR}"
           
-          AUTHOR_NAME="${{ inputs.author-name }}"
-          AUTHOR_USERNAME="${{ inputs.author-username }}"
+          AUTHOR_NAME="${INPUT_AUTHOR_NAME}"
+          AUTHOR_USERNAME="${INPUT_AUTHOR_USERNAME}"
           WORKFLOW_RUN_URL="${{ inputs.github-server-url }}/${{ inputs.github-repository }}/actions/runs/${{ inputs.github-run-id }}"
           REPORT_URL="${WORKFLOW_RUN_URL}#artifacts"
           
-          if [ "${{ inputs.pr-number }}" != "" ]; then
+          if [ "${INPUT_PR_NUMBER}" != "" ]; then
             EVENT_TYPE="Pull Request"
-            PR_NUMBER="${{ inputs.pr-number }}"
-            PR_TITLE="${{ inputs.pr-title }}"
+            PR_NUMBER="${INPUT_PR_NUMBER}"
+            PR_TITLE="${INPUT_PR_TITLE}"
             EVENT_URL="${{ inputs.github-server-url }}/${{ inputs.github-repository }}/pull/${PR_NUMBER}"
             EVENT_DETAILS="PR #${PR_NUMBER}: ${PR_TITLE}"
           else
@@ -298,7 +309,7 @@ runs:
             PR_NUMBER=""
             PR_TITLE=""
             EVENT_URL="${WORKFLOW_RUN_URL}"
-            EVENT_DETAILS="${{ inputs.event-details }}"
+            EVENT_DETAILS="${INPUT_EVENT_DETAILS}"
           fi
           
           if [ "$BUILD_STATUS" == "failed" ]; then
@@ -332,8 +343,8 @@ runs:
           export EVENT_URL="${EVENT_URL}"
           export EVENT_DETAILS="${EVENT_DETAILS}"
           export PR_NUMBER="${PR_NUMBER:-}"
-          export REGISTRY_URL="${{ inputs.registry-url }}"
-          export REGISTRY_TYPE="${{ inputs.registry-type }}"
+          export REGISTRY_URL="${INPUT_REGISTRY_URL}"
+          export REGISTRY_TYPE="${INPUT_REGISTRY_TYPE}"
           export REPORT_URL="${REPORT_URL}"
           
           node -e "

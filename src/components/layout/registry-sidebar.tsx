@@ -13,9 +13,10 @@ import {
 import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { graphicsItems, themingItems } from "@/config/nav";
+import { Icon } from "@/lib/icon";
 import { getBlocks, getComponents, getRegistryItem } from "@/lib/registry";
 import { TELEMETRY_EVENTS, track } from "@/lib/telemetry";
-import { Menu, X } from "lucide-react";
+import { mdiClose, mdiMenu } from "@mdi/js";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Direction } from "radix-ui";
@@ -69,7 +70,7 @@ export function MobileSidebarTrigger() {
       className={`absolute top-8 ${direction === "rtl" ? "left-4" : "right-4"} md:hidden`}
     >
       <Button aria-label="Open menu" onClick={() => setOpenMobile(true)}>
-        <Menu className="size-5" />
+        <Icon path={mdiMenu} className="size-5" />
       </Button>
     </div>
   );
@@ -161,7 +162,7 @@ export function RegistrySidebar() {
             onClick={() => setOpenMobile(false)}
             aria-label="Close sidebar"
           >
-            <X />
+            <Icon path={mdiClose} />
           </Button>
         </div>
       </SidebarHeader>
@@ -169,7 +170,7 @@ export function RegistrySidebar() {
       <SidebarContent
         className={`${direction === "rtl" ? "mr-4" : "ml-4"} py-4`}
       >
-        <ScrollArea className="h-full w-full pr-4">
+        <ScrollArea className="h-full w-full pr-6">
           <TooltipProvider delayDuration={2000}>
             <SidebarMenu>
               {sidebarType === "components" &&
@@ -178,7 +179,7 @@ export function RegistrySidebar() {
                     <SidebarMenuButton
                       asChild
                       isActive={pathname === `/primitives/${item.name}`}
-                      className="h-10 font-medium text-md text-neutral-fg hover:bg-gray-100 hover:dark:bg-gray-700 data-[active=true]:text-primary-fg data-[active=true]:bg-primary-background"
+                      className="h-10 bg-subtle-bg font-medium text-md text-neutral-fg hover:bg-gray-100 hover:dark:bg-gray-700 data-[active=true]:text-primary-fg data-[active=true]:bg-primary-background"
                     >
                       <Link
                         onClick={() => {
@@ -203,7 +204,7 @@ export function RegistrySidebar() {
                     <SidebarMenuButton
                       asChild
                       isActive={pathname === `/bloks/${item.name}`}
-                      className="h-10 font-medium text-md text-neutral-fg hover:bg-gray-100 hover:dark:bg-gray-700 data-[active=true]:text-primary-fg data-[active=true]:bg-primary-background"
+                      className="h-10 bg-subtle-bg font-medium text-md text-neutral-fg hover:bg-gray-100 hover:dark:bg-gray-700 data-[active=true]:text-primary-fg data-[active=true]:bg-primary-background"
                     >
                       <Link
                         onClick={() => {
@@ -228,7 +229,7 @@ export function RegistrySidebar() {
                     <SidebarMenuButton
                       asChild
                       isActive={pathname === item.path}
-                      className="h-10 font-medium text-md text-neutral-fg hover:bg-gray-100 hover:dark:bg-gray-700 data-[active=true]:text-primary-fg data-[active=true]:bg-primary-background"
+                      className="h-10 bg-subtle-bg font-medium text-md text-neutral-fg hover:bg-gray-100 hover:dark:bg-gray-700 data-[active=true]:text-primary-fg data-[active=true]:bg-primary-background"
                     >
                       <Link
                         onClick={() => {
@@ -253,7 +254,7 @@ export function RegistrySidebar() {
                     <SidebarMenuButton
                       asChild
                       isActive={pathname === item.path}
-                      className="h-10 font-medium text-md text-neutral-fg hover:bg-gray-100 hover:dark:bg-gray-700 data-[active=true]:text-primary-fg data-[active=true]:bg-primary-background"
+                      className="h-10 bg-subtle-bg font-medium text-md text-neutral-fg hover:bg-gray-100 hover:dark:bg-gray-700 data-[active=true]:text-primary-fg data-[active=true]:bg-primary-background"
                     >
                       <Link
                         onClick={() => {
@@ -283,7 +284,7 @@ export function RegistrySidebar() {
                             pathname.startsWith("/changelog") &&
                             changelogHash === changelog.id
                           }
-                          className="h-10 w-full min-w-0 items-center overflow-hidden font-medium text-md text-neutral-fg hover:bg-gray-100 hover:dark:bg-gray-700 data-[active=true]:text-primary-fg data-[active=true]:bg-primary-background"
+                          className="h-10 w-full min-w-0 items-center overflow-hidden bg-subtle-bg font-medium text-md text-neutral-fg hover:bg-gray-100 hover:dark:bg-gray-700 data-[active=true]:text-primary-fg data-[active=true]:bg-primary-background"
                         >
                           <Link
                             href={`/changelog#${changelog.id}`}

@@ -3,8 +3,9 @@
 import { Slot as SlotPrimitive } from "radix-ui";
 
 const Slot = SlotPrimitive.Root;
+import { Icon } from "@/lib/icon";
+import { mdiPageLayoutSidebarLeft } from "@mdi/js";
 import { type VariantProps, cva } from "class-variance-authority";
-import { PanelLeftIcon } from "lucide-react";
 import * as React from "react";
 
 import { Button } from "@/components/ui/button";
@@ -276,7 +277,7 @@ function SidebarTrigger({
       }}
       {...props}
     >
-      <PanelLeftIcon />
+      <Icon path={mdiPageLayoutSidebarLeft} />
       <span className="sr-only">Toggle Sidebar</span>
     </Button>
   );

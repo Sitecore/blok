@@ -1,5 +1,6 @@
 "use client";
 
+import ContentIconsThumb from "@/components/component-thumbs/content-icons";
 import FaviconsThumb from "@/components/component-thumbs/favicons";
 import IconsThumb from "@/components/component-thumbs/icons";
 import IllustrationsThumb from "@/components/component-thumbs/illustrations";
@@ -7,6 +8,16 @@ import LogosThumb from "@/components/component-thumbs/logos";
 import { ComponentGridCard } from "@/components/docsite/component-grid-card";
 
 const grapicsCategories = [
+  {
+    name: "content-icons",
+    title: "Content icons",
+    href: "/graphics/content-icons",
+    preview: (
+      <div className="w-full h-full flex items-center justify-center p-4">
+        <ContentIconsThumb />
+      </div>
+    ),
+  },
   {
     name: "favicons",
     title: "Favicons",

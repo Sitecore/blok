@@ -1,7 +1,7 @@
 "use client";
 
 import { Icon } from "@/lib/icon";
-import { mdiChevronLeft, mdiChevronRight } from "@mdi/js";
+import { mdiChevronDown, mdiChevronLeft, mdiChevronRight } from "@mdi/js";
 import { format } from "date-fns";
 import * as React from "react";
 
@@ -14,13 +14,37 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { cn } from "@/lib/utils";
-import { ChevronDownIcon } from "lucide-react";
 import {
   type DayButton,
   DayPicker,
   type DropdownProps,
+  type NavProps,
+  UI,
   getDefaultClassNames,
+  useDayPicker,
 } from "react-day-picker";
+
+type CalendarDataAttributes = {
+  [key: `data-${string}`]: string | number | boolean | undefined;
+};
+
+export type CalendarMonthNavigationButtonProps =
+  React.ButtonHTMLAttributes<HTMLButtonElement> & CalendarDataAttributes;
+
+export type CalendarMonthNavigationProps = {
+  previousButtonProps?: CalendarMonthNavigationButtonProps;
+  nextButtonProps?: CalendarMonthNavigationButtonProps;
+};
+
+type CalendarActionHandler = (
+  event: React.MouseEvent<HTMLButtonElement>,
+) => void;
+
+type CalendarNavExtras = {
+  monthNavigationProps?: CalendarMonthNavigationProps;
+  onPreviousAction?: CalendarActionHandler;
+  onNextAction?: CalendarActionHandler;
+};
 
 export function InBuiltDropdown({
   options = [],
@@ -68,6 +92,90 @@ export function InBuiltDropdown({
   );
 }
 
+/** Month controls as a div so multiple calendars do not create duplicate nav landmarks. */
+function CalendarNav({
+  onPreviousClick,
+  onNextClick,
+  previousMonth,
+  nextMonth,
+  monthNavigationProps,
+  onPreviousAction,
+  onNextAction,
+  "aria-label": _unusedAriaLabel,
+  ...navProps
+}: NavProps & CalendarNavExtras) {
+  const {
+    components,
+    classNames,
+    labels: { labelPrevious, labelNext },
+  } = useDayPicker();
+
+  const previousButtonProps = monthNavigationProps?.previousButtonProps;
+  const nextButtonProps = monthNavigationProps?.nextButtonProps;
+
+  return (
+    <div {...navProps}>
+      <components.PreviousMonthButton
+        {...previousButtonProps}
+        type="button"
+        className={cn(
+          classNames[UI.PreviousMonthButton],
+          previousButtonProps?.className,
+        )}
+        tabIndex={
+          previousButtonProps?.tabIndex ?? (previousMonth ? undefined : -1)
+        }
+        aria-disabled={
+          previousButtonProps?.["aria-disabled"] ??
+          (previousMonth ? undefined : true)
+        }
+        aria-label={
+          previousButtonProps?.["aria-label"] ?? labelPrevious(previousMonth)
+        }
+        onClick={(e) => {
+          if (!previousMonth) return;
+
+          onPreviousClick?.(e);
+          previousButtonProps?.onClick?.(e);
+          onPreviousAction?.(e);
+        }}
+      >
+        <components.Chevron
+          disabled={previousMonth ? undefined : true}
+          className={classNames[UI.Chevron]}
+          orientation="left"
+        />
+      </components.PreviousMonthButton>
+      <components.NextMonthButton
+        {...nextButtonProps}
+        type="button"
+        className={cn(
+          classNames[UI.NextMonthButton],
+          nextButtonProps?.className,
+        )}
+        tabIndex={nextButtonProps?.tabIndex ?? (nextMonth ? undefined : -1)}
+        aria-disabled={
+          nextButtonProps?.["aria-disabled"] ?? (nextMonth ? undefined : true)
+        }
+        aria-label={nextButtonProps?.["aria-label"] ?? labelNext(nextMonth)}
+        onClick={(e) => {
+          if (!nextMonth) return;
+
+          onNextClick?.(e);
+          nextButtonProps?.onClick?.(e);
+          onNextAction?.(e);
+        }}
+      >
+        <components.Chevron
+          disabled={nextMonth ? undefined : true}
+          orientation="right"
+          className={classNames[UI.Chevron]}
+        />
+      </components.NextMonthButton>
+    </div>
+  );
+}
+
 function Calendar({
   className,
   classNames,
@@ -78,11 +186,17 @@ function Calendar({
   components,
   labels,
   monthDropdownAriaLabel,
+  monthNavigationProps,
+  onPreviousAction,
+  onNextAction,
   ...props
 }: React.ComponentProps<typeof DayPicker> & {
   buttonVariant?: React.ComponentProps<typeof Button>["variant"];
   /** Sets `labels.labelMonthDropdown` for dropdown caption layouts (month `<select>` / custom trigger). */
   monthDropdownAriaLabel?: string;
+  monthNavigationProps?: CalendarMonthNavigationProps;
+  onPreviousAction?: CalendarActionHandler;
+  onNextAction?: CalendarActionHandler;
 }) {
   const defaultClassNames = getDefaultClassNames();
 
@@ -92,7 +206,6 @@ function Calendar({
       className={cn("p-3", className)}
       captionLayout={captionLayout}
       labels={{
-        labelNav: () => "Month navigation",
         ...labels,
         ...(monthDropdownAriaLabel != null && !labels?.labelMonthDropdown
           ? { labelMonthDropdown: () => monthDropdownAriaLabel }
@@ -205,6 +318,16 @@ function Calendar({
             />
           );
         },
+        Nav: (navProps) => {
+          return (
+            <CalendarNav
+              {...navProps}
+              monthNavigationProps={monthNavigationProps}
+              onPreviousAction={onPreviousAction}
+              onNextAction={onNextAction}
+            />
+          );
+        },
         Chevron: ({ className, orientation, ...props }) => {
           if (orientation === "left") {
             return (
@@ -228,7 +351,11 @@ function Calendar({
             );
           }
           return (
-            <ChevronDownIcon className={cn("size-4", className)} {...props} />
+            <Icon
+              path={mdiChevronDown}
+              className={cn("size-4", className)}
+              {...props}
+            />
           );
         },
         DayButton: CalendarDayButton,

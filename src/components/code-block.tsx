@@ -6,8 +6,7 @@ import { highlightCodeToHtml } from "@/lib/shiki-highlighter";
 import { TELEMETRY_EVENTS, track } from "@/lib/telemetry";
 import type { CopyCodePayload } from "@/lib/telemetry";
 import { cn } from "@/lib/utils";
-import { mdiClipboardOutline } from "@mdi/js";
-import { Check } from "lucide-react";
+import { mdiCheck, mdiClipboardOutline } from "@mdi/js";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 
@@ -80,7 +79,7 @@ export function CodeCopyButton({
       }
     >
       {copied ? (
-        <Check className="size-4" />
+        <Icon path={mdiCheck} className="size-4" />
       ) : (
         <Icon path={mdiClipboardOutline} className="text-muted-foreground" />
       )}

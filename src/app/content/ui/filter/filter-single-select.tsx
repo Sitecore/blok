@@ -46,10 +46,6 @@ export default function FilterSingleSelectDemo() {
         options={[]}
         placeholder="Single select filter"
         groups={BLOCKCN_FILTER_GROUPS}
-        ariaLabels={{
-          listbox: "List of options",
-          clearSelection: "Clear selection",
-        }}
       />
     </div>
   );

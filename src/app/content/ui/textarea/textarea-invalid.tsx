@@ -8,7 +8,6 @@ export default function InvalidTextareaDemo() {
       <Textarea
         id="invalid-textarea"
         placeholder="Type your message here."
-        aria-label="Message"
         aria-invalid="true"
       />
     </div>

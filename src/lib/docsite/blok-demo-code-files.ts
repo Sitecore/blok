@@ -223,6 +223,94 @@ export const topbarCodeFiles: DemoCodeFileSource[] = [
   ),
 ];
 
+const marketplaceAppIconComponentCodeFiles: DemoCodeFileSource[] = [
+  demoCodeFile(
+    "components/bloks/marketplace-app-icon.tsx",
+    "src/components/bloks/marketplace-app-icon.tsx",
+  ),
+];
+
+export const marketplaceAppIconCodeFiles: DemoCodeFileSource[] = [
+  demoCodeFile(
+    "app/content/bloks/marketplace-app-icon/marketplace-app-icon.tsx",
+    "src/app/content/bloks/marketplace-app-icon/marketplace-app-icon.tsx",
+    { default: true },
+  ),
+  ...marketplaceAppIconComponentCodeFiles,
+];
+
+export const marketplaceAppIconSizesCodeFiles: DemoCodeFileSource[] = [
+  demoCodeFile(
+    "app/content/bloks/marketplace-app-icon/marketplace-app-icon-sizes.tsx",
+    "src/app/content/bloks/marketplace-app-icon/marketplace-app-icon-sizes.tsx",
+    { default: true },
+  ),
+  ...marketplaceAppIconComponentCodeFiles,
+];
+
+export const marketplaceAppIconFallbackCodeFiles: DemoCodeFileSource[] = [
+  demoCodeFile(
+    "app/content/bloks/marketplace-app-icon/marketplace-app-icon-fallback.tsx",
+    "src/app/content/bloks/marketplace-app-icon/marketplace-app-icon-fallback.tsx",
+    { default: true },
+  ),
+  ...marketplaceAppIconComponentCodeFiles,
+];
+
+const pageHeaderComponentCodeFiles: DemoCodeFileSource[] = [
+  demoCodeFile(
+    "components/bloks/page-header.tsx",
+    "src/components/bloks/page-header.tsx",
+  ),
+];
+
+const pageHeaderMockDataCodeFiles: DemoCodeFileSource[] = [
+  demoCodeFile(
+    "app/content/bloks/page-header/page-header.mock-data.ts",
+    "src/app/content/bloks/page-header/page-header.mock-data.ts",
+  ),
+];
+
+export const pageHeaderCodeFiles: DemoCodeFileSource[] = [
+  demoCodeFile(
+    "app/content/bloks/page-header/page-header.tsx",
+    "src/app/content/bloks/page-header/page-header.tsx",
+    { default: true },
+  ),
+  ...pageHeaderMockDataCodeFiles,
+  ...pageHeaderComponentCodeFiles,
+];
+
+export const pageHeaderTopNavMiniCodeFiles: DemoCodeFileSource[] = [
+  demoCodeFile(
+    "app/content/bloks/page-header/page-header-top-nav-mini.tsx",
+    "src/app/content/bloks/page-header/page-header-top-nav-mini.tsx",
+    { default: true },
+  ),
+  ...pageHeaderMockDataCodeFiles,
+  ...pageHeaderComponentCodeFiles,
+];
+
+export const pageHeaderSiteSummaryCodeFiles: DemoCodeFileSource[] = [
+  demoCodeFile(
+    "app/content/bloks/page-header/page-header-site-summary.tsx",
+    "src/app/content/bloks/page-header/page-header-site-summary.tsx",
+    { default: true },
+  ),
+  ...pageHeaderMockDataCodeFiles,
+  ...pageHeaderComponentCodeFiles,
+];
+
+export const pageHeaderSiteSummaryWhiteCodeFiles: DemoCodeFileSource[] = [
+  demoCodeFile(
+    "app/content/bloks/page-header/page-header-site-summary-white.tsx",
+    "src/app/content/bloks/page-header/page-header-site-summary-white.tsx",
+    { default: true },
+  ),
+  ...pageHeaderMockDataCodeFiles,
+  ...pageHeaderComponentCodeFiles,
+];
+
 /** Map blok registry name → code file sources for the Code tab explorer. */
 export const blokDemoCodeFilesByName: Record<string, DemoCodeFileSource[]> = {
   "all-site": allSiteCodeFiles,
@@ -232,5 +320,7 @@ export const blokDemoCodeFilesByName: Record<string, DemoCodeFileSource[]> = {
   "prompt-input": promptInputCodeFiles,
   collaboration: collaborationCodeFiles,
   "dashboard-widget": dashboardWidgetCodeFiles,
+  "marketplace-app-icon": marketplaceAppIconCodeFiles,
+  "page-header": pageHeaderCodeFiles,
   topbar: topbarCodeFiles,
 };

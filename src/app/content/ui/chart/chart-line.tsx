@@ -14,7 +14,8 @@ import {
   ChartTooltip,
   ChartTooltipContent,
 } from "@/components/ui/chart";
-import { TrendingUp } from "lucide-react";
+import { Icon } from "@/lib/icon";
+import { mdiTrendingUp } from "@mdi/js";
 import { CartesianGrid, Line, LineChart, XAxis } from "recharts";
 
 export const description = "A multiple line chart";
@@ -87,7 +88,8 @@ export default function LineChartDemo() {
         <div className="flex w-full items-start gap-2 text-sm">
           <div className="grid gap-2">
             <div className="flex items-center gap-2 leading-none font-medium wrap-break-word">
-              Trending up by 5.2% this month <TrendingUp className="h-4 w-4" />
+              Trending up by 5.2% this month{" "}
+              <Icon path={mdiTrendingUp} className="h-4 w-4" />
             </div>
             <div className="text-muted-foreground flex items-center gap-2 leading-none wrap-break-word">
               Showing total visitors for the last 6 months

@@ -39,11 +39,6 @@ export default function DashboardWidgetWhiteBgLargeDemo() {
             options={mockDashboardWidgetFilterOptions}
             placeholder="Filter"
             className="w-fit"
-            ariaLabels={{
-              popoverTrigger: "Select an option",
-              listbox: "List of options",
-              clearSelection: "Clear selection",
-            }}
           />
         </DashboardWidgetToolbar>
         <DashboardWidgetContent>
