@@ -16,6 +16,9 @@ interface ClientSDKProviderProps {
   children: ReactNode;
 }
 
+const NOT_EMBEDDED_ERROR =
+  "This app is not running inside Sitecore. Open it from the extension point it is installed in.";
+
 const ClientSDKContext = createContext<ClientSDK | null>(null);
 const AppContextContext = createContext<ApplicationContext | null>(null);
 
@@ -25,7 +28,7 @@ export const MarketplaceProvider: React.FC<ClientSDKProviderProps> = ({
   const [client, setClient] = useState<ClientSDK | null>(null);
   const [appContext, setAppContext] = useState<ApplicationContext | null>(null);
   const [error, setError] = useState<string | null>(null);
-  const [loading, setLoading] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
     if (client) {
@@ -40,6 +43,13 @@ export const MarketplaceProvider: React.FC<ClientSDKProviderProps> = ({
 
   useEffect(() => {
     const init = async () => {
+      // Outside an iframe there is no Sitecore host to handshake with, so fail
+      // fast instead of waiting for the SDK handshake to time out.
+      if (window.parent === window) {
+        setError(NOT_EMBEDDED_ERROR);
+        setLoading(false);
+        return;
+      }
       const config = {
         target: window.parent,
         // Enable if your app uses XMC APIs
@@ -71,7 +81,8 @@ export const MarketplaceProvider: React.FC<ClientSDKProviderProps> = ({
         <div>{error}</div>
         <div>
           Please check if the client SDK is loaded inside Sitecore Marketplace
-          parent window and you have properly set your app's extention points.
+          parent window and you have properly set your app&apos;s extension
+          points.
         </div>
       </div>
     );
