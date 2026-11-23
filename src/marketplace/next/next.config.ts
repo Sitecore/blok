@@ -3,6 +3,7 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   async headers() {
     const allowedParentDomains = [
+      "https://app.sitecorecloud.io",
       "https://marketplace-app.sitecorecloud.io",
       "https://pages.sitecorecloud.io",
       "https://xmapps.sitecorecloud.io",
